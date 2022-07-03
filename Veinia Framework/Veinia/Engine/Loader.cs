@@ -16,11 +16,13 @@
 
 	public void Unload(Level level)
 	{
-		for (int i = 0; i < level.scene.Count; i++)
+		foreach (var gameObject in level.scene.ToArray())
 		{
-			level.scene[i].DestroyGameObject();
+			gameObject.DestroyGameObject();
 		}
-		previousLevel = currentLevel;
-		currentLevel = null;
+
+		//crashes
+		//previousLevel = currentLevel;
+		//currentLevel = null;
 	}
 }

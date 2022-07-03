@@ -100,6 +100,6 @@ public class GameObject
 		isStatic = false;
 
 		world.Remove(this);
-		world = null;
+		world = null; // remove local world
 	}
 }

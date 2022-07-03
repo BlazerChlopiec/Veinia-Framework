@@ -28,7 +28,7 @@ public class TestLevel : Level
 				new Sprite(path: "Test/test3", layer: 0, Color.White, destinationSize: new Vector2(1, 1)),
 				new MouseFollow(),
 				new SpawnOnMouse(),
-				new CustomCollider(CollisionResponses.None, Vector2.Zero, Vector2.One*.5f),
+				new CustomCollider(CollisionResponses.Slide, Vector2.Zero, Vector2.One*.5f),
 				new HitboxOutline()
 			}, isStatic: false);
 

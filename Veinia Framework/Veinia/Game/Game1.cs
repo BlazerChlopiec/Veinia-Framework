@@ -54,10 +54,7 @@ public class Game1 : Game
 		base.Initialize();
 	}
 
-	protected override void LoadContent()
-	{
-
-	}
+	protected override void LoadContent() { }
 
 	protected override void Update(GameTime gameTime)
 	{
@@ -94,8 +91,8 @@ public class Game1 : Game
 
 		if (Globals.input.GetKeyDown(Keys.Space))
 		{
-			//cre3ashes
-			//Globals.loader.Unload(Globals.loader.currentLevel);
+			//crashes hard :weary:
+			Globals.loader.Unload(Globals.loader.currentLevel);
 		}
 		if (Globals.input.GetKeyDown(Keys.M))
 		{
