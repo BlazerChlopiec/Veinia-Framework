@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>D:/yt blazer yt/BlockBreaker CULLING NEWER/BlockBreaker/Content/Test/background.jpg</File>
+    <File>D:/yt blazer yt/BlockBreaker CULLING NEWER/BlockBreaker/Content/Test/test1.png</File>
+    <File>D:/yt blazer yt/BlockBreaker CULLING NEWER/BlockBreaker/Content/Test/test2.png</File>
+    <File>D:/yt blazer yt/BlockBreaker CULLING NEWER/BlockBreaker/Content/Test/test3.png</File>
+    <File>D:/yt blazer yt/BlockBreaker CULLING NEWER/BlockBreaker/Content/Test/test4.png</File>
+    <File>D:/yt blazer yt/BlockBreaker CULLING NEWER/BlockBreaker/Content/Test/test5.png</File>
+    <File>D:/yt blazer yt/BlockBreaker CULLING NEWER/BlockBreaker/Content/Test/test6.png</File>
+    <File>D:/yt blazer yt/BlockBreaker CULLING NEWER/BlockBreaker/Content/Test/test7.png</File>
+    <File>D:/yt blazer yt/BlockBreaker CULLING NEWER/BlockBreaker/Content/Test/veina background.png</File>
+    <File>D:/yt blazer yt/BlockBreaker CULLING NEWER/BlockBreaker/Content/Test/veina tile.png</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>

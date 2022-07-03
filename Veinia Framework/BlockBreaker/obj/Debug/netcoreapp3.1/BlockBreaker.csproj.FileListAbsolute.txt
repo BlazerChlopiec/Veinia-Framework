@@ -1,0 +1,523 @@
+D:\yt blazer yt\MonoGame\rep\BlockBreaker\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test1.xnb
+D:\yt blazer yt\MonoGame\rep\BlockBreaker\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.exe
+D:\yt blazer yt\MonoGame\rep\BlockBreaker\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.deps.json
+D:\yt blazer yt\MonoGame\rep\BlockBreaker\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.runtimeconfig.json
+D:\yt blazer yt\MonoGame\rep\BlockBreaker\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.runtimeconfig.dev.json
+D:\yt blazer yt\MonoGame\rep\BlockBreaker\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.dll
+D:\yt blazer yt\MonoGame\rep\BlockBreaker\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.pdb
+D:\yt blazer yt\MonoGame\rep\BlockBreaker\BlockBreaker\bin\Debug\netcoreapp3.1\MonoGame.Framework.dll
+D:\yt blazer yt\MonoGame\rep\BlockBreaker\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libSDL2-2.0.so.0
+D:\yt blazer yt\MonoGame\rep\BlockBreaker\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libopenal.so.1
+D:\yt blazer yt\MonoGame\rep\BlockBreaker\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\osx\native\libSDL2-2.0.0.dylib
+D:\yt blazer yt\MonoGame\rep\BlockBreaker\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\osx\native\libopenal.1.dylib
+D:\yt blazer yt\MonoGame\rep\BlockBreaker\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\SDL2.dll
+D:\yt blazer yt\MonoGame\rep\BlockBreaker\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\soft_oal.dll
+D:\yt blazer yt\MonoGame\rep\BlockBreaker\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\SDL2.dll
+D:\yt blazer yt\MonoGame\rep\BlockBreaker\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\soft_oal.dll
+D:\yt blazer yt\MonoGame\rep\BlockBreaker\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.AssemblyReference.cache
+D:\yt blazer yt\MonoGame\rep\BlockBreaker\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.AssemblyInfoInputs.cache
+D:\yt blazer yt\MonoGame\rep\BlockBreaker\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.AssemblyInfo.cs
+D:\yt blazer yt\MonoGame\rep\BlockBreaker\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.CoreCompileInputs.cache
+D:\yt blazer yt\MonoGame\rep\BlockBreaker\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.CopyComplete
+D:\yt blazer yt\MonoGame\rep\BlockBreaker\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.dll
+D:\yt blazer yt\MonoGame\rep\BlockBreaker\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.pdb
+D:\yt blazer yt\MonoGame\rep\BlockBreaker\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.genruntimeconfig.cache
+D:\yt blazer yt\MonoGame\rep\BlockBreaker\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test2.xnb
+D:\yt blazer yt\MonoGame\rep\BlockBreaker\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test3.xnb
+C:\Users\blaze\Desktop\BlockBreaker\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test1.xnb
+C:\Users\blaze\Desktop\BlockBreaker\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test2.xnb
+C:\Users\blaze\Desktop\BlockBreaker\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test3.xnb
+C:\Users\blaze\Desktop\BlockBreaker\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.exe
+C:\Users\blaze\Desktop\BlockBreaker\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.deps.json
+C:\Users\blaze\Desktop\BlockBreaker\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.runtimeconfig.json
+C:\Users\blaze\Desktop\BlockBreaker\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.runtimeconfig.dev.json
+C:\Users\blaze\Desktop\BlockBreaker\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.dll
+C:\Users\blaze\Desktop\BlockBreaker\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.pdb
+C:\Users\blaze\Desktop\BlockBreaker\BlockBreaker\bin\Debug\netcoreapp3.1\MonoGame.Framework.dll
+C:\Users\blaze\Desktop\BlockBreaker\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libSDL2-2.0.so.0
+C:\Users\blaze\Desktop\BlockBreaker\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libopenal.so.1
+C:\Users\blaze\Desktop\BlockBreaker\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\osx\native\libSDL2-2.0.0.dylib
+C:\Users\blaze\Desktop\BlockBreaker\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\osx\native\libopenal.1.dylib
+C:\Users\blaze\Desktop\BlockBreaker\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\SDL2.dll
+C:\Users\blaze\Desktop\BlockBreaker\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\soft_oal.dll
+C:\Users\blaze\Desktop\BlockBreaker\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\SDL2.dll
+C:\Users\blaze\Desktop\BlockBreaker\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\soft_oal.dll
+C:\Users\blaze\Desktop\BlockBreaker\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.AssemblyReference.cache
+C:\Users\blaze\Desktop\BlockBreaker\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\blaze\Desktop\BlockBreaker\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.AssemblyInfoInputs.cache
+C:\Users\blaze\Desktop\BlockBreaker\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.AssemblyInfo.cs
+C:\Users\blaze\Desktop\BlockBreaker\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.CoreCompileInputs.cache
+C:\Users\blaze\Desktop\BlockBreaker\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.CopyComplete
+C:\Users\blaze\Desktop\BlockBreaker\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.dll
+C:\Users\blaze\Desktop\BlockBreaker\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.pdb
+C:\Users\blaze\Desktop\BlockBreaker\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.genruntimeconfig.cache
+C:\Users\blaze\Desktop\BlockBreakerEXTENDED\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test1.xnb
+C:\Users\blaze\Desktop\BlockBreakerEXTENDED\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test2.xnb
+C:\Users\blaze\Desktop\BlockBreakerEXTENDED\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test3.xnb
+C:\Users\blaze\Desktop\BlockBreakerEXTENDED\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.exe
+C:\Users\blaze\Desktop\BlockBreakerEXTENDED\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.deps.json
+C:\Users\blaze\Desktop\BlockBreakerEXTENDED\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.runtimeconfig.json
+C:\Users\blaze\Desktop\BlockBreakerEXTENDED\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.runtimeconfig.dev.json
+C:\Users\blaze\Desktop\BlockBreakerEXTENDED\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.dll
+C:\Users\blaze\Desktop\BlockBreakerEXTENDED\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.pdb
+C:\Users\blaze\Desktop\BlockBreakerEXTENDED\BlockBreaker\bin\Debug\netcoreapp3.1\MonoGame.Extended.dll
+C:\Users\blaze\Desktop\BlockBreakerEXTENDED\BlockBreaker\bin\Debug\netcoreapp3.1\MonoGame.Framework.dll
+C:\Users\blaze\Desktop\BlockBreakerEXTENDED\BlockBreaker\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\blaze\Desktop\BlockBreakerEXTENDED\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libSDL2-2.0.so.0
+C:\Users\blaze\Desktop\BlockBreakerEXTENDED\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libopenal.so.1
+C:\Users\blaze\Desktop\BlockBreakerEXTENDED\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\osx\native\libSDL2-2.0.0.dylib
+C:\Users\blaze\Desktop\BlockBreakerEXTENDED\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\osx\native\libopenal.1.dylib
+C:\Users\blaze\Desktop\BlockBreakerEXTENDED\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\SDL2.dll
+C:\Users\blaze\Desktop\BlockBreakerEXTENDED\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\soft_oal.dll
+C:\Users\blaze\Desktop\BlockBreakerEXTENDED\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\SDL2.dll
+C:\Users\blaze\Desktop\BlockBreakerEXTENDED\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\soft_oal.dll
+C:\Users\blaze\Desktop\BlockBreakerEXTENDED\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.AssemblyReference.cache
+C:\Users\blaze\Desktop\BlockBreakerEXTENDED\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\blaze\Desktop\BlockBreakerEXTENDED\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.AssemblyInfoInputs.cache
+C:\Users\blaze\Desktop\BlockBreakerEXTENDED\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.AssemblyInfo.cs
+C:\Users\blaze\Desktop\BlockBreakerEXTENDED\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.CoreCompileInputs.cache
+C:\Users\blaze\Desktop\BlockBreakerEXTENDED\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.CopyComplete
+C:\Users\blaze\Desktop\BlockBreakerEXTENDED\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.dll
+C:\Users\blaze\Desktop\BlockBreakerEXTENDED\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.pdb
+C:\Users\blaze\Desktop\BlockBreakerEXTENDED\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.genruntimeconfig.cache
+C:\Users\blaze\Desktop\BlockBreaker\BlockBreaker\bin\Debug\netcoreapp3.1\MonoGame.Extended.dll
+C:\Users\blaze\Desktop\BlockBreaker\BlockBreaker\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test1.xnb
+C:\Users\blaze\Desktop\BlockBreakerCollision\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test2.xnb
+C:\Users\blaze\Desktop\BlockBreakerCollision\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test3.xnb
+C:\Users\blaze\Desktop\BlockBreakerCollision\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.exe
+C:\Users\blaze\Desktop\BlockBreakerCollision\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.deps.json
+C:\Users\blaze\Desktop\BlockBreakerCollision\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.runtimeconfig.json
+C:\Users\blaze\Desktop\BlockBreakerCollision\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.runtimeconfig.dev.json
+C:\Users\blaze\Desktop\BlockBreakerCollision\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.pdb
+C:\Users\blaze\Desktop\BlockBreakerCollision\BlockBreaker\bin\Debug\netcoreapp3.1\Humper.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision\BlockBreaker\bin\Debug\netcoreapp3.1\MonoGame.Extended.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision\BlockBreaker\bin\Debug\netcoreapp3.1\MonoGame.Framework.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision\BlockBreaker\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libSDL2-2.0.so.0
+C:\Users\blaze\Desktop\BlockBreakerCollision\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libopenal.so.1
+C:\Users\blaze\Desktop\BlockBreakerCollision\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\osx\native\libSDL2-2.0.0.dylib
+C:\Users\blaze\Desktop\BlockBreakerCollision\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\osx\native\libopenal.1.dylib
+C:\Users\blaze\Desktop\BlockBreakerCollision\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\SDL2.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\soft_oal.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\SDL2.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\soft_oal.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.AssemblyReference.cache
+C:\Users\blaze\Desktop\BlockBreakerCollision\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\blaze\Desktop\BlockBreakerCollision\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.AssemblyInfoInputs.cache
+C:\Users\blaze\Desktop\BlockBreakerCollision\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.AssemblyInfo.cs
+C:\Users\blaze\Desktop\BlockBreakerCollision\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.CoreCompileInputs.cache
+C:\Users\blaze\Desktop\BlockBreakerCollision\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.CopyComplete
+C:\Users\blaze\Desktop\BlockBreakerCollision\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.pdb
+C:\Users\blaze\Desktop\BlockBreakerCollision\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.genruntimeconfig.cache
+C:\Users\blaze\Desktop\BlockBreakerCollision — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test1.xnb
+C:\Users\blaze\Desktop\BlockBreakerCollision — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test2.xnb
+C:\Users\blaze\Desktop\BlockBreakerCollision — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test3.xnb
+C:\Users\blaze\Desktop\BlockBreakerCollision — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.exe
+C:\Users\blaze\Desktop\BlockBreakerCollision — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.deps.json
+C:\Users\blaze\Desktop\BlockBreakerCollision — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.runtimeconfig.json
+C:\Users\blaze\Desktop\BlockBreakerCollision — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.runtimeconfig.dev.json
+C:\Users\blaze\Desktop\BlockBreakerCollision — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.pdb
+C:\Users\blaze\Desktop\BlockBreakerCollision — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\Humper.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\MonoGame.Extended.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\MonoGame.Framework.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libSDL2-2.0.so.0
+C:\Users\blaze\Desktop\BlockBreakerCollision — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libopenal.so.1
+C:\Users\blaze\Desktop\BlockBreakerCollision — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\osx\native\libSDL2-2.0.0.dylib
+C:\Users\blaze\Desktop\BlockBreakerCollision — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\osx\native\libopenal.1.dylib
+C:\Users\blaze\Desktop\BlockBreakerCollision — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\SDL2.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\soft_oal.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\SDL2.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\soft_oal.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision — kopia\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.AssemblyReference.cache
+C:\Users\blaze\Desktop\BlockBreakerCollision — kopia\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\blaze\Desktop\BlockBreakerCollision — kopia\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.AssemblyInfoInputs.cache
+C:\Users\blaze\Desktop\BlockBreakerCollision — kopia\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.AssemblyInfo.cs
+C:\Users\blaze\Desktop\BlockBreakerCollision — kopia\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.CoreCompileInputs.cache
+C:\Users\blaze\Desktop\BlockBreakerCollision — kopia\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.CopyComplete
+C:\Users\blaze\Desktop\BlockBreakerCollision — kopia\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision — kopia\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.pdb
+C:\Users\blaze\Desktop\BlockBreakerCollision — kopia\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.genruntimeconfig.cache
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test1.xnb
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test2.xnb
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test3.xnb
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.exe
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.deps.json
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.runtimeconfig.json
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.runtimeconfig.dev.json
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.pdb
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER\BlockBreaker\bin\Debug\netcoreapp3.1\Humper.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER\BlockBreaker\bin\Debug\netcoreapp3.1\MonoGame.Extended.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER\BlockBreaker\bin\Debug\netcoreapp3.1\MonoGame.Framework.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER\BlockBreaker\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libSDL2-2.0.so.0
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libopenal.so.1
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\osx\native\libSDL2-2.0.0.dylib
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\osx\native\libopenal.1.dylib
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\SDL2.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\soft_oal.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\SDL2.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\soft_oal.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.AssemblyReference.cache
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.AssemblyInfoInputs.cache
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.AssemblyInfo.cs
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.CoreCompileInputs.cache
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.CopyComplete
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.pdb
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.genruntimeconfig.cache
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test1.xnb
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test2.xnb
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test3.xnb
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.exe
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.deps.json
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.runtimeconfig.json
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.runtimeconfig.dev.json
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.pdb
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\Humper.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\MonoGame.Extended.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\MonoGame.Framework.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libSDL2-2.0.so.0
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libopenal.so.1
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\osx\native\libSDL2-2.0.0.dylib
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\osx\native\libopenal.1.dylib
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\SDL2.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\soft_oal.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\SDL2.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER — kopia\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\soft_oal.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER — kopia\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.AssemblyReference.cache
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER — kopia\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER — kopia\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.AssemblyInfoInputs.cache
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER — kopia\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.AssemblyInfo.cs
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER — kopia\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.CoreCompileInputs.cache
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER — kopia\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.CopyComplete
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER — kopia\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER — kopia\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.pdb
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER — kopia\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.genruntimeconfig.cache
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER V2\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test1.xnb
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER V2\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test2.xnb
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER V2\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test3.xnb
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER V2\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.exe
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER V2\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.deps.json
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER V2\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.runtimeconfig.json
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER V2\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.runtimeconfig.dev.json
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER V2\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER V2\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.pdb
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER V2\BlockBreaker\bin\Debug\netcoreapp3.1\Humper.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER V2\BlockBreaker\bin\Debug\netcoreapp3.1\MonoGame.Extended.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER V2\BlockBreaker\bin\Debug\netcoreapp3.1\MonoGame.Framework.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER V2\BlockBreaker\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER V2\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libSDL2-2.0.so.0
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER V2\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libopenal.so.1
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER V2\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\osx\native\libSDL2-2.0.0.dylib
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER V2\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\osx\native\libopenal.1.dylib
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER V2\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\SDL2.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER V2\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\soft_oal.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER V2\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\SDL2.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER V2\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\soft_oal.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER V2\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.AssemblyReference.cache
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER V2\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER V2\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.AssemblyInfoInputs.cache
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER V2\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.AssemblyInfo.cs
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER V2\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.CoreCompileInputs.cache
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER V2\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.CopyComplete
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER V2\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.dll
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER V2\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.pdb
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER V2\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.genruntimeconfig.cache
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER V2\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test4.xnb
+C:\Users\blaze\Desktop\BlockBreakerCollision HUMPER V2\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test5.xnb
+C:\Users\blaze\Desktop\BlockBreaker OBJECT ORIENTED\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.AssemblyReference.cache
+C:\Users\blaze\Desktop\BlockBreaker OBJECT ORIENTED\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\blaze\Desktop\BlockBreaker OBJECT ORIENTED\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.AssemblyInfoInputs.cache
+C:\Users\blaze\Desktop\BlockBreaker OBJECT ORIENTED\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.AssemblyInfo.cs
+C:\Users\blaze\Desktop\BlockBreaker OBJECT ORIENTED\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.CoreCompileInputs.cache
+C:\Users\blaze\Desktop\BlockBreaker OBJECT ORIENTED\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.dll
+C:\Users\blaze\Desktop\BlockBreaker OBJECT ORIENTED\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.pdb
+C:\Users\blaze\Desktop\BlockBreaker OBJECT ORIENTED\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test1.xnb
+C:\Users\blaze\Desktop\BlockBreaker OBJECT ORIENTED\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test2.xnb
+C:\Users\blaze\Desktop\BlockBreaker OBJECT ORIENTED\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test3.xnb
+C:\Users\blaze\Desktop\BlockBreaker OBJECT ORIENTED\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test4.xnb
+C:\Users\blaze\Desktop\BlockBreaker OBJECT ORIENTED\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test5.xnb
+C:\Users\blaze\Desktop\BlockBreaker OBJECT ORIENTED\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.exe
+C:\Users\blaze\Desktop\BlockBreaker OBJECT ORIENTED\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.deps.json
+C:\Users\blaze\Desktop\BlockBreaker OBJECT ORIENTED\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.runtimeconfig.json
+C:\Users\blaze\Desktop\BlockBreaker OBJECT ORIENTED\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.runtimeconfig.dev.json
+C:\Users\blaze\Desktop\BlockBreaker OBJECT ORIENTED\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.dll
+C:\Users\blaze\Desktop\BlockBreaker OBJECT ORIENTED\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.pdb
+C:\Users\blaze\Desktop\BlockBreaker OBJECT ORIENTED\BlockBreaker\bin\Debug\netcoreapp3.1\Humper.dll
+C:\Users\blaze\Desktop\BlockBreaker OBJECT ORIENTED\BlockBreaker\bin\Debug\netcoreapp3.1\MonoGame.Extended.dll
+C:\Users\blaze\Desktop\BlockBreaker OBJECT ORIENTED\BlockBreaker\bin\Debug\netcoreapp3.1\MonoGame.Framework.dll
+C:\Users\blaze\Desktop\BlockBreaker OBJECT ORIENTED\BlockBreaker\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\blaze\Desktop\BlockBreaker OBJECT ORIENTED\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libSDL2-2.0.so.0
+C:\Users\blaze\Desktop\BlockBreaker OBJECT ORIENTED\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libopenal.so.1
+C:\Users\blaze\Desktop\BlockBreaker OBJECT ORIENTED\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\osx\native\libSDL2-2.0.0.dylib
+C:\Users\blaze\Desktop\BlockBreaker OBJECT ORIENTED\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\osx\native\libopenal.1.dylib
+C:\Users\blaze\Desktop\BlockBreaker OBJECT ORIENTED\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\SDL2.dll
+C:\Users\blaze\Desktop\BlockBreaker OBJECT ORIENTED\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\soft_oal.dll
+C:\Users\blaze\Desktop\BlockBreaker OBJECT ORIENTED\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\SDL2.dll
+C:\Users\blaze\Desktop\BlockBreaker OBJECT ORIENTED\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\soft_oal.dll
+C:\Users\blaze\Desktop\BlockBreaker OBJECT ORIENTED\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.CopyComplete
+C:\Users\blaze\Desktop\BlockBreaker OBJECT ORIENTED\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.genruntimeconfig.cache
+C:\Users\blaze\Desktop\BlockBreaker TILED\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test1.xnb
+C:\Users\blaze\Desktop\BlockBreaker TILED\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test2.xnb
+C:\Users\blaze\Desktop\BlockBreaker TILED\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test3.xnb
+C:\Users\blaze\Desktop\BlockBreaker TILED\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test4.xnb
+C:\Users\blaze\Desktop\BlockBreaker TILED\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test5.xnb
+C:\Users\blaze\Desktop\BlockBreaker TILED\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.exe
+C:\Users\blaze\Desktop\BlockBreaker TILED\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.deps.json
+C:\Users\blaze\Desktop\BlockBreaker TILED\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.runtimeconfig.json
+C:\Users\blaze\Desktop\BlockBreaker TILED\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.runtimeconfig.dev.json
+C:\Users\blaze\Desktop\BlockBreaker TILED\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.dll
+C:\Users\blaze\Desktop\BlockBreaker TILED\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.pdb
+C:\Users\blaze\Desktop\BlockBreaker TILED\BlockBreaker\bin\Debug\netcoreapp3.1\Humper.dll
+C:\Users\blaze\Desktop\BlockBreaker TILED\BlockBreaker\bin\Debug\netcoreapp3.1\MonoGame.Extended.dll
+C:\Users\blaze\Desktop\BlockBreaker TILED\BlockBreaker\bin\Debug\netcoreapp3.1\MonoGame.Framework.dll
+C:\Users\blaze\Desktop\BlockBreaker TILED\BlockBreaker\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\blaze\Desktop\BlockBreaker TILED\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libSDL2-2.0.so.0
+C:\Users\blaze\Desktop\BlockBreaker TILED\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libopenal.so.1
+C:\Users\blaze\Desktop\BlockBreaker TILED\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\osx\native\libSDL2-2.0.0.dylib
+C:\Users\blaze\Desktop\BlockBreaker TILED\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\osx\native\libopenal.1.dylib
+C:\Users\blaze\Desktop\BlockBreaker TILED\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\SDL2.dll
+C:\Users\blaze\Desktop\BlockBreaker TILED\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\soft_oal.dll
+C:\Users\blaze\Desktop\BlockBreaker TILED\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\SDL2.dll
+C:\Users\blaze\Desktop\BlockBreaker TILED\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\soft_oal.dll
+C:\Users\blaze\Desktop\BlockBreaker TILED\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.AssemblyReference.cache
+C:\Users\blaze\Desktop\BlockBreaker TILED\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\blaze\Desktop\BlockBreaker TILED\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.AssemblyInfoInputs.cache
+C:\Users\blaze\Desktop\BlockBreaker TILED\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.AssemblyInfo.cs
+C:\Users\blaze\Desktop\BlockBreaker TILED\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.CoreCompileInputs.cache
+C:\Users\blaze\Desktop\BlockBreaker TILED\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.CopyComplete
+C:\Users\blaze\Desktop\BlockBreaker TILED\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.dll
+C:\Users\blaze\Desktop\BlockBreaker TILED\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.pdb
+C:\Users\blaze\Desktop\BlockBreaker TILED\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.genruntimeconfig.cache
+C:\Users\blaze\Desktop\BlockBreaker TWEENER\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test1.xnb
+C:\Users\blaze\Desktop\BlockBreaker TWEENER\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test2.xnb
+C:\Users\blaze\Desktop\BlockBreaker TWEENER\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test3.xnb
+C:\Users\blaze\Desktop\BlockBreaker TWEENER\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test4.xnb
+C:\Users\blaze\Desktop\BlockBreaker TWEENER\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test5.xnb
+C:\Users\blaze\Desktop\BlockBreaker TWEENER\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.exe
+C:\Users\blaze\Desktop\BlockBreaker TWEENER\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.deps.json
+C:\Users\blaze\Desktop\BlockBreaker TWEENER\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.runtimeconfig.json
+C:\Users\blaze\Desktop\BlockBreaker TWEENER\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.runtimeconfig.dev.json
+C:\Users\blaze\Desktop\BlockBreaker TWEENER\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.dll
+C:\Users\blaze\Desktop\BlockBreaker TWEENER\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.pdb
+C:\Users\blaze\Desktop\BlockBreaker TWEENER\BlockBreaker\bin\Debug\netcoreapp3.1\Humper.dll
+C:\Users\blaze\Desktop\BlockBreaker TWEENER\BlockBreaker\bin\Debug\netcoreapp3.1\MonoGame.Extended.dll
+C:\Users\blaze\Desktop\BlockBreaker TWEENER\BlockBreaker\bin\Debug\netcoreapp3.1\MonoGame.Framework.dll
+C:\Users\blaze\Desktop\BlockBreaker TWEENER\BlockBreaker\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\blaze\Desktop\BlockBreaker TWEENER\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libSDL2-2.0.so.0
+C:\Users\blaze\Desktop\BlockBreaker TWEENER\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libopenal.so.1
+C:\Users\blaze\Desktop\BlockBreaker TWEENER\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\osx\native\libSDL2-2.0.0.dylib
+C:\Users\blaze\Desktop\BlockBreaker TWEENER\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\osx\native\libopenal.1.dylib
+C:\Users\blaze\Desktop\BlockBreaker TWEENER\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\SDL2.dll
+C:\Users\blaze\Desktop\BlockBreaker TWEENER\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\soft_oal.dll
+C:\Users\blaze\Desktop\BlockBreaker TWEENER\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\SDL2.dll
+C:\Users\blaze\Desktop\BlockBreaker TWEENER\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\soft_oal.dll
+C:\Users\blaze\Desktop\BlockBreaker TWEENER\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.AssemblyReference.cache
+C:\Users\blaze\Desktop\BlockBreaker TWEENER\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\blaze\Desktop\BlockBreaker TWEENER\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.AssemblyInfoInputs.cache
+C:\Users\blaze\Desktop\BlockBreaker TWEENER\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.AssemblyInfo.cs
+C:\Users\blaze\Desktop\BlockBreaker TWEENER\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.CoreCompileInputs.cache
+C:\Users\blaze\Desktop\BlockBreaker TWEENER\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.CopyComplete
+C:\Users\blaze\Desktop\BlockBreaker TWEENER\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.dll
+C:\Users\blaze\Desktop\BlockBreaker TWEENER\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.pdb
+C:\Users\blaze\Desktop\BlockBreaker TWEENER\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.genruntimeconfig.cache
+C:\Users\blaze\Desktop\BlockBreaker TWEENER\BlockBreaker\bin\Debug\netcoreapp3.1\Apos.Tweens.dll
+C:\Users\blaze\Desktop\BlockBreaker TWEENER\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test6.xnb
+C:\Users\blaze\Desktop\BlockBreaker CULLING\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.AssemblyReference.cache
+C:\Users\blaze\Desktop\BlockBreaker CULLING\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\blaze\Desktop\BlockBreaker CULLING\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.AssemblyInfoInputs.cache
+C:\Users\blaze\Desktop\BlockBreaker CULLING\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.AssemblyInfo.cs
+C:\Users\blaze\Desktop\BlockBreaker CULLING\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.CoreCompileInputs.cache
+C:\Users\blaze\Desktop\BlockBreaker CULLING\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.dll
+C:\Users\blaze\Desktop\BlockBreaker CULLING\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.pdb
+C:\Users\blaze\Desktop\BlockBreaker CULLING\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test1.xnb
+C:\Users\blaze\Desktop\BlockBreaker CULLING\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test2.xnb
+C:\Users\blaze\Desktop\BlockBreaker CULLING\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test3.xnb
+C:\Users\blaze\Desktop\BlockBreaker CULLING\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test4.xnb
+C:\Users\blaze\Desktop\BlockBreaker CULLING\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test5.xnb
+C:\Users\blaze\Desktop\BlockBreaker CULLING\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test6.xnb
+C:\Users\blaze\Desktop\BlockBreaker CULLING\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.exe
+C:\Users\blaze\Desktop\BlockBreaker CULLING\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.deps.json
+C:\Users\blaze\Desktop\BlockBreaker CULLING\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.runtimeconfig.json
+C:\Users\blaze\Desktop\BlockBreaker CULLING\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.runtimeconfig.dev.json
+C:\Users\blaze\Desktop\BlockBreaker CULLING\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.dll
+C:\Users\blaze\Desktop\BlockBreaker CULLING\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.pdb
+C:\Users\blaze\Desktop\BlockBreaker CULLING\BlockBreaker\bin\Debug\netcoreapp3.1\Apos.Tweens.dll
+C:\Users\blaze\Desktop\BlockBreaker CULLING\BlockBreaker\bin\Debug\netcoreapp3.1\Humper.dll
+C:\Users\blaze\Desktop\BlockBreaker CULLING\BlockBreaker\bin\Debug\netcoreapp3.1\MonoGame.Extended.dll
+C:\Users\blaze\Desktop\BlockBreaker CULLING\BlockBreaker\bin\Debug\netcoreapp3.1\MonoGame.Framework.dll
+C:\Users\blaze\Desktop\BlockBreaker CULLING\BlockBreaker\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\blaze\Desktop\BlockBreaker CULLING\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libSDL2-2.0.so.0
+C:\Users\blaze\Desktop\BlockBreaker CULLING\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libopenal.so.1
+C:\Users\blaze\Desktop\BlockBreaker CULLING\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\osx\native\libSDL2-2.0.0.dylib
+C:\Users\blaze\Desktop\BlockBreaker CULLING\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\osx\native\libopenal.1.dylib
+C:\Users\blaze\Desktop\BlockBreaker CULLING\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\SDL2.dll
+C:\Users\blaze\Desktop\BlockBreaker CULLING\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\soft_oal.dll
+C:\Users\blaze\Desktop\BlockBreaker CULLING\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\SDL2.dll
+C:\Users\blaze\Desktop\BlockBreaker CULLING\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\soft_oal.dll
+C:\Users\blaze\Desktop\BlockBreaker CULLING\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.CopyComplete
+C:\Users\blaze\Desktop\BlockBreaker CULLING\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.genruntimeconfig.cache
+C:\Users\blaze\Desktop\BlockBreaker CULLING\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\background.xnb
+C:\Users\blaze\Desktop\BlockBreaker CULLING\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\istockphoto-1086911620-170667a.xnb
+C:\Users\blaze\Desktop\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\istockphoto-1086911620-170667a.xnb
+C:\Users\blaze\Desktop\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\background.xnb
+C:\Users\blaze\Desktop\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test1.xnb
+C:\Users\blaze\Desktop\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test2.xnb
+C:\Users\blaze\Desktop\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test3.xnb
+C:\Users\blaze\Desktop\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test4.xnb
+C:\Users\blaze\Desktop\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test5.xnb
+C:\Users\blaze\Desktop\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test6.xnb
+C:\Users\blaze\Desktop\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.exe
+C:\Users\blaze\Desktop\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.deps.json
+C:\Users\blaze\Desktop\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.runtimeconfig.json
+C:\Users\blaze\Desktop\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.runtimeconfig.dev.json
+C:\Users\blaze\Desktop\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.dll
+C:\Users\blaze\Desktop\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.pdb
+C:\Users\blaze\Desktop\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\Apos.Tweens.dll
+C:\Users\blaze\Desktop\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\Humper.dll
+C:\Users\blaze\Desktop\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\MonoGame.Extended.dll
+C:\Users\blaze\Desktop\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\MonoGame.Framework.dll
+C:\Users\blaze\Desktop\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\blaze\Desktop\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libSDL2-2.0.so.0
+C:\Users\blaze\Desktop\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libopenal.so.1
+C:\Users\blaze\Desktop\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\osx\native\libSDL2-2.0.0.dylib
+C:\Users\blaze\Desktop\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\osx\native\libopenal.1.dylib
+C:\Users\blaze\Desktop\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\SDL2.dll
+C:\Users\blaze\Desktop\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\soft_oal.dll
+C:\Users\blaze\Desktop\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\SDL2.dll
+C:\Users\blaze\Desktop\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\soft_oal.dll
+C:\Users\blaze\Desktop\BlockBreaker CULLING NEWER\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.AssemblyReference.cache
+C:\Users\blaze\Desktop\BlockBreaker CULLING NEWER\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\blaze\Desktop\BlockBreaker CULLING NEWER\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.AssemblyInfoInputs.cache
+C:\Users\blaze\Desktop\BlockBreaker CULLING NEWER\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.AssemblyInfo.cs
+C:\Users\blaze\Desktop\BlockBreaker CULLING NEWER\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.CoreCompileInputs.cache
+C:\Users\blaze\Desktop\BlockBreaker CULLING NEWER\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.CopyComplete
+C:\Users\blaze\Desktop\BlockBreaker CULLING NEWER\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.dll
+C:\Users\blaze\Desktop\BlockBreaker CULLING NEWER\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.pdb
+C:\Users\blaze\Desktop\BlockBreaker CULLING NEWER\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.genruntimeconfig.cache
+D:\yt blazer yt\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\istockphoto-1086911620-170667a.xnb
+D:\yt blazer yt\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\background.xnb
+D:\yt blazer yt\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test1.xnb
+D:\yt blazer yt\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test2.xnb
+D:\yt blazer yt\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test3.xnb
+D:\yt blazer yt\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test4.xnb
+D:\yt blazer yt\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test5.xnb
+D:\yt blazer yt\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test6.xnb
+D:\yt blazer yt\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.exe
+D:\yt blazer yt\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.deps.json
+D:\yt blazer yt\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.runtimeconfig.json
+D:\yt blazer yt\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.runtimeconfig.dev.json
+D:\yt blazer yt\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.dll
+D:\yt blazer yt\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.pdb
+D:\yt blazer yt\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\Apos.Tweens.dll
+D:\yt blazer yt\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\Humper.dll
+D:\yt blazer yt\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\MonoGame.Extended.dll
+D:\yt blazer yt\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\MonoGame.Framework.dll
+D:\yt blazer yt\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+D:\yt blazer yt\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libSDL2-2.0.so.0
+D:\yt blazer yt\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libopenal.so.1
+D:\yt blazer yt\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\osx\native\libSDL2-2.0.0.dylib
+D:\yt blazer yt\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\osx\native\libopenal.1.dylib
+D:\yt blazer yt\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\SDL2.dll
+D:\yt blazer yt\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\soft_oal.dll
+D:\yt blazer yt\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\SDL2.dll
+D:\yt blazer yt\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\soft_oal.dll
+D:\yt blazer yt\BlockBreaker CULLING NEWER\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.AssemblyReference.cache
+D:\yt blazer yt\BlockBreaker CULLING NEWER\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.GeneratedMSBuildEditorConfig.editorconfig
+D:\yt blazer yt\BlockBreaker CULLING NEWER\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.AssemblyInfoInputs.cache
+D:\yt blazer yt\BlockBreaker CULLING NEWER\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.AssemblyInfo.cs
+D:\yt blazer yt\BlockBreaker CULLING NEWER\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.CoreCompileInputs.cache
+D:\yt blazer yt\BlockBreaker CULLING NEWER\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.CopyComplete
+D:\yt blazer yt\BlockBreaker CULLING NEWER\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.dll
+D:\yt blazer yt\BlockBreaker CULLING NEWER\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.pdb
+D:\yt blazer yt\BlockBreaker CULLING NEWER\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.genruntimeconfig.cache
+D:\yt blazer yt\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\veina background.xnb
+D:\yt blazer yt\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\veina tile.xnb
+D:\yt blazer yt\BlockBreaker CULLING NEWER\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test7.xnb
+D:\yt blazer yt\BlockBreaker IMPROVED CHUNKS\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\istockphoto-1086911620-170667a.xnb
+D:\yt blazer yt\BlockBreaker IMPROVED CHUNKS\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\background.xnb
+D:\yt blazer yt\BlockBreaker IMPROVED CHUNKS\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test1.xnb
+D:\yt blazer yt\BlockBreaker IMPROVED CHUNKS\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test2.xnb
+D:\yt blazer yt\BlockBreaker IMPROVED CHUNKS\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test3.xnb
+D:\yt blazer yt\BlockBreaker IMPROVED CHUNKS\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test4.xnb
+D:\yt blazer yt\BlockBreaker IMPROVED CHUNKS\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test5.xnb
+D:\yt blazer yt\BlockBreaker IMPROVED CHUNKS\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test6.xnb
+D:\yt blazer yt\BlockBreaker IMPROVED CHUNKS\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test7.xnb
+D:\yt blazer yt\BlockBreaker IMPROVED CHUNKS\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\veina background.xnb
+D:\yt blazer yt\BlockBreaker IMPROVED CHUNKS\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\veina tile.xnb
+D:\yt blazer yt\BlockBreaker IMPROVED CHUNKS\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.exe
+D:\yt blazer yt\BlockBreaker IMPROVED CHUNKS\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.deps.json
+D:\yt blazer yt\BlockBreaker IMPROVED CHUNKS\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.runtimeconfig.json
+D:\yt blazer yt\BlockBreaker IMPROVED CHUNKS\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.runtimeconfig.dev.json
+D:\yt blazer yt\BlockBreaker IMPROVED CHUNKS\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.dll
+D:\yt blazer yt\BlockBreaker IMPROVED CHUNKS\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.pdb
+D:\yt blazer yt\BlockBreaker IMPROVED CHUNKS\BlockBreaker\bin\Debug\netcoreapp3.1\Apos.Tweens.dll
+D:\yt blazer yt\BlockBreaker IMPROVED CHUNKS\BlockBreaker\bin\Debug\netcoreapp3.1\Humper.dll
+D:\yt blazer yt\BlockBreaker IMPROVED CHUNKS\BlockBreaker\bin\Debug\netcoreapp3.1\MonoGame.Extended.dll
+D:\yt blazer yt\BlockBreaker IMPROVED CHUNKS\BlockBreaker\bin\Debug\netcoreapp3.1\MonoGame.Framework.dll
+D:\yt blazer yt\BlockBreaker IMPROVED CHUNKS\BlockBreaker\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+D:\yt blazer yt\BlockBreaker IMPROVED CHUNKS\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libSDL2-2.0.so.0
+D:\yt blazer yt\BlockBreaker IMPROVED CHUNKS\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libopenal.so.1
+D:\yt blazer yt\BlockBreaker IMPROVED CHUNKS\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\osx\native\libSDL2-2.0.0.dylib
+D:\yt blazer yt\BlockBreaker IMPROVED CHUNKS\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\osx\native\libopenal.1.dylib
+D:\yt blazer yt\BlockBreaker IMPROVED CHUNKS\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\SDL2.dll
+D:\yt blazer yt\BlockBreaker IMPROVED CHUNKS\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\soft_oal.dll
+D:\yt blazer yt\BlockBreaker IMPROVED CHUNKS\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\SDL2.dll
+D:\yt blazer yt\BlockBreaker IMPROVED CHUNKS\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\soft_oal.dll
+D:\yt blazer yt\BlockBreaker IMPROVED CHUNKS\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.AssemblyReference.cache
+D:\yt blazer yt\BlockBreaker IMPROVED CHUNKS\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.GeneratedMSBuildEditorConfig.editorconfig
+D:\yt blazer yt\BlockBreaker IMPROVED CHUNKS\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.AssemblyInfoInputs.cache
+D:\yt blazer yt\BlockBreaker IMPROVED CHUNKS\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.AssemblyInfo.cs
+D:\yt blazer yt\BlockBreaker IMPROVED CHUNKS\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.CoreCompileInputs.cache
+D:\yt blazer yt\BlockBreaker IMPROVED CHUNKS\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.CopyComplete
+D:\yt blazer yt\BlockBreaker IMPROVED CHUNKS\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.dll
+D:\yt blazer yt\BlockBreaker IMPROVED CHUNKS\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.pdb
+D:\yt blazer yt\BlockBreaker IMPROVED CHUNKS\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.genruntimeconfig.cache
+D:\yt blazer yt\Veinia Framework\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\istockphoto-1086911620-170667a.xnb
+D:\yt blazer yt\Veinia Framework\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\background.xnb
+D:\yt blazer yt\Veinia Framework\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test1.xnb
+D:\yt blazer yt\Veinia Framework\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test2.xnb
+D:\yt blazer yt\Veinia Framework\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test3.xnb
+D:\yt blazer yt\Veinia Framework\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test4.xnb
+D:\yt blazer yt\Veinia Framework\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test5.xnb
+D:\yt blazer yt\Veinia Framework\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test6.xnb
+D:\yt blazer yt\Veinia Framework\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\test7.xnb
+D:\yt blazer yt\Veinia Framework\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\veina background.xnb
+D:\yt blazer yt\Veinia Framework\BlockBreaker\bin\Debug\netcoreapp3.1\Content\Test\veina tile.xnb
+D:\yt blazer yt\Veinia Framework\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.exe
+D:\yt blazer yt\Veinia Framework\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.deps.json
+D:\yt blazer yt\Veinia Framework\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.runtimeconfig.json
+D:\yt blazer yt\Veinia Framework\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.runtimeconfig.dev.json
+D:\yt blazer yt\Veinia Framework\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.dll
+D:\yt blazer yt\Veinia Framework\BlockBreaker\bin\Debug\netcoreapp3.1\BlockBreaker.pdb
+D:\yt blazer yt\Veinia Framework\BlockBreaker\bin\Debug\netcoreapp3.1\Apos.Tweens.dll
+D:\yt blazer yt\Veinia Framework\BlockBreaker\bin\Debug\netcoreapp3.1\Humper.dll
+D:\yt blazer yt\Veinia Framework\BlockBreaker\bin\Debug\netcoreapp3.1\MonoGame.Extended.dll
+D:\yt blazer yt\Veinia Framework\BlockBreaker\bin\Debug\netcoreapp3.1\MonoGame.Framework.dll
+D:\yt blazer yt\Veinia Framework\BlockBreaker\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+D:\yt blazer yt\Veinia Framework\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libSDL2-2.0.so.0
+D:\yt blazer yt\Veinia Framework\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libopenal.so.1
+D:\yt blazer yt\Veinia Framework\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\osx\native\libSDL2-2.0.0.dylib
+D:\yt blazer yt\Veinia Framework\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\osx\native\libopenal.1.dylib
+D:\yt blazer yt\Veinia Framework\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\SDL2.dll
+D:\yt blazer yt\Veinia Framework\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\soft_oal.dll
+D:\yt blazer yt\Veinia Framework\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\SDL2.dll
+D:\yt blazer yt\Veinia Framework\BlockBreaker\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\soft_oal.dll
+D:\yt blazer yt\Veinia Framework\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.AssemblyReference.cache
+D:\yt blazer yt\Veinia Framework\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.GeneratedMSBuildEditorConfig.editorconfig
+D:\yt blazer yt\Veinia Framework\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.AssemblyInfoInputs.cache
+D:\yt blazer yt\Veinia Framework\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.AssemblyInfo.cs
+D:\yt blazer yt\Veinia Framework\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.CoreCompileInputs.cache
+D:\yt blazer yt\Veinia Framework\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.csproj.CopyComplete
+D:\yt blazer yt\Veinia Framework\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.dll
+D:\yt blazer yt\Veinia Framework\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.pdb
+D:\yt blazer yt\Veinia Framework\BlockBreaker\obj\Debug\netcoreapp3.1\BlockBreaker.genruntimeconfig.cache
