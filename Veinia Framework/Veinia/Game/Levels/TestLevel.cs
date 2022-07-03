@@ -1,12 +1,10 @@
 ﻿using Humper.Responses;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended;
 using System.Collections.Generic;
 
 public class TestLevel : Level
 {
-	public TestLevel(string name, Prefabs prefabs) : base(name, prefabs)
+	public TestLevel(string name, PrefabManager prefabManager) : base(name, prefabManager)
 	{
 	}
 
@@ -28,8 +26,8 @@ public class TestLevel : Level
 				new Sprite(path: "Test/test3", layer: 0, Color.White, destinationSize: new Vector2(1, 1)),
 				new MouseFollow(),
 				new SpawnOnMouse(),
-				new CustomCollider(CollisionResponses.Slide, Vector2.Zero, Vector2.One*.5f),
-				new HitboxOutline()
+				//new CustomCollider(CollisionResponses.Slide, Vector2.Zero, Vector2.One*.5f),
+				//new HitboxOutline()
 			}, isStatic: false);
 
 
@@ -44,22 +42,22 @@ public class TestLevel : Level
 			}, isStatic: false);
 
 
-		GameObject player = Instantiate(new Transform(0, 2), prefabs.Find("player"));
+		GameObject player = Instantiate(new Transform(0, 2), prefabManager.Find("player"));
 		player.AddComponent(new Button());
 
 		for (int i = 0; i < 10000; i++)
 		{
-			Instantiate(new Transform(i, 1), prefabs.Find("killableBlock"));
+			Instantiate(new Transform(i, 1), prefabManager.Find("killableBlock"));
 		}
 
-		Instantiate(new Transform(-4, -2), prefabs.Find("block"));
-		Instantiate(new Transform(-3, -2), prefabs.Find("block"));
-		Instantiate(new Transform(-2, -2), prefabs.Find("block"));
-		Instantiate(new Transform(-1, -2), prefabs.Find("block"));
-		Instantiate(new Transform(0, -2), prefabs.Find("block"));
-		Instantiate(new Transform(1, -2), prefabs.Find("block"));
-		Instantiate(new Transform(2, -2), prefabs.Find("block"));
-		Instantiate(new Transform(3, -2), prefabs.Find("block"));
+		Instantiate(new Transform(-4, -2), prefabManager.Find("block"));
+		Instantiate(new Transform(-3, -2), prefabManager.Find("block"));
+		Instantiate(new Transform(-2, -2), prefabManager.Find("block"));
+		Instantiate(new Transform(-1, -2), prefabManager.Find("block"));
+		Instantiate(new Transform(0, -2), prefabManager.Find("block"));
+		Instantiate(new Transform(1, -2), prefabManager.Find("block"));
+		Instantiate(new Transform(2, -2), prefabManager.Find("block"));
+		Instantiate(new Transform(3, -2), prefabManager.Find("block"));
 
 		GameObject chunkManager = Instantiate(
 			new Transform(0, 0),

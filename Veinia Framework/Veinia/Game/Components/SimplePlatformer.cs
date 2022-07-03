@@ -34,6 +34,11 @@ public class SimplePlatformer : Component
 		}
 
 		if (NullableGetComponent<SimplePlatformer>() != null)
-			Globals.camera.LookAt(transform.screenPos);
+			Globals.camera.LookAt(Transform.WorldToScreenPos(transform.position));
+
+		//Say.Line(Transform.ToWorldUnits(Globals.camera.Position));
+		//Say.Line(transform.position);
+		//Say.Line(Mouse.GetState().Position);
+		//Say.Line(transform.position);
 	}
 }

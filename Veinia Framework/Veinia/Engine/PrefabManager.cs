@@ -2,9 +2,10 @@
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
-public class Prefabs
+public class PrefabManager
 {
 	public List<Prefab> prefabs = new List<Prefab>();
+
 
 	private void Add(string name, GameObject gameObject)
 	{
@@ -19,7 +20,7 @@ public class Prefabs
 
 	public GameObject Find(string name) => prefabs.Find(x => x.prefabName == name).prefabGameObject;
 
-	public void AddDefaultPrefabs(WorldTools tools)
+	public void LoadPrefabs(WorldTools tools)
 	{
 		prefabs.Clear();
 

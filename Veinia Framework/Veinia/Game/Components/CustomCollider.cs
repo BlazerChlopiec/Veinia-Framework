@@ -9,15 +9,16 @@ public class CustomCollider : ColliderTemplate
 
 	public CustomCollider(CollisionResponses type, Vector2 offset, Vector2 size) : base(type)
 	{
-		this.size = new Vector2(Transform.ConvertToScreen(size.X), Transform.ConvertToScreen(size.Y));
-		unitOffset = new Vector2(Transform.ConvertToScreen(offset.X), Transform.ConvertToScreen(offset.Y));
+		//this.size = Transform.ToScreenUnits(size);
+		//unitOffset = Transform.ToScreenUnits(offset);
+		this.size = new Vector2(Transform.ToScreenUnits(size.X), Transform.ToScreenUnits(size.Y));
+		unitOffset = new Vector2(Transform.ToScreenUnits(offset.X), Transform.ToScreenUnits(offset.Y));
 	}
 
 	public override void Initialize()
 	{
 		offset = new Vector2(-((size.X - Transform.PIXELS_PER_UNIT) / 2) + unitOffset.X, -((size.Y - Transform.PIXELS_PER_UNIT) / 2) + unitOffset.Y);
 		firstFrameBox = new RectangleF(transform.screenPos.X + offset.X, transform.screenPos.Y + offset.Y, size.X, size.Y);
-
 		base.Initialize();
 	}
 }

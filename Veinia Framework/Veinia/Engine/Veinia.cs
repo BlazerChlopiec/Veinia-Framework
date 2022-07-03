@@ -9,9 +9,8 @@ using MonoGame.Extended.ViewportAdapters;
 
 public class Veinia
 {
-	FPS fps;
 	Title title;
-	Prefabs prefab;
+	PrefabManager prefabManager;
 
 
 	public void Initialize(Game game, GraphicsDeviceManager graphicsManager, GraphicsDevice graphicsDevice, ContentManager content, GameWindow window)
@@ -19,35 +18,34 @@ public class Veinia
 		Globals.graphicsManager = graphicsManager;
 		Globals.graphicsDevice = graphicsDevice;
 		Globals.content = content;
+		Globals.fps = new FPS(game);
 		Globals.input = new Input();
 		Globals.screen = new Screen(1280, 720); // window size
 		Globals.loader = new Loader();
-		Globals.fps = fps;
 		Globals.camera = new OrthographicCamera(new BoxingViewportAdapter(window, graphicsDevice, 1920, 1080));
 		Globals.world = new World(100000, 100000);
 
 		title = new Title(window);
-		prefab = new Prefabs();
+		prefabManager = new PrefabManager();
 
-		fps = new FPS(game);
-		fps.vSync(false, graphicsManager);
-		fps.ChangeFps(int.MaxValue);
+		Globals.fps.vSync(false, graphicsManager);
+		Globals.fps.ChangeFps(int.MaxValue);
 
 		//Globals.loader.Load(new TestLevel("TestLevel", prefab));
-		Globals.loader.Load(new PerformanceTestLevel("TestLevel", prefab));
+		Globals.loader.Load(new PerformanceTestLevel("TestLevel", prefabManager));
 	}
 
 	public void Update(GameTime gameTime)
 	{
 		Time.CalculateDelta(gameTime);
-		fps.CalculateFps(gameTime);
+		Globals.fps.CalculateFps(gameTime);
 
 		Globals.input.Update();
 		Globals.loader.currentLevel.Update();
 		TweenHelper.UpdateSetup(gameTime);
 
-		Title.Add(fps.currentFps, " FPS", 0);
-		Title.Add(fps.isVSync, " - vSync", 1);
+		Title.Add(Globals.fps.currentFps, " FPS", 0);
+		Title.Add(Globals.fps.isVSync, " - vSync", 1);
 		title.Update();
 
 
@@ -61,9 +59,9 @@ public class Veinia
 		if (Globals.input.GetKeyDown(Keys.M))
 		{
 			if (Globals.loader.currentLevel is PerformanceTestLevel)
-				Globals.loader.Load(new TestLevel("Test Level", prefab));
+				Globals.loader.Load(new TestLevel("Test Level", prefabManager));
 			else
-				Globals.loader.Load(new PerformanceTestLevel("Performance Test", prefab));
+				Globals.loader.Load(new PerformanceTestLevel("Performance Test", prefabManager));
 		}
 		if (Globals.input.GetKeyDown(Keys.F))
 		{

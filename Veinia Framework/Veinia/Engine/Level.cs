@@ -1,16 +1,16 @@
 ﻿public class Level : WorldTools
 {
 	public readonly string name;
-	protected Prefabs prefabs;
+	protected PrefabManager prefabManager;
 
-	public Level(string name, Prefabs prefabs)
+	public Level(string name, PrefabManager prefabManager)
 	{
 		this.name = name;
-		this.prefabs = prefabs;
+		this.prefabManager = prefabManager;
 	}
 
 	public virtual void LoadContents()
 	{
-		prefabs.AddDefaultPrefabs(this);
+		prefabManager.LoadPrefabs(tools: this);
 	}
 }
