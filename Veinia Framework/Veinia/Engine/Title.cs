@@ -14,9 +14,9 @@ public class Title
 	GameWindow gameWindow;// reference to the game window to later change its title
 
 
-	public Title(GameWindow GAMEWINDOW)
+	public Title(GameWindow gameWindow)
 	{
-		gameWindow = GAMEWINDOW;
+		this.gameWindow = gameWindow;
 		firstFrameName = gameWindow.Title;
 		debugMessages = new string[titleItemLimit]; // create the array to store debug messages of the max size 'titleItemLimit'
 	}

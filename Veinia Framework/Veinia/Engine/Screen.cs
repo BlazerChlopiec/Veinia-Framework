@@ -14,7 +14,7 @@ public class Screen
 		this.width = width;
 		this.height = height;
 
-		viewport = Globals.device.Viewport;
+		viewport = Globals.graphicsDevice.Viewport;
 
 		UpdateChanges();
 	}
@@ -29,8 +29,8 @@ public class Screen
 
 	private void UpdateChanges()
 	{
-		Globals.graphics.PreferredBackBufferWidth = width;
-		Globals.graphics.PreferredBackBufferHeight = height;
-		Globals.graphics.ApplyChanges();
+		Globals.graphicsManager.PreferredBackBufferWidth = width;
+		Globals.graphicsManager.PreferredBackBufferHeight = height;
+		Globals.graphicsManager.ApplyChanges();
 	}
 }

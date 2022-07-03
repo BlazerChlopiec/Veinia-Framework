@@ -8,10 +8,10 @@ public sealed class FPS
 	private int targetFps = 60;
 
 
-	public Game1 game;
+	public Game game;
 
 
-	public FPS(Game1 GAME) => game = GAME;
+	public FPS(Game game) => this.game = game;
 
 
 	public void ChangeFps(int value)

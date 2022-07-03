@@ -7,8 +7,8 @@ using MonoGame.Extended;
 
 public class Globals
 {
-	public static GraphicsDeviceManager graphics;
-	public static GraphicsDevice device;
+	public static GraphicsDeviceManager graphicsManager;
+	public static GraphicsDevice graphicsDevice;
 	public static ContentManager content;
 	public static Screen screen;
 	public static Input input;
