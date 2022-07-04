@@ -1,5 +1,6 @@
 ﻿using Humper.Responses;
 using Microsoft.Xna.Framework;
+using MonoGame.Extended;
 using System.Collections.Generic;
 
 public class TestLevel : Level
@@ -26,6 +27,9 @@ public class TestLevel : Level
 				new Sprite(path: "Test/test3", layer: 0, Color.White, destinationSize: new Vector2(1, 1)),
 				new MouseFollow(),
 				new SpawnOnMouse(),
+				//new CirclePhysics(Vector2.Zero, .5f, trigger: false),
+				new RectanglePhysics(Vector2.Zero, Vector2.One)
+				//new NewPhysics(new CircleF(Point2.Zero, 100), Vector2.Zero),
 				//new CustomCollider(CollisionResponses.Slide, Vector2.Zero, Vector2.One*.5f),
 				//new HitboxOutline()
 			}, isStatic: false);
@@ -39,6 +43,24 @@ public class TestLevel : Level
 				new TweenSprite(),
 				new SpriteCollider(CollisionResponses.None),
 				new HitboxOutline(),
+			}, isStatic: false);
+
+		Instantiate(
+			new Transform(-7, 3),
+			new List<Component>
+			{
+				new Sprite(path: "Test/test1", layer: 0, Color.White, destinationSize: new Vector2(1, 1)),
+				//new NewPhysics(new RectangleF(new Vector2(50, 50), new Vector2(100, 100)), Vector2.One),
+				new CirclePhysics(Vector2.Zero, 1, trigger: false),
+
+			}, isStatic: false);
+		Instantiate(
+			new Transform(-2.5f, 7),
+			new List<Component>
+			{
+				new Sprite(path: "Test/test1", layer: 0, Color.White, destinationSize: new Vector2(1, 1)),
+				//new NewPhysics(new RectangleF(new Vector2(50, 50), new Vector2(100, 100)), -Vector2.One),
+				new CirclePhysics(Vector2.Zero, 1, trigger: false),
 			}, isStatic: false);
 
 

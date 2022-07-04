@@ -37,6 +37,5 @@ public class Sprite : Component, IDrawn
 	}
 
 	public Rectangle screenRect => new Rectangle((int)transform.screenPos.X, (int)transform.screenPos.Y, (int)destinationSize.X, (int)destinationSize.Y);
-	public RectangleF worldRect => new RectangleF(screenRect.X - Transform.PIXELS_PER_UNIT / 2, screenRect.Y - Transform.PIXELS_PER_UNIT / 2, screenRect.Width, screenRect.Height);
 
 }

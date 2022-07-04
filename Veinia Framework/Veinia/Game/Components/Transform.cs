@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using MonoGame.Extended;
 
 public class Transform : Component
 {
@@ -27,6 +28,8 @@ public class Transform : Component
 
 	//public static Vector2 ToScreenUnits(Vector2 world) => new Vector2(world.X, world.Y) * PIXELS_PER_UNIT;
 	//public static Vector2 ToWorldUnits(Vector2 screen) => new Vector2(screen.X, screen.Y) / PIXELS_PER_UNIT;
+	public static Vector2 ToScreenUnits(Vector2 world) => world.SetY(world.Y * -1) * PIXELS_PER_UNIT;
+	public static Vector2 ToWorldUnits(Vector2 screen) => screen.SetY(screen.Y * -1) / PIXELS_PER_UNIT;
 	public static float ToScreenUnits(float world) => world * PIXELS_PER_UNIT;
 	public static float ToWorldUnits(float screen) => screen / PIXELS_PER_UNIT;
 }

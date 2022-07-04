@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
+using MonoGame.Extended.Collisions;
 using MonoGame.Extended.ViewportAdapters;
 
 public class Veinia
@@ -24,15 +25,15 @@ public class Veinia
 		Globals.loader = new Loader();
 		Globals.camera = new OrthographicCamera(new BoxingViewportAdapter(window, graphicsDevice, 1920, 1080));
 		Globals.world = new World(100000, 100000);
+		Globals.collisionComponent = new CollisionComponent(new RectangleF(-250000, -250000, 500000, 500000));
 
 		title = new Title(window);
 		prefabManager = new PrefabManager();
 
 		Globals.fps.vSync(false, graphicsManager);
-		Globals.fps.ChangeFps(int.MaxValue);
+		Globals.fps.ChangeFps(60);
 
-		//Globals.loader.Load(new TestLevel("TestLevel", prefab));
-		Globals.loader.Load(new PerformanceTestLevel("TestLevel", prefabManager));
+		Globals.loader.Load(new TestLevel("TestLevel", prefabManager));
 	}
 
 	public void Update(GameTime gameTime)
@@ -40,6 +41,7 @@ public class Veinia
 		Time.CalculateDelta(gameTime);
 		Globals.fps.CalculateFps(gameTime);
 
+		Globals.collisionComponent.Update(gameTime);
 		Globals.input.Update();
 		Globals.loader.currentLevel.Update();
 		TweenHelper.UpdateSetup(gameTime);

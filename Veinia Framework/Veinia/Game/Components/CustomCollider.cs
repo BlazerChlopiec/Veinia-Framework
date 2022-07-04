@@ -11,8 +11,8 @@ public class CustomCollider : ColliderTemplate
 	{
 		//this.size = Transform.ToScreenUnits(size);
 		//unitOffset = Transform.ToScreenUnits(offset);
-		this.size = new Vector2(Transform.ToScreenUnits(size.X), Transform.ToScreenUnits(size.Y));
-		unitOffset = new Vector2(Transform.ToScreenUnits(offset.X), Transform.ToScreenUnits(offset.Y));
+		this.size = Transform.ToScreenUnits(size);
+		unitOffset = Transform.ToScreenUnits(offset);
 	}
 
 	public override void Initialize()
