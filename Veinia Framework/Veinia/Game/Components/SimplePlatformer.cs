@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework.Input;
 
 public class SimplePlatformer : Component
 {
@@ -33,12 +32,6 @@ public class SimplePlatformer : Component
 			physics.velocity.Y *= 0.5f;
 		}
 
-		if (NullableGetComponent<SimplePlatformer>() != null)
-			Globals.camera.LookAt(Transform.WorldToScreenPos(transform.position));
-
-		//Say.Line(Transform.ToWorldUnits(Globals.camera.Position));
-		//Say.Line(transform.position);
-		//Say.Line(Mouse.GetState().Position);
-		//Say.Line(transform.position);
+		Globals.camera.LerpTo(transform.position, 1f);
 	}
 }
