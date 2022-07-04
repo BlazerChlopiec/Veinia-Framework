@@ -6,7 +6,7 @@
 	public interface ICollisionActor
 	{
 		IShapeF Bounds { get; }
-		NewPhysics Physics { get; }
+		Physics physics { get; }
 
 
 		void OnCollision(CollisionEventArgs collisionInfo);

@@ -19,7 +19,6 @@ public class PerformanceTestLevel : Level
 				{
 					new Sprite(path: "Test/test1", layer: 0, color: Color.Brown),
 					new BasicMovement(5),
-					new Physics(0),
 					new WeirdLoop(),
 					new KillOnClick(Microsoft.Xna.Framework.Input.Keys.Tab),
 				}, isStatic: false);

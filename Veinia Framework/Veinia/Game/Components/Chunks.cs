@@ -34,19 +34,19 @@ public class Chunks : Component, IDrawn
 
 	public void Iterate()
 	{
-		foreach (var collider in FindComponentsOfType<ColliderTemplate>())
-		{
-			if (!collider.isStatic) continue;
+		//foreach (var collider in FindComponentsOfType<ColliderTemplate>())
+		//{
+		//	if (!collider.isStatic) continue;
 
-			if (currentChunk.rect.Intersects(collider.rect) && !collider.parent.isEnabled)
-			{
-				collider.parent.isEnabled = true;
-			}
-			if (!currentChunk.rect.Intersects(collider.rect) && collider.parent.isEnabled)
-			{
-				collider.parent.isEnabled = false;
-			}
-		}
+		//	if (currentChunk.rect.Intersects(collider.rect) && !collider.parent.isEnabled)
+		//	{
+		//		collider.parent.isEnabled = true;
+		//	}
+		//	if (!currentChunk.rect.Intersects(collider.rect) && collider.parent.isEnabled)
+		//	{
+		//		collider.parent.isEnabled = false;
+		//	}
+		//}
 	}
 
 	public void Draw(SpriteBatch sb)

@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 
-public class CirclePhysics : NewPhysics, IDrawn
+public class CirclePhysics : Physics, IDrawn
 {
 	public CirclePhysics(Vector2 offset, float radius, bool trigger = false) : base(trigger)
 	{

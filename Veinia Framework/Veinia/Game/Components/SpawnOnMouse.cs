@@ -18,9 +18,6 @@ public class SpawnOnMouse : Component
 				new List<Component>
 				{
 					new Sprite(path: "Test/test2", layer: 0, Color.Red),
-					new Physics(4f),
-					new SpriteCollider(CollisionResponses.Slide),
-					new HitboxOutline(),
 				}, isStatic: false);
 		}
 		if (Globals.input.GetMouseButtonDown(0))
@@ -30,9 +27,6 @@ public class SpawnOnMouse : Component
 				new List<Component>
 				{
 					new Sprite(path: "Test/test4", layer: 0, Color.Blue),
-					new Physics(4f),
-					new SpriteCollider(CollisionResponses.Slide),
-					new HitboxOutline(),
 				}, isStatic: false);
 		}
 	}

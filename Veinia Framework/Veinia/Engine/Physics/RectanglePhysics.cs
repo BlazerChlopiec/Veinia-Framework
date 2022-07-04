@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 
-public class RectanglePhysics : NewPhysics, IDrawn
+public class RectanglePhysics : Physics, IDrawn
 {
 	public RectanglePhysics(Vector2 offset, Vector2 size, bool trigger = false) : base(trigger)
 	{

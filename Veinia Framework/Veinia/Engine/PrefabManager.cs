@@ -1,5 +1,4 @@
-﻿using Humper.Responses;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
 public class PrefabManager
@@ -27,29 +26,23 @@ public class PrefabManager
 		Add("block", new GameObject(Transform.Empty, new List<Component>
 		{
 			new Sprite(path: "Test/test7", layer: 0, color: Color.White, new Vector2(1, 1)),
-			new SpriteCollider(CollisionResponses.None),
-			new HitboxOutline(),
+			new RectanglePhysics(Vector2.Zero, Vector2.One, trigger: false)
 		}, tools, isStatic: true));
 
 		Add("killableBlock", new GameObject(Transform.Empty, new List<Component>
 		{
 			new Sprite(path: "Test/veina tile", layer: 0, color: Color.White, new Vector2(1, 1)),
-			new SpriteCollider(CollisionResponses.None),
-			new HitboxOutline(),
 			new KillOnClick(Microsoft.Xna.Framework.Input.Keys.Tab),
 		}, tools, isStatic: true));
 
 		Add("player", new GameObject(Transform.Empty, new List<Component>
 		{
 			new Sprite(path: "Test/test1", layer: 0, Color.White),
-			new Physics(5),
-			new SpriteCollider(CollisionResponses.Slide),
 			new SimplePlatformer(5, 15),
-			new HitboxOutline(),
 		}, tools, isStatic: true));
 	}
 
-	public class Prefab
+	public struct Prefab
 	{
 		public string prefabName;
 		public GameObject prefabGameObject;
