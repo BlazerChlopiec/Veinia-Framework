@@ -20,7 +20,8 @@ public class SimplePlatformer : Component
 	{
 		physics = GetComponent<RectanglePhysics>();
 		circlePhysics = GetComponent<CirclePhysics>();
-		circlePhysics.onCollision += OnTouchBottom;
+
+		circlePhysics.onCollisionStay += OnTouchBottom;
 	}
 
 	public override void Update()

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MonoGame.Extended.Collisions;
+using System;
 using System.Collections.Generic;
 
 public class Component : ICloneable

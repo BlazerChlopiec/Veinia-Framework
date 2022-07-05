@@ -16,7 +16,6 @@ public class BasicMovement : Component
 	public override void Initialize()
 	{
 		physics = GetComponent<Physics>();
-		physics.onCollision += OnCollision;
 	}
 
 	public override void Update()
@@ -24,7 +23,7 @@ public class BasicMovement : Component
 		physics.velocity = Utils.SafeNormalize(new Vector2(Globals.input.horizontal, Globals.input.vertical)) * speed;
 	}
 
-	public void OnCollision(CollisionEventArgs collisionInfo)
+	public void OnColliderStay(CollisionEventArgs collisionInfo)
 	{
 		GetComponent<Sprite>().color = Color.Aqua;
 	}

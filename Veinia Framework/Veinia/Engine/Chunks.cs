@@ -40,10 +40,12 @@ public class Chunks : Component, IDrawn
 
 			if (currentChunk.rect.Intersects(sprite.rect) && !sprite.parent.isEnabled)
 			{
+				sprite.parent.ToggleOn();
 				sprite.parent.isEnabled = true;
 			}
 			if (!currentChunk.rect.Intersects(sprite.rect) && sprite.parent.isEnabled)
 			{
+				sprite.parent.ToggleOff();
 				sprite.parent.isEnabled = false;
 			}
 		}

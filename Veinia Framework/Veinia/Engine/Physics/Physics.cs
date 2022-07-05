@@ -3,12 +3,13 @@ using MonoGame.Extended;
 using MonoGame.Extended.Collisions;
 using System;
 
-public class Physics : Component, ICollisionActor, IDisposable
+public class Physics : Component, ICollisionActor, IDisposable, IToggleable
 {
 	protected Vector2 offset;
 	public bool trigger;
 	public Vector2 velocity;
-	public OnCollisionStay onCollision;
+
+	public OnCollisionStay onCollisionStay;
 
 	public IShapeF Bounds
 	{
@@ -34,7 +35,7 @@ public class Physics : Component, ICollisionActor, IDisposable
 	public delegate void OnCollisionStay(CollisionEventArgs collisionInfo);
 	public virtual void OnCollision(CollisionEventArgs collisionInfo)
 	{
-		if (onCollision != null) onCollision.Invoke(collisionInfo);
+		if (onCollisionStay != null) onCollisionStay.Invoke(collisionInfo);
 
 		if (trigger || collisionInfo.Other.physics.trigger) return;
 
@@ -62,6 +63,16 @@ public class Physics : Component, ICollisionActor, IDisposable
 	}
 
 	public void Dispose()
+	{
+		Globals.collisionComponent.Remove(this);
+	}
+
+	public void ToggleOn()
+	{
+		Globals.collisionComponent.Insert(this);
+	}
+
+	public void ToggleOff()
 	{
 		Globals.collisionComponent.Remove(this);
 	}

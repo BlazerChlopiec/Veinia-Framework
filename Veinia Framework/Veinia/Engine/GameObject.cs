@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+﻿using MonoGame.Extended.Collisions;
 using System;
 using System.Collections.Generic;
 
@@ -101,5 +101,29 @@ public class GameObject
 
 		world.Remove(this);
 		world = null; // remove local world
+	}
+
+	public void ToggleOn()
+	{
+		foreach (var component in components)
+		{
+			if (component is IToggleable)
+			{
+				IToggleable toggleable = (IToggleable)component;
+				toggleable.ToggleOn();
+			}
+		}
+	}
+
+	public void ToggleOff()
+	{
+		foreach (var component in components)
+		{
+			if (component is IToggleable)
+			{
+				IToggleable toggleable = (IToggleable)component;
+				toggleable.ToggleOff();
+			}
+		}
 	}
 }

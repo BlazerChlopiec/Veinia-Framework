@@ -1,8 +1,5 @@
-﻿using System;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
-using System.Reflection;
-using System.Linq;
 
 public class WorldTools
 {
