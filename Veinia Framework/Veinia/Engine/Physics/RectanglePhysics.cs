@@ -4,11 +4,22 @@ using MonoGame.Extended;
 
 public class RectanglePhysics : Physics, IDrawn
 {
+	private Vector2 screenSize;
+	private Vector2 screenOffset;
+
 	public RectanglePhysics(Vector2 offset, Vector2 size, bool trigger = false) : base(trigger)
 	{
-		size = Transform.ToScreenUnits(size.SetY(size.Y * -1));
-		this.offset = Transform.ToScreenUnits(offset) - size / 2;
-		Bounds = new RectangleF(Vector2.Zero, size);
+		screenSize = Transform.ToScreenUnits(size.SetY(size.Y * -1));
+		screenOffset = Transform.ToScreenUnits(screenOffset);
+		//offset = Transform.ToScreenUnits(offset) - this.size / 2;
+		//offset gets removed suprisingly after being assigned here. We use Intialize Instead.
+	}
+
+	public override void Initialize()
+	{
+		offset = screenOffset - screenSize / 2;
+		Bounds = new RectangleF(Vector2.Zero, screenSize);
+		base.Initialize();
 	}
 
 	public void Draw(SpriteBatch sb)

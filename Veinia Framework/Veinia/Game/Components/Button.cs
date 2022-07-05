@@ -14,7 +14,7 @@ public class Button : Component
 	}
 	public override void Update()
 	{
-		if (sprite.screenRect.Contains(Globals.input.GetMouseWorldPosition()))
+		if (sprite.rect.Contains(Globals.input.GetMouseWorldPosition()))
 		{
 			sprite.color = Microsoft.Xna.Framework.Color.AliceBlue;
 		}

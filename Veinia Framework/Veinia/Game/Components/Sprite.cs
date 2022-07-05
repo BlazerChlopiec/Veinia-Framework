@@ -31,11 +31,11 @@ public class Sprite : Component, IDrawn
 
 	public void Draw(SpriteBatch sb)
 	{
-		sb.Draw(texture, screenRect, null, color, 0f,
+		sb.Draw(texture, rect, null, color, 0f,
 								 new Vector2(texture.Bounds.Width / 2, texture.Bounds.Height / 2),
 								 SpriteEffects.None, layer);
 	}
 
-	public Rectangle screenRect => new Rectangle((int)transform.screenPos.X, (int)transform.screenPos.Y, (int)destinationSize.X, (int)destinationSize.Y);
+	public Rectangle rect => new Rectangle((int)transform.screenPos.X, (int)transform.screenPos.Y, (int)destinationSize.X, (int)destinationSize.Y);
 
 }

@@ -32,6 +32,7 @@ public class PrefabManager
 		Add("killableBlock", new GameObject(Transform.Empty, new List<Component>
 		{
 			new Sprite(path: "Test/veina tile", layer: 0, color: Color.White, new Vector2(1, 1)),
+			new RectanglePhysics(Vector2.Zero, Vector2.One, trigger: false),
 			new KillOnClick(Microsoft.Xna.Framework.Input.Keys.Tab),
 		}, tools, isStatic: true));
 

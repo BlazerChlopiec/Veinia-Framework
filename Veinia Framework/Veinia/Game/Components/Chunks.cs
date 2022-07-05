@@ -1,13 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
-using System.Collections.Generic;
 
 public class Chunks : Component, IDrawn
 {
 	Chunk currentChunk;
 
 	Transform targetSpot;
+
 
 	public void SetTarget(Transform target) => targetSpot = target;
 
@@ -34,19 +34,19 @@ public class Chunks : Component, IDrawn
 
 	public void Iterate()
 	{
-		//foreach (var collider in FindComponentsOfType<ColliderTemplate>())
-		//{
-		//	if (!collider.isStatic) continue;
+		foreach (var sprite in FindComponentsOfType<Sprite>())//FindComponentsOfType<Physics>())
+		{
+			if (!sprite.isStatic) continue;
 
-		//	if (currentChunk.rect.Intersects(collider.rect) && !collider.parent.isEnabled)
-		//	{
-		//		collider.parent.isEnabled = true;
-		//	}
-		//	if (!currentChunk.rect.Intersects(collider.rect) && collider.parent.isEnabled)
-		//	{
-		//		collider.parent.isEnabled = false;
-		//	}
-		//}
+			if (currentChunk.rect.Intersects(sprite.rect) && !sprite.parent.isEnabled)
+			{
+				sprite.parent.isEnabled = true;
+			}
+			if (!currentChunk.rect.Intersects(sprite.rect) && sprite.parent.isEnabled)
+			{
+				sprite.parent.isEnabled = false;
+			}
+		}
 	}
 
 	public void Draw(SpriteBatch sb)
