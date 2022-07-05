@@ -45,10 +45,6 @@
               "target": "Package",
               "version": "[0.1.3, )"
             },
-            "Humper": {
-              "target": "Package",
-              "version": "[0.5.8, )"
-            },
             "MonoGame.Content.Builder.Task": {
               "target": "Package",
               "version": "[3.8.0.1641, )"

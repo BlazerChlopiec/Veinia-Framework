@@ -1,6 +1,4 @@
-﻿using Humper.Responses;
-using Microsoft.Xna.Framework;
-using MonoGame.Extended;
+﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
 public class TestLevel : Level
@@ -26,15 +24,17 @@ public class TestLevel : Level
 			{
 				new Sprite(path: "Test/test6", layer: 0, Color.White, destinationSize: new Vector2(1, 1)),
 				new BasicMovement(5),
-				//new RectanglePhysics(Vector2.Zero, Vector2.One, trigger:true),
-				new CirclePhysics(Vector2.Zero, .5f)
+				new RectanglePhysics(Vector2.Zero, Vector2.One, trigger: false),
+				//new CirclePhysics(Vector2.Zero, .5f)
 			}, isStatic: false);
 		Instantiate(
 			new Transform(-3, 1),
 			new List<Component>
 			{
 				new Sprite(path: "Test/test6", layer: 0, Color.White, destinationSize: new Vector2(1, 1)),
-				new CirclePhysics(Vector2.Zero, .5f, trigger:true),
+				new CirclePhysics(Vector2.Zero, .5f, trigger: false),
+				//new CirclePhysics(Vector2.One, .5f, trigger:true),
+				//new CirclePhysics(Vector2.One*-1, .5f, trigger:true),
 			}, isStatic: false);
 
 		Instantiate(
@@ -44,22 +44,25 @@ public class TestLevel : Level
 				new Sprite(path: "Test/test3", layer: 0, Color.White, destinationSize: new Vector2(1, 1)),
 				new MouseFollow(),
 				new SpawnOnMouse(),
-				//new CirclePhysics(Vector2.Zero, .5f, trigger: false),
-				new RectanglePhysics(Vector2.Zero, Vector2.One),
+				new CirclePhysics(Vector2.Zero, .5f, trigger: true),
+				//new RectanglePhysics(Vector2.UnitX, new Vector2(.2f, 1f), trigger:true),
+				//new RectanglePhysics(-Vector2.UnitX, new Vector2(.2f, 1f),trigger:true),
+				//new RectanglePhysics(Vector2.UnitY, new Vector2(1f, .2f),trigger:true),
+				//new RectanglePhysics(-Vector2.UnitY, new Vector2(1f, .2f),trigger:true),
 				//new NewPhysics(new CircleF(Point2.Zero, 100), Vector2.Zero),
 				//new CustomCollider(CollisionResponses.Slide, Vector2.Zero, Vector2.One*.5f),
 				//new HitboxOutline()
-			}, isStatic: false);
+			}, isStatic: true);
 
 
-		Instantiate(
-			new Transform(-2, 1),
-			new List<Component>
-			{
-				new Sprite(path: "Test/test6", layer: 0, Color.White, destinationSize: new Vector2(1, 1)),
-				new TweenSprite(),
-				new CirclePhysics(Vector2.Zero, .5f)
-			}, isStatic: false);
+		//Instantiate(
+		//	new Transform(-2, 1),
+		//	new List<Component>
+		//	{
+		//		new Sprite(path: "Test/test6", layer: 0, Color.White, destinationSize: new Vector2(1, 1)),
+		//		new TweenSprite(),
+		//		new CirclePhysics(Vector2.Zero, .5f)
+		//	}, isStatic: false);
 
 
 
@@ -67,10 +70,10 @@ public class TestLevel : Level
 		//GameObject player = Instantiate(new Transform(0, 2), prefabManager.Find("player"));
 		//player.AddComponent(new Button());
 
-		for (int i = 0; i < 10000; i++)
-		{
-			Instantiate(new Transform(i, 1), prefabManager.Find("killableBlock"));
-		}
+		//for (int i = 0; i < 10000; i++)
+		//{
+		//	Instantiate(new Transform(i, 1), prefabManager.Find("killableBlock"));
+		//}
 
 		Instantiate(new Transform(-4, -1), prefabManager.Find("block"));
 		Instantiate(new Transform(-3, -1), prefabManager.Find("block"));

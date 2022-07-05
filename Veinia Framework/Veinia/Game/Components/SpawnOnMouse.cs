@@ -1,5 +1,4 @@
-﻿using Humper.Responses;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
 public class SpawnOnMouse : Component
@@ -18,6 +17,7 @@ public class SpawnOnMouse : Component
 				new List<Component>
 				{
 					new Sprite(path: "Test/test2", layer: 0, Color.Red),
+					new RectanglePhysics(Vector2.Zero, Vector2.One)
 				}, isStatic: false);
 		}
 		if (Globals.input.GetMouseButtonDown(0))
@@ -27,6 +27,7 @@ public class SpawnOnMouse : Component
 				new List<Component>
 				{
 					new Sprite(path: "Test/test4", layer: 0, Color.Blue),
+					new RectanglePhysics(Vector2.Zero, Vector2.One)
 				}, isStatic: false);
 		}
 	}

@@ -15,6 +15,9 @@ public class Physics : Component, ICollisionActor, IDisposable
 		get { return bounds; }
 		set { bounds = value; }
 	}
+
+	public Physics physics => this;
+
 	IShapeF bounds;
 
 	public Physics(bool trigger = false)
@@ -32,9 +35,23 @@ public class Physics : Component, ICollisionActor, IDisposable
 	public virtual void OnCollision(CollisionEventArgs collisionInfo)
 	{
 		if (onCollision != null) onCollision.Invoke(collisionInfo);
-		//if (!collisionInfo.Other.Physics.trigger) transform.position -= Transform.ToWorldUnits(collisionInfo.PenetrationVector);
-		if (!parent.isStatic) transform.position -= Transform.ToWorldUnits(collisionInfo.PenetrationVector);
-		//velocity += Transform.ToWorldUnits(collisionInfo.PenetrationVector);
+
+		if (trigger || collisionInfo.Other.physics.trigger) return;
+
+		if (collisionInfo.Other.physics.parent.isStatic)
+		{
+			if (!parent.isStatic)
+			{
+				Bounds.Position -= collisionInfo.PenetrationVector;
+				transform.position = Transform.ScreenToWorldPos(Bounds.Position - offset);
+			}
+		}
+		else if (!collisionInfo.Other.physics.parent.isStatic)
+		{
+			if (!parent.isStatic) transform.position -= Transform.ToWorldUnits(collisionInfo.PenetrationVector);
+			//else transform.position = Transform.ScreenToWorldPos(Bounds.Position - offset);
+			////velocity += Transform.ToWorldUnits(collisionInfo.PenetrationVector);
+		}
 	}
 
 	public override void Update()

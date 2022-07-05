@@ -10,7 +10,7 @@ public class RectanglePhysics : Physics, IDrawn
 	public RectanglePhysics(Vector2 offset, Vector2 size, bool trigger = false) : base(trigger)
 	{
 		screenSize = Transform.ToScreenUnits(size.SetY(size.Y * -1));
-		screenOffset = Transform.ToScreenUnits(screenOffset);
+		screenOffset = Transform.ToScreenUnits(offset);
 		//offset = Transform.ToScreenUnits(offset) - this.size / 2;
 		//offset gets removed suprisingly after being assigned here. We use Intialize Instead.
 	}

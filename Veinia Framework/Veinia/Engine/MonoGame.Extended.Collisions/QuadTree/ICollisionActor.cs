@@ -8,7 +8,7 @@ namespace MonoGame.Extended.Collisions
 	public interface ICollisionActor
 	{
 		IShapeF Bounds { get; }
-		//Physics physics { get; }
+		Physics physics { get; }
 
 
 		void OnCollision(CollisionEventArgs collisionInfo);

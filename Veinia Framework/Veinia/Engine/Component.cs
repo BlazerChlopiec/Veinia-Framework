@@ -11,6 +11,7 @@ public class Component : ICloneable
 	public object Clone() => MemberwiseClone();
 	public virtual void Initialize() { }
 	public virtual void Update() { }
+	public virtual void LateUpdate() { }
 
 	public T1 FindComponentOfType<T1>() => parent.world.FindComponentOfType<T1>();
 	public List<T1> FindComponentsOfType<T1>() => parent.world.FindComponentsOfType<T1>();

@@ -112,4 +112,17 @@ public class WorldTools
 			}
 		}
 	}
+
+	public void LateUpdate()
+	{
+		foreach (var gameObject in scene.ToArray())
+		{
+			if (!gameObject.isEnabled) continue;
+
+			foreach (var component in gameObject.components.ToArray())
+			{
+				component.LateUpdate();
+			}
+		}
+	}
 }

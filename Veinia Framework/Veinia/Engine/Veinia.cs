@@ -1,5 +1,4 @@
 ﻿using Apos.Tweens;
-using Humper;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -24,14 +23,13 @@ public class Veinia
 		Globals.screen = new Screen(1280, 720); // window size
 		Globals.loader = new Loader();
 		Globals.camera = new OrthographicCamera(new BoxingViewportAdapter(window, graphicsDevice, 1920, 1080));
-		Globals.world = new World(100000, 100000);
 		Globals.collisionComponent = new CollisionComponent(new RectangleF(-250000, -250000, 500000, 500000));
 
 		title = new Title(window);
 		prefabManager = new PrefabManager();
 
 		Globals.fps.vSync(true, graphicsManager);
-		Globals.fps.ChangeFps(144);
+		Globals.fps.ChangeFps(60);
 
 		Globals.loader.Load(new TestLevel("TestLevel", prefabManager));
 	}
@@ -41,15 +39,16 @@ public class Veinia
 		Time.CalculateDelta(gameTime);
 		Globals.fps.CalculateFps(gameTime);
 
-		Globals.collisionComponent.Update(gameTime);
 		Globals.input.Update();
 		Globals.loader.currentLevel.Update();
+		Globals.collisionComponent.Update(gameTime);
 		TweenHelper.UpdateSetup(gameTime);
 
 		Title.Add(Globals.fps.currentFps, " FPS", 0);
 		Title.Add(Globals.fps.isVSync, " - vSync", 1);
 		title.Update();
 
+		Globals.loader.currentLevel.LateUpdate();
 
 		//useful hotkeys
 		if (Globals.input.GetKeyDown(Keys.Space))

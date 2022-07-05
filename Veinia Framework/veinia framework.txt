@@ -1,11 +1,6 @@
 TODO:
 - camera as component
-- make a camera look at
-- simplify gameobject/component syntax (DONE)
-- simplify game1.cs (make it more compact and easy to implement)
 - improve chunks and implement frustum occlussion (1/2 DONE)
-- increase the world rsaectangle 
-- implement addcomponent() (DONE)
 - implement getting components in first frame
 - finish ExecuteUpdateWhenCulled
 - findobjectsoftype uses nullablegetcomponent which doesn't allow for multiple colliders for example (duplicates)
@@ -21,3 +16,15 @@ FUTURE PLANS:
 - in-engine enditors
 - penumbra lights
 - animation 
+
+
+
+
+
+
+-DONE
+- implement addcomponent()
+- simplify gameobject/component syntax
+- make a camera look at
+- simplify game1.cs (make it more compact and easy to implement)
+- increase the world rectangle

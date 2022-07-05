@@ -16,7 +16,6 @@ D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Veinia.dll
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Veinia.pdb
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Apos.Tweens.dll
-D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Humper.dll
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\MonoGame.Extended.dll
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\MonoGame.Framework.dll
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
