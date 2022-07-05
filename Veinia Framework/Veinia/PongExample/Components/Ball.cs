@@ -27,13 +27,20 @@ public class Ball : Component
 		if (Globals.input.GetMouseButtonDown(0) && !launched)
 		{
 			launched = true;
-			physics.velocity = Vector2.One * speed;
+			physics.velocity = Utils.SafeNormalize(Vector2.One) * speed;
+		}
+		else if (Globals.input.GetMouseButtonDown(0) && launched)
+		{
+			physics.velocity = Utils.SafeNormalize(Globals.input.GetMouseWorldPosition() - transform.position) * speed;
 		}
 	}
 
 	private void CollisionEnter(CollisionEventArgs collisionInfo)
 	{
 		Say.Line(collisionInfo.PenetrationVector);
+
+		var otherPhys = collisionInfo.Other.physics;
+		if (otherPhys.NullableGetComponent<Block>() != null) otherPhys.DestroyGameObject();
 
 		if (Math.Abs(collisionInfo.PenetrationVector.Y) > Math.Abs(collisionInfo.PenetrationVector.X))
 		{

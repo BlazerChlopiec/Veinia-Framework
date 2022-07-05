@@ -11,7 +11,7 @@ public class PongLevel1 : Level
 	{
 		base.LoadContents();
 
-		GameObject background = Instantiate(
+		GameObject background = Instantiate(f
 			new Transform(Vector2.Zero),
 			new List<Component>
 			{
@@ -34,7 +34,7 @@ public class PongLevel1 : Level
 			new Transform(Vector2.UnitY * 5.5f),
 			new List<Component>
 			{
-				new RectanglePhysics(Vector2.Zero, new Vector2(18, .3f), trigger: true)
+				new RectanglePhysics(Vector2.Zero, new Vector2(19f, .3f), trigger: true)
 			}, isStatic: false);
 
 

@@ -27,6 +27,7 @@ public class PrefabManager
 		{
 			new Sprite("Pong/Square", 0, Color.White),
 			new RectanglePhysics(Vector2.Zero, Vector2.One),
+			new Block(),
 		}, tools, isStatic: true));
 
 	}
