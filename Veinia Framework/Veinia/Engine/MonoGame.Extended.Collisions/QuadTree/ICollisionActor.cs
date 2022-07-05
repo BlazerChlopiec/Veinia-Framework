@@ -1,4 +1,6 @@
-﻿namespace MonoGame.Extended.Collisions
+﻿using System;
+
+namespace MonoGame.Extended.Collisions
 {
 	/// <summary>
 	/// An actor that can be collided with.
@@ -6,7 +8,7 @@
 	public interface ICollisionActor
 	{
 		IShapeF Bounds { get; }
-		Physics physics { get; }
+		//Physics physics { get; }
 
 
 		void OnCollision(CollisionEventArgs collisionInfo);

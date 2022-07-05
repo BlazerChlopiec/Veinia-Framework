@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using MonoGame.Extended.Collisions;
 
 public class BasicMovement : Component
 {
@@ -21,10 +22,9 @@ public class BasicMovement : Component
 	public override void Update()
 	{
 		physics.velocity = Utils.SafeNormalize(new Vector2(Globals.input.horizontal, Globals.input.vertical)) * speed;
-
 	}
 
-	public void OnCollision()
+	public void OnCollision(CollisionEventArgs collisionInfo)
 	{
 		GetComponent<Sprite>().color = Color.Aqua;
 	}

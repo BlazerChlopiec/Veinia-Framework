@@ -31,7 +31,7 @@ public class Veinia
 		prefabManager = new PrefabManager();
 
 		Globals.fps.vSync(false, graphicsManager);
-		Globals.fps.ChangeFps(144);
+		Globals.fps.ChangeFps(60);
 
 		Globals.loader.Load(new TestLevel("TestLevel", prefabManager));
 	}

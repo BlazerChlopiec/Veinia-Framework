@@ -20,7 +20,7 @@ public class GameObject
 		this.isStatic = isStatic;
 
 		components.Remove(components.Find(x => x is Transform)); // remove transform to make sure there aren't two transforms (prefab case)
-		components.Add(transform); // the spot is added afterwards to components to ensure the gameobject having a spot
+		components.Add(transform); // the spot is added afterwards to components to ensure the gameobject having a transform
 	}
 
 	public T1 NullableGetComponent<T1>() // allows nulls to be returned

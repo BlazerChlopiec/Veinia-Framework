@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Linq;
 
 public class WorldTools
 {
@@ -28,7 +29,13 @@ public class WorldTools
 	}
 	public GameObject Instantiate(Transform transform, GameObject prefab)
 	{
-		GameObject sample = new GameObject(transform, prefab.components.Clone(), this, prefab.isStatic);
+		GameObject sample = new GameObject(transform, new List<Component>(), this, prefab.isStatic);
+
+		foreach (var item in prefab.components)
+		{
+			sample.AddComponent(item);
+		}
+
 		foreach (var item in sample.components)
 		{
 			item.parent = sample;
