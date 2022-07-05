@@ -40,7 +40,9 @@ public class PrefabManager
 		{
 			new Sprite(path: "Test/test1", layer: 0, Color.White),
 			new SimplePlatformer(5, 15),
-		}, tools, isStatic: true));
+			new RectanglePhysics(Vector2.Zero, Vector2.One),
+			new CirclePhysics(-Vector2.UnitY/1.8f, .05f, true)
+		}, tools, isStatic: false));
 	}
 
 	public struct Prefab

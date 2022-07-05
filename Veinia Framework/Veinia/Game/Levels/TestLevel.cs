@@ -18,15 +18,15 @@ public class TestLevel : Level
 				new Sprite(path: "Test/veina background", layer: 0, Color.Black),
 			}, isStatic: false);
 
-		GameObject player = Instantiate(
-			new Transform(-1, 1),
-			new List<Component>
-			{
-				new Sprite(path: "Test/test6", layer: 0, Color.White, destinationSize: new Vector2(1, 1)),
-				new BasicMovement(5),
-				new RectanglePhysics(Vector2.Zero, Vector2.One, trigger: false),
-				//new CirclePhysics(Vector2.Zero, .5f)
-			}, isStatic: false);
+		//GameObject topdownPlayer = Instantiate(
+		//	new Transform(-1, 1),
+		//	new List<Component>
+		//	{
+		//		new Sprite(path: "Test/test6", layer: 0, Color.White, destinationSize: new Vector2(1, 1)),
+		//		new BasicMovement(5),
+		//		new RectanglePhysics(Vector2.Zero, Vector2.One, trigger: false),
+		//		new CirclePhysics(Vector2.Zero, .5f)
+		//	}, isStatic: false);
 		Instantiate(
 			new Transform(-3, 1),
 			new List<Component>
@@ -67,14 +67,13 @@ public class TestLevel : Level
 
 
 
-		//GameObject player = Instantiate(new Transform(0, 2), prefabManager.Find("player"));
-		//player.AddComponent(new Button());
 
-		//for (int i = 0; i < 10000; i++)
-		//{
-		//	Instantiate(new Transform(i, 1), prefabManager.Find("killableBlock"));
-		//}
+		for (int i = 0; i < 10000; i++)
+		{
+			Instantiate(new Transform(i, 1), prefabManager.Find("killableBlock"));
+		}
 
+		GameObject player = Instantiate(new Transform(0, 2), prefabManager.Find("player"));
 		Instantiate(new Transform(-4, -1), prefabManager.Find("block"));
 		Instantiate(new Transform(-3, -1), prefabManager.Find("block"));
 		Instantiate(new Transform(-2, -1), prefabManager.Find("block"));

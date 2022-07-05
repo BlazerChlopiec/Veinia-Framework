@@ -1,11 +1,13 @@
 ﻿using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended.Collisions;
 
 public class SimplePlatformer : Component
 {
 	private float speed;
 	private float jumpForce;
 
-	//Physics physics;
+	RectanglePhysics physics;
+	CirclePhysics circlePhysics;
 
 
 	public SimplePlatformer(float speed, float jumpForce)
@@ -16,22 +18,32 @@ public class SimplePlatformer : Component
 
 	public override void Initialize()
 	{
-		//physics = GetComponent<Physics>();
+		physics = GetComponent<RectanglePhysics>();
+		circlePhysics = GetComponent<CirclePhysics>();
+		circlePhysics.onCollision += OnTouchBottom;
 	}
 
 	public override void Update()
 	{
-		//physics.velocity.X = Globals.input.horizontal * speed;
+		physics.velocity.Y -= 30 * Time.deltaTime;
+		physics.velocity.X = Globals.input.horizontal * speed;
 
-		//if (Globals.input.GetKeyButton(Keys.W, Buttons.A) && physics.touchingBottom)
-		//{
-		//physics.velocity.Y = jumpForce;
-		//}
-		//if (Globals.input.GetKeyButtonUp(Keys.W, Buttons.A) && physics.velocity.Y > 0)
-		//{
-		//physics.velocity.Y *= 0.5f;
-		//}
+
+		if (Globals.input.GetKeyButtonUp(Keys.W, Buttons.A) && physics.velocity.Y > 0)
+		{
+			physics.velocity.Y *= 0.5f;
+		}
 
 		Globals.camera.LerpTo(transform.position, 1f);
+	}
+
+	public void OnTouchBottom(CollisionEventArgs collisionInfo)
+	{
+		if (collisionInfo.Other.physics.trigger) return;
+		physics.velocity.Y = -2;
+		if (Globals.input.GetKeyButton(Keys.W, Buttons.A))
+		{
+			physics.velocity.Y = jumpForce;
+		}
 	}
 }
