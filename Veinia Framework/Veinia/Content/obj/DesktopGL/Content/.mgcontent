@@ -4,24 +4,12 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>D:/yt blazer yt/Veinia-Framework/Veinia Framework/Veinia/Content/Test/background.jpg</File>
-    <File>D:/yt blazer yt/Veinia-Framework/Veinia Framework/Veinia/Content/Test/test1.png</File>
-    <File>D:/yt blazer yt/Veinia-Framework/Veinia Framework/Veinia/Content/Test/test2.png</File>
-    <File>D:/yt blazer yt/Veinia-Framework/Veinia Framework/Veinia/Content/Test/test3.png</File>
-    <File>D:/yt blazer yt/Veinia-Framework/Veinia Framework/Veinia/Content/Test/test4.png</File>
-    <File>D:/yt blazer yt/Veinia-Framework/Veinia Framework/Veinia/Content/Test/test5.png</File>
-    <File>D:/yt blazer yt/Veinia-Framework/Veinia Framework/Veinia/Content/Test/test6.png</File>
-    <File>D:/yt blazer yt/Veinia-Framework/Veinia Framework/Veinia/Content/Test/test7.png</File>
-    <File>D:/yt blazer yt/Veinia-Framework/Veinia Framework/Veinia/Content/Test/veina background.png</File>
-    <File>D:/yt blazer yt/Veinia-Framework/Veinia Framework/Veinia/Content/Test/veina tile.png</File>
+    <File>D:/yt blazer yt/Veinia-Framework/Veinia Framework/Veinia/Content/Pong/Background.png</File>
+    <File>D:/yt blazer yt/Veinia-Framework/Veinia Framework/Veinia/Content/Pong/Grass Tile.png</File>
+    <File>D:/yt blazer yt/Veinia-Framework/Veinia Framework/Veinia/Content/Pong/Paddle.png</File>
+    <File>D:/yt blazer yt/Veinia-Framework/Veinia Framework/Veinia/Content/Pong/Square.png</File>
   </SourceFiles>
   <DestFiles>
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

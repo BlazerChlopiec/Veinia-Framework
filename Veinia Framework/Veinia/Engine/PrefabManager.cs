@@ -23,26 +23,12 @@ public class PrefabManager
 	{
 		prefabs.Clear();
 
-		Add("block", new GameObject(Transform.Empty, new List<Component>
+		Add("Block", new GameObject(Transform.Empty, new List<Component>
 		{
-			new Sprite(path: "Test/test7", layer: 0, color: Color.White, new Vector2(1, 1)),
-			new RectanglePhysics(Vector2.Zero, Vector2.One, trigger: false)
-		}, tools, isStatic: true));
-
-		Add("killableBlock", new GameObject(Transform.Empty, new List<Component>
-		{
-			new Sprite(path: "Test/veina tile", layer: 0, color: Color.White, new Vector2(1, 1)),
-			new RectanglePhysics(Vector2.Zero, Vector2.One, trigger: false),
-			new KillOnClick(Microsoft.Xna.Framework.Input.Keys.Tab),
-		}, tools, isStatic: true));
-
-		Add("player", new GameObject(Transform.Empty, new List<Component>
-		{
-			new Sprite(path: "Test/test1", layer: 0, Color.White),
-			new SimplePlatformer(5, 15),
+			new Sprite("Pong/Square", 0, Color.White),
 			new RectanglePhysics(Vector2.Zero, Vector2.One),
-			new CirclePhysics(-Vector2.UnitY/1.8f, .05f, true)
-		}, tools, isStatic: false));
+		}, tools, isStatic: true));
+
 	}
 
 	public struct Prefab

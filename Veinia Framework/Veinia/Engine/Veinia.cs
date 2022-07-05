@@ -31,7 +31,7 @@ public class Veinia
 		Globals.fps.vSync(true, graphicsManager);
 		Globals.fps.ChangeFps(60);
 
-		Globals.loader.Load(new TestLevel("TestLevel", prefabManager));
+		Globals.loader.Load(new PongLevel1("PongLevel1", prefabManager));
 	}
 
 	public void Update(GameTime gameTime)
@@ -57,24 +57,9 @@ public class Veinia
 			Globals.loader.Unload(Globals.loader.currentLevel);
 		}
 
-		if (Globals.input.GetKeyDown(Keys.M))
-		{
-			if (Globals.loader.currentLevel is PerformanceTestLevel)
-				Globals.loader.Load(new TestLevel("Test Level", prefabManager));
-			else
-				Globals.loader.Load(new PerformanceTestLevel("Performance Test", prefabManager));
-		}
 		if (Globals.input.GetKeyDown(Keys.F))
 		{
 			Globals.showHitboxes = !Globals.showHitboxes;
-		}
-		if (Globals.input.GetKey(Keys.OemMinus))
-		{
-			Globals.camera.ZoomIn(1f * Time.deltaTime);
-		}
-		if (Globals.input.GetKey(Keys.OemPlus))
-		{
-			Globals.camera.ZoomOut(1f * Time.deltaTime);
 		}
 		//
 	}
