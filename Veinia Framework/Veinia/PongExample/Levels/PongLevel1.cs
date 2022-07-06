@@ -11,7 +11,7 @@ public class PongLevel1 : Level
 	{
 		base.LoadContents();
 
-		GameObject background = Instantiate(f
+		GameObject background = Instantiate(
 			new Transform(Vector2.Zero),
 			new List<Component>
 			{
@@ -22,20 +22,20 @@ public class PongLevel1 : Level
 			new Transform(-Vector2.UnitX * 9.7f),
 			new List<Component>
 			{
-				new RectanglePhysics(Vector2.Zero, new Vector2(.3f, 10), trigger: true)
-			}, isStatic: false);
+				new RectanglePhysics(Vector2.Zero, new Vector2(.3f, 10))
+			}, isStatic: true);
 		GameObject rightBorder = Instantiate(
 			new Transform(Vector2.UnitX * 9.7f),
 			new List<Component>
 			{
-				new RectanglePhysics(Vector2.Zero, new Vector2(.3f, 10), trigger: true)
-			}, isStatic: false);
+				new RectanglePhysics(Vector2.Zero, new Vector2(.3f, 10))
+			}, isStatic: true);
 		GameObject topBorder = Instantiate(
 			new Transform(Vector2.UnitY * 5.5f),
 			new List<Component>
 			{
-				new RectanglePhysics(Vector2.Zero, new Vector2(19f, .3f), trigger: true)
-			}, isStatic: false);
+				new RectanglePhysics(Vector2.Zero, new Vector2(19f, .3f))
+			}, isStatic: true);
 
 
 
@@ -50,17 +50,27 @@ public class PongLevel1 : Level
 			}, isStatic: false);
 
 		GameObject ball = Instantiate(
-			new Transform(Vector2.Zero),
+			new Transform(Vector2.UnitY),
 			new List<Component>
 			{
 				new Sprite("Pong/Square", 0, Color.Blue, new Vector2(.8f, .8f)),
 				new Ball(),
-				new CirclePhysics(Vector2.Zero, .4f)
+				new CirclePhysics(Vector2.Zero, .4f),
 			}, isStatic: false);
 
+
+		//block rows
 		for (int i = 0; i < 11; i++)
 		{
 			Instantiate(new Transform(i - 5, 0), prefabManager.Find("Block"));
+		}
+		for (int i = 0; i < 11; i++)
+		{
+			Instantiate(new Transform(i - 5, 1), prefabManager.Find("Block"));
+		}
+		for (int i = 0; i < 11; i++)
+		{
+			Instantiate(new Transform(i - 5, 2), prefabManager.Find("Block"));
 		}
 
 		//

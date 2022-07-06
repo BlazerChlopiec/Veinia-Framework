@@ -52,8 +52,10 @@ namespace MonoGame.Extended.Collisions
 						Other = other.Target,
 						PenetrationVector = CalculatePenetrationVector(value.Bounds, other.Bounds)
 					};
+					if (collisionInfo.PenetrationVector == Vector2.Zero) continue;
 
 					target.OnCollision(collisionInfo);
+
 					value.Bounds = value.Target.Bounds;
 				}
 				_collisionTree.Insert(value);
@@ -129,8 +131,8 @@ namespace MonoGame.Extended.Collisions
 		private static Vector2 PenetrationVector(RectangleF rect1, RectangleF rect2)
 		{
 			var intersectingRectangle = RectangleF.Intersection(rect1, rect2);
-			//Debug.Assert(!intersectingRectangle.IsEmpty,
-			//	"Violation of: !intersect.IsEmpty; Rectangles must intersect to calculate a penetration vector.");
+			Debug.Assert(!intersectingRectangle.IsEmpty,
+				"Violation of: !intersect.IsEmpty; Rectangles must intersect to calculate a penetration vector.");
 
 			Vector2 penetration;
 			if (intersectingRectangle.Width < intersectingRectangle.Height)

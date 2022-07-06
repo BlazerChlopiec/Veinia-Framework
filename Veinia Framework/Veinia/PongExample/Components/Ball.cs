@@ -7,7 +7,7 @@ public class Ball : Component
 	Paddle paddle;
 	CirclePhysics physics;
 
-	private float speed = 7;
+	private float speed = 10;
 
 	bool launched;
 
@@ -37,10 +37,8 @@ public class Ball : Component
 
 	private void CollisionEnter(CollisionEventArgs collisionInfo)
 	{
-		Say.Line(collisionInfo.PenetrationVector);
-
-		var otherPhys = collisionInfo.Other.physics;
-		if (otherPhys.NullableGetComponent<Block>() != null) otherPhys.DestroyGameObject();
+		var block = collisionInfo.Other.physics.NullableGetComponent<Block>();
+		if (block != null) block.DestroyGameObject();
 
 		if (Math.Abs(collisionInfo.PenetrationVector.Y) > Math.Abs(collisionInfo.PenetrationVector.X))
 		{
