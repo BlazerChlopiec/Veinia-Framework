@@ -24,7 +24,7 @@ public class RectanglePhysics : Physics, IDrawn
 
 	public void Draw(SpriteBatch sb)
 	{
-		if (Globals.showHitboxes)
+		if (showHitboxes)
 			sb.DrawRectangle((RectangleF)Bounds, Color.Red, 5, 1);
 	}
 }

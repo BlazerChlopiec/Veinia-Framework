@@ -4,6 +4,7 @@ TODO:
 - implement getting components in first frame
 - finish ExecuteUpdateWhenCulled
 - findobjectsoftype uses nullablegetcomponent which doesn't allow for multiple colliders for example (duplicates)
+- add stoping time
 
 FUTURE PLANS:
 - antialiasing 

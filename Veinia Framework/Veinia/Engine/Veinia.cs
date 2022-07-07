@@ -39,8 +39,10 @@ public class Veinia
 		Time.CalculateDelta(gameTime);
 		Globals.fps.CalculateFps(gameTime);
 
+		NextFrame.Update();
+
 		Globals.input.Update();
-		Globals.loader.currentLevel.Update();
+		if (Globals.loader.currentLevel != null) Globals.loader.currentLevel.Update();
 		Globals.collisionComponent.Update(gameTime);
 		TweenHelper.UpdateSetup(gameTime);
 
@@ -48,18 +50,18 @@ public class Veinia
 		Title.Add(Globals.fps.isVSync, " - vSync", 1);
 		title.Update();
 
-		Globals.loader.currentLevel.LateUpdate();
+		if (Globals.loader.currentLevel != null) Globals.loader.currentLevel.LateUpdate();
 
 		//useful hotkeys
 		if (Globals.input.GetKeyDown(Keys.Space))
 		{
 			//crashes hard :weary:
-			Globals.loader.Unload(Globals.loader.currentLevel);
+			Globals.loader.Unload();
 		}
 
 		if (Globals.input.GetKeyDown(Keys.F))
 		{
-			Globals.showHitboxes = !Globals.showHitboxes;
+			Physics.showHitboxes = !Physics.showHitboxes;
 		}
 		//
 	}
@@ -70,7 +72,7 @@ public class Veinia
 
 		spriteBatch.Begin(SpriteSortMode.FrontToBack, transformMatrix: Globals.camera.GetViewMatrix());
 
-		Globals.loader.currentLevel.Draw(spriteBatch);
+		if (Globals.loader.currentLevel != null) Globals.loader.currentLevel.Draw(spriteBatch);
 
 		spriteBatch.End();
 	}

@@ -36,6 +36,13 @@ public class PongLevel1 : Level
 			{
 				new RectanglePhysics(Vector2.Zero, new Vector2(19f, .3f))
 			}, isStatic: true);
+		GameObject bottomBorder = Instantiate(
+			new Transform(Vector2.UnitY * -5.5f),
+			new List<Component>
+			{
+				new RectanglePhysics(Vector2.Zero, new Vector2(19f, .3f)),
+				new GameOverBorder()
+			}, isStatic: true);
 
 
 

@@ -6,7 +6,7 @@
 	public void Load(Level level)
 	{
 		if (currentLevel != null)
-			Unload(currentLevel);
+			Unload();
 
 		currentLevel = level;
 		currentLevel.LoadContents();
@@ -14,15 +14,28 @@
 		Title.Add(currentLevel.name, 6);
 	}
 
-	public void Unload(Level level)
+	public void Unload()
 	{
-		foreach (var gameObject in level.scene.ToArray())
+		foreach (var item in currentLevel.scene.ToArray())
 		{
-			gameObject.DestroyGameObject();
+			item.DestroyGameObject();
 		}
 
-		//crashes
-		//previousLevel = currentLevel;
-		//currentLevel = null;
+		previousLevel = currentLevel;
+		currentLevel = null;
+	}
+
+	public void Reload()
+	{
+		NextFrame.actions.Add(ReloadScene);
+
+		void ReloadScene()
+		{
+			Unload();
+			currentLevel = previousLevel;
+			currentLevel.LoadContents();
+
+			Title.Add(currentLevel.name, 6);
+		}
 	}
 }

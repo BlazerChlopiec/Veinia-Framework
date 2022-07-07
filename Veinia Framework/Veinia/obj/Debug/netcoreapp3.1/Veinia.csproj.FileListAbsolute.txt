@@ -1,14 +1,3 @@
-D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Content\Test\background.xnb
-D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Content\Test\istockphoto-1086911620-170667a.xnb
-D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Content\Test\test1.xnb
-D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Content\Test\test2.xnb
-D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Content\Test\test3.xnb
-D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Content\Test\test4.xnb
-D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Content\Test\test5.xnb
-D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Content\Test\test6.xnb
-D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Content\Test\test7.xnb
-D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Content\Test\veina background.xnb
-D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Content\Test\veina tile.xnb
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Veinia.exe
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Veinia.deps.json
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Veinia.runtimeconfig.json
@@ -36,11 +25,7 @@ D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\obj\Debug\netcoreapp3.1
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\obj\Debug\netcoreapp3.1\Veinia.dll
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\obj\Debug\netcoreapp3.1\Veinia.pdb
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\obj\Debug\netcoreapp3.1\Veinia.genruntimeconfig.cache
-D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Content\PongExample\Background.xnb
-D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Content\PongExample\Grass Tile.xnb
-D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Content\PongExample\Square.xnb
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Content\Pong\Background.xnb
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Content\Pong\Grass Tile.xnb
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Content\Pong\Square.xnb
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Content\Pong\Paddle.xnb
-D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Content\Pong\Ball.xnb

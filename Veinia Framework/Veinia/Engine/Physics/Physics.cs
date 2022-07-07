@@ -5,6 +5,8 @@ using System;
 
 public class Physics : Component, ICollisionActor, IDisposable, IToggleable
 {
+	public static bool showHitboxes;
+
 	protected Vector2 offset;
 	public bool trigger;
 	public Vector2 velocity;
@@ -58,13 +60,11 @@ public class Physics : Component, ICollisionActor, IDisposable, IToggleable
 	{
 		hasEnteredCollision = true;
 		if (onCollisionEnter != null) onCollisionEnter.Invoke(collisionInfo);
-		if (NullableGetComponent<Ball>() != null) Say.Line("enter");
 	}
 	public void OnCollisionExit(CollisionEventArgs collisionInfo)
 	{
 		hasEnteredCollision = false;
 		if (onCollisionExit != null) onCollisionExit.Invoke(collisionInfo);
-		if (NullableGetComponent<Ball>() != null) Say.Line("exit");
 	}
 
 	public override void Update()

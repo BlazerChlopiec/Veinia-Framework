@@ -37,7 +37,7 @@ namespace MonoGame.Extended.Collisions
 		public override void Update(GameTime gameTime)
 		{
 			// Detect collisions
-			foreach (var value in _targetDataDictionary.Values)
+			foreach (var value in _targetDataDictionary.Values.ToArray())
 			{
 				value.RemoveFromAllParents();
 

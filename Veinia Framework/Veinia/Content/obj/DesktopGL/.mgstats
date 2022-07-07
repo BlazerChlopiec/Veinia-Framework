@@ -1,5 +1,0 @@
-Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"D:/yt blazer yt/Veinia-Framework/Veinia Framework/Veinia/Content/Pong/Background.png","D:/yt blazer yt/Veinia-Framework/Veinia Framework/Veinia/Content/bin/DesktopGL/Pong/Background.xnb","TextureProcessor","Texture2DContent",7803982,33177685,1,1449299
-"D:/yt blazer yt/Veinia-Framework/Veinia Framework/Veinia/Content/Pong/Grass Tile.png","D:/yt blazer yt/Veinia-Framework/Veinia Framework/Veinia/Content/bin/DesktopGL/Pong/Grass Tile.xnb","TextureProcessor","Texture2DContent",15952,160085,0,0126904
-"D:/yt blazer yt/Veinia-Framework/Veinia Framework/Veinia/Content/Pong/Paddle.png","D:/yt blazer yt/Veinia-Framework/Veinia Framework/Veinia/Content/bin/DesktopGL/Pong/Paddle.xnb","TextureProcessor","Texture2DContent",382,85085,0,0025905
-"D:/yt blazer yt/Veinia-Framework/Veinia Framework/Veinia/Content/Pong/Square.png","D:/yt blazer yt/Veinia-Framework/Veinia Framework/Veinia/Content/bin/DesktopGL/Pong/Square.xnb","TextureProcessor","Texture2DContent",362,40085,0,0019594

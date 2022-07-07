@@ -25,7 +25,7 @@ public class GameObject
 
 	public T1 NullableGetComponent<T1>() // allows nulls to be returned
 	{
-		if (isDestroyed) throw new System.Exception("GetComponent<T1> - The object is already destroyed!");
+		if (isDestroyed) throw new System.Exception("GetComponent<T1> - The object is already destroyed! " + typeof(T1).ToString());
 
 		List<T1> returnVal = new List<T1>();
 
@@ -86,21 +86,26 @@ public class GameObject
 	{
 		if (isDestroyed) return;
 
-		foreach (var component in components)
-		{
-			if (component is IDisposable)
-			{
-				IDisposable destroyable = (IDisposable)component;
-				destroyable.Dispose();
-			}
-		}
-
-		components.Clear();
-		isDestroyed = true;
-		isStatic = false;
-
 		world.Remove(this);
 		world = null; // remove local world
+
+		NextFrame.actions.Add(Destroy);
+
+		void Destroy()
+		{
+			foreach (var component in components)
+			{
+				if (component is IDisposable)
+				{
+					IDisposable destroyable = (IDisposable)component;
+					destroyable.Dispose();
+				}
+			}
+
+			components.Clear();
+			isDestroyed = true;
+			isStatic = false;
+		}
 	}
 
 	public void ToggleOn()

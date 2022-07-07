@@ -15,5 +15,4 @@ public class Globals
 	public static FPS fps;
 	public static OrthographicCamera camera;
 	public static CollisionComponent collisionComponent;
-	public static bool showHitboxes;
 }

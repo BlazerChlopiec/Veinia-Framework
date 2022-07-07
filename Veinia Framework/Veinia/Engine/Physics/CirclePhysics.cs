@@ -22,7 +22,7 @@ public class CirclePhysics : Physics, IDrawn
 
 	public void Draw(SpriteBatch sb)
 	{
-		if (Globals.showHitboxes)
+		if (showHitboxes)
 			sb.DrawCircle((CircleF)Bounds, 50, Color.Red, 5, 1);
 	}
 }
