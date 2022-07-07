@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
-public class PongLevel1 : Level
+public class BlockBreakerLevel : Level
 {
-	public PongLevel1(string name, PrefabManager prefabManager) : base(name, prefabManager)
+	public BlockBreakerLevel(string name, PrefabManager prefabManager) : base(name, prefabManager)
 	{
 	}
 

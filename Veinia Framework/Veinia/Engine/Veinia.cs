@@ -32,7 +32,7 @@ public class Veinia
 		Globals.fps.vSync(true, graphicsManager);
 		Globals.fps.ChangeFps(int.MaxValue);
 
-		Globals.loader.Load(new PongLevel1("PongLevel1", prefabManager));
+		Globals.loader.Load(new BlockBreakerLevel("PongLevel1", prefabManager));
 	}
 
 	public void Update(GameTime gameTime)

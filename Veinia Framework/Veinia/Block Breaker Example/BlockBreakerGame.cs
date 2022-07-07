@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-public class PongGame : Game
+public class BlockBreakerGame : Game
 {
 	private GraphicsDeviceManager graphics;
 	private SpriteBatch spriteBatch;
@@ -10,7 +10,7 @@ public class PongGame : Game
 	Veinia veinia = new Veinia();
 
 
-	public PongGame()
+	public BlockBreakerGame()
 	{
 		graphics = new GraphicsDeviceManager(this);
 		Content.RootDirectory = "Content";
