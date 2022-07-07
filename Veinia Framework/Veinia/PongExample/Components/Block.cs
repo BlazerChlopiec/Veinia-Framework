@@ -1,6 +1,5 @@
 ﻿using Apos.Tweens;
 using Microsoft.Xna.Framework;
-using System;
 
 public class Block : Component
 {
@@ -12,6 +11,8 @@ public class Block : Component
 	public void Hit()
 	{
 		if (hasBeenHit) return;
+
+		RemoveComponent(GetComponent<Physics>());
 
 		hasBeenHit = true;
 		scaleTween = new Vector2Tween(transform.scale, Vector2.Zero, 300, Easing.BackIn);

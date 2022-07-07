@@ -75,9 +75,6 @@ public class Physics : Component, ICollisionActor, IDisposable, IToggleable
 		transform.position += velocity * Time.deltaTime;
 
 		Bounds.Position = transform.screenPos + offset;
-
-		//if (oldIsColliding && !isColliding) OnCollisionExit(currectCollisionInfo);
-		//if (isColliding && !oldIsColliding) OnCollisionEnter(currectCollisionInfo);
 	}
 
 	public void Dispose()

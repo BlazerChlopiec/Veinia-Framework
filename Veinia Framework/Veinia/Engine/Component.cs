@@ -19,6 +19,7 @@ public class Component : ICloneable
 	public T1 NullableGetComponent<T1>() => parent.NullableGetComponent<T1>();
 	public T1 GetComponent<T1>() => parent.GetComponent<T1>();
 	public Component AddComponent(Component component) => parent.AddComponent(component);
+	public void RemoveComponent(Component component) => parent.RemoveComponent(component);
 	public GameObject Instantiate(Transform transform, List<Component> components, bool isStatic) => parent.world.Instantiate(transform, components, isStatic);
 	public GameObject Instantiate(Transform transform, GameObject gameObject) => gameObject.world.Instantiate(transform, gameObject);
 	public void DestroyGameObject() => parent.DestroyGameObject();

@@ -71,7 +71,7 @@ public class GameObject
 
 	public Component AddComponent(Component component)
 	{
-		Component compo = (Component)component.Clone();
+		var compo = (Component)component.Clone();
 		components.Add(compo);
 
 		compo.parent = this;
@@ -80,6 +80,22 @@ public class GameObject
 		compo.Initialize();
 
 		return compo;
+	}
+
+	public void RemoveComponent(Component component)
+	{
+		NextFrame.actions.Add(RemoveNextFrame);
+
+		void RemoveNextFrame()
+		{
+			if (component is IDisposable)
+			{
+				IDisposable destroyable = (IDisposable)component;
+				destroyable.Dispose();
+			}
+
+			components.Remove(components.Find(x => x == component));
+		}
 	}
 
 	public void DestroyGameObject()

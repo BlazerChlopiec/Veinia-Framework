@@ -1,10 +1,10 @@
 TODO:
-- camera as component
 - improve chunks and implement frustum occlussion (1/2 DONE)
 - implement getting components in first frame
 - finish ExecuteUpdateWhenCulled
 - findobjectsoftype uses nullablegetcomponent which doesn't allow for multiple colliders for example (duplicates)
 - add stoping time
+- add removing components
 
 FUTURE PLANS:
 - antialiasing 
