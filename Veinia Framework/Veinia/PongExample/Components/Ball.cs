@@ -38,7 +38,7 @@ public class Ball : Component
 	private void CollisionEnter(CollisionEventArgs collisionInfo)
 	{
 		var block = collisionInfo.Other.physics.NullableGetComponent<Block>();
-		if (block != null) block.DestroyGameObject();
+		if (block != null) block.Hit();
 
 		if (FindComponentsOfType<Block>().Count == 0) Globals.loader.Reload();
 

@@ -29,7 +29,7 @@ public class Veinia
 		prefabManager = new PrefabManager();
 
 		Globals.fps.vSync(false, graphicsManager);
-		Globals.fps.ChangeFps(60);
+		Globals.fps.ChangeFps(int.MaxValue);
 
 		Globals.loader.Load(new PongLevel1("PongLevel1", prefabManager));
 	}

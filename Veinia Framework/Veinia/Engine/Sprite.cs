@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended;
 
 public class Sprite : Component, IDrawn
 {
@@ -36,6 +35,8 @@ public class Sprite : Component, IDrawn
 								 SpriteEffects.None, layer);
 	}
 
-	public Rectangle rect => new Rectangle((int)transform.screenPos.X, (int)transform.screenPos.Y, (int)destinationSize.X, (int)destinationSize.Y);
+	public Rectangle rect => new Rectangle((int)transform.screenPos.X, (int)transform.screenPos.Y,
+										   (int)(destinationSize.X * transform.scale.X),
+										   (int)(destinationSize.Y * transform.scale.Y));
 
 }
