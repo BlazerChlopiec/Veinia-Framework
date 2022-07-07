@@ -83,6 +83,18 @@
           }
         }
       },
+      "MonoGame.Extended.Tweening/3.8.0": {
+        "type": "package",
+        "dependencies": {
+          "MonoGame.Extended": "3.8.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/MonoGame.Extended.Tweening.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/MonoGame.Extended.Tweening.dll": {}
+        }
+      },
       "MonoGame.Framework.DesktopGL/3.8.0.1641": {
         "type": "package",
         "compile": {
@@ -260,6 +272,18 @@
         "monogame.extended.nuspec"
       ]
     },
+    "MonoGame.Extended.Tweening/3.8.0": {
+      "sha512": "RLKhmcPUVcdh5aXcMMUpww84i0Ed/upoTAljmU2vKWakbxKFljLic5hgKA6fNfFCVVn0Y1lqgVomEZNuaCkeWw==",
+      "type": "package",
+      "path": "monogame.extended.tweening/3.8.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/MonoGame.Extended.Tweening.dll",
+        "monogame.extended.tweening.3.8.0.nupkg.sha512",
+        "monogame.extended.tweening.nuspec"
+      ]
+    },
     "MonoGame.Framework.DesktopGL/3.8.0.1641": {
       "sha512": "rJQlrlHQbnOECYV6EcQ8GlGRQ2lzPTroXQcyyOZ0ki+BQRSJEN2zVBm9skqLiXya348aGAfTSSGTaSKjAy9NaA==",
       "type": "package",
@@ -321,6 +345,7 @@
     ".NETCoreApp,Version=v3.1": [
       "MonoGame.Content.Builder.Task >= 3.8.0.1641",
       "MonoGame.Extended >= 3.8.0",
+      "MonoGame.Extended.Tweening >= 3.8.0",
       "MonoGame.Framework.DesktopGL >= 3.8.0.1641"
     ]
   },
@@ -369,6 +394,10 @@
             "version": "[3.8.0.1641, )"
           },
           "MonoGame.Extended": {
+            "target": "Package",
+            "version": "[3.8.0, )"
+          },
+          "MonoGame.Extended.Tweening": {
             "target": "Package",
             "version": "[3.8.0, )"
           },

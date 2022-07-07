@@ -1,10 +1,10 @@
-﻿using Apos.Tweens;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using MonoGame.Extended.Collisions;
+using MonoGame.Extended.Tweening;
 using MonoGame.Extended.ViewportAdapters;
 
 public class Veinia
@@ -19,9 +19,10 @@ public class Veinia
 		Globals.graphicsDevice = graphicsDevice;
 		Globals.content = content;
 		Globals.fps = new FPS(game);
+		Globals.tweener = new Tweener();
 		Globals.input = new Input();
-		Globals.screen = new Screen(1600, 900); // window size
-												//Globals.graphicsManager.ToggleFullScreen();
+		Globals.screen = new Screen(1920, 1080); // window size
+		Globals.graphicsManager.ToggleFullScreen();
 		Globals.loader = new Loader();
 		Globals.camera = new OrthographicCamera(new BoxingViewportAdapter(window, graphicsDevice, 1920, 1080));
 		Globals.collisionComponent = new CollisionComponent(new RectangleF(-250000, -250000, 500000, 500000));
@@ -32,7 +33,7 @@ public class Veinia
 		Globals.fps.vSync(true, graphicsManager);
 		Globals.fps.ChangeFps(int.MaxValue);
 
-		Globals.loader.Load(new BlockBreakerLevel("PongLevel1", prefabManager));
+		Globals.loader.Load(new BlockBreakerLevel("Block Breaker", prefabManager));
 	}
 
 	public void Update(GameTime gameTime)
@@ -42,10 +43,10 @@ public class Veinia
 
 		NextFrame.Update();
 
+		Globals.tweener.Update(Time.deltaTime);
 		Globals.input.Update();
 		if (Globals.loader.currentLevel != null) Globals.loader.currentLevel.Update();
 		Globals.collisionComponent.Update(gameTime);
-		TweenHelper.UpdateSetup(gameTime);
 
 		Title.Add(Globals.fps.currentFps, " FPS", 0);
 		Title.Add(Globals.fps.isVSync, " - vSync", 1);

@@ -1,12 +1,10 @@
-﻿using Apos.Tweens;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using MonoGame.Extended.Tweening;
 
 public class Block : Component
 {
-	ITween<Vector2> scaleTween;
-	ITween<float> rotationTween;
-
 	private bool hasBeenHit;
+
 
 	public void Hit()
 	{
@@ -15,25 +13,21 @@ public class Block : Component
 		RemoveComponent(GetComponent<Physics>());
 
 		hasBeenHit = true;
-		scaleTween = new Vector2Tween(transform.scale, Vector2.Zero, 300, Easing.BackIn);
-		rotationTween = new FloatTween(transform.xRotation, -10, 150, Easing.ExpoInOut)
-			.Offset(20, 150, Easing.ExpoInOut);
-	}
 
-	public override void Update()
-	{
-		if (scaleTween == null || rotationTween == null) return;
+		Globals.tweener.TweenTo(target: transform, expression: transform => transform.xRotation, toValue: -10, duration: .2f)
+			.Easing(EasingFunctions.BackIn);
 
-		transform.scale = scaleTween.Value;
-		transform.xRotation = rotationTween.Value;
-		if (scaleTween.Value == Vector2.Zero)
-		{
-			DestroyGameObject();
 
-			if (FindComponentsOfType<Block>().Count == 0)
+		Globals.tweener.TweenTo(target: transform, expression: transform => transform.scale, toValue: Vector2.Zero, duration: .3f)
+			.Easing(EasingFunctions.BackIn)
+			.OnEnd((x) =>
 			{
-				Globals.loader.Reload();
-			}
-		}
+				DestroyGameObject();
+
+				if (FindComponentsOfType<Block>().Count == 0)
+				{
+					Globals.loader.Reload();
+				}
+			});
 	}
 }

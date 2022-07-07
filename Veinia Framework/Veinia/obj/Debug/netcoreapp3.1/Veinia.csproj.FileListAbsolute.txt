@@ -30,3 +30,4 @@ D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Content\Pong\Paddle.xnb
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Content\Pong\Grass Tile 2.xnb
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Content\Pong\Ball.xnb
+D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\MonoGame.Extended.Tweening.dll

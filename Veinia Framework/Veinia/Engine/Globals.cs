@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using MonoGame.Extended.Collisions;
+using MonoGame.Extended.Tweening;
 
 public class Globals
 {
@@ -15,4 +16,5 @@ public class Globals
 	public static FPS fps;
 	public static OrthographicCamera camera;
 	public static CollisionComponent collisionComponent;
+	public static Tweener tweener;
 }
