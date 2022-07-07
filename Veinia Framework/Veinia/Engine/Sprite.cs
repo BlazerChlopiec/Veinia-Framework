@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 public class Sprite : Component, IDrawn
 {
@@ -30,7 +31,7 @@ public class Sprite : Component, IDrawn
 
 	public void Draw(SpriteBatch sb)
 	{
-		sb.Draw(texture, rect, null, color, 0f,
+		sb.Draw(texture, rect, null, color, MathHelper.ToRadians(transform.xRotation),
 								 new Vector2(texture.Bounds.Width / 2, texture.Bounds.Height / 2),
 								 SpriteEffects.None, layer);
 	}

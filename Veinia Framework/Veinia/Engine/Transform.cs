@@ -7,6 +7,7 @@ public class Transform : Component
 
 	public static Transform Empty { get; } = new Transform(0, 0);
 
+	public float xRotation { get; set; }
 	public Vector2 scale { get; set; } = Vector2.One;
 	public Vector2 position { get; set; }
 	public Vector2 screenPos { get { return Transform.WorldToScreenPos(position); } }

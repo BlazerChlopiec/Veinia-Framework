@@ -9,8 +9,12 @@ public class NextFrame
 	{
 		for (int i = 0; i < actions.Count; i++)
 		{
+			Say.Line(actions[i].Method.Name);
+		}
+
+		for (int i = 0; i < actions.Count; i++)
+		{
 			if (actions[i] != null) actions[i].Invoke();
-			Say.Line(actions[i].Method.Name.ToString());
 		}
 		actions.Clear();
 	}

@@ -79,7 +79,6 @@ public class PongLevel1 : Level
 		{
 			Instantiate(new Transform(i - 5, 2), prefabManager.Find("Block"));
 		}
-
 		//
 	}
 }

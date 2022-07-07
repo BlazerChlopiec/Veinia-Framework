@@ -40,8 +40,6 @@ public class Ball : Component
 		var block = collisionInfo.Other.physics.NullableGetComponent<Block>();
 		if (block != null) block.Hit();
 
-		if (FindComponentsOfType<Block>().Count == 0) Globals.loader.Reload();
-
 		if (Math.Abs(collisionInfo.PenetrationVector.Y) > Math.Abs(collisionInfo.PenetrationVector.X))
 		{
 			//touched Y

@@ -86,13 +86,13 @@ public class GameObject
 	{
 		if (isDestroyed) return;
 
-		world.Remove(this);
-		world = null; // remove local world
-
 		NextFrame.actions.Add(Destroy);
+
+		world.Remove(this);
 
 		void Destroy()
 		{
+			world = null; // remove local world
 			foreach (var component in components)
 			{
 				if (component is IDisposable)
