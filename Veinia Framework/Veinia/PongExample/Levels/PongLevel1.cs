@@ -60,7 +60,7 @@ public class PongLevel1 : Level
 			new Transform(Vector2.UnitY),
 			new List<Component>
 			{
-				new Sprite("Pong/Square", 0, Color.Blue, new Vector2(.8f, .8f)),
+				new Sprite("Pong/Ball", 0, Color.Blue, new Vector2(.8f, .8f)),
 				new Ball(),
 				new CirclePhysics(Vector2.Zero, .4f),
 			}, isStatic: false);

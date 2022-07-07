@@ -20,7 +20,8 @@ public class Veinia
 		Globals.content = content;
 		Globals.fps = new FPS(game);
 		Globals.input = new Input();
-		Globals.screen = new Screen(1280, 720); // window size
+		Globals.screen = new Screen(1600, 900); // window size
+												//Globals.graphicsManager.ToggleFullScreen();
 		Globals.loader = new Loader();
 		Globals.camera = new OrthographicCamera(new BoxingViewportAdapter(window, graphicsDevice, 1920, 1080));
 		Globals.collisionComponent = new CollisionComponent(new RectangleF(-250000, -250000, 500000, 500000));
@@ -28,7 +29,7 @@ public class Veinia
 		title = new Title(window);
 		prefabManager = new PrefabManager();
 
-		Globals.fps.vSync(false, graphicsManager);
+		Globals.fps.vSync(true, graphicsManager);
 		Globals.fps.ChangeFps(int.MaxValue);
 
 		Globals.loader.Load(new PongLevel1("PongLevel1", prefabManager));

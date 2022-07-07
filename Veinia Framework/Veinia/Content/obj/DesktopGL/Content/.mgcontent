@@ -5,11 +5,13 @@
   <Config />
   <SourceFiles>
     <File>D:/yt blazer yt/Veinia-Framework/Veinia Framework/Veinia/Content/Pong/Background.png</File>
+    <File>D:/yt blazer yt/Veinia-Framework/Veinia Framework/Veinia/Content/Pong/Ball.png</File>
     <File>D:/yt blazer yt/Veinia-Framework/Veinia Framework/Veinia/Content/Pong/Grass Tile.png</File>
     <File>D:/yt blazer yt/Veinia-Framework/Veinia Framework/Veinia/Content/Pong/Paddle.png</File>
     <File>D:/yt blazer yt/Veinia-Framework/Veinia Framework/Veinia/Content/Pong/Square.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>D:/yt blazer yt/Veinia-Framework/Veinia Framework/Veinia/Content/Pong/Paddle.png</SourceFile>
-  <SourceTime>2022-07-05T18:28:48.1007526+02:00</SourceTime>
+  <SourceTime>2022-07-07T20:28:24.4344061+02:00</SourceTime>
   <DestFile>D:/yt blazer yt/Veinia-Framework/Veinia Framework/Veinia/Content/bin/DesktopGL/Content/Pong/Paddle.xnb</DestFile>
-  <DestTime>2022-07-07T17:38:29.5040271+02:00</DestTime>
+  <DestTime>2022-07-07T20:28:27.5658692+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2020-08-10T18:17:54+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
