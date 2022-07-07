@@ -16,6 +16,8 @@
 
 	public void Unload()
 	{
+		Globals.tweener.CancelAll();
+
 		foreach (var item in currentLevel.scene.ToArray())
 		{
 			item.DestroyGameObject();

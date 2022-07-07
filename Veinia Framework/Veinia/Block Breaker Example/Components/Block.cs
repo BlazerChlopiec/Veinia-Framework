@@ -12,6 +12,8 @@ public class Block : Component
 
 		RemoveComponent(GetComponent<Physics>());
 
+		GetComponent<Sprite>().layer = 1;
+
 		hasBeenHit = true;
 
 		Globals.tweener.TweenTo(target: transform, expression: transform => transform.xRotation, toValue: -10, duration: .2f)

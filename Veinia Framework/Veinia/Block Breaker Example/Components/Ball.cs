@@ -9,7 +9,7 @@ public class Ball : Component
 	CirclePhysics physics;
 
 
-	private float speed = 10;
+	private const float speed = 10;
 	bool launched;
 
 

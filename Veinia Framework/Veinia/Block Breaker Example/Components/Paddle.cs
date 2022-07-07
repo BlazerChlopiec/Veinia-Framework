@@ -1,6 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using MonoGame.Extended.Collisions;
-using MonoGame.Extended.Tweening;
 
 public class Paddle : Component
 {
