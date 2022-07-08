@@ -3,31 +3,8 @@ D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\obj\Debug\netcoreapp3.1
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\obj\Debug\netcoreapp3.1\Veinia.AssemblyInfoInputs.cache
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\obj\Debug\netcoreapp3.1\Veinia.AssemblyInfo.cs
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\obj\Debug\netcoreapp3.1\Veinia.csproj.CoreCompileInputs.cache
-D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Content\Pong\Background.xnb
-D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Content\Pong\Ball.xnb
-D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Content\Pong\Grass Tile 2.xnb
-D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Content\Pong\Grass Tile.xnb
-D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Content\Pong\Paddle.xnb
-D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Content\Pong\Square.xnb
-D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Veinia.exe
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Veinia.deps.json
-D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Veinia.runtimeconfig.json
-D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Veinia.runtimeconfig.dev.json
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Veinia.dll
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Veinia.pdb
-D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\MonoGame.Extended.dll
-D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\MonoGame.Extended.Tweening.dll
-D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\MonoGame.Framework.dll
-D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
-D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libSDL2-2.0.so.0
-D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libopenal.so.1
-D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\runtimes\osx\native\libSDL2-2.0.0.dylib
-D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\runtimes\osx\native\libopenal.1.dylib
-D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\SDL2.dll
-D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\soft_oal.dll
-D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\SDL2.dll
-D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\soft_oal.dll
-D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\obj\Debug\netcoreapp3.1\Veinia.csproj.CopyComplete
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\obj\Debug\netcoreapp3.1\Veinia.dll
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\obj\Debug\netcoreapp3.1\Veinia.pdb
-D:\yt blazer yt\Veinia-Framework\Veinia Framework\Veinia\obj\Debug\netcoreapp3.1\Veinia.genruntimeconfig.cache

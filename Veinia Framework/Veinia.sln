@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Veinia", "Veinia\Veinia.csproj", "{836813AC-94BB-4BEF-A82F-9FDB96922756}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Block Breaker Sample", "Block Breaker New Sample\Block Breaker Sample.csproj", "{94427D4D-F0E8-4332-AC71-3763F787D862}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platformer Sample", "Platformer Sample\Platformer Sample.csproj", "{4A982A27-FE39-451C-94AF-23025DB24366}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{836813AC-94BB-4BEF-A82F-9FDB96922756}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{836813AC-94BB-4BEF-A82F-9FDB96922756}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{836813AC-94BB-4BEF-A82F-9FDB96922756}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94427D4D-F0E8-4332-AC71-3763F787D862}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94427D4D-F0E8-4332-AC71-3763F787D862}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94427D4D-F0E8-4332-AC71-3763F787D862}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94427D4D-F0E8-4332-AC71-3763F787D862}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A982A27-FE39-451C-94AF-23025DB24366}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A982A27-FE39-451C-94AF-23025DB24366}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A982A27-FE39-451C-94AF-23025DB24366}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A982A27-FE39-451C-94AF-23025DB24366}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
