@@ -32,3 +32,8 @@ D:\yt blazer yt\Veinia-Framework\Veinia Framework\Block Breaker New Sample\bin\R
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Block Breaker New Sample\bin\Release\netcoreapp3.1\Block Breaker Sample.pdb
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Block Breaker New Sample\obj\Release\netcoreapp3.1\Block Breaker Sample.dll
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Block Breaker New Sample\obj\Release\netcoreapp3.1\Block Breaker Sample.pdb
+D:\yt blazer yt\Veinia-Framework\Veinia Framework\Block Breaker New Sample\bin\Release\netcoreapp3.1\Content\Block Breaker\Background.xnb
+D:\yt blazer yt\Veinia-Framework\Veinia Framework\Block Breaker New Sample\bin\Release\netcoreapp3.1\Content\Block Breaker\Ball.xnb
+D:\yt blazer yt\Veinia-Framework\Veinia Framework\Block Breaker New Sample\bin\Release\netcoreapp3.1\Content\Block Breaker\Grass Tile.xnb
+D:\yt blazer yt\Veinia-Framework\Veinia Framework\Block Breaker New Sample\bin\Release\netcoreapp3.1\Content\Block Breaker\Paddle.xnb
+D:\yt blazer yt\Veinia-Framework\Veinia Framework\Block Breaker New Sample\bin\Release\netcoreapp3.1\Content\Block Breaker\Square.xnb

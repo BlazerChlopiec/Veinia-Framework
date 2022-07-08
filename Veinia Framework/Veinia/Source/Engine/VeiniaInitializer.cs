@@ -30,11 +30,6 @@ public class VeiniaInitializer
 		Globals.collisionComponent = new CollisionComponent(new RectangleF(-250000, -250000, 500000, 500000));
 
 		title = new Title(window);
-
-		//fps
-		Globals.fps.vSync(false, graphicsManager);
-		Globals.fps.ChangeFps(int.MaxValue);
-		//
 	}
 
 	public void Update(GameTime gameTime)
@@ -49,6 +44,8 @@ public class VeiniaInitializer
 		if (!Time.stop)
 		{
 			Globals.tweener.Update(Time.deltaTime);
+			Say.Line("update");
+			if (Globals.loader.currentLevel != null) Globals.loader.currentLevel.EarlyUpdate();
 			if (Globals.loader.currentLevel != null) Globals.loader.currentLevel.Update();
 			Globals.collisionComponent.Update(gameTime);
 		}
@@ -57,7 +54,6 @@ public class VeiniaInitializer
 		Title.Add(Globals.fps.isVSync, " - vSync", 1);
 		title.Update();
 
-		if (Globals.loader.currentLevel != null) Globals.loader.currentLevel.LateUpdate();
 
 		//useful hotkeys
 		if (Globals.input.GetKeyDown(Keys.Space))

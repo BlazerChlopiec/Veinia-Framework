@@ -27,9 +27,9 @@ public sealed class FPS
 		}
 	}
 
-	public void vSync(bool value, GraphicsDeviceManager graphics)
+	public void vSync(bool value)
 	{
-		graphics.SynchronizeWithVerticalRetrace = value; // change the vsync to 'value'
+		Globals.graphicsManager.SynchronizeWithVerticalRetrace = value; // change the vsync to 'value'
 
 		isVSync = value;
 	}

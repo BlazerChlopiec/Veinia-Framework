@@ -53,8 +53,7 @@ public class Physics : Component, ICollisionActor, IDisposable, IToggleable
 		if (trigger || collisionInfo.Other.physics.trigger) return;
 
 		if (!parent.isStatic) transform.position -= Transform.ToWorldUnits(collisionInfo.PenetrationVector);
-
-
+		Bounds.Position = transform.screenPos + offset;
 	}
 	public void OnCollisionEnter(CollisionEventArgs collisionInfo)
 	{
@@ -73,6 +72,7 @@ public class Physics : Component, ICollisionActor, IDisposable, IToggleable
 		isColliding = false;
 
 		transform.position += velocity * Time.deltaTime;
+
 
 		Bounds.Position = transform.screenPos + offset;
 	}

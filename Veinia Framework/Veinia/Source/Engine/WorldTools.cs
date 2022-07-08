@@ -104,6 +104,14 @@ public class WorldTools
 		{
 			if (!gameObject.isEnabled) continue;
 
+			//if gameObject has physics change its execute order to last
+			var physics = gameObject.NullableGetComponent<Physics>();
+			if (physics != null)
+			{
+				gameObject.components.Remove(physics);
+				gameObject.components.Insert(gameObject.components.Count, physics);
+			}
+			//
 			foreach (var component in gameObject.components.ToArray())
 			{
 				component.Update();
@@ -128,7 +136,7 @@ public class WorldTools
 		}
 	}
 
-	public void LateUpdate()
+	public void EarlyUpdate()
 	{
 		foreach (var gameObject in scene.ToArray())
 		{
@@ -136,7 +144,7 @@ public class WorldTools
 
 			foreach (var component in gameObject.components.ToArray())
 			{
-				component.LateUpdate();
+				component.EarlyUpdate();
 			}
 		}
 	}
