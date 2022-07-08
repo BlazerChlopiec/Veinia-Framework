@@ -10,6 +10,7 @@
 
 		currentLevel = level;
 		currentLevel.LoadContents();
+		NextFrame.actions.Add(currentLevel.InitiazeComponents);
 
 		Title.Add(currentLevel.name, 6);
 	}
@@ -36,6 +37,7 @@
 			Unload();
 			currentLevel = previousLevel;
 			currentLevel.LoadContents();
+			currentLevel.InitiazeComponents();
 
 			Title.Add(currentLevel.name, 6);
 		}

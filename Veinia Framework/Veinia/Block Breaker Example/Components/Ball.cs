@@ -25,13 +25,14 @@ public class Ball : Component
 	{
 		if (!launched) transform.position = paddle.transform.position + Vector2.UnitY;
 
-		transform.xRotation += 200f * Time.deltaTime;
+		if (launched) transform.xRotation += 200f * Time.deltaTime;
 
 		if (Globals.input.GetMouseButtonDown(0) && !launched)
 		{
 			launched = true;
 			physics.velocity = Utils.SafeNormalize(Vector2.One) * speed;
 		}
+
 		//else if (Globals.input.GetMouseButtonDown(0) && launched)
 		//{
 		//	physics.velocity = Utils.SafeNormalize(Globals.input.GetMouseWorldPosition() - transform.position) * speed;

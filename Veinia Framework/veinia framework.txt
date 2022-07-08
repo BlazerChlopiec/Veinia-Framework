@@ -1,10 +1,8 @@
 TODO:
 - improve chunks and implement frustum occlussion (1/2 DONE)
-- implement getting components in first frame
 - finish ExecuteUpdateWhenCulled
-- findobjectsoftype uses nullablegetcomponent which doesn't allow for multiple colliders for example (duplicates)
 - add stoping time
-- add removing components
+
 
 FUTURE PLANS:
 - antialiasing 
@@ -29,3 +27,6 @@ FUTURE PLANS:
 - make a camera look at
 - simplify game1.cs (make it more compact and easy to implement)
 - increase the world rectangle
+- implement getting components in first frame (DONE, Initialized Components on the second frame)
+- findobjectsoftype uses nullablegetcomponent which doesn't allow for duplicate components
+- add removing components

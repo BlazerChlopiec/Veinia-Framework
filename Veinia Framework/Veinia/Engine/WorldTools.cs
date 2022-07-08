@@ -17,7 +17,6 @@ public class WorldTools
 			item.parent = sample;
 			item.transform = sample.transform;
 			item.isStatic = sample.isStatic;
-			item.Initialize();
 		}
 
 		scene.Add(sample);
@@ -33,7 +32,6 @@ public class WorldTools
 			item.parent = sample;
 			item.transform = sample.transform;
 			item.isStatic = sample.isStatic;
-			item.Initialize();
 		}
 
 		scene.Add(sample);
@@ -67,9 +65,16 @@ public class WorldTools
 
 		foreach (var item in scene)
 		{
-			T1 currentComponent = item.NullableGetComponent<T1>();
-			if (currentComponent == null) continue;
-			returnVal.Add(currentComponent);
+			//get all components
+			foreach (var component in item.components)
+			{
+				if (component is T1)
+				{
+					var newComponent = (T1)(object)component;
+					if (newComponent == null) continue;
+					returnVal.Add(newComponent);
+				}
+			}
 		}
 		if (returnVal.Count == 0)
 			Say.Line("FindComponentsOfType<T1> - Found no components matching requirements! " + typeof(T1));
@@ -78,6 +83,19 @@ public class WorldTools
 			Say.Line("FindComponentsOfType<T1> - Only one component! Use FindComponentOfType<T1> instead! " + typeof(T1));
 
 		return returnVal;
+	}
+
+	public void InitiazeComponents()
+	{
+		foreach (var gameObject in scene.ToArray())
+		{
+			if (!gameObject.isEnabled) continue;
+
+			foreach (var component in gameObject.components.ToArray())
+			{
+				component.Initialize();
+			}
+		}
 	}
 
 	public void Update()

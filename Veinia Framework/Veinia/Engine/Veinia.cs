@@ -21,7 +21,7 @@ public class Veinia
 		Globals.fps = new FPS(game);
 		Globals.tweener = new Tweener();
 		Globals.input = new Input();
-		Globals.screen = new Screen(1280, 720); // window size
+		Globals.screen = new Screen(1600, 900); // window size
 												//Globals.graphicsManager.ToggleFullScreen();
 		Globals.loader = new Loader();
 		Globals.camera = new OrthographicCamera(new BoxingViewportAdapter(window, graphicsDevice, 1920, 1080));
@@ -30,8 +30,10 @@ public class Veinia
 		title = new Title(window);
 		prefabManager = new PrefabManager();
 
+		//fps
 		Globals.fps.vSync(true, graphicsManager);
-		Globals.fps.ChangeFps(60);
+		Globals.fps.ChangeFps(int.MaxValue);
+		//
 
 		Globals.loader.Load(new BlockBreakerLevel("Block Breaker", prefabManager));
 	}
