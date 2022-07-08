@@ -1,0 +1,30 @@
+D:\yt blazer yt\Veinia-Framework\Veinia Framework\Platformer Sample\bin\Debug\netcoreapp3.1\Content\Platformer\Square.xnb
+D:\yt blazer yt\Veinia-Framework\Veinia Framework\Platformer Sample\bin\Debug\netcoreapp3.1\Mouse Sample.exe
+D:\yt blazer yt\Veinia-Framework\Veinia Framework\Platformer Sample\bin\Debug\netcoreapp3.1\Mouse Sample.deps.json
+D:\yt blazer yt\Veinia-Framework\Veinia Framework\Platformer Sample\bin\Debug\netcoreapp3.1\Mouse Sample.runtimeconfig.json
+D:\yt blazer yt\Veinia-Framework\Veinia Framework\Platformer Sample\bin\Debug\netcoreapp3.1\Mouse Sample.runtimeconfig.dev.json
+D:\yt blazer yt\Veinia-Framework\Veinia Framework\Platformer Sample\bin\Debug\netcoreapp3.1\Mouse Sample.dll
+D:\yt blazer yt\Veinia-Framework\Veinia Framework\Platformer Sample\bin\Debug\netcoreapp3.1\Mouse Sample.pdb
+D:\yt blazer yt\Veinia-Framework\Veinia Framework\Platformer Sample\bin\Debug\netcoreapp3.1\MonoGame.Extended.dll
+D:\yt blazer yt\Veinia-Framework\Veinia Framework\Platformer Sample\bin\Debug\netcoreapp3.1\MonoGame.Extended.Tweening.dll
+D:\yt blazer yt\Veinia-Framework\Veinia Framework\Platformer Sample\bin\Debug\netcoreapp3.1\MonoGame.Framework.dll
+D:\yt blazer yt\Veinia-Framework\Veinia Framework\Platformer Sample\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+D:\yt blazer yt\Veinia-Framework\Veinia Framework\Platformer Sample\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libSDL2-2.0.so.0
+D:\yt blazer yt\Veinia-Framework\Veinia Framework\Platformer Sample\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libopenal.so.1
+D:\yt blazer yt\Veinia-Framework\Veinia Framework\Platformer Sample\bin\Debug\netcoreapp3.1\runtimes\osx\native\libSDL2-2.0.0.dylib
+D:\yt blazer yt\Veinia-Framework\Veinia Framework\Platformer Sample\bin\Debug\netcoreapp3.1\runtimes\osx\native\libopenal.1.dylib
+D:\yt blazer yt\Veinia-Framework\Veinia Framework\Platformer Sample\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\SDL2.dll
+D:\yt blazer yt\Veinia-Framework\Veinia Framework\Platformer Sample\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\soft_oal.dll
+D:\yt blazer yt\Veinia-Framework\Veinia Framework\Platformer Sample\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\SDL2.dll
+D:\yt blazer yt\Veinia-Framework\Veinia Framework\Platformer Sample\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\soft_oal.dll
+D:\yt blazer yt\Veinia-Framework\Veinia Framework\Platformer Sample\bin\Debug\netcoreapp3.1\Veinia.dll
+D:\yt blazer yt\Veinia-Framework\Veinia Framework\Platformer Sample\bin\Debug\netcoreapp3.1\Veinia.pdb
+D:\yt blazer yt\Veinia-Framework\Veinia Framework\Platformer Sample\obj\Debug\netcoreapp3.1\Mouse Sample.csproj.AssemblyReference.cache
+D:\yt blazer yt\Veinia-Framework\Veinia Framework\Platformer Sample\obj\Debug\netcoreapp3.1\Mouse Sample.GeneratedMSBuildEditorConfig.editorconfig
+D:\yt blazer yt\Veinia-Framework\Veinia Framework\Platformer Sample\obj\Debug\netcoreapp3.1\Mouse Sample.AssemblyInfoInputs.cache
+D:\yt blazer yt\Veinia-Framework\Veinia Framework\Platformer Sample\obj\Debug\netcoreapp3.1\Mouse Sample.AssemblyInfo.cs
+D:\yt blazer yt\Veinia-Framework\Veinia Framework\Platformer Sample\obj\Debug\netcoreapp3.1\Mouse Sample.csproj.CoreCompileInputs.cache
+D:\yt blazer yt\Veinia-Framework\Veinia Framework\Platformer Sample\obj\Debug\netcoreapp3.1\Mouse Sample.csproj.CopyComplete
+D:\yt blazer yt\Veinia-Framework\Veinia Framework\Platformer Sample\obj\Debug\netcoreapp3.1\Mouse Sample.dll
+D:\yt blazer yt\Veinia-Framework\Veinia Framework\Platformer Sample\obj\Debug\netcoreapp3.1\Mouse Sample.pdb
+D:\yt blazer yt\Veinia-Framework\Veinia Framework\Platformer Sample\obj\Debug\netcoreapp3.1\Mouse Sample.genruntimeconfig.cache

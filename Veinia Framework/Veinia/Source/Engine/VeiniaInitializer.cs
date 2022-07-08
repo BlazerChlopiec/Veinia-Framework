@@ -44,7 +44,6 @@ public class VeiniaInitializer
 		if (!Time.stop)
 		{
 			Globals.tweener.Update(Time.deltaTime);
-			Say.Line("update");
 			if (Globals.loader.currentLevel != null) Globals.loader.currentLevel.EarlyUpdate();
 			if (Globals.loader.currentLevel != null) Globals.loader.currentLevel.Update();
 			Globals.collisionComponent.Update(gameTime);
