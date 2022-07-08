@@ -2,48 +2,51 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-public class BlockBreakerGame : Game
+namespace Veinia.BlockBreaker
 {
-	private GraphicsDeviceManager graphics;
-	private SpriteBatch spriteBatch;
-
-	Veinia veinia = new Veinia();
-
-
-	public BlockBreakerGame()
+	public class BlockBreakerGame : Game
 	{
-		graphics = new GraphicsDeviceManager(this);
-		Content.RootDirectory = "Content";
-		IsMouseVisible = true;
+		private GraphicsDeviceManager graphics;
+		private SpriteBatch spriteBatch;
 
-		Window.AllowUserResizing = true;
-	}
+		VeiniaInitializer veinia = new VeiniaInitializer();
 
-	protected override void Initialize()
-	{
-		veinia.Initialize(this, graphics, GraphicsDevice, Content, Window);
 
-		spriteBatch = new SpriteBatch(GraphicsDevice);
+		public BlockBreakerGame()
+		{
+			graphics = new GraphicsDeviceManager(this);
+			Content.RootDirectory = "Content";
+			IsMouseVisible = true;
 
-		base.Initialize();
-	}
+			Window.AllowUserResizing = true;
+		}
 
-	protected override void LoadContent() { }
+		protected override void Initialize()
+		{
+			veinia.Initialize(this, graphics, GraphicsDevice, Content, Window);
 
-	protected override void Update(GameTime gameTime)
-	{
-		veinia.Update(gameTime);
+			spriteBatch = new SpriteBatch(GraphicsDevice);
 
-		if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-			Exit();
+			base.Initialize();
+		}
 
-		base.Update(gameTime);
-	}
+		protected override void LoadContent() { }
 
-	protected override void Draw(GameTime gameTime)
-	{
-		veinia.Draw(gameTime, spriteBatch);
+		protected override void Update(GameTime gameTime)
+		{
+			veinia.Update(gameTime);
 
-		base.Draw(gameTime);
+			if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+				Exit();
+
+			base.Update(gameTime);
+		}
+
+		protected override void Draw(GameTime gameTime)
+		{
+			veinia.Draw(gameTime, spriteBatch);
+
+			base.Draw(gameTime);
+		}
 	}
 }

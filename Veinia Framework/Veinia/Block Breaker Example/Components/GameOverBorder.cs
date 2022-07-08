@@ -1,18 +1,21 @@
 ﻿using MonoGame.Extended.Collisions;
 
-public class GameOverBorder : Component
+namespace Veinia.BlockBreaker
 {
-	RectanglePhysics physics;
-
-	public override void Initialize()
+	public class GameOverBorder : Component
 	{
-		physics = GetComponent<RectanglePhysics>();
+		RectanglePhysics physics;
 
-		physics.onCollisionEnter += OnCollisionEnter;
-	}
+		public override void Initialize()
+		{
+			physics = GetComponent<RectanglePhysics>();
 
-	private void OnCollisionEnter(CollisionEventArgs collisionInfo)
-	{
-		Globals.loader.Reload();
+			physics.onCollisionEnter += OnCollisionEnter;
+		}
+
+		private void OnCollisionEnter(CollisionEventArgs collisionInfo)
+		{
+			Globals.loader.Reload();
+		}
 	}
 }

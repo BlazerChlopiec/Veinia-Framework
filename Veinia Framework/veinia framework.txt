@@ -1,17 +1,14 @@
 TODO:
 - improve chunks and implement frustum occlussion (1/2 DONE)
 - finish ExecuteUpdateWhenCulled
-- add stoping time
 
 
 FUTURE PLANS:
 - antialiasing 
 - stopping time progression (possibly just blocking Update() for certain objects)
-- simplify used libraries 
 - optimisation research
 - improve different gamepad support
 - audio
-- velcro phys 
 - in-engine enditors
 - penumbra lights
 - animation 
@@ -30,3 +27,4 @@ FUTURE PLANS:
 - implement getting components in first frame (DONE, Initialized Components on the second frame)
 - findobjectsoftype uses nullablegetcomponent which doesn't allow for duplicate components
 - add removing components
+- add stoping time

@@ -1,35 +1,38 @@
 ﻿using Microsoft.Xna.Framework;
 using MonoGame.Extended.Tweening;
 
-public class Block : Component
+namespace Veinia.BlockBreaker
 {
-	private bool hasBeenHit;
-
-
-	public void Hit()
+	public class Block : Component
 	{
-		if (hasBeenHit) return;
-
-		RemoveComponent(GetComponent<Physics>());
-
-		GetComponent<Sprite>().layer = 1;
-
-		hasBeenHit = true;
-
-		Globals.tweener.TweenTo(target: transform, expression: transform => transform.xRotation, toValue: -10, duration: .2f)
-			.Easing(EasingFunctions.BackIn);
+		private bool hasBeenHit;
 
 
-		Globals.tweener.TweenTo(target: transform, expression: transform => transform.scale, toValue: Vector2.Zero, duration: .3f)
-			.Easing(EasingFunctions.BackIn)
-			.OnEnd((x) =>
-			{
-				DestroyGameObject();
+		public void Hit()
+		{
+			if (hasBeenHit) return;
 
-				if (FindComponentsOfType<Block>().Count == 0)
+			RemoveComponent(GetComponent<Physics>());
+
+			GetComponent<Sprite>().layer = 1;
+
+			hasBeenHit = true;
+
+			Globals.tweener.TweenTo(target: transform, expression: transform => transform.xRotation, toValue: -10, duration: .2f)
+				.Easing(EasingFunctions.BackIn);
+
+
+			Globals.tweener.TweenTo(target: transform, expression: transform => transform.scale, toValue: Vector2.Zero, duration: .3f)
+				.Easing(EasingFunctions.BackIn)
+				.OnEnd((x) =>
 				{
-					Globals.loader.Reload();
-				}
-			});
+					DestroyGameObject();
+
+					if (FindComponentsOfType<Block>().Count == 0)
+					{
+						Globals.loader.Reload();
+					}
+				});
+		}
 	}
 }

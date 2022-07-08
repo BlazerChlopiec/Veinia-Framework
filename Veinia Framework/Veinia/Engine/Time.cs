@@ -2,7 +2,10 @@
 
 public sealed class Time
 {
-	static public float deltaTime;
+	public static float deltaTime;
+
+	public static bool stop;
+
 
 	public static void CalculateDelta(GameTime gameTime)
 	{
