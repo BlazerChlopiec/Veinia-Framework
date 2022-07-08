@@ -21,4 +21,5 @@ This framework comes with a few things to give you a head start:
 
 MonoGame.Extended.Collision is added in the framework as a modified version by default.
 
-Veinia comes with a Block Breaker sample game to help you get started.
+## Note
+Veinia comes with a few sample games to help you get started.
