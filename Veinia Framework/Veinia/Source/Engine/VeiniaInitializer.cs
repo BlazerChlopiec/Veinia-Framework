@@ -6,6 +6,7 @@ using MonoGame.Extended;
 using MonoGame.Extended.Collisions;
 using MonoGame.Extended.Tweening;
 using MonoGame.Extended.ViewportAdapters;
+using Veinia;
 
 public class VeiniaInitializer
 {
@@ -55,13 +56,12 @@ public class VeiniaInitializer
 		//useful hotkeys
 		if (Globals.input.GetKeyDown(Keys.Space))
 		{
-			//crashes hard :weary:
 			Globals.loader.Unload();
 		}
 
 		if (Globals.input.GetKeyDown(Keys.F))
 		{
-			Physics.showHitboxes = !Physics.showHitboxes;
+			Collider.showHitboxes = !Collider.showHitboxes;
 		}
 		//
 	}

@@ -41,7 +41,7 @@ public class WorldTools
 
 	public void Remove(GameObject target) => scene.Remove(target);
 
-	public T1 FindComponentOfType<T1>()
+	public T1 FindComponentOfType<T1>() where T1 : Component
 	{
 		List<T1> returnVal = new List<T1>();
 
@@ -59,22 +59,15 @@ public class WorldTools
 
 		return returnVal[0];
 	}
-	public List<T1> FindComponentsOfType<T1>()
+	public List<T1> FindComponentsOfType<T1>() where T1 : Component
 	{
 		List<T1> returnVal = new List<T1>();
 
 		foreach (var item in scene)
 		{
-			//get all components
-			foreach (var component in item.components)
-			{
-				if (component is T1)
-				{
-					var newComponent = (T1)(object)component;
-					if (newComponent == null) continue;
-					returnVal.Add(newComponent);
-				}
-			}
+			var matchingComponents = item.GetAllComponents<T1>();
+
+			matchingComponents.AddAllTo(returnVal);
 		}
 		if (returnVal.Count == 0)
 			Say.Line("FindComponentsOfType<T1> - Found no components matching requirements! " + typeof(T1));

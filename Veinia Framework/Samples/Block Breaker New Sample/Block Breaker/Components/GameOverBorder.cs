@@ -4,11 +4,11 @@ namespace Veinia.BlockBreaker
 {
 	public class GameOverBorder : Component
 	{
-		RectanglePhysics physics;
+		RectangleCollider physics;
 
 		public override void Initialize()
 		{
-			physics = GetComponent<RectanglePhysics>();
+			physics = GetComponent<RectangleCollider>();
 
 			physics.onCollisionEnter += OnCollisionEnter;
 		}

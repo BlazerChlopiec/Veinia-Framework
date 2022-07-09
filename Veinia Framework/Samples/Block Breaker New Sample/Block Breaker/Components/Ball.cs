@@ -8,7 +8,7 @@ namespace Veinia.BlockBreaker
 	public class Ball : Component
 	{
 		Paddle paddle;
-		CirclePhysics physics;
+		CircleCollider physics;
 
 
 		private const float speed = 10;
@@ -18,7 +18,7 @@ namespace Veinia.BlockBreaker
 		public override void Initialize()
 		{
 			paddle = FindComponentOfType<Paddle>();
-			physics = GetComponent<CirclePhysics>();
+			physics = GetComponent<CircleCollider>();
 
 			physics.onCollisionEnter += CollisionEnter;
 		}
@@ -48,7 +48,7 @@ namespace Veinia.BlockBreaker
 
 		private void CollisionEnter(CollisionEventArgs collisionInfo)
 		{
-			var block = collisionInfo.Other.physics.NullableGetComponent<Block>();
+			var block = collisionInfo.Other.collider.NullableGetComponent<Block>();
 			if (block != null) block.Hit();
 
 			Globals.tweener.TweenTo(target: transform, expression: transform => transform.scale, toValue: new Vector2(1.3f, 1f), duration: .01f)

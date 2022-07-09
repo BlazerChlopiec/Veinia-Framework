@@ -12,7 +12,7 @@ namespace Veinia.BlockBreaker
 		{
 			if (hasBeenHit) return;
 
-			RemoveComponent(GetComponent<Physics>());
+			RemoveComponent(GetComponent<Collider>());
 
 			GetComponent<Sprite>().layer = 1;
 

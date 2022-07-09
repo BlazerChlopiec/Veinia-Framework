@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Veinia;
 
 public class GameObject
 {
@@ -20,22 +21,42 @@ public class GameObject
 
 		components.Remove(components.Find(x => x is Transform)); // remove transform to make sure there aren't two transforms (prefab case)
 		components.Add(transform); // the spot is added afterwards to components to ensure the gameobject having a transform
-								   //RearrangeComponents();
+
+		ChangeExecutionOrder<Collider>(index: components.Count);
 	}
 
-	//private void RearrangeComponents()
-	//{
-	//	//if gameObject has physics change its execute order to last
-	//	var physics = NullableGetComponent<Physics>();
-	//	if (physics != null)
-	//	{
-	//		components.Remove(physics);
-	//		components.Insert(components.Count, physics);
-	//	}
-	//	//
-	//}
+	private void ChangeExecutionOrder<T1>(int index) where T1 : Component
+	{
+		//if gameObject has a collider change its execute order to last
+		var matchingComponents = GetAllComponents<T1>();
+		if (matchingComponents.Count != 0)
+		{
+			for (int i = 0; i < matchingComponents.Count; i++)
+			{
+				components.Remove(matchingComponents[i]);
 
-	public T1 NullableGetComponent<T1>() // allows nulls to be returned
+				// -1 because the list had one object removed on the upper line
+				components.Insert(index - 1 - i, matchingComponents[i]);
+			}
+		}
+	}
+
+	public List<T1> GetAllComponents<T1>() where T1 : Component
+	{
+		List<T1> temp = new List<T1>();
+
+		foreach (var component in components)
+		{
+			if (component is T1)
+			{
+				temp.Add((T1)component);
+			}
+		}
+
+		return temp;
+	}
+
+	public T1 NullableGetComponent<T1>() where T1 : Component // allows nulls to be returned
 	{
 		if (isDestroyed) throw new System.Exception("GetComponent<T1> - The object is already destroyed! " + typeof(T1).ToString());
 
@@ -57,7 +78,7 @@ public class GameObject
 
 		return returnVal[0];
 	}
-	public T1 GetComponent<T1>() // throws an exception on a null
+	public T1 GetComponent<T1>() where T1 : Component // throws an exception on a null
 	{
 		if (isDestroyed) throw new System.Exception("GetComponent<T1> - The object is already destroyed!");
 
@@ -67,8 +88,7 @@ public class GameObject
 		{
 			if (item is T1)
 			{
-				var newItem = (T1)(object)item;
-				returnVal.Add(newItem);
+				returnVal.Add((T1)item);
 			}
 		}
 
@@ -91,7 +111,7 @@ public class GameObject
 		compo.isStatic = isStatic;
 		compo.Initialize();
 
-		//RearrangeComponents();
+		ChangeExecutionOrder<Collider>(index: components.Count);
 
 		return compo;
 	}

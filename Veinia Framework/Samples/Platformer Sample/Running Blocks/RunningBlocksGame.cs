@@ -31,7 +31,7 @@ namespace Veinia.RunningBlocks
 			Globals.fps.vSync(false);
 			Globals.fps.ChangeFps(int.MaxValue);
 
-			Physics.showHitboxes = true;
+			Collider.showHitboxes = true;
 
 			Globals.loader.Load(new Level1("Level1", prefabs));
 

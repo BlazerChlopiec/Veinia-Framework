@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Veinia;
 
 namespace MonoGame.Extended.Collisions
 {
@@ -8,7 +8,7 @@ namespace MonoGame.Extended.Collisions
 	public interface ICollisionActor
 	{
 		IShapeF Bounds { get; }
-		Physics physics { get; }
+		Collider collider { get; }
 
 
 		void OnCollision(CollisionEventArgs collisionInfo);

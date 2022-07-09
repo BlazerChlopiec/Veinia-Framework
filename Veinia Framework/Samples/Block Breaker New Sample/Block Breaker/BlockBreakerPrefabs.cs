@@ -12,7 +12,7 @@ namespace Veinia.BlockBreaker
 			Add("Block", new GameObject(Transform.Empty, new List<Component>
 		{
 			new Sprite("Block Breaker/Grass Tile", 0, Color.White, Vector2.One),
-			new RectanglePhysics(Vector2.Zero, Vector2.One),
+			new RectangleCollider(Vector2.Zero, Vector2.One),
 			new Block(),
 		}, tools, isStatic: true));
 		}

@@ -24,25 +24,25 @@ namespace Veinia.BlockBreaker
 				new Transform(-Vector2.UnitX * 9.7f),
 				new List<Component>
 				{
-				new RectanglePhysics(Vector2.Zero, new Vector2(.3f, 10))
+				new RectangleCollider(Vector2.Zero, new Vector2(.3f, 10))
 				}, isStatic: true);
 			GameObject rightBorder = Instantiate(
 				new Transform(Vector2.UnitX * 9.7f),
 				new List<Component>
 				{
-				new RectanglePhysics(Vector2.Zero, new Vector2(.3f, 10))
+				new RectangleCollider(Vector2.Zero, new Vector2(.3f, 10))
 				}, isStatic: true);
 			GameObject topBorder = Instantiate(
 				new Transform(Vector2.UnitY * 5.5f),
 				new List<Component>
 				{
-				new RectanglePhysics(Vector2.Zero, new Vector2(19f, .3f))
+				new RectangleCollider(Vector2.Zero, new Vector2(19f, .3f))
 				}, isStatic: true);
 			GameObject bottomBorder = Instantiate(
 				new Transform(Vector2.UnitY * -5.5f),
 				new List<Component>
 				{
-				new RectanglePhysics(Vector2.Zero, new Vector2(19f, .3f)),
+				new RectangleCollider(Vector2.Zero, new Vector2(19f, .3f)),
 				new GameOverBorder()
 				}, isStatic: true);
 
@@ -55,7 +55,7 @@ namespace Veinia.BlockBreaker
 				{
 				new Sprite("Block Breaker/Paddle", 0, Color.Blue),
 				new Paddle(),
-				new RectanglePhysics(Vector2.Zero, new Vector2(2.5f, .85f), trigger: true)
+				new RectangleCollider(Vector2.Zero, new Vector2(2.5f, .85f), trigger: true)
 				}, isStatic: false);
 
 			GameObject ball = Instantiate(
@@ -64,7 +64,7 @@ namespace Veinia.BlockBreaker
 				{
 				new Sprite("Block Breaker/Ball", 0, Color.Blue, new Vector2(.8f, .8f)),
 				new Ball(),
-				new CirclePhysics(Vector2.Zero, .4f),
+				new CircleCollider(Vector2.Zero, .4f),
 				}, isStatic: false);
 
 
