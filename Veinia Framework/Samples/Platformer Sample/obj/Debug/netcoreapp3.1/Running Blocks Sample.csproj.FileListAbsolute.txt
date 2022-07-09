@@ -60,3 +60,4 @@ D:\yt blazer yt\Veinia-Framework\Veinia Framework\Samples\Platformer Sample\obj\
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Samples\Platformer Sample\obj\Debug\netcoreapp3.1\Running Blocks Sample.dll
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Samples\Platformer Sample\obj\Debug\netcoreapp3.1\Running Blocks Sample.pdb
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Samples\Platformer Sample\obj\Debug\netcoreapp3.1\Running Blocks Sample.genruntimeconfig.cache
+D:\yt blazer yt\Veinia-Framework\Veinia Framework\Samples\Platformer Sample\bin\Debug\netcoreapp3.1\Content\Editor\Background.xnb

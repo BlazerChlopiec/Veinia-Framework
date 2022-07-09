@@ -19,7 +19,7 @@
 		<EmbeddedResource Include="Icon.bmp" />
 	</ItemGroup>
 	<ItemGroup>
-		<MonoGameContentReference Include="Source\Content\Content.mgcb" />
+		<MonoGameContentReference Include="Source\Editor\Content\Content.mgcb" />
 	</ItemGroup>
 	<ItemGroup>
 		<TrimmerRootAssembly Include="Microsoft.Xna.Framework.Content.ContentTypeReader" Visible="false" />
@@ -29,5 +29,8 @@
 		<PackageReference Include="MonoGame.Extended.Tweening" Version="3.8.0" />
 		<PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641" />
 		<PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.0.1641" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Source\Editor\Content\Editor\" />
 	</ItemGroup>
 </Project>

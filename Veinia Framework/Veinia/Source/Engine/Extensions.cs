@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-static class Extensions
+public static class Extensions
 {
 	public static List<T> Clone<T>(this List<T> listToClone) where T : ICloneable
 	{
@@ -21,10 +21,10 @@ static class Extensions
 
 	public static void LerpTo(this OrthographicCamera camera, Vector2 worldPos, float lerpT)
 	{
-		Globals.camera.Position = Vector2.Lerp(Globals.camera.Position,
-												 Transform.ToScreenUnits(worldPos),
-												 lerpT * Time.deltaTime);
+		Globals.camera.Position = Vector2.Lerp(camera.Position, Transform.ToScreenUnits(worldPos),
+												lerpT * Time.deltaTime);
 	}
 
-	public static void SetPosition(this OrthographicCamera camera, Vector2 worldPos) => Globals.camera.Position = Transform.ToScreenUnits(worldPos);
+	public static void SetPosition(this OrthographicCamera camera, Vector2 worldPos) => camera.Position = Transform.ToScreenUnits(worldPos);
+	public static Vector2 GetPosition(this OrthographicCamera camera) => Transform.ToWorldUnits(camera.Position);
 }

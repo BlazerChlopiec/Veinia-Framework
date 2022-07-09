@@ -33,7 +33,7 @@ namespace Veinia.RunningBlocks
 
 			Collider.showHitboxes = true;
 
-			Globals.loader.Load(new Level1("Level1", prefabs));
+			Globals.loader.Load(new Level1(prefabs));
 
 			base.Initialize();
 		}

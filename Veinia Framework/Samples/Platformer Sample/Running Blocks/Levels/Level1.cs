@@ -5,7 +5,7 @@ namespace Veinia.RunningBlocks
 {
 	public class Level1 : Level
 	{
-		public Level1(string name, PrefabManager prefabManager) : base(name, prefabManager)
+		public Level1(PrefabManager prefabManager) : base(prefabManager)
 		{
 		}
 

@@ -71,3 +71,4 @@ D:\yt blazer yt\Veinia-Framework\Veinia Framework\Samples\Block Breaker New Samp
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Samples\Block Breaker New Sample\obj\Debug\netcoreapp3.1\Block Breaker Sample.csproj.CoreCompileInputs.cache
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Samples\Block Breaker New Sample\obj\Debug\netcoreapp3.1\Block Breaker Sample.csproj.CopyComplete
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Samples\Block Breaker New Sample\obj\Debug\netcoreapp3.1\Block Breaker Sample.genruntimeconfig.cache
+D:\yt blazer yt\Veinia-Framework\Veinia Framework\Samples\Block Breaker New Sample\bin\Debug\netcoreapp3.1\Content\Editor\Background.xnb

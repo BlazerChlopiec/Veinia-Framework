@@ -30,6 +30,9 @@ public sealed class Input
 	public float horizontal { get; private set; }
 	public float vertical { get; private set; }
 
+	public float deltaScroll { get; private set; }
+	float currentScroll;
+
 
 	public void Update()
 	{
@@ -50,6 +53,11 @@ public sealed class Input
 
 		sticks = gamepad.ThumbSticks;
 		//
+
+		//scroll delta
+		deltaScroll = mouse.ScrollWheelValue - currentScroll;
+		currentScroll += deltaScroll;
+		deltaScroll /= 2000;
 
 		//detect which device are you using
 		if (GetPressedButton(gamepad) != 0 && keyboard.GetPressedKeys().Length < 1) { currentDevice = Device.x360; }
@@ -226,6 +234,7 @@ public sealed class Input
 
 	#endregion
 
-	public Vector2 GetMouseScreenPosition() => Globals.camera.ScreenToWorld(Utils.PointToVector2(mouse.Position));
-	public Vector2 GetMouseWorldPosition() => Transform.ScreenToWorldPos(Globals.camera.ScreenToWorld(Utils.PointToVector2(mouse.Position)));
+	public Vector2 GetMouseScreenPosition() => Globals.camera.ScreenToWorld(mouse.Position.ToVector2());
+	public Vector2 GetMouseWorldPosition() => Transform.ScreenToWorldPos(Globals.camera.ScreenToWorld(mouse.Position.ToVector2()));
+	public Vector2 GetMouseWorldPositionNonCameraRelative() => Transform.ScreenToWorldPos(mouse.Position.ToVector2());
 }
