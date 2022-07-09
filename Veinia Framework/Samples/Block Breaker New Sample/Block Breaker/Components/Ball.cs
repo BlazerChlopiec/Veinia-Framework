@@ -8,7 +8,8 @@ namespace Veinia.BlockBreaker
 	public class Ball : Component
 	{
 		Paddle paddle;
-		CircleCollider physics;
+		Collider collider;
+		Physics physics;
 
 
 		private const float speed = 10;
@@ -18,9 +19,10 @@ namespace Veinia.BlockBreaker
 		public override void Initialize()
 		{
 			paddle = FindComponentOfType<Paddle>();
-			physics = GetComponent<CircleCollider>();
+			collider = GetComponent<Collider>();
+			physics = GetComponent<Physics>();
 
-			physics.onCollisionEnter += CollisionEnter;
+			collider.onCollisionEnter += CollisionEnter;
 		}
 
 		public override void Update()

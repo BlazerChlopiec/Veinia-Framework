@@ -64,6 +64,7 @@ namespace Veinia.BlockBreaker
 				{
 				new Sprite("Block Breaker/Ball", 0, Color.Blue, new Vector2(.8f, .8f)),
 				new Ball(),
+				new Physics(),
 				new CircleCollider(Vector2.Zero, .4f),
 				}, isStatic: false);
 
