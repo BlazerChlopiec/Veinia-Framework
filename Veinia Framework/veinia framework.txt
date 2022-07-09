@@ -1,11 +1,16 @@
 TODO:
 - improve chunks and implement frustum occlussion (1/2 DONE)
 - finish ExecuteUpdateWhenCulled
+- remake prefabs
+- store levels and screens instead of creating new levels every time
+- Finding multiple components at a time
+- Separate Physics into two scripts Collider.cs and Physics.cs
+- in Physics.cs make the offset parameter default
+- a collider is currently pushable if its instantiated before the pusher which is weird
 
 
 FUTURE PLANS:
 - antialiasing 
-- stopping time progression (possibly just blocking Update() for certain objects)
 - optimisation research
 - improve different gamepad support
 - audio

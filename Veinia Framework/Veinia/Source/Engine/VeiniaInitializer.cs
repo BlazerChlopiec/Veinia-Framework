@@ -11,8 +11,7 @@ public class VeiniaInitializer
 {
 	Title title;
 
-	public void Initialize(Game game, PrefabManager prefabs,
-		GraphicsDeviceManager graphicsManager, GraphicsDevice graphicsDevice, ContentManager content, GameWindow window,
+	public void Initialize(Game game, GraphicsDeviceManager graphicsManager, GraphicsDevice graphicsDevice, ContentManager content, GameWindow window,
 		int pixelsPerUnit, Vector2 gameSize, bool fullscreen = false)
 	{
 		Transform.pixelsPerUnit = pixelsPerUnit;
@@ -44,7 +43,6 @@ public class VeiniaInitializer
 		if (!Time.stop)
 		{
 			Globals.tweener.Update(Time.deltaTime);
-			if (Globals.loader.currentLevel != null) Globals.loader.currentLevel.EarlyUpdate();
 			if (Globals.loader.currentLevel != null) Globals.loader.currentLevel.Update();
 			Globals.collisionComponent.Update(gameTime);
 		}

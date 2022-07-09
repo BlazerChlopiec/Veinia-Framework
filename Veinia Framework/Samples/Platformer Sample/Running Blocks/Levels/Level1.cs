@@ -44,14 +44,22 @@ namespace Veinia.RunningBlocks
 			Instantiate(new Transform(Vector2.UnitY * 2), prefabManager.Find("Block"));
 			Instantiate(new Transform(Vector2.UnitY * 3), prefabManager.Find("Block"));
 
+			Instantiate(new Transform(Vector2.Zero), new List<Component>
+			{
+				new SimpleTopDown(),
+				new RectanglePhysics(Vector2.Zero, Vector2.One),
+			}, isStatic: false);
+
 			// DOESNT SUPPORT MULTIPLE RECTANGLES FOR NOW
 			Instantiate(new Transform(Vector2.Zero), new List<Component>
 			{
 				new FollowMouse(),
-				new RectanglePhysics(Vector2.Zero, Vector2.One),
-				//new RectanglePhysics(Vector2.One, Vector2.One),
-				//new RectanglePhysics(Vector2.One*-1, Vector2.One),
+				new CirclePhysics(Vector2.Zero, .5f),
+				new RectanglePhysics(Vector2.One, Vector2.One),
+				new RectanglePhysics(Vector2.One*-1, Vector2.One),
 			}, isStatic: false);
+
+
 		}
 	}
 }

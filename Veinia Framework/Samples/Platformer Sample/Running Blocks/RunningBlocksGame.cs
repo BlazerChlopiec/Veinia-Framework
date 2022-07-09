@@ -6,27 +6,26 @@ namespace Veinia.RunningBlocks
 {
 	public class RunningBlocksGame : Game
 	{
-		private GraphicsDeviceManager _graphics;
-		private SpriteBatch _spriteBatch;
+		private GraphicsDeviceManager graphics;
+		private SpriteBatch spriteBatch;
 
 		VeiniaInitializer veinia = new VeiniaInitializer();
 
 
 		public RunningBlocksGame()
 		{
-			_graphics = new GraphicsDeviceManager(this);
+			graphics = new GraphicsDeviceManager(this);
 			Content.RootDirectory = "Content";
 			IsMouseVisible = true;
 		}
 
 		protected override void Initialize()
 		{
-			_spriteBatch = new SpriteBatch(GraphicsDevice);
+			spriteBatch = new SpriteBatch(GraphicsDevice);
 
 			var prefabs = new RunningBlocksPrefabs();
 
-			veinia.Initialize(this, prefabs,
-				_graphics, GraphicsDevice, Content, Window,
+			veinia.Initialize(this, graphics, GraphicsDevice, Content, Window,
 				pixelsPerUnit: 100, new Vector2(1920, 1080), fullscreen: true);
 
 			Globals.fps.vSync(false);
@@ -55,7 +54,7 @@ namespace Veinia.RunningBlocks
 		{
 			GraphicsDevice.Clear(Color.Black);
 
-			veinia.Draw(gameTime, _spriteBatch);
+			veinia.Draw(gameTime, spriteBatch);
 
 			base.Draw(gameTime);
 		}

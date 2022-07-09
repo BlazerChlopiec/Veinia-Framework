@@ -8,7 +8,7 @@
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
-    <RootNamespace>Veinia.Platformer</RootNamespace>
+    <RootNamespace>Veinia.RunningBlocks</RootNamespace>
     <AssemblyName>Running Blocks Sample</AssemblyName>
   </PropertyGroup>
   <ItemGroup>

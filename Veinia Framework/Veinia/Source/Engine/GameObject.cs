@@ -1,5 +1,4 @@
-﻿using MonoGame.Extended.Collisions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 public class GameObject
@@ -21,7 +20,20 @@ public class GameObject
 
 		components.Remove(components.Find(x => x is Transform)); // remove transform to make sure there aren't two transforms (prefab case)
 		components.Add(transform); // the spot is added afterwards to components to ensure the gameobject having a transform
+								   //RearrangeComponents();
 	}
+
+	//private void RearrangeComponents()
+	//{
+	//	//if gameObject has physics change its execute order to last
+	//	var physics = NullableGetComponent<Physics>();
+	//	if (physics != null)
+	//	{
+	//		components.Remove(physics);
+	//		components.Insert(components.Count, physics);
+	//	}
+	//	//
+	//}
 
 	public T1 NullableGetComponent<T1>() // allows nulls to be returned
 	{
@@ -78,6 +90,8 @@ public class GameObject
 		compo.transform = transform;
 		compo.isStatic = isStatic;
 		compo.Initialize();
+
+		//RearrangeComponents();
 
 		return compo;
 	}
