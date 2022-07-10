@@ -1,4 +1,7 @@
-﻿namespace Veinia
+﻿using MonoGame.Extended;
+using MonoGame.Extended.Collisions;
+
+namespace Veinia
 {
 	public class Loader
 	{
@@ -35,6 +38,9 @@
 			void ReloadScene()
 			{
 				Unload();
+
+				Globals.collisionComponent = Globals.collisionComponent.GetReloaded();
+
 				currentLevel = previousLevel;
 				currentLevel.LoadContents();
 				currentLevel.InitiazeComponents();

@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Veinia", "Veinia\Veinia.csproj", "{836813AC-94BB-4BEF-A82F-9FDB96922756}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Block Breaker Sample", "Samples\Block Breaker New Sample\Block Breaker Sample.csproj", "{C06A2A27-F0F0-4AF6-887E-E03FB6ECF39A}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Running Blocks Sample", "Samples\Platformer Sample\Running Blocks Sample.csproj", "{360056C7-CD56-45F1-A840-04EDF8601516}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Block Breaker Sample", "Samples\Block Breaker Sample\Block Breaker Sample.csproj", "{EC534BE2-67F8-4FDC-AF7A-B3E88B89AB46}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +19,14 @@ Global
 		{836813AC-94BB-4BEF-A82F-9FDB96922756}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{836813AC-94BB-4BEF-A82F-9FDB96922756}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{836813AC-94BB-4BEF-A82F-9FDB96922756}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C06A2A27-F0F0-4AF6-887E-E03FB6ECF39A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C06A2A27-F0F0-4AF6-887E-E03FB6ECF39A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C06A2A27-F0F0-4AF6-887E-E03FB6ECF39A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C06A2A27-F0F0-4AF6-887E-E03FB6ECF39A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{360056C7-CD56-45F1-A840-04EDF8601516}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{360056C7-CD56-45F1-A840-04EDF8601516}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{360056C7-CD56-45F1-A840-04EDF8601516}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{360056C7-CD56-45F1-A840-04EDF8601516}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC534BE2-67F8-4FDC-AF7A-B3E88B89AB46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC534BE2-67F8-4FDC-AF7A-B3E88B89AB46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC534BE2-67F8-4FDC-AF7A-B3E88B89AB46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC534BE2-67F8-4FDC-AF7A-B3E88B89AB46}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

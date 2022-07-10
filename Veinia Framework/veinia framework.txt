@@ -5,7 +5,7 @@ TODO:
 - a collider is currently pushable if its instantiated before the pusher which is weird
 - add collision priority
 - examine the need of utils.cs
-- sometimes onCollision functions don't seem to get called?
+- add .ignore on the bin and obj folders
 
 
 FUTURE PLANS:
@@ -35,3 +35,5 @@ FUTURE PLANS:
 - Separate Physics into two scripts Collider.cs and Physics.cs
 - Finding multiple components at a time
 - remake prefabs
+- remove the "new" in block breaker sample name
+- sometimes onCollision functions don't seem to get called?

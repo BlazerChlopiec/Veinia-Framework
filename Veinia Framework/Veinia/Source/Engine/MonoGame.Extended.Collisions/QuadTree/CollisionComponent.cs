@@ -16,6 +16,7 @@ namespace MonoGame.Extended.Collisions
 			new Dictionary<ICollisionActor, QuadtreeData>();
 
 		private readonly Quadtree _collisionTree;
+		public RectangleF boundary { get; private set; }
 
 		/// <summary>
 		/// Creates a collision tree covering the specified area.
@@ -23,6 +24,7 @@ namespace MonoGame.Extended.Collisions
 		/// <param name="boundary">Boundary of the collision tree.</param>
 		public CollisionComponent(RectangleF boundary)
 		{
+			this.boundary = boundary;
 			_collisionTree = new Quadtree(boundary);
 		}
 

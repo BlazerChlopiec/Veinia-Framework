@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using MonoGame.Extended;
+using MonoGame.Extended.Collisions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,5 +30,12 @@ namespace Veinia
 
 		public static void SetPosition(this OrthographicCamera camera, Vector2 worldPos) => camera.Position = Transform.ToScreenUnits(worldPos);
 		public static Vector2 GetPosition(this OrthographicCamera camera) => Transform.ToWorldUnits(camera.Position);
+
+		public static CollisionComponent GetReloaded(this CollisionComponent collisionComponent)
+		{
+			var prevBoundary = collisionComponent.boundary;
+
+			return new CollisionComponent(prevBoundary);
+		}
 	}
 }
