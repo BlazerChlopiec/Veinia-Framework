@@ -36,14 +36,14 @@ namespace Veinia.BlockBreaker
 				new Transform(Vector2.UnitY * 5.5f),
 				new List<Component>
 				{
-				new RectangleCollider(Vector2.Zero, new Vector2(19f, .3f))
+				new RectangleCollider(Vector2.Zero, new Vector2(19f, .3f)),
 				}, isStatic: true);
 			GameObject bottomBorder = Instantiate(
 				new Transform(Vector2.UnitY * -5.5f),
 				new List<Component>
 				{
-				new RectangleCollider(Vector2.Zero, new Vector2(19f, .3f)),
-				new GameOverBorder()
+				new GameOverBorder(),
+				new RectangleCollider(Vector2.Zero, new Vector2(19f, .3f), trigger: false),
 				}, isStatic: true);
 
 
@@ -64,8 +64,8 @@ namespace Veinia.BlockBreaker
 				{
 				new Sprite("Block Breaker/Ball", 0, Color.Blue, new Vector2(.8f, .8f)),
 				new Ball(),
-				new Physics(),
 				new CircleCollider(Vector2.Zero, .4f),
+				new Physics(),
 				}, isStatic: false);
 
 

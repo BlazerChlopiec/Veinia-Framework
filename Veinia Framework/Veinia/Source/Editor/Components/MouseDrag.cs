@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace Veinia.Source
+namespace Veinia
 {
 	public class MouseDrag : Component
 	{

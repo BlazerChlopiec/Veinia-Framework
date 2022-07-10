@@ -5,6 +5,7 @@ TODO:
 - a collider is currently pushable if its instantiated before the pusher which is weird
 - add collision priority
 - examine the need of utils.cs
+- sometimes onCollision functions don't seem to get called?
 
 
 FUTURE PLANS:

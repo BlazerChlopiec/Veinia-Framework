@@ -1,29 +1,32 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
-public class PrefabManager
+namespace Veinia
 {
-	public List<Prefab> prefabs = new List<Prefab>();
-
-
-	protected void Add(string name, GameObject gameObject)
+	public class PrefabManager
 	{
-		Prefab prefabData = new Prefab
+		public List<Prefab> prefabs = new List<Prefab>();
+
+
+		protected void Add(string name, GameObject gameObject)
 		{
-			prefabName = name,
-			prefabGameObject = gameObject,
-		};
+			Prefab prefabData = new Prefab
+			{
+				prefabName = name,
+				prefabGameObject = gameObject,
+			};
 
-		prefabs.Add(prefabData);
-	}
+			prefabs.Add(prefabData);
+		}
 
-	public GameObject Find(string name) => prefabs.Find(x => x.prefabName == name).prefabGameObject;
+		public GameObject Find(string name) => prefabs.Find(x => x.prefabName == name).prefabGameObject;
 
-	public virtual void LoadPrefabs(WorldTools tools) => prefabs.Clear();
+		public virtual void LoadPrefabs(WorldTools tools) => prefabs.Clear();
 
-	public struct Prefab
-	{
-		public string prefabName;
-		public GameObject prefabGameObject;
+		public struct Prefab
+		{
+			public string prefabName;
+			public GameObject prefabGameObject;
+		}
 	}
 }

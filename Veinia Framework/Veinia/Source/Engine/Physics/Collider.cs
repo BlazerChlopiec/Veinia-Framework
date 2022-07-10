@@ -23,6 +23,7 @@ namespace Veinia
 		public CollisionEvent onCollisionEnter;
 		public CollisionEvent onCollisionExit;
 
+
 		public IShapeF Bounds
 		{
 			get { return bounds; }
@@ -74,9 +75,6 @@ namespace Veinia
 		{
 			if (!isColliding && hasEnteredCollision) OnCollisionExit(currectCollisionInfo);
 			isColliding = false;
-
-			//transform.position += velocity * Time.deltaTime;
-
 
 			Bounds.Position = transform.screenPos + offset;
 		}

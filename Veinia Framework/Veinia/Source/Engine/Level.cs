@@ -1,14 +1,17 @@
-﻿public class Level : WorldTools
+﻿namespace Veinia
 {
-	protected PrefabManager prefabManager;
-
-	public Level(PrefabManager prefabManager)
+	public class Level : WorldTools
 	{
-		this.prefabManager = prefabManager;
-	}
+		protected PrefabManager prefabManager;
 
-	public virtual void LoadContents()
-	{
-		prefabManager.LoadPrefabs(tools: this);
+		public Level(PrefabManager prefabManager)
+		{
+			this.prefabManager = prefabManager;
+		}
+
+		public virtual void LoadContents()
+		{
+			prefabManager.LoadPrefabs(tools: this);
+		}
 	}
 }

@@ -1,43 +1,47 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 
-public sealed class FPS
+namespace Veinia
 {
-	public float currentFps { get; private set; }
-	public bool isVSync { get; private set; }
-	private int targetFps = 60;
-
-
-	public Game game;
-
-
-	public FPS(Game game) => this.game = game;
-
-
-	public void ChangeFps(int value)
+	public sealed class FPS
 	{
-		if (value == int.MaxValue)
-			game.IsFixedTimeStep = false; // isFixedTimeStep must be false when unlocking fps
-		else
-		{
-			game.IsFixedTimeStep = true; // isFixedTimeStep must be true when limiting fps
+		public float currentFps { get; private set; }
+		public bool isVSync { get; private set; }
+		private int targetFps = 60;
 
-			targetFps = value;
-			game.TargetElapsedTime = TimeSpan.FromSeconds(1d / targetFps);
+
+		public Game game;
+
+
+		public FPS(Game game) => this.game = game;
+
+
+		public void ChangeFps(int value)
+		{
+			if (value == int.MaxValue)
+				game.IsFixedTimeStep = false; // isFixedTimeStep must be false when unlocking fps
+			else
+			{
+				game.IsFixedTimeStep = true; // isFixedTimeStep must be true when limiting fps
+
+				targetFps = value;
+				game.TargetElapsedTime = TimeSpan.FromSeconds(1d / targetFps);
+			}
+		}
+
+		public void vSync(bool value)
+		{
+			Globals.graphicsManager.SynchronizeWithVerticalRetrace = value; // change the vsync to 'value'
+
+			isVSync = value;
+		}
+
+		public void CalculateFps(GameTime gameTime)
+		{
+			currentFps = 1f / (float)gameTime.ElapsedGameTime.TotalSeconds; // TotalSeconds is a double by default
+
+			currentFps = MathF.Round(currentFps); // round fps as it may give results simillar to this - 144,00003
 		}
 	}
 
-	public void vSync(bool value)
-	{
-		Globals.graphicsManager.SynchronizeWithVerticalRetrace = value; // change the vsync to 'value'
-
-		isVSync = value;
-	}
-
-	public void CalculateFps(GameTime gameTime)
-	{
-		currentFps = 1f / (float)gameTime.ElapsedGameTime.TotalSeconds; // TotalSeconds is a double by default
-
-		currentFps = MathF.Round(currentFps); // round fps as it may give results simillar to this - 144,00003
-	}
 }

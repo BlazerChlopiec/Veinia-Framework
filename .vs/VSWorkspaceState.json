@@ -1,15 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\Veinia Framework",
-    "\\Veinia Framework\\Veinia",
-    "\\Veinia Framework\\Veinia\\Block Breaker Example\\Components",
-    "\\Veinia Framework\\Veinia\\Engine",
-    "\\Veinia Framework\\Veinia\\Engine\\MonoGame.Extended.Collisions",
-    "\\Veinia Framework\\Veinia\\Engine\\MonoGame.Extended.Collisions\\obj",
-    "\\Veinia Framework\\Veinia\\Engine\\MonoGame.Extended.Collisions\\obj\\Release",
-    "\\Veinia Framework\\Veinia\\Engine\\MonoGame.Extended.Collisions\\obj\\Release\\netstandard2.0"
+    ""
   ],
-  "SelectedNode": "\\Veinia Framework\\Veinia\\Engine\\MonoGame.Extended.Collisions\\obj\\Release\\netstandard2.0\\MonoGame.Extended.Collisions.AssemblyInfo.cs",
+  "SelectedNode": "\\Veinia.sln",
   "PreviewInSolutionExplorer": false
 }

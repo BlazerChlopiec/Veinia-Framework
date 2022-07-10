@@ -1,8 +1,10 @@
 ﻿using System.Diagnostics;
 
-public class Say
+namespace Veinia
 {
-	public static void Line<T1>(T1 text) => Debug.WriteLine(text.ToString());
-	public static void Line<T1>(string desc, T1 text) => Debug.WriteLine(desc + text.ToString());
+	public class Say
+	{
+		public static void Line<T1>(T1 text) => Debug.WriteLine(text.ToString());
+		public static void Line<T1>(string desc, T1 text) => Debug.WriteLine(desc + text.ToString());
+	}
 }
-

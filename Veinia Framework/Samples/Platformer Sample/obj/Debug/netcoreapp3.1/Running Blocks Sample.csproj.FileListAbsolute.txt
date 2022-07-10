@@ -29,7 +29,6 @@ D:\yt blazer yt\Veinia-Framework\Veinia Framework\Platformer Sample\obj\Debug\ne
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Platformer Sample\obj\Debug\netcoreapp3.1\Running Blocks Sample.pdb
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Platformer Sample\obj\Debug\netcoreapp3.1\Running Blocks Sample.genruntimeconfig.cache
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Platformer Sample\bin\Debug\netcoreapp3.1\Content\Running Blocks\Square.xnb
-D:\yt blazer yt\Veinia-Framework\Veinia Framework\Samples\Platformer Sample\bin\Debug\netcoreapp3.1\Content\Platformer\Square.xnb
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Samples\Platformer Sample\bin\Debug\netcoreapp3.1\Content\Running Blocks\Square.xnb
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Samples\Platformer Sample\bin\Debug\netcoreapp3.1\Running Blocks Sample.exe
 D:\yt blazer yt\Veinia-Framework\Veinia Framework\Samples\Platformer Sample\bin\Debug\netcoreapp3.1\Running Blocks Sample.deps.json

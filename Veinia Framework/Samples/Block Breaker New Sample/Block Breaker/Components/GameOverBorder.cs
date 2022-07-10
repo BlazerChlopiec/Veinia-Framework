@@ -6,6 +6,7 @@ namespace Veinia.BlockBreaker
 	{
 		RectangleCollider physics;
 
+
 		public override void Initialize()
 		{
 			physics = GetComponent<RectangleCollider>();
@@ -15,6 +16,7 @@ namespace Veinia.BlockBreaker
 
 		private void OnCollisionEnter(CollisionEventArgs collisionInfo)
 		{
+			Say.Line("enter");
 			Globals.loader.Reload();
 		}
 	}

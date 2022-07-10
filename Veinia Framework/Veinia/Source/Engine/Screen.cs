@@ -1,34 +1,37 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 
-public class Screen
+namespace Veinia
 {
-	public int width;
-	public int height;
-
-	Viewport viewport;
-
-	public Screen(int width, int height)
+	public class Screen
 	{
-		this.width = width;
-		this.height = height;
+		public int width;
+		public int height;
 
-		viewport = Globals.graphicsDevice.Viewport;
+		Viewport viewport;
 
-		UpdateChanges();
-	}
+		public Screen(int width, int height)
+		{
+			this.width = width;
+			this.height = height;
 
-	public void SetSize(int X, int Y)
-	{
-		width = X;
-		height = Y;
+			viewport = Globals.graphicsDevice.Viewport;
 
-		UpdateChanges();
-	}
+			UpdateChanges();
+		}
 
-	private void UpdateChanges()
-	{
-		Globals.graphicsManager.PreferredBackBufferWidth = width;
-		Globals.graphicsManager.PreferredBackBufferHeight = height;
-		Globals.graphicsManager.ApplyChanges();
+		public void SetSize(int X, int Y)
+		{
+			width = X;
+			height = Y;
+
+			UpdateChanges();
+		}
+
+		private void UpdateChanges()
+		{
+			Globals.graphicsManager.PreferredBackBufferWidth = width;
+			Globals.graphicsManager.PreferredBackBufferHeight = height;
+			Globals.graphicsManager.ApplyChanges();
+		}
 	}
 }

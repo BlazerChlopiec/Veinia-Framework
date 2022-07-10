@@ -1,121 +1,124 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
-public class WorldTools
+namespace Veinia
 {
-	//scene lists made for iterating and calling proper methods
-	public List<GameObject> scene = new List<GameObject>();
-
-
-	//creates an object and spawns it
-	public GameObject Instantiate(Transform transform, List<Component> components, bool isStatic)
+	public class WorldTools
 	{
-		GameObject sample = new GameObject(transform, components, this, isStatic);
+		//scene lists made for iterating and calling proper methods
+		public List<GameObject> scene = new List<GameObject>();
 
-		foreach (var item in sample.components)
+
+		//creates an object and spawns it
+		public GameObject Instantiate(Transform transform, List<Component> components, bool isStatic)
 		{
-			item.parent = sample;
-			item.transform = sample.transform;
-			item.isStatic = sample.isStatic;
-		}
+			GameObject sample = new GameObject(transform, components, this, isStatic);
 
-		scene.Add(sample);
-
-		return sample;
-	}
-	public GameObject Instantiate(Transform transform, GameObject prefab)
-	{
-		GameObject sample = new GameObject(transform, prefab.components.Clone(), this, prefab.isStatic);
-
-		foreach (var item in sample.components)
-		{
-			item.parent = sample;
-			item.transform = sample.transform;
-			item.isStatic = sample.isStatic;
-		}
-
-		scene.Add(sample);
-
-		return sample;
-	}
-
-	public void Remove(GameObject target) => scene.Remove(target);
-
-	public T1 FindComponentOfType<T1>() where T1 : Component
-	{
-		List<T1> returnVal = new List<T1>();
-
-		foreach (var item in scene)
-		{
-			T1 currentItem = item.NullableGetComponent<T1>();
-			if (currentItem == null) continue;
-			else returnVal.Add(currentItem);
-		}
-
-		if (returnVal.Count == 0)
-			throw new System.Exception("FindComponentOfType<T1> - Found no component matching requirements! " + typeof(T1));
-		if (returnVal.Count > 1)
-			throw new System.Exception("FindComponentOfType<T1> - Found more than one matching requirements! " + typeof(T1));
-
-		return returnVal[0];
-	}
-	public List<T1> FindComponentsOfType<T1>() where T1 : Component
-	{
-		List<T1> returnVal = new List<T1>();
-
-		foreach (var item in scene)
-		{
-			var matchingComponents = item.GetAllComponents<T1>();
-
-			matchingComponents.AddAllTo(returnVal);
-		}
-		if (returnVal.Count == 0)
-			Say.Line("FindComponentsOfType<T1> - Found no components matching requirements! " + typeof(T1));
-
-		if (returnVal.Count == 1)
-			Say.Line("FindComponentsOfType<T1> - Only one component! Use FindComponentOfType<T1> instead! " + typeof(T1));
-
-		return returnVal;
-	}
-
-	public void InitiazeComponents()
-	{
-		foreach (var gameObject in scene.ToArray())
-		{
-			if (!gameObject.isEnabled) continue;
-
-			foreach (var component in gameObject.components.ToArray())
+			foreach (var item in sample.components)
 			{
-				component.Initialize();
+				item.parent = sample;
+				item.transform = sample.transform;
+				item.isStatic = sample.isStatic;
 			}
+
+			scene.Add(sample);
+
+			return sample;
 		}
-	}
-
-	public void Update()
-	{
-		foreach (var gameObject in scene.ToArray())
+		public GameObject Instantiate(Transform transform, GameObject prefab)
 		{
-			if (!gameObject.isEnabled) continue;
+			GameObject sample = new GameObject(transform, prefab.components.Clone(), this, prefab.isStatic);
 
-			foreach (var component in gameObject.components.ToArray())
+			foreach (var item in sample.components)
 			{
-				component.Update();
+				item.parent = sample;
+				item.transform = sample.transform;
+				item.isStatic = sample.isStatic;
 			}
+
+			scene.Add(sample);
+
+			return sample;
 		}
-	}
 
-	public void Draw(SpriteBatch sb)
-	{
-		foreach (var gameObject in scene)
+		public void Remove(GameObject target) => scene.Remove(target);
+
+		public T1 FindComponentOfType<T1>() where T1 : Component
 		{
-			if (!gameObject.isEnabled) continue;
+			List<T1> returnVal = new List<T1>();
 
-			foreach (var component in gameObject.components)
+			foreach (var item in scene)
 			{
-				if (component is IDrawn)
+				T1 currentItem = item.NullableGetComponent<T1>();
+				if (currentItem == null) continue;
+				else returnVal.Add(currentItem);
+			}
+
+			if (returnVal.Count == 0)
+				throw new System.Exception("FindComponentOfType<T1> - Found no component matching requirements! " + typeof(T1));
+			if (returnVal.Count > 1)
+				throw new System.Exception("FindComponentOfType<T1> - Found more than one matching requirements! " + typeof(T1));
+
+			return returnVal[0];
+		}
+		public List<T1> FindComponentsOfType<T1>() where T1 : Component
+		{
+			List<T1> returnVal = new List<T1>();
+
+			foreach (var item in scene)
+			{
+				var matchingComponents = item.GetAllComponents<T1>();
+
+				matchingComponents.AddAllTo(returnVal);
+			}
+			if (returnVal.Count == 0)
+				Say.Line("FindComponentsOfType<T1> - Found no components matching requirements! " + typeof(T1));
+
+			if (returnVal.Count == 1)
+				Say.Line("FindComponentsOfType<T1> - Only one component! Use FindComponentOfType<T1> instead! " + typeof(T1));
+
+			return returnVal;
+		}
+
+		public void InitiazeComponents()
+		{
+			foreach (var gameObject in scene.ToArray())
+			{
+				if (!gameObject.isEnabled) continue;
+
+				foreach (var component in gameObject.components.ToArray())
 				{
-					IDrawn drawn = (IDrawn)component;
-					drawn.Draw(sb);
+					component.Initialize();
+				}
+			}
+		}
+
+		public void Update()
+		{
+			foreach (var gameObject in scene.ToArray())
+			{
+				if (!gameObject.isEnabled) continue;
+
+				foreach (var component in gameObject.components.ToArray())
+				{
+					component.Update();
+				}
+			}
+		}
+
+		public void Draw(SpriteBatch sb)
+		{
+			foreach (var gameObject in scene)
+			{
+				if (!gameObject.isEnabled) continue;
+
+				foreach (var component in gameObject.components)
+				{
+					if (component is IDrawn)
+					{
+						IDrawn drawn = (IDrawn)component;
+						drawn.Draw(sb);
+					}
 				}
 			}
 		}
