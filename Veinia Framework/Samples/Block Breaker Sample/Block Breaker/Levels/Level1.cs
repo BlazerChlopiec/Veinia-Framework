@@ -13,6 +13,8 @@ namespace Veinia.BlockBreaker
 		{
 			base.LoadContents();
 
+			LoadEditorObjects();
+
 			GameObject background = Instantiate(
 				new Transform(Vector2.Zero),
 				new List<Component>

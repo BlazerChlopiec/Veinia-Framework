@@ -1,4 +1,6 @@
-﻿namespace Veinia
+﻿using Veinia.Editor;
+
+namespace Veinia
 {
 	public class Level : WorldTools
 	{
@@ -12,6 +14,15 @@
 		public virtual void LoadContents()
 		{
 			prefabManager.LoadPrefabs(tools: this);
+		}
+
+		protected void LoadEditorObjects()
+		{
+			// LOAD TODO HERE
+			var editorObject = new EditorObject("Block", new Transform(0, 0));
+			//
+
+			Instantiate(editorObject.transform, prefabManager.Find(editorObject.prefabName));
 		}
 	}
 }
