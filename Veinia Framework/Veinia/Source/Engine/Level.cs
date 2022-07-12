@@ -1,4 +1,8 @@
-﻿using Veinia.Editor;
+﻿using Microsoft.Xna.Framework;
+using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.IO;
+using Veinia.Editor;
 
 namespace Veinia
 {
@@ -6,23 +10,39 @@ namespace Veinia
 	{
 		protected PrefabManager prefabManager;
 
+		private string editorLevelName;
+
+
 		public Level(PrefabManager prefabManager)
 		{
 			this.prefabManager = prefabManager;
+		}
+		public Level(PrefabManager prefabManager, string editorLevelName)
+		{
+			this.prefabManager = prefabManager;
+			this.editorLevelName = editorLevelName;
 		}
 
 		public virtual void LoadContents()
 		{
 			prefabManager.LoadPrefabs(tools: this);
+			LoadEditorObjects(editorLevelName);
 		}
 
-		protected void LoadEditorObjects()
+		private void LoadEditorObjects(string editorLevelName)
 		{
-			// LOAD TODO HERE
-			var editorObject = new EditorObject("Block", new Transform(0, 0));
-			//
+			if (!File.Exists(editorLevelName)) return;
+			var deserializedText = File.ReadAllText(editorLevelName);
+			var objects = JsonConvert.DeserializeObject<List<EditorObject>>(deserializedText);
 
-			Instantiate(editorObject.transform, prefabManager.Find(editorObject.prefabName));
+			foreach (var item in objects)
+			{
+				if (prefabManager.Find(item.PrefabName) == null)
+				{
+					throw new System.Exception("Prefabs that don't got deleted and are still on " + editorLevelName);
+				}
+				Instantiate(new Transform(item.Position), prefabManager.Find(item.PrefabName));
+			}
 		}
 	}
 }

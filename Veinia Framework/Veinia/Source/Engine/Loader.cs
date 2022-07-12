@@ -1,7 +1,4 @@
-﻿using MonoGame.Extended;
-using MonoGame.Extended.Collisions;
-
-namespace Veinia
+﻿namespace Veinia
 {
 	public class Loader
 	{
@@ -10,17 +7,22 @@ namespace Veinia
 
 		public void Load(Level level)
 		{
-			if (currentLevel != null)
-				Unload();
+			NextFrame.actions.Add(LoadScene);
 
-			currentLevel = level;
-			currentLevel.LoadContents();
-			NextFrame.actions.Add(currentLevel.InitiazeComponents);
+			void LoadScene()
+			{
+				if (currentLevel != null)
+					Unload();
+				currentLevel = level;
+				currentLevel.LoadContents();
+				currentLevel.InitiazeComponents();
+			}
 		}
 
 		public void Unload()
 		{
 			Globals.tweener.CancelAll();
+			Globals.collisionComponent = Globals.collisionComponent.GetReloaded();
 
 			foreach (var item in currentLevel.scene.ToArray())
 			{
@@ -38,8 +40,6 @@ namespace Veinia
 			void ReloadScene()
 			{
 				Unload();
-
-				Globals.collisionComponent = Globals.collisionComponent.GetReloaded();
 
 				currentLevel = previousLevel;
 				currentLevel.LoadContents();

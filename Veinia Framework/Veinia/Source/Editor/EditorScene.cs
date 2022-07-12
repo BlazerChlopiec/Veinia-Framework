@@ -5,19 +5,27 @@ namespace Veinia.Editor
 {
 	public class EditorScene : Level
 	{
-		public EditorScene(PrefabManager prefabManager) : base(prefabManager)
+		string editedLevel;
+
+
+		public EditorScene(string editedLevel, PrefabManager prefabManager) : base(prefabManager)
 		{
+			this.editedLevel = editedLevel;
 		}
 
 		public override void LoadContents()
 		{
 			base.LoadContents();
 
+			Globals.camera.SetPosition(Vector2.Zero);
+			Globals.camera.Zoom = 1;
+
 			GameObject systems = Instantiate(Transform.Empty, new List<Component>
 			{
 				new Grid(),
 				new EditorControls(),
 				new PlacingObjects(prefabManager),
+				new EditorJson(editedLevel),
 			}, isStatic: true);
 
 			GameObject background = Instantiate(Transform.Empty, new List<Component>

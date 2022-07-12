@@ -7,48 +7,44 @@ namespace Veinia.Editor
 {
 	public class PlacingObjects : Component
 	{
-		PrefabManager prefabs;
-		List<EditorObject> objects = new List<EditorObject>();
+		PrefabManager prefabManager;
+		public List<EditorObject> objects = new List<EditorObject>();
+
+		public string currentPrefab = "Block";
 
 		GameObject preview;
 
 
 		public PlacingObjects(PrefabManager prefabs)
 		{
-			this.prefabs = prefabs;
+			this.prefabManager = prefabs;
 		}
 
 		public override void Initialize()
 		{
-			LoadEditorObjects();
-
-			preview = Instantiate(Transform.Empty, new List<Component>
-			{
-				new Sprite("Block Breaker/Grass Tile",.99f, Color.White * .5f, Vector2.One)
-			}, isStatic: false);
-		}
-
-		private void LoadEditorObjects()
-		{
-			// LOAD TODO HERE
-			var editorObject = new EditorObject("Block", new Transform(0, 0));
-			//
-
-			PlaceObject(editorObject.prefabName, editorObject.transform);
+			preview = GetOnlySprite(prefabManager.Find(currentPrefab), Transform.Empty);
+			preview.GetComponent<Sprite>().color = Color.White * .5f;
+			Instantiate(preview);
 		}
 
 		public override void Update()
 		{
 			ShowPreview();
 
-			if (Globals.input.GetMouseButtonDown(0) && !Globals.input.GetKey(Keys.LeftAlt))
+			if (!Globals.input.GetKey(Keys.LeftAlt))
 			{
-				var mousePos = Globals.input.GetMouseWorldPosition();
+				if (Globals.input.GetMouseButtonUp(0)
+				 || Globals.input.GetMouseButton(0) && Globals.input.GetKey(Keys.LeftShift))
+				{
+					var mousePos = Globals.input.GetMouseWorldPosition();
 
-				if (!Globals.input.GetKey(Keys.LeftControl))
-					mousePos = new Vector2(MathF.Round(mousePos.X), MathF.Round(mousePos.Y));
+					if (!Globals.input.GetKey(Keys.LeftControl))
+						mousePos = new Vector2(MathF.Round(mousePos.X), MathF.Round(mousePos.Y));
 
-				PlaceObject("Block", new Transform(mousePos));
+
+					if (!CheckForDuplicates(currentPrefab, mousePos))
+						PlaceObject(currentPrefab, new Transform(mousePos));
+				}
 			}
 		}
 
@@ -62,20 +58,34 @@ namespace Veinia.Editor
 			preview.transform.position = mousePos;
 		}
 
-		private void PlaceObject(string prefabName, Transform position)
+		public void PlaceObject(string prefabName, Transform position)
 		{
-			Title.Add("Object count " + parent.world.scene.Count, 7);
+			Title.Add("Object Count " + objects.Count, 7);
 
-			var objectToSpawn = prefabs.Find(prefabName);
-			var onlySprite = new GameObject(position, new List<Component>
+			var objectToSpawn = GetOnlySprite(prefabManager.Find(prefabName), position);
+
+			Instantiate(objectToSpawn);
+
+			objects.Add(new EditorObject
 			{
-				objectToSpawn.GetComponent<Sprite>()
+				PrefabName = prefabName,
+				Position = objectToSpawn.transform.position
+			});
+		}
+
+		private bool CheckForDuplicates(string prefabName, Vector2 position)
+		{
+			if (objects.Find(x => x.Position == position) == null)
+				return false;
+			else return true;
+		}
+
+		private GameObject GetOnlySprite(GameObject gameObject, Transform transform)
+		{
+			return new GameObject(transform, new List<Component>
+			{
+				(Sprite)gameObject.GetComponent<Sprite>().Clone()
 			}, isStatic: true);
-
-
-			Instantiate(onlySprite);
-
-			objects.Add(new EditorObject(prefabName, onlySprite.transform));
 		}
 	}
 }

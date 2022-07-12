@@ -9,6 +9,10 @@ namespace Veinia.RunningBlocks
 		{
 		}
 
+		public Level1(PrefabManager prefabManager, string editorLevelName) : base(prefabManager, editorLevelName)
+		{
+		}
+
 		public override void LoadContents()
 		{
 			base.LoadContents();

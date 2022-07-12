@@ -9,11 +9,16 @@ namespace Veinia.BlockBreaker
 		{
 		}
 
+		public Level1(PrefabManager prefabManager, string editorLevelName) : base(prefabManager, editorLevelName)
+		{
+		}
+
 		public override void LoadContents()
 		{
 			base.LoadContents();
 
-			LoadEditorObjects();
+			Globals.camera.SetPosition(Vector2.Zero);
+			Globals.camera.Zoom = 1;
 
 			GameObject background = Instantiate(
 				new Transform(Vector2.Zero),
@@ -72,19 +77,19 @@ namespace Veinia.BlockBreaker
 
 
 
-			//block rows
-			for (int i = 0; i < 11; i++)
-			{
-				Instantiate(new Transform(i - 5, 2), prefabManager.Find("Block"));
-			}
-			for (int i = 0; i < 11; i++)
-			{
-				Instantiate(new Transform(i - 5, 1), prefabManager.Find("Block"));
-			}
-			for (int i = 0; i < 11; i++)
-			{
-				Instantiate(new Transform(i - 5, 0), prefabManager.Find("Block"));
-			}
+			////block rows
+			//for (int i = 0; i < 11; i++)
+			//{
+			//	Instantiate(new Transform(i - 5, 2), prefabManager.Find("Block"));
+			//}
+			//for (int i = 0; i < 11; i++)
+			//{
+			//	Instantiate(new Transform(i - 5, 1), prefabManager.Find("Block"));
+			//}
+			//for (int i = 0; i < 11; i++)
+			//{
+			//	Instantiate(new Transform(i - 5, 0), prefabManager.Find("Block"));
+			//}
 		}
 	}
 }

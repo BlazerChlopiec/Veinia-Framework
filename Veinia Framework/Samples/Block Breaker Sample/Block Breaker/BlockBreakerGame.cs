@@ -9,6 +9,7 @@ namespace Veinia.BlockBreaker
 	{
 		private GraphicsDeviceManager graphics;
 		private SpriteBatch spriteBatch;
+		private BlockBreakerPrefabs prefabs = new BlockBreakerPrefabs();
 
 		VeiniaInitializer veinia = new VeiniaInitializer();
 
@@ -26,16 +27,13 @@ namespace Veinia.BlockBreaker
 		{
 			spriteBatch = new SpriteBatch(GraphicsDevice);
 
-			var prefabs = new BlockBreakerPrefabs();
-
 			veinia.Initialize(this, graphics, GraphicsDevice, Content, Window,
-				pixelsPerUnit: 100, new Vector2(1280, 720), fullscreen: false);
+				pixelsPerUnit: 100, new Vector2(1920, 1080), fullscreen: true);
 
 			Globals.fps.vSync(true);
 			Globals.fps.ChangeFps(int.MaxValue);
 
-			//Globals.loader.Load(new Level1(prefabs));
-			Globals.loader.Load(new EditorScene(prefabs));
+			Globals.loader.Load(new Level1(prefabs, "level1.veinia"));
 
 
 			base.Initialize();
@@ -49,6 +47,16 @@ namespace Veinia.BlockBreaker
 
 			if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
 				Exit();
+
+			if (Globals.input.GetKeyDown(Keys.Tab))
+			{
+				if (Globals.loader.currentLevel is EditorScene)
+				{
+					Globals.loader.Load(new Level1(prefabs, "level1.veinia"));
+				}
+				else
+					Globals.loader.Load(new EditorScene("level1.veinia", prefabs));
+			}
 
 			base.Update(gameTime);
 		}

@@ -1,14 +1,10 @@
-﻿namespace Veinia.Editor
+﻿using Microsoft.Xna.Framework;
+
+namespace Veinia.Editor
 {
 	public class EditorObject
 	{
-		public EditorObject(string prefabName, Transform transform)
-		{
-			this.prefabName = prefabName;
-			this.transform = transform;
-		}
-
-		public string prefabName;
-		public Transform transform;
+		public string PrefabName { get; set; }
+		public Vector2 Position { get; set; }
 	}
 }
