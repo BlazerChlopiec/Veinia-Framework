@@ -12,7 +12,8 @@ namespace Veinia
 		//creates an object and spawns it
 		public GameObject Instantiate(Transform transform, List<Component> components, bool isStatic)
 		{
-			GameObject sample = new GameObject(transform, components, this, isStatic);
+			GameObject sample = new GameObject(transform, components, isStatic);
+			sample.world = this;
 
 			foreach (var item in sample.components)
 			{
@@ -27,7 +28,24 @@ namespace Veinia
 		}
 		public GameObject Instantiate(Transform transform, GameObject prefab)
 		{
-			GameObject sample = new GameObject(transform, prefab.components.Clone(), this, prefab.isStatic);
+			GameObject sample = new GameObject(transform, prefab.components.Clone(), prefab.isStatic);
+			sample.world = this;
+
+			foreach (var item in sample.components)
+			{
+				item.parent = sample;
+				item.transform = sample.transform;
+				item.isStatic = sample.isStatic;
+			}
+
+			scene.Add(sample);
+
+			return sample;
+		}
+		public GameObject Instantiate(GameObject prefab)
+		{
+			GameObject sample = new GameObject(prefab.transform, prefab.components.Clone(), prefab.isStatic);
+			sample.world = this;
 
 			foreach (var item in sample.components)
 			{

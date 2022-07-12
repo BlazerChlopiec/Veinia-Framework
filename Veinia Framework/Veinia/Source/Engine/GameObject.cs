@@ -13,11 +13,10 @@ namespace Veinia
 
 		private bool isDestroyed;
 
-		public GameObject(Transform transform, List<Component> components, WorldTools world, bool isStatic)
+		public GameObject(Transform transform, List<Component> components, bool isStatic)
 		{
 			this.transform = transform;
 			this.components = components;
-			this.world = world;
 			this.isStatic = isStatic;
 
 			components.Remove(components.Find(x => x is Transform)); // remove transform to make sure there aren't two transforms (prefab case)

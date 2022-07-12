@@ -25,7 +25,7 @@ namespace Veinia
 		public void Draw(SpriteBatch sb)
 		{
 			if (showHitboxes)
-				sb.DrawCircle((CircleF)Bounds, 50, Color.Red, 5, 1);
+				sb.DrawCircle((CircleF)Bounds, 50, Color.Red, 5, layerDepth: 1);
 		}
 	}
 }

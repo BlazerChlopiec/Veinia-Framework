@@ -7,12 +7,12 @@ namespace Veinia
 	public class Sprite : Component, IDrawn
 	{
 		public Color color = Color.White;
-		public int layer;
+		public float layer;
 		Vector2 destinationSize;
 		public Texture2D texture;
 
 
-		public Sprite(string path, int layer, Color color, Vector2 destinationSize)
+		public Sprite(string path, float layer, Color color, Vector2 destinationSize)
 		{
 			this.layer = layer;
 			this.color = color;
@@ -21,7 +21,7 @@ namespace Veinia
 
 			this.destinationSize = destinationSize * Transform.pixelsPerUnit;
 		}
-		public Sprite(string path, int layer, Color color)
+		public Sprite(string path, float layer, Color color)
 		{
 			this.layer = layer;
 			this.color = color;

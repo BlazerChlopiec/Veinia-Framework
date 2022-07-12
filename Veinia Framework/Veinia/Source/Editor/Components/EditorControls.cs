@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace Veinia
+namespace Veinia.Editor
 {
-	public class MouseDrag : Component
+	public class EditorControls : Component
 	{
 		private bool drag;
 
@@ -17,10 +17,10 @@ namespace Veinia
 				startMousePos = Globals.input.GetMouseWorldPosition();
 				drag = true;
 			}
-			if (Globals.input.GetMouseButtonUp(0) && Globals.input.GetKey(Keys.LeftAlt)) { drag = false; }
+			if (Globals.input.GetMouseButtonUp(0)) { drag = false; }
 
 			Globals.camera.ZoomIn(Globals.input.deltaScroll);
-			Globals.camera.Zoom = MathHelper.Clamp(Globals.camera.Zoom, .1f, 1);
+			Globals.camera.Zoom = MathHelper.Clamp(Globals.camera.Zoom, .35f, 1.2f);
 
 			if (drag) { Globals.camera.SetPosition(startMousePos - (Globals.input.GetMouseWorldPosition() - Globals.camera.GetPosition())); }
 		}

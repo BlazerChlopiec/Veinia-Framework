@@ -54,7 +54,7 @@ namespace Veinia.RunningBlocks
 		{
 			GraphicsDevice.Clear(Color.Black);
 
-			veinia.Draw(gameTime, spriteBatch);
+			veinia.Draw(spriteBatch);
 
 			base.Draw(gameTime);
 		}

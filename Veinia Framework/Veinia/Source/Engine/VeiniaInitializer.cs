@@ -68,7 +68,7 @@ namespace Veinia
 			//
 		}
 
-		public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+		public void Draw(SpriteBatch spriteBatch)
 		{
 			spriteBatch.Begin(SpriteSortMode.FrontToBack, transformMatrix: Globals.camera.GetViewMatrix());
 

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Veinia.Editor;
 
 namespace Veinia.BlockBreaker
 {
@@ -28,13 +29,13 @@ namespace Veinia.BlockBreaker
 			var prefabs = new BlockBreakerPrefabs();
 
 			veinia.Initialize(this, graphics, GraphicsDevice, Content, Window,
-				pixelsPerUnit: 100, new Vector2(1920, 1080), fullscreen: true);
+				pixelsPerUnit: 100, new Vector2(1280, 720), fullscreen: false);
 
 			Globals.fps.vSync(true);
 			Globals.fps.ChangeFps(int.MaxValue);
 
-			Globals.loader.Load(new Level1(prefabs));
-			//Globals.loader.Load(new EditorScene(prefabs));
+			//Globals.loader.Load(new Level1(prefabs));
+			Globals.loader.Load(new EditorScene(prefabs));
 
 
 			base.Initialize();
@@ -56,7 +57,7 @@ namespace Veinia.BlockBreaker
 		{
 			GraphicsDevice.Clear(Color.Black);
 
-			veinia.Draw(gameTime, spriteBatch);
+			veinia.Draw(spriteBatch);
 
 			base.Draw(gameTime);
 		}

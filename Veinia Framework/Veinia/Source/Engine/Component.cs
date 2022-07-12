@@ -1,5 +1,4 @@
-﻿using MonoGame.Extended.Collisions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Veinia
@@ -21,7 +20,8 @@ namespace Veinia
 		public Component AddComponent(Component component) => parent.AddComponent(component);
 		public void RemoveComponent(Component component) => parent.RemoveComponent(component);
 		public GameObject Instantiate(Transform transform, List<Component> components, bool isStatic) => parent.world.Instantiate(transform, components, isStatic);
-		public GameObject Instantiate(Transform transform, GameObject gameObject) => gameObject.world.Instantiate(transform, gameObject);
+		public GameObject Instantiate(Transform transform, GameObject gameObject) => parent.world.Instantiate(transform, gameObject);
+		public GameObject Instantiate(GameObject gameObject) => parent.world.Instantiate(gameObject);
 		public void DestroyGameObject() => parent.DestroyGameObject();
 	}
 

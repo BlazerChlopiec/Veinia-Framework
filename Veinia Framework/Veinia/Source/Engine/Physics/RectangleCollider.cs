@@ -27,7 +27,7 @@ namespace Veinia
 		public void Draw(SpriteBatch sb)
 		{
 			if (showHitboxes)
-				sb.DrawRectangle((RectangleF)Bounds, Color.Red, 5, 1);
+				sb.DrawRectangle((RectangleF)Bounds, Color.Red, 5, layerDepth: 1);
 		}
 	}
 }

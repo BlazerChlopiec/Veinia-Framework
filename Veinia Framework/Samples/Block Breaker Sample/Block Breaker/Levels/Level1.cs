@@ -53,7 +53,7 @@ namespace Veinia.BlockBreaker
 				new Transform(Vector2.Zero),
 				new List<Component>
 				{
-				new Sprite("Block Breaker/Paddle", 0, Color.Blue),
+				new Sprite("Block Breaker/Paddle", .1f, Color.Blue),
 				new Paddle(),
 				new RectangleCollider(Vector2.Zero, new Vector2(2.5f, .85f), trigger: true)
 				}, isStatic: false);
@@ -62,17 +62,18 @@ namespace Veinia.BlockBreaker
 				new Transform(Vector2.UnitY),
 				new List<Component>
 				{
-				new Sprite("Block Breaker/Ball", 0, Color.Blue, new Vector2(.8f, .8f)),
+				new Sprite("Block Breaker/Ball", .1f, Color.Blue, new Vector2(.8f, .8f)),
 				new Ball(),
 				new CircleCollider(Vector2.Zero, .4f),
 				new Physics(),
 				}, isStatic: false);
 
 
+
 			//block rows
 			for (int i = 0; i < 11; i++)
 			{
-				Instantiate(new Transform(i - 5, 0), prefabManager.Find("Block"));
+				Instantiate(new Transform(i - 5, 2), prefabManager.Find("Block"));
 			}
 			for (int i = 0; i < 11; i++)
 			{
@@ -80,7 +81,7 @@ namespace Veinia.BlockBreaker
 			}
 			for (int i = 0; i < 11; i++)
 			{
-				Instantiate(new Transform(i - 5, 2), prefabManager.Find("Block"));
+				Instantiate(new Transform(i - 5, 0), prefabManager.Find("Block"));
 			}
 		}
 	}

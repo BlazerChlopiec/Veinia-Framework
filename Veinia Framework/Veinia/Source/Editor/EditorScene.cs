@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
-namespace Veinia
+namespace Veinia.Editor
 {
 	public class EditorScene : Level
 	{
@@ -16,12 +16,13 @@ namespace Veinia
 			GameObject systems = Instantiate(Transform.Empty, new List<Component>
 			{
 				new Grid(),
-				new MouseDrag(),
+				new EditorControls(),
+				new PlacingObjects(prefabManager),
 			}, isStatic: true);
 
 			GameObject background = Instantiate(Transform.Empty, new List<Component>
 			{
-				new Sprite("Editor/Background", 0, Color.Red)
+				new Sprite("Editor/Background", 0.01f, Color.Red)
 			}, isStatic: true);
 		}
 	}

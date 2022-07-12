@@ -13,7 +13,7 @@ namespace Veinia.RunningBlocks
 			{
 				new Sprite("Running Blocks/Square", 0, Color.White, destinationSize: Vector2.One),
 				new CircleCollider(Vector2.Zero, 1)
-			}, tools, isStatic: false));
+			}, isStatic: false));
 		}
 	}
 }
