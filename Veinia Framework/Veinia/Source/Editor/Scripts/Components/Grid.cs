@@ -30,8 +30,8 @@ namespace Veinia.Editor
 					var currentWorldRectRounded = Transform.WorldToScreenPos(MathF.Round(currentRect.X), MathF.Round(currentRect.Y));
 
 
-					sb.DrawRectangle(new RectangleF(currentWorldRectRounded.X - size / 2, currentWorldRectRounded.Y - size / 2,
-									size, size), Color.White * .15f, 2, layerDepth: 1f);
+					sb.DrawRectangle(new RectangleF(currentWorldRectRounded.X, currentWorldRectRounded.Y,
+									size, size).OffsetByHalf(), Color.White * .15f, 2, layerDepth: 1f);
 				}
 			}
 		}

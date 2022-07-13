@@ -6,18 +6,21 @@ using MonoGame.Extended;
 using MonoGame.Extended.Collisions;
 using MonoGame.Extended.Tweening;
 using MonoGame.Extended.ViewportAdapters;
-using Veinia;
+using Veinia.Editor;
 
 namespace Veinia
 {
 	public class VeiniaInitializer
 	{
 		Title title;
+		PrefabManager prefabManager;
 
 		public void Initialize(Game game, GraphicsDeviceManager graphicsManager, GraphicsDevice graphicsDevice, ContentManager content, GameWindow window,
-			int pixelsPerUnit, Vector2 gameSize, bool fullscreen = false)
+			int pixelsPerUnit, Vector2 gameSize, PrefabManager prefabManager, bool fullscreen = false)
 		{
 			Transform.pixelsPerUnit = pixelsPerUnit;
+
+			this.prefabManager = prefabManager;
 
 			Globals.graphicsManager = graphicsManager;
 			Globals.graphicsDevice = graphicsDevice;
@@ -55,17 +58,22 @@ namespace Veinia
 			title.Update();
 
 
-			//useful hotkeys
-			if (Globals.input.GetKeyDown(Keys.Space))
-			{
-				Globals.loader.Unload();
-			}
-
+			//#if DEBUG
 			if (Globals.input.GetKeyDown(Keys.F))
 			{
 				Collider.showHitboxes = !Collider.showHitboxes;
 			}
-			//
+
+			if (Globals.input.GetKeyDown(Keys.Tab))
+			{
+				if (Globals.loader.currentLevel is EditorScene)
+				{
+					Globals.loader.Load(Globals.loader.previousLevel);
+				}
+				else
+					Globals.loader.Load(new EditorScene(Globals.loader.currentLevel.editorLevelName, prefabManager));
+			}
+			//#endif
 		}
 
 		public void Draw(SpriteBatch spriteBatch)

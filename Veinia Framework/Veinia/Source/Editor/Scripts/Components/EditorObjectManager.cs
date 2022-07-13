@@ -1,0 +1,121 @@
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
+using System;
+using System.Collections.Generic;
+
+namespace Veinia.Editor
+{
+	public class EditorObjectManager : Component
+	{
+		PrefabManager prefabManager;
+		public List<EditorObject> editorObjects = new List<EditorObject>();
+
+		public string currentPrefab = "Block";
+
+		GameObject preview;
+
+
+		public EditorObjectManager(PrefabManager prefabManager)
+		{
+			this.prefabManager = prefabManager;
+		}
+
+		public override void Initialize()
+		{
+			SpawnPreview();
+		}
+
+		private void SpawnPreview()
+		{
+			preview = GetOnlySprite(prefabManager.Find(currentPrefab), Transform.Empty);
+			var sprite = preview.GetComponent<Sprite>();
+			sprite.color = Color.White * .5f;
+			sprite.layer = 1;
+
+			Instantiate(preview);
+		}
+
+		public override void Update()
+		{
+			UpdatePreview();
+
+			if (!Globals.input.GetKey(Keys.LeftAlt))
+			{
+				//placing
+				if (Globals.input.GetMouseButtonUp(0)
+				 || Globals.input.GetMouseButton(0) && Globals.input.GetKey(Keys.LeftShift))
+				{
+					var mousePos = Globals.input.GetMouseWorldPosition();
+
+					if (!Globals.input.GetKey(Keys.LeftControl))
+						mousePos = new Vector2(MathF.Round(mousePos.X), MathF.Round(mousePos.Y));
+
+
+					if (OverlapsWithMouse() == null)
+						Spawn(currentPrefab, mousePos);
+				}
+
+				//deleting
+				if (Globals.input.GetMouseButtonUp(1)
+				 || Globals.input.GetMouseButton(1) && Globals.input.GetKey(Keys.LeftShift))
+				{
+					var overlap = OverlapsWithMouse();
+					if (overlap != null) Remove(overlap);
+				}
+			}
+		}
+
+		private void UpdatePreview()
+		{
+			var mousePos = Globals.input.GetMouseWorldPosition();
+
+			if (!Globals.input.GetKey(Keys.LeftControl))
+				mousePos = new Vector2(MathF.Round(mousePos.X), MathF.Round(mousePos.Y));
+
+			preview.transform.position = mousePos;
+		}
+
+		public void Spawn(string prefabName, Vector2 position)
+		{
+			var extractedSprite = GetOnlySprite(prefabManager.Find(prefabName), new Transform(position));
+
+			editorObjects.Add(new EditorObject
+			{
+				PrefabName = prefabName,
+				Position = position,
+				EditorPlacedSprite = Instantiate(extractedSprite).GetComponent<Sprite>()
+			});
+
+			UpdateTitle();
+		}
+
+		private void Remove(EditorObject editorObject)
+		{
+			if (editorObject == null) return;
+
+			editorObject.EditorPlacedSprite.DestroyGameObject();
+			editorObjects.Remove(editorObject);
+
+			UpdateTitle();
+		}
+
+		private EditorObject OverlapsWithMouse()
+		{
+			var overlap = editorObjects.Find(x => x.EditorPlacedSprite.rect
+												   .OffsetByHalf()
+												   .Contains(Globals.input.GetMouseScreenPosition()));
+
+			return overlap;
+		}
+
+		private void UpdateTitle() => Title.Add("Object Count " + (editorObjects.Count), 7);
+
+		private GameObject GetOnlySprite(GameObject gameObject, Transform transform)
+		{
+			return new GameObject(transform, new List<Component>
+			{
+				(Sprite)gameObject.GetComponent<Sprite>().Clone()
+			}, isStatic: true);
+		}
+	}
+}

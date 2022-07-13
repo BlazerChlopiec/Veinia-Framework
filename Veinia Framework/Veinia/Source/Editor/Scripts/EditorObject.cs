@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Newtonsoft.Json;
 
 namespace Veinia.Editor
 {
@@ -6,5 +7,6 @@ namespace Veinia.Editor
 	{
 		public string PrefabName { get; set; }
 		public Vector2 Position { get; set; }
+		[JsonIgnore] public Sprite EditorPlacedSprite { get; set; }
 	}
 }

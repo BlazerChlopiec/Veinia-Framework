@@ -37,5 +37,15 @@ namespace Veinia
 
 			return new CollisionComponent(prevBoundary);
 		}
+		public static Rectangle OffsetByHalf(this Rectangle rect)
+		{
+			rect.Offset(-rect.Width / 2, -rect.Height / 2);
+			return rect;
+		}
+		public static RectangleF OffsetByHalf(this RectangleF rect)
+		{
+			rect.Offset(-rect.Width / 2, -rect.Height / 2);
+			return rect;
+		}
 	}
 }

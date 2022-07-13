@@ -10,7 +10,7 @@ namespace Veinia
 	{
 		protected PrefabManager prefabManager;
 
-		private string editorLevelName;
+		public string editorLevelName;
 
 
 		public Level(PrefabManager prefabManager)

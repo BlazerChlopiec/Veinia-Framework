@@ -24,7 +24,7 @@ namespace Veinia.Editor
 			{
 				new Grid(),
 				new EditorControls(),
-				new PlacingObjects(prefabManager),
+				new EditorObjectManager(prefabManager),
 				new EditorJson(editedLevel),
 			}, isStatic: true);
 

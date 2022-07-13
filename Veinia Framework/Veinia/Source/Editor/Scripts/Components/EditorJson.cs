@@ -7,9 +7,9 @@ namespace Veinia.Editor
 {
 	public class EditorJson : Component
 	{
-		PlacingObjects placingObjects;
+		EditorObjectManager objectManager;
 
-		private string editedLevel = "level1.veinia";
+		private string editedLevel;
 
 
 		public EditorJson(string editedLevel)
@@ -25,7 +25,7 @@ namespace Veinia.Editor
 		}
 		public void Load()
 		{
-			placingObjects.objects.Clear();
+			objectManager.editorObjects.Clear();
 
 			if (!File.Exists(editedLevel)) return;
 			var deserializedText = File.ReadAllText(editedLevel);
@@ -33,13 +33,13 @@ namespace Veinia.Editor
 
 			foreach (var item in objects)
 			{
-				placingObjects.PlaceObject(item.PrefabName, new Transform(item.Position));
+				objectManager.Spawn(item.PrefabName, item.Position);
 			}
 		}
 
 		public override void Initialize()
 		{
-			placingObjects = GetComponent<PlacingObjects>();
+			objectManager = GetComponent<EditorObjectManager>();
 
 			Load();
 		}
@@ -48,7 +48,7 @@ namespace Veinia.Editor
 		{
 			if (Globals.input.GetKey(Keys.LeftControl) && Globals.input.GetKeyDown(Keys.S))
 			{
-				Save(placingObjects.objects);
+				Save(objectManager.editorObjects);
 			}
 		}
 	}
