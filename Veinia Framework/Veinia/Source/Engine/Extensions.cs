@@ -47,5 +47,12 @@ namespace Veinia
 			rect.Offset(-rect.Width / 2, -rect.Height / 2);
 			return rect;
 		}
+		public static GameObject ExcludeToOnlySpriteComponent(this GameObject gameObject, Vector2 position)
+		{
+			return new GameObject(new Transform(position), new List<Component>
+			{
+				(Sprite)gameObject.GetComponent<Sprite>().Clone()
+			}, isStatic: true);
+		}
 	}
 }

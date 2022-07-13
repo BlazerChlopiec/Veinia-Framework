@@ -10,8 +10,8 @@ namespace Veinia.BlockBreaker
 
 		public override void Update()
 		{
-			var mouseControlls = new Vector2(Globals.input.GetMouseWorldPosition().X, yOffset);
-			transform.position = new Vector2(MathHelper.Clamp(mouseControlls.X, -xLimit, xLimit), mouseControlls.Y);
+			var mouseControls = new Vector2(Globals.input.GetMouseWorldPosition().X, yOffset);
+			transform.position = new Vector2(MathHelper.Clamp(mouseControls.X, -xLimit, xLimit), mouseControls.Y);
 		}
 	}
 }

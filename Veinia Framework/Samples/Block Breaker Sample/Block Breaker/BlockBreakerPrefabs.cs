@@ -16,11 +16,11 @@ namespace Veinia.BlockBreaker
 				new Block(),
 			}, isStatic: true));
 
-			Add("Green Block", new GameObject(Transform.Empty, new List<Component>
+			Add("Moving Block", new GameObject(Transform.Empty, new List<Component>
 			{
-				new Sprite("Block Breaker/Grass Tile", .1f, Color.Green, Vector2.One),
+				new Sprite("Block Breaker/Grass Tile", .1f, Color.Red, Vector2.One),
 				new RectangleCollider(Vector2.Zero, Vector2.One),
-				new Block(),
+				new MovingBlock(),
 			}, isStatic: true));
 		}
 	}

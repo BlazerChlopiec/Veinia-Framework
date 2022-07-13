@@ -5,10 +5,10 @@ namespace Veinia.BlockBreaker
 {
 	public class Block : Component
 	{
-		private bool hasBeenHit;
+		protected bool hasBeenHit;
 
 
-		public void Hit()
+		public virtual void Hit()
 		{
 			if (hasBeenHit) return;
 

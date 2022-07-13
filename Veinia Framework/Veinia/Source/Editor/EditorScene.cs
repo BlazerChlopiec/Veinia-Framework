@@ -26,6 +26,7 @@ namespace Veinia.Editor
 				new EditorControls(),
 				new EditorObjectManager(prefabManager),
 				new EditorJson(editedLevel),
+				new ToolBox(prefabManager)
 			}, isStatic: true);
 
 			GameObject background = Instantiate(Transform.Empty, new List<Component>

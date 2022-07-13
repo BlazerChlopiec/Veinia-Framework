@@ -10,7 +10,7 @@ namespace Veinia.Editor
 		PrefabManager prefabManager;
 		public List<EditorObject> editorObjects = new List<EditorObject>();
 
-		public string currentPrefab = "Block";
+		public string currentPrefabName = "Block";
 
 		GameObject preview;
 
@@ -27,12 +27,20 @@ namespace Veinia.Editor
 
 		private void SpawnPreview()
 		{
-			preview = GetOnlySprite(prefabManager.Find(currentPrefab), Transform.Empty);
+			if (preview != null) preview.DestroyGameObject();
+
+			preview = prefabManager.Find(currentPrefabName).ExcludeToOnlySpriteComponent(Vector2.Zero);
 			var sprite = preview.GetComponent<Sprite>();
-			sprite.color = Color.White * .5f;
+			sprite.color *= .5f;
 			sprite.layer = 1;
 
-			Instantiate(preview);
+			preview = Instantiate(preview);
+		}
+
+		public void ChangeCurrentPrefab(string newPrefabName)
+		{
+			currentPrefabName = newPrefabName;
+			SpawnPreview();
 		}
 
 		public override void Update()
@@ -51,17 +59,19 @@ namespace Veinia.Editor
 						mousePos = new Vector2(MathF.Round(mousePos.X), MathF.Round(mousePos.Y));
 
 
-					if (OverlapsWithMouse() == null)
-						Spawn(currentPrefab, mousePos);
+					if (OverlapsWithMouse(currentPrefabName) == null)
+						Spawn(currentPrefabName, mousePos);
 				}
+				//
 
 				//deleting
 				if (Globals.input.GetMouseButtonUp(1)
 				 || Globals.input.GetMouseButton(1) && Globals.input.GetKey(Keys.LeftShift))
 				{
-					var overlap = OverlapsWithMouse();
+					var overlap = OverlapsWithMouse(currentPrefabName);
 					if (overlap != null) Remove(overlap);
 				}
+				//
 			}
 		}
 
@@ -77,13 +87,13 @@ namespace Veinia.Editor
 
 		public void Spawn(string prefabName, Vector2 position)
 		{
-			var extractedSprite = GetOnlySprite(prefabManager.Find(prefabName), new Transform(position));
+			var extractedSpriteGameObject = prefabManager.Find(prefabName).ExcludeToOnlySpriteComponent(position);
 
 			editorObjects.Add(new EditorObject
 			{
 				PrefabName = prefabName,
 				Position = position,
-				EditorPlacedSprite = Instantiate(extractedSprite).GetComponent<Sprite>()
+				EditorPlacedSprite = Instantiate(extractedSpriteGameObject).GetComponent<Sprite>()
 			});
 
 			UpdateTitle();
@@ -99,9 +109,9 @@ namespace Veinia.Editor
 			UpdateTitle();
 		}
 
-		private EditorObject OverlapsWithMouse()
+		private EditorObject OverlapsWithMouse(string prefabName)
 		{
-			var overlap = editorObjects.Find(x => x.EditorPlacedSprite.rect
+			var overlap = editorObjects.Find(x => x.PrefabName == prefabName && x.EditorPlacedSprite.rect
 												   .OffsetByHalf()
 												   .Contains(Globals.input.GetMouseScreenPosition()));
 
@@ -109,13 +119,5 @@ namespace Veinia.Editor
 		}
 
 		private void UpdateTitle() => Title.Add("Object Count " + (editorObjects.Count), 7);
-
-		private GameObject GetOnlySprite(GameObject gameObject, Transform transform)
-		{
-			return new GameObject(transform, new List<Component>
-			{
-				(Sprite)gameObject.GetComponent<Sprite>().Clone()
-			}, isStatic: true);
-		}
 	}
 }

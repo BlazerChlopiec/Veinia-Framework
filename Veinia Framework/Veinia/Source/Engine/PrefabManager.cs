@@ -19,7 +19,12 @@ namespace Veinia
 			prefabs.Add(prefabData);
 		}
 
-		public GameObject Find(string name) => prefabs.Find(x => x.prefabName == name).prefabGameObject;
+		public GameObject Find(string name)
+		{
+			var prefab = prefabs.Find(x => x.prefabName == name).prefabGameObject;
+			if (prefab == null) throw new System.Exception("The Prefab you're looking for doesn't exist: " + name);
+			return prefab;
+		}
 
 		public virtual void LoadPrefabs(WorldTools tools) => prefabs.Clear();
 

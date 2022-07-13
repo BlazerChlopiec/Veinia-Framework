@@ -5,7 +5,7 @@ TODO:
 - a collider is currently pushable if its instantiated before the pusher which is weird
 - add collision priority
 - examine the need of utils.cs
-- add .ignore on the bin and obj folders
+- add editor toolbox
 
 
 FUTURE PLANS:
@@ -13,7 +13,6 @@ FUTURE PLANS:
 - optimisation research
 - improve different gamepad support
 - audio
-- in-engine enditors
 - penumbra lights
 - animation 
 
@@ -37,3 +36,5 @@ FUTURE PLANS:
 - remake prefabs
 - remove the "new" in block breaker sample name
 - sometimes onCollision functions don't seem to get called?
+- add .ignore on the bin and obj folders
+- in-engine editor
