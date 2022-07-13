@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Veinia.Editor
 {
-	public class Toolbox : Component
+	public class Toolbar : Component
 	{
 		PrefabManager prefabManager;
 		EditorObjectManager editorObjectManager;
@@ -18,7 +18,7 @@ namespace Veinia.Editor
 		private float scroll;
 
 
-		public Toolbox(PrefabManager prefabManager)
+		public Toolbar(PrefabManager prefabManager)
 		{
 			this.prefabManager = prefabManager;
 		}

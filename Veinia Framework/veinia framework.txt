@@ -6,6 +6,8 @@ TODO:
 - add collision priority
 - examine the need of utils.cs
 - add UI system
+- rework the grid (make it more performant)
+- add editor gizmos
 
 
 FUTURE PLANS:

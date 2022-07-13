@@ -8,7 +8,7 @@ namespace Veinia.Editor
 	public class EditorObjectManager : Component
 	{
 		PrefabManager prefabManager;
-		Toolbox toolbox;
+		Toolbar toolbar;
 
 		public List<EditorObject> editorObjects = new List<EditorObject>();
 
@@ -25,7 +25,7 @@ namespace Veinia.Editor
 
 		public override void Initialize()
 		{
-			toolbox = FindComponentOfType<Toolbox>();
+			toolbar = FindComponentOfType<Toolbar>();
 			SpawnPreview();
 		}
 
@@ -52,7 +52,7 @@ namespace Veinia.Editor
 		{
 			UpdatePreview();
 
-			if (!Globals.input.GetKey(Keys.LeftAlt) && !toolbox.hoveringOver)
+			if (!Globals.input.GetKey(Keys.LeftAlt) && !toolbar.hoveringOver)
 			{
 				//placing
 				if (Globals.input.GetMouseButtonUp(0)

@@ -5,7 +5,7 @@ namespace Veinia.Editor
 {
 	public class EditorControls : Component
 	{
-		Toolbox toolbox;
+		Toolbar toolbar;
 
 		private bool drag;
 
@@ -14,12 +14,12 @@ namespace Veinia.Editor
 
 		public override void Initialize()
 		{
-			toolbox = FindComponentOfType<Toolbox>();
+			toolbar = FindComponentOfType<Toolbar>();
 		}
 
 		public override void Update()
 		{
-			if (toolbox.hoveringOver) { drag = false; return; }
+			if (toolbar.hoveringOver) { drag = false; return; }
 
 			if (Globals.input.GetMouseButtonDown(0) && Globals.input.GetKey(Keys.LeftAlt))
 			{

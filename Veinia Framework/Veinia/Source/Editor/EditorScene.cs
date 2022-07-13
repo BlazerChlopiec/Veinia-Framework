@@ -31,7 +31,7 @@ namespace Veinia.Editor
 			GameObject toolbox = Instantiate(Transform.Empty, new List<Component>
 			{
 				new Sprite("Editor/Square", .95f, Color.Black, destinationSize: new Vector2(1.2f, 1)),
-				new Toolbox(prefabManager)
+				new Toolbar(prefabManager)
 			}, isStatic: true);
 		}
 	}
