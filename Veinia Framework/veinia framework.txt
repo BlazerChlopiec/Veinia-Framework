@@ -5,7 +5,7 @@ TODO:
 - a collider is currently pushable if its instantiated before the pusher which is weird
 - add collision priority
 - examine the need of utils.cs
-- add editor toolbox
+- add UI system
 
 
 FUTURE PLANS:
@@ -38,3 +38,4 @@ FUTURE PLANS:
 - sometimes onCollision functions don't seem to get called?
 - add .ignore on the bin and obj folders
 - in-engine editor
+- add editor toolbox

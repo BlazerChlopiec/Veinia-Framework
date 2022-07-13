@@ -34,7 +34,7 @@ namespace Veinia.BlockBreaker
 			Globals.fps.vSync(true);
 			Globals.fps.ChangeFps(int.MaxValue);
 
-			Globals.loader.Load(new Level1(prefabs, "level1.veinia"));
+			Globals.loader.Load(new Level1(prefabs, "BlockBreakerLevel1.veinia"));
 
 
 			base.Initialize();

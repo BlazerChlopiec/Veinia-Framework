@@ -26,14 +26,14 @@ namespace Veinia.RunningBlocks
 			var prefabs = new RunningBlocksPrefabs();
 
 			veinia.Initialize(this, graphics, GraphicsDevice, Content, Window,
-				pixelsPerUnit: 100, new Vector2(1920, 1080), fullscreen: true);
+				pixelsPerUnit: 100, new Vector2(1920, 1080), prefabs, fullscreen: true);
 
 			Globals.fps.vSync(false);
 			Globals.fps.ChangeFps(int.MaxValue);
 
 			Collider.showHitboxes = true;
 
-			Globals.loader.Load(new Level1(prefabs));
+			Globals.loader.Load(new Level1(prefabs, "RunningBlocksLevel1.veinia"));
 
 			base.Initialize();
 		}

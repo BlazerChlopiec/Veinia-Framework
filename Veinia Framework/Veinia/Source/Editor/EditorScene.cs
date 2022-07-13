@@ -26,12 +26,12 @@ namespace Veinia.Editor
 				new EditorControls(),
 				new EditorObjectManager(prefabManager),
 				new EditorJson(editedLevel),
-				new ToolBox(prefabManager)
 			}, isStatic: true);
 
-			GameObject background = Instantiate(Transform.Empty, new List<Component>
+			GameObject toolbox = Instantiate(Transform.Empty, new List<Component>
 			{
-				new Sprite("Editor/Background", 0.01f, Color.Red)
+				new Sprite("Editor/Square", .95f, Color.Black, destinationSize: new Vector2(1.2f, 1)),
+				new Toolbox(prefabManager)
 			}, isStatic: true);
 		}
 	}

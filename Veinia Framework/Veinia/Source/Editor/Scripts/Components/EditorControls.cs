@@ -5,13 +5,22 @@ namespace Veinia.Editor
 {
 	public class EditorControls : Component
 	{
+		Toolbox toolbox;
+
 		private bool drag;
 
 		private Vector2 startMousePos;
 
 
+		public override void Initialize()
+		{
+			toolbox = FindComponentOfType<Toolbox>();
+		}
+
 		public override void Update()
 		{
+			if (toolbox.hoveringOver) { drag = false; return; }
+
 			if (Globals.input.GetMouseButtonDown(0) && Globals.input.GetKey(Keys.LeftAlt))
 			{
 				startMousePos = Globals.input.GetMouseWorldPosition();

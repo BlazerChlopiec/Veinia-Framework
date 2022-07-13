@@ -30,6 +30,18 @@ namespace Veinia
 
 		public static void SetPosition(this OrthographicCamera camera, Vector2 worldPos) => camera.Position = Transform.ToScreenUnits(worldPos);
 		public static Vector2 GetPosition(this OrthographicCamera camera) => Transform.ToWorldUnits(camera.Position);
+		public static float GetScaleX(this OrthographicCamera camera)
+		{
+			var left = Transform.ScreenToWorldPos(camera.BoundingRectangle.Left, 0);
+			var right = Transform.ScreenToWorldPos(camera.BoundingRectangle.Right, 0);
+			return right.X - left.X;
+		}
+		public static float GetScaleY(this OrthographicCamera camera)
+		{
+			var bottom = Transform.ScreenToWorldPos(0, camera.BoundingRectangle.Bottom);
+			var top = Transform.ScreenToWorldPos(0, camera.BoundingRectangle.Top);
+			return top.Y - bottom.Y;
+		}
 
 		public static CollisionComponent GetReloaded(this CollisionComponent collisionComponent)
 		{
@@ -47,9 +59,9 @@ namespace Veinia
 			rect.Offset(-rect.Width / 2, -rect.Height / 2);
 			return rect;
 		}
-		public static GameObject ExcludeToOnlySpriteComponent(this GameObject gameObject, Vector2 position)
+		public static GameObject ExcludeToOnlySpriteComponent(this GameObject gameObject, Vector2 newPosition)
 		{
-			return new GameObject(new Transform(position), new List<Component>
+			return new GameObject(new Transform(newPosition), new List<Component>
 			{
 				(Sprite)gameObject.GetComponent<Sprite>().Clone()
 			}, isStatic: true);

@@ -8,11 +8,14 @@ namespace Veinia.Editor
 	public class EditorObjectManager : Component
 	{
 		PrefabManager prefabManager;
+		Toolbox toolbox;
+
 		public List<EditorObject> editorObjects = new List<EditorObject>();
 
 		public string currentPrefabName = "Block";
 
 		GameObject preview;
+
 
 
 		public EditorObjectManager(PrefabManager prefabManager)
@@ -22,6 +25,7 @@ namespace Veinia.Editor
 
 		public override void Initialize()
 		{
+			toolbox = FindComponentOfType<Toolbox>();
 			SpawnPreview();
 		}
 
@@ -32,7 +36,7 @@ namespace Veinia.Editor
 			preview = prefabManager.Find(currentPrefabName).ExcludeToOnlySpriteComponent(Vector2.Zero);
 			var sprite = preview.GetComponent<Sprite>();
 			sprite.color *= .5f;
-			sprite.layer = 1;
+			sprite.layer = .9f;
 
 			preview = Instantiate(preview);
 		}
@@ -41,13 +45,14 @@ namespace Veinia.Editor
 		{
 			currentPrefabName = newPrefabName;
 			SpawnPreview();
+			UpdatePreview();
 		}
 
 		public override void Update()
 		{
 			UpdatePreview();
 
-			if (!Globals.input.GetKey(Keys.LeftAlt))
+			if (!Globals.input.GetKey(Keys.LeftAlt) && !toolbox.hoveringOver)
 			{
 				//placing
 				if (Globals.input.GetMouseButtonUp(0)

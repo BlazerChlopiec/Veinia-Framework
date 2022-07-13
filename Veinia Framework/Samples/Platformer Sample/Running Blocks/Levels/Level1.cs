@@ -43,11 +43,6 @@ namespace Veinia.RunningBlocks
 				}, isStatic: true);
 
 
-			Instantiate(new Transform(Vector2.Zero), prefabManager.Find("Block"));
-			Instantiate(new Transform(Vector2.UnitY), prefabManager.Find("Block"));
-			Instantiate(new Transform(Vector2.UnitY * 2), prefabManager.Find("Block"));
-			Instantiate(new Transform(Vector2.UnitY * 3), prefabManager.Find("Block"));
-
 			Instantiate(new Transform(Vector2.Zero), new List<Component>
 			{
 				new SimpleTopDown(),

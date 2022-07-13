@@ -13,6 +13,7 @@ namespace Veinia
 		public object Clone() => MemberwiseClone();
 		public virtual void Initialize() { }
 		public virtual void Update() { }
+		public virtual void LateUpdate() { }
 		public T1 FindComponentOfType<T1>() where T1 : Component => parent.world.FindComponentOfType<T1>();
 		public List<T1> FindComponentsOfType<T1>() where T1 : Component => parent.world.FindComponentsOfType<T1>();
 		public T1 NullableGetComponent<T1>() where T1 : Component => parent.NullableGetComponent<T1>();

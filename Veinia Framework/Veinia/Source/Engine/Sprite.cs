@@ -8,7 +8,7 @@ namespace Veinia
 	{
 		public Color color = Color.White;
 		public float layer;
-		Vector2 destinationSize;
+		public Vector2 destinationSize;
 		public Texture2D texture;
 
 

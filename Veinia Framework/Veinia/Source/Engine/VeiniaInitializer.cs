@@ -50,6 +50,7 @@ namespace Veinia
 			{
 				Globals.tweener.Update(Time.deltaTime);
 				if (Globals.loader.currentLevel != null) Globals.loader.currentLevel.Update();
+				if (Globals.loader.currentLevel != null) Globals.loader.currentLevel.LateUpdate();
 				Globals.collisionComponent.Update(gameTime);
 			}
 
@@ -58,7 +59,7 @@ namespace Veinia
 			title.Update();
 
 
-			//#if DEBUG
+#if DEBUG
 			if (Globals.input.GetKeyDown(Keys.F))
 			{
 				Collider.showHitboxes = !Collider.showHitboxes;
@@ -73,7 +74,7 @@ namespace Veinia
 				else
 					Globals.loader.Load(new EditorScene(Globals.loader.currentLevel.editorLevelName, prefabManager));
 			}
-			//#endif
+#endif
 		}
 
 		public void Draw(SpriteBatch spriteBatch)

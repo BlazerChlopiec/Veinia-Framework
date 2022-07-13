@@ -22,6 +22,11 @@ namespace Veinia.BlockBreaker
 				new RectangleCollider(Vector2.Zero, Vector2.One),
 				new MovingBlock(),
 			}, isStatic: true));
+
+			Add("Background", new GameObject(Transform.Empty, new List<Component>
+			{
+				new Sprite("Block Breaker/Background", 0, Color.White, new Vector2(16 * 1.2f, 9 * 1.2f)),
+			}, isStatic: true));
 		}
 	}
 }

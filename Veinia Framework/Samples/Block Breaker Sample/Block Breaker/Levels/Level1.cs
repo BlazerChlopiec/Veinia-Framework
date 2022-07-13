@@ -20,12 +20,12 @@ namespace Veinia.BlockBreaker
 			Globals.camera.SetPosition(Vector2.Zero);
 			Globals.camera.Zoom = 1;
 
-			GameObject background = Instantiate(
-				new Transform(Vector2.Zero),
-				new List<Component>
-				{
-				new Sprite("Block Breaker/Background", 0, Color.White, new Vector2(16*1.2f,9*1.2f)),
-				}, isStatic: true);
+			//GameObject background = Instantiate(
+			//	new Transform(Vector2.Zero),
+			//	new List<Component>
+			//	{
+			//	new Sprite("Block Breaker/Background", 0, Color.White, new Vector2(16*1.2f,9*1.2f)),
+			//	}, isStatic: true);
 
 			GameObject leftBorder = Instantiate(
 				new Transform(-Vector2.UnitX * 9.7f),
