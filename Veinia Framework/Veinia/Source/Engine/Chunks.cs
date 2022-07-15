@@ -28,7 +28,7 @@ namespace Veinia
 		{
 			if (targetSpot == null) return;
 
-			if (!currentChunk.colliderRect.Contains(Utils.Vector2ToPoint(Transform.WorldToScreenPos(targetSpot.position))))
+			if (!currentChunk.colliderRect.Contains(Transform.WorldToScreenPos(targetSpot.position).ToPoint()))
 			{
 				SpawnNewChunk(targetSpot.position);
 			}

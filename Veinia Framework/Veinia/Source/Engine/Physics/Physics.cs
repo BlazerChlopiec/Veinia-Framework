@@ -6,11 +6,6 @@ namespace Veinia
 	{
 		public Vector2 velocity;
 
-		public override void Update()
-		{
-			transform.position += velocity * Time.deltaTime;
-
-
-		}
+		public override void Update() => transform.position += velocity * Time.deltaTime;
 	}
 }

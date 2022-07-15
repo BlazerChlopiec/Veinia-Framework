@@ -101,7 +101,7 @@ namespace Veinia
 
 			if (currentDevice == Device.keyboard && normalizeKeyboardAxis || normalizeControllerAxis) // always normalize the input when its a keyboard
 			{                                                                                         // or when 'normalizeControllerAxis' is true
-				Utils.SafeNormalize(axisVector);
+				axisVector.SafeNormalize();
 			}
 
 

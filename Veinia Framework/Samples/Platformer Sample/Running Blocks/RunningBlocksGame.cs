@@ -26,7 +26,7 @@ namespace Veinia.RunningBlocks
 			var prefabs = new RunningBlocksPrefabs();
 
 			veinia.Initialize(this, graphics, GraphicsDevice, Content, Window,
-				pixelsPerUnit: 100, new Vector2(1280, 720), prefabs, fullscreen: false);
+				pixelsPerUnit: 100, new Vector2(1920, 1080), prefabs, fullscreen: true);
 
 			Globals.fps.vSync(false);
 			Globals.fps.ChangeFps(int.MaxValue);

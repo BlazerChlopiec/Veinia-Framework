@@ -66,5 +66,16 @@ namespace Veinia
 				(Sprite)gameObject.GetComponent<Sprite>().Clone()
 			}, isStatic: true);
 		}
+		public static Vector2 SafeNormalize(this Vector2 value)
+		{
+			// if the vector WOULD be normalized when its zero we would get NaN
+			// so we need to only normalize the vector when its not Vector2.Zero
+			if (value != Vector2.Zero)
+			{
+				value.Normalize();
+			}
+
+			return value;
+		}
 	}
 }

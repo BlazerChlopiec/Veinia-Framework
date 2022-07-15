@@ -6,7 +6,7 @@ namespace Veinia.RunningBlocks
 	{
 		Physics physics;
 
-		private const float speed = 30;
+		private const float speed = 10;
 
 		public override void Initialize()
 		{
@@ -15,8 +15,7 @@ namespace Veinia.RunningBlocks
 
 		public override void Update()
 		{
-			physics.velocity = Utils.SafeNormalize(new Vector2(Globals.input.horizontal, Globals.input.vertical))
-								* speed * 50 * Time.deltaTime;
+			physics.velocity = new Vector2(Globals.input.horizontal, Globals.input.vertical).SafeNormalize() * speed;
 		}
 	}
 }
