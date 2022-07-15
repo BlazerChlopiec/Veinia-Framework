@@ -59,7 +59,7 @@ namespace Veinia
 
 			if (!parent.isStatic) transform.position -= Transform.ToWorldUnits(collisionInfo.PenetrationVector);
 
-			foreach (var item in parent.GetAllComponents<Collider>())
+			foreach (var item in GetAllComponents<Collider>())
 			{
 				item.Bounds.Position = transform.screenPos + item.offset;
 			}
@@ -83,19 +83,10 @@ namespace Veinia
 			Bounds.Position = transform.screenPos + offset;
 		}
 
-		public void Dispose()
-		{
-			Globals.collisionComponent.Remove(this);
-		}
+		public void Dispose() => Globals.collisionComponent.Remove(this);
 
-		public void ToggleOn()
-		{
-			Globals.collisionComponent.Insert(this);
-		}
+		public void ToggleOn() => Globals.collisionComponent.Insert(this);
 
-		public void ToggleOff()
-		{
-			Globals.collisionComponent.Remove(this);
-		}
+		public void ToggleOff() => Globals.collisionComponent.Remove(this);
 	}
 }

@@ -12,7 +12,7 @@ namespace Veinia.RunningBlocks
 			Add("Block", new GameObject(new Transform(Vector2.Zero), new List<Component>
 			{
 				new Sprite("Running Blocks/Square", 0, Color.White, destinationSize: Vector2.One),
-				new CircleCollider(Vector2.Zero, 1)
+				new RectangleCollider(Vector2.Zero, Vector2.One)
 			}, isStatic: false));
 		}
 	}

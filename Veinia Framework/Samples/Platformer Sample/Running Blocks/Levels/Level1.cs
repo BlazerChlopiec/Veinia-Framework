@@ -17,6 +17,8 @@ namespace Veinia.RunningBlocks
 		{
 			base.LoadContents();
 
+			Collider.showHitboxes = true;
+
 			Globals.camera.SetPosition(Vector2.Zero);
 			Globals.camera.Zoom = 1;
 
@@ -48,7 +50,7 @@ namespace Veinia.RunningBlocks
 
 			Instantiate(new Transform(Vector2.Zero), new List<Component>
 			{
-				new SimpleTopDown(),
+				new TopDownMovement(),
 				new RectangleCollider(Vector2.One, Vector2.One),
 				new RectangleCollider(Vector2.Zero, Vector2.One),
 				new RectangleCollider(Vector2.One * -1, Vector2.One),
@@ -59,8 +61,8 @@ namespace Veinia.RunningBlocks
 			{
 				new FollowMouse(),
 				new CircleCollider(Vector2.Zero, .5f),
-				new RectangleCollider(Vector2.One, Vector2.One),
-				new RectangleCollider(Vector2.One*-1, Vector2.One),
+				new CircleCollider(Vector2.One, .5f),
+				new CircleCollider(Vector2.One*-1, .5f),
 			}, isStatic: false);
 		}
 	}

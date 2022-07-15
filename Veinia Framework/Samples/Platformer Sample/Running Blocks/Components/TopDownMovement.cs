@@ -2,11 +2,12 @@
 
 namespace Veinia.RunningBlocks
 {
-	public class SimpleTopDown : Component
+	public class TopDownMovement : Component
 	{
 		Physics physics;
 
 		private const float speed = 10;
+
 
 		public override void Initialize()
 		{

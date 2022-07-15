@@ -18,6 +18,7 @@ namespace Veinia
 		public List<T1> FindComponentsOfType<T1>() where T1 : Component => parent.world.FindComponentsOfType<T1>();
 		public T1 NullableGetComponent<T1>() where T1 : Component => parent.NullableGetComponent<T1>();
 		public T1 GetComponent<T1>() where T1 : Component => parent.GetComponent<T1>();
+		public List<T1> GetAllComponents<T1>() where T1 : Component => parent.GetAllComponents<T1>();
 		public Component AddComponent(Component component) => parent.AddComponent(component);
 		public void RemoveComponent(Component component) => parent.RemoveComponent(component);
 		public GameObject Instantiate(Transform transform, List<Component> components, bool isStatic) => parent.world.Instantiate(transform, components, isStatic);
