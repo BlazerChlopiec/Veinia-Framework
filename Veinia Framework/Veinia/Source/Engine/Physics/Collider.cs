@@ -9,7 +9,7 @@ namespace Veinia
 	{
 		public static bool showHitboxes;
 
-		protected Vector2 offset;
+		public Vector2 offset;
 		public bool trigger;
 
 		private bool isColliding;
@@ -56,9 +56,13 @@ namespace Veinia
 
 			if (trigger || collisionInfo.Other.collider.trigger) return;
 
+
 			if (!parent.isStatic) transform.position -= Transform.ToWorldUnits(collisionInfo.PenetrationVector);
 
-			Bounds.Position = transform.screenPos + offset;
+			foreach (var item in parent.GetAllComponents<Collider>())
+			{
+				item.Bounds.Position = transform.screenPos + item.offset;
+			}
 		}
 		public void OnCollisionEnter(CollisionEventArgs collisionInfo)
 		{

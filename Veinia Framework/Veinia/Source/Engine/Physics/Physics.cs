@@ -9,6 +9,8 @@ namespace Veinia
 		public override void Update()
 		{
 			transform.position += velocity * Time.deltaTime;
+
+
 		}
 	}
 }
