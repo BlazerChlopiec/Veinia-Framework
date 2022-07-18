@@ -5,6 +5,7 @@ C# Game Creation Tool
 This tool simplifies the usage of the MonoGame Framework to make getting started easy.
 This framework comes with a few things to give you a head start:
 * GameObject/Component System
+* Prefab-Based Level Editor
 * Drawing Sprites
 * Screen System
 * Chunk System For Optimization
@@ -13,11 +14,13 @@ This framework comes with a few things to give you a head start:
 * Handy World Tools (such as: Finding Objects Based on Their Components and Much More)
 * Useful Debug Tools
 * An Implementation of MonoGame.Extended (Collisions, Camera, Tweener, etc.)
+* An Implementation of Myra UI 
 
 
 ## Must Have Libraries
 * MonoGame.Extended
 * MonoGame.Extended.Tweening
+* Myra
 
 MonoGame.Extended.Collision is added in the framework as a modified version by default.
 
