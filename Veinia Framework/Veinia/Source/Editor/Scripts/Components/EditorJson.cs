@@ -48,7 +48,8 @@ namespace Veinia.Editor
 			{
 				Title = "Editor Manager",
 				Content = panel,
-				VerticalAlignment = VerticalAlignment.Center,
+				VerticalAlignment = VerticalAlignment.Bottom,
+				HorizontalAlignment = HorizontalAlignment.Center,
 			};
 			window.CloseButton.RemoveFromParent();
 
@@ -60,7 +61,7 @@ namespace Veinia.Editor
 			loadButton.Click += (s, e) => Load();
 			panel.Widgets.Add(loadButton);
 
-			window.Show(Globals.desktop);
+			window.Show(Globals.desktop, Point.Zero);
 
 			Load();
 		}

@@ -32,7 +32,7 @@ namespace Veinia.Editor
 				Title = "Prefabs",
 				Content = scroll,
 				VerticalAlignment = VerticalAlignment.Stretch,
-				HorizontalAlignment = HorizontalAlignment.Center
+				HorizontalAlignment = HorizontalAlignment.Right,
 			};
 			window.CloseButton.RemoveFromParent();
 
@@ -57,7 +57,7 @@ namespace Veinia.Editor
 			}
 			panel.Height = toolbarPrefabs.Count * 100 + topOffset;
 
-			window.Show(Globals.desktop);
+			window.Show(Globals.desktop, Point.Zero);
 		}
 
 		private void OnClickPrefab(ToolbarPrefab prefab) => editorObjectManager.ChangeCurrentPrefab(prefab.PrefabName);
