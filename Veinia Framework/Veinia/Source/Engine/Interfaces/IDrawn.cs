@@ -1,6 +1,9 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 
-public interface IDrawn
+namespace Veinia
 {
-	public void Draw(SpriteBatch sb);
+	public interface IDrawn
+	{
+		public void Draw(SpriteBatch sb);
+	}
 }

@@ -34,12 +34,12 @@ namespace Veinia.BlockBreaker
 			if (Globals.input.GetMouseButtonDown(0) && !launched)
 			{
 				launched = true;
-				physics.velocity = Utils.SafeNormalize(Vector2.One) * speed;
+				physics.velocity = Vector2.One.SafeNormalize() * speed;
 			}
 
 			else if (Globals.input.GetMouseButtonDown(0) && launched)
 			{
-				physics.velocity = Utils.SafeNormalize(Globals.input.GetMouseWorldPosition() - transform.position) * speed;
+				physics.velocity = (Globals.input.GetMouseWorldPosition() - transform.position).SafeNormalize() * speed;
 			}
 		}
 

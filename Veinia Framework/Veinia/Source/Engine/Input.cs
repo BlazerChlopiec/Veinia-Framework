@@ -238,6 +238,6 @@ namespace Veinia
 
 		public Vector2 GetMouseScreenPosition() => Globals.camera.ScreenToWorld(mouse.Position.ToVector2());
 		public Vector2 GetMouseWorldPosition() => Transform.ScreenToWorldPos(Globals.camera.ScreenToWorld(mouse.Position.ToVector2()));
-		public Vector2 GetMouseWorldPositionNonCameraRelative() => Transform.ScreenToWorldPos(mouse.Position.ToVector2());
+		public Vector2 GetMouseUIPos() => mouse.Position.ToVector2();
 	}
 }

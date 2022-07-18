@@ -1,5 +1,8 @@
-﻿interface IToggleable
+﻿namespace Veinia
 {
-	public void ToggleOn();
-	public void ToggleOff();
+	public interface IToggleable
+	{
+		public void ToggleOn();
+		public void ToggleOff();
+	}
 }

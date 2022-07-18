@@ -11,6 +11,15 @@ namespace Veinia
 		public Texture2D texture;
 
 
+		public Sprite(Texture2D texture, float layer, Color color, Vector2 destinationSize)
+		{
+			this.layer = layer;
+			this.color = color;
+
+			this.texture = texture;
+
+			this.destinationSize = destinationSize * Transform.pixelsPerUnit;
+		}
 		public Sprite(string path, float layer, Color color, Vector2 destinationSize)
 		{
 			this.layer = layer;

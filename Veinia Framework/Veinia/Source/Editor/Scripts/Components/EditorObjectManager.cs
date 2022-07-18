@@ -33,7 +33,7 @@ namespace Veinia.Editor
 		{
 			if (preview != null) preview.DestroyGameObject();
 
-			preview = prefabManager.Find(currentPrefabName).ExcludeToOnlySpriteComponent(Vector2.Zero);
+			preview = prefabManager.Find(currentPrefabName).ExtractSpriteToNewGameObject(Vector2.Zero);
 			var sprite = preview.GetComponent<Sprite>();
 			sprite.color *= .5f;
 			sprite.layer = .9f;
@@ -92,7 +92,7 @@ namespace Veinia.Editor
 
 		public void Spawn(string prefabName, Vector2 position)
 		{
-			var extractedSpriteGameObject = prefabManager.Find(prefabName).ExcludeToOnlySpriteComponent(position);
+			var extractedSpriteGameObject = prefabManager.Find(prefabName).ExtractSpriteToNewGameObject(position);
 
 			editorObjects.Add(new EditorObject
 			{

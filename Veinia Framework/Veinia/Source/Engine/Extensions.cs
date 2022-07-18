@@ -59,7 +59,7 @@ namespace Veinia
 			rect.Offset(-rect.Width / 2, -rect.Height / 2);
 			return rect;
 		}
-		public static GameObject ExcludeToOnlySpriteComponent(this GameObject gameObject, Vector2 newPosition)
+		public static GameObject ExtractSpriteToNewGameObject(this GameObject gameObject, Vector2 newPosition)
 		{
 			return new GameObject(new Transform(newPosition), new List<Component>
 			{

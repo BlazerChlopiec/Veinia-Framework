@@ -38,7 +38,7 @@ namespace Veinia.Editor
 			for (int i = 0; i < prefabManager.prefabs.Count; i++)
 			{
 				var extractedSpriteGameObject = prefabManager.Find(prefabManager.prefabs[i].prefabName)
-												.ExcludeToOnlySpriteComponent(
+												.ExtractSpriteToNewGameObject(
 												new Vector2(transform.position.X,
 												-Globals.camera.GetScaleY() + Globals.camera.GetScaleY() / 5 * i));
 

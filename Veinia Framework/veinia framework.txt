@@ -8,6 +8,7 @@ TODO:
 - add UI system
 - rework the grid (make it more performant)
 - add editor gizmos
+- add oncollision(ColArgs args) and ontrigger(ColArgs args)
 
 
 FUTURE PLANS:
