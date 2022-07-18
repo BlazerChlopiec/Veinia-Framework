@@ -48,7 +48,9 @@ namespace Veinia.Editor
 			{
 				Title = "Editor Manager",
 				Content = panel,
+				VerticalAlignment = VerticalAlignment.Center,
 			};
+			window.CloseButton.RemoveFromParent();
 
 			var saveButton = new TextButton { Text = "Save", HorizontalAlignment = HorizontalAlignment.Left };
 			saveButton.Click += (s, e) => Save();

@@ -20,6 +20,8 @@ namespace Veinia.Editor
 		public override void Initialize()
 		{
 			editorObjectManager = FindComponentOfType<EditorObjectManager>();
+			FeedToolboxWithPrefabs();
+
 
 			var panel = new Panel();
 			var scroll = new ScrollViewer();
@@ -29,27 +31,31 @@ namespace Veinia.Editor
 			{
 				Title = "Prefabs",
 				Content = scroll,
+				VerticalAlignment = VerticalAlignment.Stretch,
+				HorizontalAlignment = HorizontalAlignment.Center
 			};
+			window.CloseButton.RemoveFromParent();
 
-			FeedToolboxWithPrefabs();
+
+			int topOffset = 0;
 
 			foreach (var prefab in toolbarPrefabs)
 			{
-				prefab.image = new Image
+				var image = new Image
 				{
 					MaxHeight = 100,
 					MaxWidth = 100,
-					Top = 100 * toolbarPrefabs.IndexOf(prefab),
+					Top = topOffset + 100 * toolbarPrefabs.IndexOf(prefab),
 					ResizeMode = ImageResizeMode.Stretch,
 					VerticalAlignment = VerticalAlignment.Top,
 					Color = prefab.color,
 					Renderable = new TextureRegion(prefab.texture, new Rectangle(0, 0, prefab.texture.Width, prefab.texture.Height)),
 				};
-				prefab.image.TouchDown += (s, a) => OnClickPrefab(prefab);
+				image.TouchDown += (s, a) => OnClickPrefab(prefab);
 
-				panel.Widgets.Add(prefab.image);
+				panel.Widgets.Add(image);
 			}
-			panel.Height = toolbarPrefabs.Count * 100;
+			panel.Height = toolbarPrefabs.Count * 100 + topOffset;
 
 			window.Show(Globals.desktop);
 		}
@@ -77,6 +83,5 @@ namespace Veinia.Editor
 		public string PrefabName { get; set; }
 		public Texture2D texture { get; set; }
 		public Color color { get; set; }
-		public Image image;
 	}
 }

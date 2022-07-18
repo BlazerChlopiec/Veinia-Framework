@@ -1,19 +1,16 @@
 TODO:
-- improve chunks and implement frustum occlussion (1/2 DONE)
+- improve chunks (1/2 DONE)
 - finish ExecuteUpdateWhenCulled
 - store levels and screens instead of creating new levels every time
 - a collider is currently pushable if its instantiated before the pusher which is weird
 - add collision priority
-- examine the need of utils.cs
-- add UI system
 - rework the grid (make it more performant)
 - add editor gizmos
-- add oncollision(ColArgs args) and ontrigger(ColArgs args)
+- add oncollision(CollisionArgs args) and ontrigger(CollisionArgs args)
 
 
 FUTURE PLANS:
-- antialiasing 
-- optimisation research
+- optimisation
 - improve different gamepad support
 - audio
 - penumbra lights
@@ -42,3 +39,5 @@ FUTURE PLANS:
 - add .ignore on the bin and obj folders
 - in-engine editor
 - add editor toolbox
+- add UI system
+- examine the need of utils.cs
