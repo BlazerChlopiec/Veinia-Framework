@@ -10,7 +10,7 @@ namespace Veinia.BlockBreaker
 		private GraphicsDeviceManager graphics;
 		private SpriteBatch spriteBatch;
 
-		VeiniaInitializer veinia = new VeiniaInitializer();
+		VeiniaInitializer veinia;
 
 
 		public BlockBreakerGame()
@@ -18,8 +18,9 @@ namespace Veinia.BlockBreaker
 			graphics = new GraphicsDeviceManager(this);
 			Content.RootDirectory = "Content";
 			IsMouseVisible = true;
-
 			Window.AllowUserResizing = true;
+
+			veinia = new VeiniaInitializer(this, graphics);
 		}
 
 		protected override void Initialize()
@@ -28,12 +29,11 @@ namespace Veinia.BlockBreaker
 
 			var prefabs = new BlockBreakerPrefabs();
 
-			veinia.Initialize(this, graphics, GraphicsDevice, Content, Window,
+			veinia.Initialize(GraphicsDevice, Content, Window,
 					pixelsPerUnit: 100, new Vector2(1280, 720), prefabs, fullscreen: false);
 
 			Globals.fps.vSync(true);
 			Globals.fps.ChangeFps(int.MaxValue);
-
 			Globals.loader.Load(new Level1(prefabs, "BlockBreakerLevel1.veinia"));
 
 

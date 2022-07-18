@@ -18,10 +18,7 @@ namespace Veinia.Editor
 
 
 
-		public EditorObjectManager(PrefabManager prefabManager)
-		{
-			this.prefabManager = prefabManager;
-		}
+		public EditorObjectManager(PrefabManager prefabManager) => this.prefabManager = prefabManager;
 
 		public override void Initialize()
 		{
@@ -52,7 +49,7 @@ namespace Veinia.Editor
 		{
 			UpdatePreview();
 
-			if (!Globals.input.GetKey(Keys.LeftAlt) && !toolbar.hoveringOver)
+			if (!Globals.input.GetKey(Keys.LeftAlt) && !Globals.desktop.IsMouseOverGUI)
 			{
 				//placing
 				if (Globals.input.GetMouseButtonUp(0)
@@ -110,6 +107,19 @@ namespace Veinia.Editor
 
 			editorObject.EditorPlacedSprite.DestroyGameObject();
 			editorObjects.Remove(editorObject);
+
+			UpdateTitle();
+		}
+
+		public void RemoveAll()
+		{
+			foreach (var editorObject in editorObjects.ToArray())
+			{
+				if (editorObject == null) return;
+
+				editorObject.EditorPlacedSprite.DestroyGameObject();
+				editorObjects.Remove(editorObject);
+			}
 
 			UpdateTitle();
 		}

@@ -5,7 +5,7 @@ using System;
 
 namespace Veinia.Editor
 {
-	public class Grid : Component, IDrawn
+	public class EditorGrid : Component, IDrawn
 	{
 		public void Draw(SpriteBatch sb)
 		{

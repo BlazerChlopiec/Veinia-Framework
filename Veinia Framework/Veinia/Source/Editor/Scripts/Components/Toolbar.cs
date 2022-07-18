@@ -1,5 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Myra.Graphics2D.TextureAtlases;
+using Myra.Graphics2D.UI;
+using Myra.Graphics2D.UI.Properties;
 using System;
 using System.Collections.Generic;
 
@@ -9,96 +12,71 @@ namespace Veinia.Editor
 	{
 		PrefabManager prefabManager;
 		EditorObjectManager editorObjectManager;
-
-		List<EditorObject> tooltipPrefabs = new List<EditorObject>();
-
-		Sprite sprite;
-
-		public bool hoveringOver;
-
-		private float scroll;
+		List<ToolbarPrefab> toolbarPrefabs = new List<ToolbarPrefab>();
 
 
-		public Toolbar(PrefabManager prefabManager)
-		{
-			this.prefabManager = prefabManager;
-		}
+		public Toolbar(PrefabManager prefabManager) => this.prefabManager = prefabManager;
 
 		public override void Initialize()
 		{
-			sprite = GetComponent<Sprite>();
 			editorObjectManager = FindComponentOfType<EditorObjectManager>();
 
-			UpdateTransform();
+			var panel = new Panel();
+			var scroll = new ScrollViewer();
+			scroll.Content = panel;
+
+			var window = new Window
+			{
+				Title = "Prefabs",
+				Content = scroll,
+			};
+
 			FeedToolboxWithPrefabs();
+
+			foreach (var prefab in toolbarPrefabs)
+			{
+				prefab.image = new Image
+				{
+					MaxHeight = 100,
+					MaxWidth = 100,
+					Top = 100 * toolbarPrefabs.IndexOf(prefab),
+					ResizeMode = ImageResizeMode.Stretch,
+					VerticalAlignment = VerticalAlignment.Top,
+					Color = prefab.color,
+					Renderable = new TextureRegion(prefab.texture, new Rectangle(0, 0, prefab.texture.Width, prefab.texture.Height)),
+				};
+				prefab.image.TouchDown += (s, a) => OnClickPrefab(prefab);
+
+				panel.Widgets.Add(prefab.image);
+			}
+			panel.Height = toolbarPrefabs.Count * 100;
+
+			window.Show(Globals.desktop);
 		}
+
+		private void OnClickPrefab(ToolbarPrefab prefab) => editorObjectManager.ChangeCurrentPrefab(prefab.PrefabName);
 
 		private void FeedToolboxWithPrefabs()
 		{
 			for (int i = 0; i < prefabManager.prefabs.Count; i++)
 			{
-				var extractedSpriteGameObject = prefabManager.Find(prefabManager.prefabs[i].prefabName)
-												.ExtractSpriteToNewGameObject(
-												new Vector2(transform.position.X,
-												-Globals.camera.GetScaleY() + Globals.camera.GetScaleY() / 5 * i));
+				var sprite = prefabManager.prefabs[i].prefabGameObject.GetComponent<Sprite>();
 
-				extractedSpriteGameObject.GetComponent<Sprite>().layer = 1f;
-				tooltipPrefabs.Add(new EditorObject
+				toolbarPrefabs.Add(new ToolbarPrefab
 				{
-					EditorPlacedSprite = Instantiate(extractedSpriteGameObject).GetComponent<Sprite>(),
 					PrefabName = prefabManager.prefabs[i].prefabName,
+					texture = sprite.texture,
+					color = sprite.color,
 				});
 			}
 		}
+	}
 
-		public override void Update()
-		{
-			UpdateTransform();
-			UpdateToolboxPrefabs();
-			CheckForIntersections();
-
-			if (hoveringOver)
-			{
-				scroll += Globals.input.deltaScroll * 20;
-				scroll = Math.Clamp(scroll, 0, float.MaxValue);
-			}
-		}
-
-		private void CheckForIntersections()
-		{
-			var mousePos = Globals.input.GetMouseScreenPosition();
-
-			if (sprite.rect.OffsetByHalf().Contains(mousePos))
-				hoveringOver = true;
-			else hoveringOver = false;
-
-			foreach (var tooltipPrefab in tooltipPrefabs)
-			{
-				if (tooltipPrefab.EditorPlacedSprite.rect.OffsetByHalf().Contains(mousePos))
-				{
-
-					if (Globals.input.GetMouseButtonDown(0))
-						editorObjectManager.ChangeCurrentPrefab(tooltipPrefab.PrefabName);
-				}
-			}
-		}
-
-		private void UpdateToolboxPrefabs()
-		{
-			for (int i = 0; i < tooltipPrefabs.Count; i++)
-			{
-				tooltipPrefabs[i].EditorPlacedSprite.destinationSize = new Vector2(100, 100);
-
-				tooltipPrefabs[i].EditorPlacedSprite.transform.position = new Vector2(transform.position.X,
-								transform.position.Y - transform.scale.Y / 2 + tooltipPrefabs[i].EditorPlacedSprite.transform.scale.Y + (Globals.camera.GetScaleY() / 5 * i) - scroll);
-			}
-		}
-
-		private void UpdateTransform()
-		{
-			transform.scale = new Vector2(Globals.camera.GetScaleX() / 10, Globals.camera.GetScaleY());
-			transform.position = Transform.ScreenToWorldPos(new Vector2(Globals.camera.BoundingRectangle.Left + sprite.rect.Width / 2,
-																		Globals.camera.Center.Y));
-		}
+	public class ToolbarPrefab
+	{
+		public string PrefabName { get; set; }
+		public Texture2D texture { get; set; }
+		public Color color { get; set; }
+		public Image image;
 	}
 }

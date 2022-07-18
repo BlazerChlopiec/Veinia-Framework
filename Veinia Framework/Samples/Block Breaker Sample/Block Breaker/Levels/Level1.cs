@@ -17,15 +17,6 @@ namespace Veinia.BlockBreaker
 		{
 			base.LoadContents();
 
-			Globals.camera.SetPosition(Vector2.Zero);
-			Globals.camera.Zoom = 1;
-
-			//GameObject background = Instantiate(
-			//	new Transform(Vector2.Zero),
-			//	new List<Component>
-			//	{
-			//	new Sprite("Block Breaker/Background", 0, Color.White, new Vector2(16*1.2f,9*1.2f)),
-			//	}, isStatic: true);
 
 			GameObject leftBorder = Instantiate(
 				new Transform(-Vector2.UnitX * 9.7f),
@@ -74,22 +65,6 @@ namespace Veinia.BlockBreaker
 				new CircleCollider(Vector2.Zero, .4f),
 				new Physics(),
 				}, isStatic: false);
-
-
-
-			////block rows
-			//for (int i = 0; i < 11; i++)
-			//{
-			//	Instantiate(new Transform(i - 5, 2), prefabManager.Find("Block"));
-			//}
-			//for (int i = 0; i < 11; i++)
-			//{
-			//	Instantiate(new Transform(i - 5, 1), prefabManager.Find("Block"));
-			//}
-			//for (int i = 0; i < 11; i++)
-			//{
-			//	Instantiate(new Transform(i - 5, 0), prefabManager.Find("Block"));
-			//}
 		}
 	}
 }

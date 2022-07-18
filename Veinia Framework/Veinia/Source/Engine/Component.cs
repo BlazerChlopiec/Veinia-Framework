@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Veinia
 {
 	public class Component : ICloneable
 	{
-		public GameObject parent { get; set; }
-		public Transform transform { get; set; }
+		public GameObject parent;
+		public Transform transform;
 
 		public bool isStatic;
 

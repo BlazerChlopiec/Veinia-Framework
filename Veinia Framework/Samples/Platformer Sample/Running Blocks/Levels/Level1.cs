@@ -19,9 +19,6 @@ namespace Veinia.RunningBlocks
 
 			Collider.showHitboxes = true;
 
-			Globals.camera.SetPosition(Vector2.Zero);
-			Globals.camera.Zoom = 1;
-
 			GameObject leftBorder = Instantiate(
 				new Transform(-Vector2.UnitX * 9.7f),
 				new List<Component>

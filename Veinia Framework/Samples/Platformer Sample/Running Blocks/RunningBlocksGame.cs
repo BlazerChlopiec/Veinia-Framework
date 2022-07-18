@@ -9,7 +9,7 @@ namespace Veinia.RunningBlocks
 		private GraphicsDeviceManager graphics;
 		private SpriteBatch spriteBatch;
 
-		VeiniaInitializer veinia = new VeiniaInitializer();
+		VeiniaInitializer veinia;
 
 
 		public RunningBlocksGame()
@@ -17,6 +17,8 @@ namespace Veinia.RunningBlocks
 			graphics = new GraphicsDeviceManager(this);
 			Content.RootDirectory = "Content";
 			IsMouseVisible = true;
+
+			veinia = new VeiniaInitializer(this, graphics);
 		}
 
 		protected override void Initialize()
@@ -25,12 +27,11 @@ namespace Veinia.RunningBlocks
 
 			var prefabs = new RunningBlocksPrefabs();
 
-			veinia.Initialize(this, graphics, GraphicsDevice, Content, Window,
+			veinia.Initialize(GraphicsDevice, Content, Window,
 				pixelsPerUnit: 100, new Vector2(1920, 1080), prefabs, fullscreen: true);
 
-			Globals.fps.vSync(false);
+			Globals.fps.vSync(true);
 			Globals.fps.ChangeFps(int.MaxValue);
-
 			Globals.loader.Load(new Level1(prefabs, "RunningBlocksLevel1.veinia"));
 
 			base.Initialize();

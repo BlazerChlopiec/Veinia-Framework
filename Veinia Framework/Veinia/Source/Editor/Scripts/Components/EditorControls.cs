@@ -19,7 +19,7 @@ namespace Veinia.Editor
 
 		public override void Update()
 		{
-			if (toolbar.hoveringOver) { drag = false; return; }
+			if (Globals.desktop.IsMouseOverGUI) { drag = false; return; }
 
 			if (Globals.input.GetMouseButtonDown(0) && Globals.input.GetKey(Keys.LeftAlt))
 			{

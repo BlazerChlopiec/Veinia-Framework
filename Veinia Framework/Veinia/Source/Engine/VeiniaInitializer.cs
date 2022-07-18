@@ -4,8 +4,9 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using MonoGame.Extended.Collisions;
-using MonoGame.Extended.Tweening;
 using MonoGame.Extended.ViewportAdapters;
+using Myra;
+using Myra.Graphics2D.UI;
 using Veinia.Editor;
 
 namespace Veinia
@@ -14,23 +15,39 @@ namespace Veinia
 	{
 		Title title;
 		PrefabManager prefabManager;
+		Game game;
 
-		public void Initialize(Game game, GraphicsDeviceManager graphicsManager, GraphicsDevice graphicsDevice, ContentManager content, GameWindow window,
+		public VeiniaInitializer(Game game, GraphicsDeviceManager graphicsManager)
+		{
+			//this one takes effect only in a game's constructor
+			this.game = game;
+			Globals.graphicsManager = graphicsManager;
+			Globals.fps = new FPS(game);
+		}
+
+		public void Initialize(GraphicsDevice graphicsDevice, ContentManager content, GameWindow window,
 			int pixelsPerUnit, Vector2 gameSize, PrefabManager prefabManager, bool fullscreen = false)
 		{
+			//MYRA UI
+			MyraEnvironment.Game = game;
+
+			Globals.desktop = new Desktop
+			{
+				HasExternalTextInput = true,
+			};
+			window.TextInput += (s, a) => Globals.desktop.OnChar(a.Character);
+			//
+
 			Transform.pixelsPerUnit = pixelsPerUnit;
 
 			this.prefabManager = prefabManager;
 
-			Globals.graphicsManager = graphicsManager;
+
+			Globals.window = window;
 			Globals.graphicsDevice = graphicsDevice;
 			Globals.content = content;
-			Globals.fps = new FPS(game);
-			Globals.tweener = new Tweener();
-			Globals.input = new Input();
 			Globals.screen = new Screen((int)gameSize.X, (int)gameSize.Y); // window size
 			if (fullscreen) Globals.graphicsManager.ToggleFullScreen();
-			Globals.loader = new Loader();
 			Globals.camera = new OrthographicCamera(new BoxingViewportAdapter(window, graphicsDevice, 1920, 1080));
 			Globals.collisionComponent = new CollisionComponent(new RectangleF(-250000, -250000, 500000, 500000));
 
@@ -84,6 +101,9 @@ namespace Veinia
 			if (Globals.loader.currentLevel != null) Globals.loader.currentLevel.Draw(spriteBatch);
 
 			spriteBatch.End();
+
+			//UI
+			Globals.desktop.Render();
 		}
 	}
 }

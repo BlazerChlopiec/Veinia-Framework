@@ -25,6 +25,10 @@ namespace Veinia
 
 		public virtual void LoadContents()
 		{
+			Globals.camera.SetPosition(Vector2.Zero);
+			Globals.camera.Zoom = 1;
+
+			Globals.desktop.Root = null;
 			prefabManager.LoadPrefabs(tools: this);
 			LoadEditorObjects(editorLevelName);
 		}

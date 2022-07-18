@@ -7,14 +7,11 @@ namespace Veinia
 		public int width;
 		public int height;
 
-		Viewport viewport;
 
 		public Screen(int width, int height)
 		{
 			this.width = width;
 			this.height = height;
-
-			viewport = Globals.graphicsDevice.Viewport;
 
 			UpdateChanges();
 		}

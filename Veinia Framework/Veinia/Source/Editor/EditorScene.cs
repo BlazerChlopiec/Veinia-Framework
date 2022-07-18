@@ -17,12 +17,9 @@ namespace Veinia.Editor
 		{
 			base.LoadContents();
 
-			Globals.camera.SetPosition(Vector2.Zero);
-			Globals.camera.Zoom = 1;
-
 			GameObject systems = Instantiate(Transform.Empty, new List<Component>
 			{
-				new Grid(),
+				new EditorGrid(),
 				new EditorControls(),
 				new EditorObjectManager(prefabManager),
 				new EditorJson(editedLevel),
@@ -30,7 +27,6 @@ namespace Veinia.Editor
 
 			GameObject toolbox = Instantiate(Transform.Empty, new List<Component>
 			{
-				new Sprite("Editor/Square", .95f, Color.Black, destinationSize: new Vector2(1.2f, 1)),
 				new Toolbar(prefabManager)
 			}, isStatic: true);
 		}
