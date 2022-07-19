@@ -4,19 +4,9 @@ namespace Veinia.BlockBreaker
 {
 	public class GameOverBorder : Component
 	{
-		RectangleCollider physics;
-
-
-		public override void Initialize()
+		public override void OnCollide(CollisionState state, CollisionEventArgs collisionInfo)
 		{
-			physics = GetComponent<RectangleCollider>();
-
-			physics.onCollisionEnter += OnCollisionEnter;
-		}
-
-		private void OnCollisionEnter(CollisionEventArgs collisionInfo)
-		{
-			Globals.loader.Reload();
+			if (state == CollisionState.Enter) Globals.loader.Reload();
 		}
 	}
 }

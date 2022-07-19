@@ -1,6 +1,6 @@
-﻿using System;
+﻿using MonoGame.Extended.Collisions;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 
 namespace Veinia
 {
@@ -15,6 +15,8 @@ namespace Veinia
 		public virtual void Initialize() { }
 		public virtual void Update() { }
 		public virtual void LateUpdate() { }
+		public virtual void OnCollide(CollisionState state, CollisionEventArgs collisionInfo) { }
+		public virtual void OnTrigger(CollisionState state, CollisionEventArgs collisionInfo) { }
 		public T1 FindComponentOfType<T1>() where T1 : Component => parent.world.FindComponentOfType<T1>();
 		public List<T1> FindComponentsOfType<T1>() where T1 : Component => parent.world.FindComponentsOfType<T1>();
 		public T1 NullableGetComponent<T1>() where T1 : Component => parent.NullableGetComponent<T1>();
@@ -27,5 +29,4 @@ namespace Veinia
 		public GameObject Instantiate(GameObject gameObject) => parent.world.Instantiate(gameObject);
 		public void DestroyGameObject() => parent.DestroyGameObject();
 	}
-
 }

@@ -47,23 +47,22 @@ namespace Veinia.BlockBreaker
 
 
 			//LEVEL
-			GameObject paddle = Instantiate(
-				new Transform(Vector2.Zero),
-				new List<Component>
-				{
-				new Sprite("Block Breaker/Paddle", .1f, Color.Blue),
-				new Paddle(),
-				new RectangleCollider(Vector2.Zero, new Vector2(2.5f, .85f), trigger: true)
-				}, isStatic: false);
-
 			GameObject ball = Instantiate(
-				new Transform(Vector2.UnitY),
+				new Transform(Vector2.Zero),
 				new List<Component>
 				{
 				new Sprite("Block Breaker/Ball", .1f, Color.Blue, new Vector2(.8f, .8f)),
 				new Ball(),
 				new CircleCollider(Vector2.Zero, .4f),
 				new Physics(),
+				}, isStatic: false);
+			GameObject paddle = Instantiate(
+				new Transform(Vector2.Zero),
+				new List<Component>
+				{
+				new Sprite("Block Breaker/Paddle", .1f, Color.Blue),
+				new Paddle(),
+				new RectangleCollider(Vector2.Zero, new Vector2(2.5f, .85f))
 				}, isStatic: false);
 		}
 	}

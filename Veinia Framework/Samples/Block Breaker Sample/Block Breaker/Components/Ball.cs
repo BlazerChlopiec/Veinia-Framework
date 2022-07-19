@@ -7,28 +7,17 @@ namespace Veinia.BlockBreaker
 {
 	public class Ball : Component
 	{
-		Paddle paddle;
-		Collider collider;
 		Physics physics;
 
 
 		private const float speed = 10;
-		bool launched;
+		public bool launched;
 
 
-		public override void Initialize()
-		{
-			paddle = FindComponentOfType<Paddle>();
-			collider = GetComponent<Collider>();
-			physics = GetComponent<Physics>();
-
-			collider.onCollisionEnter += CollisionEnter;
-		}
+		public override void Initialize() => physics = GetComponent<Physics>();
 
 		public override void Update()
 		{
-			SetToPaddlePos();
-
 			if (launched) transform.xRotation += 200f * Time.deltaTime;
 
 			if (Globals.input.GetMouseButtonDown(0) && !launched)
@@ -43,13 +32,10 @@ namespace Veinia.BlockBreaker
 			}
 		}
 
-		private void SetToPaddlePos()
+		public override void OnCollide(CollisionState state, CollisionEventArgs collisionInfo)
 		{
-			if (!launched) transform.position = paddle.transform.position + Vector2.UnitY;
-		}
+			if (state != CollisionState.Enter) return;
 
-		private void CollisionEnter(CollisionEventArgs collisionInfo)
-		{
 			var tile = collisionInfo.Other.collider.NullableGetComponent<Tile>();
 			if (tile != null) tile.Hit();
 

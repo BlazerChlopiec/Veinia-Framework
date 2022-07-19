@@ -19,10 +19,6 @@ namespace Veinia
 
 		CollisionEventArgs currectCollisionInfo; // collision exit gets called outside of onCollide so we need to store the info outside to be passed into onCollisionExit
 
-		public CollisionEvent onCollisionStay;
-		public CollisionEvent onCollisionEnter;
-		public CollisionEvent onCollisionExit;
-
 
 		public IShapeF Bounds
 		{
@@ -45,14 +41,13 @@ namespace Veinia
 			Globals.collisionComponent.Insert(this);
 		}
 
-		public delegate void CollisionEvent(CollisionEventArgs collisionInfo);
 		public virtual void OnCollision(CollisionEventArgs collisionInfo)
 		{
 			currectCollisionInfo = collisionInfo;
-			if (!isColliding) OnCollisionEnter(currectCollisionInfo);
+			if (!isColliding) { CallOnCollideOnEveryComponent(CollisionState.Enter, collisionInfo); hasEnteredCollision = true; }
 			isColliding = true;
 
-			if (onCollisionStay != null) onCollisionStay.Invoke(collisionInfo);
+			CallOnCollideOnEveryComponent(CollisionState.Stay, collisionInfo);
 
 			if (trigger || collisionInfo.Other.collider.trigger) return;
 
@@ -64,20 +59,10 @@ namespace Veinia
 				item.Bounds.Position = transform.screenPos + item.offset;
 			}
 		}
-		public void OnCollisionEnter(CollisionEventArgs collisionInfo)
-		{
-			hasEnteredCollision = true;
-			if (onCollisionEnter != null) onCollisionEnter.Invoke(collisionInfo);
-		}
-		public void OnCollisionExit(CollisionEventArgs collisionInfo)
-		{
-			hasEnteredCollision = false;
-			if (onCollisionExit != null) onCollisionExit.Invoke(collisionInfo);
-		}
 
-		public override void Update()
+		public override void LateUpdate()
 		{
-			if (!isColliding && hasEnteredCollision) OnCollisionExit(currectCollisionInfo);
+			if (!isColliding && hasEnteredCollision) { CallOnCollideOnEveryComponent(CollisionState.Exit, currectCollisionInfo); hasEnteredCollision = false; }
 			isColliding = false;
 
 			Bounds.Position = transform.screenPos + offset;
@@ -88,5 +73,30 @@ namespace Veinia
 		public void ToggleOn() => Globals.collisionComponent.Insert(this);
 
 		public void ToggleOff() => Globals.collisionComponent.Remove(this);
+
+		public void CallOnCollideOnEveryComponent(CollisionState state, CollisionEventArgs collisionInfo)
+		{
+			if (!trigger)
+			{
+				foreach (var component in parent.components)
+				{
+					component.OnCollide(state, collisionInfo);
+				}
+			}
+			else
+			{
+				foreach (var component in parent.components)
+				{
+					component.OnTrigger(state, collisionInfo);
+				}
+			}
+		}
+	}
+
+	public enum CollisionState
+	{
+		Enter,
+		Exit,
+		Stay,
 	}
 }

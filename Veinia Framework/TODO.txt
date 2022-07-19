@@ -1,0 +1,49 @@
+TODO:
+- remake the chunk system
+- finish ExecuteUpdateWhenCulled
+- store levels and screens instead of creating new levels every time
+- a collider is currently pushable if its instantiated before the pusher which is weird
+- add collision priority
+- rework the grid (make it more performant)
+- add editor gizmos
+- save .veinia files in game directory
+- check if render targets are compatible
+- dynamically change grid size in the editor
+- make an edit editor tab
+- rename pixelsPerUnit to unitSize and add a sprite property called pixelsPerUnit that scales textures accordingly
+- add a unique desktop root to each level in level.cs
+
+
+Goals:
+- optimisation
+- improve different gamepad support
+- audio
+- penumbra lights
+- animation 
+
+
+
+
+
+
+-DONE
+- implement addcomponent()
+- simplify gameobject/component syntax
+- make a camera look at
+- simplify game1.cs (make it more compact and easy to implement)
+- increase the world rectangle
+- implement getting components in first frame (DONE, Initialized Components on the second frame)
+- findobjectsoftype uses nullablegetcomponent which doesn't allow for duplicate components
+- add removing components
+- add stoping time
+- Separate Physics into two scripts Collider.cs and Physics.cs
+- Finding multiple components at a time
+- remake prefabs
+- remove the "new" in block breaker sample name
+- sometimes onCollision functions don't seem to get called?
+- add .ignore on the bin and obj folders
+- in-engine editor
+- add editor toolbox
+- add UI system
+- examine the need of utils.cs
+- add OnCollide(state, info) & OnTrigger(state, info)
