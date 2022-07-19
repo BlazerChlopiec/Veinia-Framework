@@ -6,7 +6,7 @@ namespace Veinia
 	public class Transform : Component
 	{
 		//pixels per unit is assigned in the veiniaIntializer constructor
-		public static int pixelsPerUnit = 100;
+		public static int unitSize = 100;
 
 		public static Transform Empty => new Transform(0, 0);
 
@@ -36,19 +36,19 @@ namespace Veinia
 
 		public static Vector2 WorldToScreenPos(Vector2 world)
 		{
-			var unflippedScreen = world * pixelsPerUnit + new Vector2(Globals.camera.Origin.X, -Globals.camera.Origin.Y);
+			var unflippedScreen = world * unitSize + new Vector2(Globals.camera.Origin.X, -Globals.camera.Origin.Y);
 			return new Vector2(unflippedScreen.X, -unflippedScreen.Y);
 		}
 		public static Vector2 WorldToScreenPos(float x, float y)
 		{
-			var unflippedScreen = new Vector2(x, y) * pixelsPerUnit + new Vector2(Globals.camera.Origin.X, -Globals.camera.Origin.Y);
+			var unflippedScreen = new Vector2(x, y) * unitSize + new Vector2(Globals.camera.Origin.X, -Globals.camera.Origin.Y);
 			return new Vector2(unflippedScreen.X, -unflippedScreen.Y);
 		}
-		public static Vector2 ScreenToWorldPos(Vector2 screen) => (new Vector2(screen.X, -screen.Y) - new Vector2(Globals.camera.Origin.X, -Globals.camera.Origin.Y)) / pixelsPerUnit;
-		public static Vector2 ScreenToWorldPos(float x, float y) => (new Vector2(x, -y) - new Vector2(Globals.camera.Origin.X, -Globals.camera.Origin.Y)) / pixelsPerUnit;
-		public static Vector2 ToScreenUnits(Vector2 world) => world.SetY(world.Y * -1) * pixelsPerUnit;
-		public static Vector2 ToWorldUnits(Vector2 screen) => screen.SetY(screen.Y * -1) / pixelsPerUnit;
-		public static float ToScreenUnits(float world) => world * pixelsPerUnit;
-		public static float ToWorldUnits(float screen) => screen / pixelsPerUnit;
+		public static Vector2 ScreenToWorldPos(Vector2 screen) => (new Vector2(screen.X, -screen.Y) - new Vector2(Globals.camera.Origin.X, -Globals.camera.Origin.Y)) / unitSize;
+		public static Vector2 ScreenToWorldPos(float x, float y) => (new Vector2(x, -y) - new Vector2(Globals.camera.Origin.X, -Globals.camera.Origin.Y)) / unitSize;
+		public static Vector2 ToScreenUnits(Vector2 world) => world.SetY(world.Y * -1) * unitSize;
+		public static Vector2 ToWorldUnits(Vector2 screen) => screen.SetY(screen.Y * -1) / unitSize;
+		public static float ToScreenUnits(float world) => world * unitSize;
+		public static float ToWorldUnits(float screen) => screen / unitSize;
 	}
 }

@@ -22,10 +22,10 @@ namespace Veinia.Editor
 			{
 				for (int y = 0; y < MathF.Abs(verticalDifference) + 2; y++)
 				{
-					var size = Transform.pixelsPerUnit;
+					var size = Transform.unitSize;
 
-					var currentRect = Transform.ScreenToWorldPos(Globals.camera.BoundingRectangle.Left - Transform.pixelsPerUnit + (x * Transform.pixelsPerUnit),
-											 Globals.camera.BoundingRectangle.Bottom - (y * Transform.pixelsPerUnit));
+					var currentRect = Transform.ScreenToWorldPos(Globals.camera.BoundingRectangle.Left - Transform.unitSize + (x * Transform.unitSize),
+											 Globals.camera.BoundingRectangle.Bottom - (y * Transform.unitSize));
 
 					var currentWorldRectRounded = Transform.WorldToScreenPos(MathF.Round(currentRect.X), MathF.Round(currentRect.Y));
 

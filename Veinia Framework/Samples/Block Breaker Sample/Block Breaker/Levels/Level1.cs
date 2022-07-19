@@ -51,7 +51,7 @@ namespace Veinia.BlockBreaker
 				new Transform(Vector2.Zero),
 				new List<Component>
 				{
-				new Sprite("Block Breaker/Ball", .1f, Color.Blue, new Vector2(.8f, .8f)),
+				new Sprite("Sprites/Ball", .1f, Color.Blue, pixelsPerUnit: 120),
 				new Ball(),
 				new CircleCollider(Vector2.Zero, .4f),
 				new Physics(),
@@ -60,7 +60,7 @@ namespace Veinia.BlockBreaker
 				new Transform(Vector2.Zero),
 				new List<Component>
 				{
-				new Sprite("Block Breaker/Paddle", .1f, Color.Blue),
+				new Sprite("Sprites/Paddle", .1f, Color.Blue, pixelsPerUnit: 100),
 				new Paddle(),
 				new RectangleCollider(Vector2.Zero, new Vector2(2.5f, .85f))
 				}, isStatic: false);

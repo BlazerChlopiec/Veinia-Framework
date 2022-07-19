@@ -28,7 +28,7 @@ namespace Veinia.BlockBreaker
 			var prefabs = new BlockBreakerPrefabs();
 
 			veinia.Initialize(GraphicsDevice, Content, Window,
-					pixelsPerUnit: 100, new Vector2(1280, 720), prefabs, fullscreen: false);
+					unitSize: 100, new Vector2(1280, 720), prefabs, fullscreen: false);
 
 			Globals.fps.vSync(true);
 			Globals.fps.ChangeFps(int.MaxValue);

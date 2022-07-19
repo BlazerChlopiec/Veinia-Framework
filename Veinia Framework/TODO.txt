@@ -10,7 +10,6 @@ TODO:
 - check if render targets are compatible
 - dynamically change grid size in the editor
 - make an edit editor tab
-- rename pixelsPerUnit to unitSize and add a sprite property called pixelsPerUnit that scales textures accordingly
 - add a unique desktop root to each level in level.cs
 
 
@@ -47,3 +46,4 @@ Goals:
 - add UI system
 - examine the need of utils.cs
 - add OnCollide(state, info) & OnTrigger(state, info)
+- rename pixelsPerUnit to unitSize and add a sprite property called pixelsPerUnit that scales textures accordingly

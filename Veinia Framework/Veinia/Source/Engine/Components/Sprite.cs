@@ -11,32 +11,23 @@ namespace Veinia
 		public Texture2D texture;
 
 
-		public Sprite(Texture2D texture, float layer, Color color, Vector2 destinationSize)
+		public Sprite(Texture2D texture, float layer, Color color, float pixelsPerUnit)
 		{
 			this.layer = layer;
 			this.color = color;
 
 			this.texture = texture;
 
-			this.destinationSize = destinationSize * Transform.pixelsPerUnit;
+			this.destinationSize = new Vector2(texture.Width, texture.Height) / (pixelsPerUnit / Transform.unitSize);
 		}
-		public Sprite(string path, float layer, Color color, Vector2 destinationSize)
+		public Sprite(string path, float layer, Color color, float pixelsPerUnit)
 		{
 			this.layer = layer;
 			this.color = color;
 
 			texture = Globals.content.Load<Texture2D>(path);
 
-			this.destinationSize = destinationSize * Transform.pixelsPerUnit;
-		}
-		public Sprite(string path, float layer, Color color)
-		{
-			this.layer = layer;
-			this.color = color;
-
-			texture = Globals.content.Load<Texture2D>(path);
-
-			destinationSize = new Vector2(texture.Width, texture.Height);
+			this.destinationSize = new Vector2(texture.Width, texture.Height) / (pixelsPerUnit / Transform.unitSize);
 		}
 
 		public void Draw(SpriteBatch sb)

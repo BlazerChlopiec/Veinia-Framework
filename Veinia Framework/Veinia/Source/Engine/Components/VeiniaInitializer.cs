@@ -26,7 +26,7 @@ namespace Veinia
 		}
 
 		public void Initialize(GraphicsDevice graphicsDevice, ContentManager content, GameWindow window,
-			int pixelsPerUnit, Vector2 gameSize, PrefabManager prefabManager, bool fullscreen = false)
+			int unitSize, Vector2 gameSize, PrefabManager prefabManager, bool fullscreen = false)
 		{
 			//MYRA UI
 			MyraEnvironment.Game = game;
@@ -39,7 +39,7 @@ namespace Veinia
 			window.TextInput += (s, a) => Globals.desktop.OnChar(a.Character);
 			//
 
-			Transform.pixelsPerUnit = pixelsPerUnit;
+			Transform.unitSize = unitSize;
 
 			this.prefabManager = prefabManager;
 
