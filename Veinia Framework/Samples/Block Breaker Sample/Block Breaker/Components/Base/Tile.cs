@@ -3,24 +3,25 @@ using MonoGame.Extended.Tweening;
 
 namespace Veinia.BlockBreaker
 {
-	public class Block : Component
+	public class Tile : Component
 	{
-		protected bool hasBeenHit;
+		protected bool hasBeenDestroyed;
 
 
 		public virtual void Hit()
 		{
-			if (hasBeenHit) return;
+			if (hasBeenDestroyed) return;
 
-			RemoveComponent(GetComponent<Collider>());
+			var collider = GetComponent<Collider>();
+			if (collider != null)
+				RemoveComponent(collider);
 
 			GetComponent<Sprite>().layer = 1;
 
-			hasBeenHit = true;
+			hasBeenDestroyed = true;
 
 			Globals.tweener.TweenTo(target: transform, expression: transform => transform.xRotation, toValue: -10, duration: .2f)
 				.Easing(EasingFunctions.BackIn);
-
 
 			Globals.tweener.TweenTo(target: transform, expression: transform => transform.scale, toValue: Vector2.Zero, duration: .3f)
 				.Easing(EasingFunctions.BackIn)
@@ -28,7 +29,7 @@ namespace Veinia.BlockBreaker
 				{
 					DestroyGameObject();
 
-					if (FindComponentsOfType<Block>().Count == 0)
+					if (FindComponentsOfType<Tile>().Count == 0)
 					{
 						Globals.loader.Reload();
 					}

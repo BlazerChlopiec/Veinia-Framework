@@ -3,17 +3,19 @@ using MonoGame.Extended.Tweening;
 
 namespace Veinia.BlockBreaker
 {
-	public class MovingBlock : Block
+	public class MovingBlock : Tile
 	{
 		Tween tween;
 
 
 		public override void Initialize()
 		{
-			var yOffset = transform.position.Y + 1;
+			var yOffset = 1f;
+
+			transform.position = new Vector2(transform.position.X, transform.position.Y - yOffset / 2);
 
 			tween = Globals.tweener.TweenTo(target: transform, expression: transform => transform.position,
-											toValue: new Vector2(transform.position.X, yOffset), duration: 1.7f)
+											toValue: new Vector2(transform.position.X, transform.position.Y + yOffset), duration: 1.7f)
 			.Easing(EasingFunctions.BackInOut)
 			.AutoReverse()
 			.RepeatForever();
@@ -23,7 +25,7 @@ namespace Veinia.BlockBreaker
 		{
 			base.Update();
 
-			if (hasBeenHit) tween.Cancel();
+			if (hasBeenDestroyed) tween.Cancel();
 		}
 	}
 }

@@ -46,6 +46,8 @@ namespace Veinia
 									 SpriteEffects.None, layer);
 		}
 
+		public void ChangeTexture(string path) => texture = Globals.content.Load<Texture2D>(path);
+
 		public Rectangle rect => new Rectangle((int)transform.screenPos.X, (int)transform.screenPos.Y,
 											   (int)(destinationSize.X * transform.scale.X),
 											   (int)(destinationSize.Y * transform.scale.Y));

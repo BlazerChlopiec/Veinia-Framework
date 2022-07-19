@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Veinia.Editor;
 
 namespace Veinia.BlockBreaker
 {
@@ -18,7 +17,6 @@ namespace Veinia.BlockBreaker
 			graphics = new GraphicsDeviceManager(this);
 			Content.RootDirectory = "Content";
 			IsMouseVisible = true;
-			Window.AllowUserResizing = true;
 
 			veinia = new VeiniaInitializer(this, graphics);
 		}
@@ -54,7 +52,7 @@ namespace Veinia.BlockBreaker
 
 		protected override void Draw(GameTime gameTime)
 		{
-			GraphicsDevice.Clear(Color.Black);
+			GraphicsDevice.Clear(Color.White * .05f);
 
 			veinia.Draw(spriteBatch);
 

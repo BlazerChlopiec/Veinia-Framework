@@ -33,6 +33,7 @@ namespace Veinia
 
 			Globals.desktop = new Desktop
 			{
+				Opacity = .95f,
 				HasExternalTextInput = true,
 			};
 			window.TextInput += (s, a) => Globals.desktop.OnChar(a.Character);
@@ -43,7 +44,6 @@ namespace Veinia
 			this.prefabManager = prefabManager;
 
 
-			Globals.window = window;
 			Globals.graphicsDevice = graphicsDevice;
 			Globals.content = content;
 			Globals.screen = new Screen((int)gameSize.X, (int)gameSize.Y); // window size

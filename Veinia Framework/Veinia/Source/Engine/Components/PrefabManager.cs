@@ -28,7 +28,7 @@ namespace Veinia
 
 		public virtual void LoadPrefabs(WorldTools tools) => prefabs.Clear();
 
-		public struct Prefab
+		public class Prefab
 		{
 			public string prefabName;
 			public GameObject prefabGameObject;

@@ -12,7 +12,7 @@ namespace Veinia.Editor
 
 		public List<EditorObject> editorObjects = new List<EditorObject>();
 
-		public string currentPrefabName = "Block";
+		public string currentPrefabName;
 
 		GameObject preview;
 
@@ -22,6 +22,9 @@ namespace Veinia.Editor
 
 		public override void Initialize()
 		{
+			var firstPrefab = prefabManager.prefabs[0];
+			if (firstPrefab != null) currentPrefabName = firstPrefab.prefabName;
+
 			toolbar = FindComponentOfType<Toolbar>();
 			SpawnPreview();
 		}

@@ -41,17 +41,16 @@ namespace Veinia.Editor
 
 			foreach (var prefab in toolbarPrefabs)
 			{
-				var image = new Image
+				var image = new ImageTextButton
 				{
-					MaxHeight = 100,
-					MaxWidth = 100,
+					Height = 100,
+					Width = 100,
+					Text = prefab.PrefabName,
 					Top = topOffset + 100 * toolbarPrefabs.IndexOf(prefab),
-					ResizeMode = ImageResizeMode.Stretch,
 					VerticalAlignment = VerticalAlignment.Top,
-					Color = prefab.color,
-					Renderable = new TextureRegion(prefab.texture, new Rectangle(0, 0, prefab.texture.Width, prefab.texture.Height)),
+					Background = new TextureRegion(prefab.texture, new Rectangle(0, 0, prefab.texture.Width, prefab.texture.Height)),
 				};
-				image.TouchDown += (s, a) => OnClickPrefab(prefab);
+				image.Click += (s, a) => OnClickPrefab(prefab);
 
 				panel.Widgets.Add(image);
 			}

@@ -7,6 +7,7 @@ TODO:
 - rework the grid (make it more performant)
 - add editor gizmos
 - add oncollision(CollisionArgs args) and ontrigger(CollisionArgs args)
+- save .veinia files in game directory
 
 
 FUTURE PLANS:

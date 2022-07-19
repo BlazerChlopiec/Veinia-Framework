@@ -9,18 +9,25 @@ namespace Veinia.BlockBreaker
 		{
 			base.LoadPrefabs(tools);
 
-			Add("Block", new GameObject(Transform.Empty, new List<Component>
+			Add("Grass Tile", new GameObject(Transform.Empty, new List<Component>
 			{
 				new Sprite("Block Breaker/Grass Tile", .1f, Color.White, Vector2.One),
 				new RectangleCollider(Vector2.Zero, Vector2.One),
-				new Block(),
+				new GrassTile(),
 			}, isStatic: true));
 
-			Add("Moving Block", new GameObject(Transform.Empty, new List<Component>
+			Add("Moving Tile", new GameObject(Transform.Empty, new List<Component>
 			{
-				new Sprite("Block Breaker/Grass Tile", .1f, Color.Red, Vector2.One),
+				new Sprite("Block Breaker/Moving Tile", .1f, Color.White, Vector2.One),
 				new RectangleCollider(Vector2.Zero, Vector2.One),
 				new MovingBlock(),
+			}, isStatic: true));
+
+			Add("Metal Tile", new GameObject(Transform.Empty, new List<Component>
+			{
+				new Sprite("Block Breaker/Metal Tile", .1f, Color.White, Vector2.One),
+				new RectangleCollider(Vector2.Zero, Vector2.One),
+				new MetalBlock(),
 			}, isStatic: true));
 
 			Add("Background", new GameObject(Transform.Empty, new List<Component>
