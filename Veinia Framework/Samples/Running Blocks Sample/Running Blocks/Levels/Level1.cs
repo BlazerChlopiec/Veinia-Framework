@@ -9,13 +9,13 @@ namespace Veinia.RunningBlocks
 		{
 		}
 
-		public Level1(PrefabManager prefabManager, string editorLevelName) : base(prefabManager, editorLevelName)
+		public Level1(PrefabManager prefabManager, string levelPath) : base(prefabManager, levelPath)
 		{
 		}
 
-		public override void LoadContents()
+		public override void CreateScene(bool loadObjectsFromPath = true)
 		{
-			base.LoadContents();
+			base.CreateScene();
 
 			Collider.showHitboxes = true;
 

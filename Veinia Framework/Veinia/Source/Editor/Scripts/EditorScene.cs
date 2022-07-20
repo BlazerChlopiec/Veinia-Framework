@@ -5,29 +5,22 @@ namespace Veinia.Editor
 {
 	public class EditorScene : Level
 	{
-		string editedLevel;
-
-
-		public EditorScene(string editedLevel, PrefabManager prefabManager) : base(prefabManager)
+		public EditorScene(PrefabManager prefabManager, string levelPath) : base(prefabManager, levelPath)
 		{
-			this.editedLevel = editedLevel;
 		}
 
-		public override void LoadContents()
+		public override void CreateScene(bool loadObjectsFromPath)
 		{
-			base.LoadContents();
+			// the gameObjects shouldn't be loaded as usuall because later we only load their sprites
+			base.CreateScene(loadObjectsFromPath: false);
 
 			GameObject systems = Instantiate(Transform.Empty, new List<Component>
 			{
 				new EditorGrid(),
 				new EditorControls(),
 				new EditorObjectManager(prefabManager),
-				new EditorJson(editedLevel),
-			}, isStatic: true);
-
-			GameObject toolbox = Instantiate(Transform.Empty, new List<Component>
-			{
-				new Toolbar(prefabManager)
+				new EditorJson(levelPath),
+				new Toolbar(prefabManager),
 			}, isStatic: true);
 		}
 	}

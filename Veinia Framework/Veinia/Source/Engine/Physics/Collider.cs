@@ -52,7 +52,7 @@ namespace Veinia
 			if (trigger || collisionInfo.Other.collider.trigger) return;
 
 
-			if (!parent.isStatic) transform.position -= Transform.ToWorldUnits(collisionInfo.PenetrationVector);
+			if (!gameObject.isStatic) transform.position -= Transform.ToWorldUnits(collisionInfo.PenetrationVector);
 
 			foreach (var item in GetAllComponents<Collider>())
 			{
@@ -78,14 +78,14 @@ namespace Veinia
 		{
 			if (!trigger)
 			{
-				foreach (var component in parent.components)
+				foreach (var component in gameObject.components)
 				{
 					component.OnCollide(state, collisionInfo);
 				}
 			}
 			else
 			{
-				foreach (var component in parent.components)
+				foreach (var component in gameObject.components)
 				{
 					component.OnTrigger(state, collisionInfo);
 				}

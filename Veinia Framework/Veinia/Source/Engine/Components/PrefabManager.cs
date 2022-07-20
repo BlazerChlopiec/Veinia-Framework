@@ -26,7 +26,7 @@ namespace Veinia
 			return prefab;
 		}
 
-		public virtual void LoadPrefabs(WorldTools tools) => prefabs.Clear();
+		public virtual void LoadPrefabs() => prefabs.Clear();
 
 		public class Prefab
 		{

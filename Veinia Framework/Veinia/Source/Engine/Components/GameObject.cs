@@ -6,7 +6,7 @@ namespace Veinia
 	public class GameObject
 	{
 		public List<Component> components;
-		public WorldTools world;
+		public Level level;
 		public Transform transform;
 		public bool isStatic;
 		public bool isEnabled = true;
@@ -106,7 +106,7 @@ namespace Veinia
 			var compo = (Component)component.Clone();
 			components.Add(compo);
 
-			compo.parent = this;
+			compo.gameObject = this;
 			compo.transform = transform;
 			compo.isStatic = isStatic;
 			compo.Initialize();
@@ -138,11 +138,11 @@ namespace Veinia
 
 			NextFrame.actions.Add(Destroy);
 
-			world.Remove(this);
+			level.Remove(this);
 
 			void Destroy()
 			{
-				world = null; // remove local world
+				level = null; // remove local world
 				foreach (var component in components)
 				{
 					if (component is IDisposable)

@@ -40,15 +40,15 @@ namespace Veinia
 			{
 				if (!sprite.isStatic) continue;
 
-				if (currentChunk.rect.Intersects(sprite.rect) && !sprite.parent.isEnabled)
+				if (currentChunk.rect.Intersects(sprite.rect) && !sprite.gameObject.isEnabled)
 				{
-					sprite.parent.ToggleOn();
-					sprite.parent.isEnabled = true;
+					sprite.gameObject.ToggleOn();
+					sprite.gameObject.isEnabled = true;
 				}
-				if (!currentChunk.rect.Intersects(sprite.rect) && sprite.parent.isEnabled)
+				if (!currentChunk.rect.Intersects(sprite.rect) && sprite.gameObject.isEnabled)
 				{
-					sprite.parent.ToggleOff();
-					sprite.parent.isEnabled = false;
+					sprite.gameObject.ToggleOff();
+					sprite.gameObject.isEnabled = false;
 				}
 			}
 		}

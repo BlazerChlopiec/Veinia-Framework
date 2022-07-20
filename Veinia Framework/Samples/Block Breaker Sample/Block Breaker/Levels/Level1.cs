@@ -13,9 +13,9 @@ namespace Veinia.BlockBreaker
 		{
 		}
 
-		public override void LoadContents()
+		public override void CreateScene(bool loadObjectsFromPath = true)
 		{
-			base.LoadContents();
+			base.CreateScene();
 
 
 			GameObject leftBorder = Instantiate(

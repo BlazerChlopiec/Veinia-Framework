@@ -89,7 +89,7 @@ namespace Veinia
 					Globals.loader.Load(Globals.loader.previousLevel);
 				}
 				else
-					Globals.loader.Load(new EditorScene(Globals.loader.currentLevel.editorLevelName, prefabManager));
+					Globals.loader.Load(new EditorScene(prefabManager, Globals.loader.currentLevel.levelPath));
 			}
 #endif
 		}

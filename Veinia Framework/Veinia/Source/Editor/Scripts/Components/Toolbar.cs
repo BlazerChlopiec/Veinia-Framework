@@ -71,7 +71,6 @@ namespace Veinia.Editor
 				{
 					PrefabName = prefabManager.prefabs[i].prefabName,
 					texture = sprite.texture,
-					color = sprite.color,
 				});
 			}
 		}
@@ -81,6 +80,5 @@ namespace Veinia.Editor
 	{
 		public string PrefabName { get; set; }
 		public Texture2D texture { get; set; }
-		public Color color { get; set; }
 	}
 }

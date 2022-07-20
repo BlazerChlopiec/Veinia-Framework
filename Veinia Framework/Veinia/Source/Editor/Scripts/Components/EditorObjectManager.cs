@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Myra.Graphics2D.UI;
 using System;
 using System.Collections.Generic;
 
@@ -8,13 +9,13 @@ namespace Veinia.Editor
 	public class EditorObjectManager : Component
 	{
 		PrefabManager prefabManager;
-		Toolbar toolbar;
+		Label tileCount = new Label { HorizontalAlignment = HorizontalAlignment.Center };
 
 		public List<EditorObject> editorObjects = new List<EditorObject>();
 
 		public string currentPrefabName;
 
-		GameObject preview;
+		GameObject objectPreview;
 
 
 
@@ -23,22 +24,23 @@ namespace Veinia.Editor
 		public override void Initialize()
 		{
 			var firstPrefab = prefabManager.prefabs[0];
-			if (firstPrefab != null) currentPrefabName = firstPrefab.prefabName;
+			if (firstPrefab != null) ChangeCurrentPrefab(firstPrefab.prefabName);
 
-			toolbar = FindComponentOfType<Toolbar>();
-			SpawnPreview();
+			gameObject.level.finalPanel.Widgets.Add(tileCount);
+			tileCount.Text = "Object Count " + (editorObjects.Count);
+			UpdateTitle();
 		}
 
 		private void SpawnPreview()
 		{
-			if (preview != null) preview.DestroyGameObject();
+			if (objectPreview != null) objectPreview.DestroyGameObject();
 
-			preview = prefabManager.Find(currentPrefabName).ExtractSpriteToNewGameObject(Vector2.Zero);
-			var sprite = preview.GetComponent<Sprite>();
+			objectPreview = prefabManager.Find(currentPrefabName).ExtractSpriteToNewGameObject(Vector2.Zero);
+			var sprite = objectPreview.GetComponent<Sprite>();
 			sprite.color *= .5f;
 			sprite.layer = .9f;
 
-			preview = Instantiate(preview);
+			objectPreview = Instantiate(objectPreview);
 		}
 
 		public void ChangeCurrentPrefab(string newPrefabName)
@@ -87,7 +89,7 @@ namespace Veinia.Editor
 			if (!Globals.input.GetKey(Keys.LeftControl))
 				mousePos = new Vector2(MathF.Round(mousePos.X), MathF.Round(mousePos.Y));
 
-			preview.transform.position = mousePos;
+			objectPreview.transform.position = mousePos;
 		}
 
 		public void Spawn(string prefabName, Vector2 position)
@@ -136,6 +138,6 @@ namespace Veinia.Editor
 			return overlap;
 		}
 
-		private void UpdateTitle() => Title.Add("Object Count " + (editorObjects.Count), 7);
+		private void UpdateTitle() => tileCount.Text = "Object Count " + (editorObjects.Count);
 	}
 }

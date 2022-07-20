@@ -5,9 +5,9 @@ namespace Veinia.BlockBreaker
 {
 	public class BlockBreakerPrefabs : PrefabManager
 	{
-		public override void LoadPrefabs(WorldTools tools)
+		public override void LoadPrefabs()
 		{
-			base.LoadPrefabs(tools);
+			base.LoadPrefabs();
 
 			Add("Grass Tile", new GameObject(Transform.Empty, new List<Component>
 			{

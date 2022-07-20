@@ -14,7 +14,7 @@
 				if (currentLevel != null)
 					Unload();
 				currentLevel = level;
-				currentLevel.LoadContents();
+				currentLevel.CreateScene();
 				currentLevel.InitiazeComponents();
 			}
 		}
@@ -42,7 +42,7 @@
 				Unload();
 
 				currentLevel = previousLevel;
-				currentLevel.LoadContents();
+				currentLevel.CreateScene();
 				currentLevel.InitiazeComponents();
 			}
 		}

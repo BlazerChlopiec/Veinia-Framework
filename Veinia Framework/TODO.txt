@@ -11,6 +11,7 @@ TODO:
 - dynamically change grid size in the editor
 - make an edit editor tab
 - add a unique desktop root to each level in level.cs
+- scale myra with screen res
 
 
 Goals:
