@@ -17,6 +17,7 @@ namespace Veinia
 		PrefabManager prefabManager;
 		Game game;
 
+
 		public VeiniaInitializer(Game game, GraphicsDeviceManager graphicsManager)
 		{
 			//this one takes effect only in a game's constructor
@@ -26,7 +27,7 @@ namespace Veinia
 		}
 
 		public void Initialize(GraphicsDevice graphicsDevice, ContentManager content, GameWindow window,
-			int unitSize, Vector2 gameSize, PrefabManager prefabManager, bool fullscreen = false)
+			int unitSize, float collisionRectScreenSize, Vector2 gameSize, PrefabManager prefabManager, bool fullscreen = false)
 		{
 			//MYRA UI
 			MyraEnvironment.Game = game;
@@ -49,7 +50,9 @@ namespace Veinia
 			Globals.screen = new Screen((int)gameSize.X, (int)gameSize.Y); // window size
 			if (fullscreen) Globals.graphicsManager.ToggleFullScreen();
 			Globals.camera = new OrthographicCamera(new BoxingViewportAdapter(window, graphicsDevice, 1920, 1080));
-			Globals.collisionComponent = new CollisionComponent(new RectangleF(-250000, -250000, 500000, 500000));
+			Globals.collisionComponent = new CollisionComponent(
+										 new RectangleF(-collisionRectScreenSize, -collisionRectScreenSize,
+														 collisionRectScreenSize * 2, collisionRectScreenSize * 2));
 
 			title = new Title(window);
 		}

@@ -12,7 +12,6 @@ TODO:
 - make an edit editor tab
 - scale myra with screen res
 - rework the loader (merge it with level.cs?) to reduce global classes
-- add a collision world rectangle in veiniaInitializer's constructor
 
 
 Goals:
@@ -45,3 +44,4 @@ Goals:
 - rename pixelsPerUnit to unitSize and add a sprite property called pixelsPerUnit that scales textures accordingly
 - add a unique desktop root to each level in level.cs
 - merge worldtools.cs and level.cs
+- add a collision rect screen size in veiniaInitializer's constructor
