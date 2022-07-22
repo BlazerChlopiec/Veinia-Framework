@@ -109,6 +109,7 @@ namespace Veinia
 			compo.gameObject = this;
 			compo.transform = transform;
 			compo.isStatic = isStatic;
+			compo.level = level;
 			compo.Initialize();
 
 			ChangeExecutionOrder<Collider>(index: components.Count);

@@ -26,7 +26,7 @@ namespace Veinia.Editor
 			var firstPrefab = prefabManager.prefabs[0];
 			if (firstPrefab != null) ChangeCurrentPrefab(firstPrefab.prefabName);
 
-			gameObject.level.finalPanel.Widgets.Add(tileCount);
+			level.UI.Widgets.Add(tileCount);
 			tileCount.Text = "Object Count " + (editorObjects.Count);
 			UpdateTitle();
 		}

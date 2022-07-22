@@ -45,3 +45,5 @@ Goals:
 - add a unique desktop root to each level in level.cs
 - merge worldtools.cs and level.cs
 - add a collision rect screen size in veiniaInitializer's constructor
+- added a Level reference to components
+- added isEnabled to components

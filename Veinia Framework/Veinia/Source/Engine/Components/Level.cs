@@ -16,7 +16,7 @@ namespace Veinia
 		public List<GameObject> scene = new List<GameObject>();
 
 
-		public Panel finalPanel = new Panel();
+		public Panel UI = new Panel();
 		protected PrefabManager prefabManager { get; private set; }
 		public string levelPath { get; private set; }
 
@@ -38,7 +38,7 @@ namespace Veinia
 		{
 			Globals.camera.SetPosition(Vector2.Zero);
 			Globals.camera.Zoom = 1;
-			Globals.desktop.Root = finalPanel;
+			Globals.desktop.Root = UI;
 
 			prefabManager.LoadPrefabs();
 			if (loadObjectsFromPath) LoadObjects(levelPath);
@@ -69,13 +69,14 @@ namespace Veinia
 		public GameObject Instantiate(Transform transform, List<Component> components, bool isStatic)
 		{
 			GameObject sample = new GameObject(transform, components, isStatic);
-			sample.level = (Level)this;
+			sample.level = this;
 
 			foreach (var item in sample.components)
 			{
 				item.gameObject = sample;
 				item.transform = sample.transform;
 				item.isStatic = sample.isStatic;
+				item.level = sample.level;
 			}
 
 			scene.Add(sample);
@@ -85,13 +86,14 @@ namespace Veinia
 		public GameObject Instantiate(Transform transform, GameObject prefab)
 		{
 			GameObject sample = new GameObject(transform, prefab.components.Clone(), prefab.isStatic);
-			sample.level = (Level)this;
+			sample.level = this;
 
 			foreach (var item in sample.components)
 			{
 				item.gameObject = sample;
 				item.transform = sample.transform;
 				item.isStatic = sample.isStatic;
+				item.level = sample.level;
 			}
 
 			scene.Add(sample);
@@ -101,13 +103,14 @@ namespace Veinia
 		public GameObject Instantiate(GameObject prefab)
 		{
 			GameObject sample = new GameObject(prefab.transform, prefab.components.Clone(), prefab.isStatic);
-			sample.level = (Level)this;
+			sample.level = this;
 
 			foreach (var item in sample.components)
 			{
 				item.gameObject = sample;
 				item.transform = sample.transform;
 				item.isStatic = sample.isStatic;
+				item.level = sample.level;
 			}
 
 			scene.Add(sample);
@@ -176,6 +179,7 @@ namespace Veinia
 
 				foreach (var component in gameObject.components.ToArray())
 				{
+					if (!component.isEnabled) continue;
 					component.Initialize();
 				}
 			}
@@ -192,6 +196,7 @@ namespace Veinia
 
 				foreach (var component in gameObject.components.ToArray())
 				{
+					if (!component.isEnabled) continue;
 					component.Update();
 				}
 			}
@@ -208,6 +213,7 @@ namespace Veinia
 
 				foreach (var component in gameObject.components.ToArray())
 				{
+					if (!component.isEnabled) continue;
 					component.LateUpdate();
 				}
 			}
@@ -224,6 +230,7 @@ namespace Veinia
 
 				foreach (var component in gameObject.components)
 				{
+					if (!component.isEnabled) continue;
 					if (component is IDrawn)
 					{
 						IDrawn drawn = (IDrawn)component;

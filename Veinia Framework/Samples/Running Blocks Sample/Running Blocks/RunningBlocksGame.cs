@@ -19,6 +19,8 @@ namespace Veinia.RunningBlocks
 			IsMouseVisible = true;
 
 			veinia = new VeiniaInitializer(this, graphics);
+			Globals.fps.vSync(true);
+			Globals.fps.ChangeFps(int.MaxValue);
 		}
 
 		protected override void Initialize()
@@ -30,8 +32,6 @@ namespace Veinia.RunningBlocks
 			veinia.Initialize(GraphicsDevice, Content, Window,
 				unitSize: 100, collisionRectScreenSize: 10000, new Vector2(1920, 1080), prefabs, fullscreen: true);
 
-			Globals.fps.vSync(true);
-			Globals.fps.ChangeFps(int.MaxValue);
 			Globals.loader.Load(new Level1(prefabs, "RunningBlocksLevel1.veinia"));
 
 			base.Initialize();
