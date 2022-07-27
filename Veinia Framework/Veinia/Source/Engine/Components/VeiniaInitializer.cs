@@ -26,16 +26,20 @@ namespace Veinia
 			Globals.fps = new FPS(game);
 		}
 
+		Vector2 defaultUIBounds;
 		public void Initialize(GraphicsDevice graphicsDevice, ContentManager content, GameWindow window,
 			int unitSize, float collisionRectScreenSize, Vector2 gameSize, PrefabManager prefabManager, bool fullscreen = false)
 		{
 			//MYRA UI
 			MyraEnvironment.Game = game;
 
+
+			defaultUIBounds = gameSize;
 			Globals.desktop = new Desktop
 			{
 				Opacity = .95f,
 				HasExternalTextInput = true,
+				BoundsFetcher = () => new Rectangle(0, 0, (int)defaultUIBounds.X, (int)defaultUIBounds.Y),
 			};
 			window.TextInput += (s, a) => Globals.desktop.OnChar(a.Character);
 			//
@@ -106,6 +110,7 @@ namespace Veinia
 			spriteBatch.End();
 
 			//UI
+			Globals.desktop.Scale = new Vector2(Globals.graphicsDevice.Viewport.Width, Globals.graphicsDevice.Viewport.Height) / defaultUIBounds;
 			Globals.desktop.Render();
 		}
 	}
