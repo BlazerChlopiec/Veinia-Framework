@@ -1,4 +1,6 @@
-﻿namespace Veinia.BlockBreaker
+﻿using Microsoft.Xna.Framework.Graphics;
+
+namespace Veinia.BlockBreaker
 {
 	public class MetalBlock : Tile
 	{
@@ -8,7 +10,7 @@
 		public override void Hit()
 		{
 			hitPoints--;
-			GetComponent<Sprite>().ChangeTexture("Block Breaker/Metal Tile Broken");
+			GetComponent<Sprite>().ChangeTexture("Sprites/Metal Tile Broken");
 			if (hitPoints <= 0)
 				base.Hit();
 		}

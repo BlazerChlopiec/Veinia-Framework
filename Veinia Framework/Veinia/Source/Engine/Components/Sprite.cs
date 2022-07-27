@@ -8,7 +8,7 @@ namespace Veinia
 		public Color color = Color.White;
 		public float layer;
 		public Vector2 destinationSize;
-		public Texture2D texture;
+		public Texture2D texture { get; private set; }
 
 
 		public Sprite(Texture2D texture, float layer, Color color, float pixelsPerUnit)
@@ -38,6 +38,7 @@ namespace Veinia
 		}
 
 		public void ChangeTexture(string path) => texture = Globals.content.Load<Texture2D>(path);
+		public void ChangeTexture(Texture2D texture) => this.texture = texture;
 
 		public Rectangle rect => new Rectangle((int)transform.screenPos.X, (int)transform.screenPos.Y,
 											   (int)(destinationSize.X * transform.scale.X),
