@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using MonoGame.Extended.Collisions;
 using MonoGame.Extended.Tweening;
+using MonoGame.Extended.ViewportAdapters;
 using Myra.Graphics2D.UI;
 
 namespace Veinia
@@ -22,5 +23,6 @@ namespace Veinia
 		public static CollisionComponent collisionComponent;
 		public static GameWindow window;
 		public static Desktop desktop;
+		public static BoxingViewportAdapter boxingViewportAdapter;
 	}
 }

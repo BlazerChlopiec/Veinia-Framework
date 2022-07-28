@@ -26,7 +26,7 @@ namespace Veinia.Editor
 			var firstPrefab = prefabManager.prefabs[0];
 			if (firstPrefab != null) ChangeCurrentPrefab(firstPrefab.prefabName);
 
-			level.UI.Widgets.Add(tileCount);
+			level.Myra.Widgets.Add(tileCount);
 			tileCount.Text = "Object Count " + (editorObjects.Count);
 			UpdateTitle();
 		}

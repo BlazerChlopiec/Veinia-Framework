@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GeonBit.UI;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
 namespace Veinia
@@ -186,6 +187,8 @@ namespace Veinia
 		}
 		public bool GetMouseButtonDown(int buttonIndex)
 		{
+			if (UserInterface.Active.IsMouseInteracting) return false;
+
 			if (buttonIndex == 0)
 				return mouse.LeftButton == ButtonState.Pressed && oldMouse.LeftButton != ButtonState.Pressed;
 			if (buttonIndex == 1)
@@ -195,10 +198,10 @@ namespace Veinia
 		public bool GetMouseGamepadButtonDown(int buttonIndex, Buttons button)
 		{
 			if (buttonIndex == 0)
-				return mouse.LeftButton == ButtonState.Pressed && oldMouse.LeftButton != ButtonState.Pressed
+				return mouse.LeftButton == ButtonState.Pressed && oldMouse.LeftButton != ButtonState.Pressed && UserInterface.Active.IsMouseInteracting == false
 										|| gamepad.IsButtonDown(button) && !oldGamepad.IsButtonDown(button);
 			if (buttonIndex == 1)
-				return mouse.RightButton == ButtonState.Pressed && oldMouse.RightButton != ButtonState.Pressed
+				return mouse.RightButton == ButtonState.Pressed && oldMouse.RightButton != ButtonState.Pressed && UserInterface.Active.IsMouseInteracting == false
 										 || gamepad.IsButtonDown(button) && !oldGamepad.IsButtonDown(button);
 			else { return false; }
 		}
@@ -217,6 +220,8 @@ namespace Veinia
 		}
 		public bool GetMouseButtonUp(int buttonIndex)
 		{
+			if (UserInterface.Active.IsMouseInteracting) return false;
+
 			if (buttonIndex == 0)
 				return mouse.LeftButton == ButtonState.Released && oldMouse.LeftButton != ButtonState.Released;
 			if (buttonIndex == 1)
@@ -226,10 +231,10 @@ namespace Veinia
 		public bool GetMouseGamepadButtonUp(int buttonIndex, Buttons button)
 		{
 			if (buttonIndex == 0)
-				return mouse.LeftButton == ButtonState.Released && oldMouse.LeftButton != ButtonState.Released
+				return mouse.LeftButton == ButtonState.Released && oldMouse.LeftButton != ButtonState.Released && UserInterface.Active.IsMouseInteracting == false
 										|| gamepad.IsButtonUp(button) && !oldGamepad.IsButtonUp(button);
 			if (buttonIndex == 1)
-				return mouse.RightButton == ButtonState.Released && oldMouse.RightButton != ButtonState.Released
+				return mouse.RightButton == ButtonState.Released && oldMouse.RightButton != ButtonState.Released && UserInterface.Active.IsMouseInteracting == false
 										 || gamepad.IsButtonUp(button) && !oldGamepad.IsButtonUp(button);
 			else { return false; }
 		}
@@ -238,6 +243,5 @@ namespace Veinia
 
 		public Vector2 GetMouseScreenPosition() => Globals.camera.ScreenToWorld(mouse.Position.ToVector2());
 		public Vector2 GetMouseWorldPosition() => Transform.ScreenToWorldPos(Globals.camera.ScreenToWorld(mouse.Position.ToVector2()));
-		public Vector2 GetMouseUIPos() => mouse.Position.ToVector2();
 	}
 }

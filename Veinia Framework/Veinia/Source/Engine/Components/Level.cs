@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GeonBit.UI;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Myra.Graphics2D.UI;
 using Newtonsoft.Json;
@@ -16,7 +17,7 @@ namespace Veinia
 		public List<GameObject> scene = new List<GameObject>();
 
 
-		public Panel UI = new Panel();
+		public Panel Myra = new Panel();
 		protected PrefabManager prefabManager { get; private set; }
 		public string levelPath { get; private set; }
 
@@ -36,9 +37,11 @@ namespace Veinia
 		/// </summary>
 		public virtual void CreateScene(bool loadObjectsFromPath = true)
 		{
+			Time.stop = false;
 			Globals.camera.SetPosition(Vector2.Zero);
 			Globals.camera.Zoom = 1;
-			Globals.desktop.Root = UI;
+			Globals.desktop.Root = Myra;
+			UserInterface.Active.RemoveAllEntities();
 
 			prefabManager.LoadPrefabs();
 			if (loadObjectsFromPath) LoadObjects(levelPath);

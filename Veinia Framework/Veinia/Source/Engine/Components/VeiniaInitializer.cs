@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GeonBit.UI;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -26,39 +27,39 @@ namespace Veinia
 			Globals.fps = new FPS(game);
 		}
 
-		Vector2 defaultUIBounds;
 		public void Initialize(GraphicsDevice graphicsDevice, ContentManager content, GameWindow window,
 			int unitSize, float collisionRectScreenSize, Vector2 gameSize, PrefabManager prefabManager, bool fullscreen = false)
 		{
-			//MYRA UI
-			MyraEnvironment.Game = game;
-
-
-			defaultUIBounds = gameSize;
-			Globals.desktop = new Desktop
-			{
-				Opacity = .95f,
-				HasExternalTextInput = true,
-				BoundsFetcher = () => new Rectangle(0, 0, (int)defaultUIBounds.X, (int)defaultUIBounds.Y),
-			};
-			window.TextInput += (s, a) => Globals.desktop.OnChar(a.Character);
-			//
-
 			Transform.unitSize = unitSize;
 
 			this.prefabManager = prefabManager;
 
-
 			Globals.graphicsDevice = graphicsDevice;
 			Globals.content = content;
 			Globals.screen = new Screen((int)gameSize.X, (int)gameSize.Y); // window size
+			Globals.boxingViewportAdapter = new BoxingViewportAdapter(window, graphicsDevice, 1920, 1080);
 			if (fullscreen) Globals.graphicsManager.ToggleFullScreen();
-			Globals.camera = new OrthographicCamera(new BoxingViewportAdapter(window, graphicsDevice, 1920, 1080));
+			Globals.camera = new OrthographicCamera(Globals.boxingViewportAdapter);
 			Globals.collisionComponent = new CollisionComponent(
 										 new RectangleF(-collisionRectScreenSize, -collisionRectScreenSize,
 														 collisionRectScreenSize * 2, collisionRectScreenSize * 2));
-
 			title = new Title(window);
+
+
+			//GeonBit.UI
+			UserInterface.Initialize(content, BuiltinThemes.editor);
+			UserInterface.Active.ShowCursor = false;
+			//
+
+			//Myra
+			MyraEnvironment.Game = game;
+			Globals.desktop = new Desktop
+			{
+				Opacity = .95f,
+				HasExternalTextInput = true,
+			};
+			window.TextInput += (s, a) => Globals.desktop.OnChar(a.Character);
+			//
 		}
 
 		public void Update(GameTime gameTime)
@@ -82,6 +83,9 @@ namespace Veinia
 			Title.Add(Globals.fps.isVSync, " - vSync", 1);
 			title.Update();
 
+			//GeonBit.UI
+			UserInterface.Active.Update(gameTime);
+
 
 #if DEBUG
 			if (Globals.input.GetKeyDown(Keys.F))
@@ -103,15 +107,17 @@ namespace Veinia
 
 		public void Draw(SpriteBatch spriteBatch)
 		{
+			//Level
 			spriteBatch.Begin(SpriteSortMode.FrontToBack, transformMatrix: Globals.camera.GetViewMatrix());
-
 			if (Globals.loader.currentLevel != null) Globals.loader.currentLevel.Draw(spriteBatch);
 
 			spriteBatch.End();
 
-			//UI
-			Globals.desktop.Scale = new Vector2(Globals.graphicsDevice.Viewport.Width, Globals.graphicsDevice.Viewport.Height) / defaultUIBounds;
+			//Myra
 			Globals.desktop.Render();
+
+			//GeonBit.UI
+			UserInterface.Active.Draw(spriteBatch);
 		}
 	}
 }

@@ -16,6 +16,9 @@ namespace Veinia.BlockBreaker
 			if (collider != null)
 				RemoveComponent(collider);
 
+			var UI = FindComponentOfType<UI>();
+			UI.progressBar.Value--;
+
 			GetComponent<Sprite>().layer = 1;
 
 			hasBeenDestroyed = true;
@@ -31,7 +34,7 @@ namespace Veinia.BlockBreaker
 
 					if (FindComponentsOfType<Tile>().Count == 0)
 					{
-						Globals.loader.Reload();
+						UI.ShowWinScreen();
 					}
 				});
 		}

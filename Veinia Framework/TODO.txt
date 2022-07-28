@@ -10,8 +10,8 @@ TODO:
 - check if render targets are compatible
 - dynamically change grid size in the editor
 - make an edit editor tab
-- scale myra with screen res
 - rework the loader (merge it with level.cs?) to reduce global classes
+- (GeonBit.UI) fix global scaling turning off rich colors 
 
 
 Goals:
@@ -47,3 +47,7 @@ Goals:
 - add a collision rect screen size in veiniaInitializer's constructor
 - added a Level reference to components
 - added isEnabled to components
+- mouse UI position gets weird when resizing the screen (GeonBit.UI)
+- (GeonBit.UI) remove all ui when changing a scene 
+- (GeonBit.UI) make a static bool which determines if mouse is hovering over any ui element
+- (GeonBit.UI) add isPersistent (should be removed on scene change)

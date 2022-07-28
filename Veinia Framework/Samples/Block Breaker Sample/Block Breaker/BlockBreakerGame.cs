@@ -1,7 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GeonBit.UI;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Myra.Graphics2D.UI;
 
 namespace Veinia.BlockBreaker
 {
@@ -34,8 +34,8 @@ namespace Veinia.BlockBreaker
 			veinia.Initialize(GraphicsDevice, Content, Window,
 					unitSize: 100, collisionRectScreenSize: 10000, new Vector2(1280, 720), prefabs, fullscreen: false);
 
-			Globals.loader.Load(new Level1(prefabs, "BlockBreakerLevel1.veinia"));
-
+			var level = new Level1(prefabs, "BlockBreakerLevel1.veinia");
+			Globals.loader.Load(level);
 
 			base.Initialize();
 		}
@@ -57,6 +57,7 @@ namespace Veinia.BlockBreaker
 			GraphicsDevice.Clear(Color.White * .05f);
 
 			veinia.Draw(spriteBatch);
+
 
 			base.Draw(gameTime);
 		}
