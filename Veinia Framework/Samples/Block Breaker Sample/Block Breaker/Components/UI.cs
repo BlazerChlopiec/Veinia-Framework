@@ -1,5 +1,7 @@
 ﻿using GeonBit.UI;
+using GeonBit.UI.Animators;
 using GeonBit.UI.Entities;
+using GeonBit.UI.Utils;
 using Microsoft.Xna.Framework;
 using System;
 
@@ -33,18 +35,47 @@ namespace Veinia.BlockBreaker
 		{
 			Time.stop = true;
 
-			var panel = new Panel(new Vector2(300, 200), PanelSkin.Default, Anchor.Center);
+			var panel = new Panel(new Vector2(300, 300), PanelSkin.Default);
 
 			var congratulations = new RichParagraph("{{GOLD}}Congratulations!",
 									Anchor.TopCenter);
+
+			var thanksForPlaying = new Paragraph("Thank you for playing!");
+
+
+			var horizontalLine = new HorizontalLine();
+
+			var restartButton = new Button("Restart", ButtonSkin.Default, offset: Vector2.UnitY * 20, anchor: Anchor.BottomCenter);
+			restartButton.OnClick = (e) => { Globals.loader.Reload(); UserInterface.Active.SetCursor(CursorType.Default); };
+			restartButton.OnMouseEnter = (e) => { UserInterface.Active.SetCursor(CursorType.Pointer); };
+			restartButton.OnMouseLeave = (e) => { UserInterface.Active.SetCursor(CursorType.Default); };
+
+			panel.AddChild(congratulations);
+			panel.AddChild(horizontalLine);
+			panel.AddChild(thanksForPlaying);
+			panel.AddChild(restartButton);
+
+			UserInterface.Active.AddEntity(panel);
+		}
+
+		public void ShowLoseScreen()
+		{
+			Time.stop = true;
+
+			var panel = new Panel(new Vector2(300, 200), PanelSkin.Default, Anchor.Center);
+			var gameOver = new RichParagraph("{{RED}}Game Over!",
+									Anchor.TopCenter);
+
+			var horizontalLine = new HorizontalLine();
 
 			var restartButton = new Button("Restart", ButtonSkin.Default, Anchor.BottomCenter, offset: Vector2.UnitY * 20);
 			restartButton.OnClick = (e) => { Globals.loader.Reload(); UserInterface.Active.SetCursor(CursorType.Default); };
 			restartButton.OnMouseEnter = (e) => { UserInterface.Active.SetCursor(CursorType.Pointer); };
 			restartButton.OnMouseLeave = (e) => { UserInterface.Active.SetCursor(CursorType.Default); };
 
+			panel.AddChild(gameOver).AttachAnimator(new FloatUpDownAnimator());
+			panel.AddChild(horizontalLine);
 			panel.AddChild(restartButton);
-			panel.AddChild(congratulations);
 
 			UserInterface.Active.AddEntity(panel);
 		}

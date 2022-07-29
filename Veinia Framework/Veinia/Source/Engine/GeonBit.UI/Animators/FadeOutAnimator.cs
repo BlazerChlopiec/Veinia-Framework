@@ -7,7 +7,7 @@ namespace GeonBit.UI.Animators
     /// An animator that makes an entity fade out.
     /// Note: this animator override the Opacity property.
     /// </summary>
-    public class FadeOutAnimator : IAnimator
+    public class FadeOutAnimator : Animator
     {
         // current time left for fading
         private float _timeLeft = 1f;

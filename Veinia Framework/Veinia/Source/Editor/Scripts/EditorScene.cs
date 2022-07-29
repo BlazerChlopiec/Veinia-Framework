@@ -21,7 +21,6 @@ namespace Veinia.Editor
 				new EditorObjectManager(prefabManager),
 				new EditorJson(levelPath),
 				new Toolbar(prefabManager),
-				new TestPropertyGrid(),
 			}, isStatic: true);
 		}
 	}

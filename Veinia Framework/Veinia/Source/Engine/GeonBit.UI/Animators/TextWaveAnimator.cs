@@ -6,7 +6,7 @@ namespace GeonBit.UI.Animators
     /// <summary>
     /// An animator that add wave animation to rich paragraphs.
     /// </summary>
-    public class TextWaveAnimator : IAnimator
+    public class TextWaveAnimator : Animator
     {
         // current wave peak position.
         private float _currPosition = 0f;

@@ -7,7 +7,7 @@ namespace GeonBit.UI.Animators
     /// An animator that makes an entity float up and down.
     /// Note: this animator override the SpaceBefore and SpaceAfter properties.
     /// </summary>
-    public class FloatUpDownAnimator : IAnimator
+    public class FloatUpDownAnimator : Animator
     {
         /// <summary>
         /// If set, represent number of seconds for this animator to run.

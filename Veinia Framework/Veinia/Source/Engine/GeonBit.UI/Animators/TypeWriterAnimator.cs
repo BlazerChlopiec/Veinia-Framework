@@ -7,7 +7,7 @@ namespace GeonBit.UI.Animators
     /// An animator that makes an entity types text into Paragraph over time.
     /// Note: this animator override the Text property.
     /// </summary>
-    public class TypeWriterAnimator : IAnimator
+    public class TypeWriterAnimator : Animator
     {
         /// <summary>
         /// Text to type.

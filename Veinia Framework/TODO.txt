@@ -11,7 +11,8 @@ TODO:
 - dynamically change grid size in the editor
 - make an edit editor tab
 - rework the loader (merge it with level.cs?) to reduce global classes
-- (GeonBit.UI) fix global scaling turning off rich colors 
+- (GeonBit.UI) anchors break out the animation
+- (GeonBit.UI) images dont scale with GlobalScale
 
 
 Goals:
@@ -20,12 +21,13 @@ Goals:
 - audio
 - penumbra lights
 - animation 
+- particles
 
 
 
 
 -DONE
-- implement AddDomponent()
+- implement AddComponent()
 - simplify gameobject/component syntax
 - make a camera look at
 - simplify veinia initialization (make it easy to implement)
@@ -51,3 +53,4 @@ Goals:
 - (GeonBit.UI) remove all ui when changing a scene 
 - (GeonBit.UI) make a static bool which determines if mouse is hovering over any ui element
 - (GeonBit.UI) add isPersistent (should be removed on scene change)
+- (GeonBit.UI) fix global scaling turning off rich colors 

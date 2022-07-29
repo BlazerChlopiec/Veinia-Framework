@@ -197,7 +197,7 @@ namespace GeonBit.UI.Entities
 		protected int _indexInParent;
 
 		// list of animators attached to this entity.
-		private List<Animators.IAnimator> _animators = new List<Animators.IAnimator>();
+		private List<Animators.Animator> _animators = new List<Animators.Animator>();
 
 		/// <summary>
 		/// Optional tag we can attach to this entity, used for whatever purpose.
@@ -1640,7 +1640,7 @@ namespace GeonBit.UI.Entities
 		/// Add animator to this entity.
 		/// </summary>
 		/// <param name="animator">Animator to attach.</param>
-		public Animators.IAnimator AttachAnimator(Animators.IAnimator animator)
+		public Animators.Animator AttachAnimator(Animators.Animator animator)
 		{
 			animator.SetTargetEntity(this);
 			_animators.Add(animator);
@@ -1651,7 +1651,7 @@ namespace GeonBit.UI.Entities
 		/// Remove animator from entity.
 		/// </summary>
 		/// <param name="animator">Animator to remove.</param>
-		public void RemoveAnimator(Animators.IAnimator animator)
+		public void RemoveAnimator(Animators.Animator animator)
 		{
 			if (_animators.Remove(animator))
 			{

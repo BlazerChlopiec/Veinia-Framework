@@ -6,7 +6,7 @@ namespace Veinia.BlockBreaker
 	{
 		public override void OnCollide(CollisionState state, CollisionEventArgs collisionInfo)
 		{
-			if (state == CollisionState.Enter) Globals.loader.Reload();
+			if (state == CollisionState.Enter) FindComponentOfType<UI>().ShowLoseScreen();
 		}
 	}
 }
