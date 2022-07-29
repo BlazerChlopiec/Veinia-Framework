@@ -10,6 +10,7 @@ namespace Veinia.BlockBreaker
 	public class UI : Component
 	{
 		public ProgressBar progressBar;
+		public Button configButton;
 
 
 		public override void Initialize()
@@ -22,7 +23,13 @@ namespace Veinia.BlockBreaker
 			progressBar.Caption.Scale = 1.5f;
 			progressBar.Caption.TextStyle = FontStyle.Bold;
 
+			configButton = new Button("Config", ButtonSkin.Fancy, Anchor.TopLeft, offset: new Vector2(20, 20), size: new Vector2(150, 50));
+			configButton.OnClick = (e) => { ShowConfigScreen(); };
+			configButton.OnMouseEnter = (e) => { UserInterface.Active.SetCursor(CursorType.Pointer); };
+			configButton.OnMouseLeave = (e) => { UserInterface.Active.SetCursor(CursorType.Default); };
+
 			UserInterface.Active.AddEntity(progressBar);
+			UserInterface.Active.AddEntity(configButton);
 		}
 
 		public override void Update()
@@ -76,6 +83,40 @@ namespace Veinia.BlockBreaker
 			panel.AddChild(gameOver).AttachAnimator(new FloatUpDownAnimator());
 			panel.AddChild(horizontalLine);
 			panel.AddChild(restartButton);
+
+			UserInterface.Active.AddEntity(panel);
+		}
+
+
+		public void ShowConfigScreen()
+		{
+			Time.stop = true;
+
+			configButton.Enabled = false;
+
+			var ball = FindComponentOfType<Ball>();
+
+			var panel = new Panel(new Vector2(350, 250), PanelSkin.Default, Anchor.Center);
+			var config = new Paragraph("Configuration",
+									Anchor.TopCenter);
+
+			var horizontalLine = new HorizontalLine();
+
+			var sliderName = new Paragraph("Ball Speed");
+			var slider = new Slider(0, 30, SliderSkin.Default);
+			slider.OnValueChange = (e) => { sliderName.Text = "Ball Speed: " + slider.Value; ball.speed = slider.Value; };
+			slider.Value = (int)ball.speed;
+
+			var resumeButton = new Button("Resume", ButtonSkin.Default, Anchor.BottomCenter, offset: Vector2.UnitY * 20);
+			resumeButton.OnClick = (e) => { UserInterface.Active.RemoveEntity(panel); Time.stop = false; configButton.Enabled = true; UserInterface.Active.SetCursor(CursorType.Default); };
+			resumeButton.OnMouseEnter = (e) => { UserInterface.Active.SetCursor(CursorType.Pointer); };
+			resumeButton.OnMouseLeave = (e) => { UserInterface.Active.SetCursor(CursorType.Default); };
+
+			panel.AddChild(config);
+			panel.AddChild(horizontalLine);
+			panel.AddChild(sliderName);
+			panel.AddChild(slider);
+			panel.AddChild(resumeButton);
 
 			UserInterface.Active.AddEntity(panel);
 		}

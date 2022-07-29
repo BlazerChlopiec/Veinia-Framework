@@ -11,7 +11,7 @@ namespace Veinia.BlockBreaker
 		Physics physics;
 
 
-		private const float speed = 10;
+		public float speed = 10;
 		public bool launched;
 
 
@@ -24,6 +24,7 @@ namespace Veinia.BlockBreaker
 			if (Globals.input.GetMouseButtonDown(0) && !launched)
 			{
 				launched = true;
+				FindComponentOfType<UI>().configButton.Enabled = false;
 				physics.velocity = Vector2.One.SafeNormalize() * speed;
 			}
 
