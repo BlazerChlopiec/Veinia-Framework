@@ -68,7 +68,7 @@ namespace Veinia.BlockBreaker
 				new List<Component>
 				{
 					new UI()
-				}, isStatic: false);
+				}, isStatic: true);
 		}
 	}
 }

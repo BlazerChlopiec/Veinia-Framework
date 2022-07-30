@@ -78,7 +78,6 @@ namespace Veinia
 			{
 				item.gameObject = sample;
 				item.transform = sample.transform;
-				item.isStatic = sample.isStatic;
 				item.level = sample.level;
 			}
 
@@ -95,7 +94,6 @@ namespace Veinia
 			{
 				item.gameObject = sample;
 				item.transform = sample.transform;
-				item.isStatic = sample.isStatic;
 				item.level = sample.level;
 			}
 
@@ -112,7 +110,6 @@ namespace Veinia
 			{
 				item.gameObject = sample;
 				item.transform = sample.transform;
-				item.isStatic = sample.isStatic;
 				item.level = sample.level;
 			}
 

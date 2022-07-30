@@ -9,7 +9,7 @@ namespace Veinia
 		public GameObject gameObject;
 		public Transform transform;
 		public Level level;
-		public bool isStatic;
+		public bool isStatic { get { return gameObject.isStatic; } set { gameObject.isStatic = value; } }
 		public bool isEnabled = true;
 
 		public object Clone() => MemberwiseClone();

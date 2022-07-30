@@ -38,7 +38,7 @@ namespace Veinia
 		{
 			foreach (var sprite in FindComponentsOfType<Sprite>())//FindComponentsOfType<Physics>())
 			{
-				if (!sprite.isStatic) continue;
+				if (!sprite.gameObject.isStatic) continue;
 
 				if (currentChunk.rect.Intersects(sprite.rect) && !sprite.gameObject.isEnabled)
 				{
