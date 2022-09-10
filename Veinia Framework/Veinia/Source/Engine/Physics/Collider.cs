@@ -44,25 +44,36 @@ namespace Veinia
 		public virtual void OnCollision(CollisionEventArgs collisionInfo)
 		{
 			currectCollisionInfo = collisionInfo;
-			if (!isColliding) { CallOnCollideOnEveryComponent(CollisionState.Enter, collisionInfo); hasEnteredCollision = true; }
+
+			if (!isColliding && !hasEnteredCollision)
+			{
+				CallOnCollideOnEveryComponent(CollisionState.Enter, collisionInfo);
+				hasEnteredCollision = true;
+			}
 			isColliding = true;
 
 			CallOnCollideOnEveryComponent(CollisionState.Stay, collisionInfo);
 
-			if (trigger || collisionInfo.Other.collider.trigger) return;
 
-
-			if (!gameObject.isStatic) transform.position -= Transform.ToWorldUnits(collisionInfo.PenetrationVector);
-
-			foreach (var item in GetAllComponents<Collider>())
+			// if you're not a trigger and the other object is also not a trigger - move them
+			if (!trigger && !collisionInfo.Other.collider.trigger)
 			{
-				item.Bounds.Position = transform.screenPos + item.offset;
+				if (!gameObject.isStatic) transform.position -= Transform.ToWorldUnits(collisionInfo.PenetrationVector);
+
+				foreach (var item in GetAllComponents<Collider>())
+				{
+					item.Bounds.Position = transform.screenPos + item.offset;
+				}
 			}
 		}
 
 		public override void LateUpdate()
 		{
-			if (!isColliding && hasEnteredCollision) { CallOnCollideOnEveryComponent(CollisionState.Exit, currectCollisionInfo); hasEnteredCollision = false; }
+			if (!isColliding && hasEnteredCollision)
+			{
+				CallOnCollideOnEveryComponent(CollisionState.Exit, currectCollisionInfo);
+				hasEnteredCollision = false;
+			}
 			isColliding = false;
 
 			Bounds.Position = transform.screenPos + offset;
@@ -76,14 +87,14 @@ namespace Veinia
 
 		public void CallOnCollideOnEveryComponent(CollisionState state, CollisionEventArgs collisionInfo)
 		{
-			if (!trigger)
+			if (!trigger && !collisionInfo.Other.collider.trigger)
 			{
 				foreach (var component in gameObject.components)
 				{
 					component.OnCollide(state, collisionInfo);
 				}
 			}
-			else
+			else if (trigger && !collisionInfo.Other.collider.trigger)
 			{
 				foreach (var component in gameObject.components)
 				{
