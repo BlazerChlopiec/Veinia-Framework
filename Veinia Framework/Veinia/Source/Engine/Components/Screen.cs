@@ -1,11 +1,13 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Veinia
 {
 	public class Screen
 	{
-		public int width;
-		public int height;
+		public int width { get; private set; }
+		public int height { get; private set; }
+		public Vector2 Resolution => new Vector2(width, height);
 
 
 		public Screen(int width, int height)
@@ -29,6 +31,8 @@ namespace Veinia
 			Globals.graphicsManager.PreferredBackBufferWidth = width;
 			Globals.graphicsManager.PreferredBackBufferHeight = height;
 			Globals.graphicsManager.ApplyChanges();
+
+			Globals.boxingViewportAdapter?.Reset();
 		}
 	}
 }
