@@ -32,7 +32,7 @@ namespace Veinia
 			Globals.graphicsManager.PreferredBackBufferHeight = height;
 			Globals.graphicsManager.ApplyChanges();
 
-			Globals.boxingViewportAdapter?.Reset();
+			Globals.viewportAdapter?.Reset();
 		}
 	}
 }

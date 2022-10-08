@@ -26,6 +26,8 @@ namespace Veinia
 			set { bounds = value; }
 		}
 
+		public RectangleF rectangleBounds;
+
 		public Collider collider => this;
 
 		IShapeF bounds;
@@ -38,6 +40,8 @@ namespace Veinia
 		public override void Initialize()
 		{
 			Bounds.Position = transform.screenPos + offset;
+			rectangleBounds.Position = transform.screenPos + offset;
+
 			Globals.collisionComponent.Insert(this);
 		}
 
@@ -63,6 +67,7 @@ namespace Veinia
 				foreach (var item in GetAllComponents<Collider>())
 				{
 					item.Bounds.Position = transform.screenPos + item.offset;
+					item.rectangleBounds.Position = transform.screenPos + item.offset;
 				}
 			}
 		}
@@ -77,6 +82,7 @@ namespace Veinia
 			isColliding = false;
 
 			Bounds.Position = transform.screenPos + offset;
+			rectangleBounds.Position = transform.screenPos + offset;
 		}
 
 		public void Dispose() => Globals.collisionComponent.Remove(this);
@@ -91,14 +97,14 @@ namespace Veinia
 			{
 				foreach (var component in gameObject.components)
 				{
-					component.OnCollide(state, collisionInfo);
+					component.OnCollide(self: this, state, collisionInfo);
 				}
 			}
 			else if (trigger && !collisionInfo.Other.collider.trigger)
 			{
 				foreach (var component in gameObject.components)
 				{
-					component.OnTrigger(state, collisionInfo);
+					component.OnTrigger(self: this,state, collisionInfo);
 				}
 			}
 		}

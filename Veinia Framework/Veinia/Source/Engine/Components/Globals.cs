@@ -23,6 +23,6 @@ namespace Veinia
 		public static CollisionComponent collisionComponent;
 		public static GameWindow window;
 		public static Desktop desktop;
-		public static BoxingViewportAdapter boxingViewportAdapter;
+		public static ViewportAdapter viewportAdapter;
 	}
 }

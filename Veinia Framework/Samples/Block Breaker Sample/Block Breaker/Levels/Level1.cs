@@ -51,7 +51,8 @@ namespace Veinia.BlockBreaker
 				{
 					new Sprite("Sprites/Ball", .1f, Color.Blue, pixelsPerUnit: 120),
 					new Ball(),
-					new CircleCollider(Vector2.Zero, .4f),
+					//new CircleCollider(Vector2.Zero, .4f),
+					new RectangleCollider(Vector2.Zero, Vector2.One),
 					new Physics(),
 				}, isStatic: false);
 			GameObject paddle = Instantiate(

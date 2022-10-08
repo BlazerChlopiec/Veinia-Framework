@@ -13,14 +13,14 @@ namespace Veinia
 		{
 			screenSize = Transform.ToScreenUnits(size.SetY(size.Y * -1));
 			screenOffset = Transform.ToScreenUnits(offset);
-			//offset = Transform.ToScreenUnits(offset) - this.size / 2;
-			//offset gets removed suprisingly after being assigned here. We use Intialize Instead.
 		}
 
 		public override void Initialize()
 		{
 			offset = screenOffset - screenSize / 2;
-			Bounds = new RectangleF(Vector2.Zero, screenSize);
+			rectangleBounds = new RectangleF(Vector2.Zero, screenSize);
+			Bounds = rectangleBounds;
+
 			base.Initialize();
 		}
 

@@ -1,5 +1,7 @@
 ﻿using GeonBit.UI;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended;
 using MonoGame.Extended.Collisions;
 using MonoGame.Extended.Tweening;
 using System;
@@ -34,7 +36,7 @@ namespace Veinia.BlockBreaker
 			}
 		}
 
-		public override void OnCollide(CollisionState state, CollisionEventArgs collisionInfo)
+		public override void OnCollide(Collider self, CollisionState state, CollisionEventArgs collisionInfo)
 		{
 			if (state != CollisionState.Enter) return;
 

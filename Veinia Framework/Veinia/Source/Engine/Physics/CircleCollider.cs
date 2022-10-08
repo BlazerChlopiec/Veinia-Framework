@@ -19,6 +19,7 @@ namespace Veinia
 		{
 			offset = screenOffset;
 			Bounds = new CircleF(Vector2.Zero, screenRadius);
+
 			base.Initialize();
 		}
 

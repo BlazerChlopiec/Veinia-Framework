@@ -37,9 +37,9 @@ namespace Veinia
 			Globals.graphicsDevice = graphicsDevice;
 			Globals.content = content;
 			Globals.screen = new Screen((int)gameSize.X, (int)gameSize.Y); // window size
-			Globals.boxingViewportAdapter = new BoxingViewportAdapter(window, graphicsDevice, 1920, 1080);
+			Globals.viewportAdapter = new BoxingViewportAdapter(window, graphicsDevice, 1920, 1080);
 			if (fullscreen) Globals.graphicsManager.ToggleFullScreen();
-			Globals.camera = new OrthographicCamera(Globals.boxingViewportAdapter);
+			Globals.camera = new OrthographicCamera(Globals.viewportAdapter);
 			Globals.collisionComponent = new CollisionComponent(
 										 new RectangleF(-collisionRectScreenSize, -collisionRectScreenSize,
 														 collisionRectScreenSize * 2, collisionRectScreenSize * 2));
