@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace Veinia.Platformer
 {
@@ -12,6 +14,7 @@ namespace Veinia.Platformer
 
 		public override void Initialize() => physics = GetComponent<Physics>();
 
+		float smoothZoom;
 		public override void Update()
 		{
 			physics.velocity.X = Globals.input.horizontal * speed;
@@ -26,6 +29,9 @@ namespace Veinia.Platformer
 			}
 
 			Globals.camera.LerpTo(transform.position, 10);
+
+			smoothZoom = MathHelper.Lerp(smoothZoom, (MathF.Abs(Globals.input.horizontal) / 10), 1.5f * Time.deltaTime);
+			Globals.camera.Zoom = 1 - smoothZoom;
 		}
 	}
 }
