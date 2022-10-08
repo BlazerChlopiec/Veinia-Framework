@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -8,8 +8,8 @@
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
-    <RootNamespace>Veinia.BlockBreaker</RootNamespace>
-    <AssemblyName>Block Breaker Sample</AssemblyName>
+    <RootNamespace>Veinia.Platformer</RootNamespace>
+    <AssemblyName>Platformer Sample</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Icon.ico" />
@@ -20,9 +20,6 @@
     <EmbeddedResource Include="Icon.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <MonoGameContentReference Include="Block Breaker\Content\Content.mgcb" />
-  </ItemGroup>
-  <ItemGroup>
     <TrimmerRootAssembly Include="Microsoft.Xna.Framework.Content.ContentTypeReader" Visible="false" />
   </ItemGroup>
   <ItemGroup>
@@ -31,5 +28,8 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Veinia\Veinia.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Platformer\Components\" />
   </ItemGroup>
 </Project>
