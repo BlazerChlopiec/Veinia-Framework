@@ -29,7 +29,4 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Veinia\Veinia.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Platformer\Components\" />
-  </ItemGroup>
 </Project>

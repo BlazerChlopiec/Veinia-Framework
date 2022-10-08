@@ -19,8 +19,8 @@ namespace Veinia.Platformer
 			IsMouseVisible = true;
 
 			veinia = new VeiniaInitializer(this, graphics);
-			Globals.fps.vSync(true);
-			Globals.fps.ChangeFps(int.MaxValue);
+			Globals.fps.vSync(false);
+			Globals.fps.ChangeFps(144);
 		}
 
 		protected override void Initialize()

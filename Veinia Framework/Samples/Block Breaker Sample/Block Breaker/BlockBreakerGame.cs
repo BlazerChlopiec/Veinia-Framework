@@ -1,5 +1,4 @@
-﻿using GeonBit.UI;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -57,7 +56,6 @@ namespace Veinia.BlockBreaker
 			GraphicsDevice.Clear(Color.White * .05f);
 
 			veinia.Draw(spriteBatch);
-
 
 			base.Draw(gameTime);
 		}

@@ -104,7 +104,7 @@ namespace Veinia
 			{
 				foreach (var component in gameObject.components)
 				{
-					component.OnTrigger(self: this,state, collisionInfo);
+					component.OnTrigger(self: this, state, collisionInfo);
 				}
 			}
 		}

@@ -41,6 +41,9 @@ namespace Veinia
 			Globals.camera.SetPosition(Vector2.Zero);
 			Globals.camera.Zoom = 1;
 			Globals.desktop.Root = Myra;
+
+			UserInterface.Active.ShowCursor = false;
+			if (this is EditorScene) UserInterface.Active.ShowCursor = true;
 			UserInterface.Active.RemoveAllEntities();
 
 			prefabManager.LoadPrefabs();

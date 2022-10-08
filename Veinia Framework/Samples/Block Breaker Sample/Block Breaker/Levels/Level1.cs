@@ -1,6 +1,4 @@
-﻿using GeonBit.UI;
-using GeonBit.UI.Entities;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
 namespace Veinia.BlockBreaker
@@ -51,9 +49,8 @@ namespace Veinia.BlockBreaker
 				{
 					new Sprite("Sprites/Ball", .1f, Color.Blue, pixelsPerUnit: 120),
 					new Ball(),
-					//new CircleCollider(Vector2.Zero, .4f),
-					new RectangleCollider(Vector2.Zero, Vector2.One),
-					new Physics(),
+					new CircleCollider(Vector2.Zero, .4f),
+					new Physics(gravity: 0, removeVelocityBasedOnCollision: false),
 				}, isStatic: false);
 			GameObject paddle = Instantiate(
 				new Transform(Vector2.Zero),

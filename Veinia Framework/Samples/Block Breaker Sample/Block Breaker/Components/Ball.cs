@@ -1,7 +1,4 @@
-﻿using GeonBit.UI;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended;
+﻿using Microsoft.Xna.Framework;
 using MonoGame.Extended.Collisions;
 using MonoGame.Extended.Tweening;
 using System;
@@ -30,10 +27,10 @@ namespace Veinia.BlockBreaker
 				physics.velocity = Vector2.One.SafeNormalize() * speed;
 			}
 
-			else if (Globals.input.GetMouseButtonDown(0) && launched)
-			{
-				physics.velocity = (Globals.input.GetMouseWorldPosition() - transform.position).SafeNormalize() * speed;
-			}
+			//else if (Globals.input.GetMouseButtonDown(0) && launched)
+			//{
+			//	physics.velocity = (Globals.input.GetMouseWorldPosition() - transform.position).SafeNormalize() * speed;
+			//}
 		}
 
 		public override void OnCollide(Collider self, CollisionState state, CollisionEventArgs collisionInfo)

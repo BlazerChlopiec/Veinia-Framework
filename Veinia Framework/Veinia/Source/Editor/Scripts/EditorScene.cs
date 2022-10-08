@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GeonBit.UI;
 using System.Collections.Generic;
 
 namespace Veinia.Editor
@@ -11,8 +11,10 @@ namespace Veinia.Editor
 
 		public override void CreateScene(bool loadObjectsFromPath)
 		{
-			// the gameObjects shouldn't be loaded as usuall because later we only load their sprites
+			// the gameObjects shouldn't be loaded as usual because later we only load their sprites
 			base.CreateScene(loadObjectsFromPath: false);
+
+			UserInterface.Active.ShowCursor = true;
 
 			GameObject systems = Instantiate(Transform.Empty, new List<Component>
 			{
