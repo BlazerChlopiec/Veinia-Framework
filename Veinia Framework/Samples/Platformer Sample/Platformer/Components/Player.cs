@@ -16,11 +16,11 @@ namespace Veinia.Platformer
 		{
 			physics.velocity.X = Globals.input.horizontal * speed;
 
-			if (Globals.input.GetKeyDown(Keys.Space) || Globals.input.GetKeyDown(Keys.W))
+			if (Globals.input.GetKeyButtonDown(Keys.Space, Buttons.A) || Globals.input.GetKeyDown(Keys.W))
 			{
 				physics.velocity.Y = jumpForce;
 			}
-			if ((Globals.input.GetKeyUp(Keys.Space) || Globals.input.GetKeyUp(Keys.W)) && physics.velocity.Y > 0)
+			if ((Globals.input.GetKeyButtonUp(Keys.Space, Buttons.A) || Globals.input.GetKeyUp(Keys.W)) && physics.velocity.Y > 0)
 			{
 				physics.velocity.Y *= .7f;
 			}
