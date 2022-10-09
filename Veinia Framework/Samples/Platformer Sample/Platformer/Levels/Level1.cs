@@ -22,10 +22,10 @@ namespace Veinia.Platformer
 				new UI(),
 			}, isStatic: true);
 
-			Instantiate(Transform.Empty, new List<Component>
+			Instantiate(new Transform(1, 2), new List<Component>
 			{
-				new Sprite("Sprites/Square", .1f, Color.LightBlue, pixelsPerUnit: 200),
-				new TestUp(),
+				new Sprite("Sprites/Arrow", .1f, Color.LightBlue, pixelsPerUnit: 100),
+				new RotationTest(),
 			}, isStatic: false);
 		}
 	}

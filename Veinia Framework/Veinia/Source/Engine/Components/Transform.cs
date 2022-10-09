@@ -11,11 +11,11 @@ namespace Veinia
 
 		public static Transform Empty => new Transform(0, 0);
 
-		public float xRotation { get; set; }
+		public float rotation { get; set; }
 		public Vector2 scale { get; set; } = Vector2.One;
 		public Vector2 position { get; set; }
 		public Vector2 screenPos => Transform.WorldToScreenPos(position);
-		public Vector2 up => new Vector2((float)MathF.Cos(MathHelper.ToRadians(xRotation - 90)), -(float)MathF.Sin(MathHelper.ToRadians(xRotation - 90)));
+		public Vector2 up => new Vector2((float)MathF.Cos(MathHelper.ToRadians(rotation - 90)), -(float)MathF.Sin(MathHelper.ToRadians(rotation - 90)));
 
 		public Transform(float worldX, float worldY, float scaleX, float scaleY)
 		{
@@ -52,5 +52,14 @@ namespace Veinia
 		public static Vector2 ToWorldUnits(Vector2 screen) => screen.SetY(screen.Y * -1) / unitSize;
 		public static float ToScreenUnits(float world) => world * unitSize;
 		public static float ToWorldUnits(float screen) => screen / unitSize;
+
+		public void LookAt(Vector2 worldPos)
+		{
+			var distanceX = worldPos.X - transform.position.X;
+			var distanceY = worldPos.Y - transform.position.Y;
+
+			var result = -((float)Math.Atan2(distanceY, distanceX));
+			transform.rotation = MathHelper.ToDegrees(result) + 90;
+		}
 	}
 }

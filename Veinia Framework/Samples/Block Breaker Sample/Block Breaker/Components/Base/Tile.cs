@@ -23,7 +23,7 @@ namespace Veinia.BlockBreaker
 
 			hasBeenDestroyed = true;
 
-			Globals.tweener.TweenTo(target: transform, expression: transform => transform.xRotation, toValue: -10, duration: .2f)
+			Globals.tweener.TweenTo(target: transform, expression: transform => transform.rotation, toValue: -10, duration: .2f)
 				.Easing(EasingFunctions.BackIn);
 
 			Globals.tweener.TweenTo(target: transform, expression: transform => transform.scale, toValue: Vector2.Zero, duration: .3f)

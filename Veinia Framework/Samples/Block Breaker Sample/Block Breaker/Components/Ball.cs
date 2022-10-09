@@ -18,7 +18,7 @@ namespace Veinia.BlockBreaker
 
 		public override void Update()
 		{
-			if (launched) transform.xRotation += 200f * Time.deltaTime;
+			if (launched) transform.rotation += 200f * Time.deltaTime;
 
 			if (Globals.input.GetMouseButtonDown(0) && !launched)
 			{

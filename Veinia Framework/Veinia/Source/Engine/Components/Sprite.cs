@@ -32,7 +32,7 @@ namespace Veinia
 
 		public void Draw(SpriteBatch sb)
 		{
-			sb.Draw(texture, rect, null, color, MathHelper.ToRadians(transform.xRotation),
+			sb.Draw(texture, rect, null, color, MathHelper.ToRadians(transform.rotation),
 									 new Vector2(texture.Bounds.Width / 2, texture.Bounds.Height / 2),
 									 SpriteEffects.None, layer);
 		}
