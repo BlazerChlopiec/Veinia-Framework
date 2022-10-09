@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using MonoGame.Extended;
+using System;
 
 namespace Veinia
 {
@@ -13,7 +14,8 @@ namespace Veinia
 		public float xRotation { get; set; }
 		public Vector2 scale { get; set; } = Vector2.One;
 		public Vector2 position { get; set; }
-		public Vector2 screenPos { get { return Transform.WorldToScreenPos(position); } }
+		public Vector2 screenPos => Transform.WorldToScreenPos(position);
+		public Vector2 up => new Vector2((float)MathF.Cos(MathHelper.ToRadians(xRotation - 90)), -(float)MathF.Sin(MathHelper.ToRadians(xRotation - 90)));
 
 		public Transform(float worldX, float worldY, float scaleX, float scaleY)
 		{

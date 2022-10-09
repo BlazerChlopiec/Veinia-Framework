@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace Veinia.Platformer
 {
@@ -20,6 +21,12 @@ namespace Veinia.Platformer
 			{
 				new UI(),
 			}, isStatic: true);
+
+			Instantiate(Transform.Empty, new List<Component>
+			{
+				new Sprite("Sprites/Square", .1f, Color.LightBlue, pixelsPerUnit: 200),
+				new TestUp(),
+			}, isStatic: false);
 		}
 	}
 }
