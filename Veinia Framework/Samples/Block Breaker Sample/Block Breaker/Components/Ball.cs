@@ -37,7 +37,7 @@ namespace Veinia.BlockBreaker
 		{
 			if (state != CollisionState.Enter) return;
 
-			var tile = collisionInfo.Other.collider.NullableGetComponent<Tile>();
+			var tile = collisionInfo.Other.collider.GetComponent<Tile>();
 			if (tile != null) tile.Hit();
 
 			Globals.tweener.TweenTo(target: transform, expression: transform => transform.scale, toValue: new Vector2(1.3f, 1f), duration: .01f)
