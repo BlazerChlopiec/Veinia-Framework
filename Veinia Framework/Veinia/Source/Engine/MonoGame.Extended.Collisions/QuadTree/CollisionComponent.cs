@@ -1,8 +1,7 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using Microsoft.Xna.Framework;
 
 namespace MonoGame.Extended.Collisions
 {
@@ -28,6 +27,8 @@ namespace MonoGame.Extended.Collisions
 			_collisionTree = new Quadtree(boundary);
 		}
 
+
+
 		/// <summary>
 		/// Update the collision tree and process collisions.
 		/// </summary>
@@ -46,13 +47,26 @@ namespace MonoGame.Extended.Collisions
 				var target = value.Target;
 				var collisions = _collisionTree.Query(target.Bounds);
 
+				float lastXPenetration = 0;
+				float lastYPenetration = 0;
+
+				foreach (var other in collisions)
+				{
+
+					var penetration = CalculatePenetrationVector(value.Bounds, other.Bounds);
+
+					if (penetration.X != 0) lastXPenetration = penetration.X;
+					if (penetration.Y != 0) lastYPenetration = penetration.Y;
+				}
+
 				// Generate list of collision Infos
 				foreach (var other in collisions)
 				{
 					var collisionInfo = new CollisionEventArgs()
 					{
 						Other = other.Target,
-						PenetrationVector = CalculatePenetrationVector(value.Bounds, other.Bounds)
+						PenetrationVector = CalculatePenetrationVector(value.Bounds, other.Bounds),
+						PenetrationVectorPerFrame = new Vector2(lastXPenetration, lastYPenetration)
 					};
 					if (collisionInfo.PenetrationVector == Vector2.Zero) continue;
 

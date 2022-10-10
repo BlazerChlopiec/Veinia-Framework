@@ -7,11 +7,10 @@ namespace Veinia
 	{
 		public Vector2 velocity;
 		private Vector2 penetrationVector;
+		private Vector2 penetrationVectorPerFrame;
 
 		float gravity;
 		bool removeVelocityBasedOnCollision;
-
-		Physics physics;
 
 
 		public Physics(float gravity = -9.81f, bool removeVelocityBasedOnCollision = true)
@@ -20,14 +19,12 @@ namespace Veinia
 			this.removeVelocityBasedOnCollision = removeVelocityBasedOnCollision;
 		}
 
-		public override void Initialize() => physics = GetComponent<Physics>();
-
 		public override void Update()
 		{
 			if (removeVelocityBasedOnCollision)
 			{
-				if (penetrationVector.Y > 0 && velocity.Y < 0) velocity.Y = .1f;
-				if (penetrationVector.Y < 0 && velocity.Y > 0) velocity.Y = -.1f;
+				if (penetrationVectorPerFrame.Y > 0 && velocity.Y < 0) velocity.Y = .1f;
+				if (penetrationVectorPerFrame.Y < 0 && velocity.Y > 0) velocity.Y = -.1f;
 				if (penetrationVector.X > 0 && velocity.X > 0) velocity.X = .1f;
 				if (penetrationVector.X < 0 && velocity.X < 0) velocity.X = -.1f;
 			}
@@ -41,7 +38,15 @@ namespace Veinia
 			base.OnCollide(self, state, collisionInfo);
 
 			penetrationVector = collisionInfo.PenetrationVector;
-			if (state == CollisionState.Exit) penetrationVector = Vector2.Zero;
+			penetrationVectorPerFrame = collisionInfo.PenetrationVectorPerFrame;
+
+			if (state == CollisionState.Exit)
+			{
+				penetrationVector = Vector2.Zero;
+				penetrationVectorPerFrame = Vector2.Zero;
+
+
+			}
 		}
 	}
 }
