@@ -7,7 +7,7 @@ namespace Veinia.Platformer
 		public override void OnTrigger(Collider self, CollisionState state, CollisionEventArgs collisionInfo)
 		{
 			if (state == CollisionState.Enter)
-				if (collisionInfo.Other.collider.NullableGetComponent<Player>() != null) Collect();
+				if (collisionInfo.Other.collider.GetComponent<Player>() != null) Collect();
 		}
 
 		private void Collect()

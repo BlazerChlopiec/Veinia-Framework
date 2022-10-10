@@ -20,7 +20,7 @@ namespace Veinia
 			this.removeVelocityBasedOnCollision = removeVelocityBasedOnCollision;
 		}
 
-		public override void Initialize() => physics = NullableGetComponent<Physics>();
+		public override void Initialize() => physics = GetComponent<Physics>();
 
 		public override void Update()
 		{

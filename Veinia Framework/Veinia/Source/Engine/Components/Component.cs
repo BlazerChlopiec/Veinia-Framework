@@ -20,7 +20,6 @@ namespace Veinia
 		public virtual void OnTrigger(Collider self, CollisionState state, CollisionEventArgs collisionInfo) { }
 		public T1 FindComponentOfType<T1>() where T1 : Component => level.FindComponentOfType<T1>();
 		public List<T1> FindComponentsOfType<T1>() where T1 : Component => level.FindComponentsOfType<T1>();
-		public T1 NullableGetComponent<T1>() where T1 : Component => gameObject.NullableGetComponent<T1>();
 		public T1 GetComponent<T1>() where T1 : Component => gameObject.GetComponent<T1>();
 		public List<T1> GetAllComponents<T1>() where T1 : Component => gameObject.GetAllComponents<T1>();
 		public Component AddComponent(Component component) => gameObject.AddComponent(component);

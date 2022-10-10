@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Veinia.Platformer
 {
@@ -21,12 +20,6 @@ namespace Veinia.Platformer
 			{
 				new UI(),
 			}, isStatic: true);
-
-			Instantiate(new Transform(1, 2), new List<Component>
-			{
-				new Sprite("Sprites/Arrow", .1f, Color.LightBlue, pixelsPerUnit: 100),
-				new RotationTest(),
-			}, isStatic: false);
 		}
 	}
 }

@@ -36,6 +36,12 @@ namespace Veinia.Platformer
 				new RectangleCollider(Vector2.Zero, Vector2.One/2, trigger: true),
 				new Coin(),
 			}, isStatic: false));
+
+			Add("Arrow", new GameObject(Transform.Empty, new List<Component>
+			{
+				new Sprite("Sprites/Arrow", .1f, Color.LightBlue, pixelsPerUnit: 100),
+				new Arrow(),
+			}, isStatic: false));
 		}
 	}
 }

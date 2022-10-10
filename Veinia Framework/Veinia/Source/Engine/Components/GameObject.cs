@@ -56,29 +56,7 @@ namespace Veinia
 			return temp;
 		}
 
-		public T1 NullableGetComponent<T1>() where T1 : Component // allows nulls to be returned
-		{
-			if (isDestroyed) throw new System.Exception("GetComponent<T1> - The object is already destroyed! " + typeof(T1).ToString());
-
-			List<T1> returnVal = new List<T1>();
-
-			foreach (var item in components)
-			{
-				if (item is T1)
-				{
-					var newItem = (T1)(object)item;
-					returnVal.Add(newItem);
-				}
-			}
-
-			if (returnVal.Count > 1)
-				throw new System.Exception("NullableGetComponent<T1> - More than two matching components! " + typeof(T1));
-			if (returnVal.Count == 0)
-				return default;
-
-			return returnVal[0];
-		}
-		public T1 GetComponent<T1>() where T1 : Component // throws an exception on a null
+		public T1 GetComponent<T1>() where T1 : Component
 		{
 			if (isDestroyed) throw new System.Exception("GetComponent<T1> - The object is already destroyed!");
 
@@ -92,11 +70,12 @@ namespace Veinia
 				}
 			}
 
-			if (returnVal.Count > 1)
-				throw new System.Exception("GetComponent<T1> - More than two matching components! " + typeof(T1));
-
 			if (returnVal.Count == 0)
-				throw new System.Exception("GetComponent<T1> - The component doesn't exist in the GameObject! " + typeof(T1));
+				return default;
+
+			if (returnVal.Count > 1)
+				throw new System.Exception("GetComponent<T1> - More than one matching components! " + typeof(T1));
+
 			else
 				return returnVal[0];
 		}

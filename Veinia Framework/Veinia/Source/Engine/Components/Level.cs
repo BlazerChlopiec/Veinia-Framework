@@ -135,15 +135,16 @@ namespace Veinia
 
 			foreach (var item in scene)
 			{
-				T1 currentItem = item.NullableGetComponent<T1>();
+				T1 currentItem = item.GetComponent<T1>();
 				if (currentItem == null) continue;
 				else returnVal.Add(currentItem);
 			}
 
 			if (returnVal.Count == 0)
-				throw new System.Exception("FindComponentOfType<T1> - Found no component matching requirements! " + typeof(T1));
+				return default;
+
 			if (returnVal.Count > 1)
-				throw new System.Exception("FindComponentOfType<T1> - Found more than one matching requirements! " + typeof(T1));
+				Say.Line("FindComponentOfType<T1> - Found more than one component matching the requirements! " + typeof(T1));
 
 			return returnVal[0];
 		}
@@ -163,9 +164,6 @@ namespace Veinia
 			}
 			if (returnVal.Count == 0)
 				Say.Line("FindComponentsOfType<T1> - Found no components matching requirements! " + typeof(T1));
-
-			if (returnVal.Count == 1)
-				Say.Line("FindComponentsOfType<T1> - Only one component! Use FindComponentOfType<T1> instead! " + typeof(T1));
 
 			return returnVal;
 		}
