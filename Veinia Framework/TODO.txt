@@ -13,10 +13,10 @@ TODO:
 - rework the loader (merge it with level.cs?) to reduce global classes
 - (GeonBit.UI) anchors break out the animation
 - (GeonBit.UI) images dont scale with GlobalScale
-- if you're touching a non trigger collider the next collider even if its trigger will be considered non trigger
 
 
 Goals:
+- have a lightweight phys engine (currently circle collider support is very bad)
 - optimisation
 - improve different gamepad support
 - audio
