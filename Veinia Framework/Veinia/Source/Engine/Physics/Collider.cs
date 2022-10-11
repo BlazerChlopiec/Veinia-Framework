@@ -12,9 +12,6 @@ namespace Veinia
 		public Vector2 offset;
 		public bool trigger;
 
-		private bool isColliding;
-		private bool hasEnteredCollision;
-
 		//public int priority { get; protected set; }
 
 		CollisionEventArgs currectCollisionInfo; // collision exit gets called outside of onCollide so we need to store the info outside to be passed into onCollisionExit
@@ -45,42 +42,64 @@ namespace Veinia
 			Globals.collisionComponent.Insert(this);
 		}
 
+		private bool isColliding;
+		private bool hasEnteredCollision;
 		public virtual void OnCollision(CollisionEventArgs collisionInfo)
 		{
 			currectCollisionInfo = collisionInfo;
 
 			if (!isColliding && !hasEnteredCollision)
 			{
-				CallOnCollideOnEveryComponent(CollisionState.Enter, collisionInfo);
+				InvokeCollisionOnAllComponents(CollisionState.Enter, collisionInfo);
 				hasEnteredCollision = true;
 			}
 			isColliding = true;
 
-			CallOnCollideOnEveryComponent(CollisionState.Stay, collisionInfo);
+			InvokeCollisionOnAllComponents(CollisionState.Stay, collisionInfo);
 
 
-			// if you're not a trigger and the other object is also not a trigger - move them
-			if (!trigger && !collisionInfo.Other.collider.trigger)
+			if (!gameObject.isStatic) transform.position -= Transform.ToWorldUnits(collisionInfo.PenetrationVector);
+
+			foreach (var item in GetAllComponents<Collider>())
 			{
-				if (!gameObject.isStatic) transform.position -= Transform.ToWorldUnits(collisionInfo.PenetrationVector);
-
-				foreach (var item in GetAllComponents<Collider>())
-				{
-					item.Bounds.Position = transform.screenPos + item.offset;
-					item.rectangleBounds.Position = transform.screenPos + item.offset;
-				}
+				item.Bounds.Position = transform.screenPos + item.offset;
+				item.rectangleBounds.Position = transform.screenPos + item.offset;
 			}
+		}
+
+		private bool isTriggering;
+		private bool hasEnteredTrigger;
+		public virtual void OnTrigger(CollisionEventArgs collisionInfo)
+		{
+			currectCollisionInfo = collisionInfo;
+
+			if (!isTriggering && !hasEnteredTrigger)
+			{
+				InvokeTriggerOnAllComponents(CollisionState.Enter, collisionInfo);
+				hasEnteredTrigger = true;
+			}
+			isTriggering = true;
+
+			InvokeTriggerOnAllComponents(CollisionState.Stay, collisionInfo);
 		}
 
 		public override void LateUpdate()
 		{
 			if (!isColliding && hasEnteredCollision)
 			{
-				CallOnCollideOnEveryComponent(CollisionState.Exit, currectCollisionInfo);
+				InvokeCollisionOnAllComponents(CollisionState.Exit, currectCollisionInfo);
 				hasEnteredCollision = false;
 			}
 			isColliding = false;
 
+			if (!isTriggering && hasEnteredTrigger)
+			{
+				InvokeTriggerOnAllComponents(CollisionState.Exit, currectCollisionInfo);
+				hasEnteredTrigger = false;
+			}
+			isTriggering = false;
+
+			//update bounds position
 			Bounds.Position = transform.screenPos + offset;
 			rectangleBounds.Position = transform.screenPos + offset;
 		}
@@ -91,16 +110,26 @@ namespace Veinia
 
 		public void ToggleOff() => Globals.collisionComponent.Remove(this);
 
-		public void CallOnCollideOnEveryComponent(CollisionState state, CollisionEventArgs collisionInfo)
+		public void InvokeCollisionOnAllComponents(CollisionState state, CollisionEventArgs collisionInfo)
 		{
-			if (!trigger && !collisionInfo.Other.collider.trigger)
+			var other = collisionInfo.Other.collider;
+
+			// if a collider touched a collider
+			if (!trigger && !other.trigger)
 			{
 				foreach (var component in gameObject.components)
 				{
 					component.OnCollide(self: this, state, collisionInfo);
 				}
 			}
-			else if (trigger && !collisionInfo.Other.collider.trigger)
+		}
+
+		public void InvokeTriggerOnAllComponents(CollisionState state, CollisionEventArgs collisionInfo)
+		{
+			var other = collisionInfo.Other.collider;
+
+			// if a any collider or trigger touched a trigger
+			if ((trigger && !other.trigger) || (!trigger && other.trigger))
 			{
 				foreach (var component in gameObject.components)
 				{

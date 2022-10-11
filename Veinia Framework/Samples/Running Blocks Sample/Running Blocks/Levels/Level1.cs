@@ -51,7 +51,7 @@ namespace Veinia.RunningBlocks
 				new RectangleCollider(Vector2.One, Vector2.One),
 				new RectangleCollider(Vector2.Zero, Vector2.One),
 				new RectangleCollider(Vector2.One * -1, Vector2.One),
-				new Physics(),
+				new Physics(gravity: 0),
 			}, isStatic: false);
 
 			Instantiate(new Transform(Vector2.Zero), new List<Component>

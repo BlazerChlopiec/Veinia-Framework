@@ -23,8 +23,8 @@ namespace Veinia
 		{
 			if (removeVelocityBasedOnCollision)
 			{
-				if (penetrationVectorPerFrame.Y > 0 && velocity.Y < 0) velocity.Y = .1f;
-				if (penetrationVectorPerFrame.Y < 0 && velocity.Y > 0) velocity.Y = -.1f;
+				if (penetrationVector.Y > 0 && velocity.Y < 0) velocity.Y = .1f;
+				if (penetrationVector.Y < 0 && velocity.Y > 0) velocity.Y = -.1f;
 				if (penetrationVector.X > 0 && velocity.X > 0) velocity.X = .1f;
 				if (penetrationVector.X < 0 && velocity.X < 0) velocity.X = -.1f;
 			}
@@ -35,8 +35,6 @@ namespace Veinia
 
 		public override void OnCollide(Collider self, CollisionState state, CollisionEventArgs collisionInfo)
 		{
-			base.OnCollide(self, state, collisionInfo);
-
 			penetrationVector = collisionInfo.PenetrationVector;
 			penetrationVectorPerFrame = collisionInfo.PenetrationVectorPerFrame;
 
@@ -44,8 +42,6 @@ namespace Veinia
 			{
 				penetrationVector = Vector2.Zero;
 				penetrationVectorPerFrame = Vector2.Zero;
-
-
 			}
 		}
 	}

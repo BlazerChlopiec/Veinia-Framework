@@ -12,5 +12,6 @@ namespace MonoGame.Extended.Collisions
 
 
 		void OnCollision(CollisionEventArgs collisionInfo);
+		void OnTrigger(CollisionEventArgs collisionInfo);
 	}
 }

@@ -70,7 +70,10 @@ namespace MonoGame.Extended.Collisions
 					};
 					if (collisionInfo.PenetrationVector == Vector2.Zero) continue;
 
-					target.OnCollision(collisionInfo);
+					if (!collisionInfo.Other.collider.trigger && !value.Target.collider.trigger)
+						target.OnCollision(collisionInfo);
+					else
+						target.OnTrigger(collisionInfo);
 
 					value.Bounds = value.Target.Bounds;
 				}
