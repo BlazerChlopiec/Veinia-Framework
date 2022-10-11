@@ -52,6 +52,7 @@ namespace MonoGame.Extended.Collisions
 
 				foreach (var other in collisions)
 				{
+					if (other.Target.collider.trigger || value.Target.collider.trigger) continue;
 
 					var penetration = CalculatePenetrationVector(value.Bounds, other.Bounds);
 

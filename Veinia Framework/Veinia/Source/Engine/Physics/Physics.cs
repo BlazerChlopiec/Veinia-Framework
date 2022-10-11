@@ -23,8 +23,8 @@ namespace Veinia
 		{
 			if (removeVelocityBasedOnCollision)
 			{
-				if (penetrationVector.Y > 0 && velocity.Y < 0) velocity.Y = .1f;
-				if (penetrationVector.Y < 0 && velocity.Y > 0) velocity.Y = -.1f;
+				if (penetrationVectorPerFrame.Y > 0 && velocity.Y < 0) velocity.Y = .1f;
+				if (penetrationVectorPerFrame.Y < 0 && velocity.Y > 0) velocity.Y = -.1f;
 				if (penetrationVector.X > 0 && velocity.X > 0) velocity.X = .1f;
 				if (penetrationVector.X < 0 && velocity.X < 0) velocity.X = -.1f;
 			}

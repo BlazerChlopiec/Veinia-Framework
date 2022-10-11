@@ -14,7 +14,7 @@ namespace Veinia
 
 		//public int priority { get; protected set; }
 
-		CollisionEventArgs currectCollisionInfo; // collision exit gets called outside of onCollide so we need to store the info outside to be passed into onCollisionExit
+		CollisionEventArgs currentCollisionInfo; // collision exit gets called outside of onCollide so we need to store the info outside to be passed into onCollisionExit
 
 
 		public IShapeF Bounds
@@ -46,7 +46,7 @@ namespace Veinia
 		private bool hasEnteredCollision;
 		public virtual void OnCollision(CollisionEventArgs collisionInfo)
 		{
-			currectCollisionInfo = collisionInfo;
+			currentCollisionInfo = collisionInfo;
 
 			if (!isColliding && !hasEnteredCollision)
 			{
@@ -71,7 +71,7 @@ namespace Veinia
 		private bool hasEnteredTrigger;
 		public virtual void OnTrigger(CollisionEventArgs collisionInfo)
 		{
-			currectCollisionInfo = collisionInfo;
+			currentCollisionInfo = collisionInfo;
 
 			if (!isTriggering && !hasEnteredTrigger)
 			{
@@ -87,14 +87,14 @@ namespace Veinia
 		{
 			if (!isColliding && hasEnteredCollision)
 			{
-				InvokeCollisionOnAllComponents(CollisionState.Exit, currectCollisionInfo);
+				InvokeCollisionOnAllComponents(CollisionState.Exit, currentCollisionInfo);
 				hasEnteredCollision = false;
 			}
 			isColliding = false;
 
 			if (!isTriggering && hasEnteredTrigger)
 			{
-				InvokeTriggerOnAllComponents(CollisionState.Exit, currectCollisionInfo);
+				InvokeTriggerOnAllComponents(CollisionState.Exit, currentCollisionInfo);
 				hasEnteredTrigger = false;
 			}
 			isTriggering = false;
