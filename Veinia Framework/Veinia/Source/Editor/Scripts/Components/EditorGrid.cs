@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using System;
 
@@ -7,8 +8,18 @@ namespace Veinia.Editor
 {
 	public class EditorGrid : Component, IDrawn
 	{
+		bool hideGrid;
+
+
+		public override void Update()
+		{
+			if (Globals.input.GetKeyDown(Keys.G)) hideGrid = !hideGrid;
+		}
+
 		public void Draw(SpriteBatch sb)
 		{
+			if (hideGrid) return;
+
 			var left = Transform.ScreenToWorldPos(Globals.camera.BoundingRectangle.Left, 0);
 			var right = Transform.ScreenToWorldPos(Globals.camera.BoundingRectangle.Right, 0);
 			int horizontalDifference = (int)MathF.Round(left.X) - (int)MathF.Round(right.X);
