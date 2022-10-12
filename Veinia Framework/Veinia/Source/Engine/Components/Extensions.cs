@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using MonoGame.Extended.Collisions;
 using System;
@@ -76,6 +77,29 @@ namespace Veinia
 			}
 
 			return value;
+		}
+		public static Texture2D ChangeColor(this Texture2D texture, Color newColor, bool ignoreWhite = true)
+		{
+			if (newColor == Color.White && ignoreWhite) return texture;
+
+			var colorData = new Color[texture.Width * texture.Height];
+			texture.GetData(colorData);
+
+			for (int i = 0; i < colorData.Length; i++)
+			{
+				var newColorHsl = newColor.ToHsl();
+				var oldColorHsl = colorData[i].ToHsl();
+
+				if (oldColorHsl.L < newColorHsl.L)
+					colorData[i] = new HslColor(newColorHsl.H, newColorHsl.S, oldColorHsl.L).ToRgb();
+				else
+					colorData[i] = new HslColor(newColorHsl.H, newColorHsl.S, newColorHsl.L).ToRgb();
+			}
+
+			var temp = new Texture2D(texture.GraphicsDevice, texture.Width, texture.Height);
+			temp.SetData(colorData);
+
+			return temp;
 		}
 	}
 }

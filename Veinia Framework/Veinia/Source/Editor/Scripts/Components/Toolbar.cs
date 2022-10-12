@@ -43,7 +43,7 @@ namespace Veinia.Editor
 					Text = prefab.PrefabName,
 					Top = topOffset + 100 * toolbarPrefabs.IndexOf(prefab),
 					VerticalAlignment = VerticalAlignment.Top,
-					Background = new TextureRegion(prefab.texture, new Rectangle(0, 0, prefab.texture.Width, prefab.texture.Height)),
+					Background = new TextureRegion(prefab.texture.ChangeColor(prefab.color), new Rectangle(0, 0, prefab.texture.Width, prefab.texture.Height)),
 				};
 
 				image.Click += (s, a) => OnClickPrefab(prefab);
@@ -67,6 +67,7 @@ namespace Veinia.Editor
 				{
 					PrefabName = prefabManager.prefabs[i].prefabName,
 					texture = sprite.texture,
+					color = sprite.color,
 				});
 			}
 		}
@@ -76,5 +77,6 @@ namespace Veinia.Editor
 	{
 		public string PrefabName { get; set; }
 		public Texture2D texture { get; set; }
+		public Color color { get; set; }
 	}
 }
