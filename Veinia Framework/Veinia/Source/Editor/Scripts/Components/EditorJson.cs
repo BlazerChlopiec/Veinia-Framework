@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using Myra.Graphics2D.UI;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -45,8 +46,11 @@ namespace Veinia.Editor
 			{
 				Title = "Editor Manager",
 				Content = panel,
+				VerticalAlignment = VerticalAlignment.Bottom,
+				HorizontalAlignment = HorizontalAlignment.Center,
 			};
 			window.CloseButton.RemoveFromParent();
+			window.DragDirection = DragDirection.None;
 			window.Width = 190;
 
 			var saveButton = new TextButton { Text = "Save" };
@@ -61,7 +65,7 @@ namespace Veinia.Editor
 			removeAllButton.Click += (s, e) => editorObjectManager.RemoveAll();
 			panel.Widgets.Add(removeAllButton);
 
-			window.Show(Globals.myraDesktop);
+			window.Show(Globals.myraDesktop, Point.Zero);
 
 			Load();
 		}

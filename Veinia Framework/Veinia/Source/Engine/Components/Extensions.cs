@@ -101,5 +101,10 @@ namespace Veinia
 
 			return temp;
 		}
+		public static Color ToNegative(this Color color)
+		{
+			color = new Color(255 - color.R, 255 - color.G, 255 - color.B);
+			return color;
+		}
 	}
 }

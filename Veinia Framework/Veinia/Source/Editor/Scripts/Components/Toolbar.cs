@@ -44,6 +44,7 @@ namespace Veinia.Editor
 					Top = topOffset + 100 * toolbarPrefabs.IndexOf(prefab),
 					VerticalAlignment = VerticalAlignment.Top,
 					Background = new TextureRegion(prefab.texture.ChangeColor(prefab.color), new Rectangle(0, 0, prefab.texture.Width, prefab.texture.Height)),
+					TextColor = prefab.color.ToNegative(),
 				};
 
 				image.Click += (s, a) => OnClickPrefab(prefab);
