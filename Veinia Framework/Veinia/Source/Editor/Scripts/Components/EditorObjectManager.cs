@@ -54,7 +54,7 @@ namespace Veinia.Editor
 		{
 			UpdatePreview();
 
-			if (!Globals.input.GetKey(Keys.LeftAlt) && !Globals.desktop.IsMouseOverGUI)
+			if (!Globals.input.GetKey(Keys.LeftAlt) && !Globals.myraDesktop.IsMouseOverGUI)
 			{
 				//placing
 				if (Globals.input.GetMouseButtonUp(0)

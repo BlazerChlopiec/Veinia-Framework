@@ -22,7 +22,7 @@ namespace Veinia
 		public static OrthographicCamera camera;
 		public static CollisionComponent collisionComponent;
 		public static GameWindow window;
-		public static Desktop desktop;
+		public static Desktop myraDesktop;
 		public static ViewportAdapter viewportAdapter;
 	}
 }

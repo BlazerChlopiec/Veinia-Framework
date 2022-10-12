@@ -27,15 +27,17 @@ namespace Veinia.BlockBreaker
 				physics.velocity = Vector2.One.SafeNormalize() * speed;
 			}
 
-			//else if (Globals.input.GetMouseButtonDown(0) && launched)
-			//{
-			//	physics.velocity = (Globals.input.GetMouseWorldPosition() - transform.position).SafeNormalize() * speed;
-			//}
+			else if (Globals.input.GetMouseButtonDown(0) && launched)
+			{
+				physics.velocity = (Globals.input.GetMouseWorldPosition() - transform.position).SafeNormalize() * speed;
+			}
 		}
 
 		public override void OnCollide(Collider self, CollisionState state, CollisionEventArgs collisionInfo)
 		{
 			if (state != CollisionState.Enter) return;
+
+			Say.Line(collisionInfo.PenetrationVectorPerFrame);
 
 			var tile = collisionInfo.Other.collider.GetComponent<Tile>();
 			if (tile != null) tile.Hit();

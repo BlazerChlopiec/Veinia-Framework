@@ -53,12 +53,13 @@ namespace Veinia
 
 			//Myra
 			MyraEnvironment.Game = game;
-			Globals.desktop = new Desktop
+			Globals.myraDesktop = new Desktop
 			{
 				Opacity = .95f,
 				HasExternalTextInput = true,
 			};
-			window.TextInput += (s, a) => Globals.desktop.OnChar(a.Character);
+			window.TextInput += (s, a) => Globals.myraDesktop.OnChar(a.Character);
+			window.AllowUserResizing = true;
 			//
 		}
 
@@ -108,11 +109,10 @@ namespace Veinia
 			//Level
 			spriteBatch.Begin(SpriteSortMode.FrontToBack, transformMatrix: Globals.camera.GetViewMatrix());
 			Globals.loader.currentLevel?.Draw(spriteBatch);
-
 			spriteBatch.End();
 
 			//Myra
-			Globals.desktop.Render();
+			Globals.myraDesktop.Render();
 
 			//GeonBit.UI
 			UserInterface.Active.Draw(spriteBatch);

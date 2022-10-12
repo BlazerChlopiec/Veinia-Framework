@@ -2,8 +2,6 @@
 using Microsoft.Xna.Framework.Graphics;
 using Myra.Graphics2D.TextureAtlases;
 using Myra.Graphics2D.UI;
-using Myra.Graphics2D.UI.Properties;
-using System;
 using System.Collections.Generic;
 
 namespace Veinia.Editor
@@ -31,11 +29,8 @@ namespace Veinia.Editor
 			{
 				Title = "Prefabs",
 				Content = scroll,
-				VerticalAlignment = VerticalAlignment.Stretch,
-				HorizontalAlignment = HorizontalAlignment.Right,
 			};
 			window.CloseButton.RemoveFromParent();
-
 
 			int topOffset = 0;
 
@@ -50,13 +45,14 @@ namespace Veinia.Editor
 					VerticalAlignment = VerticalAlignment.Top,
 					Background = new TextureRegion(prefab.texture, new Rectangle(0, 0, prefab.texture.Width, prefab.texture.Height)),
 				};
+
 				image.Click += (s, a) => OnClickPrefab(prefab);
 
 				panel.Widgets.Add(image);
 			}
 			panel.Height = toolbarPrefabs.Count * 100 + topOffset;
 
-			window.Show(Globals.desktop, Point.Zero);
+			window.Show(Globals.myraDesktop, Point.Zero);
 		}
 
 		private void OnClickPrefab(ToolbarPrefab prefab) => editorObjectManager.ChangeCurrentPrefab(prefab.PrefabName);

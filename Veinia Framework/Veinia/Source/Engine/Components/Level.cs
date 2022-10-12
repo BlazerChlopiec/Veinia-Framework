@@ -40,7 +40,7 @@ namespace Veinia
 			Time.stop = false;
 			Globals.camera.SetPosition(Vector2.Zero);
 			Globals.camera.Zoom = 1;
-			Globals.desktop.Root = Myra;
+			Globals.myraDesktop.Root = Myra;
 
 			UserInterface.Active.ShowCursor = false;
 			if (this is EditorScene) UserInterface.Active.ShowCursor = true;

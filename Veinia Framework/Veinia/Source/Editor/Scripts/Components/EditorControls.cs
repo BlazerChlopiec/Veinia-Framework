@@ -19,7 +19,7 @@ namespace Veinia.Editor
 
 		public override void Update()
 		{
-			if (Globals.desktop.IsMouseOverGUI && drag == false && Globals.input.GetMouseButtonDown(0)) { return; }
+			if (Globals.myraDesktop.IsMouseOverGUI && drag == false && Globals.input.GetMouseButtonDown(0)) { return; }
 
 			if (Globals.input.GetMouseButtonDown(0) && Globals.input.GetKey(Keys.LeftAlt))
 			{
@@ -28,8 +28,11 @@ namespace Veinia.Editor
 			}
 			if (Globals.input.GetMouseButtonUp(0)) { drag = false; }
 
-			Globals.camera.ZoomIn(Globals.input.deltaScroll);
-			Globals.camera.Zoom = MathHelper.Clamp(Globals.camera.Zoom, .35f, 1.2f);
+			if (!Globals.myraDesktop.IsMouseOverGUI)
+			{
+				Globals.camera.ZoomIn(Globals.input.deltaScroll);
+				Globals.camera.Zoom = MathHelper.Clamp(Globals.camera.Zoom, .35f, 1.2f);
+			}
 
 			if (drag) { Globals.camera.SetPosition(startMousePos - (Globals.input.GetMouseWorldPosition() - Globals.camera.GetPosition())); }
 		}
