@@ -30,6 +30,7 @@ namespace Veinia
 		public void Initialize(GraphicsDevice graphicsDevice, ContentManager content, GameWindow window,
 			int unitSize, float collisionRectScreenSize, Vector2 gameSize, PrefabManager prefabManager, bool fullscreen = false)
 		{
+			#region Veinia
 			Transform.unitSize = unitSize;
 
 			this.prefabManager = prefabManager;
@@ -44,27 +45,39 @@ namespace Veinia
 										 new RectangleF(-collisionRectScreenSize, -collisionRectScreenSize,
 														 collisionRectScreenSize * 2, collisionRectScreenSize * 2));
 			title = new Title(window);
+			#endregion
 
-
-			//GeonBit.UI
+			#region GeonBit.UI
 			UserInterface.Initialize(content, BuiltinThemes.editor);
 			UserInterface.Active.ShowCursor = false;
-			//
+			#endregion
 
-			//Myra
+			#region Myra.UI
 			MyraEnvironment.Game = game;
 			Globals.myraDesktop = new Desktop
 			{
 				Opacity = .95f,
 				HasExternalTextInput = true,
 			};
+			Globals.myraDesktop.MouseInfoGetter = CustomMouseInfoGetter;
+
+			MouseInfo CustomMouseInfoGetter()
+			{
+				MouseInfo info = Globals.myraDesktop.DefaultMouseInfoGetter();
+
+				info.Position = (Mouse.GetState().Position.ToVector2() - new Vector2(Globals.viewportAdapter.Viewport.X, Globals.viewportAdapter.Viewport.Y)).ToPoint();
+
+				return info;
+			}
+
 			window.TextInput += (s, a) => Globals.myraDesktop.OnChar(a.Character);
 			window.AllowUserResizing = true;
-			//
+			#endregion
 		}
 
 		public void Update(GameTime gameTime)
 		{
+			#region Veinia
 			Time.CalculateDelta(gameTime);
 			Globals.fps.CalculateFps(gameTime);
 
@@ -83,11 +96,13 @@ namespace Veinia
 			Title.Add(Globals.fps.currentFps, " FPS", 0);
 			Title.Add(Globals.fps.isVSync, " - vSync", 1);
 			title.Update();
+			#endregion
 
-			//GeonBit.UI
+			#region GeonBit.UI
 			UserInterface.Active.Update(gameTime);
+			#endregion
 
-
+			#region Debug
 #if DEBUG
 			if (Globals.input.GetKeyDown(Keys.F))
 				Collider.showHitboxes = !Collider.showHitboxes;
@@ -102,20 +117,24 @@ namespace Veinia
 					Globals.loader.Load(new EditorScene(prefabManager, Globals.loader.currentLevel.levelPath));
 			}
 #endif
+			#endregion
 		}
 
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			//Level
+			#region Veinia
 			spriteBatch.Begin(SpriteSortMode.FrontToBack, transformMatrix: Globals.camera.GetViewMatrix());
 			Globals.loader.currentLevel?.Draw(spriteBatch);
 			spriteBatch.End();
+			#endregion
 
-			//Myra
-			Globals.myraDesktop.Render();
-
-			//GeonBit.UI
+			#region GeonBit.UI
 			UserInterface.Active.Draw(spriteBatch);
+			#endregion
+
+			#region Myra.UI
+			Globals.myraDesktop.Render();
+			#endregion
 		}
 	}
 }
