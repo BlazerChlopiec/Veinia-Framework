@@ -6,7 +6,7 @@ namespace Veinia.Editor
 {
 	public class EditorControls : Component
 	{
-		private bool drag;
+		public bool drag { get; private set; }
 
 		private Vector2 startMousePos;
 
@@ -32,7 +32,13 @@ namespace Veinia.Editor
 
 			if (drag) { Globals.camera.SetPosition(startMousePos - (Globals.input.GetMouseWorldPosition() - Globals.camera.GetPosition())); }
 
-			if (Globals.input.GetMouseButtonUp(0)) { drag = false; }
+			if (Globals.input.GetMouseButtonUp(0))
+			{
+				// we release drag in next frame to not accidentally paint an object on drag release
+				NextFrame.actions.Add(() => { drag = false; });
+			}
+
+			Say.Line(drag);
 		}
 	}
 }

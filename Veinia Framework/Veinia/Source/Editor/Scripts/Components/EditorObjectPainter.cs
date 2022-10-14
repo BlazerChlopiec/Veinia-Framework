@@ -12,6 +12,8 @@ namespace Veinia.Editor
 	{
 		PrefabManager prefabManager;
 
+		EditorControls editorControls;
+
 		public List<EditorObject> editorObjects = new List<EditorObject>();
 		public List<EditorObject> currentlyEditedObjects = new List<EditorObject>();
 
@@ -31,6 +33,8 @@ namespace Veinia.Editor
 
 		public override void Initialize()
 		{
+			editorControls = GetComponent<EditorControls>();
+
 			var firstPrefab = prefabManager.prefabs[0];
 			if (firstPrefab != null) ChangeCurrentPrefab(firstPrefab.prefabName);
 
@@ -70,7 +74,7 @@ namespace Veinia.Editor
 
 			var swipe = Globals.input.GetKey(Keys.LeftShift);
 
-			if (!Globals.input.GetKey(Keys.LeftAlt) && !Globals.myraDesktop.IsMouseOverGUI)
+			if (!editorControls.drag && !Globals.myraDesktop.IsMouseOverGUI)
 			{
 				//placing
 				if (Globals.input.GetMouseButtonUp(0) || Globals.input.GetMouseButton(0) && swipe)
