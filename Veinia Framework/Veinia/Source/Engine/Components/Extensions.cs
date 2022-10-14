@@ -60,11 +60,11 @@ namespace Veinia
 			rect.Offset(-rect.Width / 2, -rect.Height / 2);
 			return rect;
 		}
-		public static GameObject ExtractSpriteToNewGameObject(this GameObject gameObject, Vector2 newPosition)
+		public static GameObject ExtractComponentToNewGameObject<T1>(this GameObject gameObject, Vector2 newGameObjectPosition) where T1 : Component
 		{
-			return new GameObject(new Transform(newPosition), new List<Component>
+			return new GameObject(new Transform(newGameObjectPosition), new List<Component>
 			{
-				(Sprite)gameObject.GetComponent<Sprite>().Clone()
+				(T1)gameObject.GetComponent<T1>().Clone()
 			}, isStatic: true);
 		}
 		public static Vector2 SafeNormalize(this Vector2 value)

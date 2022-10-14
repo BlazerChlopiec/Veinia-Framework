@@ -23,7 +23,13 @@ public class FPSWindow : Component
 		var textBox = new TextBox { };
 
 		var applyButton = new TextButton { Text = "Apply", Top = 22 };
-		applyButton.Click += (o, a) => { Globals.fps.ChangeFps(int.Parse(textBox.Text)); };
+
+		int result;
+		applyButton.Click += (o, a) =>
+		{
+			if (int.TryParse(textBox.Text, out result))
+				Globals.fps.ChangeFps(result);
+		};
 
 		var resetButton = new TextButton { Text = "Reset", Top = 22, Left = 60 };
 		resetButton.Click += (o, a) => { Globals.fps.ChangeFps(int.MaxValue); };

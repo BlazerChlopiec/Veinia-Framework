@@ -20,8 +20,8 @@ namespace Veinia.Editor
 			{
 				new EditorGrid(),
 				new EditorControls(),
-				new EditorObjectManager(prefabManager),
 				new EditorJson(levelPath),
+				new EditorObjectManager(prefabManager),
 				new FPSWindow(),
 				new Toolbar(prefabManager),
 			}, isStatic: true);

@@ -1,19 +1,22 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended;
 using Myra.Graphics2D.UI;
 using System;
 using System.Collections.Generic;
 
 namespace Veinia.Editor
 {
-	public class EditorObjectManager : Component
+	public class EditorObjectManager : Component, IDrawn
 	{
 		PrefabManager prefabManager;
 		Label tileCount = new Label { HorizontalAlignment = HorizontalAlignment.Center };
 
 		public List<EditorObject> editorObjects = new List<EditorObject>();
+		public List<EditorObject> currentlyEditedObjects = new List<EditorObject>();
 
-		public string currentPrefabName;
+		public string currentPrefabName { get; private set; }
 
 		GameObject objectPreview;
 
@@ -38,7 +41,7 @@ namespace Veinia.Editor
 		{
 			if (objectPreview != null) objectPreview.DestroyGameObject();
 
-			objectPreview = prefabManager.Find(currentPrefabName).ExtractSpriteToNewGameObject(Vector2.Zero);
+			objectPreview = prefabManager.Find(currentPrefabName).ExtractComponentToNewGameObject<Sprite>(Vector2.Zero);
 			var sprite = objectPreview.GetComponent<Sprite>();
 			sprite.color *= .5f;
 			sprite.layer = .9f;
@@ -51,6 +54,8 @@ namespace Veinia.Editor
 			currentPrefabName = newPrefabName;
 			SpawnPreview();
 			UpdatePreview();
+
+			currentlyEditedObjects = editorObjects.FindAll(x => x.PrefabName == currentPrefabName);
 		}
 
 		public override void Update()
@@ -58,9 +63,9 @@ namespace Veinia.Editor
 			mousePos = Globals.input.GetMouseWorldPosition();
 			mouseGridPos = new Vector2(MathF.Round(mousePos.X), MathF.Round(mousePos.Y));
 
-			var swipe = Globals.input.GetKey(Keys.LeftShift);
-
 			UpdatePreview();
+
+			var swipe = Globals.input.GetKey(Keys.LeftShift);
 
 			if (!Globals.input.GetKey(Keys.LeftAlt) && !Globals.myraDesktop.IsMouseOverGUI)
 			{
@@ -102,14 +107,17 @@ namespace Veinia.Editor
 
 		public void Spawn(string prefabName, Vector2 position)
 		{
-			var extractedSpriteGameObject = prefabManager.Find(prefabName).ExtractSpriteToNewGameObject(position);
+			var extractedSpriteGameObject = prefabManager.Find(prefabName).ExtractComponentToNewGameObject<Sprite>(position);
 
-			editorObjects.Add(new EditorObject
+			var newEditorObject = new EditorObject
 			{
 				PrefabName = prefabName,
 				Position = position,
 				EditorPlacedSprite = Instantiate(extractedSpriteGameObject).GetComponent<Sprite>()
-			});
+			};
+
+			currentlyEditedObjects.Add(newEditorObject);
+			editorObjects.Add(newEditorObject);
 
 			UpdateTitle();
 		}
@@ -119,6 +127,7 @@ namespace Veinia.Editor
 			if (editorObject == null) return;
 
 			editorObject.EditorPlacedSprite.DestroyGameObject();
+			currentlyEditedObjects.Remove(editorObject);
 			editorObjects.Remove(editorObject);
 
 			UpdateTitle();
@@ -147,5 +156,13 @@ namespace Veinia.Editor
 		}
 
 		private void UpdateTitle() => tileCount.Text = "Object Count " + (editorObjects.Count);
+
+		public void Draw(SpriteBatch sb)
+		{
+			foreach (var item in currentlyEditedObjects)
+			{
+				sb.DrawRectangle(item.EditorPlacedSprite.rect.OffsetByHalf(), Color.Green, thickness: 4, layerDepth: .9f);
+			}
+		}
 	}
 }

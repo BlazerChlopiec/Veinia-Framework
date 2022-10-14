@@ -17,7 +17,7 @@ namespace Veinia.Platformer
 
 			Add("Player", new GameObject(Transform.Empty, new List<Component>
 			{
-				new Sprite("Sprites/Square", .1f, Color.Green, pixelsPerUnit: 200),
+				new Sprite("Sprites/Square", .3f, Color.Green, pixelsPerUnit: 200),
 				new RectangleCollider(Vector2.Zero, Vector2.One),
 				new Player(),
 				new Physics(gravity: -30),
@@ -25,21 +25,21 @@ namespace Veinia.Platformer
 
 			Add("Physics Block", new GameObject(Transform.Empty, new List<Component>
 			{
-				new Sprite("Sprites/Square", .1f, Color.LightBlue, pixelsPerUnit: 200),
+				new Sprite("Sprites/Square", .15f, Color.LightBlue, pixelsPerUnit: 200),
 				new RectangleCollider(Vector2.Zero, Vector2.One),
 				new Physics(gravity: -15),
 			}, isStatic: false));
 
 			Add("Coin", new GameObject(Transform.Empty, new List<Component>
 			{
-				new Sprite("Sprites/Square", .1f, Color.Yellow, pixelsPerUnit: 400),
+				new Sprite("Sprites/Square", .2f, Color.Yellow, pixelsPerUnit: 400),
 				new RectangleCollider(Vector2.Zero, Vector2.One/2, trigger: true),
 				new Coin(),
 			}, isStatic: false));
 
 			Add("Arrow", new GameObject(Transform.Empty, new List<Component>
 			{
-				new Sprite("Sprites/Arrow", .1f, Color.LightBlue, pixelsPerUnit: 100),
+				new Sprite("Sprites/Arrow", .2f, Color.LightBlue, pixelsPerUnit: 100),
 				new Arrow(),
 			}, isStatic: false));
 		}
