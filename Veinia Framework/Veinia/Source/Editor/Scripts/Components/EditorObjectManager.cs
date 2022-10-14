@@ -58,12 +58,14 @@ namespace Veinia.Editor
 			mousePos = Globals.input.GetMouseWorldPosition();
 			mouseGridPos = new Vector2(MathF.Round(mousePos.X), MathF.Round(mousePos.Y));
 
+			var swipe = Globals.input.GetKey(Keys.LeftShift);
+
 			UpdatePreview();
 
 			if (!Globals.input.GetKey(Keys.LeftAlt) && !Globals.myraDesktop.IsMouseOverGUI)
 			{
 				//placing
-				if (Globals.input.GetMouseButtonUp(0) || Globals.input.GetMouseButton(0) && Globals.input.GetKey(Keys.LeftShift))
+				if (Globals.input.GetMouseButtonUp(0) || Globals.input.GetMouseButton(0) && swipe)
 				{
 
 					if (!Globals.input.GetKey(Keys.LeftControl))
@@ -80,7 +82,7 @@ namespace Veinia.Editor
 				//
 
 				//deleting
-				if (Globals.input.GetMouseButtonUp(1) || Globals.input.GetMouseButton(1) && Globals.input.GetKey(Keys.LeftShift))
+				if (Globals.input.GetMouseButtonUp(1) || Globals.input.GetMouseButton(1) && swipe)
 				{
 					var overlap = OverlapsWithPoint(mousePos, currentPrefabName);
 					if (overlap == null) overlap = OverlapsWithPoint(mouseGridPos, currentPrefabName);

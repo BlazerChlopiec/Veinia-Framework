@@ -22,6 +22,7 @@ namespace Veinia.Editor
 				new EditorControls(),
 				new EditorObjectManager(prefabManager),
 				new EditorJson(levelPath),
+				new FPSWindow(),
 				new Toolbar(prefabManager),
 			}, isStatic: true);
 		}
