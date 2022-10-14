@@ -33,7 +33,7 @@ namespace Veinia.Editor
 
 		public override void Update()
 		{
-			window.Height = 30 * (shortcuts.Count + 1) + 5;
+			window.Height = 30 * (shortcuts.Count + 1) - 5;
 
 			for (int i = 0; i < panel.Widgets.Count; i++)
 			{

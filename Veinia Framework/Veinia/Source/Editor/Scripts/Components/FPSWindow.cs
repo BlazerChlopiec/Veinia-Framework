@@ -18,12 +18,12 @@ namespace Veinia.Editor
 			};
 			window.DragDirection = DragDirection.None;
 			window.CloseButton.RemoveFromParent();
-			window.Height = 70;
+			window.Height = 80;
 			window.Width = 120;
 
 			var textBox = new TextBox { };
 
-			var applyButton = new TextButton { Text = "Apply", Top = 22 };
+			var applyButton = new TextButton { Text = "Apply", Top = 30 };
 
 			int result;
 			applyButton.Click += (o, a) =>
@@ -32,7 +32,7 @@ namespace Veinia.Editor
 					Globals.fps.ChangeFps(result);
 			};
 
-			var resetButton = new TextButton { Text = "Reset", Top = 22, Left = 60 };
+			var resetButton = new TextButton { Text = "Reset", Top = 30, Left = 70 };
 			resetButton.Click += (o, a) => { Globals.fps.ChangeFps(int.MaxValue); };
 
 			panel.Widgets.Add(textBox);

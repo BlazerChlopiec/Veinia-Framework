@@ -17,6 +17,7 @@ namespace Veinia.Editor
 		public List<EditorObject> currentlyEditedObjects = new List<EditorObject>();
 
 		bool drawCurrentlyEditedObjectOutlines = true;
+		bool drawGizmos = true;
 
 		public string currentPrefabName { get; private set; }
 
@@ -38,7 +39,8 @@ namespace Veinia.Editor
 			tileCount.Text = "Object Count " + (editorObjects.Count);
 			UpdateTitle();
 
-			EditorOptions.AddOption("Draw Outlines For Edited", defaultValue: true, (e, o) => { drawCurrentlyEditedObjectOutlines = true; }, (e, o) => { drawCurrentlyEditedObjectOutlines = false; }, Keys.D);
+			EditorOptions.AddOption("Mark Edited", defaultValue: true, (e, o) => { drawCurrentlyEditedObjectOutlines = true; }, (e, o) => { drawCurrentlyEditedObjectOutlines = false; });
+			EditorOptions.AddOption("Draw Gizmos", defaultValue: true, (e, o) => { drawGizmos = true; }, (e, o) => { drawGizmos = false; });
 		}
 
 		private void SpawnPreview()
@@ -178,10 +180,11 @@ namespace Veinia.Editor
 					sb.DrawRectangle(item.EditorPlacedSprite.rect.OffsetByHalf(), Color.Green, thickness: 4, layerDepth: .9f);
 				}
 
-			foreach (var item in editorObjects)
-			{
-				item.gizmo?.DrawGizmos(sb, item);
-			}
+			if (drawGizmos)
+				foreach (var item in editorObjects)
+				{
+					item.gizmo?.DrawGizmos(sb, item);
+				}
 		}
 	}
 }
