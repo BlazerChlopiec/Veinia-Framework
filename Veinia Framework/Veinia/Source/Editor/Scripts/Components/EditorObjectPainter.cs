@@ -40,7 +40,7 @@ namespace Veinia.Editor
 
 			UpdateTitle();
 
-			EditorOptions.AddOption("Mark Edited", defaultValue: true, (e, o) => { drawCurrentlyEditedObjectOutlines = true; }, (e, o) => { drawCurrentlyEditedObjectOutlines = false; });
+			EditorOptions.AddOption("Mark Layer", defaultValue: true, (e, o) => { drawCurrentlyEditedObjectOutlines = true; }, (e, o) => { drawCurrentlyEditedObjectOutlines = false; });
 			EditorOptions.AddOption("Draw Gizmos", defaultValue: true, (e, o) => { drawGizmos = true; }, (e, o) => { drawGizmos = false; });
 		}
 

@@ -50,14 +50,16 @@ namespace Veinia
 
 			return new CollisionComponent(prevBoundary);
 		}
-		public static Rectangle OffsetByHalf(this Rectangle rect)
+		public static Rectangle OffsetByHalf(this Rectangle rect, float xOffset = 0, float yOffset = 0, float shrink = 0)
 		{
-			rect.Offset(-rect.Width / 2, -rect.Height / 2);
+			rect.Offset(-rect.Width / 2 + xOffset, -rect.Height / 2 - yOffset);
+			rect.Inflate(-shrink, -shrink);
 			return rect;
 		}
-		public static RectangleF OffsetByHalf(this RectangleF rect)
+		public static RectangleF OffsetByHalf(this RectangleF rect, float xOffset = 0, float yOffset = 0, float shrink = 0)
 		{
-			rect.Offset(-rect.Width / 2, -rect.Height / 2);
+			rect.Offset(-rect.Width / 2 + xOffset, -rect.Height / 2 - yOffset);
+			rect.Inflate(-shrink, -shrink);
 			return rect;
 		}
 		public static GameObject ExtractComponentToNewGameObject<T1>(this GameObject gameObject, Vector2 newGameObjectPosition) where T1 : Component

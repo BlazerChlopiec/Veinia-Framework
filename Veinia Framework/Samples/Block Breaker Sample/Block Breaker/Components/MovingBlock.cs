@@ -1,10 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended;
 using MonoGame.Extended.Tweening;
 using System;
+using Veinia.Editor;
 
 namespace Veinia.BlockBreaker
 {
-	public class MovingBlock : Tile
+	public class MovingBlock : Tile, IDrawGizmos
 	{
 		Tween tween;
 
@@ -31,6 +34,12 @@ namespace Veinia.BlockBreaker
 			base.Update();
 
 			if (hasBeenDestroyed) tween.Cancel();
+		}
+
+		public void DrawGizmos(SpriteBatch sb, EditorObject editorObject)
+		{
+			sb.DrawRectangle(editorObject.EditorPlacedSprite.rect.OffsetByHalf(yOffset: 90, shrink: 20), Color.Blue, 5, 1f);
+			sb.DrawRectangle(editorObject.EditorPlacedSprite.rect.OffsetByHalf(yOffset: -90, shrink: 20), Color.Blue, 5, 1f);
 		}
 	}
 }

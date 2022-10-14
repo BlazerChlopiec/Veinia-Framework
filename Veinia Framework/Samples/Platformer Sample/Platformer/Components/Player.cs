@@ -1,13 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using MonoGame.Extended;
 using System;
-using Veinia.Editor;
 
 namespace Veinia.Platformer
 {
-	public class Player : Component, IDrawGizmos
+	public class Player : Component
 	{
 		private const float speed = 10;
 		private const float jumpForce = 13;
@@ -35,11 +32,6 @@ namespace Veinia.Platformer
 
 			smoothZoom = MathHelper.Lerp(smoothZoom, (MathF.Abs(Globals.input.horizontal) / 10), 1.5f * Time.deltaTime);
 			Globals.camera.Zoom = 1 - smoothZoom;
-		}
-
-		public void DrawGizmos(SpriteBatch sb, EditorObject editorObject)
-		{
-			sb.DrawRectangle(editorObject.EditorPlacedSprite.rect.OffsetByHalf(), Color.Blue, 10, 1);
 		}
 	}
 }
