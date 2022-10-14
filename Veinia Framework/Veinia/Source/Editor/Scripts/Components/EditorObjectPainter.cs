@@ -16,6 +16,8 @@ namespace Veinia.Editor
 		public List<EditorObject> editorObjects = new List<EditorObject>();
 		public List<EditorObject> currentlyEditedObjects = new List<EditorObject>();
 
+		bool drawCurrentlyEditedObjectOutlines = true;
+
 		public string currentPrefabName { get; private set; }
 
 		GameObject objectPreview;
@@ -35,6 +37,8 @@ namespace Veinia.Editor
 			level.Myra.Widgets.Add(tileCount);
 			tileCount.Text = "Object Count " + (editorObjects.Count);
 			UpdateTitle();
+
+			EditorOptions.AddOption("Draw Outlines For Edited", defaultValue: true, (e, o) => { drawCurrentlyEditedObjectOutlines = true; }, (e, o) => { drawCurrentlyEditedObjectOutlines = false; }, Keys.D);
 		}
 
 		private void SpawnPreview()
@@ -161,10 +165,11 @@ namespace Veinia.Editor
 
 		public void Draw(SpriteBatch sb)
 		{
-			foreach (var item in currentlyEditedObjects)
-			{
-				sb.DrawRectangle(item.EditorPlacedSprite.rect.OffsetByHalf(), Color.Green, thickness: 4, layerDepth: .9f);
-			}
+			if (drawCurrentlyEditedObjectOutlines)
+				foreach (var item in currentlyEditedObjects)
+				{
+					sb.DrawRectangle(item.EditorPlacedSprite.rect.OffsetByHalf(), Color.Green, thickness: 4, layerDepth: .9f);
+				}
 		}
 	}
 }

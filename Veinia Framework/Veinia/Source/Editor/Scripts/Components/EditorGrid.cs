@@ -11,10 +11,7 @@ namespace Veinia.Editor
 		bool hideGrid;
 
 
-		public override void Update()
-		{
-			if (Globals.input.GetKeyDown(Keys.G)) hideGrid = !hideGrid;
-		}
+		public override void Initialize() => EditorOptions.AddOption("Hide Grid", defaultValue: false, (e, o) => { hideGrid = true; }, (e, o) => { hideGrid = false; }, Keys.G);
 
 		public void Draw(SpriteBatch sb)
 		{

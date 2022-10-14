@@ -26,6 +26,7 @@ namespace Veinia.Editor
 
 			GameObject windows = Instantiate(Transform.Empty, new List<Component>
 			{
+				new EditorOptions(),
 				new EditorManager(),
 				new FPSWindow(),
 				new Toolbar(prefabManager),
