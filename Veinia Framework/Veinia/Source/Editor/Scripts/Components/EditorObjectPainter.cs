@@ -111,13 +111,20 @@ namespace Veinia.Editor
 
 		public void Spawn(string prefabName, Vector2 position)
 		{
+			IDrawGizmos gizmo = null;
+			foreach (var component in prefabManager.Find(prefabName).components)
+			{
+				if (component is IDrawGizmos) gizmo = (IDrawGizmos)component;
+			}
+
 			var extractedSpriteGameObject = prefabManager.Find(prefabName).ExtractComponentToNewGameObject<Sprite>(position);
 
 			var newEditorObject = new EditorObject
 			{
 				PrefabName = prefabName,
 				Position = position,
-				EditorPlacedSprite = Instantiate(extractedSpriteGameObject).GetComponent<Sprite>()
+				EditorPlacedSprite = Instantiate(extractedSpriteGameObject).GetComponent<Sprite>(),
+				gizmo = gizmo,
 			};
 
 			if (currentPrefabName == newEditorObject.PrefabName) currentlyEditedObjects.Add(newEditorObject);
@@ -170,6 +177,11 @@ namespace Veinia.Editor
 				{
 					sb.DrawRectangle(item.EditorPlacedSprite.rect.OffsetByHalf(), Color.Green, thickness: 4, layerDepth: .9f);
 				}
+
+			foreach (var item in editorObjects)
+			{
+				item.gizmo?.DrawGizmos(sb, item);
+			}
 		}
 	}
 }
