@@ -9,7 +9,7 @@ namespace Veinia.Editor
 	public class Toolbar : Component
 	{
 		PrefabManager prefabManager;
-		EditorObjectManager editorObjectManager;
+		EditorObjectPainter editorObjectPainter;
 		List<ToolbarPrefab> toolbarPrefabs = new List<ToolbarPrefab>();
 
 
@@ -17,7 +17,7 @@ namespace Veinia.Editor
 
 		public override void Initialize()
 		{
-			editorObjectManager = FindComponentOfType<EditorObjectManager>();
+			editorObjectPainter = FindComponentOfType<EditorObjectPainter>();
 			FeedToolboxWithPrefabs();
 
 
@@ -56,7 +56,7 @@ namespace Veinia.Editor
 			window.Show(Globals.myraDesktop, Point.Zero);
 		}
 
-		private void OnClickPrefab(ToolbarPrefab prefab) => editorObjectManager.ChangeCurrentPrefab(prefab.PrefabName);
+		private void OnClickPrefab(ToolbarPrefab prefab) => editorObjectPainter.ChangeCurrentPrefab(prefab.PrefabName);
 
 		private void FeedToolboxWithPrefabs()
 		{

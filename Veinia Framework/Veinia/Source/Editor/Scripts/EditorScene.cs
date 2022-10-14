@@ -18,10 +18,15 @@ namespace Veinia.Editor
 
 			GameObject systems = Instantiate(Transform.Empty, new List<Component>
 			{
-				new EditorGrid(),
 				new EditorControls(),
-				new EditorJson(levelPath),
-				new EditorObjectManager(prefabManager),
+				new EditorGrid(),
+				new EditorLoader(levelPath),
+				new EditorObjectPainter(prefabManager),
+			}, isStatic: true);
+
+			GameObject windows = Instantiate(Transform.Empty, new List<Component>
+			{
+				new EditorManager(),
 				new FPSWindow(),
 				new Toolbar(prefabManager),
 			}, isStatic: true);

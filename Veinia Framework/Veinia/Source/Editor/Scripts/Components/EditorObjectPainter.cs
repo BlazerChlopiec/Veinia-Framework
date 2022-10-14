@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace Veinia.Editor
 {
-	public class EditorObjectManager : Component, IDrawn
+	public class EditorObjectPainter : Component, IDrawn
 	{
 		PrefabManager prefabManager;
 		Label tileCount = new Label { HorizontalAlignment = HorizontalAlignment.Center };
@@ -25,7 +25,7 @@ namespace Veinia.Editor
 
 
 
-		public EditorObjectManager(PrefabManager prefabManager) => this.prefabManager = prefabManager;
+		public EditorObjectPainter(PrefabManager prefabManager) => this.prefabManager = prefabManager;
 
 		public override void Initialize()
 		{
@@ -116,7 +116,7 @@ namespace Veinia.Editor
 				EditorPlacedSprite = Instantiate(extractedSpriteGameObject).GetComponent<Sprite>()
 			};
 
-			currentlyEditedObjects.Add(newEditorObject);
+			if (currentPrefabName == newEditorObject.PrefabName) currentlyEditedObjects.Add(newEditorObject);
 			editorObjects.Add(newEditorObject);
 
 			UpdateTitle();
@@ -142,6 +142,8 @@ namespace Veinia.Editor
 				editorObject.EditorPlacedSprite.DestroyGameObject();
 				editorObjects.Remove(editorObject);
 			}
+
+			currentlyEditedObjects.Clear();
 
 			UpdateTitle();
 		}
