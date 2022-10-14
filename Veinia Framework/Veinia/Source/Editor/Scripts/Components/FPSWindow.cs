@@ -16,6 +16,7 @@ namespace Veinia.Editor
 				HorizontalAlignment = HorizontalAlignment.Left,
 				VerticalAlignment = VerticalAlignment.Bottom
 			};
+			window.ZIndex = 1;
 			window.DragDirection = DragDirection.None;
 			window.CloseButton.RemoveFromParent();
 			window.Height = 80;
