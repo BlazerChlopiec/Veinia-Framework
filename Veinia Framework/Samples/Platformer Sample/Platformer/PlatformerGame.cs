@@ -9,7 +9,7 @@ namespace Veinia.Platformer
 		private GraphicsDeviceManager graphics;
 		private SpriteBatch spriteBatch;
 
-		VeiniaInitializer veinia;
+		Veinia veinia;
 
 
 		public PlatformerGame()
@@ -18,7 +18,7 @@ namespace Veinia.Platformer
 			Content.RootDirectory = "Content";
 			IsMouseVisible = true;
 
-			veinia = new VeiniaInitializer(this, graphics);
+			veinia = new Veinia(this, graphics);
 			Globals.fps.vSync(true);
 			Globals.fps.ChangeFps(int.MaxValue);
 		}

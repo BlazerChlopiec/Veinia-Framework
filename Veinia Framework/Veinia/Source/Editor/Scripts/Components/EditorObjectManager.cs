@@ -17,6 +17,9 @@ namespace Veinia.Editor
 
 		GameObject objectPreview;
 
+		Vector2 mousePos;
+		Vector2 mouseGridPos;
+
 
 
 		public EditorObjectManager(PrefabManager prefabManager) => this.prefabManager = prefabManager;
@@ -52,30 +55,35 @@ namespace Veinia.Editor
 
 		public override void Update()
 		{
+			mousePos = Globals.input.GetMouseWorldPosition();
+			mouseGridPos = new Vector2(MathF.Round(mousePos.X), MathF.Round(mousePos.Y));
+
 			UpdatePreview();
 
 			if (!Globals.input.GetKey(Keys.LeftAlt) && !Globals.myraDesktop.IsMouseOverGUI)
 			{
 				//placing
-				if (Globals.input.GetMouseButtonUp(0)
-				 || Globals.input.GetMouseButton(0) && Globals.input.GetKey(Keys.LeftShift))
+				if (Globals.input.GetMouseButtonUp(0) || Globals.input.GetMouseButton(0) && Globals.input.GetKey(Keys.LeftShift))
 				{
-					var mousePos = Globals.input.GetMouseWorldPosition();
 
 					if (!Globals.input.GetKey(Keys.LeftControl))
-						mousePos = new Vector2(MathF.Round(mousePos.X), MathF.Round(mousePos.Y));
-
-
-					if (OverlapsWithMouse(currentPrefabName) == null)
-						Spawn(currentPrefabName, mousePos);
+					{
+						if (OverlapsWithPoint(mouseGridPos, currentPrefabName) == null)
+							Spawn(currentPrefabName, mouseGridPos);
+					}
+					else
+					{
+						if (OverlapsWithPoint(mousePos, currentPrefabName) == null)
+							Spawn(currentPrefabName, mousePos);
+					}
 				}
 				//
 
 				//deleting
-				if (Globals.input.GetMouseButtonUp(1)
-				 || Globals.input.GetMouseButton(1) && Globals.input.GetKey(Keys.LeftShift))
+				if (Globals.input.GetMouseButtonUp(1) || Globals.input.GetMouseButton(1) && Globals.input.GetKey(Keys.LeftShift))
 				{
-					var overlap = OverlapsWithMouse(currentPrefabName);
+					var overlap = OverlapsWithPoint(mousePos, currentPrefabName);
+					if (overlap == null) overlap = OverlapsWithPoint(mouseGridPos, currentPrefabName);
 					if (overlap != null) Remove(overlap);
 				}
 				//
@@ -84,12 +92,10 @@ namespace Veinia.Editor
 
 		private void UpdatePreview()
 		{
-			var mousePos = Globals.input.GetMouseWorldPosition();
-
 			if (!Globals.input.GetKey(Keys.LeftControl))
-				mousePos = new Vector2(MathF.Round(mousePos.X), MathF.Round(mousePos.Y));
-
-			objectPreview.transform.position = mousePos;
+				objectPreview.transform.position = mouseGridPos;
+			else
+				objectPreview.transform.position = mousePos;
 		}
 
 		public void Spawn(string prefabName, Vector2 position)
@@ -129,11 +135,11 @@ namespace Veinia.Editor
 			UpdateTitle();
 		}
 
-		private EditorObject OverlapsWithMouse(string prefabName)
+		private EditorObject OverlapsWithPoint(Vector2 overlapPoint, string prefabName)
 		{
 			var overlap = editorObjects.Find(x => x.PrefabName == prefabName && x.EditorPlacedSprite.rect
 												   .OffsetByHalf()
-												   .Contains(Globals.input.GetMouseScreenPosition()));
+												   .Contains(Transform.WorldToScreenPos(overlapPoint)));
 
 			return overlap;
 		}

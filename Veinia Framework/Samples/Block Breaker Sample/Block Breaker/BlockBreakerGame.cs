@@ -9,7 +9,7 @@ namespace Veinia.BlockBreaker
 		private GraphicsDeviceManager graphics;
 		private SpriteBatch spriteBatch;
 
-		VeiniaInitializer veinia;
+		Veinia veinia;
 
 
 		public BlockBreakerGame()
@@ -19,7 +19,7 @@ namespace Veinia.BlockBreaker
 			IsMouseVisible = true;
 			Window.AllowUserResizing = true;
 
-			veinia = new VeiniaInitializer(this, graphics);
+			veinia = new Veinia(this, graphics);
 			Globals.fps.vSync(true);
 			Globals.fps.ChangeFps(int.MaxValue);
 		}

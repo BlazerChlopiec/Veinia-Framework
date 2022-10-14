@@ -12,14 +12,14 @@ using Veinia.Editor;
 
 namespace Veinia
 {
-	public class VeiniaInitializer
+	public class Veinia
 	{
 		Title title;
 		PrefabManager prefabManager;
 		Game game;
 
 
-		public VeiniaInitializer(Game game, GraphicsDeviceManager graphicsManager)
+		public Veinia(Game game, GraphicsDeviceManager graphicsManager)
 		{
 			//this one takes effect only in a game's constructor
 			this.game = game;

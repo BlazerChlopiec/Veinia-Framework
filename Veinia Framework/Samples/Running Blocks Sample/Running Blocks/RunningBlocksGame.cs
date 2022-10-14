@@ -9,7 +9,7 @@ namespace Veinia.RunningBlocks
 		private GraphicsDeviceManager graphics;
 		private SpriteBatch spriteBatch;
 
-		VeiniaInitializer veinia;
+		Veinia veinia;
 
 
 		public RunningBlocksGame()
@@ -18,7 +18,7 @@ namespace Veinia.RunningBlocks
 			Content.RootDirectory = "Content";
 			IsMouseVisible = true;
 
-			veinia = new VeiniaInitializer(this, graphics);
+			veinia = new Veinia(this, graphics);
 			Globals.fps.vSync(true);
 			Globals.fps.ChangeFps(int.MaxValue);
 		}
