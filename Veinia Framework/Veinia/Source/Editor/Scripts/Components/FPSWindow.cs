@@ -1,43 +1,45 @@
 ﻿using Microsoft.Xna.Framework;
 using Myra.Graphics2D.UI;
-using Veinia;
 
-public class FPSWindow : Component
+namespace Veinia.Editor
 {
-	public override void Initialize()
+	public class FPSWindow : Component
 	{
-		var panel = new Panel();
-
-		var window = new Window
+		public override void Initialize()
 		{
-			Title = "FPS",
-			Content = panel,
-			HorizontalAlignment = HorizontalAlignment.Left,
-			VerticalAlignment = VerticalAlignment.Bottom
-		};
-		window.DragDirection = DragDirection.None;
-		window.CloseButton.RemoveFromParent();
-		window.Height = 70;
-		window.Width = 120;
+			var panel = new Panel();
 
-		var textBox = new TextBox { };
+			var window = new Window
+			{
+				Title = "FPS",
+				Content = panel,
+				HorizontalAlignment = HorizontalAlignment.Left,
+				VerticalAlignment = VerticalAlignment.Bottom
+			};
+			window.DragDirection = DragDirection.None;
+			window.CloseButton.RemoveFromParent();
+			window.Height = 70;
+			window.Width = 120;
 
-		var applyButton = new TextButton { Text = "Apply", Top = 22 };
+			var textBox = new TextBox { };
 
-		int result;
-		applyButton.Click += (o, a) =>
-		{
-			if (int.TryParse(textBox.Text, out result))
-				Globals.fps.ChangeFps(result);
-		};
+			var applyButton = new TextButton { Text = "Apply", Top = 22 };
 
-		var resetButton = new TextButton { Text = "Reset", Top = 22, Left = 60 };
-		resetButton.Click += (o, a) => { Globals.fps.ChangeFps(int.MaxValue); };
+			int result;
+			applyButton.Click += (o, a) =>
+			{
+				if (int.TryParse(textBox.Text, out result))
+					Globals.fps.ChangeFps(result);
+			};
 
-		panel.Widgets.Add(textBox);
-		panel.Widgets.Add(applyButton);
-		panel.Widgets.Add(resetButton);
+			var resetButton = new TextButton { Text = "Reset", Top = 22, Left = 60 };
+			resetButton.Click += (o, a) => { Globals.fps.ChangeFps(int.MaxValue); };
 
-		window.Show(Globals.myraDesktop, Point.Zero);
+			panel.Widgets.Add(textBox);
+			panel.Widgets.Add(applyButton);
+			panel.Widgets.Add(resetButton);
+
+			window.Show(Globals.myraDesktop, Point.Zero);
+		}
 	}
 }

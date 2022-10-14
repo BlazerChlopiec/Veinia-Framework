@@ -1,39 +1,40 @@
 ﻿using Microsoft.Xna.Framework;
 using Myra.Graphics2D.UI;
-using Veinia;
-using Veinia.Editor;
 
-public class EditorManager : Component
+namespace Veinia.Editor
 {
-	public override void Initialize()
+	public class EditorManager : Component
 	{
-		var editorObjectPainter = FindComponentOfType<EditorObjectPainter>();
-		var editorLoader = FindComponentOfType<EditorLoader>();
-
-		var panel = new Panel();
-		var window = new Window
+		public override void Initialize()
 		{
-			Title = "Editor Manager",
-			Content = panel,
-			VerticalAlignment = VerticalAlignment.Bottom,
-			HorizontalAlignment = HorizontalAlignment.Center,
-		};
-		window.CloseButton.RemoveFromParent();
-		window.DragDirection = DragDirection.None;
-		window.Width = 190;
+			var editorObjectPainter = FindComponentOfType<EditorObjectPainter>();
+			var editorLoader = FindComponentOfType<EditorLoader>();
 
-		var saveButton = new TextButton { Text = "Save" };
-		saveButton.Click += (s, e) => editorLoader.Save();
-		panel.Widgets.Add(saveButton);
+			var panel = new Panel();
+			var window = new Window
+			{
+				Title = "Editor Manager",
+				Content = panel,
+				VerticalAlignment = VerticalAlignment.Bottom,
+				HorizontalAlignment = HorizontalAlignment.Center,
+			};
+			window.CloseButton.RemoveFromParent();
+			window.DragDirection = DragDirection.None;
+			window.Width = 190;
 
-		var loadButton = new TextButton { Text = "Load", Left = 50 };
-		loadButton.Click += (s, e) => editorLoader.Load();
-		panel.Widgets.Add(loadButton);
+			var saveButton = new TextButton { Text = "Save" };
+			saveButton.Click += (s, e) => editorLoader.Save();
+			panel.Widgets.Add(saveButton);
 
-		var removeAllButton = new TextButton { Text = "Remove All", Left = 100 };
-		removeAllButton.Click += (s, e) => editorObjectPainter.RemoveAll();
-		panel.Widgets.Add(removeAllButton);
+			var loadButton = new TextButton { Text = "Load", Left = 50 };
+			loadButton.Click += (s, e) => editorLoader.Load();
+			panel.Widgets.Add(loadButton);
 
-		window.Show(Globals.myraDesktop, Point.Zero);
+			var removeAllButton = new TextButton { Text = "Remove All", Left = 100 };
+			removeAllButton.Click += (s, e) => editorObjectPainter.RemoveAll();
+			panel.Widgets.Add(removeAllButton);
+
+			window.Show(Globals.myraDesktop, Point.Zero);
+		}
 	}
 }
