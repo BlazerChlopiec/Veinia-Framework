@@ -106,5 +106,9 @@ namespace Veinia
 			color = new Color(255 - color.R, 255 - color.G, 255 - color.B);
 			return color;
 		}
+		public static Vector2 Round(this Vector2 vector, int decimalDigits)
+		{
+			return new Vector2((float)Math.Round(vector.X, decimalDigits), (float)Math.Round(vector.Y, decimalDigits));
+		}
 	}
 }

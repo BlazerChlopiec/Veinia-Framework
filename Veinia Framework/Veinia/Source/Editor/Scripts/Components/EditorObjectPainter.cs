@@ -11,7 +11,6 @@ namespace Veinia.Editor
 	public class EditorObjectPainter : Component, IDrawn
 	{
 		PrefabManager prefabManager;
-		Label tileCount = new Label { HorizontalAlignment = HorizontalAlignment.Center };
 
 		public List<EditorObject> editorObjects = new List<EditorObject>();
 		public List<EditorObject> currentlyEditedObjects = new List<EditorObject>();
@@ -35,8 +34,6 @@ namespace Veinia.Editor
 			var firstPrefab = prefabManager.prefabs[0];
 			if (firstPrefab != null) ChangeCurrentPrefab(firstPrefab.prefabName);
 
-			level.Myra.Widgets.Add(tileCount);
-			tileCount.Text = "Object Count " + (editorObjects.Count);
 			UpdateTitle();
 
 			EditorOptions.AddOption("Mark Edited", defaultValue: true, (e, o) => { drawCurrentlyEditedObjectOutlines = true; }, (e, o) => { drawCurrentlyEditedObjectOutlines = false; });
@@ -170,7 +167,7 @@ namespace Veinia.Editor
 			return overlap;
 		}
 
-		private void UpdateTitle() => tileCount.Text = "Object Count " + (editorObjects.Count);
+		private void UpdateTitle() => EditorLabelManager.Add("ObjectCount", new Label { Text = "Object Count - " + editorObjects.Count, VerticalAlignment = VerticalAlignment.Top, HorizontalAlignment = HorizontalAlignment.Center });
 
 		public void Draw(SpriteBatch sb)
 		{

@@ -24,8 +24,9 @@ namespace Veinia.Editor
 				new EditorObjectPainter(prefabManager),
 			}, isStatic: true);
 
-			GameObject windows = Instantiate(Transform.Empty, new List<Component>
+			GameObject UI = Instantiate(Transform.Empty, new List<Component>
 			{
+				new EditorLabelManager(),
 				new EditorOptions(),
 				new EditorManager(),
 				new FPSWindow(),
