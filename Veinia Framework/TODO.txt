@@ -4,14 +4,16 @@ TODO:
 - store levels instead of creating new levels every time
 - a collider is currently pushable if its instantiated before the pusher which is weird
 - add collision priority
-- rework the grid (make it more performant)
-- save .veinia files in game directory
 - check if render targets are compatible
-- dynamically change grid size in the editor
-- make an edit editor tab
 - rework the loader (merge it with level.cs?) to reduce global classes
 - (GeonBit.UI) anchors break out the animation
 - (GeonBit.UI) images dont scale with GlobalScale
+
+Editor:
+- make an edit editor tab
+- save .veinia files in game directory
+- rework the grid (make it more performant)
+- (maybe?) dynamically change grid size in the editor
 
 
 Goals:
