@@ -30,7 +30,7 @@ namespace Veinia.Editor
 				new EditorOptions(),
 				new EditorManager(),
 				new FPSWindow(),
-				new ToolbarManager(new List<Toolbar> { new PrefabToolbar(prefabManager, "Painting"), }),
+				new ToolbarManager(new List<Toolbar> { new PrefabToolbar(prefabManager, "Painting"), new EditToolbar("Edit") }),
 			}, isStatic: true);
 		}
 	}
