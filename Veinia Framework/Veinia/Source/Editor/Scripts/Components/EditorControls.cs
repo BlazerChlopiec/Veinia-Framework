@@ -37,8 +37,6 @@ namespace Veinia.Editor
 				// we release drag in next frame to not accidentally paint an object on drag release
 				NextFrame.actions.Add(() => { drag = false; });
 			}
-
-			Say.Line(drag);
 		}
 	}
 }

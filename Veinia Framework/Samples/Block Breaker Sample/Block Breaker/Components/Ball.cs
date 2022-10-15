@@ -37,8 +37,6 @@ namespace Veinia.BlockBreaker
 		{
 			if (state != CollisionState.Enter) return;
 
-			Say.Line(collisionInfo.PenetrationVectorPerFrame);
-
 			var tile = collisionInfo.Other.collider.GetComponent<Tile>();
 			if (tile != null) tile.Hit();
 

@@ -19,6 +19,7 @@ namespace Veinia.Editor
 
 		bool drawCurrentlyEditedObjectOutlines = true;
 		bool drawGizmos = true;
+		public bool allowPainting = false;
 
 		public string currentPrefabName { get; private set; }
 
@@ -69,6 +70,9 @@ namespace Veinia.Editor
 		{
 			mousePos = Globals.input.GetMouseWorldPosition();
 			mouseGridPos = new Vector2(MathF.Round(mousePos.X), MathF.Round(mousePos.Y));
+
+			objectPreview.isEnabled = allowPainting;
+			if (!allowPainting) return;
 
 			UpdatePreview();
 

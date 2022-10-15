@@ -6,31 +6,30 @@ using System.Collections.Generic;
 
 namespace Veinia.Editor
 {
-	public class Toolbar : Component
+	public class PrefabToolbar : Toolbar
 	{
 		PrefabManager prefabManager;
 		EditorObjectPainter editorObjectPainter;
 		List<ToolbarPrefab> toolbarPrefabs = new List<ToolbarPrefab>();
 
 
-		public Toolbar(PrefabManager prefabManager) => this.prefabManager = prefabManager;
+		public PrefabToolbar(PrefabManager prefabManager, string toolbarName) : base(toolbarName) => this.prefabManager = prefabManager;
 
-		public override void Initialize()
+
+		public override void OnInitialize(GameObject gameObject)
 		{
-			editorObjectPainter = FindComponentOfType<EditorObjectPainter>();
-			FeedToolboxWithPrefabs();
+			editorObjectPainter = gameObject.level.FindComponentOfType<EditorObjectPainter>();
+			FeedToolbarWithPrefabs();
+		}
 
+		public override void OnFocus(GameObject gameObject)
+		{
+			editorObjectPainter.allowPainting = true;
 
 			var panel = new Panel();
 			var scroll = new ScrollViewer();
 			scroll.Content = panel;
-
-			var window = new Window
-			{
-				Title = "Prefabs",
-				Content = scroll,
-			};
-			window.CloseButton.RemoveFromParent();
+			content = scroll;
 
 			int topOffset = 0;
 
@@ -52,13 +51,13 @@ namespace Veinia.Editor
 				panel.Widgets.Add(image);
 			}
 			panel.Height = toolbarPrefabs.Count * 100 + topOffset;
-
-			window.Show(Globals.myraDesktop, Point.Zero);
 		}
+
+		public override void OnLostFocus(GameObject gameObject) => editorObjectPainter.allowPainting = false;
 
 		private void OnClickPrefab(ToolbarPrefab prefab) => editorObjectPainter.ChangeCurrentPrefab(prefab.PrefabName);
 
-		private void FeedToolboxWithPrefabs()
+		private void FeedToolbarWithPrefabs()
 		{
 			for (int i = 0; i < prefabManager.prefabs.Count; i++)
 			{
