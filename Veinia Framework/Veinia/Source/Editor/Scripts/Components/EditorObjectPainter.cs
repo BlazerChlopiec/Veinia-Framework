@@ -100,7 +100,7 @@ namespace Veinia.Editor
 					else
 					{
 						if (editorObjectManager.PrefabOverlapsWithPoint(mousePos, currentPrefabName) == null)
-							editorObjectManager.Spawn(currentPrefabName, mouseGridPos);
+							editorObjectManager.Spawn(currentPrefabName, mousePos);
 					}
 				}
 				//
