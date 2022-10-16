@@ -107,7 +107,6 @@ namespace Veinia
 			if (Globals.input.GetKeyDown(Keys.F))
 				Collider.showHitboxes = !Collider.showHitboxes;
 
-
 			if (Globals.input.GetKeyDown(Keys.Tab))
 			{
 				if (Globals.loader.currentLevel is EditorScene)

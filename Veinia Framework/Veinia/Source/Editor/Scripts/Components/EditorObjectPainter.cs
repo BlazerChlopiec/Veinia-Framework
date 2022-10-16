@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace Veinia.Editor
 {
-	public class EditorObjectPainter : Component, IDrawn
+	public class EditorObjectPainter : ToolbarBehaviour
 	{
 		PrefabManager prefabManager;
 
@@ -16,8 +16,7 @@ namespace Veinia.Editor
 		EditorControls editorControls;
 		EditorObjectManager editorObjectManager;
 
-		public bool allowPainting = false;
-		bool drawCurrentlyEditedObjectOutlines = true;
+		bool markLayer = true;
 
 		public string currentPrefabName { get; private set; }
 
@@ -27,13 +26,14 @@ namespace Veinia.Editor
 		Vector2 mouseGridPos;
 
 
-
 		public EditorObjectPainter(PrefabManager prefabManager) => this.prefabManager = prefabManager;
 
-		public override void Initialize()
+		public override void OnInitialize()
 		{
-			editorObjectManager = GetComponent<EditorObjectManager>();
-			editorControls = GetComponent<EditorControls>();
+			base.OnInitialize();
+
+			editorObjectManager = gameObject.level.FindComponentOfType<EditorObjectManager>();
+			editorControls = gameObject.level.FindComponentOfType<EditorControls>();
 
 			editorObjectManager.OnSpawn += (e) =>
 			{
@@ -50,7 +50,7 @@ namespace Veinia.Editor
 			var firstPrefab = prefabManager.prefabs[0];
 			if (firstPrefab != null) ChangeCurrentPrefab(firstPrefab.prefabName);
 
-			EditorOptions.AddOption("Mark Layer", defaultValue: true, (e, o) => { drawCurrentlyEditedObjectOutlines = true; }, (e, o) => { drawCurrentlyEditedObjectOutlines = false; });
+			EditorOptions.AddOption("Mark Layer", defaultValue: true, (e, o) => { markLayer = true; }, (e, o) => { markLayer = false; });
 		}
 
 		private void SpawnPreview()
@@ -62,7 +62,7 @@ namespace Veinia.Editor
 			sprite.color *= .5f;
 			sprite.layer = .9f;
 
-			objectPreview = Instantiate(objectPreview);
+			objectPreview = gameObject.level.Instantiate(objectPreview);
 		}
 
 		public void ChangeCurrentPrefab(string newPrefabName)
@@ -74,11 +74,11 @@ namespace Veinia.Editor
 			currentObjectLayer = editorObjectManager.editorObjects.FindAll(x => x.PrefabName == currentPrefabName);
 		}
 
-		public override void Update()
-		{
-			objectPreview.isEnabled = allowPainting;
-			if (!allowPainting) return;
+		public override void OnExit() => objectPreview.DestroyGameObject();
+		public override void OnEnter() => SpawnPreview();
 
+		public override void OnUpdate()
+		{
 			mousePos = Globals.input.GetMouseWorldPosition();
 			mouseGridPos = new Vector2(MathF.Round(mousePos.X), MathF.Round(mousePos.Y));
 
@@ -86,7 +86,7 @@ namespace Veinia.Editor
 
 			var swipe = Globals.input.GetKey(Keys.LeftShift);
 
-			if (!editorControls.drag && !Globals.myraDesktop.IsMouseOverGUI)
+			if (!editorControls.isDragging && !Globals.myraDesktop.IsMouseOverGUI)
 			{
 				//placing
 				if (Globals.input.GetMouseButtonUp(0) || Globals.input.GetMouseButton(0) && swipe)
@@ -118,15 +118,18 @@ namespace Veinia.Editor
 
 		private void UpdatePreview()
 		{
-			if (!Globals.input.GetKey(Keys.LeftControl))
-				objectPreview.transform.position = mouseGridPos;
-			else
-				objectPreview.transform.position = mousePos;
+			if (objectPreview != null)
+			{
+				if (!Globals.input.GetKey(Keys.LeftControl))
+					objectPreview.transform.position = mouseGridPos;
+				else
+					objectPreview.transform.position = mousePos;
+			}
 		}
 
-		public void Draw(SpriteBatch sb)
+		public override void OnDraw(SpriteBatch sb)
 		{
-			if (drawCurrentlyEditedObjectOutlines)
+			if (markLayer)
 				foreach (var item in currentObjectLayer)
 				{
 					sb.DrawRectangle(item.EditorPlacedSprite.rect.OffsetByHalf(), Color.Green, thickness: 4, layerDepth: .9f);

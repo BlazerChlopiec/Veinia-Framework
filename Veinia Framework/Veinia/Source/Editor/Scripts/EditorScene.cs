@@ -22,8 +22,6 @@ namespace Veinia.Editor
 				new EditorGrid(),
 				new EditorLoader(levelPath),
 				new EditorObjectManager(prefabManager),
-				new EditorObjectPainter(prefabManager),
-				new EditorObjectEdit()
 			}, isStatic: true);
 
 			GameObject UI = Instantiate(Transform.Empty, new List<Component>
@@ -32,7 +30,11 @@ namespace Veinia.Editor
 				new EditorOptions(),
 				new EditorManager(),
 				new FPSWindow(),
-				new ToolbarManager(new List<Toolbar> { new PrefabToolbar(prefabManager, "Painting"), new EditToolbar("Edit") }),
+				new ToolbarManager(new List<Toolbar>
+				{
+					new PrefabToolbar("Painting", new EditorObjectPainter(prefabManager), prefabManager),
+					new EditToolbar("Edit", new EditorObjectEdit()),
+				}),
 			}, isStatic: true);
 		}
 	}

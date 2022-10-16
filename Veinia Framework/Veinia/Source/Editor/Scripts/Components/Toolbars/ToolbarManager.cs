@@ -1,11 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Myra.Graphics2D.UI;
 using System.Collections.Generic;
 
 namespace Veinia.Editor
 {
-	public class ToolbarManager : Component
+	public class ToolbarManager : Component, IDrawn
 	{
 		List<Toolbar> toolbars = new List<Toolbar>();
 
@@ -16,6 +17,7 @@ namespace Veinia.Editor
 
 
 		public ToolbarManager(List<Toolbar> toolbars) => this.toolbars = toolbars;
+
 
 		public override void Initialize()
 		{
@@ -59,6 +61,8 @@ namespace Veinia.Editor
 					tabControl.SelectedIndex = toolbars.IndexOf(toolbar);
 				}
 			}
+
+			currentToolbar?.OnUpdate();
 		}
 
 		private void RefreshToolbar()
@@ -68,10 +72,12 @@ namespace Veinia.Editor
 
 			if (currentToolbar != null)
 			{
-				currentToolbar?.OnFocus(gameObject);
 				tabControl.SelectedItem.Content = currentToolbar.content;
+				currentToolbar.toolbarBehaviour.OnEnter();
+				if (previousToolbar != null) previousToolbar.toolbarBehaviour.OnExit();
 			}
-			previousToolbar?.OnLostFocus(gameObject);
 		}
+
+		public void Draw(SpriteBatch sb) => currentToolbar?.OnDraw(sb);
 	}
 }

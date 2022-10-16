@@ -6,13 +6,12 @@ using System.Collections.Generic;
 
 namespace Veinia.Editor
 {
-	public class EditorObjectEdit : Component, IDrawn
+	public class EditorObjectEdit : ToolbarBehaviour
 	{
 		EditorObjectManager editorObjectManager;
 
 		public List<EditorObject> selectedObjects = new List<EditorObject>();
 
-		public bool allowEdit;
 		bool isDragging;
 
 		Vector2 startSelectionPos;
@@ -21,23 +20,25 @@ namespace Veinia.Editor
 		Rectangle selectionRectangle;
 
 
-		public override void Initialize() => editorObjectManager = FindComponentOfType<EditorObjectManager>();
-
-		public override void Update()
+		public override void OnInitialize()
 		{
-			if (!allowEdit || Globals.myraDesktop.IsMouseOverGUI) return;
+			base.OnInitialize();
 
-			bool shift = Globals.input.GetKey(Keys.LeftShift);
-			bool alt = Globals.input.GetKey(Keys.LeftAlt);
+			editorObjectManager = gameObject.level.FindComponentOfType<EditorObjectManager>();
+		}
+
+		public override void OnUpdate()
+		{
+			if (Globals.myraDesktop.IsMouseOverGUI) return;
 
 			screenMousePos = Globals.input.GetMouseScreenPosition();
 
-			if (Globals.input.GetMouseButtonDown(0) && shift)
+			if (Globals.input.GetMouseButtonDown(0) && Globals.input.GetKey(Keys.LeftShift))
 			{
 				isDragging = true;
 				startSelectionPos = Globals.input.GetMouseScreenPosition();
 			}
-			if (Globals.input.GetMouseButtonUp(0) && !isDragging && !alt)
+			if (Globals.input.GetMouseButtonUp(0) && !isDragging && !gameObject.level.FindComponentOfType<EditorControls>().isDragging)
 			{
 				selectedObjects.Clear();
 
@@ -70,7 +71,6 @@ namespace Veinia.Editor
 
 			if (Globals.input.GetKeyDown(Keys.Delete) || Globals.input.GetMouseButtonDown(1))
 				RemoveSelection();
-
 		}
 
 		public void RemoveSelection()
@@ -82,12 +82,10 @@ namespace Veinia.Editor
 			}
 		}
 
-		public void Draw(SpriteBatch sb)
+		public override void OnDraw(SpriteBatch sb)
 		{
 			foreach (var selected in selectedObjects)
-			{
 				sb.DrawRectangle(selected.EditorPlacedSprite.rect.OffsetByHalf(), Color.Blue, 10, .99f);
-			}
 
 			if (isDragging)
 			{
