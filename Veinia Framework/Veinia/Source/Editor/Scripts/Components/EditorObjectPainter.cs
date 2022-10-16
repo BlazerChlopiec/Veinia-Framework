@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
-using Myra.Graphics2D.UI;
 using System;
 using System.Collections.Generic;
 
@@ -12,14 +11,13 @@ namespace Veinia.Editor
 	{
 		PrefabManager prefabManager;
 
+		public List<EditorObject> currentObjectLayer = new List<EditorObject>();
+
 		EditorControls editorControls;
+		EditorObjectManager editorObjectManager;
 
-		public List<EditorObject> editorObjects = new List<EditorObject>();
-		public List<EditorObject> currentlyEditedObjects = new List<EditorObject>();
-
-		bool drawCurrentlyEditedObjectOutlines = true;
-		bool drawGizmos = true;
 		public bool allowPainting = false;
+		bool drawCurrentlyEditedObjectOutlines = true;
 
 		public string currentPrefabName { get; private set; }
 
@@ -34,15 +32,25 @@ namespace Veinia.Editor
 
 		public override void Initialize()
 		{
+			editorObjectManager = GetComponent<EditorObjectManager>();
 			editorControls = GetComponent<EditorControls>();
+
+			editorObjectManager.OnSpawn += (e) =>
+			{
+				var editorObject = (EditorObject)e;
+				if (editorObject.PrefabName == currentPrefabName) currentObjectLayer.Add(editorObject);
+			};
+			editorObjectManager.OnRemove += (e) =>
+			{
+				var editorObject = (EditorObject)e;
+				if (editorObject.PrefabName == currentPrefabName) currentObjectLayer.Remove(editorObject);
+			};
+			editorObjectManager.OnRemoveAll += () => { currentObjectLayer.Clear(); };
 
 			var firstPrefab = prefabManager.prefabs[0];
 			if (firstPrefab != null) ChangeCurrentPrefab(firstPrefab.prefabName);
 
-			UpdateTitle();
-
 			EditorOptions.AddOption("Mark Layer", defaultValue: true, (e, o) => { drawCurrentlyEditedObjectOutlines = true; }, (e, o) => { drawCurrentlyEditedObjectOutlines = false; });
-			EditorOptions.AddOption("Draw Gizmos", defaultValue: true, (e, o) => { drawGizmos = true; }, (e, o) => { drawGizmos = false; });
 		}
 
 		private void SpawnPreview()
@@ -63,7 +71,7 @@ namespace Veinia.Editor
 			SpawnPreview();
 			UpdatePreview();
 
-			currentlyEditedObjects = editorObjects.FindAll(x => x.PrefabName == currentPrefabName);
+			currentObjectLayer = editorObjectManager.editorObjects.FindAll(x => x.PrefabName == currentPrefabName);
 		}
 
 		public override void Update()
@@ -86,13 +94,13 @@ namespace Veinia.Editor
 
 					if (!Globals.input.GetKey(Keys.LeftControl))
 					{
-						if (OverlapsWithPoint(mouseGridPos, currentPrefabName) == null)
-							Spawn(currentPrefabName, mouseGridPos);
+						if (editorObjectManager.PrefabOverlapsWithPoint(mouseGridPos, currentPrefabName) == null)
+							editorObjectManager.Spawn(currentPrefabName, mouseGridPos);
 					}
 					else
 					{
-						if (OverlapsWithPoint(mousePos, currentPrefabName) == null)
-							Spawn(currentPrefabName, mousePos);
+						if (editorObjectManager.PrefabOverlapsWithPoint(mousePos, currentPrefabName) == null)
+							editorObjectManager.Spawn(currentPrefabName, mouseGridPos);
 					}
 				}
 				//
@@ -100,9 +108,9 @@ namespace Veinia.Editor
 				//deleting
 				if (Globals.input.GetMouseButtonUp(1) || Globals.input.GetMouseButton(1) && swipe)
 				{
-					var overlap = OverlapsWithPoint(mousePos, currentPrefabName);
-					if (overlap == null) overlap = OverlapsWithPoint(mouseGridPos, currentPrefabName);
-					if (overlap != null) Remove(overlap);
+					var overlap = editorObjectManager.PrefabOverlapsWithPoint(mousePos, currentPrefabName);
+					if (overlap == null) overlap = editorObjectManager.PrefabOverlapsWithPoint(mouseGridPos, currentPrefabName);
+					if (overlap != null) editorObjectManager.Remove(overlap);
 				}
 				//
 			}
@@ -116,79 +124,12 @@ namespace Veinia.Editor
 				objectPreview.transform.position = mousePos;
 		}
 
-		public void Spawn(string prefabName, Vector2 position)
-		{
-			IDrawGizmos gizmo = null;
-			foreach (var component in prefabManager.Find(prefabName).components)
-			{
-				if (component is IDrawGizmos) gizmo = (IDrawGizmos)component;
-			}
-
-			var extractedSpriteGameObject = prefabManager.Find(prefabName).ExtractComponentToNewGameObject<Sprite>(position);
-
-			var newEditorObject = new EditorObject
-			{
-				PrefabName = prefabName,
-				Position = position,
-				EditorPlacedSprite = Instantiate(extractedSpriteGameObject).GetComponent<Sprite>(),
-				gizmo = gizmo,
-			};
-
-			if (currentPrefabName == newEditorObject.PrefabName) currentlyEditedObjects.Add(newEditorObject);
-			editorObjects.Add(newEditorObject);
-
-			UpdateTitle();
-		}
-
-		private void Remove(EditorObject editorObject)
-		{
-			if (editorObject == null) return;
-
-			editorObject.EditorPlacedSprite.DestroyGameObject();
-			currentlyEditedObjects.Remove(editorObject);
-			editorObjects.Remove(editorObject);
-
-			UpdateTitle();
-		}
-
-		public void RemoveAll()
-		{
-			foreach (var editorObject in editorObjects.ToArray())
-			{
-				if (editorObject == null) return;
-
-				editorObject.EditorPlacedSprite.DestroyGameObject();
-				editorObjects.Remove(editorObject);
-			}
-
-			currentlyEditedObjects.Clear();
-
-			UpdateTitle();
-		}
-
-		private EditorObject OverlapsWithPoint(Vector2 overlapPoint, string prefabName)
-		{
-			var overlap = editorObjects.Find(x => x.PrefabName == prefabName && x.EditorPlacedSprite.rect
-												   .OffsetByHalf()
-												   .Contains(Transform.WorldToScreenPos(overlapPoint)));
-
-			return overlap;
-		}
-
-		private void UpdateTitle() => EditorLabelManager.Add("ObjectCount", new Label { Text = "Object Count - " + editorObjects.Count, VerticalAlignment = VerticalAlignment.Top, HorizontalAlignment = HorizontalAlignment.Center });
-
 		public void Draw(SpriteBatch sb)
 		{
 			if (drawCurrentlyEditedObjectOutlines)
-				foreach (var item in currentlyEditedObjects)
+				foreach (var item in currentObjectLayer)
 				{
 					sb.DrawRectangle(item.EditorPlacedSprite.rect.OffsetByHalf(), Color.Green, thickness: 4, layerDepth: .9f);
-				}
-
-			if (drawGizmos)
-				foreach (var item in editorObjects)
-				{
-					item.gizmo?.DrawGizmos(sb, item);
 				}
 		}
 	}

@@ -7,7 +7,7 @@ namespace Veinia.Editor
 	{
 		public override void Initialize()
 		{
-			var editorObjectPainter = FindComponentOfType<EditorObjectPainter>();
+			var editorObjectManager = FindComponentOfType<EditorObjectManager>();
 			var editorLoader = FindComponentOfType<EditorLoader>();
 
 			var panel = new Panel();
@@ -31,7 +31,7 @@ namespace Veinia.Editor
 			panel.Widgets.Add(loadButton);
 
 			var removeAllButton = new TextButton { Text = "Remove All", Left = 100 };
-			removeAllButton.Click += (s, e) => editorObjectPainter.RemoveAll();
+			removeAllButton.Click += (s, e) => editorObjectManager.RemoveAll();
 			panel.Widgets.Add(removeAllButton);
 
 			window.Show(Globals.myraDesktop, Point.Zero);

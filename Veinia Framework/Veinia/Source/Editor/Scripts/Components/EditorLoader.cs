@@ -7,7 +7,7 @@ namespace Veinia.Editor
 {
 	public class EditorLoader : Component
 	{
-		EditorObjectPainter editorObjectPainter;
+		EditorObjectManager editorObjectManager;
 
 		private string editedLevel;
 
@@ -16,21 +16,21 @@ namespace Veinia.Editor
 
 		public override void Initialize()
 		{
-			editorObjectPainter = FindComponentOfType<EditorObjectPainter>();
+			editorObjectManager = FindComponentOfType<EditorObjectManager>();
 
 			Load();
 		}
 
 		public void Save()
 		{
-			string serializedText = JsonConvert.SerializeObject(editorObjectPainter.editorObjects);
+			string serializedText = JsonConvert.SerializeObject(editorObjectManager.editorObjects);
 
 			File.WriteAllText(editedLevel, serializedText);
 		}
 
 		public void Load()
 		{
-			editorObjectPainter.RemoveAll();
+			editorObjectManager.RemoveAll();
 
 			if (!File.Exists(editedLevel)) return;
 			var deserializedText = File.ReadAllText(editedLevel);
@@ -38,7 +38,7 @@ namespace Veinia.Editor
 
 			foreach (var item in objects)
 			{
-				editorObjectPainter.Spawn(item.PrefabName, item.Position);
+				editorObjectManager.Spawn(item.PrefabName, item.Position);
 			}
 		}
 

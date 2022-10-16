@@ -21,7 +21,9 @@ namespace Veinia.Editor
 				new EditorControls(),
 				new EditorGrid(),
 				new EditorLoader(levelPath),
+				new EditorObjectManager(prefabManager),
 				new EditorObjectPainter(prefabManager),
+				new EditorObjectEdit()
 			}, isStatic: true);
 
 			GameObject UI = Instantiate(Transform.Empty, new List<Component>
