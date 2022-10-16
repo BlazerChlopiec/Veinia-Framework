@@ -19,8 +19,8 @@ namespace Veinia.Editor
 			this.toolbarBehaviour = toolbarBehaviour;
 		}
 
-		public virtual void OnInitialize(GameObject gameObject) { toolbarBehaviour.gameObject = gameObject; toolbarBehaviour.OnInitialize(); }
-		public virtual void OnUpdate() { toolbarBehaviour.OnUpdate(); }
-		public virtual void OnDraw(SpriteBatch sb) { toolbarBehaviour.OnDraw(sb); }
+		public virtual void OnInitialize(GameObject gameObject) { }
+		public virtual void OnUpdate() { }
+		public virtual void OnDraw(SpriteBatch sb) { }
 	}
 }

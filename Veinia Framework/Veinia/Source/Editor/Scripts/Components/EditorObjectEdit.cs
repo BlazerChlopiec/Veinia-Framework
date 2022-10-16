@@ -20,12 +20,7 @@ namespace Veinia.Editor
 		Rectangle selectionRectangle;
 
 
-		public override void OnInitialize()
-		{
-			base.OnInitialize();
-
-			editorObjectManager = gameObject.level.FindComponentOfType<EditorObjectManager>();
-		}
+		public override void OnInitialize() => editorObjectManager = gameObject.level.FindComponentOfType<EditorObjectManager>();
 
 		public override void OnUpdate()
 		{

@@ -30,8 +30,6 @@ namespace Veinia.Editor
 
 		public override void OnInitialize()
 		{
-			base.OnInitialize();
-
 			editorObjectManager = gameObject.level.FindComponentOfType<EditorObjectManager>();
 			editorControls = gameObject.level.FindComponentOfType<EditorControls>();
 
@@ -74,8 +72,8 @@ namespace Veinia.Editor
 			currentObjectLayer = editorObjectManager.editorObjects.FindAll(x => x.PrefabName == currentPrefabName);
 		}
 
-		public override void OnExit() => objectPreview.DestroyGameObject();
-		public override void OnEnter() => SpawnPreview();
+		public override void OnExitTab() => objectPreview.DestroyGameObject();
+		public override void OnEnterTab() => SpawnPreview();
 
 		public override void OnUpdate()
 		{

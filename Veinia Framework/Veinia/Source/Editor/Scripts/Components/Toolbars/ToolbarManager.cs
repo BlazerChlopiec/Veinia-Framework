@@ -32,6 +32,9 @@ namespace Veinia.Editor
 				toolbar.shortcut = Keys.D1 + toolbars.IndexOf(toolbar);
 
 				toolbar.OnInitialize(gameObject);
+
+				toolbar.toolbarBehaviour.gameObject = gameObject;
+				toolbar.toolbarBehaviour.OnInitialize();
 			}
 
 			RefreshToolbar();
@@ -63,6 +66,7 @@ namespace Veinia.Editor
 			}
 
 			currentToolbar?.OnUpdate();
+			currentToolbar?.toolbarBehaviour.OnUpdate();
 		}
 
 		private void RefreshToolbar()
@@ -73,11 +77,15 @@ namespace Veinia.Editor
 			if (currentToolbar != null)
 			{
 				tabControl.SelectedItem.Content = currentToolbar.content;
-				currentToolbar.toolbarBehaviour.OnEnter();
-				if (previousToolbar != null) previousToolbar.toolbarBehaviour.OnExit();
+				currentToolbar.toolbarBehaviour.OnEnterTab();
+				if (previousToolbar != null) previousToolbar.toolbarBehaviour.OnExitTab();
 			}
 		}
 
-		public void Draw(SpriteBatch sb) => currentToolbar?.OnDraw(sb);
+		public void Draw(SpriteBatch sb)
+		{
+			currentToolbar?.OnDraw(sb);
+			currentToolbar?.toolbarBehaviour.OnDraw(sb);
+		}
 	}
 }

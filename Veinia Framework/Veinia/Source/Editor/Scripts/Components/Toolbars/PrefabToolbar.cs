@@ -20,8 +20,6 @@ namespace Veinia.Editor
 
 		public override void OnInitialize(GameObject gameObject)
 		{
-			base.OnInitialize(gameObject);
-
 			editorObjectPainter = (EditorObjectPainter)toolbarBehaviour;
 
 			FeedToolbarWithPrefabs();
