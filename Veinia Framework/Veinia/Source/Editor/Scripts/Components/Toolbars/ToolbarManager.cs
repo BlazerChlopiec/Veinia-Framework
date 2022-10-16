@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using Myra.Graphics2D.UI;
 using System.Collections.Generic;
 
@@ -24,6 +25,10 @@ namespace Veinia.Editor
 			foreach (var toolbar in toolbars)
 			{
 				tabControl.Items.Add(new TabItem { Text = toolbar.toolbarName, Tag = toolbar, Content = toolbar.content });
+
+				//can't be more than 10 toolbars because this wouldn't make sense lmao
+				toolbar.shortcut = Keys.D1 + toolbars.IndexOf(toolbar);
+
 				toolbar.OnInitialize(gameObject);
 			}
 
@@ -43,6 +48,17 @@ namespace Veinia.Editor
 			window.CloseButton.RemoveFromParent();
 
 			window.Show(Globals.myraDesktop, Point.Zero);
+		}
+
+		public override void Update()
+		{
+			foreach (var toolbar in toolbars)
+			{
+				if (Globals.input.GetKeyDown(toolbar.shortcut))
+				{
+					tabControl.SelectedIndex = toolbars.IndexOf(toolbar);
+				}
+			}
 		}
 
 		private void RefreshToolbar()
