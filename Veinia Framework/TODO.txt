@@ -10,9 +10,9 @@ TODO:
 - (GeonBit.UI) images dont scale with GlobalScale
 
 Editor:
-- make an edit editor tab
+- deprecate EditorObjects and just replace them with gameobjects
 - save .veinia files in game directory
-- rework the grid (make it more performant)
+- (maybe?) rework the grid (make it more performant)
 - (maybe?) dynamically change grid size in the editor
 
 

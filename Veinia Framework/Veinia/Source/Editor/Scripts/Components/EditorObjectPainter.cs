@@ -76,11 +76,11 @@ namespace Veinia.Editor
 
 		public override void Update()
 		{
-			mousePos = Globals.input.GetMouseWorldPosition();
-			mouseGridPos = new Vector2(MathF.Round(mousePos.X), MathF.Round(mousePos.Y));
-
 			objectPreview.isEnabled = allowPainting;
 			if (!allowPainting) return;
+
+			mousePos = Globals.input.GetMouseWorldPosition();
+			mouseGridPos = new Vector2(MathF.Round(mousePos.X), MathF.Round(mousePos.Y));
 
 			UpdatePreview();
 

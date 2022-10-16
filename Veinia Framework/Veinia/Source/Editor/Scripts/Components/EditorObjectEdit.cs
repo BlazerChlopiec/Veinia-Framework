@@ -1,27 +1,100 @@
-﻿using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended;
+using System.Collections.Generic;
 
 namespace Veinia.Editor
 {
-	public class EditorObjectEdit : Component
+	public class EditorObjectEdit : Component, IDrawn
 	{
 		EditorObjectManager editorObjectManager;
 
+		public List<EditorObject> selectedObjects = new List<EditorObject>();
+
 		public bool allowEdit;
+		bool isDragging;
+
+		Vector2 startSelectionPos;
+		Vector2 screenMousePos;
+
+		Rectangle selectionRectangle;
 
 
-		public override void Initialize()
-		{
-			editorObjectManager = FindComponentOfType<EditorObjectManager>();
-		}
+		public override void Initialize() => editorObjectManager = FindComponentOfType<EditorObjectManager>();
 
 		public override void Update()
 		{
-			bool shift = Globals.input.GetKey(Keys.LeftShift);
+			if (!allowEdit || Globals.myraDesktop.IsMouseOverGUI) return;
 
-			if (Globals.input.GetMouseButton(0) && shift)
+			bool shift = Globals.input.GetKey(Keys.LeftShift);
+			bool alt = Globals.input.GetKey(Keys.LeftAlt);
+
+			screenMousePos = Globals.input.GetMouseScreenPosition();
+
+			if (Globals.input.GetMouseButtonDown(0) && shift)
 			{
-				// make a new function that check overlap between all prefabs
-				var selected = editorObjectManager.OverlapsWithPoint(Globals.input.GetMouseWorldPosition(), "Block");
+				isDragging = true;
+				startSelectionPos = Globals.input.GetMouseScreenPosition();
+			}
+			if (Globals.input.GetMouseButtonUp(0) && !isDragging && !alt)
+			{
+				selectedObjects.Clear();
+
+				var oneSelection = editorObjectManager.editorObjects.Find(x => x.EditorPlacedSprite.rect.OffsetByHalf().Contains(screenMousePos));
+				if (oneSelection != null)
+					selectedObjects.Add(oneSelection);
+			}
+			if (Globals.input.GetMouseButtonUp(0) && isDragging)
+			{
+				isDragging = false;
+
+				selectedObjects = editorObjectManager.GetInsideRectangle(selectionRectangle.AllowNegativeSize());
+			}
+
+			if (Globals.input.GetKeyDown(Keys.W))
+				foreach (var item in selectedObjects)
+					item.Position += new Vector2(0, 1);
+
+			if (Globals.input.GetKeyDown(Keys.S))
+				foreach (var item in selectedObjects)
+					item.Position += new Vector2(0, -1);
+
+			if (Globals.input.GetKeyDown(Keys.A))
+				foreach (var item in selectedObjects)
+					item.Position += new Vector2(-1, 0);
+
+			if (Globals.input.GetKeyDown(Keys.D))
+				foreach (var item in selectedObjects)
+					item.Position += new Vector2(1, 0);
+
+			if (Globals.input.GetKeyDown(Keys.Delete) || Globals.input.GetMouseButtonDown(1))
+				RemoveSelection();
+
+		}
+
+		public void RemoveSelection()
+		{
+			foreach (var item in selectedObjects.ToArray())
+			{
+				selectedObjects.Remove(item);
+				editorObjectManager.Remove(item);
+			}
+		}
+
+		public void Draw(SpriteBatch sb)
+		{
+			foreach (var selected in selectedObjects)
+			{
+				sb.DrawRectangle(selected.EditorPlacedSprite.rect.OffsetByHalf(), Color.Blue, 10, .99f);
+			}
+
+			if (isDragging)
+			{
+				var difference = startSelectionPos - screenMousePos;
+				selectionRectangle = new Rectangle((int)startSelectionPos.X, (int)startSelectionPos.Y, (int)-difference.X, (int)-difference.Y);
+
+				sb.DrawRectangle(selectionRectangle.AllowNegativeSize(), Color.Red, 10, 1);
 			}
 		}
 	}

@@ -97,9 +97,10 @@ namespace Veinia.Editor
 			return overlap;
 		}
 
+		public List<EditorObject> GetInsideRectangle(Rectangle rect) => editorObjects.FindAll(x => rect.Intersects(x.EditorPlacedSprite.rect.OffsetByHalf()));
+
 		public void Draw(SpriteBatch sb)
 		{
-
 			if (drawGizmos)
 				foreach (var item in editorObjects)
 				{

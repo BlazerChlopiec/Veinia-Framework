@@ -62,6 +62,20 @@ namespace Veinia
 			rect.Inflate(-shrink, -shrink);
 			return rect;
 		}
+		public static Rectangle AllowNegativeSize(this Rectangle rect)
+		{
+			if (rect.Width < 0)
+			{
+				rect.X += rect.Width;
+				rect.Width = Math.Abs(rect.Width);
+			}
+			if (rect.Height < 0)
+			{
+				rect.Y += rect.Height;
+				rect.Height = Math.Abs(rect.Height);
+			}
+			return rect;
+		}
 		public static GameObject ExtractComponentToNewGameObject<T1>(this GameObject gameObject, Vector2 newGameObjectPosition) where T1 : Component
 		{
 			return new GameObject(new Transform(newGameObjectPosition), new List<Component>
