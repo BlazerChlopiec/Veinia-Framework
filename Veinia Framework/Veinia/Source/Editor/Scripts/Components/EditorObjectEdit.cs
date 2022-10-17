@@ -48,21 +48,24 @@ namespace Veinia.Editor
 				selectedObjects = editorObjectManager.GetInsideRectangle(selectionRectangle.AllowNegativeSize());
 			}
 
-			if (Globals.input.GetKeyDown(Keys.W))
-				foreach (var item in selectedObjects)
-					item.Position += new Vector2(0, 1);
+			if (!Globals.input.GetKey(Keys.LeftControl))
+			{
+				if (Globals.input.GetKeyDown(Keys.W))
+					foreach (var item in selectedObjects)
+						item.Position += new Vector2(0, 1);
 
-			if (Globals.input.GetKeyDown(Keys.S))
-				foreach (var item in selectedObjects)
-					item.Position += new Vector2(0, -1);
+				if (Globals.input.GetKeyDown(Keys.S))
+					foreach (var item in selectedObjects)
+						item.Position += new Vector2(0, -1);
 
-			if (Globals.input.GetKeyDown(Keys.A))
-				foreach (var item in selectedObjects)
-					item.Position += new Vector2(-1, 0);
+				if (Globals.input.GetKeyDown(Keys.A))
+					foreach (var item in selectedObjects)
+						item.Position += new Vector2(-1, 0);
 
-			if (Globals.input.GetKeyDown(Keys.D))
-				foreach (var item in selectedObjects)
-					item.Position += new Vector2(1, 0);
+				if (Globals.input.GetKeyDown(Keys.D))
+					foreach (var item in selectedObjects)
+						item.Position += new Vector2(1, 0);
+			}
 
 			if (Globals.input.GetKeyDown(Keys.Delete) || Globals.input.GetMouseButtonDown(1))
 				RemoveSelection();
