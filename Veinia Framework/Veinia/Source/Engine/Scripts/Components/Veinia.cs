@@ -119,10 +119,10 @@ namespace Veinia
 			#endregion
 		}
 
-		public void Draw(SpriteBatch spriteBatch)
+		public void Draw(SpriteBatch spriteBatch, SamplerState samplerState = null)
 		{
 			#region Veinia
-			spriteBatch.Begin(SpriteSortMode.FrontToBack, transformMatrix: Globals.camera.GetViewMatrix());
+			spriteBatch.Begin(SpriteSortMode.FrontToBack, transformMatrix: Globals.camera.GetViewMatrix(), samplerState: samplerState);
 			Globals.loader.currentLevel?.Draw(spriteBatch);
 			spriteBatch.End();
 			#endregion
