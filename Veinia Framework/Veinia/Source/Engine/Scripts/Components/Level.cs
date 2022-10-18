@@ -55,8 +55,8 @@ namespace Veinia
 		/// </summary>
 		private void LoadObjects(string editorLevelName)
 		{
-			if (!File.Exists(editorLevelName)) return;
-			var deserializedText = File.ReadAllText(editorLevelName);
+			if (!File.Exists("Levels/" + editorLevelName)) return;
+			var deserializedText = File.ReadAllText("Levels/" + editorLevelName);
 			var objects = JsonConvert.DeserializeObject<List<EditorObject>>(deserializedText);
 
 			foreach (var item in objects)

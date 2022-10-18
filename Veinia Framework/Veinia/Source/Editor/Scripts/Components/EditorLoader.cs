@@ -25,15 +25,16 @@ namespace Veinia.Editor
 		{
 			string serializedText = JsonConvert.SerializeObject(editorObjectManager.editorObjects);
 
-			File.WriteAllText(editedLevel, serializedText);
+			if (!Directory.Exists("Levels")) Directory.CreateDirectory("Levels");
+			File.WriteAllText("Levels/" + editedLevel, serializedText);
 		}
 
 		public void Load()
 		{
 			editorObjectManager.RemoveAll();
 
-			if (!File.Exists(editedLevel)) return;
-			var deserializedText = File.ReadAllText(editedLevel);
+			if (!File.Exists("Levels/" + editedLevel)) return;
+			var deserializedText = File.ReadAllText("Levels/" + editedLevel);
 			var objects = JsonConvert.DeserializeObject<List<EditorObject>>(deserializedText);
 
 			foreach (var item in objects)
