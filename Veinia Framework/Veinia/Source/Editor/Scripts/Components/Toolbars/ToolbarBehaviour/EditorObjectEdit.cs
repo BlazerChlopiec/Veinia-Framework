@@ -22,6 +22,8 @@ namespace Veinia.Editor
 
 		public override void OnInitialize() => editorObjectManager = gameObject.level.FindComponentOfType<EditorObjectManager>();
 
+		public override void OnExitTab() => selectedObjects.Clear();
+
 		public override void OnUpdate()
 		{
 			if (Globals.myraDesktop.IsMouseOverGUI) return;
