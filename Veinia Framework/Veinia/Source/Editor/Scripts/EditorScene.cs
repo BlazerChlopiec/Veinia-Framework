@@ -14,7 +14,7 @@ namespace Veinia.Editor
 			// the gameObjects shouldn't be loaded as usual because later we only load their sprites
 			base.CreateScene(loadObjectsFromPath: false);
 
-			UserInterface.Active.ShowCursor = true;
+			UserInterface.Active.ShowCursor = false;
 
 			GameObject systems = Instantiate(Transform.Empty, new List<Component>
 			{

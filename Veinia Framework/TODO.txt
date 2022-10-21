@@ -10,10 +10,10 @@ TODO:
 - (GeonBit.UI) images dont scale with GlobalScale
 
 Editor:
+- add hotkey system for the editor so its very easy to change hotkeys
 - (edit tab) Add ctrl+z
-- (edit tab)Add single selection layering like in gd
+- (edit tab) Add single selection layering like in gd
 - deprecate EditorObjects and just replace them with gameobjects
-- save .veinia files in game directory
 - (maybe?) rework the grid (make it more performant)
 - (maybe?) dynamically change grid size in the editor
 

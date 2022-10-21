@@ -30,8 +30,6 @@
     <ProjectReference Include="..\..\Veinia\Veinia.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="LevelData\PlatformerLevel1.veinia">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <Folder Include="LevelData\" />
   </ItemGroup>
 </Project>
