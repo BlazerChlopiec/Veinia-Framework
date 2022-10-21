@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Input;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -9,10 +10,10 @@ namespace Veinia.Editor
 	{
 		EditorObjectManager editorObjectManager;
 
-		private string editedLevel;
+		private string editedLevelName;
 
 
-		public EditorLoader(string editedLevel) => this.editedLevel = editedLevel;
+		public EditorLoader(string editedLevelName) => this.editedLevelName = editedLevelName;
 
 		public override void Initialize()
 		{
@@ -25,16 +26,25 @@ namespace Veinia.Editor
 		{
 			string serializedText = JsonConvert.SerializeObject(editorObjectManager.editorObjects);
 
-			if (!Directory.Exists("Levels")) Directory.CreateDirectory("Levels");
-			File.WriteAllText("Levels/" + editedLevel, serializedText);
+			//game directory
+			if (!Directory.Exists("LevelData")) Directory.CreateDirectory("LevelData");
+			File.WriteAllText("LevelData/" + editedLevelName, serializedText);
+			//
+
+			//game project directory
+			var currentGameDirectory = Environment.CurrentDirectory;
+			var projectDirectory = Directory.GetParent(currentGameDirectory).Parent.Parent.FullName;
+			if (!Directory.Exists(projectDirectory + "/LevelData")) Directory.CreateDirectory(projectDirectory + "/LevelData");
+			File.WriteAllText(projectDirectory + "/LevelData/" + editedLevelName, serializedText);
+			//
 		}
 
 		public void Load()
 		{
 			editorObjectManager.RemoveAll();
 
-			if (!File.Exists("Levels/" + editedLevel)) return;
-			var deserializedText = File.ReadAllText("Levels/" + editedLevel);
+			if (!File.Exists("LevelData/" + editedLevelName)) return;
+			var deserializedText = File.ReadAllText("LevelData/" + editedLevelName);
 			var objects = JsonConvert.DeserializeObject<List<EditorObject>>(deserializedText);
 
 			foreach (var item in objects)
