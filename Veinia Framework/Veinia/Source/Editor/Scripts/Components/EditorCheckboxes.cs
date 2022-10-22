@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Veinia.Editor
 {
-	public class EditorOptions : Component, IDisposable
+	public class EditorCheckboxes : Component, IDisposable
 	{
 		private static Panel panel = new Panel();
 		private Window window;
@@ -45,7 +45,7 @@ namespace Veinia.Editor
 			}
 		}
 
-		public static void AddOption(string text, bool defaultValue, EventHandler onEnable, EventHandler onDisable, Keys shortcut = 0)
+		public static void Add(string text, bool defaultValue, EventHandler onEnable, EventHandler onDisable, Keys shortcut = 0)
 		{
 			var checkBox = new CheckBox { Text = text, IsChecked = defaultValue, Top = 30 * shortcuts.Count };
 

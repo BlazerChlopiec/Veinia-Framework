@@ -27,7 +27,7 @@ namespace Veinia.Editor
 			GameObject UI = Instantiate(Transform.Empty, new List<Component>
 			{
 				new EditorLabelManager(),
-				new EditorOptions(),
+				new EditorCheckboxes(),
 				new EditorManager(),
 				new FPSWindow(),
 				new ToolbarManager(new List<Toolbar>
