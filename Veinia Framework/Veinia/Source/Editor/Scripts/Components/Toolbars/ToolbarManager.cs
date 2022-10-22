@@ -21,8 +21,7 @@ namespace Veinia.Editor
 
 		public override void Initialize()
 		{
-			tabControl = new TabControl();
-			tabControl.TabSelectorPosition = TabSelectorPosition.Left;
+			tabControl = new TabControl { TabSelectorPosition = TabSelectorPosition.Left };
 
 			foreach (var toolbar in toolbars)
 			{

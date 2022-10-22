@@ -9,6 +9,7 @@ namespace Veinia.Editor
 	public class EditorGrid : Component, IDrawn
 	{
 		bool hideGrid;
+		float opacity = 0.05f;
 
 
 		public override void Initialize() => EditorCheckboxes.Add("Hide Grid", defaultValue: false, (e, o) => { hideGrid = true; }, (e, o) => { hideGrid = false; }, Keys.G);
@@ -39,7 +40,7 @@ namespace Veinia.Editor
 
 
 					sb.DrawRectangle(new RectangleF(currentWorldRectRounded.X, currentWorldRectRounded.Y,
-									size, size).OffsetByHalf(), Color.White * .15f, 2, layerDepth: .9f);
+									size, size).OffsetByHalf(), Color.White * opacity, 2, layerDepth: .9f);
 				}
 			}
 		}
