@@ -14,6 +14,21 @@ namespace Veinia.Editor
 			// the gameObjects shouldn't be loaded as usual because later we only load their sprites
 			base.CreateScene(loadObjectsFromPath: false);
 
+
+
+			/* KEYBOARD BINDINGS
+			 * 
+			 * Toolbar Swap - 1-10
+			 * Drag - LAlt + LMB 
+			 * Swipe Motion - LShift + LMB
+			 * Hide Grid - G
+			 * Save - LCtrl + S
+			 * Duplicate Selection - LCtrl + D
+			 * Move Selection - WSAD
+			 * Move Selection Slower - WSAD + LShift
+			 * Remove Selection - RMB
+			 */
+
 			UserInterface.Active.ShowCursor = false;
 
 			GameObject systems = Instantiate(Transform.Empty, new List<Component>
