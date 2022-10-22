@@ -51,9 +51,9 @@ namespace Veinia.Platformer
 
 		protected override void Draw(GameTime gameTime)
 		{
-			GraphicsDevice.Clear(Color.White * .05f);
+			GraphicsDevice.Clear(new Color(5, 36, 12));
 
-			veinia.Draw(spriteBatch);
+			veinia.Draw(spriteBatch, samplerState: SamplerState.PointClamp);
 
 			base.Draw(gameTime);
 		}

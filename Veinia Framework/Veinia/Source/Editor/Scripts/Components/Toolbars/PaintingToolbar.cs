@@ -61,27 +61,26 @@ namespace Veinia.Editor
 
 		private void ShowPrefabsInToolbars()
 		{
+			int prefabButtonSize = 70;
+
 			foreach (var tab in paintingToolbarTabs)
 			{
 				foreach (var prefab in tab.Prefabs)
 				{
-					var prefabButton = new ImageTextButton
+					var prefabButton = new ImageButton
 					{
-						Height = 100,
-						Width = 100,
-						Text = prefab.PrefabName,
-						Top = 100 * tab.Prefabs.IndexOf(prefab),
+						Height = prefabButtonSize,
+						Width = prefabButtonSize,
+						Top = prefabButtonSize * tab.Prefabs.IndexOf(prefab),
 						VerticalAlignment = VerticalAlignment.Top,
 						Background = new TextureRegion(prefab.Texture.ChangeColor(prefab.Color), new Rectangle(0, 0, prefab.Texture.Width, prefab.Texture.Height)),
-						TextColor = Color.White,
-						PressedTextColor = Color.Black,
 					};
 
 					prefabButton.Click += (s, a) => OnClickPrefab(prefab);
 
 					tab.Panel.Widgets.Add(prefabButton);
 				}
-				tab.Panel.Height = tab.Prefabs.Count * 100;
+				tab.Panel.Height = tab.Prefabs.Count * prefabButtonSize;
 			}
 		}
 	}

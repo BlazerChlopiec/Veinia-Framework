@@ -12,33 +12,58 @@ namespace Veinia.Platformer
 
 			Add("Player", new GameObject(Transform.Empty, new List<Component>
 			{
-				new Sprite("Sprites/Square", .3f, Color.Green, pixelsPerUnit: 200),
+				new Sprite("Sprites/Square", .5f, Color.GreenYellow, pixelsPerUnit: 200),
 				new RectangleCollider(Vector2.Zero, Vector2.One),
 				new Player(),
 				new Physics(gravity: -30),
 			}, isStatic: false), prefabTab: 0);
 
-			Add("Coin", new GameObject(Transform.Empty, new List<Component>
+			Add("Background", new GameObject(Transform.Empty, new List<Component>
 			{
-				new Sprite("Sprites/Square", .2f, Color.Yellow, pixelsPerUnit: 400),
-				new RectangleCollider(Vector2.Zero, Vector2.One/2, trigger: true),
-				new Coin(),
-			}, isStatic: false), prefabTab: 0);
+				new Sprite("Sprites/Background", .01f, Color.White, pixelsPerUnit: 80),
+				new SetCameraPosition()
+			}, isStatic: true), prefabTab: 0);
 
-			Add("Arrow", new GameObject(Transform.Empty, new List<Component>
-			{
-				new Sprite("Sprites/Arrow", .2f, Color.LightBlue, pixelsPerUnit: 100),
-				new Arrow(),
-			}, isStatic: false), prefabTab: 0);
 
-			var tiles = Globals.content.LoadAll<Texture2D>("Sprites/Tiles");
-			foreach (var tile in tiles)
+			var collectibles = Globals.content.LoadAll<Texture2D>("Sprites/Collectibles");
+			foreach (var collectible in collectibles)
 			{
-				Add(tile.Key, new GameObject(Transform.Empty, new List<Component>
+				Add(collectible.Key, new GameObject(Transform.Empty, new List<Component>
 				{
-					new Sprite(tile.Value, .1f, Color.White, pixelsPerUnit: 128),
+					new Sprite(collectible.Value, .3f, Color.White, pixelsPerUnit: 16),
+					new RectangleCollider(Vector2.Zero, Vector2.One/2, trigger: true),
+					new Collectible()
+				}, isStatic: false), prefabTab: 1);
+			}
+
+			var grassTiles = Globals.content.LoadAll<Texture2D>("Sprites/Grass");
+			foreach (var grassTile in grassTiles)
+			{
+				Add(grassTile.Key, new GameObject(Transform.Empty, new List<Component>
+				{
+					new Sprite(grassTile.Value, .2f, Color.White, pixelsPerUnit: 16),
 					new RectangleCollider(Vector2.Zero, Vector2.One),
-				}, isStatic: true), prefabTab: 1);
+				}, isStatic: true), prefabTab: 2);
+			}
+
+			var woodTiles = Globals.content.LoadAll<Texture2D>("Sprites/Wood");
+			foreach (var woodTile in woodTiles)
+			{
+				Add(woodTile.Key, new GameObject(Transform.Empty, new List<Component>
+				{
+					new Sprite(woodTile.Value, .2f, Color.White, pixelsPerUnit: 16),
+					new RectangleCollider(Vector2.Zero, Vector2.One),
+				}, isStatic: true), prefabTab: 2);
+			}
+
+			var bricks = Globals.content.LoadAll<Texture2D>("Sprites/Bricks");
+			foreach (var brick in bricks)
+			{
+				Add(brick.Key, new GameObject(Transform.Empty, new List<Component>
+				{
+					new Sprite(brick.Value, .1f, Color.White, pixelsPerUnit: 16),
+					new RectangleCollider(Vector2.Zero, Vector2.One),
+				}, isStatic: true), prefabTab: 3);
 			}
 
 			var decoration = Globals.content.LoadAll<Texture2D>("Sprites/Decoration");
@@ -46,15 +71,9 @@ namespace Veinia.Platformer
 			{
 				Add(deco.Key, new GameObject(Transform.Empty, new List<Component>
 				{
-					new Sprite(deco.Value, .2f, Color.White, pixelsPerUnit: 100),
-				}, isStatic: true), prefabTab: 2);
+					new Sprite(deco.Value, .2f, Color.White, pixelsPerUnit: 16),
+				}, isStatic: true), prefabTab: 4);
 			}
-
-			Add("Background", new GameObject(Transform.Empty, new List<Component>
-			{
-				new Sprite("Sprites/Background", .01f, Color.White, pixelsPerUnit: 80),
-				new SetCameraPosition()
-			}, isStatic: true), prefabTab: 2);
 		}
 	}
 }

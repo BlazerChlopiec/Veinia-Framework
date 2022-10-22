@@ -16,7 +16,7 @@ namespace Veinia.Editor
 		EditorControls editorControls;
 		EditorObjectManager editorObjectManager;
 
-		bool markLayer = true;
+		bool markLayer;
 
 		public string currentPrefabName { get; private set; }
 
@@ -48,7 +48,7 @@ namespace Veinia.Editor
 			var firstPrefab = prefabManager.prefabs[0];
 			if (firstPrefab != null) ChangeCurrentPrefab(firstPrefab.PrefabName);
 
-			EditorCheckboxes.Add("Mark Layer", defaultValue: true, (e, o) => { markLayer = true; }, (e, o) => { markLayer = false; });
+			EditorCheckboxes.Add("Mark Layer", defaultValue: false, (e, o) => { markLayer = true; }, (e, o) => { markLayer = false; });
 		}
 
 		private void SpawnPreview()
