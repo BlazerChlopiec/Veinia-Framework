@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
 namespace Veinia.Platformer
@@ -8,151 +9,6 @@ namespace Veinia.Platformer
 		public override void LoadPrefabs()
 		{
 			base.LoadPrefabs();
-
-			Add("Tile (1)", new GameObject(Transform.Empty, new List<Component>
-			{
-				new Sprite("Sprites/Tiles/Tile (1)", .1f, Color.White, pixelsPerUnit: 128),
-				new RectangleCollider(Vector2.Zero, Vector2.One),
-			}, isStatic: true), prefabTab: 1);
-			Add("Tile (2)", new GameObject(Transform.Empty, new List<Component>
-			{
-				new Sprite("Sprites/Tiles/Tile (2)", .1f, Color.White, pixelsPerUnit: 128),
-				new RectangleCollider(Vector2.Zero, Vector2.One),
-			}, isStatic: true), prefabTab: 1);
-			Add("Tile (3)", new GameObject(Transform.Empty, new List<Component>
-			{
-				new Sprite("Sprites/Tiles/Tile (3)", .1f, Color.White, pixelsPerUnit: 128),
-				new RectangleCollider(Vector2.Zero, Vector2.One),
-			}, isStatic: true), prefabTab: 1);
-			Add("Tile (4)", new GameObject(Transform.Empty, new List<Component>
-			{
-				new Sprite("Sprites/Tiles/Tile (4)", .1f, Color.White, pixelsPerUnit: 128),
-				new RectangleCollider(Vector2.Zero, Vector2.One),
-			}, isStatic: true), prefabTab: 1);
-			Add("Tile (5)", new GameObject(Transform.Empty, new List<Component>
-			{
-				new Sprite("Sprites/Tiles/Tile (5)", .1f, Color.White, pixelsPerUnit: 128),
-				new RectangleCollider(Vector2.Zero, Vector2.One),
-			}, isStatic: true), prefabTab: 1);
-			Add("Tile (6)", new GameObject(Transform.Empty, new List<Component>
-			{
-				new Sprite("Sprites/Tiles/Tile (6)", .1f, Color.White, pixelsPerUnit: 128),
-				new RectangleCollider(Vector2.Zero, Vector2.One),
-			}, isStatic: true), prefabTab: 1);
-
-			Add("Tile (7)", new GameObject(Transform.Empty, new List<Component>
-			{
-				new Sprite("Sprites/Tiles/Tile (7)", .1f, Color.White, pixelsPerUnit: 128),
-				new RectangleCollider(Vector2.Zero, Vector2.One),
-			}, isStatic: true), prefabTab: 1);
-			Add("Tile (8)", new GameObject(Transform.Empty, new List<Component>
-			{
-				new Sprite("Sprites/Tiles/Tile (8)", .1f, Color.White, pixelsPerUnit: 128),
-				new RectangleCollider(Vector2.Zero, Vector2.One),
-			}, isStatic: true), prefabTab: 1);
-			Add("Tile (9)", new GameObject(Transform.Empty, new List<Component>
-			{
-				new Sprite("Sprites/Tiles/Tile (9)", .1f, Color.White, pixelsPerUnit: 128),
-				new RectangleCollider(Vector2.Zero, Vector2.One),
-			}, isStatic: true), prefabTab: 1);
-			Add("Tile (10)", new GameObject(Transform.Empty, new List<Component>
-			{
-				new Sprite("Sprites/Tiles/Tile (10)", .1f, Color.White, pixelsPerUnit: 128),
-				new RectangleCollider(Vector2.Zero, Vector2.One),
-			}, isStatic: true), prefabTab: 1);
-			Add("Tile (11)", new GameObject(Transform.Empty, new List<Component>
-			{
-				new Sprite("Sprites/Tiles/Tile (11)", .1f, Color.White, pixelsPerUnit: 128),
-				new RectangleCollider(Vector2.Zero, Vector2.One),
-			}, isStatic: true), prefabTab: 1);
-			Add("Tile (12)", new GameObject(Transform.Empty, new List<Component>
-			{
-				new Sprite("Sprites/Tiles/Tile (12)", .1f, Color.White, pixelsPerUnit: 128),
-				new RectangleCollider(Vector2.Zero, Vector2.One),
-			}, isStatic: true), prefabTab: 1);
-			Add("Tile (13)", new GameObject(Transform.Empty, new List<Component>
-			{
-				new Sprite("Sprites/Tiles/Tile (13)", .1f, Color.White, pixelsPerUnit: 128),
-				new RectangleCollider(Vector2.Zero, Vector2.One),
-			}, isStatic: true), prefabTab: 1);
-			Add("Tile (14)", new GameObject(Transform.Empty, new List<Component>
-			{
-				new Sprite("Sprites/Tiles/Tile (14)", .1f, Color.White, pixelsPerUnit: 128),
-				new RectangleCollider(Vector2.Zero, Vector2.One),
-			}, isStatic: true), prefabTab: 1);
-			Add("Tile (15)", new GameObject(Transform.Empty, new List<Component>
-			{
-				new Sprite("Sprites/Tiles/Tile (15)", .1f, Color.White, pixelsPerUnit: 128),
-				new RectangleCollider(Vector2.Zero, Vector2.One),
-			}, isStatic: true), prefabTab: 1);
-			Add("Tile (16)", new GameObject(Transform.Empty, new List<Component>
-			{
-				new Sprite("Sprites/Tiles/Tile (16)", .1f, Color.White, pixelsPerUnit: 128),
-				new RectangleCollider(Vector2.Zero, Vector2.One),
-			}, isStatic: true), prefabTab: 1);
-
-			Add("Bones (1)", new GameObject(Transform.Empty, new List<Component>
-			{
-				new Sprite("Sprites/Decoration/Bones (1)", .1f, Color.White, pixelsPerUnit: 100),
-			}, isStatic: true), prefabTab: 2);
-			Add("Bones (2)", new GameObject(Transform.Empty, new List<Component>
-			{
-				new Sprite("Sprites/Decoration/Bones (2)", .1f, Color.White, pixelsPerUnit: 100),
-			}, isStatic: true), prefabTab: 2);
-			Add("Bones (3)", new GameObject(Transform.Empty, new List<Component>
-			{
-				new Sprite("Sprites/Decoration/Bones (3)", .1f, Color.White, pixelsPerUnit: 100),
-			}, isStatic: true), prefabTab: 2);
-			Add("Bones (4)", new GameObject(Transform.Empty, new List<Component>
-			{
-				new Sprite("Sprites/Decoration/Bones (4)", .1f, Color.White, pixelsPerUnit: 100),
-			}, isStatic: true), prefabTab: 2);
-			Add("ArrowSign", new GameObject(Transform.Empty, new List<Component>
-			{
-				new Sprite("Sprites/Decoration/ArrowSign", .1f, Color.White, pixelsPerUnit: 100),
-			}, isStatic: true), prefabTab: 2);
-			Add("Bush (1)", new GameObject(Transform.Empty, new List<Component>
-			{
-				new Sprite("Sprites/Decoration/Bush (1)", .1f, Color.White, pixelsPerUnit: 100),
-			}, isStatic: true), prefabTab: 2);
-			Add("Bush (2)", new GameObject(Transform.Empty, new List<Component>
-			{
-				new Sprite("Sprites/Decoration/Bush (2)", .1f, Color.White, pixelsPerUnit: 100),
-			}, isStatic: true), prefabTab: 2);
-			Add("DeadBush", new GameObject(Transform.Empty, new List<Component>
-			{
-				new Sprite("Sprites/Decoration/DeadBush", .1f, Color.White, pixelsPerUnit: 100),
-			}, isStatic: true), prefabTab: 2);
-			Add("Crate", new GameObject(Transform.Empty, new List<Component>
-			{
-				new Sprite("Sprites/Decoration/Crate", .1f, Color.White, pixelsPerUnit: 100),
-				new RectangleCollider(Vector2.Zero, Vector2.One),
-			}, isStatic: true), prefabTab: 2);
-			Add("Sign", new GameObject(Transform.Empty, new List<Component>
-			{
-				new Sprite("Sprites/Decoration/Sign", .1f, Color.White, pixelsPerUnit: 100),
-			}, isStatic: true), prefabTab: 2);
-			Add("Skeleton", new GameObject(Transform.Empty, new List<Component>
-			{
-				new Sprite("Sprites/Decoration/Skeleton", .1f, Color.White, pixelsPerUnit: 100),
-			}, isStatic: true), prefabTab: 2);
-			Add("Tree", new GameObject(Transform.Empty, new List<Component>
-			{
-				new Sprite("Sprites/Decoration/Tree", .1f, Color.White, pixelsPerUnit: 100),
-			}, isStatic: true), prefabTab: 2);
-			Add("TombStone (1)", new GameObject(Transform.Empty, new List<Component>
-			{
-				new Sprite("Sprites/Decoration/TombStone (1)", .1f, Color.White, pixelsPerUnit: 100),
-			}, isStatic: true), prefabTab: 2);
-			Add("TombStone (2)", new GameObject(Transform.Empty, new List<Component>
-			{
-				new Sprite("Sprites/Decoration/TombStone (2)", .1f, Color.White, pixelsPerUnit: 100),
-			}, isStatic: true), prefabTab: 2);
-			Add("Background", new GameObject(Transform.Empty, new List<Component>
-			{
-				new Sprite("Sprites/Background", .01f, Color.White, pixelsPerUnit: 80),
-				new SetCameraPosition()
-			}, isStatic: true), prefabTab: 2);
 
 			Add("Player", new GameObject(Transform.Empty, new List<Component>
 			{
@@ -174,6 +30,31 @@ namespace Veinia.Platformer
 				new Sprite("Sprites/Arrow", .2f, Color.LightBlue, pixelsPerUnit: 100),
 				new Arrow(),
 			}, isStatic: false), prefabTab: 0);
+
+			var tiles = Globals.content.LoadAll<Texture2D>("Sprites/Tiles");
+			foreach (var tile in tiles)
+			{
+				Add(tile.Key, new GameObject(Transform.Empty, new List<Component>
+				{
+					new Sprite(tile.Value, .1f, Color.White, pixelsPerUnit: 128),
+					new RectangleCollider(Vector2.Zero, Vector2.One),
+				}, isStatic: true), prefabTab: 1);
+			}
+
+			var decoration = Globals.content.LoadAll<Texture2D>("Sprites/Decoration");
+			foreach (var deco in decoration)
+			{
+				Add(deco.Key, new GameObject(Transform.Empty, new List<Component>
+				{
+					new Sprite(deco.Value, .2f, Color.White, pixelsPerUnit: 100),
+				}, isStatic: true), prefabTab: 2);
+			}
+
+			Add("Background", new GameObject(Transform.Empty, new List<Component>
+			{
+				new Sprite("Sprites/Background", .01f, Color.White, pixelsPerUnit: 80),
+				new SetCameraPosition()
+			}, isStatic: true), prefabTab: 2);
 		}
 	}
 }

@@ -1,9 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using MonoGame.Extended.Collisions;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace Veinia
@@ -125,6 +127,22 @@ namespace Veinia
 		public static Vector2 Round(this Vector2 vector, int decimalDigits)
 		{
 			return new Vector2((float)Math.Round(vector.X, decimalDigits), (float)Math.Round(vector.Y, decimalDigits));
+		}
+		public static Dictionary<string, T1> LoadAll<T1>(this ContentManager content, string contentFolder)
+		{
+			DirectoryInfo dir = new DirectoryInfo(content.RootDirectory + "/" + contentFolder);
+			if (!dir.Exists)
+				throw new DirectoryNotFoundException();
+			Dictionary<String, T1> result = new Dictionary<String, T1>();
+
+			FileInfo[] files = dir.GetFiles("*.*");
+			foreach (FileInfo file in files)
+			{
+				string key = Path.GetFileNameWithoutExtension(file.Name);
+				result[key] = content.Load<T1>(contentFolder + "/" + key);
+			}
+
+			return result;
 		}
 	}
 }

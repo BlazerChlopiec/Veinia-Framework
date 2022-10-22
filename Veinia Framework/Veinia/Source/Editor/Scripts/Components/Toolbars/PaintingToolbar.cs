@@ -10,7 +10,7 @@ namespace Veinia.Editor
 	public class PaintingToolbar : Toolbar
 	{
 		PrefabManager prefabManager;
-		PaintingToolbarBehaviour editorObjectPainter;
+		PaintingToolbarBehaviour paintingToolbarBehaviour;
 
 		List<PaintingToolbarTab> paintingToolbarTabs = new List<PaintingToolbarTab>();
 
@@ -19,7 +19,7 @@ namespace Veinia.Editor
 
 		public override void OnInitialize(GameObject gameObject)
 		{
-			editorObjectPainter = (PaintingToolbarBehaviour)toolbarBehaviour;
+			paintingToolbarBehaviour = (PaintingToolbarBehaviour)toolbarBehaviour;
 
 			//create needed tabs
 			for (int i = 0; i < prefabManager.prefabs.Max(x => x.PaintingToolbarTab) + 1; i++)
@@ -41,7 +41,7 @@ namespace Veinia.Editor
 			ShowPrefabsInToolbars();
 		}
 
-		private void OnClickPrefab(PaintingToolbarPrefab prefab) => editorObjectPainter.ChangeCurrentPrefab(prefab.PrefabName);
+		private void OnClickPrefab(PaintingToolbarPrefab prefab) => paintingToolbarBehaviour.ChangeCurrentPrefab(prefab.PrefabName);
 
 		private void FeedToolbarWithPrefabs()
 		{
