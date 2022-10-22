@@ -36,8 +36,7 @@ namespace Veinia.Editor
 			var duplicateButton = new TextButton { Text = "Duplicate", Top = 50 };
 			duplicateButton.Click += (o, e) =>
 			{
-				editToolbarBehaviour.Copy();
-				editToolbarBehaviour.Paste();
+				editToolbarBehaviour.Duplicate();
 			};
 			panel.Widgets.Add(duplicateButton);
 

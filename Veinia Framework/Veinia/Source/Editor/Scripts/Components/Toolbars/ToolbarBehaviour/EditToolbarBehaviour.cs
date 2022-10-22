@@ -66,8 +66,7 @@ namespace Veinia.Editor
 				}
 			}
 
-			if (Globals.input.GetKey(Keys.LeftControl) && Globals.input.GetKeyDown(Keys.C)) Copy();
-			if (Globals.input.GetKey(Keys.LeftControl) && Globals.input.GetKeyDown(Keys.V)) Paste();
+			if (Globals.input.GetKey(Keys.LeftControl) && Globals.input.GetKeyDown(Keys.D)) Duplicate();
 
 			if (!Globals.input.GetKey(Keys.LeftControl))
 			{
@@ -105,10 +104,9 @@ namespace Veinia.Editor
 			}
 		}
 
-		public void Copy() => clipboard = selectedObjects.ToArray();
-
-		public void Paste()
+		public void Duplicate()
 		{
+			clipboard = selectedObjects.ToArray();
 			selectedObjects.Clear();
 
 			foreach (var item in clipboard)
