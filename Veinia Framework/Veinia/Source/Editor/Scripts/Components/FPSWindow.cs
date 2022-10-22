@@ -13,10 +13,9 @@ namespace Veinia.Editor
 			{
 				Title = "FPS",
 				Content = panel,
-				HorizontalAlignment = HorizontalAlignment.Left,
-				VerticalAlignment = VerticalAlignment.Bottom
+				HorizontalAlignment = HorizontalAlignment.Right,
+				VerticalAlignment = VerticalAlignment.Center
 			};
-			window.ZIndex = 1;
 			window.DragDirection = DragDirection.None;
 			window.CloseButton.RemoveFromParent();
 			window.Height = 80;

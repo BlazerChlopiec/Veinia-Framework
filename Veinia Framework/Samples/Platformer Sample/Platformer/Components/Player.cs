@@ -20,8 +20,6 @@ namespace Veinia.Platformer
 		float smoothZoom;
 		public override void Update()
 		{
-			Title.Add(isTouchingGround, 9);
-
 			physics.velocity.X = Globals.input.horizontal * speed;
 
 			if ((Globals.input.GetKeyButtonDown(Keys.Space, Buttons.A) || Globals.input.GetKeyDown(Keys.W)) && isTouchingGround)
@@ -42,8 +40,8 @@ namespace Veinia.Platformer
 
 		public override void OnCollide(Collider self, CollisionState state, CollisionEventArgs collisionInfo)
 		{
-			if (state != CollisionState.Exit)
-				isTouchingGround = collisionInfo.PenetrationVectorPerFrame.Y > 0 ? true : false;
+			if (state == CollisionState.Exit) isTouchingGround = false;
+			else isTouchingGround = collisionInfo.PenetrationVectorPerFrame.Y > 0 ? true : false;
 		}
 	}
 }
