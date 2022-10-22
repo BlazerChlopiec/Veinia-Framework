@@ -67,28 +67,27 @@ namespace Veinia.Editor
 			}
 
 			if (Globals.input.GetKey(Keys.LeftControl) && Globals.input.GetKeyDown(Keys.C)) Copy();
-
-
 			if (Globals.input.GetKey(Keys.LeftControl) && Globals.input.GetKeyDown(Keys.V)) Paste();
-
 
 			if (!Globals.input.GetKey(Keys.LeftControl))
 			{
+				float shiftMultiplier = Globals.input.GetKey(Keys.LeftShift) ? .05f : 1f;
+
 				if (Globals.input.GetKeyDown(Keys.W))
 					foreach (var item in selectedObjects)
-						item.Position += new Vector2(0, 1);
+						item.Position += new Vector2(0, 1) * shiftMultiplier;
 
 				if (Globals.input.GetKeyDown(Keys.S))
 					foreach (var item in selectedObjects)
-						item.Position += new Vector2(0, -1);
+						item.Position += new Vector2(0, -1) * shiftMultiplier;
 
 				if (Globals.input.GetKeyDown(Keys.A))
 					foreach (var item in selectedObjects)
-						item.Position += new Vector2(-1, 0);
+						item.Position += new Vector2(-1, 0) * shiftMultiplier;
 
 				if (Globals.input.GetKeyDown(Keys.D))
 					foreach (var item in selectedObjects)
-						item.Position += new Vector2(1, 0);
+						item.Position += new Vector2(1, 0) * shiftMultiplier;
 			}
 
 			if (Globals.input.GetKeyDown(Keys.Delete) || Globals.input.GetMouseButtonDown(1))

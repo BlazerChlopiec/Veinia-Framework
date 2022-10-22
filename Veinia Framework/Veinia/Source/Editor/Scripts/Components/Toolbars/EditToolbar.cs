@@ -38,7 +38,6 @@ namespace Veinia.Editor
 			{
 				editToolbarBehaviour.Copy();
 				editToolbarBehaviour.Paste();
-
 			};
 			panel.Widgets.Add(duplicateButton);
 
