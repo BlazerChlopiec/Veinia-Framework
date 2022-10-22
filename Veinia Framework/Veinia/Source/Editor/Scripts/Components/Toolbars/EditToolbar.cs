@@ -13,6 +13,8 @@ namespace Veinia.Editor
 
 		public override void OnInitialize(GameObject gameObject)
 		{
+			var editToolbarBehaviour = (EditToolbarBehaviour)toolbarBehaviour;
+
 			var panel = new Panel { Height = 100 };
 			finalToolbarContent = panel;
 
@@ -23,6 +25,13 @@ namespace Veinia.Editor
 				editorObjectEdit.RemoveSelection();
 			};
 			panel.Widgets.Add(removeSelectionButton);
+
+			var deselectButton = new TextButton { Text = "Deselect", Top = 25 };
+			deselectButton.Click += (o, e) =>
+			{
+				editToolbarBehaviour.selectedObjects.Clear();
+			};
+			panel.Widgets.Add(deselectButton);
 
 			//filterSelectionButton = new TextButton { Toggleable = true, Text = "Filter Selection", Top = 30 };
 

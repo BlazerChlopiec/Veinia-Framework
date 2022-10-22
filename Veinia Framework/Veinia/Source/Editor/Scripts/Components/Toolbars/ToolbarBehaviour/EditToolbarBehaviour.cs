@@ -40,6 +40,8 @@ namespace Veinia.Editor
 				isDragging = true;
 				startSelectionPos = Globals.input.GetMouseScreenPosition();
 			}
+
+			//mouse up
 			if (Globals.input.GetMouseButtonUp(0) && !isDragging && !editorControls.isDragging)
 			{
 				selectedObjects.Clear();
@@ -48,11 +50,16 @@ namespace Veinia.Editor
 				if (oneSelection != null)
 					selectedObjects.Add(oneSelection);
 			}
+			//mouse up when dragging
 			if (Globals.input.GetMouseButtonUp(0) && isDragging)
 			{
 				isDragging = false;
 
-				selectedObjects = editorObjectManager.GetInsideRectangle(selectionRectangle.AllowNegativeSize());
+				foreach (var item in editorObjectManager.GetInsideRectangle(selectionRectangle.AllowNegativeSize()))
+				{
+					if (!selectedObjects.Contains(item))
+						selectedObjects.Add(item);
+				}
 			}
 
 			if (!Globals.input.GetKey(Keys.LeftControl))
