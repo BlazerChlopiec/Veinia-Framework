@@ -12,17 +12,11 @@ namespace Veinia.Platformer
 
 			Add("Player", new GameObject(Transform.Empty, new List<Component>
 			{
-				new Sprite("Sprites/Square", .5f, Color.GreenYellow, pixelsPerUnit: 200),
+				new Sprite("Sprites/Player", .5f, Color.GreenYellow, pixelsPerUnit: 16),
 				new RectangleCollider(Vector2.Zero, Vector2.One),
 				new Player(),
 				new Physics(gravity: -30),
 			}, isStatic: false), prefabTab: 0);
-
-			Add("Background", new GameObject(Transform.Empty, new List<Component>
-			{
-				new Sprite("Sprites/Background", .01f, Color.White, pixelsPerUnit: 80),
-				new SetCameraPosition()
-			}, isStatic: true), prefabTab: 0);
 
 
 			var collectibles = Globals.content.LoadAll<Texture2D>("Sprites/Collectibles");
