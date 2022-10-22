@@ -21,7 +21,7 @@ namespace Veinia.Editor
 		{
 			editorObjectPainter = (PaintingToolbarBehaviour)toolbarBehaviour;
 
-			//create enough tabs
+			//create needed tabs
 			for (int i = 0; i < prefabManager.prefabs.Max(x => x.PaintingToolbarTab) + 1; i++)
 			{
 				var newTab = new PaintingToolbarTab();
@@ -73,7 +73,8 @@ namespace Veinia.Editor
 						Top = 100 * tab.Prefabs.IndexOf(prefab),
 						VerticalAlignment = VerticalAlignment.Top,
 						Background = new TextureRegion(prefab.Texture.ChangeColor(prefab.Color), new Rectangle(0, 0, prefab.Texture.Width, prefab.Texture.Height)),
-						TextColor = prefab.Color.ToNegative(),
+						TextColor = Color.White,
+						PressedTextColor = Color.Black,
 					};
 
 					prefabButton.Click += (s, a) => OnClickPrefab(prefab);
