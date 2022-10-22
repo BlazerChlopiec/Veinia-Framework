@@ -8,6 +8,7 @@ TODO:
 - rework the loader (merge it with level.cs?) to reduce global classes
 - (GeonBit.UI) anchors break out the animation
 - (GeonBit.UI) images dont scale with GlobalScale
+- when the game is loading it freezes but the gravity seems to still be increasing 
 
 Editor:
 - add hotkey system for the editor so its very easy to change hotkeys

@@ -9,6 +9,7 @@ namespace Veinia.Editor
 	public class EditToolbarBehaviour : ToolbarBehaviour
 	{
 		EditorObjectManager editorObjectManager;
+		EditorControls editorControls;
 
 		public List<EditorObject> selectedObjects = new List<EditorObject>();
 
@@ -23,6 +24,7 @@ namespace Veinia.Editor
 		public override void OnInitialize()
 		{
 			editorObjectManager = gameObject.level.FindComponentOfType<EditorObjectManager>();
+			editorControls = gameObject.level.FindComponentOfType<EditorControls>();
 
 			editorObjectManager.OnRemoveAll += () => { selectedObjects.Clear(); };
 		}
@@ -31,16 +33,14 @@ namespace Veinia.Editor
 
 		public override void OnUpdate()
 		{
-			if (Globals.myraDesktop.IsMouseOverGUI) return;
-
 			screenMousePos = Globals.input.GetMouseScreenPosition();
 
-			if (Globals.input.GetMouseButtonDown(0) && Globals.input.GetKey(Keys.LeftShift))
+			if (Globals.input.GetMouseButtonDown(0) && Globals.input.GetKey(Keys.LeftShift) && !Globals.myraDesktop.IsMouseOverGUI && !editorControls.isDragging)
 			{
 				isDragging = true;
 				startSelectionPos = Globals.input.GetMouseScreenPosition();
 			}
-			if (Globals.input.GetMouseButtonUp(0) && !isDragging && !gameObject.level.FindComponentOfType<EditorControls>().isDragging)
+			if (Globals.input.GetMouseButtonUp(0) && !isDragging && !editorControls.isDragging)
 			{
 				selectedObjects.Clear();
 
