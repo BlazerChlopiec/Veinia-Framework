@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace Veinia.Editor
 {
-	public class EditorObjectPainter : ToolbarBehaviour
+	public class PaintingToolbarBehaviour : ToolbarBehaviour
 	{
 		PrefabManager prefabManager;
 
@@ -26,7 +26,7 @@ namespace Veinia.Editor
 		Vector2 mouseGridPos;
 
 
-		public EditorObjectPainter(PrefabManager prefabManager) => this.prefabManager = prefabManager;
+		public PaintingToolbarBehaviour(PrefabManager prefabManager) => this.prefabManager = prefabManager;
 
 		public override void OnInitialize()
 		{
@@ -46,7 +46,7 @@ namespace Veinia.Editor
 			editorObjectManager.OnRemoveAll += () => { currentObjectLayer.Clear(); };
 
 			var firstPrefab = prefabManager.prefabs[0];
-			if (firstPrefab != null) ChangeCurrentPrefab(firstPrefab.prefabName);
+			if (firstPrefab != null) ChangeCurrentPrefab(firstPrefab.PrefabName);
 
 			EditorOptions.AddOption("Mark Layer", defaultValue: true, (e, o) => { markLayer = true; }, (e, o) => { markLayer = false; });
 		}

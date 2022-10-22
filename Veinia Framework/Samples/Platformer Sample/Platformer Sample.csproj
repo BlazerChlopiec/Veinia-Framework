@@ -32,4 +32,9 @@
   <ItemGroup>
     <Folder Include="LevelData\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="LevelData\PlatformerSampleLevel.veinia">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

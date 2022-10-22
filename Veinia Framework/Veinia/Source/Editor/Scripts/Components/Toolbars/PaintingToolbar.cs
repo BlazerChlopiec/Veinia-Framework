@@ -6,28 +6,32 @@ using System.Collections.Generic;
 
 namespace Veinia.Editor
 {
-	public class PrefabToolbar : Toolbar
+	public class PaintingToolbar : Toolbar
 	{
 		PrefabManager prefabManager;
-		EditorObjectPainter editorObjectPainter;
+		PaintingToolbarBehaviour editorObjectPainter;
 		List<ToolbarPrefab> toolbarPrefabs = new List<ToolbarPrefab>();
 
 
-		public PrefabToolbar(string toolbarName, ToolbarBehaviour toolbarBehaviour, PrefabManager prefabManager) : base(toolbarName, toolbarBehaviour)
+		public PaintingToolbar(string toolbarName, ToolbarBehaviour toolbarBehaviour, PrefabManager prefabManager) : base(toolbarName, toolbarBehaviour)
 		{
 			this.prefabManager = prefabManager;
 		}
 
 		public override void OnInitialize(GameObject gameObject)
 		{
-			editorObjectPainter = (EditorObjectPainter)toolbarBehaviour;
+			editorObjectPainter = (PaintingToolbarBehaviour)toolbarBehaviour;
 
 			FeedToolbarWithPrefabs();
 
+			var tabControl = new TabControl { TabSelectorPosition = TabSelectorPosition.Right };
 			var panel = new Panel();
 			var scroll = new ScrollViewer();
 			scroll.Content = panel;
 			content = scroll;
+			tabControl.Items.Add(new TabItem { Content = scroll, Text = "Tiles" });
+			tabControl.Items.Add(new TabItem { Content = scroll, Text = "Deco" });
+			content = tabControl;
 
 			int topOffset = 0;
 
@@ -57,11 +61,11 @@ namespace Veinia.Editor
 		{
 			for (int i = 0; i < prefabManager.prefabs.Count; i++)
 			{
-				var sprite = prefabManager.prefabs[i].prefabGameObject.GetComponent<Sprite>();
+				var sprite = prefabManager.prefabs[i].PrefabGameObject.GetComponent<Sprite>();
 
 				toolbarPrefabs.Add(new ToolbarPrefab
 				{
-					PrefabName = prefabManager.prefabs[i].prefabName,
+					PrefabName = prefabManager.prefabs[i].PrefabName,
 					texture = sprite.texture,
 					color = sprite.color,
 				});

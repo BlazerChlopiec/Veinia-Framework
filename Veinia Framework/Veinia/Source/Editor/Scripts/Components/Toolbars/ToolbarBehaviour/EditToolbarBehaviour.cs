@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Veinia.Editor
 {
-	public class EditorObjectEdit : ToolbarBehaviour
+	public class EditToolbarBehaviour : ToolbarBehaviour
 	{
 		EditorObjectManager editorObjectManager;
 

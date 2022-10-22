@@ -2,6 +2,6 @@
 {
 	public class SetCameraPosition : Component
 	{
-		public override void Update() => transform.position = Globals.camera.GetPosition();
+		public override void LateUpdate() => transform.position = Globals.camera.GetPosition();
 	}
 }

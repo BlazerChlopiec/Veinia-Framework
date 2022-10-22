@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Veinia
 {
@@ -8,12 +7,13 @@ namespace Veinia
 		public List<Prefab> prefabs = new List<Prefab>();
 
 
-		protected void Add(string name, GameObject gameObject)
+		protected void Add(string name, GameObject gameObject, int prefabTab = 0)
 		{
 			Prefab prefabData = new Prefab
 			{
-				prefabName = name,
-				prefabGameObject = gameObject,
+				PrefabName = name,
+				PrefabGameObject = gameObject,
+				PrefabTab = prefabTab
 			};
 
 			prefabs.Add(prefabData);
@@ -21,7 +21,7 @@ namespace Veinia
 
 		public GameObject Find(string name)
 		{
-			var prefab = prefabs.Find(x => x.prefabName == name).prefabGameObject;
+			var prefab = prefabs.Find(x => x.PrefabName == name).PrefabGameObject;
 			if (prefab == null) throw new System.Exception("The Prefab you're looking for doesn't exist: " + name);
 			return prefab;
 		}
@@ -30,8 +30,9 @@ namespace Veinia
 
 		public class Prefab
 		{
-			public string prefabName;
-			public GameObject prefabGameObject;
+			public string PrefabName { get; set; }
+			public GameObject PrefabGameObject { get; set; }
+			public int PrefabTab { get; set; }
 		}
 	}
 }

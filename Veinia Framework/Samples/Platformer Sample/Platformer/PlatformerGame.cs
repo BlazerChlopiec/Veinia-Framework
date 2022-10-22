@@ -32,7 +32,7 @@ namespace Veinia.Platformer
 			veinia.Initialize(GraphicsDevice, Content, Window,
 				unitSize: 100, collisionRectScreenSize: 10000, new Vector2(1280, 720), prefabs, fullscreen: false);
 
-			Globals.loader.Load(new Level1(prefabs, "PlatformerLevel1.veinia"));
+			Globals.loader.Load(new Level1(prefabs, "PlatformerSampleLevel.veinia"));
 
 			base.Initialize();
 		}

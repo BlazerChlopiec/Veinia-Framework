@@ -94,27 +94,27 @@ namespace Veinia.Platformer
 			Add("Bones (1)", new GameObject(Transform.Empty, new List<Component>
 			{
 				new Sprite("Sprites/Decoration/Bones (1)", .1f, Color.White, pixelsPerUnit: 100),
-			}, isStatic: true));
+			}, isStatic: true), prefabTab: 1);
 			Add("Bones (2)", new GameObject(Transform.Empty, new List<Component>
 			{
 				new Sprite("Sprites/Decoration/Bones (2)", .1f, Color.White, pixelsPerUnit: 100),
-			}, isStatic: true));
+			}, isStatic: true), prefabTab: 1);
 			Add("Bones (3)", new GameObject(Transform.Empty, new List<Component>
 			{
 				new Sprite("Sprites/Decoration/Bones (3)", .1f, Color.White, pixelsPerUnit: 100),
-			}, isStatic: true));
+			}, isStatic: true), prefabTab: 1);
 			Add("Bones (4)", new GameObject(Transform.Empty, new List<Component>
 			{
 				new Sprite("Sprites/Decoration/Bones (4)", .1f, Color.White, pixelsPerUnit: 100),
-			}, isStatic: true));
+			}, isStatic: true), prefabTab: 1);
 			Add("ArrowSign", new GameObject(Transform.Empty, new List<Component>
 			{
 				new Sprite("Sprites/Decoration/ArrowSign", .1f, Color.White, pixelsPerUnit: 100),
-			}, isStatic: true));
+			}, isStatic: true), prefabTab: 1);
 			Add("Bush (1)", new GameObject(Transform.Empty, new List<Component>
 			{
 				new Sprite("Sprites/Decoration/Bush (1)", .1f, Color.White, pixelsPerUnit: 100),
-			}, isStatic: true));
+			}, isStatic: true), prefabTab: 1);
 			Add("Bush (2)", new GameObject(Transform.Empty, new List<Component>
 			{
 				new Sprite("Sprites/Decoration/Bush (2)", .1f, Color.White, pixelsPerUnit: 100),
@@ -122,37 +122,37 @@ namespace Veinia.Platformer
 			Add("DeadBush", new GameObject(Transform.Empty, new List<Component>
 			{
 				new Sprite("Sprites/Decoration/DeadBush", .1f, Color.White, pixelsPerUnit: 100),
-			}, isStatic: true));
+			}, isStatic: true), prefabTab: 1);
 			Add("Crate", new GameObject(Transform.Empty, new List<Component>
 			{
 				new Sprite("Sprites/Decoration/Crate", .1f, Color.White, pixelsPerUnit: 100),
 				new RectangleCollider(Vector2.Zero, Vector2.One),
-			}, isStatic: true));
+			}, isStatic: true), prefabTab: 1);
 			Add("Sign", new GameObject(Transform.Empty, new List<Component>
 			{
 				new Sprite("Sprites/Decoration/Sign", .1f, Color.White, pixelsPerUnit: 100),
-			}, isStatic: true));
+			}, isStatic: true), prefabTab: 1);
 			Add("Skeleton", new GameObject(Transform.Empty, new List<Component>
 			{
 				new Sprite("Sprites/Decoration/Skeleton", .1f, Color.White, pixelsPerUnit: 100),
-			}, isStatic: true));
+			}, isStatic: true), prefabTab: 1);
 			Add("Tree", new GameObject(Transform.Empty, new List<Component>
 			{
 				new Sprite("Sprites/Decoration/Tree", .1f, Color.White, pixelsPerUnit: 100),
-			}, isStatic: true));
+			}, isStatic: true), prefabTab: 1);
 			Add("TombStone (1)", new GameObject(Transform.Empty, new List<Component>
 			{
 				new Sprite("Sprites/Decoration/TombStone (1)", .1f, Color.White, pixelsPerUnit: 100),
-			}, isStatic: true));
+			}, isStatic: true), prefabTab: 1);
 			Add("TombStone (2)", new GameObject(Transform.Empty, new List<Component>
 			{
 				new Sprite("Sprites/Decoration/TombStone (2)", .1f, Color.White, pixelsPerUnit: 100),
-			}, isStatic: true));
+			}, isStatic: true), prefabTab: 1);
 			Add("Background", new GameObject(Transform.Empty, new List<Component>
 			{
 				new Sprite("Sprites/Background", .01f, Color.White, pixelsPerUnit: 80),
 				new SetCameraPosition()
-			}, isStatic: true));
+			}, isStatic: true), prefabTab: 1);
 
 			Add("Player", new GameObject(Transform.Empty, new List<Component>
 			{
