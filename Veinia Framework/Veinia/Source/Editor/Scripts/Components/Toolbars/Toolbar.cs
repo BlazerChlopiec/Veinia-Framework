@@ -10,7 +10,7 @@ namespace Veinia.Editor
 		public ToolbarBehaviour toolbarBehaviour;
 
 		public Keys shortcut;
-		public Widget content;
+		public Widget finalToolbarContent;
 
 
 		public Toolbar(string toolbarName, ToolbarBehaviour toolbarBehaviour)

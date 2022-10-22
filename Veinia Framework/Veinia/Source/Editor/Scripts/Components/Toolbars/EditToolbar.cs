@@ -14,7 +14,7 @@ namespace Veinia.Editor
 		public override void OnInitialize(GameObject gameObject)
 		{
 			var panel = new Panel { Height = 100 };
-			content = panel;
+			finalToolbarContent = panel;
 
 			var removeSelectionButton = new TextButton { Text = "Remove Selection" };
 			removeSelectionButton.Click += (o, e) =>

@@ -26,7 +26,7 @@ namespace Veinia.Editor
 
 			foreach (var toolbar in toolbars)
 			{
-				tabControl.Items.Add(new TabItem { Text = toolbar.toolbarName, Tag = toolbar, Content = toolbar.content });
+				tabControl.Items.Add(new TabItem { Text = toolbar.toolbarName, Tag = toolbar, Content = toolbar.finalToolbarContent });
 
 				//can't be more than 10 toolbars because this wouldn't make sense lmao
 				toolbar.shortcut = Keys.D1 + toolbars.IndexOf(toolbar);
@@ -76,7 +76,7 @@ namespace Veinia.Editor
 
 			if (currentToolbar != null)
 			{
-				tabControl.SelectedItem.Content = currentToolbar.content;
+				tabControl.SelectedItem.Content = currentToolbar.finalToolbarContent;
 				currentToolbar.toolbarBehaviour.OnEnterTab();
 				if (previousToolbar != null) previousToolbar.toolbarBehaviour.OnExitTab();
 			}

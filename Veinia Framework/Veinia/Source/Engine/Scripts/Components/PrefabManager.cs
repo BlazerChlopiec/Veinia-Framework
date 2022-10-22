@@ -13,7 +13,7 @@ namespace Veinia
 			{
 				PrefabName = name,
 				PrefabGameObject = gameObject,
-				PrefabTab = prefabTab
+				PaintingToolbarTab = prefabTab
 			};
 
 			prefabs.Add(prefabData);
@@ -32,7 +32,7 @@ namespace Veinia
 		{
 			public string PrefabName { get; set; }
 			public GameObject PrefabGameObject { get; set; }
-			public int PrefabTab { get; set; }
+			public int PaintingToolbarTab { get; set; }
 		}
 	}
 }

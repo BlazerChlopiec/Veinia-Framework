@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Myra.Graphics2D.TextureAtlases;
 using Myra.Graphics2D.UI;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Veinia.Editor
 {
@@ -10,73 +11,91 @@ namespace Veinia.Editor
 	{
 		PrefabManager prefabManager;
 		PaintingToolbarBehaviour editorObjectPainter;
-		List<ToolbarPrefab> toolbarPrefabs = new List<ToolbarPrefab>();
+
+		List<PaintingToolbarTab> paintingToolbarTabs = new List<PaintingToolbarTab>();
 
 
-		public PaintingToolbar(string toolbarName, ToolbarBehaviour toolbarBehaviour, PrefabManager prefabManager) : base(toolbarName, toolbarBehaviour)
-		{
-			this.prefabManager = prefabManager;
-		}
+		public PaintingToolbar(string toolbarName, ToolbarBehaviour toolbarBehaviour, PrefabManager prefabManager) : base(toolbarName, toolbarBehaviour) => this.prefabManager = prefabManager;
 
 		public override void OnInitialize(GameObject gameObject)
 		{
 			editorObjectPainter = (PaintingToolbarBehaviour)toolbarBehaviour;
 
+			//create enough tabs
+			for (int i = 0; i < prefabManager.prefabs.Max(x => x.PaintingToolbarTab) + 1; i++)
+			{
+				var newTab = new PaintingToolbarTab();
+				newTab.Scroll.Content = newTab.Panel;
+				paintingToolbarTabs.Add(newTab);
+			}
+			//
+
 			FeedToolbarWithPrefabs();
 
 			var tabControl = new TabControl { TabSelectorPosition = TabSelectorPosition.Right };
-			var panel = new Panel();
-			var scroll = new ScrollViewer();
-			scroll.Content = panel;
-			content = scroll;
-			tabControl.Items.Add(new TabItem { Content = scroll, Text = "Tiles" });
-			tabControl.Items.Add(new TabItem { Content = scroll, Text = "Deco" });
-			content = tabControl;
+			for (int i = 0; i < paintingToolbarTabs.Count; i++)
+				tabControl.Items.Add(new TabItem { Content = paintingToolbarTabs[i].Scroll, Text = i.ToString() });
 
-			int topOffset = 0;
+			finalToolbarContent = tabControl;
 
-			foreach (var prefab in toolbarPrefabs)
-			{
-				var image = new ImageTextButton
-				{
-					Height = 100,
-					Width = 100,
-					Text = prefab.PrefabName,
-					Top = topOffset + 100 * toolbarPrefabs.IndexOf(prefab),
-					VerticalAlignment = VerticalAlignment.Top,
-					Background = new TextureRegion(prefab.texture.ChangeColor(prefab.color), new Rectangle(0, 0, prefab.texture.Width, prefab.texture.Height)),
-					TextColor = prefab.color.ToNegative(),
-				};
-
-				image.Click += (s, a) => OnClickPrefab(prefab);
-
-				panel.Widgets.Add(image);
-			}
-			panel.Height = toolbarPrefabs.Count * 100 + topOffset;
+			ShowPrefabsInToolbars();
 		}
 
-		private void OnClickPrefab(ToolbarPrefab prefab) => editorObjectPainter.ChangeCurrentPrefab(prefab.PrefabName);
+		private void OnClickPrefab(PaintingToolbarPrefab prefab) => editorObjectPainter.ChangeCurrentPrefab(prefab.PrefabName);
 
 		private void FeedToolbarWithPrefabs()
 		{
 			for (int i = 0; i < prefabManager.prefabs.Count; i++)
 			{
-				var sprite = prefabManager.prefabs[i].PrefabGameObject.GetComponent<Sprite>();
+				var prefab = prefabManager.prefabs[i];
+				var sprite = prefab.PrefabGameObject.GetComponent<Sprite>();
 
-				toolbarPrefabs.Add(new ToolbarPrefab
+				paintingToolbarTabs[prefab.PaintingToolbarTab].Prefabs.Add(new PaintingToolbarPrefab
 				{
-					PrefabName = prefabManager.prefabs[i].PrefabName,
-					texture = sprite.texture,
-					color = sprite.color,
+					PrefabName = prefab.PrefabName,
+					Texture = sprite.texture,
+					Color = sprite.color,
 				});
+			}
+		}
+
+		private void ShowPrefabsInToolbars()
+		{
+			foreach (var tab in paintingToolbarTabs)
+			{
+				foreach (var prefab in tab.Prefabs)
+				{
+					var prefabButton = new ImageTextButton
+					{
+						Height = 100,
+						Width = 100,
+						Text = prefab.PrefabName,
+						Top = 100 * tab.Prefabs.IndexOf(prefab),
+						VerticalAlignment = VerticalAlignment.Top,
+						Background = new TextureRegion(prefab.Texture.ChangeColor(prefab.Color), new Rectangle(0, 0, prefab.Texture.Width, prefab.Texture.Height)),
+						TextColor = prefab.Color.ToNegative(),
+					};
+
+					prefabButton.Click += (s, a) => OnClickPrefab(prefab);
+
+					tab.Panel.Widgets.Add(prefabButton);
+				}
+				tab.Panel.Height = tab.Prefabs.Count * 100;
 			}
 		}
 	}
 
-	public class ToolbarPrefab
+	public class PaintingToolbarPrefab
 	{
 		public string PrefabName { get; set; }
-		public Texture2D texture { get; set; }
-		public Color color { get; set; }
+		public Texture2D Texture { get; set; }
+		public Color Color { get; set; }
+	}
+
+	public class PaintingToolbarTab
+	{
+		public List<PaintingToolbarPrefab> Prefabs = new List<PaintingToolbarPrefab>();
+		public Panel Panel { get; set; } = new Panel();
+		public ScrollViewer Scroll { get; set; } = new ScrollViewer();
 	}
 }
