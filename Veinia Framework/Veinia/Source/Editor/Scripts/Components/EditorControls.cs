@@ -10,6 +10,8 @@ namespace Veinia.Editor
 
 		private Vector2 startMousePos;
 
+		private float zoomSensitivity = 1.2f;
+
 
 		public override void Update()
 		{
@@ -26,8 +28,8 @@ namespace Veinia.Editor
 
 			if (!Globals.myraDesktop.IsMouseOverGUI)
 			{
-				Globals.camera.ZoomIn(Globals.input.deltaScroll);
-				Globals.camera.Zoom = MathHelper.Clamp(Globals.camera.Zoom, .38f, 1.15f);
+				Globals.camera.ZoomIn(Globals.input.deltaScroll * zoomSensitivity);
+				Globals.camera.Zoom = MathHelper.Clamp(Globals.camera.Zoom, .28f, 1.7f);
 			}
 
 			if (isDragging) { Globals.camera.SetPosition(startMousePos - (Globals.input.GetMouseWorldPosition() - Globals.camera.GetPosition())); }
