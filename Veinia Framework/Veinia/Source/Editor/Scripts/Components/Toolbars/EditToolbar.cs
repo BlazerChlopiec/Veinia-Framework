@@ -33,6 +33,15 @@ namespace Veinia.Editor
 			};
 			panel.Widgets.Add(deselectButton);
 
+			var duplicateButton = new TextButton { Text = "Duplicate", Top = 50 };
+			duplicateButton.Click += (o, e) =>
+			{
+				editToolbarBehaviour.Copy();
+				editToolbarBehaviour.Paste();
+
+			};
+			panel.Widgets.Add(duplicateButton);
+
 			//filterSelectionButton = new TextButton { Toggleable = true, Text = "Filter Selection", Top = 30 };
 
 			//panel.Widgets.Add(filterSelectionButton);

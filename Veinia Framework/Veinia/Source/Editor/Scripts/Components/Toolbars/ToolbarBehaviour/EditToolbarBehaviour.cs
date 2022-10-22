@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
+using Myra.Graphics2D.UI;
 using System.Collections.Generic;
 
 namespace Veinia.Editor
@@ -12,6 +13,7 @@ namespace Veinia.Editor
 		EditorControls editorControls;
 
 		public List<EditorObject> selectedObjects = new List<EditorObject>();
+		public EditorObject[] clipboard;
 
 		bool isDragging;
 
@@ -25,6 +27,8 @@ namespace Veinia.Editor
 		{
 			editorObjectManager = gameObject.level.FindComponentOfType<EditorObjectManager>();
 			editorControls = gameObject.level.FindComponentOfType<EditorControls>();
+
+			EditorLabelManager.Add("SelectedObjectCount", new Label { Text = "Selected Objects - " + selectedObjects.Count, VerticalAlignment = VerticalAlignment.Top, HorizontalAlignment = HorizontalAlignment.Center, Top = 25 });
 
 			editorObjectManager.OnRemoveAll += () => { selectedObjects.Clear(); };
 		}
@@ -42,7 +46,7 @@ namespace Veinia.Editor
 			}
 
 			//mouse up
-			if (Globals.input.GetMouseButtonUp(0) && !isDragging && !editorControls.isDragging)
+			if (Globals.input.GetMouseButtonUp(0) && !isDragging && !editorControls.isDragging && !Globals.myraDesktop.IsMouseOverGUI)
 			{
 				selectedObjects.Clear();
 
@@ -61,6 +65,12 @@ namespace Veinia.Editor
 						selectedObjects.Add(item);
 				}
 			}
+
+			if (Globals.input.GetKey(Keys.LeftControl) && Globals.input.GetKeyDown(Keys.C)) Copy();
+
+
+			if (Globals.input.GetKey(Keys.LeftControl) && Globals.input.GetKeyDown(Keys.V)) Paste();
+
 
 			if (!Globals.input.GetKey(Keys.LeftControl))
 			{
@@ -83,6 +93,8 @@ namespace Veinia.Editor
 
 			if (Globals.input.GetKeyDown(Keys.Delete) || Globals.input.GetMouseButtonDown(1))
 				RemoveSelection();
+
+			EditorLabelManager.Add("SelectedObjectCount", new Label { Text = "Selected Objects - " + selectedObjects.Count });
 		}
 
 		public void RemoveSelection()
@@ -91,6 +103,19 @@ namespace Veinia.Editor
 			{
 				selectedObjects.Remove(item);
 				editorObjectManager.Remove(item);
+			}
+		}
+
+		public void Copy() => clipboard = selectedObjects.ToArray();
+
+		public void Paste()
+		{
+			selectedObjects.Clear();
+
+			foreach (var item in clipboard)
+			{
+				var spawnedClipboard = editorObjectManager.Spawn(item.PrefabName, item.Position + Vector2.One);
+				selectedObjects.Add(spawnedClipboard);
 			}
 		}
 
