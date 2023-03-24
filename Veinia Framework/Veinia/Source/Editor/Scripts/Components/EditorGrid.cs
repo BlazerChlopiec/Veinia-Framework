@@ -12,7 +12,7 @@ namespace Veinia.Editor
 		float opacity = 0.05f;
 
 
-		public override void Initialize() => EditorCheckboxes.Add("Hide Grid", defaultValue: false, (e, o) => { hideGrid = true; }, (e, o) => { hideGrid = false; }, Keys.G);
+		public override void Initialize() => EditorCheckboxes.Add("Hide Grid [G]", defaultValue: false, (e, o) => { hideGrid = true; }, (e, o) => { hideGrid = false; }, Keys.G);
 
 		public void Draw(SpriteBatch sb)
 		{

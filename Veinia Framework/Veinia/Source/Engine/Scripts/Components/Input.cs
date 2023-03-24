@@ -42,16 +42,13 @@ namespace Veinia
 			Title.Add(currentDevice, 4);
 
 			//assign states
-			if (keyboard != null)
-				oldKeyboard = keyboard;
+			oldKeyboard = keyboard;
 			keyboard = Keyboard.GetState();
 
-			if (gamepad != null)
-				oldGamepad = gamepad;
+			oldGamepad = gamepad;
 			gamepad = GamePad.GetState(0); //first player
 
-			if (mouse != null)
-				oldMouse = mouse;
+			oldMouse = mouse;
 			mouse = Mouse.GetState();
 
 			sticks = gamepad.ThumbSticks;
