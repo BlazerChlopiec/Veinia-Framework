@@ -9,6 +9,7 @@ namespace Veinia.Platformer
 	{
 		private const float speed = 8.5f;
 		private const float jumpForce = 13;
+		private const float accelerationSpeed = 20;
 
 		bool isTouchingGround;
 
@@ -18,9 +19,11 @@ namespace Veinia.Platformer
 		public override void Initialize() => physics = GetComponent<Physics>();
 
 		float smoothZoom;
+		float smoothHorizontal;
 		public override void Update()
 		{
-			physics.velocity.X = Globals.input.horizontal * speed;
+			smoothHorizontal = MathHelper.Lerp(smoothHorizontal, Globals.input.horizontal, accelerationSpeed * Time.deltaTime);
+			physics.velocity.X = smoothHorizontal * speed;
 
 			if ((Globals.input.GetKeyButtonDown(Keys.Space, Buttons.A) || Globals.input.GetKeyDown(Keys.W)) && isTouchingGround)
 			{
