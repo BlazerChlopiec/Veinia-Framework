@@ -32,12 +32,15 @@ namespace Veinia.Platformer
 			}
 			if ((Globals.input.GetKeyButtonUp(Keys.Space, Buttons.A) || Globals.input.GetKeyUp(Keys.W)) && physics.velocity.Y > 0)
 			{
-				physics.velocity.Y *= .7f;
+				float jumpCutoff = .7f;
+				physics.velocity.Y *= jumpCutoff;
 			}
 
 			Globals.camera.LerpTo(transform.position, 10);
 
-			smoothZoom = MathHelper.Lerp(smoothZoom, (MathF.Abs(Globals.input.horizontal) / 10), 1.5f * Time.deltaTime);
+			float zoomAmount = 7;
+			float zoomSpeed = .8f;
+			smoothZoom = MathHelper.Lerp(smoothZoom, (MathF.Abs(smoothHorizontal) / zoomAmount), zoomSpeed * Time.deltaTime);
 			Globals.camera.Zoom = 1 - smoothZoom;
 		}
 
