@@ -35,7 +35,7 @@ namespace Veinia.Platformer
 			{
 				Add(grassTile.Key, new GameObject(Transform.Empty, new List<Component>
 				{
-					new Sprite(grassTile.Value, .2f, Color.White, pixelsPerUnit: 16),
+					new Sprite(grassTile.Value, .6f, Color.White, pixelsPerUnit: 16),
 					new RectangleCollider(Vector2.Zero, Vector2.One),
 				}, isStatic: true), prefabTab: 2);
 			}
@@ -65,7 +65,7 @@ namespace Veinia.Platformer
 			{
 				Add(deco.Key, new GameObject(Transform.Empty, new List<Component>
 				{
-					new Sprite(deco.Value, .2f, Color.White, pixelsPerUnit: 16),
+					new Sprite(deco.Value, .6f, Color.White, pixelsPerUnit: 16),
 				}, isStatic: true), prefabTab: 4);
 			}
 		}
