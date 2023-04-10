@@ -37,7 +37,6 @@ namespace Veinia
 		/// </summary>
 		public virtual void CreateScene(bool loadObjectsFromPath = true)
 		{
-			Time.stop = false;
 			Globals.camera.SetPosition(Vector2.Zero);
 			Globals.camera.Zoom = 1;
 			Globals.myraDesktop.Root = Myra;
@@ -238,6 +237,17 @@ namespace Veinia
 						drawn.Draw(sb);
 					}
 				}
+			}
+		}
+
+		public virtual void Unload()
+		{
+			Globals.tweener.CancelAll();
+			Globals.collisionComponent = Globals.collisionComponent.GetReloaded();
+
+			foreach (var item in scene.ToArray())
+			{
+				item.DestroyGameObject();
 			}
 		}
 	}

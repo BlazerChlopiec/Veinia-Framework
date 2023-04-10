@@ -16,7 +16,11 @@ namespace Veinia.Platformer
 		Physics physics;
 
 
-		public override void Initialize() => physics = GetComponent<Physics>();
+		public override void Initialize()
+		{
+			physics = GetComponent<Physics>();
+			Globals.camera.SetPosition(transform.position);
+		}
 
 		float smoothZoom;
 		float smoothHorizontal;

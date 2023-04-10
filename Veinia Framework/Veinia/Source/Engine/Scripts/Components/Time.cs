@@ -7,9 +7,17 @@ namespace Veinia
 		public static float deltaTime;
 
 		public static bool stop;
+		private static int stopForFrames;
 
+		public static void Update(GameTime gameTime)
+		{
+			CalculateDelta(gameTime);
 
-		public static void CalculateDelta(GameTime gameTime)
+			stopForFrames--;
+			if (stopForFrames == 0) { stop = false; stopForFrames--; }
+		}
+
+		private static void CalculateDelta(GameTime gameTime)
 		{
 			// its important for the deltaTime to have maximum accuracy
 			// to achieve it we use a 'TotalSeconds' double and convert it to a float (keeping the .14 accuracy of the double)
@@ -18,6 +26,12 @@ namespace Veinia
 			deltaTime = delta;
 
 			Title.Add(deltaTime, " - Time.deltaTime", 2);
+		}
+
+		public static void StopForFrames(int frames)
+		{
+			stop = true;
+			stopForFrames = frames;
 		}
 	}
 }

@@ -52,33 +52,30 @@ namespace Veinia
 			UserInterface.Active.ShowCursor = false;
 			#endregion
 
-			#region Myra.UI
+			#region Myra.UI	
 			MyraEnvironment.Game = game;
 			Globals.myraDesktop = new Desktop
 			{
 				Opacity = .95f,
 				HasExternalTextInput = true,
 			};
-			Globals.myraDesktop.MouseInfoGetter = CustomMouseInfoGetter;
-
-			MouseInfo CustomMouseInfoGetter()
+			Globals.myraDesktop.MouseInfoGetter = () =>
 			{
 				MouseInfo info = Globals.myraDesktop.DefaultMouseInfoGetter();
-
 				info.Position = (Mouse.GetState().Position.ToVector2() - new Vector2(Globals.viewportAdapter.Viewport.X, Globals.viewportAdapter.Viewport.Y)).ToPoint();
-
 				return info;
-			}
+			};
 
 			window.TextInput += (s, a) => Globals.myraDesktop.OnChar(a.Character);
 			window.AllowUserResizing = true;
+			Globals.myraDesktop.Render();
 			#endregion
 		}
 
 		public void Update(GameTime gameTime)
 		{
 			#region Veinia
-			Time.CalculateDelta(gameTime);
+			Time.Update(gameTime);
 			Globals.fps.CalculateFps(gameTime);
 
 			NextFrame.Update();
@@ -88,8 +85,8 @@ namespace Veinia
 			if (!Time.stop)
 			{
 				Globals.tweener.Update(Time.deltaTime);
-				Globals.loader.currentLevel?.Update();
-				Globals.loader.currentLevel?.LateUpdate();
+				Globals.loader.current?.Update();
+				Globals.loader.current?.LateUpdate();
 				Globals.collisionComponent.Update(gameTime);
 			}
 
@@ -109,11 +106,11 @@ namespace Veinia
 
 			if (Globals.input.GetKeyDown(Keys.Tab))
 			{
-				if (Globals.loader.currentLevel is EditorScene)
-					Globals.loader.Load(Globals.loader.previousLevel);
+				if (Globals.loader.current is EditorScene)
+					Globals.loader.Load(Globals.loader.previous);
 
 				else
-					Globals.loader.Load(new EditorScene(prefabManager, Globals.loader.currentLevel.levelPath));
+					Globals.loader.Load(new EditorScene(prefabManager, Globals.loader.current.levelPath));
 			}
 #endif
 			#endregion
@@ -123,7 +120,7 @@ namespace Veinia
 		{
 			#region Veinia
 			spriteBatch.Begin(SpriteSortMode.FrontToBack, transformMatrix: Globals.camera.GetViewMatrix(), samplerState: samplerState);
-			Globals.loader.currentLevel?.Draw(spriteBatch);
+			Globals.loader.current?.Draw(spriteBatch);
 			spriteBatch.End();
 			#endregion
 

@@ -1,9 +1,9 @@
 ﻿namespace Veinia
 {
-	public class Loader
+	public sealed class Loader
 	{
-		public Level currentLevel;
-		public Level previousLevel;
+		public Level current;
+		public Level previous;
 
 		public void Load(Level level)
 		{
@@ -11,26 +11,14 @@
 
 			void LoadScene()
 			{
-				if (currentLevel != null)
-					Unload();
-				currentLevel = level;
-				currentLevel.CreateScene();
-				currentLevel.InitiazeComponents();
+				current?.Unload();
+				previous = current;
+				current = null;
+
+				current = level;
+				current.CreateScene();
+				current.InitiazeComponents();
 			}
-		}
-
-		public void Unload()
-		{
-			Globals.tweener.CancelAll();
-			Globals.collisionComponent = Globals.collisionComponent.GetReloaded();
-
-			foreach (var item in currentLevel.scene.ToArray())
-			{
-				item.DestroyGameObject();
-			}
-
-			previousLevel = currentLevel;
-			currentLevel = null;
 		}
 
 		public void Reload()
@@ -39,11 +27,13 @@
 
 			void ReloadScene()
 			{
-				Unload();
+				current.Unload();
+				previous = current;
+				current = null;
 
-				currentLevel = previousLevel;
-				currentLevel.CreateScene();
-				currentLevel.InitiazeComponents();
+				current = previous;
+				current.CreateScene();
+				current.InitiazeComponents();
 			}
 		}
 	}

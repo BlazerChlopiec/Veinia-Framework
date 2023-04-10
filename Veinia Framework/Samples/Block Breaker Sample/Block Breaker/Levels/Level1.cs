@@ -68,5 +68,12 @@ namespace Veinia.BlockBreaker
 					new UI()
 				}, isStatic: true);
 		}
+
+		public override void Unload()
+		{
+			base.Unload();
+
+			Time.stop = false;
+		}
 	}
 }

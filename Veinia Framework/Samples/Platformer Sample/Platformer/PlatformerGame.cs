@@ -34,6 +34,8 @@ namespace Veinia.Platformer
 
 			Globals.loader.Load(new Level1(prefabs, "PlatformerSampleLevel.veinia"));
 
+			Time.StopForFrames(5);
+
 			base.Initialize();
 		}
 
