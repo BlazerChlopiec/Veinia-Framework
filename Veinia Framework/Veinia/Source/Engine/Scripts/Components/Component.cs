@@ -10,6 +10,7 @@ namespace Veinia
 		public Transform transform;
 		public Level level;
 		public bool isStatic { get { return gameObject.isStatic; } set { gameObject.isStatic = value; } }
+		public bool dontDestroyOnLoad { get { return gameObject.dontDestroyOnLoad; } set { gameObject.dontDestroyOnLoad = value; } }
 		public bool isEnabled = true;
 
 		public object Clone() => MemberwiseClone();
@@ -24,7 +25,7 @@ namespace Veinia
 		public List<T1> GetAllComponents<T1>() where T1 : Component => gameObject.GetAllComponents<T1>();
 		public Component AddComponent(Component component) => gameObject.AddComponent(component);
 		public void RemoveComponent(Component component) => gameObject.RemoveComponent(component);
-		public GameObject Instantiate(Transform transform, List<Component> components, bool isStatic) => level.Instantiate(transform, components, isStatic);
+		public GameObject Instantiate(Transform transform, List<Component> components, bool isStatic = false, bool dontDestroyOnLoad = false) => level.Instantiate(transform, components, isStatic, dontDestroyOnLoad);
 		public GameObject Instantiate(Transform transform, GameObject newGameObject) => level.Instantiate(transform, newGameObject);
 		public GameObject Instantiate(GameObject newGameObject) => level.Instantiate(newGameObject);
 		public void DestroyGameObject() => gameObject.DestroyGameObject();

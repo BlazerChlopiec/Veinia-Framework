@@ -9,15 +9,17 @@ namespace Veinia
 		public Level level;
 		public Transform transform;
 		public bool isStatic;
+		public bool dontDestroyOnLoad;
 		public bool isEnabled = true;
 
 		private bool isDestroyed;
 
-		public GameObject(Transform transform, List<Component> components, bool isStatic)
+		public GameObject(Transform transform, List<Component> components, bool isStatic = false, bool dontDestoryOnLoad = false)
 		{
 			this.transform = transform;
 			this.components = components;
 			this.isStatic = isStatic;
+			this.dontDestroyOnLoad = dontDestoryOnLoad;
 
 			components.Remove(components.Find(x => x is Transform)); // remove transform to make sure there aren't two transforms (prefab case)
 			components.Add(transform); // the spot is added afterwards to components to ensure the gameobject having a transform

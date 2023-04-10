@@ -18,13 +18,13 @@ namespace Veinia.Editor
 			var panel = new Panel { Height = 100 };
 			finalToolbarContent = panel;
 
-			var removeSelectionButton = new TextButton { Text = "Remove Selection" };
-			removeSelectionButton.Click += (o, e) =>
+			var removeSelectedButton = new TextButton { Text = "Remove Selected" };
+			removeSelectedButton.Click += (o, e) =>
 			{
 				var editorObjectEdit = (EditToolbarBehaviour)toolbarBehaviour;
 				editorObjectEdit.RemoveSelection();
 			};
-			panel.Widgets.Add(removeSelectionButton);
+			panel.Widgets.Add(removeSelectedButton);
 
 			var deselectButton = new TextButton { Text = "Deselect", Top = 25 };
 			deselectButton.Click += (o, e) =>

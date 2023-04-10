@@ -48,7 +48,6 @@ namespace Veinia.BlockBreaker
 
 			var thanksForPlaying = new Paragraph("Thank you for playing!");
 
-
 			var horizontalLine = new HorizontalLine();
 
 			var restartButton = new Button("Restart", ButtonSkin.Default, offset: Vector2.UnitY * 20, anchor: Anchor.BottomCenter);
