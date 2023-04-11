@@ -82,6 +82,8 @@ namespace Veinia
 
 			Globals.input.Update();
 
+			Globals.unscaledTweener.Update(Time.unscaledDeltaTime);
+
 			if (!Time.stop)
 			{
 				Globals.tweener.Update(Time.deltaTime);

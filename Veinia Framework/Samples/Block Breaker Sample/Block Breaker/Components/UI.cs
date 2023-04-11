@@ -3,6 +3,7 @@ using GeonBit.UI.Animators;
 using GeonBit.UI.Entities;
 using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
 
 namespace Veinia.BlockBreaker
 {
@@ -51,7 +52,13 @@ namespace Veinia.BlockBreaker
 			var horizontalLine = new HorizontalLine();
 
 			var restartButton = new Button("Restart", ButtonSkin.Default, offset: Vector2.UnitY * 20, anchor: Anchor.BottomCenter);
-			restartButton.OnClick = (e) => { Globals.loader.Reload(); UserInterface.Active.SetCursor(CursorType.Default); };
+			restartButton.OnClick = (e) =>
+			{
+				UserInterface.Active.SetCursor(CursorType.Default);
+
+				SpawnTransition();
+			};
+
 			restartButton.OnMouseEnter = (e) => { UserInterface.Active.SetCursor(CursorType.Pointer); };
 			restartButton.OnMouseLeave = (e) => { UserInterface.Active.SetCursor(CursorType.Default); };
 
@@ -74,7 +81,12 @@ namespace Veinia.BlockBreaker
 			var horizontalLine = new HorizontalLine();
 
 			var restartButton = new Button("Restart", ButtonSkin.Default, Anchor.BottomCenter, offset: Vector2.UnitY * 20);
-			restartButton.OnClick = (e) => { Globals.loader.Reload(); UserInterface.Active.SetCursor(CursorType.Default); };
+			restartButton.OnClick = (e) =>
+			{
+				UserInterface.Active.SetCursor(CursorType.Default);
+
+				SpawnTransition();
+			};
 			restartButton.OnMouseEnter = (e) => { UserInterface.Active.SetCursor(CursorType.Pointer); };
 			restartButton.OnMouseLeave = (e) => { UserInterface.Active.SetCursor(CursorType.Default); };
 
@@ -117,6 +129,17 @@ namespace Veinia.BlockBreaker
 			panel.AddChild(resumeButton);
 
 			UserInterface.Active.AddEntity(panel);
+		}
+
+		private void SpawnTransition()
+		{
+			GameObject transition = Instantiate(
+				new Transform(Vector2.Zero),
+				new List<Component>
+				{
+					new Sprite("Sprites/Transition", .1f, Color.Black, pixelsPerUnit: 100, order: RenderOrder.AfterUI),
+					new Transition()
+				}, isStatic: false, dontDestroyOnLoad: true);
 		}
 	}
 }

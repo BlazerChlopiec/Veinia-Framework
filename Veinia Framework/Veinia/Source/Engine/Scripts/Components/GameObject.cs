@@ -12,6 +12,9 @@ namespace Veinia
 		public bool dontDestroyOnLoad;
 		public bool isEnabled = true;
 
+		//if your object is dontDestroyOnLoad prevent initializing it on a new scene (initialize once only)
+		public bool dontDestroyOnLoadInitializedBefore;
+
 		private bool isDestroyed;
 
 		public GameObject(Transform transform, List<Component> components, bool isStatic = false, bool dontDestoryOnLoad = false)

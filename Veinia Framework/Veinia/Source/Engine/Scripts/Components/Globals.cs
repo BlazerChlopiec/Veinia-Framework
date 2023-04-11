@@ -14,6 +14,7 @@ namespace Veinia
 		public static Input input = new Input();
 		public static Loader loader = new Loader();
 		public static Tweener tweener = new Tweener();
+		public static Tweener unscaledTweener = new Tweener();
 		public static GraphicsDeviceManager graphicsManager;
 		public static GraphicsDevice graphicsDevice;
 		public static ContentManager content;

@@ -182,6 +182,8 @@ namespace Veinia
 					if (!component.isEnabled) continue;
 					component.Initialize();
 				}
+
+				if (gameObject.dontDestroyOnLoad) gameObject.dontDestroyOnLoadInitializedBefore = true;
 			}
 		}
 
@@ -264,6 +266,7 @@ namespace Veinia
 		public virtual void Unload()
 		{
 			Globals.tweener.CancelAll();
+			Globals.unscaledTweener.CancelAll();
 			Globals.collisionComponent = Globals.collisionComponent.GetReloaded();
 
 			foreach (var item in scene.ToArray())
