@@ -7,8 +7,12 @@ namespace Veinia
 		public static float deltaTime;
 
 		public static bool stop;
+
 		private static int stopForFrames;
+		private static bool frameStop;
+
 		private static float stopForTime;
+		private static bool timeStop;
 
 		public static void Update(GameTime gameTime)
 		{
@@ -17,8 +21,8 @@ namespace Veinia
 			if (stopForFrames > 0) stopForFrames--;
 			if (stopForTime > 0) stopForTime -= deltaTime;
 
-			if (stopForFrames <= 0 && stopForTime <= 0) { stop = false; stopForFrames--; }
-			if (stopForTime <= 0 && stopForFrames <= 0) { stop = false; }
+			if (stopForFrames <= 0 && stopForTime <= 0 && frameStop) { frameStop = false; stop = false; stopForFrames--; }
+			if (stopForTime <= 0 && stopForFrames <= 0 && timeStop) { timeStop = false; stop = false; }
 		}
 
 		private static void CalculateDelta(GameTime gameTime)
@@ -35,12 +39,14 @@ namespace Veinia
 		public static void StopForFrames(int frames)
 		{
 			stop = true;
+			frameStop = true;
 			stopForFrames = frames;
 		}
 
 		public static void StopForTime(float time)
 		{
 			stop = true;
+			timeStop = true;
 			stopForTime = time;
 		}
 	}

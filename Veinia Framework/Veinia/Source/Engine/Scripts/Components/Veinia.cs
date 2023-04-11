@@ -131,6 +131,12 @@ namespace Veinia
 			#region Myra.UI
 			Globals.myraDesktop.Render();
 			#endregion
+
+			#region Veinia
+			spriteBatch.Begin(SpriteSortMode.FrontToBack, transformMatrix: Globals.camera.GetViewMatrix(), samplerState: samplerState);
+			Globals.loader.current?.DrawAfterUI(spriteBatch);
+			spriteBatch.End();
+			#endregion
 		}
 	}
 }
