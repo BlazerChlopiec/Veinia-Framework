@@ -13,12 +13,13 @@ namespace Veinia.BlockBreaker
 			transform.scale = Vector2.Zero;
 			tween = Globals.unscaledTweener.TweenTo(target: transform, expression: transform => transform.scale,
 											toValue: new Vector2(12, 12), .5f)
-			.Easing(EasingFunctions.Linear)
+			.Easing(EasingFunctions.CircleOut)
 			.OnEnd((x) =>
 			{
 				Globals.loader.Reload();
 				tween = Globals.unscaledTweener.TweenTo(target: transform, expression: transform => transform.scale,
-								toValue: Vector2.Zero, .5f);
+								toValue: Vector2.Zero, .5f)
+				.Easing(EasingFunctions.SineIn);
 			});
 		}
 	}

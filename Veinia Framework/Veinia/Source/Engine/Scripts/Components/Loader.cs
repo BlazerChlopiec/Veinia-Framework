@@ -17,7 +17,7 @@
 
 				current = level;
 				current.CreateScene();
-				current.InitiazeComponents();
+				current.InitializeComponentsFirstFrame();
 			}
 		}
 
@@ -33,7 +33,7 @@
 
 				current = previous;
 				current.CreateScene();
-				current.InitiazeComponents();
+				current.InitializeComponentsFirstFrame();
 			}
 		}
 	}

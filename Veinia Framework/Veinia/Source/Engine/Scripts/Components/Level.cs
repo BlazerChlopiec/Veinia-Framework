@@ -15,10 +15,11 @@ namespace Veinia
 		/// scene list made for iterating and calling methods (Update, Draw, etc.)
 		/// </summary>
 		public List<GameObject> scene = new List<GameObject>();
+		bool firstFrameCreated;
 
 
 		public Panel Myra = new Panel();
-		protected PrefabManager prefabManager { get; private set; }
+		public PrefabManager prefabManager { get; private set; }
 		public string levelPath { get; private set; }
 
 
@@ -76,11 +77,14 @@ namespace Veinia
 			GameObject sample = new GameObject(transform, components, isStatic, dontDestroyOnLoad);
 			sample.level = this;
 
+			if (firstFrameCreated && sample.dontDestroyOnLoad) sample.dontDestroyOnLoadInitializedBefore = true;
+
 			foreach (var item in sample.components)
 			{
 				item.gameObject = sample;
 				item.transform = sample.transform;
 				item.level = sample.level;
+				if (firstFrameCreated) item.Initialize();
 			}
 
 			scene.Add(sample);
@@ -92,11 +96,14 @@ namespace Veinia
 			GameObject sample = new GameObject(transform, prefab.components.Clone(), prefab.isStatic, prefab.dontDestroyOnLoad);
 			sample.level = this;
 
+			if (firstFrameCreated && sample.dontDestroyOnLoad) sample.dontDestroyOnLoadInitializedBefore = true;
+
 			foreach (var item in sample.components)
 			{
 				item.gameObject = sample;
 				item.transform = sample.transform;
 				item.level = sample.level;
+				if (firstFrameCreated) item.Initialize();
 			}
 
 			scene.Add(sample);
@@ -108,11 +115,14 @@ namespace Veinia
 			GameObject sample = new GameObject(prefab.transform, prefab.components.Clone(), prefab.isStatic, prefab.dontDestroyOnLoad);
 			sample.level = this;
 
+			if (firstFrameCreated && sample.dontDestroyOnLoad) sample.dontDestroyOnLoadInitializedBefore = true;
+
 			foreach (var item in sample.components)
 			{
 				item.gameObject = sample;
 				item.transform = sample.transform;
 				item.level = sample.level;
+				if (firstFrameCreated) item.Initialize();
 			}
 
 			scene.Add(sample);
@@ -169,13 +179,13 @@ namespace Veinia
 
 
 		/// <summary>
-		/// Initiazes components in the current scene.
+		/// Initializes components in the first frame (this is used to make sure all objects are created before Initialize() as it may contain FindObjectsOfType<>)
 		/// </summary>
-		public void InitiazeComponents()
+		public void InitializeComponentsFirstFrame()
 		{
 			foreach (var gameObject in scene.ToArray())
 			{
-				if (!gameObject.isEnabled) continue;
+				if (!gameObject.isEnabled || gameObject.dontDestroyOnLoadInitializedBefore) continue;
 
 				foreach (var component in gameObject.components.ToArray())
 				{
@@ -185,6 +195,8 @@ namespace Veinia
 
 				if (gameObject.dontDestroyOnLoad) gameObject.dontDestroyOnLoadInitializedBefore = true;
 			}
+
+			firstFrameCreated = true;
 		}
 
 		/// <summary>
@@ -265,8 +277,9 @@ namespace Veinia
 
 		public virtual void Unload()
 		{
+			firstFrameCreated = false;
+
 			Globals.tweener.CancelAll();
-			Globals.unscaledTweener.CancelAll();
 			Globals.collisionComponent = Globals.collisionComponent.GetReloaded();
 
 			foreach (var item in scene.ToArray())
