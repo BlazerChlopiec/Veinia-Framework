@@ -39,7 +39,7 @@ namespace Veinia
 
 		public void Update()
 		{
-			Title.Add(currentDevice, 4);
+			Title.Add(currentDevice, 2);
 
 			//assign states
 			oldKeyboard = keyboard;
