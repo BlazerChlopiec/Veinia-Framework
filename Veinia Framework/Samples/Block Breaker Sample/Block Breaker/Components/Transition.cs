@@ -18,7 +18,7 @@ namespace Veinia.BlockBreaker
 			{
 				Globals.loader.Reload();
 				tween = Globals.unscaledTweener.TweenTo(target: transform, expression: transform => transform.scale,
-								toValue: Vector2.Zero, .5f)
+								toValue: Vector2.Zero, .5f, delay: .1f)
 				.Easing(EasingFunctions.SineIn);
 			});
 		}
