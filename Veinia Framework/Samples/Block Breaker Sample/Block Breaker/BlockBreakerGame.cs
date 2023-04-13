@@ -31,7 +31,7 @@ namespace VeiniaFramework.BlockBreaker
 			var prefabs = new BlockBreakerPrefabs();
 
 			veinia.Initialize(GraphicsDevice, Content, Window,
-					unitSize: 100, collisionRectScreenSize: 10000, new Vector2(1280, 720), null, fullscreen: false);
+					unitSize: 100, collisionRectScreenSize: 10000, new Vector2(1280, 720), prefabs, fullscreen: false);
 
 			var level = new Level1("BlockBreakerLevel1.veinia");
 			Globals.loader.Load(level);
