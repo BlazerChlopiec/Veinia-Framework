@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Veinia.Platformer
+namespace VeiniaFramework.Platformer
 {
 	public static class Program
 	{

@@ -1,6 +1,6 @@
 ﻿using Myra.Graphics2D.UI;
 
-namespace Veinia.Editor
+namespace VeiniaFramework.Editor
 {
 	public class EditorLabel
 	{

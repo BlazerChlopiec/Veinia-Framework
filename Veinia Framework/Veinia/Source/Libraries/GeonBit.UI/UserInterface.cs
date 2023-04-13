@@ -15,7 +15,7 @@ using Microsoft.Xna.Framework.Content;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
 using Microsoft.Xna.Framework.Input;
-using Veinia;
+using VeiniaFramework;
 using System.Linq;
 
 namespace GeonBit.UI

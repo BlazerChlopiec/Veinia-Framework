@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended.Collisions;
 using System;
 
-namespace Veinia.Platformer
+namespace VeiniaFramework.Platformer
 {
 	public class Player : Component
 	{

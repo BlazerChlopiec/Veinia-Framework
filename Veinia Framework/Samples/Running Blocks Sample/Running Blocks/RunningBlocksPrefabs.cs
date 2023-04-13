@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
-namespace Veinia.RunningBlocks
+namespace VeiniaFramework.RunningBlocks
 {
 	public class RunningBlocksPrefabs : PrefabManager
 	{

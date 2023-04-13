@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace Veinia.RunningBlocks
+namespace VeiniaFramework.RunningBlocks
 {
 	public class TopDownMovement : Component
 	{

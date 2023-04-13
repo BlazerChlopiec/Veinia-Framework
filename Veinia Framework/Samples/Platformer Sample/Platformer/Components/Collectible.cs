@@ -1,6 +1,6 @@
 ﻿using MonoGame.Extended.Collisions;
 
-namespace Veinia.Platformer
+namespace VeiniaFramework.Platformer
 {
 	public class Collectible : Component
 	{

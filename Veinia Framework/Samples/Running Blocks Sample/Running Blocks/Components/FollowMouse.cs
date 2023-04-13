@@ -1,4 +1,4 @@
-﻿namespace Veinia.RunningBlocks
+﻿namespace VeiniaFramework.RunningBlocks
 {
 	public class FollowMouse : Component
 	{

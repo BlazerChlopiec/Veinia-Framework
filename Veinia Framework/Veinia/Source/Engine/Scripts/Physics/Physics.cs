@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using MonoGame.Extended.Collisions;
 
-namespace Veinia
+namespace VeiniaFramework
 {
 	public class Physics : Component
 	{

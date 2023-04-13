@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
-namespace Veinia.BlockBreaker
+namespace VeiniaFramework.BlockBreaker
 {
 	public class Level1 : Level
 	{

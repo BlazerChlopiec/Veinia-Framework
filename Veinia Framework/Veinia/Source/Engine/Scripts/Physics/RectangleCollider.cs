@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 
-namespace Veinia
+namespace VeiniaFramework
 {
 	public class RectangleCollider : Collider, IDrawn
 	{

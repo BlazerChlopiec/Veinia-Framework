@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 
-namespace Veinia
+namespace VeiniaFramework
 {
 	public interface IDrawn
 	{

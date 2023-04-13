@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Myra.Graphics2D.UI;
 
-namespace Veinia.Editor
+namespace VeiniaFramework.Editor
 {
 	public class EditorManager : Component
 	{

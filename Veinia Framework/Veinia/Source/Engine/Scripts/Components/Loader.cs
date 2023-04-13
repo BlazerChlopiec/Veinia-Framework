@@ -1,4 +1,4 @@
-﻿namespace Veinia
+﻿namespace VeiniaFramework
 {
 	public sealed class Loader
 	{

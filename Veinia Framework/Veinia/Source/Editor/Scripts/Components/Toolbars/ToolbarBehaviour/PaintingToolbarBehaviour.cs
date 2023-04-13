@@ -5,7 +5,7 @@ using MonoGame.Extended;
 using System;
 using System.Collections.Generic;
 
-namespace Veinia.Editor
+namespace VeiniaFramework.Editor
 {
 	public class PaintingToolbarBehaviour : ToolbarBehaviour
 	{

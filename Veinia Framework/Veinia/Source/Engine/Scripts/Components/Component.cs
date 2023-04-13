@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Veinia
+namespace VeiniaFramework
 {
 	public class Component : ICloneable
 	{

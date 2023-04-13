@@ -3,7 +3,7 @@ using MonoGame.Extended;
 using MonoGame.Extended.Collisions;
 using System;
 
-namespace Veinia
+namespace VeiniaFramework
 {
 	public class Collider : Component, ICollisionActor, IDisposable, IToggleable
 	{

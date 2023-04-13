@@ -1,4 +1,4 @@
-﻿namespace Veinia
+﻿namespace VeiniaFramework
 {
 	public interface IToggleable
 	{

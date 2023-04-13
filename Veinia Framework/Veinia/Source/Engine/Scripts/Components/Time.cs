@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace Veinia
+namespace VeiniaFramework
 {
 	public sealed class Time
 	{

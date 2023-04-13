@@ -5,9 +5,9 @@ using Myra.Graphics2D.UI;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
-using Veinia.Editor;
+using VeiniaFramework.Editor;
 
-namespace Veinia
+namespace VeiniaFramework
 {
 	public class Level
 	{

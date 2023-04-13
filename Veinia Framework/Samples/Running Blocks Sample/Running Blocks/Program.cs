@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Veinia.RunningBlocks
+namespace VeiniaFramework.RunningBlocks
 {
 	public static class Program
 	{

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Veinia
+namespace VeiniaFramework
 {
 	public class Sprite : Component, IDrawn, IDrawnAfterUI
 	{

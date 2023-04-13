@@ -8,9 +8,9 @@ using MonoGame.Extended.Collisions;
 using MonoGame.Extended.ViewportAdapters;
 using Myra;
 using Myra.Graphics2D.UI;
-using Veinia.Editor;
+using VeiniaFramework.Editor;
 
-namespace Veinia
+namespace VeiniaFramework
 {
 	public class Veinia
 	{

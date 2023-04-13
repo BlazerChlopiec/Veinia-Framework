@@ -1,4 +1,4 @@
-﻿namespace Veinia.BlockBreaker
+﻿namespace VeiniaFramework.BlockBreaker
 {
 	public class GrassTile : Tile { }
 }

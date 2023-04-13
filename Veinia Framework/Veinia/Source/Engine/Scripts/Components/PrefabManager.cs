@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Veinia
+namespace VeiniaFramework
 {
 	public class PrefabManager
 	{

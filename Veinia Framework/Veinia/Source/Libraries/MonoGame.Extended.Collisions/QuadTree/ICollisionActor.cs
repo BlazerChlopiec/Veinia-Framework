@@ -1,4 +1,4 @@
-﻿using Veinia;
+﻿using VeiniaFramework;
 
 namespace MonoGame.Extended.Collisions
 {

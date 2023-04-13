@@ -1,7 +1,7 @@
 ﻿using GeonBit.UI;
 using System.Collections.Generic;
 
-namespace Veinia.Editor
+namespace VeiniaFramework.Editor
 {
 	public class EditorScene : Level
 	{

@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace Veinia.Editor
+namespace VeiniaFramework.Editor
 {
 	public class EditorJSON : Component
 	{

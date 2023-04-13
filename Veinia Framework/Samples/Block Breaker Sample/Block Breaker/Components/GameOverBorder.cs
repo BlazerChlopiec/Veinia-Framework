@@ -1,6 +1,6 @@
 ﻿using MonoGame.Extended.Collisions;
 
-namespace Veinia.BlockBreaker
+namespace VeiniaFramework.BlockBreaker
 {
 	public class GameOverBorder : Component
 	{

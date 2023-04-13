@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
 
-namespace Veinia.Editor
+namespace VeiniaFramework.Editor
 {
 	public class EditorObject
 	{

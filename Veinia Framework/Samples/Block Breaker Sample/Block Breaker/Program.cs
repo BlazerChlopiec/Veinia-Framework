@@ -1,7 +1,7 @@
 ﻿using System;
-using Veinia.BlockBreaker;
+using VeiniaFramework.BlockBreaker;
 
-namespace Veinia.BlockBreaker
+namespace VeiniaFramework.BlockBreaker
 {
 	public static class Program
 	{

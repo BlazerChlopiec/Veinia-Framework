@@ -3,7 +3,7 @@ using MonoGame.Extended.Collisions;
 using MonoGame.Extended.Tweening;
 using System;
 
-namespace Veinia.BlockBreaker
+namespace VeiniaFramework.BlockBreaker
 {
 	public class Ball : Component
 	{

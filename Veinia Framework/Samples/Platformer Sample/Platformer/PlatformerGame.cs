@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Veinia.Platformer
+namespace VeiniaFramework.Platformer
 {
 	public class PlatformerGame : Game
 	{

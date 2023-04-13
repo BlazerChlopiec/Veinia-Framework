@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace Veinia
+namespace VeiniaFramework
 {
 	public class Say
 	{

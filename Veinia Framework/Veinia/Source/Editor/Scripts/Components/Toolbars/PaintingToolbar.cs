@@ -5,7 +5,7 @@ using Myra.Graphics2D.UI;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Veinia.Editor
+namespace VeiniaFramework.Editor
 {
 	public class PaintingToolbar : Toolbar
 	{

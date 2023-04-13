@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Text;
 
-namespace Veinia
+namespace VeiniaFramework
 {
 	public class Title
 	{

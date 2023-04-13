@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using Myra.Graphics2D.UI;
 using System.Collections.Generic;
 
-namespace Veinia.Editor
+namespace VeiniaFramework.Editor
 {
 	public class ToolbarManager : Component, IDrawn
 	{

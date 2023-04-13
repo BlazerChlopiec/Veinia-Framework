@@ -7,7 +7,7 @@ using MonoGame.Extended.Tweening;
 using MonoGame.Extended.ViewportAdapters;
 using Myra.Graphics2D.UI;
 
-namespace Veinia
+namespace VeiniaFramework
 {
 	public class Globals
 	{

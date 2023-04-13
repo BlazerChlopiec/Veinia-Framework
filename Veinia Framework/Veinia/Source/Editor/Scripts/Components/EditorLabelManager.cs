@@ -1,7 +1,7 @@
 ﻿using Myra.Graphics2D.UI;
 using System.Collections.Generic;
 
-namespace Veinia.Editor
+namespace VeiniaFramework.Editor
 {
 	public class EditorLabelManager : Component
 	{

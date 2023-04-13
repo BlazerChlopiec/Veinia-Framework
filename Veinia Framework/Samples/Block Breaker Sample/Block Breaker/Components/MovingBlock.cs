@@ -3,9 +3,9 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using MonoGame.Extended.Tweening;
 using System;
-using Veinia.Editor;
+using VeiniaFramework.Editor;
 
-namespace Veinia.BlockBreaker
+namespace VeiniaFramework.BlockBreaker
 {
 	public class MovingBlock : Tile, IDrawGizmos
 	{

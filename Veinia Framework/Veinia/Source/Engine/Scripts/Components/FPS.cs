@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 
-namespace Veinia
+namespace VeiniaFramework
 {
 	public sealed class FPS
 	{

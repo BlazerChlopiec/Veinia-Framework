@@ -2,7 +2,7 @@
 using MonoGame.Extended;
 using System;
 
-namespace Veinia
+namespace VeiniaFramework
 {
 	public class Transform : Component
 	{

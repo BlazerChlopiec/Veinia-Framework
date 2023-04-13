@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Veinia.RunningBlocks
+namespace VeiniaFramework.RunningBlocks
 {
 	public class RunningBlocksGame : Game
 	{

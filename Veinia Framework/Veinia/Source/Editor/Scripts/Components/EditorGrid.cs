@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using System;
 
-namespace Veinia.Editor
+namespace VeiniaFramework.Editor
 {
 	public class EditorGrid : Component, IDrawn
 	{

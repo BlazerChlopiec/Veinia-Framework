@@ -1,4 +1,4 @@
-﻿namespace Veinia.Platformer
+﻿namespace VeiniaFramework.Platformer
 {
 	public class Level1 : Level
 	{

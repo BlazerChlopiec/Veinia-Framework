@@ -9,7 +9,7 @@
 #endregion
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using Veinia;
+using VeiniaFramework;
 
 namespace GeonBit.UI
 {

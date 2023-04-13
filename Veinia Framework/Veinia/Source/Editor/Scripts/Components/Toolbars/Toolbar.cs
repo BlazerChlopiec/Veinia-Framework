@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Input;
 using Myra.Graphics2D.UI;
 
-namespace Veinia.Editor
+namespace VeiniaFramework.Editor
 {
 	public class Toolbar
 	{

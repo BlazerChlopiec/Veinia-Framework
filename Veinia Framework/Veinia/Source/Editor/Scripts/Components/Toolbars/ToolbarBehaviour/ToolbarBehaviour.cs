@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 
-namespace Veinia.Editor
+namespace VeiniaFramework.Editor
 {
 	public class ToolbarBehaviour
 	{

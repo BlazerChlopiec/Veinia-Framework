@@ -4,7 +4,7 @@ using Myra.Graphics2D.UI;
 using System;
 using System.Collections.Generic;
 
-namespace Veinia.Editor
+namespace VeiniaFramework.Editor
 {
 	public class EditorCheckboxes : Component, IDisposable
 	{

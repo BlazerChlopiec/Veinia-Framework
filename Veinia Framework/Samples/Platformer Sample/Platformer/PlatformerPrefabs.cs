@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
-namespace Veinia.Platformer
+namespace VeiniaFramework.Platformer
 {
 	public class PlatformerPrefabs : PrefabManager
 	{
