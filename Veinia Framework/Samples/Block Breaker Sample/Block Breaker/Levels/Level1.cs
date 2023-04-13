@@ -5,7 +5,7 @@ namespace Veinia.BlockBreaker
 {
 	public class Level1 : Level
 	{
-		public Level1(PrefabManager prefabManager, string editorLevelName) : base(prefabManager, editorLevelName)
+		public Level1(string editorLevelName) : base(editorLevelName)
 		{
 		}
 

@@ -12,9 +12,9 @@ namespace Veinia
 	public class Globals
 	{
 		public static Input input = new Input();
-		public static Loader loader = new Loader();
 		public static Tweener tweener = new Tweener();
 		public static Tweener unscaledTweener = new Tweener();
+		public static Loader loader;
 		public static GraphicsDeviceManager graphicsManager;
 		public static GraphicsDevice graphicsDevice;
 		public static ContentManager content;

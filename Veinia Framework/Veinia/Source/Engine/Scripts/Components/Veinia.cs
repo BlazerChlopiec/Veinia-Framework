@@ -15,7 +15,6 @@ namespace Veinia
 	public class Veinia
 	{
 		Title title;
-		PrefabManager prefabManager;
 		Game game;
 
 
@@ -28,13 +27,12 @@ namespace Veinia
 		}
 
 		public void Initialize(GraphicsDevice graphicsDevice, ContentManager content, GameWindow window,
-			int unitSize, float collisionRectScreenSize, Vector2 gameSize, PrefabManager prefabManager, bool fullscreen = false)
+			int unitSize, float collisionRectScreenSize, Vector2 gameSize, PrefabManager prefabManager = null, bool fullscreen = false)
 		{
 			#region Veinia
 			Transform.unitSize = unitSize;
 
-			this.prefabManager = prefabManager;
-
+			Globals.loader = new Loader(prefabManager);
 			Globals.graphicsDevice = graphicsDevice;
 			Globals.content = content;
 			Globals.screen = new Screen((int)gameSize.X, (int)gameSize.Y); // window size
@@ -112,7 +110,7 @@ namespace Veinia
 					Globals.loader.Load(Globals.loader.previous);
 
 				else
-					Globals.loader.Load(new EditorScene(prefabManager, Globals.loader.current.levelPath));
+					Globals.loader.Load(new EditorScene(Globals.loader.current.levelPath));
 			}
 #endif
 			#endregion

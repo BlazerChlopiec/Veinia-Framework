@@ -6,14 +6,14 @@ using System.IO;
 
 namespace Veinia.Editor
 {
-	public class EditorLoader : Component
+	public class EditorJSON : Component
 	{
 		EditorObjectManager editorObjectManager;
 
 		private string editedLevelName;
 
 
-		public EditorLoader(string editedLevelName) => this.editedLevelName = editedLevelName;
+		public EditorJSON(string editedLevelName) => this.editedLevelName = editedLevelName;
 
 		public override void Initialize()
 		{

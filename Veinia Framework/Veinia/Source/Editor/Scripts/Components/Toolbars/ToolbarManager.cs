@@ -8,7 +8,7 @@ namespace Veinia.Editor
 {
 	public class ToolbarManager : Component, IDrawn
 	{
-		List<Toolbar> toolbars = new List<Toolbar>();
+		public List<Toolbar> toolbars = new List<Toolbar>();
 
 		Toolbar currentToolbar;
 		Toolbar previousToolbar;
@@ -17,6 +17,7 @@ namespace Veinia.Editor
 
 
 		public ToolbarManager(List<Toolbar> toolbars) => this.toolbars = toolbars;
+		public ToolbarManager() => this.toolbars = new List<Toolbar>();
 
 
 		public override void Initialize()

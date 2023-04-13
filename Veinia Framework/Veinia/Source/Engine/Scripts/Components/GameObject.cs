@@ -93,7 +93,7 @@ namespace Veinia
 			compo.gameObject = this;
 			compo.transform = transform;
 			compo.level = level;
-			compo.Initialize();
+			if (level.firstFrameCreated) compo.Initialize();
 
 			ChangeExecutionOrder<Collider>(index: components.Count);
 

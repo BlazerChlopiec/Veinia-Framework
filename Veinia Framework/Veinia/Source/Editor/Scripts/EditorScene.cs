@@ -5,7 +5,7 @@ namespace Veinia.Editor
 {
 	public class EditorScene : Level
 	{
-		public EditorScene(PrefabManager prefabManager, string levelPath) : base(prefabManager, levelPath)
+		public EditorScene(string levelPath) : base(levelPath)
 		{
 		}
 
@@ -35,9 +35,13 @@ namespace Veinia.Editor
 			{
 				new EditorControls(),
 				new EditorGrid(),
-				new EditorLoader(levelPath),
+				new EditorJSON(levelPath),
 				new EditorObjectManager(prefabManager),
 			}, isStatic: true);
+
+			var toolbarManager = new ToolbarManager();
+			if (prefabManager != null) toolbarManager.toolbars.Add(new PaintingToolbar("Painting", new PaintingToolbarBehaviour(prefabManager), prefabManager));
+			toolbarManager.toolbars.Add(new EditToolbar("Edit", new EditToolbarBehaviour()));
 
 			GameObject UI = Instantiate(Transform.Empty, new List<Component>
 			{
@@ -45,12 +49,8 @@ namespace Veinia.Editor
 				new EditorCheckboxes(),
 				new EditorManager(),
 				new FPSWindow(),
-				new ToolbarManager(new List<Toolbar>
-				{
-					new PaintingToolbar("Painting", new PaintingToolbarBehaviour(prefabManager), prefabManager),
-					new EditToolbar("Edit", new EditToolbarBehaviour()),
-				}),
 			}, isStatic: true);
+			UI.AddComponent(toolbarManager);
 		}
 	}
 }

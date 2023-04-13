@@ -30,9 +30,9 @@ namespace Veinia.RunningBlocks
 			var prefabs = new RunningBlocksPrefabs();
 
 			veinia.Initialize(GraphicsDevice, Content, Window,
-				unitSize: 100, collisionRectScreenSize: 10000, new Vector2(1920, 1080), prefabs, fullscreen: true);
+				unitSize: 100, collisionRectScreenSize: 10000, new Vector2(1920, 1080), prefabs, fullscreen: false);
 
-			Globals.loader.Load(new Level1(prefabs, "RunningBlocksLevel1.veinia"));
+			Globals.loader.Load(new Level1("RunningBlocksLevel1.veinia"));
 
 			base.Initialize();
 		}

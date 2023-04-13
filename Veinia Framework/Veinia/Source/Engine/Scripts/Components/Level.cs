@@ -15,23 +15,14 @@ namespace Veinia
 		/// scene list made for iterating and calling methods (Update, Draw, etc.)
 		/// </summary>
 		public List<GameObject> scene = new List<GameObject>();
-		bool firstFrameCreated;
+		public bool firstFrameCreated { get; private set; }
 
 
 		public Panel Myra = new Panel();
-		public PrefabManager prefabManager { get; private set; }
+		public PrefabManager prefabManager { get; set; }
 		public string levelPath { get; private set; }
 
-
-		public Level(PrefabManager prefabManager)
-		{
-			this.prefabManager = prefabManager;
-		}
-		public Level(PrefabManager prefabManager, string levelPath)
-		{
-			this.prefabManager = prefabManager;
-			this.levelPath = levelPath;
-		}
+		public Level(string levelPath) => this.levelPath = levelPath;
 
 		/// <summary>
 		/// Loads default level contents (GameObjects, Properties, etc.)
@@ -46,7 +37,7 @@ namespace Veinia
 			if (this is EditorScene) UserInterface.Active.ShowCursor = true;
 			UserInterface.Active.RemoveAllEntities();
 
-			prefabManager.LoadPrefabs();
+			prefabManager?.LoadPrefabs();
 			if (loadObjectsFromPath) LoadObjects(levelPath);
 		}
 
@@ -61,11 +52,11 @@ namespace Veinia
 
 			foreach (var item in objects)
 			{
-				if (prefabManager.Find(item.PrefabName) == null)
+				if (prefabManager?.Find(item.PrefabName) == null)
 				{
-					throw new System.Exception("Prefabs that don't got deleted and are still on " + editorLevelName);
+					throw new System.Exception("Prefabs that got deleted and are still on " + editorLevelName);
 				}
-				Instantiate(new Transform(item.Position), prefabManager.Find(item.PrefabName));
+				Instantiate(new Transform(item.Position), prefabManager?.Find(item.PrefabName));
 			}
 		}
 

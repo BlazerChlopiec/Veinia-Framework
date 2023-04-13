@@ -8,7 +8,7 @@ namespace Veinia.Editor
 		public override void Initialize()
 		{
 			var editorObjectManager = FindComponentOfType<EditorObjectManager>();
-			var editorLoader = FindComponentOfType<EditorLoader>();
+			var editorLoader = FindComponentOfType<EditorJSON>();
 
 			var panel = new Panel();
 			var window = new Window

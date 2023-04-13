@@ -24,10 +24,10 @@ Editor:
 Goals:
 - (edit tab) Tilemap painting
 - Spritesheet Prefab Loading
-- have a lightweight phys engine (currently circle collider support is very bad)
+- have a lightweight phys engine (currently circle collider support is very bad) (aether phys)
 - optimisation
 - improve different gamepad support
-- audio
+- audio (prolly some library)
 - penumbra lights
 - animation 
 - particles

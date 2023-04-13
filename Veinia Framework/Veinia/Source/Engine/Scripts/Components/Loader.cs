@@ -2,11 +2,17 @@
 {
 	public sealed class Loader
 	{
+		public PrefabManager prefabManager;
+
 		public Level current;
 		public Level previous;
 
+		public Loader(PrefabManager prefabManager) => this.prefabManager = prefabManager;
+
 		public void Load(Level level)
 		{
+			level.prefabManager = prefabManager;
+
 			NextFrame.actions.Add(LoadScene);
 
 			void LoadScene()
