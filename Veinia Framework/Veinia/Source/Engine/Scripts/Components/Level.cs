@@ -23,6 +23,7 @@ namespace VeiniaFramework
 		public string levelPath { get; private set; }
 
 		public Level(string levelPath) => this.levelPath = levelPath;
+		public Level() => this.levelPath = string.Empty;
 
 		/// <summary>
 		/// Loads default level contents (GameObjects, Properties, etc.)
@@ -38,7 +39,7 @@ namespace VeiniaFramework
 			UserInterface.Active.RemoveAllEntities();
 
 			prefabManager?.LoadPrefabs();
-			if (loadObjectsFromPath) LoadObjects(levelPath);
+			if (loadObjectsFromPath && levelPath != string.Empty) LoadObjects(levelPath);
 		}
 
 		/// <summary>

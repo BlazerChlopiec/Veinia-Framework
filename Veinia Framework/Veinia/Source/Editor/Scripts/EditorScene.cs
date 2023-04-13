@@ -47,10 +47,10 @@ namespace VeiniaFramework.Editor
 			{
 				new EditorLabelManager(),
 				new EditorCheckboxes(),
-				new EditorManager(),
 				new FPSWindow(),
 			}, isStatic: true);
 			UI.AddComponent(toolbarManager);
+			if (levelPath != string.Empty) UI.AddComponent(new EditorManager());
 		}
 	}
 }
