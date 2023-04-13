@@ -41,7 +41,12 @@ namespace VeiniaFramework.Editor
 			ShowPrefabsInToolbars();
 		}
 
-		private void OnClickPrefab(PaintingToolbarPrefab prefab) => paintingToolbarBehaviour.ChangeCurrentPrefab(prefab.PrefabName);
+		private void OnClickPrefab(PaintingToolbarPrefab prefab)
+		{
+			paintingToolbarBehaviour.ChangeCurrentPrefab(prefab.PrefabName);
+			paintingToolbarBehaviour.CreateNewPreview();
+		}
+
 
 		private void FeedToolbarWithPrefabs()
 		{

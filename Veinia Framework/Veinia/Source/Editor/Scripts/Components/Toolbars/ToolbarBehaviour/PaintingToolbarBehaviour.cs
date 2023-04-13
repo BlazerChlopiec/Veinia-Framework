@@ -51,7 +51,7 @@ namespace VeiniaFramework.Editor
 			EditorCheckboxes.Add("Mark Layer", defaultValue: false, (e, o) => { markLayer = true; }, (e, o) => { markLayer = false; });
 		}
 
-		private void SpawnPreview()
+		public void CreateNewPreview()
 		{
 			if (objectPreview != null) objectPreview.DestroyGameObject();
 
@@ -61,19 +61,29 @@ namespace VeiniaFramework.Editor
 			sprite.layer = .9f;
 
 			objectPreview = gameObject.level.Instantiate(objectPreview);
+
+			UpdatePreview();
+		}
+
+		private void UpdatePreview()
+		{
+			if (objectPreview == null) return;
+
+			if (!Globals.input.GetKey(Keys.LeftControl))
+				objectPreview.transform.position = mouseGridPos;
+			else
+				objectPreview.transform.position = mousePos;
 		}
 
 		public void ChangeCurrentPrefab(string newPrefabName)
 		{
 			currentPrefabName = newPrefabName;
-			SpawnPreview();
-			UpdatePreview();
 
 			currentObjectLayer = editorObjectManager.editorObjects.FindAll(x => x.PrefabName == currentPrefabName);
 		}
 
 		public override void OnExitTab() => objectPreview.DestroyGameObject();
-		public override void OnEnterTab() => SpawnPreview();
+		public override void OnEnterTab() => CreateNewPreview();
 
 		public override void OnUpdate()
 		{
@@ -114,16 +124,6 @@ namespace VeiniaFramework.Editor
 			}
 		}
 
-		private void UpdatePreview()
-		{
-			if (objectPreview != null)
-			{
-				if (!Globals.input.GetKey(Keys.LeftControl))
-					objectPreview.transform.position = mouseGridPos;
-				else
-					objectPreview.transform.position = mousePos;
-			}
-		}
 
 		public override void OnDraw(SpriteBatch sb)
 		{
