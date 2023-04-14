@@ -133,7 +133,7 @@ namespace VeiniaFramework
 			DirectoryInfo dir = new DirectoryInfo(content.RootDirectory + "/" + contentFolder);
 			if (!dir.Exists)
 				throw new DirectoryNotFoundException();
-			Dictionary<String, T1> result = new Dictionary<String, T1>();
+			Dictionary<string, T1> result = new Dictionary<string, T1>();
 
 			FileInfo[] files = dir.GetFiles("*.*");
 			foreach (FileInfo file in files)
