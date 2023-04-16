@@ -32,7 +32,9 @@ namespace VeiniaFramework.Platformer
 			veinia.Initialize(GraphicsDevice, Content, Window,
 				unitSize: 100, collisionRectScreenSize: 10000, new Vector2(1280, 720), prefabs, fullscreen: false);
 
-			Globals.loader.Load(new Level1("PlatformerSampleLevel.veinia"));
+			/* index - 0*/
+			Globals.loader.storedLevels.Add(new StoredLevel { storedLevelType = typeof(Level1), storedLevelPath = "PlatformerSampleLevel.veinia" });
+			Globals.loader.StoredLevelLoad(index: 0);
 
 			Time.StopForFrames(5);
 

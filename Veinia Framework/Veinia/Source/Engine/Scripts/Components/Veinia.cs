@@ -107,10 +107,10 @@ namespace VeiniaFramework
 			if (Globals.input.GetKeyDown(Keys.Tab))
 			{
 				if (Globals.loader.current is EditorScene)
-					Globals.loader.Load(Globals.loader.previous);
+					Globals.loader.DynamicalyLoad(Globals.loader.previous);
 
 				else
-					Globals.loader.Load(new EditorScene(Globals.loader.current.levelPath));
+					Globals.loader.DynamicalyLoad(new EditorScene(Globals.loader.current.levelPath));
 			}
 #endif
 			#endregion

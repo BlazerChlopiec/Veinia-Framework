@@ -20,7 +20,7 @@ namespace VeiniaFramework
 
 		public Panel Myra = new Panel();
 		public PrefabManager prefabManager { get; set; }
-		public string levelPath { get; private set; }
+		public string levelPath;
 
 		public Level(string levelPath) => this.levelPath = levelPath;
 		public Level() => this.levelPath = string.Empty;

@@ -9,6 +9,10 @@ namespace VeiniaFramework.RunningBlocks
 		{
 		}
 
+		public Level1() : base()
+		{
+		}
+
 		public override void CreateScene(bool loadObjectsFromPath = true)
 		{
 			base.CreateScene();

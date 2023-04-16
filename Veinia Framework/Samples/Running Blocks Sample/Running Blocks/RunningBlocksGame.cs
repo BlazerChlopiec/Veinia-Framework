@@ -32,7 +32,9 @@ namespace VeiniaFramework.RunningBlocks
 			veinia.Initialize(GraphicsDevice, Content, Window,
 				unitSize: 100, collisionRectScreenSize: 10000, new Vector2(1920, 1080), prefabs, fullscreen: false);
 
-			Globals.loader.Load(new Level1("RunningBlocksLevel1.veinia"));
+			/* index - 0*/
+			Globals.loader.storedLevels.Add(new StoredLevel { storedLevelType = typeof(Level1), storedLevelPath = "RunningBlocksLevel1.veinia" });
+			Globals.loader.StoredLevelLoad(index: 0);
 
 			base.Initialize();
 		}

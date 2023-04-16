@@ -33,8 +33,9 @@ namespace VeiniaFramework.BlockBreaker
 			veinia.Initialize(GraphicsDevice, Content, Window,
 					unitSize: 100, collisionRectScreenSize: 10000, new Vector2(1280, 720), prefabs, fullscreen: false);
 
-			var level = new Level1("BlockBreakerLevel1.veinia");
-			Globals.loader.Load(level);
+			/* index - 0*/
+			Globals.loader.storedLevels.Add(new StoredLevel { storedLevelType = typeof(Level1), storedLevelPath = "BlockBreakerLevel1.veinia" });
+			Globals.loader.StoredLevelLoad(index: 0);
 
 			base.Initialize();
 		}

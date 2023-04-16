@@ -5,5 +5,9 @@
 		public Level1(string levelPath) : base(levelPath)
 		{
 		}
+
+		public Level1() : base()
+		{
+		}
 	}
 }
