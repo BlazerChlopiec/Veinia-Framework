@@ -8,6 +8,7 @@ using MonoGame.Extended.Collisions;
 using MonoGame.Extended.ViewportAdapters;
 using Myra;
 using Myra.Graphics2D.UI;
+using System;
 using VeiniaFramework.Editor;
 
 namespace VeiniaFramework
@@ -107,10 +108,14 @@ namespace VeiniaFramework
 			if (Globals.input.GetKeyDown(Keys.Tab))
 			{
 				if (Globals.loader.current is EditorScene)
-					Globals.loader.DynamicalyLoad(Globals.loader.previous);
-
-				else
-					Globals.loader.DynamicalyLoad(new EditorScene(Globals.loader.current.levelPath));
+				{
+					var editorScene = (EditorScene)Globals.loader.current;
+					dynamic editedLevelInstance = Activator.CreateInstance(editorScene.editedSceneType);
+					editedLevelInstance.levelPath = editorScene.levelPath;
+					Convert.ChangeType(editedLevelInstance, editorScene.editedSceneType);
+					Globals.loader.DynamicalyLoad(editedLevelInstance);
+				}
+				else Globals.loader.DynamicalyLoad(new EditorScene(Globals.loader.current.levelPath, Globals.loader.current.GetType()));
 			}
 #endif
 			#endregion

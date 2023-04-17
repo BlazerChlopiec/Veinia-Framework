@@ -1,13 +1,14 @@
 ﻿using GeonBit.UI;
+using System;
 using System.Collections.Generic;
 
 namespace VeiniaFramework.Editor
 {
 	public class EditorScene : Level
 	{
-		public EditorScene(string levelPath) : base(levelPath)
-		{
-		}
+		public Type editedSceneType;
+
+		public EditorScene(string levelPath, Type editedSceneType) : base(levelPath) => this.editedSceneType = editedSceneType;
 
 		public override void CreateScene(bool loadObjectsFromPath)
 		{

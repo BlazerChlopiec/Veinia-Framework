@@ -124,17 +124,18 @@ namespace VeiniaFramework
 
 			level.Remove(this);
 
+			foreach (var component in components)
+			{
+				if (component is IDisposable)
+				{
+					IDisposable destroyable = (IDisposable)component;
+					destroyable.Dispose();
+				}
+			}
+
 			void Destroy()
 			{
 				level = null; // remove local world
-				foreach (var component in components)
-				{
-					if (component is IDisposable)
-					{
-						IDisposable destroyable = (IDisposable)component;
-						destroyable.Dispose();
-					}
-				}
 
 				components.Clear();
 				isDestroyed = true;

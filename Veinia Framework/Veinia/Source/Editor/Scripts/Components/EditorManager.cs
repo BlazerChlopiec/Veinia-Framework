@@ -20,7 +20,7 @@ namespace VeiniaFramework.Editor
 			};
 			window.CloseButton.RemoveFromParent();
 			window.DragDirection = DragDirection.None;
-			window.Width = 190;
+			window.Width = 300;
 
 			var saveButton = new TextButton { Text = "Save" };
 			saveButton.Click += (s, e) => editorLoader.Save();
@@ -33,6 +33,10 @@ namespace VeiniaFramework.Editor
 			var removeAllButton = new TextButton { Text = "Remove All", Left = 100 };
 			removeAllButton.Click += (s, e) => editorObjectManager.RemoveAll();
 			panel.Widgets.Add(removeAllButton);
+
+			var openLevelSelectButton = new TextButton { Text = "Level Select", Left = 200 };
+			openLevelSelectButton.Click += (s, e) => AddComponent(new LevelSelector());
+			panel.Widgets.Add(openLevelSelectButton);
 
 			window.Show(Globals.myraDesktop, Point.Zero);
 		}

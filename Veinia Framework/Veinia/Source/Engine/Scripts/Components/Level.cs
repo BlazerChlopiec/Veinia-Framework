@@ -23,7 +23,7 @@ namespace VeiniaFramework
 		public string levelPath;
 
 		public Level(string levelPath) => this.levelPath = levelPath;
-		public Level() => this.levelPath = string.Empty;
+		public Level() { }
 
 		/// <summary>
 		/// Loads default level contents (GameObjects, Properties, etc.)
