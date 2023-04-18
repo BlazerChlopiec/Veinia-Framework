@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using VeiniaFramework.Editor;
 
 namespace VeiniaFramework
 {
@@ -54,6 +55,20 @@ namespace VeiniaFramework
 				current.CreateScene();
 				current.InitializeComponentsFirstFrame();
 			}
+		}
+
+		public int GetCurrentLevelIndex()
+		{
+			StoredLevel match;
+			if (current is EditorScene)
+			{
+				EditorScene editor = (EditorScene)current;
+				match = storedLevels.Find(x => x.storedLevelPath == current.levelPath && x.storedLevelType == editor.editedSceneType);
+			}
+			else
+				match = storedLevels.Find(x => x.storedLevelPath == current.levelPath && x.storedLevelType == current.GetType());
+
+			return match != null ? storedLevels.IndexOf(match) : default;
 		}
 
 		public void Reload()

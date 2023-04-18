@@ -30,10 +30,9 @@ namespace VeiniaFramework.RunningBlocks
 			var prefabs = new RunningBlocksPrefabs();
 
 			veinia.Initialize(GraphicsDevice, Content, Window,
-				unitSize: 100, collisionRectScreenSize: 10000, new Vector2(1920, 1080), prefabs, fullscreen: false);
+				unitSize: 100, collisionRectScreenSize: 10000, new Vector2(1920, 1080), prefabs, fullscreen: true);
 
-			/* index - 0*/
-			Globals.loader.storedLevels.Add(new StoredLevel { storedLevelType = typeof(Level1), storedLevelPath = "RunningBlocksLevel1.veinia" });
+			Globals.loader.storedLevels.Add(new StoredLevel { storedLevelType = typeof(LevelTemplate), storedLevelPath = "Level1.veinia" });
 			Globals.loader.StoredLevelLoad(index: 0);
 
 			base.Initialize();

@@ -33,7 +33,7 @@
     <ProjectReference Include="..\..\Veinia\Veinia.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="LevelData\BlockBreakerLevel1.veinia">
+    <None Update="LevelData\Level1.veinia">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

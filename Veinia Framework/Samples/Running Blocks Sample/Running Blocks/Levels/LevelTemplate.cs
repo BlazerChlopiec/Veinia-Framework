@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace VeiniaFramework.RunningBlocks
 {
-	public class Level1 : Level
+	public class LevelTemplate : Level
 	{
-		public Level1(string levelPath) : base(levelPath)
+		public LevelTemplate(string levelPath) : base(levelPath)
 		{
 		}
 
-		public Level1() : base()
+		public LevelTemplate() : base()
 		{
 		}
 
