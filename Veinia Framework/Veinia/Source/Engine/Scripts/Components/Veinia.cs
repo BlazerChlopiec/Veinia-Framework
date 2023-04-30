@@ -9,6 +9,7 @@ using MonoGame.Extended.ViewportAdapters;
 using Myra;
 using Myra.Graphics2D.UI;
 using System;
+using tainicom.Aether.Physics2D.Dynamics;
 using VeiniaFramework.Editor;
 
 namespace VeiniaFramework
@@ -40,6 +41,7 @@ namespace VeiniaFramework
 			Globals.viewportAdapter = new BoxingViewportAdapter(window, graphicsDevice, 1920, 1080);
 			if (fullscreen) Globals.graphicsManager.ToggleFullScreen();
 			Globals.camera = new OrthographicCamera(Globals.viewportAdapter);
+			Globals.physicsWorld = new World();
 			Globals.collisionComponent = new CollisionComponent(
 										 new RectangleF(-collisionRectScreenSize, -collisionRectScreenSize,
 														 collisionRectScreenSize * 2, collisionRectScreenSize * 2));
@@ -88,7 +90,8 @@ namespace VeiniaFramework
 				Globals.tweener.Update(Time.deltaTime);
 				Globals.loader.current?.Update();
 				Globals.loader.current?.LateUpdate();
-				Globals.collisionComponent.Update(gameTime);
+				Globals.physicsWorld.Step(Time.deltaTime);
+				//Globals.collisionComponent.Update(gameTime);
 			}
 
 			Title.Add(Globals.fps.currentFps, " FPS", 0);

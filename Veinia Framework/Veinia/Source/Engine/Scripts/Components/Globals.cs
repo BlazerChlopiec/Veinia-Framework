@@ -6,6 +6,7 @@ using MonoGame.Extended.Collisions;
 using MonoGame.Extended.Tweening;
 using MonoGame.Extended.ViewportAdapters;
 using Myra.Graphics2D.UI;
+using tainicom.Aether.Physics2D.Dynamics;
 
 namespace VeiniaFramework
 {
@@ -21,6 +22,7 @@ namespace VeiniaFramework
 		public static Screen screen;
 		public static FPS fps;
 		public static OrthographicCamera camera;
+		public static World physicsWorld;
 		public static CollisionComponent collisionComponent;
 		public static GameWindow window;
 		public static Desktop myraDesktop;
