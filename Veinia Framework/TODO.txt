@@ -1,33 +1,28 @@
 TODO:
-- remake the chunk system
-- finish ExecuteUpdateWhenCulled
-- store levels instead of creating new levels every time
-- a collider is currently pushable if its instantiated before the pusher which is weird
-- add collision priority
-- check if render targets are compatible
-- rework the loader (merge it with level.cs?) to reduce global classes
-- (GeonBit.UI) anchors break out the animation
-- (GeonBit.UI) images dont scale with GlobalScale
-- (work around currently Time.StopForFrames()) when the game is loading it freezes but the gravity seems to still be increasing 
+- remake the chunk system (finish ExecuteUpdateWhenCulled)
+- (work around currently Time.StopForFrames()) when the game is loading it freezes but the gravity seems to still be increasing, the same is true for dragging a window
+- (GeonBit.UI, maybe?) anchors break out the animation
+- (GeonBit.UI, maybe?) images dont scale with GlobalScale
+- (maybe?) rework the loader (merge it with level.cs?) to reduce global classes
 
 Editor:
-- (edit tab) Add ctrl+z
-- (edit tab) Add layers like in gd
-- (edit tab) Add single selection layering like in gd
-- (edit tab) Add get painting prefab from single selection button
-- (edit tab) Add Handles (rotation handle)
-- (edit tab) deprecate EditorObjects and just replace them with gameobjects and add a ContextMenu to edit the objects individually in the editor
+- Add ctrl+z
+- Add layers like in gd
+- Add single selection layering like in gd
+- Add get painting prefab from single selection button
+- Add Handles (rotation handle)
+- deprecate EditorObjects and just replace them with gameobjects and add a ContextMenu to edit the objects individually in the editor (finish SerializeField)
+- (maybe? )Procedural tilemap painting
 - (maybe?) rework the grid (make it more performant)
 - (maybe?) dynamically change grid size in the editor
 
 
 Goals:
-- (edit tab) Tilemap painting
-- Spritesheet Prefab Loading
-- have a lightweight phys engine (currently circle collider support is very bad) (aether phys)
+- aether physics implementation
 - optimisation
-- improve different gamepad support
-- audio (prolly some library)
+- audio (library with volume and pitch)
 - penumbra lights
-- animation 
+- sprite animation
 - particles
+- Spritesheet Prefab Loading
+- (maybe?) improve different gamepad support
