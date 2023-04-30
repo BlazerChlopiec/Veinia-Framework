@@ -13,16 +13,16 @@ This framework comes with a few things to give you a head start:
 * A Fast Input System
 * Handy World Tools (such as: Finding Objects Based on Their Components and Much More)
 * Useful Debug Tools
-* An Implementation of MonoGame.Extended (Collisions, Camera, Tweener, etc.)
-* An Implementation of Myra UI 
+* Two Handy UI Systems
 
+## Installation
 
-## Must Have Libraries
-* MonoGame.Extended
-* MonoGame.Extended.Tweening
-* Myra
+Veinia framework is only possible to be installed manually because of packages such as GeonBit.UI which require referencing the Content folder
 
-MonoGame.Extended.Collision is added in the framework as a modified version by default.
+1. **Import:** Add existing ```Veinia``` project (.csproj) to your solution
+2. **Reference:** Make sure that your project is referencing ```Veinia``` (Add -> Project Reference)
+
+That's it. You should now be able to compile and use VeiniaFramework in your projects.
 
 ## Note
 Veinia comes with a few sample games to help you get started.
