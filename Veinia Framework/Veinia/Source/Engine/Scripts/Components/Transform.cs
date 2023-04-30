@@ -6,7 +6,7 @@ namespace VeiniaFramework
 {
 	public class Transform : Component
 	{
-		//pixels per unit is assigned in the veiniaIntializer constructor
+		//pixels per unit is assigned in the veinia constructor
 		public static int unitSize = 100;
 
 		public static Transform Empty => new Transform(0, 0);
