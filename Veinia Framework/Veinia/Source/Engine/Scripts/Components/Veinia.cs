@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
-using MonoGame.Extended.Collisions;
 using MonoGame.Extended.ViewportAdapters;
 using Myra;
 using Myra.Graphics2D.UI;
@@ -29,7 +28,7 @@ namespace VeiniaFramework
 		}
 
 		public void Initialize(GraphicsDevice graphicsDevice, ContentManager content, GameWindow window,
-			int unitSize, float collisionRectScreenSize, Vector2 gameSize, PrefabManager prefabManager = null, bool fullscreen = false)
+			int unitSize, Vector2 gameSize, PrefabManager prefabManager = null, bool fullscreen = false)
 		{
 			#region Veinia
 			Transform.unitSize = unitSize;
@@ -41,10 +40,7 @@ namespace VeiniaFramework
 			Globals.viewportAdapter = new BoxingViewportAdapter(window, graphicsDevice, 1920, 1080);
 			if (fullscreen) Globals.graphicsManager.ToggleFullScreen();
 			Globals.camera = new OrthographicCamera(Globals.viewportAdapter);
-			Globals.physicsWorld = new World();
-			Globals.collisionComponent = new CollisionComponent(
-										 new RectangleF(-collisionRectScreenSize, -collisionRectScreenSize,
-														 collisionRectScreenSize * 2, collisionRectScreenSize * 2));
+			Globals.physicsWorld = new World(Vector2.UnitY * -10);
 			title = new Title(window);
 			#endregion
 
@@ -105,9 +101,6 @@ namespace VeiniaFramework
 
 			#region Debug
 #if DEBUG
-			if (Globals.input.GetKeyDown(Keys.F))
-				Collider.showHitboxes = !Collider.showHitboxes;
-
 			if (Globals.input.GetKeyDown(Keys.Tab))
 			{
 				if (Globals.loader.current is EditorScene)

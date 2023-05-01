@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
-using MonoGame.Extended.Collisions;
 using MonoGame.Extended.Tweening;
 using MonoGame.Extended.ViewportAdapters;
 using Myra.Graphics2D.UI;
@@ -23,7 +22,6 @@ namespace VeiniaFramework
 		public static FPS fps;
 		public static OrthographicCamera camera;
 		public static World physicsWorld;
-		public static CollisionComponent collisionComponent;
 		public static GameWindow window;
 		public static Desktop myraDesktop;
 		public static ViewportAdapter viewportAdapter;

@@ -1,6 +1,7 @@
-﻿using MonoGame.Extended.Collisions;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using tainicom.Aether.Physics2D.Dynamics;
+using tainicom.Aether.Physics2D.Dynamics.Contacts;
 
 namespace VeiniaFramework
 {
@@ -9,6 +10,7 @@ namespace VeiniaFramework
 		public GameObject gameObject;
 		public Transform transform;
 		public Level level;
+		public Body body { get { return gameObject.body; } set { gameObject.body = value; } }
 		public bool isStatic { get { return gameObject.isStatic; } set { gameObject.isStatic = value; } }
 		public bool dontDestroyOnLoad { get { return gameObject.dontDestroyOnLoad; } set { gameObject.dontDestroyOnLoad = value; } }
 		public bool isEnabled = true;
@@ -17,8 +19,8 @@ namespace VeiniaFramework
 		public virtual void Initialize() { }
 		public virtual void Update() { }
 		public virtual void LateUpdate() { }
-		public virtual void OnCollide(Collider self, CollisionState state, CollisionEventArgs collisionInfo) { }
-		public virtual void OnTrigger(Collider self, CollisionState state, CollisionEventArgs collisionInfo) { }
+		public virtual void OnCollide(Fixture sender, Fixture other, Contact contact) { }
+		public virtual void OnSeparate(Fixture sender, Fixture other, Contact contact) { }
 		public T1 FindComponentOfType<T1>() where T1 : Component => level.FindComponentOfType<T1>();
 		public List<T1> FindComponentsOfType<T1>() where T1 : Component => level.FindComponentsOfType<T1>();
 		public T1 GetComponent<T1>() where T1 : Component => gameObject.GetComponent<T1>();

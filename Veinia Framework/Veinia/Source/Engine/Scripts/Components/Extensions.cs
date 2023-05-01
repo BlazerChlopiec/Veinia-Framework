@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
-using MonoGame.Extended.Collisions;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -44,13 +43,6 @@ namespace VeiniaFramework
 			var bottom = Transform.ScreenToWorldPos(0, camera.BoundingRectangle.Bottom);
 			var top = Transform.ScreenToWorldPos(0, camera.BoundingRectangle.Top);
 			return top.Y - bottom.Y;
-		}
-
-		public static CollisionComponent GetReloaded(this CollisionComponent collisionComponent)
-		{
-			var prevBoundary = collisionComponent.boundary;
-
-			return new CollisionComponent(prevBoundary);
 		}
 		public static Rectangle OffsetByHalf(this Rectangle rect, float xOffset = 0, float yOffset = 0, float shrink = 0)
 		{

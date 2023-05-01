@@ -11,9 +11,21 @@ namespace VeiniaFramework
 
 		public static Transform Empty => new Transform(0, 0);
 
-		public float rotation { get; set; }
+		public float rotation
+		{
+			get { if (transform != null && body != null) return MathHelper.ToDegrees(-body.Rotation); else return Rotation; }
+			set { Rotation = value; if (transform != null && body != null) body.Rotation = MathHelper.ToRadians(-value); }
+		}
+		public float Rotation { get; set; }
+
+		public Vector2 position
+		{
+			get { if (transform != null && body != null) return body.Position; else return Position; }
+			set { Position = value; if (transform != null && body != null) body.Position = value; }
+		}
+		public Vector2 Position { get; set; }
+
 		public Vector2 scale { get; set; } = Vector2.One;
-		public Vector2 position { get; set; }
 		public Vector2 screenPos => Transform.WorldToScreenPos(position);
 		public Vector2 up => new Vector2((float)MathF.Cos(MathHelper.ToRadians(rotation - 90)), -(float)MathF.Sin(MathHelper.ToRadians(rotation - 90)));
 		public Vector2 right => new Vector2((float)MathF.Cos(MathHelper.ToRadians(rotation - 180)), -(float)MathF.Sin(MathHelper.ToRadians(rotation - 180)));

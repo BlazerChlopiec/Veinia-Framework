@@ -1,12 +1,13 @@
-﻿using MonoGame.Extended.Collisions;
+﻿using tainicom.Aether.Physics2D.Dynamics;
+using tainicom.Aether.Physics2D.Dynamics.Contacts;
 
 namespace VeiniaFramework.BlockBreaker
 {
 	public class GameOverBorder : Component
 	{
-		public override void OnCollide(Collider self, CollisionState state, CollisionEventArgs collisionInfo)
+		public override void OnCollide(Fixture sender, Fixture other, Contact contact)
 		{
-			if (state == CollisionState.Enter) FindComponentOfType<UI>().ShowLoseScreen();
+			FindComponentOfType<UI>().ShowLoseScreen();
 		}
 	}
 }

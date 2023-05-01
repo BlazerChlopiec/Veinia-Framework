@@ -272,7 +272,6 @@ namespace VeiniaFramework
 			firstFrameCreated = false;
 
 			Globals.tweener.CancelAll();
-			Globals.collisionComponent = Globals.collisionComponent.GetReloaded();
 
 			foreach (var item in scene.ToArray())
 			{

@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
+using tainicom.Aether.Physics2D.Dynamics;
+using tainicom.Aether.Physics2D.Dynamics.Contacts;
 
 namespace VeiniaFramework
 {
@@ -8,6 +11,15 @@ namespace VeiniaFramework
 		public List<Component> components;
 		public Level level;
 		public Transform transform;
+
+		public Body body
+		{
+			get { return Body; }
+			set { Body = value; Body.OnCollision += OnCollision; Body.OnSeparation += OnSeparation; ; Body.Position = transform.Position; Body.Rotation = MathHelper.ToRadians(transform.Rotation); }
+		}
+
+		private Body Body;
+
 		public bool isStatic;
 		public bool dontDestroyOnLoad;
 		public bool isEnabled = true;
@@ -16,6 +28,7 @@ namespace VeiniaFramework
 		public bool dontDestroyOnLoadInitializedBefore;
 
 		private bool isDestroyed;
+
 
 		public GameObject(Transform transform, List<Component> components, bool isStatic = false, bool dontDestoryOnLoad = false)
 		{
@@ -26,24 +39,6 @@ namespace VeiniaFramework
 
 			components.Remove(components.Find(x => x is Transform)); // remove transform to make sure there aren't two transforms (prefab case)
 			components.Add(transform); // the spot is added afterwards to components to ensure the gameobject having a transform
-
-			ChangeExecutionOrder<Collider>(index: components.Count);
-		}
-
-		private void ChangeExecutionOrder<T1>(int index) where T1 : Component
-		{
-			//if gameObject has a collider change its execute order to last
-			var matchingComponents = GetAllComponents<T1>();
-			if (matchingComponents.Count != 0)
-			{
-				for (int i = 0; i < matchingComponents.Count; i++)
-				{
-					components.Remove(matchingComponents[i]);
-
-					// -1 because the list had one object removed on the upper line
-					components.Insert(index - 1 - i, matchingComponents[i]);
-				}
-			}
 		}
 
 		public List<T1> GetAllComponents<T1>() where T1 : Component
@@ -95,9 +90,20 @@ namespace VeiniaFramework
 			compo.level = level;
 			if (level.firstFrameCreated) compo.Initialize();
 
-			ChangeExecutionOrder<Collider>(index: components.Count);
-
 			return compo;
+		}
+
+		private void OnSeparation(Fixture sender, Fixture other, Contact contact)
+		{
+			foreach (var component in components)
+				component.OnSeparate(sender, other, contact);
+		}
+
+		private bool OnCollision(Fixture sender, Fixture other, Contact contact)
+		{
+			foreach (var component in components)
+				component.OnCollide(sender, other, contact);
+			return true;
 		}
 
 		public void RemoveComponent(Component component)
@@ -140,6 +146,7 @@ namespace VeiniaFramework
 				components.Clear();
 				isDestroyed = true;
 				isStatic = false;
+				if (body != null) Globals.physicsWorld.Remove(body);
 			}
 		}
 

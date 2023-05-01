@@ -1,20 +1,22 @@
 ﻿using Microsoft.Xna.Framework;
-using MonoGame.Extended.Collisions;
 using MonoGame.Extended.Tweening;
-using System;
+using tainicom.Aether.Physics2D.Dynamics;
+using tainicom.Aether.Physics2D.Dynamics.Contacts;
 
 namespace VeiniaFramework.BlockBreaker
 {
 	public class Ball : Component
 	{
-		Physics physics;
-
-
 		public float speed = 10;
 		public bool launched;
 
 
-		public override void Initialize() => physics = GetComponent<Physics>();
+		public override void Initialize()
+		{
+			body = Globals.physicsWorld.CreateCircle(.4f, 1f, bodyType: BodyType.Dynamic);
+			body.IgnoreGravity = true;
+			body.Tag = this;
+		}
 
 		public override void Update()
 		{
@@ -24,21 +26,20 @@ namespace VeiniaFramework.BlockBreaker
 			{
 				launched = true;
 				FindComponentOfType<UI>().configButton.Enabled = false;
-				physics.velocity = Vector2.One.SafeNormalize() * speed;
+				body.LinearVelocity = Vector2.One.SafeNormalize() * speed;
 			}
 
 			else if (Globals.input.GetMouseButtonDown(0) && launched)
 			{
-				physics.velocity = (Globals.input.GetMouseWorldPosition() - transform.position).SafeNormalize() * speed;
+				body.LinearVelocity = (Globals.input.GetMouseWorldPosition() - transform.position).SafeNormalize() * speed;
 			}
 		}
 
-		public override void OnCollide(Collider self, CollisionState state, CollisionEventArgs collisionInfo)
+		public override void OnCollide(Fixture sender, Fixture other, Contact contact)
 		{
-			if (state != CollisionState.Enter) return;
-
-			var tile = collisionInfo.Other.collider.GetComponent<Tile>();
-			if (tile != null) tile.Hit();
+			var tag = (Tile)other.Body.Tag;
+			if (tag == null) return;
+			tag.Hit();
 
 			Globals.tweener.TweenTo(target: transform, expression: transform => transform.scale, toValue: new Vector2(1.3f, 1f), duration: .01f)
 				.Easing(EasingFunctions.BackInOut)
@@ -48,17 +49,20 @@ namespace VeiniaFramework.BlockBreaker
 					.Easing(EasingFunctions.BackInOut);
 				});
 
-			if (Math.Abs(collisionInfo.PenetrationVector.Y) > Math.Abs(collisionInfo.PenetrationVector.X))
-			{
-				//touched Y
-				physics.velocity *= new Vector2(1, -1);
-			}
+			contact.Enabled = false;
 
-			if (Math.Abs(collisionInfo.PenetrationVector.X) > Math.Abs(collisionInfo.PenetrationVector.Y))
-			{
-				//touched X
-				physics.velocity *= new Vector2(-1, 1);
-			}
+
+			//if (Math.Abs(contact..Y) > Math.Abs(collisionInfo.PenetrationVector.X))
+			//{
+			//	//touched Y
+			//	physics.velocity *= new Vector2(1, -1);
+			//}
+
+			//if (Math.Abs(collisionInfo.PenetrationVector.X) > Math.Abs(collisionInfo.PenetrationVector.Y))
+			//{
+			//	//touched X
+			//	physics.velocity *= new Vector2(-1, 1);
+			//}
 		}
 	}
 }

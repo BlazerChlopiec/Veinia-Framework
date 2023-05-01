@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using tainicom.Aether.Physics2D.Dynamics;
 
 namespace VeiniaFramework.BlockBreaker
 {
@@ -13,6 +14,7 @@ namespace VeiniaFramework.BlockBreaker
 		public override void Initialize()
 		{
 			ball = FindComponentOfType<Ball>();
+			body = Globals.physicsWorld.CreateRectangle(2.5f, .85f, 1, bodyType: BodyType.Kinematic);
 		}
 
 

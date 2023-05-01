@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using MonoGame.Extended.Tweening;
+using tainicom.Aether.Physics2D.Dynamics;
 
 namespace VeiniaFramework.BlockBreaker
 {
@@ -8,13 +9,15 @@ namespace VeiniaFramework.BlockBreaker
 		protected bool hasBeenDestroyed;
 
 
+		public override void Initialize()
+		{
+			body = Globals.physicsWorld.CreateRectangle(1, 1, 1, bodyType: BodyType.Kinematic);
+			body.Tag = this;
+		}
+
 		public virtual void Hit()
 		{
 			if (hasBeenDestroyed) return;
-
-			var collider = GetComponent<Collider>();
-			if (collider != null)
-				RemoveComponent(collider);
 
 			var UI = FindComponentOfType<UI>();
 			UI.progressBar.Value--;

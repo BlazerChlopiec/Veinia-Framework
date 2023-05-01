@@ -14,6 +14,8 @@ namespace VeiniaFramework.BlockBreaker
 
 		public override void Initialize()
 		{
+			base.Initialize();
+
 			var yOffset = 1f;
 
 			Random random = new Random();
