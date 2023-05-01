@@ -28,7 +28,7 @@ namespace VeiniaFramework
 		}
 
 		public void Initialize(GraphicsDevice graphicsDevice, ContentManager content, GameWindow window,
-			int unitSize, Vector2 gameSize, PrefabManager prefabManager = null, bool fullscreen = false)
+			int unitSize, Vector2 gameSize, Vector2 gravity, PrefabManager prefabManager = null, bool fullscreen = false)
 		{
 			#region Veinia
 			Transform.unitSize = unitSize;
@@ -40,7 +40,7 @@ namespace VeiniaFramework
 			Globals.viewportAdapter = new BoxingViewportAdapter(window, graphicsDevice, 1920, 1080);
 			if (fullscreen) Globals.graphicsManager.ToggleFullScreen();
 			Globals.camera = new OrthographicCamera(Globals.viewportAdapter);
-			Globals.physicsWorld = new World(Vector2.UnitY * -10);
+			Globals.physicsWorld = new World(gravity);
 			title = new Title(window);
 			#endregion
 

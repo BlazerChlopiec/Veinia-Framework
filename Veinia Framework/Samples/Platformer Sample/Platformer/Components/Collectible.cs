@@ -1,13 +1,14 @@
-﻿using MonoGame.Extended.Collisions;
+﻿using tainicom.Aether.Physics2D.Dynamics;
+using tainicom.Aether.Physics2D.Dynamics.Contacts;
 
 namespace VeiniaFramework.Platformer
 {
 	public class Collectible : Component
 	{
-		public override void OnTrigger(Collider self, CollisionState state, CollisionEventArgs collisionInfo)
+		public override void OnCollide(Fixture sender, Fixture other, Contact contact)
 		{
-			if (state == CollisionState.Enter)
-				if (collisionInfo.Other.collider.GetComponent<Player>() != null) Collect();
+			var tag = (Player)other.Body.Tag;
+			if (tag != null) Collect();
 		}
 
 		private void Collect() => DestroyGameObject();

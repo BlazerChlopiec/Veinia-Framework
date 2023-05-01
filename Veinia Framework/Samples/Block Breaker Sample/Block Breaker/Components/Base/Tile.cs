@@ -17,14 +17,16 @@ namespace VeiniaFramework.BlockBreaker
 
 		public virtual void Hit()
 		{
+			NextFrame.actions.Add(RemovePhysics);
+			void RemovePhysics() => Globals.physicsWorld.Remove(body);
+
 			if (hasBeenDestroyed) return;
+			hasBeenDestroyed = true;
 
 			var UI = FindComponentOfType<UI>();
 			UI.progressBar.Value--;
 
 			GetComponent<Sprite>().layer = 1;
-
-			hasBeenDestroyed = true;
 
 			Globals.tweener.TweenTo(target: transform, expression: transform => transform.rotation, toValue: -10, duration: .2f)
 				.Easing(EasingFunctions.BackIn);

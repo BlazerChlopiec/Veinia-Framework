@@ -5,6 +5,7 @@ using Myra.Graphics2D.UI;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
+using tainicom.Aether.Physics2D.Dynamics;
 using VeiniaFramework.Editor;
 
 namespace VeiniaFramework
@@ -64,9 +65,10 @@ namespace VeiniaFramework
 		/// <summary>
 		/// Creates an object and spawns it
 		/// </summary>
-		public GameObject Instantiate(Transform transform, List<Component> components, bool isStatic = false, bool dontDestroyOnLoad = false)
+		public GameObject Instantiate(Transform transform, List<Component> components, Body body = default, bool isStatic = false, bool dontDestroyOnLoad = false)
 		{
-			GameObject sample = new GameObject(transform, components, isStatic, dontDestroyOnLoad);
+			var sampleBody = body == null ? null : body.DeepClone();
+			GameObject sample = new GameObject(transform, components, sampleBody, isStatic, dontDestroyOnLoad);
 			sample.level = this;
 
 			if (firstFrameCreated && sample.dontDestroyOnLoad) sample.dontDestroyOnLoadInitializedBefore = true;
@@ -80,12 +82,12 @@ namespace VeiniaFramework
 			}
 
 			scene.Add(sample);
-
 			return sample;
 		}
 		public GameObject Instantiate(Transform transform, GameObject prefab)
 		{
-			GameObject sample = new GameObject(transform, prefab.components.Clone(), prefab.isStatic, prefab.dontDestroyOnLoad);
+			var sampleBody = prefab.body == null ? null : prefab.body.DeepClone();
+			GameObject sample = new GameObject(transform, prefab.components.Clone(), sampleBody, prefab.isStatic, prefab.dontDestroyOnLoad);
 			sample.level = this;
 
 			if (firstFrameCreated && sample.dontDestroyOnLoad) sample.dontDestroyOnLoadInitializedBefore = true;
@@ -99,12 +101,12 @@ namespace VeiniaFramework
 			}
 
 			scene.Add(sample);
-
 			return sample;
 		}
 		public GameObject Instantiate(GameObject prefab)
 		{
-			GameObject sample = new GameObject(prefab.transform, prefab.components.Clone(), prefab.isStatic, prefab.dontDestroyOnLoad);
+			var sampleBody = prefab.body == null ? null : prefab.body.DeepClone();
+			GameObject sample = new GameObject(prefab.transform, prefab.components.Clone(), sampleBody, prefab.isStatic, prefab.dontDestroyOnLoad);
 			sample.level = this;
 
 			if (firstFrameCreated && sample.dontDestroyOnLoad) sample.dontDestroyOnLoadInitializedBefore = true;
@@ -118,7 +120,6 @@ namespace VeiniaFramework
 			}
 
 			scene.Add(sample);
-
 			return sample;
 		}
 

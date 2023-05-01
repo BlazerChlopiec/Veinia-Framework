@@ -49,9 +49,6 @@ namespace VeiniaFramework.BlockBreaker
 					.Easing(EasingFunctions.BackInOut);
 				});
 
-			contact.Enabled = false;
-
-
 			//if (Math.Abs(contact..Y) > Math.Abs(collisionInfo.PenetrationVector.X))
 			//{
 			//	//touched Y

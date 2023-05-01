@@ -55,6 +55,7 @@ namespace VeiniaFramework.BlockBreaker
 			restartButton.OnClick = (e) =>
 			{
 				UserInterface.Active.SetCursor(CursorType.Default);
+				restartButton.Locked = true;
 
 				SpawnTransition();
 			};

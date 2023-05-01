@@ -15,7 +15,7 @@ namespace VeiniaFramework
 		public Body body
 		{
 			get { return Body; }
-			set { Body = value; Body.OnCollision += OnCollision; Body.OnSeparation += OnSeparation; ; Body.Position = transform.Position; Body.Rotation = MathHelper.ToRadians(transform.Rotation); }
+			set { Body = value; Body.OnCollision += OnCollision; Body.OnSeparation += OnSeparation; Body.Position = transform.Position; Body.Rotation = MathHelper.ToRadians(transform.Rotation); }
 		}
 
 		private Body Body;
@@ -30,15 +30,16 @@ namespace VeiniaFramework
 		private bool isDestroyed;
 
 
-		public GameObject(Transform transform, List<Component> components, bool isStatic = false, bool dontDestoryOnLoad = false)
+		public GameObject(Transform transform, List<Component> components, Body body = default, bool isStatic = false, bool dontDestoryOnLoad = false)
 		{
 			this.transform = transform;
 			this.components = components;
+			if (body != null) this.body = body;
 			this.isStatic = isStatic;
 			this.dontDestroyOnLoad = dontDestoryOnLoad;
 
 			components.Remove(components.Find(x => x is Transform)); // remove transform to make sure there aren't two transforms (prefab case)
-			components.Add(transform); // the spot is added afterwards to components to ensure the gameobject having a transform
+			components.Add(transform); // the transform is added afterwards to components to ensure the gameobject having a transform
 		}
 
 		public List<T1> GetAllComponents<T1>() where T1 : Component
@@ -146,7 +147,7 @@ namespace VeiniaFramework
 				components.Clear();
 				isDestroyed = true;
 				isStatic = false;
-				if (body != null) Globals.physicsWorld.Remove(body);
+				if (body != null && Globals.physicsWorld.BodyList.Contains(body)) Globals.physicsWorld.Remove(body);
 			}
 		}
 

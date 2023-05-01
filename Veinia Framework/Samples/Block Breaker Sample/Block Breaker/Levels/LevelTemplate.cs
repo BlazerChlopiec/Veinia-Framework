@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using tainicom.Aether.Physics2D.Dynamics;
 
 namespace VeiniaFramework.BlockBreaker
 {
@@ -18,31 +19,34 @@ namespace VeiniaFramework.BlockBreaker
 			base.CreateScene();
 
 
-			//GameObject leftBorder = Instantiate(
-			//	new Transform(-Vector2.UnitX * 9.7f),
-			//	new List<Component>
-			//	{
-			//		new RectangleCollider(Vector2.Zero, new Vector2(.3f, 10))
-			//	}, isStatic: true);
-			//GameObject rightBorder = Instantiate(
-			//	new Transform(Vector2.UnitX * 9.7f),
-			//	new List<Component>
-			//	{
-			//		new RectangleCollider(Vector2.Zero, new Vector2(.3f, 10))
-			//	}, isStatic: true);
-			//GameObject topBorder = Instantiate(
-			//	new Transform(Vector2.UnitY * 5.5f),
-			//	new List<Component>
-			//	{
-			//		new RectangleCollider(Vector2.Zero, new Vector2(19f, .3f)),
-			//	}, isStatic: true);
-			//GameObject bottomBorder = Instantiate(
-			//	new Transform(Vector2.UnitY * -5.5f),
-			//	new List<Component>
-			//	{
-			//		new GameOverBorder(),
-			//		new RectangleCollider(Vector2.Zero, new Vector2(19f, .3f)),
-			//	}, isStatic: true);
+			GameObject leftBorder = Instantiate(
+				new Transform(-Vector2.UnitX * 9.7f),
+				new List<Component>
+				{
+				}, isStatic: true);
+			leftBorder.body = Globals.physicsWorld.CreateRectangle(.3f, 10, 1f, bodyType: BodyType.Static);
+
+			GameObject rightBorder = Instantiate(
+				new Transform(Vector2.UnitX * 9.7f),
+				new List<Component>
+				{
+				}, isStatic: true);
+			rightBorder.body = Globals.physicsWorld.CreateRectangle(.3f, 10, 1f, bodyType: BodyType.Static);
+
+			GameObject topBorder = Instantiate(
+				new Transform(Vector2.UnitY * 5.5f),
+				new List<Component>
+				{
+				}, isStatic: true);
+			topBorder.body = Globals.physicsWorld.CreateRectangle(19f, .3f, 1f, bodyType: BodyType.Static);
+
+			GameObject bottomBorder = Instantiate(
+				new Transform(Vector2.UnitY * -5.5f),
+				new List<Component>
+				{
+					new GameOverBorder(),
+				}, isStatic: true);
+			bottomBorder.body = Globals.physicsWorld.CreateRectangle(19f, .3f, 1f, bodyType: BodyType.Static);
 
 
 
