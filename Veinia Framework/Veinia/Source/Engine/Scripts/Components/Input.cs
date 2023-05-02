@@ -36,6 +36,9 @@ namespace VeiniaFramework
 		public float deltaScroll { get; private set; }
 		float currentScroll;
 
+		public float mouseX { get; private set; }
+		public float mouseY { get; private set; }
+
 
 		public void Update()
 		{
@@ -63,7 +66,8 @@ namespace VeiniaFramework
 			if (GetPressedButton(gamepad) != 0 && keyboard.GetPressedKeys().Length < 1) { currentDevice = Device.x360; }
 			if (keyboard.GetPressedKeys().Length >= 1 && GetPressedButton(gamepad) == 0) { currentDevice = Device.keyboard; }
 
-			//Debug.WriteLine(currentDevice);
+			mouseX = (mouse.X - oldMouse.X);
+			mouseY = -(mouse.Y - oldMouse.Y);
 
 			MakeAxis(); // create horizontal & vertical
 		}
