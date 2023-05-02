@@ -8,7 +8,7 @@
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
-    <RootNamespace>Veinia.BlockBreaker</RootNamespace>
+    <RootNamespace>VeiniaFramework.Samples.BlockBreaker</RootNamespace>
     <AssemblyName>Block Breaker Sample</AssemblyName>
   </PropertyGroup>
   <ItemGroup>

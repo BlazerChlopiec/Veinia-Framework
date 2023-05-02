@@ -8,8 +8,8 @@
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
-    <RootNamespace>Veinia.RunningBlocks</RootNamespace>
-    <AssemblyName>Running Blocks Sample</AssemblyName>
+    <RootNamespace>VeiniaFramework.Samples.Physics</RootNamespace>
+    <AssemblyName>Physics Sample</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Icon.ico" />
@@ -20,7 +20,7 @@
     <EmbeddedResource Include="Icon.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <MonoGameContentReference Include="Running Blocks\Content\Content.mgcb" />
+    <MonoGameContentReference Include="Physics\Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
     <TrimmerRootAssembly Include="Microsoft.Xna.Framework.Content.ContentTypeReader" Visible="false" />
@@ -31,6 +31,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Veinia\Veinia.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="LevelData\Level1.veinia">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 	<Target Name="RestoreDotnetTools" BeforeTargets="Restore">
 		<Message Text="Restoring dotnet tools" Importance="High" />

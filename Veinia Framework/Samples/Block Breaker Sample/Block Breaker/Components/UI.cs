@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 
-namespace VeiniaFramework.BlockBreaker
+namespace VeiniaFramework.Samples.BlockBreaker
 {
 	public class UI : Component
 	{

@@ -1,7 +1,7 @@
 ﻿using tainicom.Aether.Physics2D.Dynamics;
 using tainicom.Aether.Physics2D.Dynamics.Contacts;
 
-namespace VeiniaFramework.BlockBreaker
+namespace VeiniaFramework.Samples.BlockBreaker
 {
 	public class GameOverBorder : Component
 	{

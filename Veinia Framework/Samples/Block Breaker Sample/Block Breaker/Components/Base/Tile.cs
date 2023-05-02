@@ -2,7 +2,7 @@
 using MonoGame.Extended.Tweening;
 using tainicom.Aether.Physics2D.Dynamics;
 
-namespace VeiniaFramework.BlockBreaker
+namespace VeiniaFramework.Samples.BlockBreaker
 {
 	public class Tile : Component
 	{

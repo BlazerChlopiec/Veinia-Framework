@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using MonoGame.Extended.Tweening;
 
-namespace VeiniaFramework.BlockBreaker
+namespace VeiniaFramework.Samples.BlockBreaker
 {
 	public class Transition : Component
 	{

@@ -1,7 +1,7 @@
 ﻿using tainicom.Aether.Physics2D.Dynamics;
 using tainicom.Aether.Physics2D.Dynamics.Contacts;
 
-namespace VeiniaFramework.Platformer
+namespace VeiniaFramework.Samples.Platformer
 {
 	public class Collectible : Component
 	{

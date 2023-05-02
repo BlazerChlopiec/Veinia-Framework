@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using tainicom.Aether.Physics2D.Dynamics;
 
-namespace VeiniaFramework.Platformer
+namespace VeiniaFramework.Samples.Platformer
 {
 	public class PlatformerPrefabs : PrefabManager
 	{
@@ -26,9 +26,11 @@ namespace VeiniaFramework.Platformer
 					new Sprite(collectible.Value, .3f, Color.White, pixelsPerUnit: 16),
 					new Collectible()
 				}, isStatic: false);
+
 				prefab.body = Globals.physicsWorld.CreateRectangle(.5f, .5f, 1, bodyType: BodyType.Static);
 				prefab.body.SetIsSensor(true);
 				prefab.body.Tag = "ground";
+				prefab.body.Enabled = false;
 
 				Add(collectible.Key, prefab, prefabTab: 1);
 			}
@@ -40,8 +42,10 @@ namespace VeiniaFramework.Platformer
 				{
 					new Sprite(grassTile.Value, .6f, Color.White, pixelsPerUnit: 16),
 				}, isStatic: true);
+
 				prefab.body = Globals.physicsWorld.CreateRectangle(1, 1, 1, bodyType: BodyType.Static);
 				prefab.body.Tag = "ground";
+				prefab.body.Enabled = false;
 
 				Add(grassTile.Key, prefab, prefabTab: 2);
 			}
@@ -53,8 +57,10 @@ namespace VeiniaFramework.Platformer
 				{
 					new Sprite(woodTile.Value, .2f, Color.White, pixelsPerUnit: 16),
 				}, isStatic: true);
+
 				prefab.body = Globals.physicsWorld.CreateRectangle(1, 1, 1, bodyType: BodyType.Static);
 				prefab.body.Tag = "ground";
+				prefab.body.Enabled = false;
 
 				Add(woodTile.Key, prefab, prefabTab: 2);
 			}
@@ -66,8 +72,10 @@ namespace VeiniaFramework.Platformer
 				{
 					new Sprite(brick.Value, .1f, Color.White, pixelsPerUnit: 16),
 				}, isStatic: true);
+
 				prefab.body = Globals.physicsWorld.CreateRectangle(1, 1, 1, bodyType: BodyType.Static);
 				prefab.body.Tag = "ground";
+				prefab.body.Enabled = false;
 
 				Add(brick.Key, prefab, prefabTab: 3);
 			}

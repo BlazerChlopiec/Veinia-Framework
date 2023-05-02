@@ -2,9 +2,9 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace VeiniaFramework.RunningBlocks
+namespace VeiniaFramework.Samples.Physics
 {
-	public class RunningBlocksGame : Game
+	public class PhysicsGame : Game
 	{
 		private GraphicsDeviceManager graphics;
 		private SpriteBatch spriteBatch;
@@ -12,7 +12,7 @@ namespace VeiniaFramework.RunningBlocks
 		Veinia veinia;
 
 
-		public RunningBlocksGame()
+		public PhysicsGame()
 		{
 			graphics = new GraphicsDeviceManager(this);
 			Content.RootDirectory = "Content";
@@ -27,10 +27,10 @@ namespace VeiniaFramework.RunningBlocks
 		{
 			spriteBatch = new SpriteBatch(GraphicsDevice);
 
-			var prefabs = new RunningBlocksPrefabs();
+			var prefabs = new PhysicsPrefabs();
 
 			veinia.Initialize(GraphicsDevice, Content, Window,
-				unitSize: 100, collisionRectScreenSize: 10000, new Vector2(1920, 1080), prefabs, fullscreen: true);
+				unitSize: 100, new Vector2(1280, 720), Vector2.UnitY * -9.81f, prefabs, fullscreen: false);
 
 			Globals.loader.storedLevels.Add(new StoredLevel { storedLevelType = typeof(LevelTemplate), storedLevelPath = "Level1.veinia" });
 			Globals.loader.StoredLevelLoad(index: 0);

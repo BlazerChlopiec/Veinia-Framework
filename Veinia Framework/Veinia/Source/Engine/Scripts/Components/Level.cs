@@ -68,6 +68,7 @@ namespace VeiniaFramework
 		public GameObject Instantiate(Transform transform, List<Component> components, Body body = default, bool isStatic = false, bool dontDestroyOnLoad = false)
 		{
 			var sampleBody = body == null ? null : body.DeepClone();
+			if (sampleBody != null) sampleBody.Enabled = true;
 			GameObject sample = new GameObject(transform, components, sampleBody, isStatic, dontDestroyOnLoad);
 			sample.level = this;
 
@@ -87,6 +88,7 @@ namespace VeiniaFramework
 		public GameObject Instantiate(Transform transform, GameObject prefab)
 		{
 			var sampleBody = prefab.body == null ? null : prefab.body.DeepClone();
+			if (sampleBody != null) sampleBody.Enabled = true;
 			GameObject sample = new GameObject(transform, prefab.components.Clone(), sampleBody, prefab.isStatic, prefab.dontDestroyOnLoad);
 			sample.level = this;
 
@@ -106,6 +108,7 @@ namespace VeiniaFramework
 		public GameObject Instantiate(GameObject prefab)
 		{
 			var sampleBody = prefab.body == null ? null : prefab.body.DeepClone();
+			if (sampleBody != null) sampleBody.Enabled = true;
 			GameObject sample = new GameObject(prefab.transform, prefab.components.Clone(), sampleBody, prefab.isStatic, prefab.dontDestroyOnLoad);
 			sample.level = this;
 
@@ -118,7 +121,6 @@ namespace VeiniaFramework
 				item.level = sample.level;
 				if (firstFrameCreated) item.Initialize();
 			}
-
 			scene.Add(sample);
 			return sample;
 		}
@@ -279,6 +281,7 @@ namespace VeiniaFramework
 				if (!item.dontDestroyOnLoad)
 					item.DestroyGameObject();
 			}
+			Globals.physicsWorld.Clear();
 		}
 	}
 }

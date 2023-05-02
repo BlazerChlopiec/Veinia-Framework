@@ -5,7 +5,7 @@ using MonoGame.Extended.Tweening;
 using System;
 using VeiniaFramework.Editor;
 
-namespace VeiniaFramework.BlockBreaker
+namespace VeiniaFramework.Samples.BlockBreaker
 {
 	public class MovingBlock : Tile, IDrawGizmos
 	{

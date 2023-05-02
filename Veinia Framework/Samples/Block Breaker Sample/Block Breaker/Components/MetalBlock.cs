@@ -1,6 +1,4 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-
-namespace VeiniaFramework.BlockBreaker
+﻿namespace VeiniaFramework.Samples.BlockBreaker
 {
 	public class MetalBlock : Tile
 	{

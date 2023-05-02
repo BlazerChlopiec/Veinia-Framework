@@ -8,7 +8,7 @@
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
-    <RootNamespace>Veinia.Platformer</RootNamespace>
+    <RootNamespace>VeiniaFramework.Samples.Platformer</RootNamespace>
     <AssemblyName>Platformer Sample</AssemblyName>
   </PropertyGroup>
   <ItemGroup>

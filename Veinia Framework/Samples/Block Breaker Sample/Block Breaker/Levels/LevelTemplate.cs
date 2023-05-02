@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using tainicom.Aether.Physics2D.Dynamics;
 
-namespace VeiniaFramework.BlockBreaker
+namespace VeiniaFramework.Samples.BlockBreaker
 {
 	public class LevelTemplate : Level
 	{

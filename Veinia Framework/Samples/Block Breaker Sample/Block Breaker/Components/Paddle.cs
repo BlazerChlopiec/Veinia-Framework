@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using tainicom.Aether.Physics2D.Dynamics;
 
-namespace VeiniaFramework.BlockBreaker
+namespace VeiniaFramework.Samples.BlockBreaker
 {
 	public class Paddle : Component
 	{
