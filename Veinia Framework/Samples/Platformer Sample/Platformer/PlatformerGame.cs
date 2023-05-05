@@ -28,9 +28,10 @@ namespace VeiniaFramework.Samples.Platformer
 			spriteBatch = new SpriteBatch(GraphicsDevice);
 
 			var prefabs = new PlatformerPrefabs();
+			var screen = new Screen(1280, 720, false);
 
-			veinia.Initialize(GraphicsDevice, Content, Window,
-				unitSize: 100, new Vector2(1280, 720), Vector2.UnitY * -20, prefabs, fullscreen: false);
+			veinia.Initialize(GraphicsDevice, Content, Window, screen,
+					unitSize: 100, Vector2.UnitY * -20, prefabs);
 
 			Globals.loader.storedLevels.Add(new StoredLevel { storedLevelType = typeof(Level), storedLevelPath = "Level1.veinia" });
 			Globals.loader.StoredLevelLoad(index: 0);

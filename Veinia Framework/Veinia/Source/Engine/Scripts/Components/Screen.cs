@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace VeiniaFramework
 {
@@ -7,18 +6,20 @@ namespace VeiniaFramework
 	{
 		public int width { get; private set; }
 		public int height { get; private set; }
+		public bool fullscreen { get; private set; }
 		public Vector2 Resolution => new Vector2(width, height);
 
 
-		public Screen(int width, int height)
+		public Screen(int width, int height, bool fullscreen)
 		{
 			this.width = width;
 			this.height = height;
+			this.fullscreen = fullscreen;
 
 			UpdateChanges();
 		}
 
-		public void SetSize(int X, int Y)
+		public void SetResolution(int X, int Y)
 		{
 			width = X;
 			height = Y;
@@ -26,10 +27,23 @@ namespace VeiniaFramework
 			UpdateChanges();
 		}
 
+		public void SetFullscreen(bool fullscreen)
+		{
+			this.fullscreen = fullscreen;
+			UpdateChanges();
+		}
+
+		public void ToggleFullscreen()
+		{
+			fullscreen = !fullscreen;
+			UpdateChanges();
+		}
+
 		private void UpdateChanges()
 		{
 			Globals.graphicsManager.PreferredBackBufferWidth = width;
 			Globals.graphicsManager.PreferredBackBufferHeight = height;
+			Globals.graphicsManager.IsFullScreen = fullscreen;
 			Globals.graphicsManager.ApplyChanges();
 
 			Globals.viewportAdapter?.Reset();
