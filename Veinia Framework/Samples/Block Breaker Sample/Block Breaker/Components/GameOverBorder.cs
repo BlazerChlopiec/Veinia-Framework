@@ -5,10 +5,12 @@ namespace VeiniaFramework.Samples.BlockBreaker
 {
 	public class GameOverBorder : Component
 	{
-		public override void OnCollide(Fixture sender, Fixture other, Contact contact)
+		public override bool OnCollide(Fixture sender, Fixture other, Contact contact)
 		{
 			var tag = (Ball)other.Body.Tag;
 			if (tag != null) FindComponentOfType<UI>().ShowLoseScreen();
+
+			return true;
 		}
 	}
 }

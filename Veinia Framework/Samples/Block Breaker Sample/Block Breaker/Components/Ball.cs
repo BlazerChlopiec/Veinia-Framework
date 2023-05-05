@@ -35,10 +35,10 @@ namespace VeiniaFramework.Samples.BlockBreaker
 			}
 		}
 
-		public override void OnCollide(Fixture sender, Fixture other, Contact contact)
+		public override bool OnCollide(Fixture sender, Fixture other, Contact contact)
 		{
 			var tag = (Tile)other.Body.Tag;
-			if (tag == null) return;
+			if (tag == null) return true;
 			tag.Hit();
 
 			Globals.tweener.TweenTo(target: transform, expression: transform => transform.scale, toValue: new Vector2(1.3f, 1f), duration: .01f)
@@ -49,6 +49,7 @@ namespace VeiniaFramework.Samples.BlockBreaker
 					.Easing(EasingFunctions.BackInOut);
 				});
 
+			return true;
 			//if (Math.Abs(contact..Y) > Math.Abs(collisionInfo.PenetrationVector.X))
 			//{
 			//	//touched Y

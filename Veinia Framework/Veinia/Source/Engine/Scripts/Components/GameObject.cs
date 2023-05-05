@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using tainicom.Aether.Physics2D.Dynamics;
 using tainicom.Aether.Physics2D.Dynamics.Contacts;
 
@@ -102,9 +103,11 @@ namespace VeiniaFramework
 
 		private bool OnCollision(Fixture sender, Fixture other, Contact contact)
 		{
+			bool[] temp = new bool[components.Count];
 			foreach (var component in components)
-				component.OnCollide(sender, other, contact);
-			return true;
+				temp[components.IndexOf(component)] = component.OnCollide(sender, other, contact);
+
+			return temp.Min();
 		}
 
 		public void RemoveComponent(Component component)

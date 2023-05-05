@@ -54,12 +54,14 @@ namespace VeiniaFramework.Samples.Platformer
 			Globals.camera.Zoom = 1f - smoothZoom;
 		}
 
-		public override void OnCollide(Fixture sender, Fixture other, Contact contact)
+		public override bool OnCollide(Fixture sender, Fixture other, Contact contact)
 		{
-			if (sender != groundCheck) return;
+			if (sender != groundCheck) return true;
 			var tag = (string)other.Body.Tag;
 			if (tag == "ground")
 				isTouchingGround = true;
+
+			return true;
 		}
 	}
 }

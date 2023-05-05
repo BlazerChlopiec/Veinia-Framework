@@ -19,7 +19,7 @@ namespace VeiniaFramework
 		public virtual void Initialize() { }
 		public virtual void Update() { }
 		public virtual void LateUpdate() { }
-		public virtual void OnCollide(Fixture sender, Fixture other, Contact contact) { }
+		public virtual bool OnCollide(Fixture sender, Fixture other, Contact contact) => true;
 		public virtual void OnSeparate(Fixture sender, Fixture other, Contact contact) { }
 		public T1 FindComponentOfType<T1>() where T1 : Component => level.FindComponentOfType<T1>();
 		public List<T1> FindComponentsOfType<T1>() where T1 : Component => level.FindComponentsOfType<T1>();
