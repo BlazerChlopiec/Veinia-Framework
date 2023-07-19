@@ -68,7 +68,7 @@ namespace VeiniaFramework
 		{
 			Vector2 pos;
 			Vector2 colliderPos;
-			Vector2 size = new Vector2(Globals.camera.BoundingRectangle.Width, Globals.camera.BoundingRectangle.Height) * 3f;
+			Vector2 size = new Vector2(Globals.camera.ViewRect.Width, Globals.camera.ViewRect.Height) * 3f;
 			public Chunk(Vector2 pos)
 			{
 				colliderPos = Transform.WorldToScreenPos(pos) - colliderSize / 2;

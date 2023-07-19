@@ -243,6 +243,6 @@ namespace VeiniaFramework
 		#endregion
 
 		public Vector2 GetMouseScreenPosition() => Globals.camera.ScreenToWorld(mouse.Position.ToVector2());
-		public Vector2 GetMouseWorldPosition() => Transform.ScreenToWorldPos(Globals.camera.ScreenToWorld(mouse.Position.ToVector2()));
+		public Vector2 GetMouseWorldPosition() => Transform.ScreenToWorldPos(mouse.Position.ToVector2());
 	}
 }

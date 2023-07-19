@@ -24,14 +24,13 @@ namespace VeiniaFramework.Samples.Platformer
 			groundCheck = body.CreateRectangle(.9f, .1f, 1f, Vector2.UnitY * -.5f);
 			groundCheck.IsSensor = true;
 
-			Globals.camera.SetPosition(transform.position);
+			Globals.camera.XY = transform.position;
 		}
 
 		float smoothZoom;
 		float smoothHorizontal;
 		public override void Update()
 		{
-			Say.Line(isTouchingGround);
 			smoothHorizontal = MathHelper.Lerp(smoothHorizontal, Globals.input.horizontal, accelerationSpeed * Time.deltaTime);
 			body.LinearVelocity = new Vector2(smoothHorizontal * speed, body.LinearVelocity.Y);
 
@@ -51,7 +50,7 @@ namespace VeiniaFramework.Samples.Platformer
 			float zoomAmount = 7;
 			float zoomSpeed = .8f;
 			smoothZoom = MathHelper.Lerp(smoothZoom, (MathF.Abs(smoothHorizontal) / zoomAmount), zoomSpeed * Time.deltaTime);
-			Globals.camera.Zoom = 1f - smoothZoom;
+			Globals.camera.Scale = Vector2.One * (1f - smoothZoom);
 		}
 
 		public override bool OnCollide(Fixture sender, Fixture other, Contact contact)

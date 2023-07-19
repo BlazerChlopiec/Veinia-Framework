@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Apos.Camera;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
@@ -24,24 +25,23 @@ namespace VeiniaFramework
 			}
 		}
 
-		public static void LerpTo(this OrthographicCamera camera, Vector2 worldPos, float lerpT)
+		public static void LerpTo(this Camera camera, Vector2 worldPos, float lerpT)
 		{
-			Globals.camera.Position = Vector2.Lerp(camera.Position, Transform.ToScreenUnits(worldPos),
-													lerpT * Time.deltaTime);
+			camera.SetPosition(Vector2.Lerp(camera.GetPosition(), worldPos, lerpT * Time.deltaTime));
 		}
 
-		public static void SetPosition(this OrthographicCamera camera, Vector2 worldPos) => camera.Position = Transform.ToScreenUnits(worldPos);
-		public static Vector2 GetPosition(this OrthographicCamera camera) => Transform.ToWorldUnits(camera.Position);
-		public static float GetScaleX(this OrthographicCamera camera)
+		public static void SetPosition(this Camera camera, Vector2 worldPos) => camera.XY = Transform.ToScreenUnits(worldPos);
+		public static Vector2 GetPosition(this Camera camera) => Transform.ToWorldUnits(camera.XY);
+		public static float GetScaleX(this Camera camera)
 		{
-			var left = Transform.ScreenToWorldPos(camera.BoundingRectangle.Left, 0);
-			var right = Transform.ScreenToWorldPos(camera.BoundingRectangle.Right, 0);
+			var left = Transform.ScreenToWorldPos(camera.ViewRect.Left, 0);
+			var right = Transform.ScreenToWorldPos(camera.ViewRect.Right, 0);
 			return right.X - left.X;
 		}
-		public static float GetScaleY(this OrthographicCamera camera)
+		public static float GetScaleY(this Camera camera)
 		{
-			var bottom = Transform.ScreenToWorldPos(0, camera.BoundingRectangle.Bottom);
-			var top = Transform.ScreenToWorldPos(0, camera.BoundingRectangle.Top);
+			var bottom = Transform.ScreenToWorldPos(0, camera.ViewRect.Bottom);
+			var top = Transform.ScreenToWorldPos(0, camera.ViewRect.Top);
 			return top.Y - bottom.Y;
 		}
 		public static Rectangle OffsetByHalf(this Rectangle rect, float xOffset = 0, float yOffset = 0, float shrink = 0)
@@ -119,6 +119,10 @@ namespace VeiniaFramework
 		public static Vector2 Round(this Vector2 vector, int decimalDigits)
 		{
 			return new Vector2((float)Math.Round(vector.X, decimalDigits), (float)Math.Round(vector.Y, decimalDigits));
+		}
+		public static Vector2 FlipY(this Vector2 vector)
+		{
+			return new Vector2(vector.X, -vector.Y);
 		}
 		public static Dictionary<string, T1> LoadAll<T1>(this ContentManager content, string contentFolder)
 		{

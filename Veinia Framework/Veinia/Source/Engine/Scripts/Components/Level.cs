@@ -32,7 +32,9 @@ namespace VeiniaFramework
 		public virtual void CreateScene(bool loadObjectsFromPath = true)
 		{
 			Globals.camera.SetPosition(Vector2.Zero);
-			Globals.camera.Zoom = 1;
+			Globals.camera.Scale = Vector2.One;
+			Globals.camera.Rotation = 0;
+
 			Globals.myraDesktop.Root = Myra;
 
 			UserInterface.Active.ShowCursor = false;

@@ -15,8 +15,6 @@ namespace VeiniaFramework.Editor
 			// the gameObjects shouldn't be loaded as usual because later we only load their sprites
 			base.CreateScene(loadObjectsFromPath: false);
 
-
-
 			/* KEYBOARD BINDINGS
 			 * 
 			 * Toolbar Swap - 1-10
@@ -31,6 +29,8 @@ namespace VeiniaFramework.Editor
 			 */
 
 			UserInterface.Active.ShowCursor = false;
+
+			EditorCheckboxes.Add("Debug Draw", defaultValue: Globals.debugDraw, (e, o) => { Globals.debugDraw = true; }, (e, o) => { Globals.debugDraw = false; });
 
 			GameObject systems = Instantiate(Transform.Empty, new List<Component>
 			{

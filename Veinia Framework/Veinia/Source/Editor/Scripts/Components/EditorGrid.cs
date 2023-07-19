@@ -18,14 +18,31 @@ namespace VeiniaFramework.Editor
 		{
 			if (hideGrid) return;
 
-			var left = Transform.ScreenToWorldPos(Globals.camera.BoundingRectangle.Left, 0);
-			var right = Transform.ScreenToWorldPos(Globals.camera.BoundingRectangle.Right, 0);
+			var camera = Globals.camera;
+			var unit = Transform.unitSize;
+
+			//Say.Line(Globals.camera.GetScaleX() + "   " + Globals.camera.GetScaleY());
+			//camera.ViewRect.Center
+			var rect = camera.GetViewRect();
+
+			var test = Transform.ScreenToWorldPos(Globals.camera.ViewRect.Left, Globals.camera.ViewRect.Bottom);
+
+			var currentWorldRectRounded = Transform.WorldToScreenPos(MathF.Round(test.X), MathF.Round(test.Y));
+
+
+			sb.DrawRectangle(new RectangleF(currentWorldRectRounded.X, currentWorldRectRounded.Y,
+			unit, unit).OffsetByHalf(), Color.White, 2, layerDepth: 1);
+		}
+		private void OldGrid(SpriteBatch sb)
+		{
+
+			var left = Transform.ScreenToWorldPos(Globals.camera.ViewRect.Left, 0);
+			var right = Transform.ScreenToWorldPos(Globals.camera.ViewRect.Right, 0);
 			int horizontalDifference = (int)MathF.Round(left.X) - (int)MathF.Round(right.X);
 
-			var bottom = Transform.ScreenToWorldPos(0, Globals.camera.BoundingRectangle.Bottom);
-			var top = Transform.ScreenToWorldPos(0, Globals.camera.BoundingRectangle.Top);
+			var bottom = Transform.ScreenToWorldPos(0, Globals.camera.ViewRect.Bottom);
+			var top = Transform.ScreenToWorldPos(0, Globals.camera.ViewRect.Top);
 			int verticalDifference = (int)MathF.Round(bottom.Y) - (int)MathF.Round(top.Y);
-
 
 			for (int x = 0; x < MathF.Abs(horizontalDifference) + 2; x++)
 			{
@@ -33,8 +50,8 @@ namespace VeiniaFramework.Editor
 				{
 					var size = Transform.unitSize;
 
-					var currentRect = Transform.ScreenToWorldPos(Globals.camera.BoundingRectangle.Left - Transform.unitSize + (x * Transform.unitSize),
-											 Globals.camera.BoundingRectangle.Bottom - (y * Transform.unitSize));
+					var currentRect = Transform.ScreenToWorldPos(Globals.camera.ViewRect.Left - Transform.unitSize + (x * Transform.unitSize),
+											 Globals.camera.ViewRect.Bottom - (y * Transform.unitSize));
 
 					var currentWorldRectRounded = Transform.WorldToScreenPos(MathF.Round(currentRect.X), MathF.Round(currentRect.Y));
 
@@ -43,6 +60,7 @@ namespace VeiniaFramework.Editor
 									size, size).OffsetByHalf(), Color.White * opacity, 2, layerDepth: .9f);
 				}
 			}
+
 		}
 	}
 }

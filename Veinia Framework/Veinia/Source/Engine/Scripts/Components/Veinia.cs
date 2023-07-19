@@ -1,13 +1,14 @@
-﻿using GeonBit.UI;
+﻿using Apos.Camera;
+using GeonBit.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using MonoGame.Extended;
 using MonoGame.Extended.ViewportAdapters;
 using Myra;
 using Myra.Graphics2D.UI;
 using System;
+using tainicom.Aether.Physics2D.Diagnostics;
 using tainicom.Aether.Physics2D.Dynamics;
 using VeiniaFramework.Editor;
 
@@ -17,6 +18,7 @@ namespace VeiniaFramework
 	{
 		Title title;
 		Game game;
+		DebugView debugView;
 
 
 		public Veinia(Game game, GraphicsDeviceManager graphicsManager)
@@ -33,14 +35,17 @@ namespace VeiniaFramework
 			#region Veinia
 			Transform.unitSize = unitSize;
 
+
 			Globals.loader = new Loader(prefabManager);
 			Globals.graphicsDevice = graphicsDevice;
 			Globals.content = content;
 			Globals.screen = screen;
 			Globals.viewportAdapter = new BoxingViewportAdapter(window, graphicsDevice, 1920, 1080);
-			Globals.camera = new OrthographicCamera(Globals.viewportAdapter);
+			Globals.camera = new Camera(new Apos.Camera.DensityViewport(graphicsDevice, window, 1920, 1080));
 			Globals.physicsWorld = new World(gravity);
 			title = new Title(window);
+			debugView = new DebugView(Globals.physicsWorld);
+			debugView.LoadContent(graphicsDevice, content);
 			#endregion
 
 			#region GeonBit.UI
@@ -114,11 +119,10 @@ namespace VeiniaFramework
 #endif
 			#endregion
 		}
-
 		public void Draw(SpriteBatch spriteBatch, SamplerState samplerState = null)
 		{
 			#region Veinia
-			spriteBatch.Begin(SpriteSortMode.FrontToBack, transformMatrix: Globals.camera.GetViewMatrix(), samplerState: samplerState);
+			spriteBatch.Begin(SpriteSortMode.FrontToBack, transformMatrix: Globals.camera.GetView(), samplerState: samplerState);
 			Globals.loader.current?.Draw(spriteBatch);
 			spriteBatch.End();
 			#endregion
@@ -132,9 +136,25 @@ namespace VeiniaFramework
 			#endregion
 
 			#region Veinia
-			spriteBatch.Begin(SpriteSortMode.FrontToBack, transformMatrix: Globals.camera.GetViewMatrix(), samplerState: samplerState);
+			spriteBatch.Begin(SpriteSortMode.FrontToBack, transformMatrix: Globals.camera.GetView(), samplerState: samplerState);
 			Globals.loader.current?.DrawAfterUI(spriteBatch);
 			spriteBatch.End();
+			#endregion
+
+			#region Aether.Physics
+
+			if (Globals.debugDraw)
+			{
+				float zScale = Globals.camera.ZToScale(Globals.camera.Z, 0);
+				var view = Globals.camera.VirtualViewport.Transform(
+					Matrix.CreateTranslation(-Globals.camera.X / Transform.unitSize, Globals.camera.Y / Transform.unitSize, 0f) *
+					Matrix.CreateRotationZ(-Globals.camera.Rotation) *
+					Matrix.CreateScale(Globals.camera.Scale.X, -Globals.camera.Scale.Y, 1f) *
+					Matrix.CreateScale(zScale, zScale, 1f) *
+					Matrix.CreateTranslation(new Vector3(Globals.camera.VirtualViewport.Origin, 0f)));
+
+				debugView.RenderDebugData(Globals.camera.GetProjection() * Matrix.CreateScale(Transform.unitSize, Transform.unitSize, Transform.unitSize), view);
+			}
 			#endregion
 		}
 	}

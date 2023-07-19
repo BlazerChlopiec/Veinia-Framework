@@ -1,7 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Apos.Camera;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended;
 using MonoGame.Extended.Tweening;
 using MonoGame.Extended.ViewportAdapters;
 using Myra.Graphics2D.UI;
@@ -11,6 +11,8 @@ namespace VeiniaFramework
 {
 	public class Globals
 	{
+		public static bool debugDraw;
+
 		public static Input input = new Input();
 		public static Tweener tweener = new Tweener();
 		public static Tweener unscaledTweener = new Tweener();
@@ -20,7 +22,7 @@ namespace VeiniaFramework
 		public static ContentManager content;
 		public static Screen screen;
 		public static FPS fps;
-		public static OrthographicCamera camera;
+		public static Camera camera;
 		public static World physicsWorld;
 		public static GameWindow window;
 		public static Desktop myraDesktop;

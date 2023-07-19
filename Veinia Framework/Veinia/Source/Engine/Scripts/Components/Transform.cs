@@ -51,16 +51,16 @@ namespace VeiniaFramework
 
 		public static Vector2 WorldToScreenPos(Vector2 world)
 		{
-			var unflippedScreen = world * unitSize + new Vector2(Globals.camera.Origin.X, -Globals.camera.Origin.Y);
+			var unflippedScreen = world * unitSize;
 			return new Vector2(unflippedScreen.X, -unflippedScreen.Y);
 		}
 		public static Vector2 WorldToScreenPos(float x, float y)
 		{
-			var unflippedScreen = new Vector2(x, y) * unitSize + new Vector2(Globals.camera.Origin.X, -Globals.camera.Origin.Y);
+			var unflippedScreen = new Vector2(x, y) * unitSize;
 			return new Vector2(unflippedScreen.X, -unflippedScreen.Y);
 		}
-		public static Vector2 ScreenToWorldPos(Vector2 screen) => (new Vector2(screen.X, -screen.Y) - new Vector2(Globals.camera.Origin.X, -Globals.camera.Origin.Y)) / unitSize;
-		public static Vector2 ScreenToWorldPos(float x, float y) => (new Vector2(x, -y) - new Vector2(Globals.camera.Origin.X, -Globals.camera.Origin.Y)) / unitSize;
+		public static Vector2 ScreenToWorldPos(Vector2 screen) => Globals.camera.ScreenToWorld(screen).FlipY() / unitSize;
+		public static Vector2 ScreenToWorldPos(float x, float y) => Globals.camera.ScreenToWorld(new Vector2(x, y)).FlipY() / unitSize;
 		public static Vector2 ToScreenUnits(Vector2 world) => world.SetY(world.Y * -1) * unitSize;
 		public static Vector2 ToWorldUnits(Vector2 screen) => screen.SetY(screen.Y * -1) / unitSize;
 		public static float ToScreenUnits(float world) => world * unitSize;
