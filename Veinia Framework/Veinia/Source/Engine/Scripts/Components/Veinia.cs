@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using MonoGame.Extended.ViewportAdapters;
 using Myra;
 using Myra.Graphics2D.UI;
 using System;
@@ -40,7 +39,7 @@ namespace VeiniaFramework
 			Globals.graphicsDevice = graphicsDevice;
 			Globals.content = content;
 			Globals.screen = screen;
-			Globals.viewportAdapter = new BoxingViewportAdapter(window, graphicsDevice, 1920, 1080);
+			//Globals.viewportAdapter = new BoxingViewportAdapter(window, graphicsDevice, 1920, 1080);
 			Globals.camera = new Camera(new Apos.Camera.DensityViewport(graphicsDevice, window, 1920, 1080));
 			Globals.physicsWorld = new World(gravity);
 			title = new Title(window);
@@ -63,12 +62,11 @@ namespace VeiniaFramework
 			Globals.myraDesktop.MouseInfoGetter = () =>
 			{
 				MouseInfo info = Globals.myraDesktop.DefaultMouseInfoGetter();
-				info.Position = (Mouse.GetState().Position.ToVector2() - new Vector2(Globals.viewportAdapter.Viewport.X, Globals.viewportAdapter.Viewport.Y)).ToPoint();
+				info.Position = Mouse.GetState().Position;
 				return info;
 			};
 
 			window.TextInput += (s, a) => Globals.myraDesktop.OnChar(a.Character);
-			window.AllowUserResizing = true;
 			Globals.myraDesktop.Render();
 			#endregion
 		}

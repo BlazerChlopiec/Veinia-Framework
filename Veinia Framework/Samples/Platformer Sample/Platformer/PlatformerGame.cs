@@ -17,6 +17,7 @@ namespace VeiniaFramework.Samples.Platformer
 			graphics = new GraphicsDeviceManager(this);
 			Content.RootDirectory = "Content";
 			IsMouseVisible = true;
+			Window.AllowUserResizing = false;
 
 			veinia = new Veinia(this, graphics);
 			Globals.fps.vSync(true);
