@@ -20,47 +20,25 @@ namespace VeiniaFramework.Editor
 
 			var camera = Globals.camera;
 			var unit = Transform.unitSize;
+			var size = camera.GetSize();
 
-			//Say.Line(Globals.camera.GetScaleX() + "   " + Globals.camera.GetScaleY());
-			//camera.ViewRect.Center
-			var rect = camera.GetViewRect();
-
-			var test = Transform.ScreenToWorldPos(Globals.camera.ViewRect.Left, Globals.camera.ViewRect.Bottom);
-
-			var currentWorldRectRounded = Transform.WorldToScreenPos(MathF.Round(test.X), MathF.Round(test.Y));
-
-
-			sb.DrawRectangle(new RectangleF(currentWorldRectRounded.X, currentWorldRectRounded.Y,
-			unit, unit).OffsetByHalf(), Color.White, 2, layerDepth: 1);
-		}
-		private void OldGrid(SpriteBatch sb)
-		{
-
-			var left = Transform.ScreenToWorldPos(Globals.camera.ViewRect.Left, 0);
-			var right = Transform.ScreenToWorldPos(Globals.camera.ViewRect.Right, 0);
-			int horizontalDifference = (int)MathF.Round(left.X) - (int)MathF.Round(right.X);
-
-			var bottom = Transform.ScreenToWorldPos(0, Globals.camera.ViewRect.Bottom);
-			var top = Transform.ScreenToWorldPos(0, Globals.camera.ViewRect.Top);
-			int verticalDifference = (int)MathF.Round(bottom.Y) - (int)MathF.Round(top.Y);
-
-			for (int x = 0; x < MathF.Abs(horizontalDifference) + 2; x++)
+			var leftBottom = Transform.WorldToScreenPos(Vector2.Round(camera.GetPosition() - Vector2.UnitX * (size.X / 2) - Vector2.UnitY * (size.Y / 2)) - Vector2.UnitX / 2);
+			for (int i = 0; i < MathF.Round(size.Y) + 1; i++)
 			{
-				for (int y = 0; y < MathF.Abs(verticalDifference) + 2; y++)
-				{
-					var size = Transform.unitSize;
-
-					var currentRect = Transform.ScreenToWorldPos(Globals.camera.ViewRect.Left - Transform.unitSize + (x * Transform.unitSize),
-											 Globals.camera.ViewRect.Bottom - (y * Transform.unitSize));
-
-					var currentWorldRectRounded = Transform.WorldToScreenPos(MathF.Round(currentRect.X), MathF.Round(currentRect.Y));
-
-
-					sb.DrawRectangle(new RectangleF(currentWorldRectRounded.X, currentWorldRectRounded.Y,
-									size, size).OffsetByHalf(), Color.White * opacity, 2, layerDepth: .9f);
-				}
+				var yOffset = (-Vector2.UnitY * unit * i) + -Vector2.UnitY * unit / 2;
+				var xOffset = (Vector2.UnitX * unit * (size.X + 1));
+				sb.DrawLine(leftBottom + yOffset, leftBottom + xOffset + yOffset, Color.White * opacity, 2, layerDepth: .9f);
 			}
+			//sb.DrawRectangle(new RectangleF(leftBottom.X, leftBottom.Y, unit, unit), Color.Red, 5, 1);
 
+			var rightTop = Transform.WorldToScreenPos(Vector2.Round(camera.GetPosition() + Vector2.UnitX * (size.X / 2) + Vector2.UnitY * (size.Y / 2)) + Vector2.UnitY / 2);
+			for (int i = 0; i < MathF.Round(size.X) + 1; i++)
+			{
+				var xOffset = (-Vector2.UnitX * unit * i) + -Vector2.UnitX * unit / 2;
+				var yOffset = (Vector2.UnitY * unit * (size.Y + 1));
+				sb.DrawLine(rightTop + xOffset, rightTop + xOffset + yOffset, Color.White * opacity, 2, layerDepth: .9f);
+			}
+			//sb.DrawRectangle(new RectangleF(rightTop.X, rightTop.Y, unit, unit), Color.Red, 5, 1);
 		}
 	}
 }

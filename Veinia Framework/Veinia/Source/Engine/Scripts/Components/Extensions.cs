@@ -32,17 +32,11 @@ namespace VeiniaFramework
 
 		public static void SetPosition(this Camera camera, Vector2 worldPos) => camera.XY = Transform.ToScreenUnits(worldPos);
 		public static Vector2 GetPosition(this Camera camera) => Transform.ToWorldUnits(camera.XY);
-		public static float GetScaleX(this Camera camera)
+		public static Vector2 GetSize(this Camera camera)
 		{
-			var left = Transform.ScreenToWorldPos(camera.ViewRect.Left, 0);
-			var right = Transform.ScreenToWorldPos(camera.ViewRect.Right, 0);
-			return right.X - left.X;
-		}
-		public static float GetScaleY(this Camera camera)
-		{
-			var bottom = Transform.ScreenToWorldPos(0, camera.ViewRect.Bottom);
-			var top = Transform.ScreenToWorldPos(0, camera.ViewRect.Top);
-			return top.Y - bottom.Y;
+			var a = new Vector2(camera.ViewRect.Left, camera.ViewRect.Bottom);
+			var b = new Vector2(camera.ViewRect.Right, camera.ViewRect.Top);
+			return Transform.ScreenToWorldPos(b - a);
 		}
 		public static Rectangle OffsetByHalf(this Rectangle rect, float xOffset = 0, float yOffset = 0, float shrink = 0)
 		{
