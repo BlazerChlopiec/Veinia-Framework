@@ -1,18 +1,73 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended;
+using MonoGame.Extended.Particles;
+using MonoGame.Extended.Particles.Modifiers;
+using MonoGame.Extended.Particles.Modifiers.Interpolators;
+using MonoGame.Extended.Particles.Profiles;
+using MonoGame.Extended.TextureAtlases;
 using MonoGame.Extended.Tweening;
+using System;
+using System.Collections.Generic;
 using tainicom.Aether.Physics2D.Dynamics;
 
 namespace VeiniaFramework.Samples.BlockBreaker
 {
-	public class Tile : Component
+	public class Tile : Component, IDrawn
 	{
 		protected bool hasBeenDestroyed;
+
+		ParticleEffect particles;
 
 
 		public override void Initialize()
 		{
 			body = Globals.physicsWorld.CreateRectangle(1, 1, 1, bodyType: BodyType.Kinematic);
 			body.Tag = this;
+
+			var texture = new Texture2D(Globals.graphicsDevice, 1, 1);
+			texture.SetData(new[] { Color.White });
+
+			particles = new ParticleEffect()
+			{
+				Position = transform.screenPos,
+				Emitters = new List<ParticleEmitter>
+				{
+					new ParticleEmitter(new TextureRegion2D(texture), 500, TimeSpan.FromSeconds(1),
+						Profile.BoxUniform(100,100))
+					{
+						AutoTrigger=false,
+						Parameters = new ParticleReleaseParameters
+						{
+							Speed = new Range<float>(30, 70),
+							Rotation = new Range<float>(-1f, 1f),
+							Scale = new Range<float>(10, 20),
+							Quantity = 15,
+						},
+						Modifiers =
+						{
+							new AgeModifier
+							{
+								Interpolators =
+								{
+									new ColorInterpolator
+									{
+										StartValue = new HslColor(0.33f, 0.5f, 0.5f),
+										EndValue = new HslColor(0.5f, 0.9f, 1.0f)
+									},
+									new OpacityInterpolator
+									{
+										StartValue = 1,
+										EndValue = 0,
+									}
+								}
+							},
+							new RotationModifier {RotationRate = -2.1f},
+							new LinearGravityModifier {Direction = -Vector2.UnitY, Strength = 130},
+						}
+					}
+				},
+			};
 		}
 
 		public virtual void Hit()
@@ -27,6 +82,7 @@ namespace VeiniaFramework.Samples.BlockBreaker
 			UI.progressBar.Value--;
 
 			GetComponent<Sprite>().layer = 1;
+			particles.Trigger(transform.screenPos, 1);
 
 			Globals.tweener.TweenTo(target: transform, expression: transform => transform.rotation, toValue: -10, duration: .2f)
 				.Easing(EasingFunctions.BackIn);
@@ -43,5 +99,9 @@ namespace VeiniaFramework.Samples.BlockBreaker
 					}
 				});
 		}
+
+		public override void Update() => particles.Update(Time.deltaTime);
+
+		public void Draw(SpriteBatch sb) => sb.Draw(particles);
 	}
 }
