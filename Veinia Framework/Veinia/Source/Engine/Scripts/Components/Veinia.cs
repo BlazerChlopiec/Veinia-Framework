@@ -83,6 +83,9 @@ namespace VeiniaFramework
 
 			Globals.unscaledTweener.Update(Time.unscaledDeltaTime);
 
+			Globals.particleWorld.Update();
+			Say.Line(Globals.particleWorld.ParticlesCount);
+
 			if (!Time.stop)
 			{
 				Globals.tweener.Update(Time.deltaTime);
@@ -122,6 +125,7 @@ namespace VeiniaFramework
 			#region Veinia
 			spriteBatch.Begin(SpriteSortMode.FrontToBack, transformMatrix: Globals.camera.GetView(), samplerState: samplerState);
 			Globals.loader.current?.Draw(spriteBatch);
+			Globals.particleWorld.Draw(spriteBatch);
 			spriteBatch.End();
 			#endregion
 

@@ -1,6 +1,6 @@
 TODO:
 - remake the chunk system (finish ExecuteUpdateWhenCulled)
-- (work around currently Time.StopForFrames()) when the game is loading it freezes but the gravity seems to still be increasing, the same is true for dragging a window
+- (workaround currently Time.StopForFrames()) when the game is loading it freezes but the gravity seems to still be increasing, the same is true for dragging a window
 - (GeonBit.UI, maybe?) anchors break out the animation
 - (GeonBit.UI, maybe?) images dont scale with GlobalScale
 - (maybe?) rework the loader (merge it with level.cs?) to reduce global classes
@@ -18,11 +18,9 @@ Editor:
 
 
 Goals:
-- aether physics implementation
 - optimisation
 - audio (library with volume and pitch)
 - penumbra lights
 - sprite animation
-- particles
 - Spritesheet Prefab Loading
 - (maybe?) improve different gamepad support

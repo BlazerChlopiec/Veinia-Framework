@@ -16,6 +16,7 @@ namespace VeiniaFramework
 		public static Input input = new Input();
 		public static Tweener tweener = new Tweener();
 		public static Tweener unscaledTweener = new Tweener();
+		public static ParticleWorld particleWorld = new ParticleWorld();
 		public static Loader loader;
 		public static GraphicsDeviceManager graphicsManager;
 		public static GraphicsDevice graphicsDevice;

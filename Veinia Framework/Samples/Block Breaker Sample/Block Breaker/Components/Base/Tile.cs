@@ -13,7 +13,7 @@ using tainicom.Aether.Physics2D.Dynamics;
 
 namespace VeiniaFramework.Samples.BlockBreaker
 {
-	public class Tile : Component, IDrawn
+	public class Tile : Component
 	{
 		protected bool hasBeenDestroyed;
 
@@ -28,21 +28,20 @@ namespace VeiniaFramework.Samples.BlockBreaker
 			var texture = new Texture2D(Globals.graphicsDevice, 1, 1);
 			texture.SetData(new[] { Color.White });
 
-			particles = new ParticleEffect()
+			particles = Globals.particleWorld.Add(new ParticleEffect()
 			{
 				Position = transform.screenPos,
 				Emitters = new List<ParticleEmitter>
 				{
-					new ParticleEmitter(new TextureRegion2D(texture), 500, TimeSpan.FromSeconds(1),
-						Profile.BoxUniform(100,100))
+					new ParticleEmitter(new TextureRegion2D(texture), 500, TimeSpan.FromSeconds(.6f),
+						Profile.BoxFill(100, 100))
 					{
 						AutoTrigger=false,
 						Parameters = new ParticleReleaseParameters
 						{
-							Speed = new Range<float>(30, 70),
+							Speed = new Range<float>(150, 300),
 							Rotation = new Range<float>(-1f, 1f),
-							Scale = new Range<float>(10, 20),
-							Quantity = 15,
+							Quantity = 20,
 						},
 						Modifiers =
 						{
@@ -50,16 +49,10 @@ namespace VeiniaFramework.Samples.BlockBreaker
 							{
 								Interpolators =
 								{
-									new ColorInterpolator
-									{
-										StartValue = new HslColor(0.33f, 0.5f, 0.5f),
-										EndValue = new HslColor(0.5f, 0.9f, 1.0f)
-									},
-									new OpacityInterpolator
-									{
-										StartValue = 1,
-										EndValue = 0,
-									}
+									new ColorInterpolator { StartValue = new HslColor(0.33f, 0.5f, 0.5f), EndValue = new HslColor(0.5f, 0.9f, 1.0f) },
+									new OpacityInterpolator{ StartValue = 1, EndValue = 0 },
+									new ScaleInterpolator { StartValue = new Vector2(50,50), EndValue = Vector2.Zero },
+									new HueInterpolator { StartValue = 0f, EndValue = 40 }
 								}
 							},
 							new RotationModifier {RotationRate = -2.1f},
@@ -67,7 +60,7 @@ namespace VeiniaFramework.Samples.BlockBreaker
 						}
 					}
 				},
-			};
+			}); ;
 		}
 
 		public virtual void Hit()
@@ -92,6 +85,7 @@ namespace VeiniaFramework.Samples.BlockBreaker
 				.OnEnd((x) =>
 				{
 					DestroyGameObject();
+					Globals.particleWorld.QueueRemove(particles);
 
 					if (FindComponentsOfType<Tile>().Count == 0)
 					{
@@ -99,9 +93,5 @@ namespace VeiniaFramework.Samples.BlockBreaker
 					}
 				});
 		}
-
-		public override void Update() => particles.Update(Time.deltaTime);
-
-		public void Draw(SpriteBatch sb) => sb.Draw(particles);
 	}
 }

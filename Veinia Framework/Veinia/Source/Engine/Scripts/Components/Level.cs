@@ -41,6 +41,8 @@ namespace VeiniaFramework
 			if (this is EditorScene) UserInterface.Active.ShowCursor = true;
 			UserInterface.Active.RemoveAllEntities();
 
+			Globals.particleWorld.Clear();
+
 			prefabManager?.LoadPrefabs();
 			if (loadObjectsFromPath && levelPath != string.Empty) LoadObjects(levelPath);
 		}
