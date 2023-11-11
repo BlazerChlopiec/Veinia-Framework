@@ -13,8 +13,10 @@ namespace VeiniaFramework.Samples.Platformer
 		private float jumpForce = 13;
 		private float accelerationSpeed = 20;
 
-		bool isTouchingGround;
 		Fixture groundCheck;
+		int groundOverlaps;
+
+		bool isTouchingGround => groundOverlaps >= 1;
 
 		public override void Initialize()
 		{
@@ -47,7 +49,6 @@ namespace VeiniaFramework.Samples.Platformer
 
 			if ((Globals.input.GetKeyButtonDown(Keys.Space, Buttons.A) || Globals.input.GetKeyDown(Keys.W)) && isTouchingGround)
 			{
-				isTouchingGround = false;
 				body.LinearVelocity = new Vector2(body.LinearVelocity.X, jumpForce);
 			}
 			if ((Globals.input.GetKeyButtonUp(Keys.Space, Buttons.A) || Globals.input.GetKeyUp(Keys.W)) && body.LinearVelocity.Y > 0)
@@ -66,9 +67,14 @@ namespace VeiniaFramework.Samples.Platformer
 
 		public override bool OnCollide(Fixture sender, Fixture other, Contact contact)
 		{
-			if (sender == groundCheck) isTouchingGround = true;
+			if (sender == groundCheck) groundOverlaps++;
 
 			return true;
+		}
+
+		public override void OnSeparate(Fixture sender, Fixture other, Contact contact)
+		{
+			if (sender == groundCheck) groundOverlaps--;
 		}
 	}
 }
