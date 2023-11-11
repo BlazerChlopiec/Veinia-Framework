@@ -17,12 +17,23 @@ namespace VeiniaFramework.Samples.Platformer
 
 		public override void Initialize()
 		{
-			body = Globals.physicsWorld.CreateRectangle(1, 1, 0, bodyType: BodyType.Dynamic);
+			body = Globals.physicsWorld.CreateBody(bodyType: BodyType.Dynamic);
+
+			// top bottom
+			body.CreateEdge(new Vector2(.5f, -.5f), new Vector2(-.5f, -.5f));
+			body.CreateEdge(new Vector2(.5f, .5f), new Vector2(-.5f, .5f));
+
+			// left right
+			body.CreateEdge(new Vector2(.5f, -.5f), new Vector2(.5f, .5f));
+			body.CreateEdge(new Vector2(-.5f, -.5f), new Vector2(-.5f, .5f));
+
 			body.Tag = this;
 			body.FixedRotation = true;
 			body.SetFriction(0);
+
 			groundCheck = body.CreateRectangle(.9f, .1f, 1f, Vector2.UnitY * -.5f);
 			groundCheck.IsSensor = true;
+			groundCheck.CollidesWith = Category.Cat1;
 
 			Globals.camera.XY = transform.position;
 		}
@@ -55,10 +66,7 @@ namespace VeiniaFramework.Samples.Platformer
 
 		public override bool OnCollide(Fixture sender, Fixture other, Contact contact)
 		{
-			if (sender != groundCheck) return true;
-			var tag = (string)other.Body.Tag;
-			if (tag == "ground")
-				isTouchingGround = true;
+			if (sender == groundCheck) isTouchingGround = true;
 
 			return true;
 		}

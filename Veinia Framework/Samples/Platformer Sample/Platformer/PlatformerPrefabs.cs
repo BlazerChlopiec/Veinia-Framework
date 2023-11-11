@@ -29,7 +29,7 @@ namespace VeiniaFramework.Samples.Platformer
 
 				prefab.body = Globals.physicsWorld.CreateRectangle(.5f, .5f, 1, bodyType: BodyType.Static);
 				prefab.body.SetIsSensor(true);
-				prefab.body.Tag = "ground";
+				prefab.body.SetCollisionCategories(Category.Cat1);
 				prefab.body.Enabled = false;
 
 				Add(collectible.Key, prefab, prefabTab: 1);
@@ -44,7 +44,8 @@ namespace VeiniaFramework.Samples.Platformer
 				}, isStatic: true);
 
 				prefab.body = Globals.physicsWorld.CreateRectangle(1, 1, 1, bodyType: BodyType.Static);
-				prefab.body.Tag = "ground";
+				prefab.body.SetCollisionCategories(Category.Cat1);
+
 				prefab.body.Enabled = false;
 
 				Add(grassTile.Key, prefab, prefabTab: 2);
@@ -59,7 +60,7 @@ namespace VeiniaFramework.Samples.Platformer
 				}, isStatic: true);
 
 				prefab.body = Globals.physicsWorld.CreateRectangle(1, 1, 1, bodyType: BodyType.Static);
-				prefab.body.Tag = "ground";
+				prefab.body.SetCollisionCategories(Category.Cat1);
 				prefab.body.Enabled = false;
 
 				Add(woodTile.Key, prefab, prefabTab: 2);
@@ -74,7 +75,7 @@ namespace VeiniaFramework.Samples.Platformer
 				}, isStatic: true);
 
 				prefab.body = Globals.physicsWorld.CreateRectangle(1, 1, 1, bodyType: BodyType.Static);
-				prefab.body.Tag = "ground";
+				prefab.body.SetCollisionCategories(Category.Cat1);
 				prefab.body.Enabled = false;
 
 				Add(brick.Key, prefab, prefabTab: 3);

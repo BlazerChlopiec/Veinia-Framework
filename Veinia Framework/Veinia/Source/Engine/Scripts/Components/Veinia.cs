@@ -84,7 +84,6 @@ namespace VeiniaFramework
 			Globals.unscaledTweener.Update(Time.unscaledDeltaTime);
 
 			Globals.particleWorld.Update();
-			Say.Line(Globals.particleWorld.ParticlesCount);
 
 			if (!Time.stop)
 			{
