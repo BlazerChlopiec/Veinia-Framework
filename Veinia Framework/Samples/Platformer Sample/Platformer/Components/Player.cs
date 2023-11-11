@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended;
 using System;
 using tainicom.Aether.Physics2D.Dynamics;
 using tainicom.Aether.Physics2D.Dynamics.Contacts;
@@ -8,9 +9,9 @@ namespace VeiniaFramework.Samples.Platformer
 {
 	public class Player : Component
 	{
-		private const float speed = 8.5f;
-		private const float jumpForce = 13;
-		private const float accelerationSpeed = 20;
+		private float speed = 8.5f;
+		private float jumpForce = 13;
+		private float accelerationSpeed = 20;
 
 		bool isTouchingGround;
 		Fixture groundCheck;
@@ -42,8 +43,7 @@ namespace VeiniaFramework.Samples.Platformer
 		float smoothHorizontal;
 		public override void Update()
 		{
-			smoothHorizontal = MathHelper.Lerp(smoothHorizontal, Globals.input.horizontal, accelerationSpeed * Time.deltaTime);
-			body.LinearVelocity = new Vector2(smoothHorizontal * speed, body.LinearVelocity.Y);
+			body.LinearVelocity = Vector2.Lerp(body.LinearVelocity, Vector2.UnitX * Globals.input.horizontal * speed, accelerationSpeed * Time.deltaTime).SetY(body.LinearVelocity.Y);
 
 			if ((Globals.input.GetKeyButtonDown(Keys.Space, Buttons.A) || Globals.input.GetKeyDown(Keys.W)) && isTouchingGround)
 			{
