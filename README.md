@@ -1,5 +1,7 @@
 # Veinia-Framework
 C# Game Creation Tool
+<br>
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 
 ## Features
 This tool simplifies the usage of the MonoGame Framework to make getting started easy.
@@ -80,7 +82,7 @@ public class Movement : Component
 ## Roadmap
 
 * Lights
-* Chunk Optimization Rework
+* 2D Optimizations
 * Editor Undo & Redo
 * Editor Handles
 * Editor Automatic Tilemap Painting
