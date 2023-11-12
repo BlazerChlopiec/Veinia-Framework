@@ -13,9 +13,11 @@ namespace VeiniaFramework.Samples.BlockBreaker
 
 		public override void Initialize()
 		{
-			body = Globals.physicsWorld.CreateCircle(.4f, 1f, bodyType: BodyType.Dynamic);
+			body = Globals.physicsWorld.CreateCircle(.4f, 0f, bodyType: BodyType.Dynamic);
 			body.IgnoreGravity = true;
 			body.Tag = this;
+			body.SetRestitution(1);
+			body.SetFriction(0);
 		}
 
 		public override void Update()
@@ -26,13 +28,16 @@ namespace VeiniaFramework.Samples.BlockBreaker
 			{
 				launched = true;
 				FindComponentOfType<UI>().configButton.Enabled = false;
-				body.LinearVelocity = Vector2.One.SafeNormalize() * speed;
+				body.LinearVelocity = Vector2.One.SafeNormalize();
 			}
 
+#if DEBUG
 			else if (Globals.input.GetMouseButtonDown(0) && launched)
-			{
 				body.LinearVelocity = (Globals.input.GetMouseWorldPosition() - transform.position).SafeNormalize() * speed;
-			}
+
+#endif
+
+			body.LinearVelocity = body.LinearVelocity.SafeNormalize() * speed;
 		}
 
 		public override bool OnCollide(Fixture sender, Fixture other, Contact contact)
@@ -50,17 +55,6 @@ namespace VeiniaFramework.Samples.BlockBreaker
 				});
 
 			return true;
-			//if (Math.Abs(contact..Y) > Math.Abs(collisionInfo.PenetrationVector.X))
-			//{
-			//	//touched Y
-			//	physics.velocity *= new Vector2(1, -1);
-			//}
-
-			//if (Math.Abs(collisionInfo.PenetrationVector.X) > Math.Abs(collisionInfo.PenetrationVector.Y))
-			//{
-			//	//touched X
-			//	physics.velocity *= new Vector2(-1, 1);
-			//}
 		}
 	}
 }

@@ -52,7 +52,7 @@ namespace VeiniaFramework.Samples.BlockBreaker
 
 			//LEVEL
 			GameObject ball = Instantiate(
-				new Transform(Vector2.Zero),
+				new Transform(-Vector2.UnitY * 10),
 				new List<Component>
 				{
 					new Sprite("Sprites/Ball", .1f, Color.Blue, pixelsPerUnit: 120),
