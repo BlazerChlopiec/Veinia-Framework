@@ -53,7 +53,7 @@ namespace VeiniaFramework.Editor
 				new FPSWindow(),
 			}, isStatic: true);
 			UI.AddComponent(toolbarManager);
-			if (prefabManager == null) ErrorWindow("Warning", "There are no prefabs! Make a class that inherits PrefabManager and add it to Veinia.Initialize()!");
+			if (prefabManager == null) ErrorWindow("Warning", "There are no prefabs! Make a class that inherits PrefabManager and add it to Veinia.Initialize()! Check Samples For Reference.");
 			if (levelPath != string.Empty) UI.AddComponent(new EditorManager());
 		}
 

@@ -35,7 +35,13 @@ namespace VeiniaFramework.Editor
 			panel.Widgets.Add(removeAllButton);
 
 			var openLevelSelectButton = new TextButton { Text = "Level Select", Left = 200 };
-			openLevelSelectButton.Click += (s, e) => AddComponent(new LevelSelector());
+			openLevelSelectButton.Click += (s, e) =>
+			{
+				if (Globals.loader.storedLevels.Count > 0)
+					AddComponent(new LevelSelector());
+
+				else EditorScene.ErrorWindow("Warning!", "There are no stored levels! Use Globals.loader.storedLevels.Add()! Check Samples For Reference.");
+			};
 			panel.Widgets.Add(openLevelSelectButton);
 
 			window.Show(Globals.myraDesktop, Point.Zero);
