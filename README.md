@@ -25,7 +25,10 @@ Veinia framework is only possible to be installed manually because of libraries 
 1. **Import:** Add existing ```Veinia``` project (.csproj) to your solution
 2. **Reference:** Make sure that your project is referencing ```Veinia``` (Add -> Project Reference)
 
-That's it. You should now be able to compile and use Veinia-Framework in your projects.
+You should now be able to compile and use Veinia-Framework in your projects.
+
+To avoid certain issues its best to copy .veinia editor files to output directory, for vs community its done in the following way:
+<img src="Images/CopyAlwaysTip.png">
 
 ## Examples
 Veinia comes with a three sample projects to help you get started.
