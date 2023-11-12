@@ -4,17 +4,15 @@ C# Game Creation Tool
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 
 ## Features
-This tool simplifies the usage of the MonoGame Framework to make getting started easy.
-This framework comes with a few things to give you a head start:
-* GameObject/Component System
+This tool simplifies the usage of the MonoGame Framework, it comes with a few things to give you a head start:
+* Level->GameObject->Component System
 * Prefab-Based Level Editor
-* Aether.Physics for 2D Realtime Physics
+* Aether.Physics for 2D Realtime Simulations
 * Particle Effects
 * Screen System
-* Chunk System For Optimization
 * Loading/Unloading Levels
 * An Input System
-* World Tools (such as: Finding Objects Based By Components and Much More)
+* World Tools (Instantiating, Finding By Components)
 * Useful Debug Tools
 * Two Handy UI Systems (GeonBit & Myra)
 
