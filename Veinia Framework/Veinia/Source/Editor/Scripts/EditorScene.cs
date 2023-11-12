@@ -1,4 +1,6 @@
 ﻿using GeonBit.UI;
+using Microsoft.Xna.Framework;
+using Myra.Graphics2D.UI;
 using System;
 using System.Collections.Generic;
 
@@ -51,7 +53,29 @@ namespace VeiniaFramework.Editor
 				new FPSWindow(),
 			}, isStatic: true);
 			UI.AddComponent(toolbarManager);
+			if (prefabManager == null) ErrorWindow("Warning", "There are no prefabs! Make a class that inherits PrefabManager and add it to Veinia.Initialize()!");
 			if (levelPath != string.Empty) UI.AddComponent(new EditorManager());
+		}
+
+		public static void ErrorWindow(string title, string content)
+		{
+			var panel = new Panel();
+
+			var window = new Window
+			{
+				Title = title,
+				Content = panel,
+				HorizontalAlignment = HorizontalAlignment.Center,
+				VerticalAlignment = VerticalAlignment.Center
+			};
+			window.DragDirection = DragDirection.None;
+			window.Width = 400;
+
+			var textBox = new TextBox { Text = content, TextColor = Color.Red, Wrap = true };
+
+			panel.Widgets.Add(textBox);
+
+			window.Show(Globals.myraDesktop, Point.Zero);
 		}
 	}
 }
