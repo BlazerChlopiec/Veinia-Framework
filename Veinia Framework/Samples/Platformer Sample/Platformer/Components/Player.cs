@@ -36,7 +36,7 @@ namespace VeiniaFramework.Samples.Platformer
 
 			groundCheck = body.CreateRectangle(.9f, .1f, 1f, Vector2.UnitY * -.5f);
 			groundCheck.IsSensor = true;
-			groundCheck.CollidesWith = Category.Cat1;
+			groundCheck.CollidesWith = Category.Cat2;
 
 			Globals.camera.XY = transform.position;
 		}
@@ -47,7 +47,7 @@ namespace VeiniaFramework.Samples.Platformer
 		{
 			body.LinearVelocity = Vector2.Lerp(body.LinearVelocity, Vector2.UnitX * Globals.input.horizontal * speed, accelerationSpeed * Time.deltaTime).SetY(body.LinearVelocity.Y);
 
-			if ((Globals.input.GetKeyButtonDown(Keys.Space, Buttons.A) || Globals.input.GetKeyDown(Keys.W)) && isTouchingGround)
+			if ((Globals.input.GetKeyButton(Keys.Space, Buttons.A) || Globals.input.GetKey(Keys.W)) && isTouchingGround)
 			{
 				body.LinearVelocity = new Vector2(body.LinearVelocity.X, jumpForce);
 			}

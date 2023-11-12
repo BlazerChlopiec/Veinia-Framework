@@ -88,9 +88,9 @@ namespace VeiniaFramework
 			if (!Time.stop)
 			{
 				Globals.tweener.Update(Time.deltaTime);
+				Globals.physicsWorld.Step(Time.deltaTime);
 				Globals.loader.current?.Update();
 				Globals.loader.current?.LateUpdate();
-				Globals.physicsWorld.Step(Time.deltaTime);
 			}
 
 			Title.Add(Globals.fps.currentFps, " FPS", 0);
