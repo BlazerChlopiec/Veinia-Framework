@@ -52,11 +52,11 @@ namespace VeiniaFramework.Samples.Platformer
 
 		float smoothZoom;
 		float smoothHorizontal;
-		public override void Update()
+		public override void LateUpdate()
 		{
 			body.LinearVelocity = Vector2.Lerp(body.LinearVelocity, Vector2.UnitX * Globals.input.horizontal * speed, accelerationSpeed * Time.deltaTime).SetY(body.LinearVelocity.Y);
 
-			if ((Globals.input.GetKeyButton(Keys.Space, Buttons.A) || Globals.input.GetKey(Keys.W)) && isTouchingGround)
+			if ((Globals.input.GetKeyButton(Keys.Space, Buttons.A) || Globals.input.GetKey(Keys.W)) && isTouchingGround && body.LinearVelocity.Y <= 0)
 			{
 				JumpParticles();
 				body.LinearVelocity = new Vector2(body.LinearVelocity.X, jumpForce);
