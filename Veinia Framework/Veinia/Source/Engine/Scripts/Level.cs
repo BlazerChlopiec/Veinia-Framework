@@ -52,7 +52,9 @@ namespace VeiniaFramework
 		/// </summary>
 		private void LoadObjects(string editorLevelName)
 		{
+#if DEBUG
 			if (!File.Exists("LevelData/" + editorLevelName)) return;
+#endif
 			var deserializedText = File.ReadAllText("LevelData/" + editorLevelName);
 			var objects = JsonConvert.DeserializeObject<List<EditorObject>>(deserializedText);
 
