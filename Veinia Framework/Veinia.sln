@@ -5,11 +5,11 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Veinia", "Veinia\Veinia.csproj", "{836813AC-94BB-4BEF-A82F-9FDB96922756}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Block Breaker Sample", "Samples\Block Breaker Sample\Block Breaker Sample.csproj", "{B8FDF38A-8442-4273-B5D9-9D622B60953D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlockBreakerSample", "Samples\Block Breaker Sample\BlockBreakerSample.csproj", "{B8FDF38A-8442-4273-B5D9-9D622B60953D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Platformer Sample", "Samples\Platformer Sample\Platformer Sample.csproj", "{9EA6FFA3-068D-4781-9072-3E1BD83F051F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlatformerSample", "Samples\Platformer Sample\PlatformerSample.csproj", "{9EA6FFA3-068D-4781-9072-3E1BD83F051F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Physics Sample", "Samples\Physics Sample\Physics Sample.csproj", "{D5320D14-F402-4844-9210-EDD64C840989}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhysicsSample", "Samples\Physics Sample\PhysicsSample.csproj", "{D5320D14-F402-4844-9210-EDD64C840989}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
