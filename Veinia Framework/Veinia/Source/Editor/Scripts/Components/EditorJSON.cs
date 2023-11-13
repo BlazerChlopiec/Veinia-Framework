@@ -25,6 +25,7 @@ namespace VeiniaFramework.Editor
 		public void Save()
 		{
 			string serializedText = JsonConvert.SerializeObject(editorObjectManager.editorObjects);
+			serializedText = Encryption.Encrypt(serializedText);
 
 			//game directory
 			if (!Directory.Exists("LevelData")) Directory.CreateDirectory("LevelData");
@@ -45,6 +46,7 @@ namespace VeiniaFramework.Editor
 
 			if (!File.Exists("LevelData/" + editedLevelName)) return;
 			var deserializedText = File.ReadAllText("LevelData/" + editedLevelName);
+			deserializedText = Encryption.Decrypt(deserializedText);
 			var objects = JsonConvert.DeserializeObject<List<EditorObject>>(deserializedText);
 
 			foreach (var item in objects)
