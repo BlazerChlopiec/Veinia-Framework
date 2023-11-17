@@ -9,6 +9,7 @@ namespace VeiniaFramework.Editor
 	public class EditorScene : Level
 	{
 		public Type editedSceneType;
+		private static bool errorWindowAppeared;
 
 		public EditorScene(string levelPath, Type editedSceneType) : base(levelPath) => this.editedSceneType = editedSceneType;
 
@@ -59,6 +60,9 @@ namespace VeiniaFramework.Editor
 
 		public static void ErrorWindow(string title, string content)
 		{
+			if (errorWindowAppeared == true) return;
+			errorWindowAppeared = true;
+
 			var panel = new Panel();
 
 			var window = new Window
@@ -69,9 +73,11 @@ namespace VeiniaFramework.Editor
 				VerticalAlignment = VerticalAlignment.Center
 			};
 			window.DragDirection = DragDirection.None;
+			window.CloseButton.Click += (s, e) => { errorWindowAppeared = false; };
 			window.Width = 400;
 
 			var textBox = new TextBox { Text = content, TextColor = Color.Red, Wrap = true };
+			textBox.AcceptsKeyboardFocus = false;
 
 			panel.Widgets.Add(textBox);
 

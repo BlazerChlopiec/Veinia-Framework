@@ -114,6 +114,7 @@ namespace VeiniaFramework
 					Convert.ChangeType(editedLevelInstance, editorScene.editedSceneType);
 					Globals.loader.DynamicalyLoad(editedLevelInstance);
 				}
+				else if (Globals.loader.current == null) EditorScene.ErrorWindow("Warning", "Aborting Editor! The current level does not exist! Use Globals.loader!");
 				else Globals.loader.DynamicalyLoad(new EditorScene(Globals.loader.current.levelPath, Globals.loader.current.GetType()));
 			}
 #endif
