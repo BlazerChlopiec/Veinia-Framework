@@ -27,6 +27,12 @@ namespace VeiniaFramework.Editor
 			string serializedText = JsonConvert.SerializeObject(editorObjectManager.editorObjects);
 			serializedText = Encryption.Encrypt(serializedText);
 
+			if (editedLevelName == null || editedLevelName == string.Empty)
+			{
+				EditorScene.ErrorWindow("Warning", "The edited level has no name therefore we dont know how to save it!");
+				return;
+			}
+
 			//game directory
 			if (!Directory.Exists("LevelData")) Directory.CreateDirectory("LevelData");
 			File.WriteAllText("LevelData/" + editedLevelName, serializedText);
