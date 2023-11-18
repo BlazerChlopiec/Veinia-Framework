@@ -33,6 +33,9 @@ namespace VeiniaFramework.Editor
 
 			UserInterface.Active.ShowCursor = false;
 
+			Globals.tweener.CancelAll();
+			Globals.unscaledTweener.CancelAll();
+
 			EditorCheckboxes.Add("Debug Draw", defaultValue: Globals.debugDraw, (e, o) => { Globals.debugDraw = true; }, (e, o) => { Globals.debugDraw = false; });
 
 			GameObject systems = Instantiate(Transform.Empty, new List<Component>

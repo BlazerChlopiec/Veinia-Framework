@@ -260,8 +260,6 @@ namespace VeiniaFramework
 		{
 			firstFrameCreated = false;
 
-			Globals.tweener.CancelAll();
-
 			foreach (var item in scene.ToArray())
 			{
 				if (!item.dontDestroyOnLoad)

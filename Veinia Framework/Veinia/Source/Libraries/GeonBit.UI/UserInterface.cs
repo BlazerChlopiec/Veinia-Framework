@@ -8,15 +8,14 @@
 // Since: 2016.
 //-----------------------------------------------------------------------------
 #endregion
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using GeonBit.UI.Entities;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
-using System.Runtime.Serialization;
-using System.Xml.Serialization;
-using Microsoft.Xna.Framework.Input;
-using VeiniaFramework;
+using Microsoft.Xna.Framework.Graphics;
 using System.Linq;
+using System.Xml.Serialization;
+using VeiniaFramework;
+using VeiniaFramework.Editor;
 
 namespace GeonBit.UI
 {
@@ -580,9 +579,10 @@ namespace GeonBit.UI
 		/// </summary>
 		public void RemoveAllEntities()
 		{
+			bool isEditor = Globals.loader.current is EditorScene;
 			foreach (var entity in Root.Children.ToList())
 			{
-				if (!entity.DontDestroyOnLoad)
+				if (!entity.DontDestroyOnLoad || isEditor)
 					Root.RemoveChild(entity);
 			}
 		}
