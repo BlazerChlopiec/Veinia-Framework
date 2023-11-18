@@ -582,7 +582,7 @@ namespace GeonBit.UI
 		{
 			foreach (var entity in Root.Children.ToList())
 			{
-				if (!entity.IsPersistent)
+				if (!entity.DontDestroyOnLoad)
 					Root.RemoveChild(entity);
 			}
 		}

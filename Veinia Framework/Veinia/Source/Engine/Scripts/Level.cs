@@ -256,27 +256,6 @@ namespace VeiniaFramework
 			}
 		}
 
-		/// <summary>
-		/// Draws the components in the current scene.
-		/// </summary>
-		public void DrawAfterUI(SpriteBatch sb)
-		{
-			foreach (var gameObject in scene)
-			{
-				if (!gameObject.isEnabled) continue;
-
-				foreach (var component in gameObject.components)
-				{
-					if (!component.isEnabled) continue;
-					if (component is IDrawnAfterUI)
-					{
-						IDrawnAfterUI drawn = (IDrawnAfterUI)component;
-						drawn.DrawAfterUI(sb);
-					}
-				}
-			}
-		}
-
 		public virtual void Unload()
 		{
 			firstFrameCreated = false;

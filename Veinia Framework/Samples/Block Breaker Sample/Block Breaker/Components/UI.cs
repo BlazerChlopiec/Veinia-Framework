@@ -138,8 +138,7 @@ namespace VeiniaFramework.Samples.BlockBreaker
 				new Transform(Vector2.Zero),
 				new List<Component>
 				{
-					new Sprite("Sprites/Transition", .1f, Color.Black, pixelsPerUnit: 100, order: RenderOrder.AfterUI),
-					new Transition()
+					new Transition("Sprites/Transition")
 				}, isStatic: false, dontDestroyOnLoad: true);
 		}
 	}

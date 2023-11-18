@@ -12,10 +12,10 @@
 // Since: 2016.
 //-----------------------------------------------------------------------------
 #endregion
-using System.Collections.Generic;
+using GeonBit.UI.DataTypes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using GeonBit.UI.DataTypes;
+using System.Collections.Generic;
 
 namespace GeonBit.UI.Entities
 {
@@ -208,7 +208,7 @@ namespace GeonBit.UI.Entities
 		/// <summary>
 		/// VEINIA/ Should be remove on scene change
 		/// </summary>
-		public bool IsPersistent;
+		public bool DontDestroyOnLoad;
 
 		/// <summary>
 		/// Optional extra drawing priority, to bring certain objects before others.

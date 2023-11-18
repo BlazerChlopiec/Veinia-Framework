@@ -47,11 +47,6 @@ namespace VeiniaFramework
 			debugView.LoadContent(graphicsDevice, content);
 			#endregion
 
-			#region GeonBit.UI
-			UserInterface.Initialize(content, BuiltinThemes.editor);
-			UserInterface.Active.ShowCursor = false;
-			#endregion
-
 			#region Myra.UI	
 			MyraEnvironment.Game = game;
 			Globals.myraDesktop = new Desktop
@@ -68,6 +63,11 @@ namespace VeiniaFramework
 
 			window.TextInput += (s, a) => Globals.myraDesktop.OnChar(a.Character);
 			Globals.myraDesktop.Render();
+			#endregion
+
+			#region GeonBit.UI
+			UserInterface.Initialize(content, BuiltinThemes.editor);
+			UserInterface.Active.ShowCursor = false;
 			#endregion
 		}
 
@@ -129,18 +129,12 @@ namespace VeiniaFramework
 			spriteBatch.End();
 			#endregion
 
-			#region GeonBit.UI
-			UserInterface.Active.Draw(spriteBatch);
-			#endregion
-
 			#region Myra.UI
 			Globals.myraDesktop.Render();
 			#endregion
 
-			#region Veinia
-			spriteBatch.Begin(SpriteSortMode.FrontToBack, transformMatrix: Globals.camera.GetView(), samplerState: samplerState);
-			Globals.loader.current?.DrawAfterUI(spriteBatch);
-			spriteBatch.End();
+			#region GeonBit.UI
+			UserInterface.Active.Draw(spriteBatch);
 			#endregion
 
 			#region Aether.Physics
