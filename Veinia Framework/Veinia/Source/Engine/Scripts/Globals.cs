@@ -14,7 +14,7 @@ namespace VeiniaFramework
 		public static bool debugDraw;
 
 		public static Input input = new Input();
-		public static Tweener tweener = new Tweener();
+		public static Tweener tweener = new Tweener(); // stops with Time.stop
 		public static Tweener unscaledTweener = new Tweener();
 		public static ParticleWorld particleWorld = new ParticleWorld();
 		public static Loader loader;
