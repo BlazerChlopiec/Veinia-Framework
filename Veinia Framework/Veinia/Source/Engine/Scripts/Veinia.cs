@@ -52,15 +52,13 @@ namespace VeiniaFramework
 				Opacity = .95f,
 				HasExternalTextInput = true,
 			};
-			//Globals.myraDesktop.MouseInfoGetter = () =>
-			//{
-			//	MouseInfo info = Globals.myraDesktop.DefaultMouseInfoGetter();
-			//	//var mouse = Mouse.GetState().Position.ToVector2();
-			//	//var viewport = Globals.camera.VirtualViewport;
-			//	//Say.Line(viewport.X / viewport.Width);
-			//	//info.Position = new Vector2(mouse.X * viewport.X / viewport.Width, mouse.Y * viewport.Y / viewport.Height).ToPoint();
-			//	return info;
-			//};
+			Globals.myraDesktop.MouseInfoGetter = () =>
+			{
+				MouseInfo info = Globals.myraDesktop.DefaultMouseInfoGetter();
+				var mouse = Mouse.GetState().Position.ToVector2() - Globals.camera.VirtualViewport.XY;
+				info.Position = mouse.ToPoint();
+				return info;
+			};
 
 			window.TextInput += (s, a) => Globals.myraDesktop.OnChar(a.Character);
 			Globals.myraDesktop.Render();
