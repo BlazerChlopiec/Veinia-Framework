@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Apos.Camera;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -17,7 +18,7 @@ namespace VeiniaFramework.Samples.BlockBreaker
 			graphics = new GraphicsDeviceManager(this);
 			Content.RootDirectory = "Content";
 			IsMouseVisible = true;
-			Window.AllowUserResizing = false;
+			Window.AllowUserResizing = true;
 
 			veinia = new Veinia(this, graphics);
 			Globals.fps.vSync(true);
@@ -33,6 +34,8 @@ namespace VeiniaFramework.Samples.BlockBreaker
 
 			veinia.Initialize(GraphicsDevice, Content, Window, screen,
 					unitSize: 100, Vector2.Zero, prefabs);
+
+			Globals.camera = new Camera(new BoundingViewport(GraphicsDevice, Window, 1920, 1080));
 
 			Globals.loader.storedLevels.Add(new StoredLevel { storedLevelType = typeof(LevelTemplate), storedLevelPath = "Level1.veinia" });
 			Globals.loader.StoredLevelLoad(index: 0);
@@ -54,9 +57,10 @@ namespace VeiniaFramework.Samples.BlockBreaker
 
 		protected override void Draw(GameTime gameTime)
 		{
+			Globals.camera.SetViewport();
 			GraphicsDevice.Clear(Color.White * .05f);
-
 			veinia.Draw(spriteBatch);
+			Globals.camera.ResetViewport();
 
 			base.Draw(gameTime);
 		}

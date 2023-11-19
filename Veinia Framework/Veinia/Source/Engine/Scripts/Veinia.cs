@@ -34,7 +34,6 @@ namespace VeiniaFramework
 			#region Veinia
 			Transform.unitSize = unitSize;
 
-
 			Globals.loader = new Loader(prefabManager);
 			Globals.graphicsDevice = graphicsDevice;
 			Globals.content = content;
@@ -53,12 +52,15 @@ namespace VeiniaFramework
 				Opacity = .95f,
 				HasExternalTextInput = true,
 			};
-			Globals.myraDesktop.MouseInfoGetter = () =>
-			{
-				MouseInfo info = Globals.myraDesktop.DefaultMouseInfoGetter();
-				info.Position = Mouse.GetState().Position;
-				return info;
-			};
+			//Globals.myraDesktop.MouseInfoGetter = () =>
+			//{
+			//	MouseInfo info = Globals.myraDesktop.DefaultMouseInfoGetter();
+			//	//var mouse = Mouse.GetState().Position.ToVector2();
+			//	//var viewport = Globals.camera.VirtualViewport;
+			//	//Say.Line(viewport.X / viewport.Width);
+			//	//info.Position = new Vector2(mouse.X * viewport.X / viewport.Width, mouse.Y * viewport.Y / viewport.Height).ToPoint();
+			//	return info;
+			//};
 
 			window.TextInput += (s, a) => Globals.myraDesktop.OnChar(a.Character);
 			Globals.myraDesktop.Render();

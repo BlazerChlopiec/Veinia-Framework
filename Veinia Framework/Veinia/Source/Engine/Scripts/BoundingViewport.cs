@@ -52,11 +52,19 @@ namespace VeiniaFramework
 		}
 		public void Reset() => _graphicsDevice.Viewport = _oldViewport;
 
-		public Matrix Transform(Matrix view) => view * GetScaleMatrix();
+		public Matrix Transform(Matrix view)
+		{
+			//return view* GetScaleMatrix();
+			return view * Matrix.CreateScale(_viewport.Width / TargetWidth, _viewport.Width / TargetWidth, 1);
+		}
 
 		private void OnClientSizeChanged(object sender, EventArgs e)
 		{
-			aspectRatio = (float)(TargetWidth / TargetHeight);
+			_virtualWidth = TargetWidth;
+			_virtualHeight = TargetHeight;
+
+			aspectRatio = (float)(_virtualWidth / _virtualHeight);
+
 
 			// figure out the largest area that fits in this resolution at the desired aspect ratio
 			int width = _graphicsDevice.PresentationParameters.BackBufferWidth;
@@ -68,17 +76,17 @@ namespace VeiniaFramework
 				width = (int)(height * aspectRatio + .5f);
 			}
 
-			Say.Line(width + "  " + height);
-			Say.Line("Virtual " + TargetWidth + "  " + TargetHeight);
-			Say.Line("Scale " + (_graphicsDevice.PresentationParameters.BackBufferWidth / TargetWidth));
-			Say.Line("     ");
+			//Say.Line(width + "  " + height);
+			//Say.Line("Virtual " + _virtualWidth + "  " + _virtualHeight);
+			//Say.Line("Scale " + (_graphicsDevice.PresentationParameters.BackBufferWidth / _virtualWidth));
+			//Say.Line("     ");
 
 			_viewport.X = (_graphicsDevice.PresentationParameters.BackBufferWidth / 2) - (width / 2);
 			_viewport.Y = (_graphicsDevice.PresentationParameters.BackBufferHeight / 2) - (height / 2);
 			_viewport.Width = width;
 			_viewport.Height = height;
 
-			_origin = new Vector2(TargetWidth / 2f, TargetHeight / 2f);
+			_origin = new Vector2(_virtualWidth / 2f, _virtualHeight / 2f);
 		}
 
 		private GraphicsDevice _graphicsDevice;
