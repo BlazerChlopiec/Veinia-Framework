@@ -39,8 +39,7 @@ namespace VeiniaFramework
 			Globals.graphicsDevice = graphicsDevice;
 			Globals.content = content;
 			Globals.screen = screen;
-			//Globals.viewportAdapter = new BoxingViewportAdapter(window, graphicsDevice, 1920, 1080);
-			Globals.camera = new Camera(new Apos.Camera.DensityViewport(graphicsDevice, window, 1920, 1080));
+			Globals.camera = new Camera(new DensityViewport(graphicsDevice, window, 1920, 1080));
 			Globals.physicsWorld = new World(gravity);
 			title = new Title(window);
 			debugView = new DebugView(Globals.physicsWorld);
