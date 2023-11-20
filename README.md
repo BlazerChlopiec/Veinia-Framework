@@ -29,7 +29,7 @@ To avoid certain issues its best to copy .veinia editor files to output director
 <img src="Images/CopyAlwaysTip.png">
 
 ## Examples
-Veinia comes with a three sample projects to help you get started.
+Veinia comes with three sample projects to help you get started.
 
 <img src="Images/PlatformerSampleEditor.png">
 
