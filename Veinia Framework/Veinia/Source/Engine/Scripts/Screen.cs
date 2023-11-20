@@ -45,8 +45,6 @@ namespace VeiniaFramework
 			Globals.graphicsManager.PreferredBackBufferHeight = height;
 			Globals.graphicsManager.IsFullScreen = fullscreen;
 			Globals.graphicsManager.ApplyChanges();
-
-			Globals.viewportAdapter?.Reset();
 		}
 	}
 }
