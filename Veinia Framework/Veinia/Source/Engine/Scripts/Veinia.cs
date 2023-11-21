@@ -40,6 +40,7 @@ namespace VeiniaFramework
 			Globals.screen = screen;
 			Globals.camera = new Camera(new DensityViewport(graphicsDevice, window, 1920, 1080));
 			Globals.physicsWorld = new World(gravity);
+
 			title = new Title(window);
 			debugView = new DebugView(Globals.physicsWorld);
 			debugView.LoadContent(graphicsDevice, content);
@@ -137,7 +138,6 @@ namespace VeiniaFramework
 			#endregion
 
 			#region Aether.Physics
-
 			if (Globals.debugDraw)
 			{
 				float zScale = Globals.camera.ZToScale(Globals.camera.Z, 0);
