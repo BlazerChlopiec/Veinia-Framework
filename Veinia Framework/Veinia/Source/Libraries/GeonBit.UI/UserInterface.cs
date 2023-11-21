@@ -15,7 +15,6 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Linq;
 using System.Xml.Serialization;
 using VeiniaFramework;
-using VeiniaFramework.Editor;
 
 namespace GeonBit.UI
 {
@@ -579,10 +578,9 @@ namespace GeonBit.UI
 		/// </summary>
 		public void RemoveAllEntities()
 		{
-			bool isEditor = Globals.loader.current is EditorScene;
 			foreach (var entity in Root.Children.ToList())
 			{
-				if (!entity.DontDestroyOnLoad || isEditor)
+				if (!entity.DontDestroyOnLoad || Veinia.isEditor)
 					Root.RemoveChild(entity);
 			}
 		}

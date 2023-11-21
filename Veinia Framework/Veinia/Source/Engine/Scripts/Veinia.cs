@@ -19,6 +19,8 @@ namespace VeiniaFramework
 		Game game;
 		DebugView debugView;
 
+		public static bool isEditor { get; private set; }
+
 
 		public Veinia(Game game, GraphicsDeviceManager graphicsManager)
 		{
@@ -108,6 +110,7 @@ namespace VeiniaFramework
 			{
 				if (Globals.loader.current is EditorScene)
 				{
+					isEditor = false;
 					var editorScene = (EditorScene)Globals.loader.current;
 					dynamic editedLevelInstance = Activator.CreateInstance(editorScene.editedSceneType);
 					editedLevelInstance.levelPath = editorScene.levelPath;
@@ -115,11 +118,16 @@ namespace VeiniaFramework
 					Globals.loader.DynamicalyLoad(editedLevelInstance);
 				}
 				else if (Globals.loader.current == null) EditorScene.ErrorWindow("Warning", "Aborting Editor! The current level does not exist! Use Globals.loader!");
-				else Globals.loader.DynamicalyLoad(new EditorScene(Globals.loader.current.levelPath, Globals.loader.current.GetType()));
+				else
+				{
+					isEditor = true;
+					Globals.loader.DynamicalyLoad(new EditorScene(Globals.loader.current.levelPath, Globals.loader.current.GetType()));
+				}
 			}
 #endif
 			#endregion
 		}
+
 		public void Draw(SpriteBatch spriteBatch, SamplerState samplerState = null)
 		{
 			#region Veinia
