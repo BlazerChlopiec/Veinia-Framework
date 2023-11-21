@@ -46,8 +46,6 @@ namespace VeiniaFramework
 			Globals.graphicsManager.ApplyChanges();
 
 			Globals.camera?.VirtualViewport.OnClientSizeChanged(this, EventArgs.Empty);
-
-			Globals.viewportAdapter?.Reset();
 		}
 	}
 }

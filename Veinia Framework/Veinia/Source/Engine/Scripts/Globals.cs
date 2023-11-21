@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Tweening;
-using MonoGame.Extended.ViewportAdapters;
 using Myra.Graphics2D.UI;
 using tainicom.Aether.Physics2D.Dynamics;
 
@@ -27,6 +26,5 @@ namespace VeiniaFramework
 		public static World physicsWorld;
 		public static GameWindow window;
 		public static Desktop myraDesktop;
-		public static ViewportAdapter viewportAdapter;
 	}
 }
