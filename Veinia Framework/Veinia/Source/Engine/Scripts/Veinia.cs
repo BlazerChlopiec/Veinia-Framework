@@ -43,6 +43,8 @@ namespace VeiniaFramework
 			Globals.camera = new Camera(new DensityViewport(graphicsDevice, window, 1920, 1080));
 			Globals.physicsWorld = new World(gravity);
 
+			window.ClientSizeChanged += (s, a) => { screen.OnApplyChanges?.Invoke(); };
+
 			title = new Title(window);
 			debugView = new DebugView(Globals.physicsWorld);
 			debugView.LoadContent(graphicsDevice, content);
