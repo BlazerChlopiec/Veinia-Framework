@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
 
 namespace VeiniaFramework
 {
@@ -7,7 +7,6 @@ namespace VeiniaFramework
 		public int width { get; private set; }
 		public int height { get; private set; }
 		public bool fullscreen { get; private set; }
-		public Vector2 Resolution => new Vector2(width, height);
 
 
 		public Screen(int width, int height, bool fullscreen)
@@ -45,6 +44,8 @@ namespace VeiniaFramework
 			Globals.graphicsManager.PreferredBackBufferHeight = height;
 			Globals.graphicsManager.IsFullScreen = fullscreen;
 			Globals.graphicsManager.ApplyChanges();
+
+			Globals.camera?.VirtualViewport.OnClientSizeChanged(this, EventArgs.Empty);
 
 			Globals.viewportAdapter?.Reset();
 		}

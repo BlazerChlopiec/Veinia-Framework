@@ -58,7 +58,7 @@ namespace VeiniaFramework
 			return view * Matrix.CreateScale(_viewport.Width / TargetWidth, _viewport.Width / TargetWidth, 1);
 		}
 
-		private void OnClientSizeChanged(object sender, EventArgs e)
+		public void OnClientSizeChanged(object sender, EventArgs e)
 		{
 			_virtualWidth = TargetWidth;
 			_virtualHeight = TargetHeight;
