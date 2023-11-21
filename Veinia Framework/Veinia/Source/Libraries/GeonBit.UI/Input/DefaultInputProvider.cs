@@ -9,6 +9,7 @@
 #endregion
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using VeiniaFramework;
 
 namespace GeonBit.UI
 {
@@ -474,7 +475,7 @@ namespace GeonBit.UI
 		/// </summary>
 		public Vector2 MousePosition
 		{
-			get { return Mouse.GetState().Position.ToVector2(); }
+			get { return Mouse.GetState().Position.ToVector2() - Globals.camera.VirtualViewport.XY; }
 		}
 
 		/// <summary>
