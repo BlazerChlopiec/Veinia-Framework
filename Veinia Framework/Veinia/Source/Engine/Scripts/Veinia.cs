@@ -132,22 +132,23 @@ namespace VeiniaFramework
 
 		public void Draw(SpriteBatch spriteBatch, SamplerState samplerState = null)
 		{
-			#region Veinia
+			DrawWorld(spriteBatch, samplerState);
+			DrawMyra();
+			DrawGeon(spriteBatch);
+			DrawDebugPhysics();
+		}
+
+		public void DrawWorld(SpriteBatch spriteBatch, SamplerState samplerState = null)
+		{
 			spriteBatch.Begin(SpriteSortMode.FrontToBack, transformMatrix: Globals.camera.GetView(), samplerState: samplerState);
 			Globals.loader.current?.Draw(spriteBatch);
 			Globals.particleWorld.Draw(spriteBatch);
 			spriteBatch.End();
-			#endregion
-
-			#region Myra.UI
-			Globals.myraDesktop.Render();
-			#endregion
-
-			#region GeonBit.UI
-			UserInterface.Active.Draw(spriteBatch);
-			#endregion
-
-			#region Aether.Physics
+		}
+		public void DrawMyra() => Globals.myraDesktop.Render();
+		public void DrawGeon(SpriteBatch spriteBatch) => UserInterface.Active.Draw(spriteBatch);
+		public void DrawDebugPhysics()
+		{
 			if (Globals.debugDraw)
 			{
 				float zScale = Globals.camera.ZToScale(Globals.camera.Z, 0);
@@ -160,7 +161,6 @@ namespace VeiniaFramework
 
 				debugView.RenderDebugData(Globals.camera.GetProjection() * Matrix.CreateScale(Transform.unitSize, Transform.unitSize, Transform.unitSize), view);
 			}
-			#endregion
 		}
 	}
 }
