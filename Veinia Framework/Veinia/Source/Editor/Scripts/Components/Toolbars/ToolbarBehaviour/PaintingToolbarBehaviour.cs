@@ -97,7 +97,7 @@ namespace VeiniaFramework.Editor
 			if (!editorControls.isDragging && !Globals.myraDesktop.IsMouseOverGUI)
 			{
 				//placing
-				if (Globals.input.GetMouseButtonUp(0) || Globals.input.GetMouseButton(0) && swipe)
+				if (Globals.input.GetMouseUp(0) || Globals.input.GetMouseButton(0) && swipe)
 				{
 
 					if (!Globals.input.GetKey(Keys.LeftControl))
@@ -114,7 +114,7 @@ namespace VeiniaFramework.Editor
 				//
 
 				//deleting
-				if (Globals.input.GetMouseButtonUp(1) || Globals.input.GetMouseButton(1) && swipe)
+				if (Globals.input.GetMouseUp(1) || Globals.input.GetMouseButton(1) && swipe)
 				{
 					var overlap = editorObjectManager.PrefabOverlapsWithPoint(mousePos, currentPrefabName);
 					if (overlap == null) overlap = editorObjectManager.PrefabOverlapsWithPoint(mouseGridPos, currentPrefabName);

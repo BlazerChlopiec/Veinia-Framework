@@ -145,18 +145,37 @@ namespace VeiniaFramework
 
 		#region Get input methods
 
-		public bool GetKeyButton(Keys key, Buttons button)
-		{
-			return (keyboard.IsKeyDown(key) || gamepad.IsButtonDown(button));
-		}
+		//keyboard
 		public bool GetKey(Keys key)
 		{
 			return (keyboard.IsKeyDown(key));
+		}
+		public bool GetKeyDown(Keys key)
+		{
+			return keyboard.IsKeyDown(key) && !oldKeyboard.IsKeyDown(key);
+		}
+		public bool GetKeyUp(Keys key)
+		{
+			return keyboard.IsKeyUp(key) && !oldKeyboard.IsKeyUp(key);
+		}
+		//
+
+		//gamepad
+		public bool GetButtonUp(Buttons button)
+		{
+			return gamepad.IsButtonUp(button) && !oldGamepad.IsButtonUp(button);
 		}
 		public bool GetButton(Buttons button)
 		{
 			return (gamepad.IsButtonDown(button));
 		}
+		public bool GetButtonDown(Buttons button)
+		{
+			return gamepad.IsButtonDown(button) && !oldGamepad.IsButtonDown(button);
+		}
+		//
+
+		//mouse
 		public bool GetMouseButton(int buttonIndex)
 		{
 			if (buttonIndex == 0)
@@ -165,28 +184,7 @@ namespace VeiniaFramework
 				return mouse.RightButton == ButtonState.Pressed;
 			else { return false; }
 		}
-		public bool GetMouseGamepadButton(int buttonIndex, Buttons button)
-		{
-			if (buttonIndex == 0)
-				return mouse.LeftButton == ButtonState.Pressed || gamepad.IsButtonDown(button);
-			if (buttonIndex == 1)
-				return mouse.RightButton == ButtonState.Pressed || gamepad.IsButtonDown(button);
-			else { return false; }
-		}
-
-		public bool GetKeyButtonDown(Keys key, Buttons button)
-		{
-			return keyboard.IsKeyDown(key) && !oldKeyboard.IsKeyDown(key) || gamepad.IsButtonDown(button) && !oldGamepad.IsButtonDown(button);
-		}
-		public bool GetKeyDown(Keys key)
-		{
-			return keyboard.IsKeyDown(key) && !oldKeyboard.IsKeyDown(key);
-		}
-		public bool GetButtonDown(Buttons button)
-		{
-			return gamepad.IsButtonDown(button) && !oldGamepad.IsButtonDown(button);
-		}
-		public bool GetMouseButtonDown(int buttonIndex)
+		public bool GetMouseDown(int buttonIndex)
 		{
 			if (UserInterface.Active.IsMouseInteracting) return false;
 
@@ -196,30 +194,7 @@ namespace VeiniaFramework
 				return mouse.RightButton == ButtonState.Pressed && oldMouse.RightButton != ButtonState.Pressed;
 			else { return false; }
 		}
-		public bool GetMouseGamepadButtonDown(int buttonIndex, Buttons button)
-		{
-			if (buttonIndex == 0)
-				return mouse.LeftButton == ButtonState.Pressed && oldMouse.LeftButton != ButtonState.Pressed && UserInterface.Active.IsMouseInteracting == false
-										|| gamepad.IsButtonDown(button) && !oldGamepad.IsButtonDown(button);
-			if (buttonIndex == 1)
-				return mouse.RightButton == ButtonState.Pressed && oldMouse.RightButton != ButtonState.Pressed && UserInterface.Active.IsMouseInteracting == false
-										 || gamepad.IsButtonDown(button) && !oldGamepad.IsButtonDown(button);
-			else { return false; }
-		}
-
-		public bool GetKeyButtonUp(Keys key, Buttons button)
-		{
-			return keyboard.IsKeyUp(key) && !oldKeyboard.IsKeyUp(key) || gamepad.IsButtonUp(button) && !oldGamepad.IsButtonUp(button);
-		}
-		public bool GetKeyUp(Keys key)
-		{
-			return keyboard.IsKeyUp(key) && !oldKeyboard.IsKeyUp(key);
-		}
-		public bool GetButtonUp(Buttons button)
-		{
-			return gamepad.IsButtonUp(button) && !oldGamepad.IsButtonUp(button);
-		}
-		public bool GetMouseButtonUp(int buttonIndex)
+		public bool GetMouseUp(int buttonIndex)
 		{
 			if (UserInterface.Active.IsMouseInteracting) return false;
 
@@ -229,17 +204,7 @@ namespace VeiniaFramework
 				return mouse.RightButton == ButtonState.Released && oldMouse.RightButton != ButtonState.Released;
 			else { return false; }
 		}
-		public bool GetMouseGamepadButtonUp(int buttonIndex, Buttons button)
-		{
-			if (buttonIndex == 0)
-				return mouse.LeftButton == ButtonState.Released && oldMouse.LeftButton != ButtonState.Released && UserInterface.Active.IsMouseInteracting == false
-										|| gamepad.IsButtonUp(button) && !oldGamepad.IsButtonUp(button);
-			if (buttonIndex == 1)
-				return mouse.RightButton == ButtonState.Released && oldMouse.RightButton != ButtonState.Released && UserInterface.Active.IsMouseInteracting == false
-										 || gamepad.IsButtonUp(button) && !oldGamepad.IsButtonUp(button);
-			else { return false; }
-		}
-
+		//
 		#endregion
 
 		public Vector2 GetMouseScreenPosition() => Globals.camera.ScreenToWorld(mouse.Position.ToVector2());

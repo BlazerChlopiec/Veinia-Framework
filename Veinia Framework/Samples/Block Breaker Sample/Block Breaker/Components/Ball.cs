@@ -24,7 +24,7 @@ namespace VeiniaFramework.Samples.BlockBreaker
 		{
 			if (launched) transform.rotation += 200f * Time.deltaTime;
 
-			if (Globals.input.GetMouseButtonDown(0) && !launched)
+			if (Globals.input.GetMouseDown(0) && !launched)
 			{
 				launched = true;
 				FindComponentOfType<UI>().configButton.Enabled = false;
@@ -32,7 +32,7 @@ namespace VeiniaFramework.Samples.BlockBreaker
 			}
 
 #if DEBUG
-			else if (Globals.input.GetMouseButtonDown(0) && launched)
+			else if (Globals.input.GetMouseDown(0) && launched)
 				body.LinearVelocity = (Globals.input.GetMouseWorldPosition() - transform.position).SafeNormalize() * speed;
 
 #endif

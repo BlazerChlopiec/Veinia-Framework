@@ -39,14 +39,14 @@ namespace VeiniaFramework.Editor
 		{
 			screenMousePos = Globals.input.GetMouseScreenPosition();
 
-			if (Globals.input.GetMouseButtonDown(0) && Globals.input.GetKey(Keys.LeftShift) && !Globals.myraDesktop.IsMouseOverGUI && !editorControls.isDragging)
+			if (Globals.input.GetMouseDown(0) && Globals.input.GetKey(Keys.LeftShift) && !Globals.myraDesktop.IsMouseOverGUI && !editorControls.isDragging)
 			{
 				isDragging = true;
 				startSelectionPos = Globals.input.GetMouseScreenPosition();
 			}
 
 			//mouse up
-			if (Globals.input.GetMouseButtonUp(0) && !isDragging && !editorControls.isDragging && !Globals.myraDesktop.IsMouseOverGUI)
+			if (Globals.input.GetMouseUp(0) && !isDragging && !editorControls.isDragging && !Globals.myraDesktop.IsMouseOverGUI)
 			{
 				selectedObjects.Clear();
 
@@ -55,7 +55,7 @@ namespace VeiniaFramework.Editor
 					selectedObjects.Add(oneSelection);
 			}
 			//mouse up when dragging
-			if (Globals.input.GetMouseButtonUp(0) && isDragging)
+			if (Globals.input.GetMouseUp(0) && isDragging)
 			{
 				isDragging = false;
 
@@ -89,7 +89,7 @@ namespace VeiniaFramework.Editor
 						item.Position += new Vector2(1, 0) * shiftMultiplier;
 			}
 
-			if (Globals.input.GetKeyDown(Keys.Delete) || Globals.input.GetMouseButtonDown(1))
+			if (Globals.input.GetKeyDown(Keys.Delete) || Globals.input.GetMouseDown(1))
 				RemoveSelection();
 
 			EditorLabelManager.Add("SelectedObjectCount", new Label { Text = "Selected Objects - " + selectedObjects.Count });

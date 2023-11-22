@@ -475,7 +475,7 @@ namespace GeonBit.UI
 		/// </summary>
 		public Vector2 MousePosition
 		{
-			get { return UserInterface.Active.UseRenderTarget ? Mouse.GetState().Position.ToVector2() - Globals.camera.VirtualViewport.XY : Mouse.GetState().Position.ToVector2(); }
+			get { return !UserInterface.Active.UseRenderTarget ? Mouse.GetState().Position.ToVector2() - Globals.camera.VirtualViewport.XY : Mouse.GetState().Position.ToVector2(); }
 		}
 
 		/// <summary>
