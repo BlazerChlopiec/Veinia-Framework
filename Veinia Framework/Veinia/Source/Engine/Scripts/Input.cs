@@ -176,7 +176,7 @@ namespace VeiniaFramework
 		//
 
 		//mouse
-		public bool GetMouseButton(int buttonIndex)
+		public bool GetMouse(int buttonIndex)
 		{
 			if (buttonIndex == 0)
 				return mouse.LeftButton == ButtonState.Pressed;
