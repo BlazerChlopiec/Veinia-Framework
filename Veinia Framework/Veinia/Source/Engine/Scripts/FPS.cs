@@ -18,7 +18,7 @@ namespace VeiniaFramework
 
 		public void ChangeFps(int value)
 		{
-			if (value == int.MaxValue)
+			if (value == int.MaxValue || value == 0)
 				game.IsFixedTimeStep = false; // isFixedTimeStep must be false when unlocking fps
 			else
 			{
