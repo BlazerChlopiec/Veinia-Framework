@@ -57,7 +57,7 @@ namespace VeiniaFramework.Samples.BlockBreaker
 		protected override void Draw(GameTime gameTime)
 		{
 			Globals.camera.SetViewport();
-			GraphicsDevice.Clear(Color.White * .05f);
+			GraphicsDevice.Clear(Color.Black);
 			veinia.Draw(spriteBatch);
 			Globals.camera.ResetViewport();
 
