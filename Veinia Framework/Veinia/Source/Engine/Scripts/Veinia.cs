@@ -43,7 +43,19 @@ namespace VeiniaFramework
 			Globals.camera = new Camera(new DensityViewport(graphicsDevice, window, 1920, 1080));
 			Globals.physicsWorld = new World(gravity);
 
-			window.ClientSizeChanged += (s, a) => { screen.OnApplyChanges?.Invoke(); };
+			window.ClientSizeChanged += (s, a) =>
+			{
+				screen.OnApplyChanges?.Invoke();
+
+				Globals.graphicsManager.PreferredBackBufferWidth = Globals.graphicsDevice.PresentationParameters.BackBufferWidth;
+				Globals.graphicsManager.PreferredBackBufferHeight = Globals.graphicsDevice.PresentationParameters.BackBufferHeight;
+			};
+
+			Globals.graphicsManager.DeviceReset += (s, a) =>
+			{
+				Globals.camera.ResetViewport();
+				Globals.camera.SetViewport();
+			};
 
 			title = new Title(window);
 			debugView = new DebugView(Globals.physicsWorld);
