@@ -6,34 +6,34 @@ namespace VeiniaFramework
 	public sealed class FPS
 	{
 		public float currentFps { get; private set; }
-		public bool isVSync { get; private set; }
+		public bool isVSync { get; private set; } = true;
+		public bool isFixedTimestep { get; private set; } = true;
 		private int targetFps = 60;
-
 
 		public Game game;
 
 
 		public FPS(Game game) => this.game = game;
 
-
 		public void ChangeFps(int value)
 		{
-			if (value == int.MaxValue || value == 0)
-				game.IsFixedTimeStep = false; // isFixedTimeStep must be false when unlocking fps
-			else
-			{
-				game.IsFixedTimeStep = true; // isFixedTimeStep must be true when limiting fps
-
-				targetFps = value;
-				game.TargetElapsedTime = TimeSpan.FromSeconds(1d / targetFps);
-			}
+			targetFps = value;
+			game.TargetElapsedTime = TimeSpan.FromSeconds(1d / targetFps);
 		}
 
 		public void vSync(bool value)
 		{
-			Globals.graphicsManager.SynchronizeWithVerticalRetrace = value; // change the vsync to 'value'
+			Globals.graphicsManager.SynchronizeWithVerticalRetrace = value;
+			Globals.graphicsManager.ApplyChanges();
 
 			isVSync = value;
+		}
+
+		public void FixedTimestep(bool value)
+		{
+			game.IsFixedTimeStep = value;
+
+			isFixedTimestep = value;
 		}
 
 		public void CalculateFps(GameTime gameTime)
