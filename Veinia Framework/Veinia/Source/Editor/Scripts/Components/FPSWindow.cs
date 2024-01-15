@@ -23,9 +23,9 @@ namespace VeiniaFramework.Editor
 			window.Height = 130;
 			window.Width = 115;
 
-			var fpsInputBox = new TextBox { Enabled = Globals.fps.isFixedTimestep };
+			var fpsInputBox = new TextBox { Enabled = Globals.fps.fixedTimestep };
 
-			var applyButton = new TextButton { Text = "Apply", Top = 30, Enabled = Globals.fps.isFixedTimestep };
+			var applyButton = new TextButton { Text = "Apply", Top = 30, Enabled = Globals.fps.fixedTimestep };
 
 			applyButton.Click += (o, a) =>
 			{
@@ -36,42 +36,49 @@ namespace VeiniaFramework.Editor
 				fpsInputBox.Text = string.Empty;
 			};
 
-			var set60Button = new TextButton { Text = "Set 60", Top = 30, Left = 55, Enabled = Globals.fps.isFixedTimestep };
+			var set60Button = new TextButton { Text = "Set 60", Top = 30, Left = 55, Enabled = Globals.fps.fixedTimestep };
 			set60Button.Click += (o, a) =>
 			{
 				Globals.fps.ChangeFps(60);
 				fpsInputBox.Text = string.Empty;
 			};
 
-			var vSync = new CheckBox { Top = 75, Text = " vSync", IsChecked = Globals.fps.isVSync, Enabled = !Globals.fps.isFixedTimestep, Opacity = Globals.fps.isFixedTimestep ? .3f : 1f };
-			vSync.TouchDown += (o, e) =>
+			var vSyncCheckbox = new CheckBox { Top = 75, Text = " vSync", IsChecked = Globals.fps.vSync, Enabled = !Globals.fps.fixedTimestep, Opacity = UpdateVSyncOpacity() };
+			vSyncCheckbox.TouchDown += (o, e) =>
 			{
-				Globals.fps.vSync(!vSync.IsChecked);
+				Globals.fps.vSync = !vSyncCheckbox.IsChecked;
 			};
 
-			var fixedTimestep = new CheckBox { Top = 55, Text = " Fixed", IsChecked = Globals.fps.isFixedTimestep };
-			fixedTimestep.TouchDown += (o, e) =>
+			var fixedCheckbox = new CheckBox { Top = 55, Text = " Fixed", IsChecked = Globals.fps.fixedTimestep };
+			fixedCheckbox.TouchDown += (o, e) =>
 			{
-				Globals.fps.FixedTimestep(!fixedTimestep.IsChecked);
-				applyButton.Enabled = !fixedTimestep.IsChecked;
-				fpsInputBox.Enabled = !fixedTimestep.IsChecked;
-				set60Button.Enabled = !fixedTimestep.IsChecked;
+				// test if fixedTimestep is getting checked right now
+				var getsChecked = !fixedCheckbox.IsChecked;
 
-				vSync.Enabled = fixedTimestep.IsChecked;
-				vSync.IsChecked = false;
-				Globals.fps.vSync(false);
-				vSync.Opacity = Globals.fps.isFixedTimestep ? .3f : 1f;
+				Globals.fps.fixedTimestep = getsChecked;
+				applyButton.Enabled = getsChecked;
+				fpsInputBox.Enabled = getsChecked;
+				set60Button.Enabled = getsChecked;
+
+				// fixedTimestep disables vSync
+				if (getsChecked) Globals.fps.vSync = false;
+				else Globals.fps.vSync = vSyncCheckbox.IsChecked;
+
+				vSyncCheckbox.Enabled = fixedCheckbox.IsChecked;
+				vSyncCheckbox.Opacity = UpdateVSyncOpacity();
 			};
 
 			panel.Widgets.Add(fpsInputBox);
 			panel.Widgets.Add(applyButton);
 			panel.Widgets.Add(set60Button);
-			panel.Widgets.Add(vSync);
-			panel.Widgets.Add(fixedTimestep);
+			panel.Widgets.Add(vSyncCheckbox);
+			panel.Widgets.Add(fixedCheckbox);
 
 			window.Show(Globals.myraDesktop, Point.Zero);
 		}
 
 		public override void Update() => window.Title = $"FPS - {Globals.fps.currentFps}";
+
+		private float UpdateVSyncOpacity() => Globals.fps.fixedTimestep ? .3f : 1f;
 	}
 }
