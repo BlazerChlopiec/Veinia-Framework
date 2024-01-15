@@ -20,8 +20,7 @@ namespace VeiniaFramework.Samples.Physics
 			Window.AllowUserResizing = false;
 
 			veinia = new Veinia(this, graphics);
-			Globals.fps.vSync(true);
-			Globals.fps.ChangeFps(int.MaxValue);
+			Globals.fps.FixedTimestep(false);
 		}
 
 		protected override void Initialize()
