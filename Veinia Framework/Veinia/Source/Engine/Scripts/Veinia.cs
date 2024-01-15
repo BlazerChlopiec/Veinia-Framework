@@ -98,7 +98,7 @@ namespace VeiniaFramework
 			}
 
 			Title.Add(Globals.fps.currentFps, " FPS", 0);
-			Title.Add(Globals.fps.isVSync, " - vSync", 1);
+			Title.Add(Globals.fps.vSync, " - vSync", 1);
 			title.Update();
 			#endregion
 

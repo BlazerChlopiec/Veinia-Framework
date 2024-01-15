@@ -21,7 +21,7 @@ namespace VeiniaFramework.Samples.Platformer
 			Window.AllowUserResizing = true;
 
 			veinia = new Veinia(this, graphics);
-			Globals.fps.FixedTimestep(false);
+			Globals.fps.fixedTimestep = false;
 		}
 
 		protected override void Initialize()

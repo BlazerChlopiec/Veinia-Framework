@@ -20,7 +20,7 @@ namespace VeiniaFramework.Samples.Physics
 			Window.AllowUserResizing = false;
 
 			veinia = new Veinia(this, graphics);
-			Globals.fps.FixedTimestep(false);
+			IsFixedTimeStep = false;
 		}
 
 		protected override void Initialize()
