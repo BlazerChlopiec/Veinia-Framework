@@ -21,8 +21,7 @@ namespace VeiniaFramework.Editor
 			var removeSelectedButton = new TextButton { Text = "Remove Selected" };
 			removeSelectedButton.Click += (o, e) =>
 			{
-				var editorObjectEdit = (EditToolbarBehaviour)toolbarBehaviour;
-				editorObjectEdit.RemoveSelection();
+				editToolbarBehaviour.RemoveSelection();
 			};
 			panel.Widgets.Add(removeSelectedButton);
 

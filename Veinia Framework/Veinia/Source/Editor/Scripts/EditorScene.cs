@@ -29,6 +29,8 @@ namespace VeiniaFramework.Editor
 			 * Move Selection - WSAD
 			 * Move Selection Slower - WSAD + LShift
 			 * Remove Selection - RMB
+			 * Deselect - LAlt + D
+			 * Selection Overlap Menu - Q
 			 */
 
 			UserInterface.Active.ShowCursor = false;
@@ -76,7 +78,7 @@ namespace VeiniaFramework.Editor
 				VerticalAlignment = VerticalAlignment.Center
 			};
 			window.DragDirection = DragDirection.None;
-			window.CloseButton.Click += (s, e) => { errorWindowAppeared = false; };
+			window.CloseButton.Click += (s, e) => { errorWindowAppeared = false; if (Globals.loader.current is EditorScene) EditToolbarBehaviour.skipSelectionFrame = true; };
 			window.Width = 400;
 
 			var textBox = new TextBox { Text = content, TextColor = Color.Red, Wrap = true };
