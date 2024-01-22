@@ -54,8 +54,6 @@ namespace VeiniaFramework.Editor
 
 			if (Globals.input.GetKeyDown(Keys.Q))
 				SelectionOverlapWindow();
-			if (Globals.input.GetKeyDown(Keys.F))
-				EditorScene.ErrorWindow("", "");
 
 			// selecting one thing by clicking
 			if (Globals.input.GetMouseUp(0) && !isDragging && !editorControls.isDragging && !Globals.myraDesktop.IsMouseOverGUI && !skipSelectionFrame)
@@ -81,6 +79,12 @@ namespace VeiniaFramework.Editor
 			}
 
 			if (Globals.input.GetKey(Keys.LeftControl) && Globals.input.GetKeyDown(Keys.D)) Duplicate();
+			if (Globals.input.GetKey(Keys.LeftAlt) && Globals.input.GetKeyDown(Keys.D)) selectedObjects.Clear();
+			if (Globals.input.GetKeyDown(Keys.Delete) || Globals.input.GetMouseDown(1))
+			{
+				RemoveSelection();
+				if (selectionOverlapWindow != null) selectionOverlapWindow.Close();
+			}
 
 			if (!Globals.input.GetKey(Keys.LeftControl))
 			{
@@ -103,11 +107,6 @@ namespace VeiniaFramework.Editor
 						item.Position += new Vector2(1, 0) * shiftMultiplier;
 			}
 
-			if (Globals.input.GetKeyDown(Keys.Delete) || Globals.input.GetMouseDown(1))
-			{
-				RemoveSelection();
-				selectionOverlapWindow.Close();
-			}
 
 			EditorLabelManager.Add("SelectedObjectCount", new Label { Text = "Selected Objects - " + selectedObjects.Count });
 
@@ -128,7 +127,7 @@ namespace VeiniaFramework.Editor
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center
 			};
-			selectionOverlapWindow.DragDirection = DragDirection.None;
+			//selectionOverlapWindow.DragDirection = DragDirection.None;
 			selectionOverlapWindow.Height = 35 + 70 * overlaps.Count;
 			selectionOverlapWindow.Width = 100;
 			selectionOverlapWindow.CloseButton.Click += (s, e) => { skipSelectionFrame = true; };
