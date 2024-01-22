@@ -104,7 +104,10 @@ namespace VeiniaFramework.Editor
 			}
 
 			if (Globals.input.GetKeyDown(Keys.Delete) || Globals.input.GetMouseDown(1))
+			{
 				RemoveSelection();
+				selectionOverlapWindow.Close();
+			}
 
 			EditorLabelManager.Add("SelectedObjectCount", new Label { Text = "Selected Objects - " + selectedObjects.Count });
 
