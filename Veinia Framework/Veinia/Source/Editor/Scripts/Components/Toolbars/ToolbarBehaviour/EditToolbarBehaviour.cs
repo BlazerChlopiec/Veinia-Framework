@@ -144,7 +144,9 @@ namespace VeiniaFramework.Editor
 					Background = new TextureRegion(tex.ChangeColor(overlap.EditorPlacedSprite.color), new Rectangle(0, 0, tex.Width, tex.Height)),
 				};
 
-				overlapButton.Click += (s, a) => { selectedObjects.Clear(); selectedObjects.Add(overlap); selectionOverlapWindow.Close(); skipSelectionFrame = true; };
+				overlapButton.MouseEntered += (s, e) => { selectedObjects.Clear(); selectedObjects.Add(overlap); };
+				overlapButton.Click += (s, a) => { selectionOverlapWindow.Close(); skipSelectionFrame = true; };
+				overlapButton.MouseLeft += (s, e) => { if (selectedObjects.Contains(overlap) && skipSelectionFrame) selectedObjects.Remove(overlap); };
 
 				panel.Widgets.Add(overlapButton);
 			}
