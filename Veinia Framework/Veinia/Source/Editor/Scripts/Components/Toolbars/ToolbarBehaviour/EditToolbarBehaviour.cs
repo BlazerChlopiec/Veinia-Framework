@@ -18,7 +18,7 @@ namespace VeiniaFramework.Editor
 		public EditorObject[] clipboard;
 
 		bool isDragging;
-		bool ignoreClickingOneFrame;
+		public static bool skipSelectionFrame;
 
 		Vector2 startSelectionPos;
 		Vector2 screenMousePos;
@@ -54,10 +54,11 @@ namespace VeiniaFramework.Editor
 
 			if (Globals.input.GetKeyDown(Keys.Q))
 				SelectionOverlapWindow();
-
+			if (Globals.input.GetKeyDown(Keys.F))
+				EditorScene.ErrorWindow("", "");
 
 			// selecting one thing by clicking
-			if (Globals.input.GetMouseUp(0) && !isDragging && !editorControls.isDragging && !Globals.myraDesktop.IsMouseOverGUI && !ignoreClickingOneFrame)
+			if (Globals.input.GetMouseUp(0) && !isDragging && !editorControls.isDragging && !Globals.myraDesktop.IsMouseOverGUI && !skipSelectionFrame)
 			{
 				selectedObjects.Clear();
 
@@ -107,7 +108,7 @@ namespace VeiniaFramework.Editor
 
 			EditorLabelManager.Add("SelectedObjectCount", new Label { Text = "Selected Objects - " + selectedObjects.Count });
 
-			ignoreClickingOneFrame = false;
+			skipSelectionFrame = false;
 		}
 
 		Window selectionOverlapWindow;
@@ -127,6 +128,7 @@ namespace VeiniaFramework.Editor
 			selectionOverlapWindow.DragDirection = DragDirection.None;
 			selectionOverlapWindow.Height = 35 + 70 * overlaps.Count;
 			selectionOverlapWindow.Width = 100;
+			selectionOverlapWindow.CloseButton.Click += (s, e) => { skipSelectionFrame = true; };
 
 			int overlapButtonSize = 70;
 
@@ -142,7 +144,7 @@ namespace VeiniaFramework.Editor
 					Background = new TextureRegion(tex.ChangeColor(overlap.EditorPlacedSprite.color), new Rectangle(0, 0, tex.Width, tex.Height)),
 				};
 
-				overlapButton.Click += (s, a) => { selectedObjects.Clear(); selectedObjects.Add(overlap); selectionOverlapWindow.Close(); ignoreClickingOneFrame = true; };
+				overlapButton.Click += (s, a) => { selectedObjects.Clear(); selectedObjects.Add(overlap); selectionOverlapWindow.Close(); skipSelectionFrame = true; };
 
 				panel.Widgets.Add(overlapButton);
 			}

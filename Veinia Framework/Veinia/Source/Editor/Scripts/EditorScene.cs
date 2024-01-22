@@ -77,7 +77,7 @@ namespace VeiniaFramework.Editor
 				VerticalAlignment = VerticalAlignment.Center
 			};
 			window.DragDirection = DragDirection.None;
-			window.CloseButton.Click += (s, e) => { errorWindowAppeared = false; };
+			window.CloseButton.Click += (s, e) => { errorWindowAppeared = false; if (Globals.loader.current is EditorScene) EditToolbarBehaviour.skipSelectionFrame = true; };
 			window.Width = 400;
 
 			var textBox = new TextBox { Text = content, TextColor = Color.Red, Wrap = true };
