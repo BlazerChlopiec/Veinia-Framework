@@ -2,8 +2,10 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
+using Myra.Graphics2D.TextureAtlases;
 using Myra.Graphics2D.UI;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace VeiniaFramework.Editor
 {
@@ -16,9 +18,11 @@ namespace VeiniaFramework.Editor
 		public EditorObject[] clipboard;
 
 		bool isDragging;
+		bool ignoreClickingOneFrame;
 
 		Vector2 startSelectionPos;
 		Vector2 screenMousePos;
+		Vector2 screenVisualCursorPos;
 
 		Rectangle selectionRectangle;
 
@@ -45,16 +49,25 @@ namespace VeiniaFramework.Editor
 				startSelectionPos = Globals.input.GetMouseScreenPosition();
 			}
 
-			//mouse up
-			if (Globals.input.GetMouseUp(0) && !isDragging && !editorControls.isDragging && !Globals.myraDesktop.IsMouseOverGUI)
+			if (isDragging)
+				screenVisualCursorPos = screenMousePos;
+
+			if (Globals.input.GetKeyDown(Keys.Q))
+				SelectionOverlapWindow();
+
+
+			// selecting one thing by clicking
+			if (Globals.input.GetMouseUp(0) && !isDragging && !editorControls.isDragging && !Globals.myraDesktop.IsMouseOverGUI && !ignoreClickingOneFrame)
 			{
 				selectedObjects.Clear();
+
+				screenVisualCursorPos = screenMousePos;
 
 				var oneSelection = editorObjectManager.editorObjects.Find(x => x.EditorPlacedSprite.rect.OffsetByHalf().Contains(screenMousePos));
 				if (oneSelection != null)
 					selectedObjects.Add(oneSelection);
 			}
-			//mouse up when dragging
+			// mouse up when dragging
 			if (Globals.input.GetMouseUp(0) && isDragging)
 			{
 				isDragging = false;
@@ -93,6 +106,49 @@ namespace VeiniaFramework.Editor
 				RemoveSelection();
 
 			EditorLabelManager.Add("SelectedObjectCount", new Label { Text = "Selected Objects - " + selectedObjects.Count });
+
+			ignoreClickingOneFrame = false;
+		}
+
+		Window selectionOverlapWindow;
+		public void SelectionOverlapWindow()
+		{
+			var panel = new Panel();
+			var overlaps = editorObjectManager.OverlapsWithPoint(Transform.ScreenToWorldPos(screenVisualCursorPos)).ToList();
+
+			if (selectionOverlapWindow != null) selectionOverlapWindow.Close();
+			selectionOverlapWindow = new Window
+			{
+				Title = "Overlaps",
+				Content = panel,
+				HorizontalAlignment = HorizontalAlignment.Center,
+				VerticalAlignment = VerticalAlignment.Center
+			};
+			selectionOverlapWindow.DragDirection = DragDirection.None;
+			selectionOverlapWindow.Height = 35 + 70 * overlaps.Count;
+			selectionOverlapWindow.Width = 100;
+
+			int overlapButtonSize = 70;
+
+			foreach (var overlap in overlaps)
+			{
+				var tex = overlap.EditorPlacedSprite.texture;
+				var overlapButton = new ImageButton
+				{
+					Height = overlapButtonSize,
+					Width = overlapButtonSize,
+					Top = overlapButtonSize * overlaps.IndexOf(overlap),
+					VerticalAlignment = VerticalAlignment.Top,
+					Background = new TextureRegion(tex.ChangeColor(overlap.EditorPlacedSprite.color), new Rectangle(0, 0, tex.Width, tex.Height)),
+				};
+
+				overlapButton.Click += (s, a) => { selectedObjects.Clear(); selectedObjects.Add(overlap); selectionOverlapWindow.Close(); ignoreClickingOneFrame = true; };
+
+				panel.Widgets.Add(overlapButton);
+			}
+			panel.Height = overlaps.Count * overlapButtonSize;
+
+			selectionOverlapWindow.Show(Globals.myraDesktop, Point.Zero);
 		}
 
 		public void RemoveSelection()
@@ -118,6 +174,8 @@ namespace VeiniaFramework.Editor
 
 		public override void OnDraw(SpriteBatch sb)
 		{
+			sb.DrawCircle(new CircleF(screenVisualCursorPos.ToPoint(), 20), 5, Color.Red, 5, 1);
+
 			foreach (var selected in selectedObjects)
 				sb.DrawRectangle(selected.EditorPlacedSprite.rect.OffsetByHalf(), Color.Blue, 10, .99f);
 

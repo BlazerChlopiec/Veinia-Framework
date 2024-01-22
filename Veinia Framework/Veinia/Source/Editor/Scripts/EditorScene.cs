@@ -29,6 +29,7 @@ namespace VeiniaFramework.Editor
 			 * Move Selection - WSAD
 			 * Move Selection Slower - WSAD + LShift
 			 * Remove Selection - RMB
+			 * Selection Overlap Menu - Q
 			 */
 
 			UserInterface.Active.ShowCursor = false;
