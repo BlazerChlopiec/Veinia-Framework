@@ -4,9 +4,6 @@ namespace VeiniaFramework.Editor
 {
 	public class EditToolbar : Toolbar
 	{
-		//TextButton filterSelectionButton;
-
-
 		public EditToolbar(string toolbarName, ToolbarBehaviour toolbarBehaviour) : base(toolbarName, toolbarBehaviour)
 		{
 		}
@@ -39,16 +36,12 @@ namespace VeiniaFramework.Editor
 			};
 			panel.Widgets.Add(duplicateButton);
 
-			//filterSelectionButton = new TextButton { Toggleable = true, Text = "Filter Selection", Top = 30 };
-
-			//panel.Widgets.Add(filterSelectionButton);
+			var filterSelectionButton = new TextButton { Text = "Filter Selection", Top = 75 };
+			filterSelectionButton.Click += (o, e) =>
+			{
+				editToolbarBehaviour.SelectionOverlapWindow();
+			};
+			panel.Widgets.Add(filterSelectionButton);
 		}
-		//public override void OnUpdate()
-		//{
-		//	var editorObjectEdit = (EditorObjectEdit)toolbarBehaviour;
-		//	if (editorObjectEdit.selectedObjects.Count == 1)
-		//		filterSelectionButton.Text = "Filter Selection " + editorObjectEdit.selectedObjects[0].PrefabName;
-		//	else filterSelectionButton.Text = "Filter Selection";
-		//}
 	}
 }
