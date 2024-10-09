@@ -546,7 +546,7 @@ namespace GeonBit.UI
 				// if any entity is hovered over or focused then set MouseHovers to true and break the loop
 				// focused means for ex. being dragged so its important because there are situations
 				// where your mouse isn't hovering over but its still dragging an object
-				if (entity.IsMouseOver || entity.IsFocused)
+				if ((entity.IsMouseOver || entity.IsFocused) && !entity.IsDisabled())
 				{
 					UserInterface.Active.IsMouseInteracting = true;
 					break;
