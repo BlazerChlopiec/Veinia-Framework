@@ -15,7 +15,7 @@ namespace VeiniaFramework.Samples.BlockBreaker
 
 		public override void Initialize()
 		{
-			UserInterface.Active.ShowCursor = true;
+			//UserInterface.Active.ShowCursor = true;
 
 			progressBar = new ProgressBar(0, (uint)FindComponentsOfType<Tile>().Count, new Vector2(300, 50), Anchor.TopCenter);
 			progressBar.Value = FindComponentsOfType<Tile>().Count;
@@ -23,7 +23,7 @@ namespace VeiniaFramework.Samples.BlockBreaker
 			progressBar.Caption.Scale = 1.5f;
 			progressBar.Caption.TextStyle = FontStyle.Bold;
 
-			configButton = new Button("Config", ButtonSkin.Fancy, Anchor.TopLeft, offset: new Vector2(20, 20), size: new Vector2(150, 50));
+			configButton = new Button("Config", ButtonSkin.Default, Anchor.TopLeft, offset: new Vector2(20, 20), size: new Vector2(150, 50));
 			configButton.OnClick = (e) => { ShowConfigScreen(); };
 			configButton.OnMouseEnter = (e) => { UserInterface.Active.SetCursor(CursorType.Pointer); };
 			configButton.OnMouseLeave = (e) => { UserInterface.Active.SetCursor(CursorType.Default); };
@@ -49,8 +49,6 @@ namespace VeiniaFramework.Samples.BlockBreaker
 
 			var thanksForPlaying = new Paragraph("Thank you for playing!");
 
-			var horizontalLine = new HorizontalLine();
-
 			var restartButton = new Button("Restart", ButtonSkin.Default, offset: Vector2.UnitY * 20, anchor: Anchor.BottomCenter);
 			restartButton.OnClick = (e) =>
 			{
@@ -64,7 +62,6 @@ namespace VeiniaFramework.Samples.BlockBreaker
 			restartButton.OnMouseLeave = (e) => { UserInterface.Active.SetCursor(CursorType.Default); };
 
 			panel.AddChild(congratulations);
-			panel.AddChild(horizontalLine);
 			panel.AddChild(thanksForPlaying);
 			panel.AddChild(restartButton);
 
@@ -76,10 +73,7 @@ namespace VeiniaFramework.Samples.BlockBreaker
 			Time.stop = true;
 
 			var panel = new Panel(new Vector2(300, 200), PanelSkin.Default, Anchor.Center);
-			var gameOver = new RichParagraph("{{RED}}Game Over!",
-									Anchor.TopCenter);
-
-			var horizontalLine = new HorizontalLine();
+			var gameOver = new RichParagraph("{{RED}}Game Over!");
 
 			var restartButton = new Button("Restart", ButtonSkin.Default, Anchor.BottomCenter, offset: Vector2.UnitY * 20);
 			restartButton.OnClick = (e) =>
@@ -92,7 +86,6 @@ namespace VeiniaFramework.Samples.BlockBreaker
 			restartButton.OnMouseLeave = (e) => { UserInterface.Active.SetCursor(CursorType.Default); };
 
 			panel.AddChild(gameOver).AttachAnimator(new FloatUpDownAnimator());
-			panel.AddChild(horizontalLine);
 			panel.AddChild(restartButton);
 
 			UserInterface.Active.AddEntity(panel);
@@ -111,7 +104,6 @@ namespace VeiniaFramework.Samples.BlockBreaker
 			var config = new Paragraph("Configuration",
 									Anchor.TopCenter);
 
-			var horizontalLine = new HorizontalLine();
 
 			var sliderName = new Paragraph("Ball Speed");
 			var slider = new Slider(0, 30, SliderSkin.Default);
@@ -124,7 +116,6 @@ namespace VeiniaFramework.Samples.BlockBreaker
 			resumeButton.OnMouseLeave = (e) => { UserInterface.Active.SetCursor(CursorType.Default); };
 
 			panel.AddChild(config);
-			panel.AddChild(horizontalLine);
 			panel.AddChild(sliderName);
 			panel.AddChild(slider);
 			panel.AddChild(resumeButton);
