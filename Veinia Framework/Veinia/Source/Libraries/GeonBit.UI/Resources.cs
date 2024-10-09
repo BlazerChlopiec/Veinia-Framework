@@ -281,7 +281,7 @@ namespace GeonBit.UI
             InitialiseCharStringDict();
 
             // set resources root path and store content manager
-            _root = "GeonBit.UI/themes/" + theme + "/";
+            _root = "veinia_runtime_ui/themes/" + theme + "/";
             _content = content;
 
             // set Texture2D static fields
@@ -368,35 +368,35 @@ namespace GeonBit.UI
             SilhouetteEffect = content.Load<Effect>(_root + "effects/silhouette");
 
             // load default styleSheets
-            LoadDefaultStyles( Entity.DefaultStyle, "Entity", _root, content);
-            LoadDefaultStyles( Paragraph.DefaultStyle, "Paragraph", _root, content);
-            LoadDefaultStyles( Button.DefaultStyle, "Button", _root, content);
-            LoadDefaultStyles( Button.DefaultParagraphStyle, "ButtonParagraph", _root, content);
-            LoadDefaultStyles( CheckBox.DefaultStyle, "CheckBox", _root, content);
-            LoadDefaultStyles( CheckBox.DefaultParagraphStyle, "CheckBoxParagraph", _root, content);
-            LoadDefaultStyles( ColoredRectangle.DefaultStyle, "ColoredRectangle", _root, content);
-            LoadDefaultStyles( DropDown.DefaultStyle, "DropDown", _root, content);
-            LoadDefaultStyles( DropDown.DefaultParagraphStyle, "DropDownParagraph", _root, content);
-            LoadDefaultStyles( DropDown.DefaultSelectedParagraphStyle, "DropDownSelectedParagraph", _root, content);
-            LoadDefaultStyles( Header.DefaultStyle, "Header", _root, content);
-            LoadDefaultStyles( HorizontalLine.DefaultStyle, "HorizontalLine", _root, content);
-            LoadDefaultStyles( Icon.DefaultStyle, "Icon", _root, content);
-            LoadDefaultStyles( Image.DefaultStyle, "Image", _root, content);
-            LoadDefaultStyles( Label.DefaultStyle, "Label", _root, content);
-            LoadDefaultStyles( Panel.DefaultStyle, "Panel", _root, content);
-            LoadDefaultStyles( ProgressBar.DefaultStyle, "ProgressBar", _root, content);
-            LoadDefaultStyles( ProgressBar.DefaultFillStyle, "ProgressBarFill", _root, content);
-            LoadDefaultStyles( RadioButton.DefaultStyle, "RadioButton", _root, content);
-            LoadDefaultStyles( RadioButton.DefaultParagraphStyle, "RadioButtonParagraph", _root, content);
-            LoadDefaultStyles( SelectList.DefaultStyle, "SelectList", _root, content);
-            LoadDefaultStyles( SelectList.DefaultParagraphStyle, "SelectListParagraph", _root, content);
-            LoadDefaultStyles( Slider.DefaultStyle, "Slider", _root, content);
-            LoadDefaultStyles( TextInput.DefaultStyle, "TextInput", _root, content);
-            LoadDefaultStyles( TextInput.DefaultParagraphStyle, "TextInputParagraph", _root, content);
-            LoadDefaultStyles( TextInput.DefaultPlaceholderStyle, "TextInputPlaceholder", _root, content);
-            LoadDefaultStyles( VerticalScrollbar.DefaultStyle, "VerticalScrollbar", _root, content);
-            LoadDefaultStyles( PanelTabs.DefaultButtonStyle, "PanelTabsButton", _root, content);
-            LoadDefaultStyles( PanelTabs.DefaultButtonParagraphStyle, "PanelTabsButtonParagraph", _root, content);
+            LoadDefaultStyles(Entity.DefaultStyle, "Entity", _root, content);
+            LoadDefaultStyles(Paragraph.DefaultStyle, "Paragraph", _root, content);
+            LoadDefaultStyles(Button.DefaultStyle, "Button", _root, content);
+            LoadDefaultStyles(Button.DefaultParagraphStyle, "ButtonParagraph", _root, content);
+            LoadDefaultStyles(CheckBox.DefaultStyle, "CheckBox", _root, content);
+            LoadDefaultStyles(CheckBox.DefaultParagraphStyle, "CheckBoxParagraph", _root, content);
+            LoadDefaultStyles(ColoredRectangle.DefaultStyle, "ColoredRectangle", _root, content);
+            LoadDefaultStyles(DropDown.DefaultStyle, "DropDown", _root, content);
+            LoadDefaultStyles(DropDown.DefaultParagraphStyle, "DropDownParagraph", _root, content);
+            LoadDefaultStyles(DropDown.DefaultSelectedParagraphStyle, "DropDownSelectedParagraph", _root, content);
+            LoadDefaultStyles(Header.DefaultStyle, "Header", _root, content);
+            LoadDefaultStyles(HorizontalLine.DefaultStyle, "HorizontalLine", _root, content);
+            LoadDefaultStyles(Icon.DefaultStyle, "Icon", _root, content);
+            LoadDefaultStyles(Image.DefaultStyle, "Image", _root, content);
+            LoadDefaultStyles(Label.DefaultStyle, "Label", _root, content);
+            LoadDefaultStyles(Panel.DefaultStyle, "Panel", _root, content);
+            LoadDefaultStyles(ProgressBar.DefaultStyle, "ProgressBar", _root, content);
+            LoadDefaultStyles(ProgressBar.DefaultFillStyle, "ProgressBarFill", _root, content);
+            LoadDefaultStyles(RadioButton.DefaultStyle, "RadioButton", _root, content);
+            LoadDefaultStyles(RadioButton.DefaultParagraphStyle, "RadioButtonParagraph", _root, content);
+            LoadDefaultStyles(SelectList.DefaultStyle, "SelectList", _root, content);
+            LoadDefaultStyles(SelectList.DefaultParagraphStyle, "SelectListParagraph", _root, content);
+            LoadDefaultStyles(Slider.DefaultStyle, "Slider", _root, content);
+            LoadDefaultStyles(TextInput.DefaultStyle, "TextInput", _root, content);
+            LoadDefaultStyles(TextInput.DefaultParagraphStyle, "TextInputParagraph", _root, content);
+            LoadDefaultStyles(TextInput.DefaultPlaceholderStyle, "TextInputPlaceholder", _root, content);
+            LoadDefaultStyles(VerticalScrollbar.DefaultStyle, "VerticalScrollbar", _root, content);
+            LoadDefaultStyles(PanelTabs.DefaultButtonStyle, "PanelTabsButton", _root, content);
+            LoadDefaultStyles(PanelTabs.DefaultButtonParagraphStyle, "PanelTabsButtonParagraph", _root, content);
         }
 
 
