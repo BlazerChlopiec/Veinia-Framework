@@ -15,7 +15,7 @@ namespace VeiniaFramework.Samples.BlockBreaker
 
 		public override void Initialize()
 		{
-			//UserInterface.Active.ShowCursor = true;
+			UserInterface.Active.ShowCursor = true;
 
 			progressBar = new ProgressBar(0, (uint)FindComponentsOfType<Tile>().Count, new Vector2(300, 50), Anchor.TopCenter);
 			progressBar.Value = FindComponentsOfType<Tile>().Count;
