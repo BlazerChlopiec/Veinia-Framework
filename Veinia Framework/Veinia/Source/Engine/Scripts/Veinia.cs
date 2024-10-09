@@ -135,6 +135,8 @@ namespace VeiniaFramework
 				else
 				{
 					isEditor = true;
+					if (!game.IsMouseVisible) game.IsMouseVisible = true;
+
 					Globals.loader.DynamicalyLoad(new EditorScene(Globals.loader.current.levelPath, Globals.loader.current.GetType()));
 				}
 			}
