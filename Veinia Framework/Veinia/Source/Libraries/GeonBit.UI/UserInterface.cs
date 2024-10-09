@@ -73,19 +73,9 @@ namespace GeonBit.UI
 	public enum BuiltinThemes
 	{
 		/// <summary>
-		/// Old-school style theme with hi-res textures.
+		/// default veinia UI theme
 		/// </summary>
-		hd,
-
-		/// <summary>
-		/// Old-school style theme with low-res textures.
-		/// </summary>
-		lowres,
-
-		/// <summary>
-		/// Clean, editor-like theme.
-		/// </summary>
-		editor,
+		veinia_default,
 	}
 
 	/// <summary>
