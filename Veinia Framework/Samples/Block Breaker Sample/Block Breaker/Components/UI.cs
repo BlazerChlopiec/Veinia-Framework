@@ -61,7 +61,7 @@ namespace VeiniaFramework.Samples.BlockBreaker
 			restartButton.OnMouseEnter = (e) => { UserInterface.Active.SetCursor(CursorType.Pointer); };
 			restartButton.OnMouseLeave = (e) => { UserInterface.Active.SetCursor(CursorType.Default); };
 
-			panel.AddChild(congratulations);
+			panel.AddChild(congratulations).AttachAnimator(new TextWaveAnimator { SpeedFactor = 30 });
 			panel.AddChild(thanksForPlaying);
 			panel.AddChild(restartButton);
 
