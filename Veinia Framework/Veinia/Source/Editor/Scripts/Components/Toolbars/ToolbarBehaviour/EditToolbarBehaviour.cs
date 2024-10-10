@@ -22,7 +22,7 @@ namespace VeiniaFramework.Editor
 
 		Vector2 startSelectionPos;
 		Vector2 screenMousePos;
-		Vector2 screenVisualCursorPos;
+		Vector2 overlapsVisualPos;
 
 		Rectangle selectionRectangle;
 
@@ -49,9 +49,6 @@ namespace VeiniaFramework.Editor
 				startSelectionPos = Globals.input.GetMouseScreenPosition();
 			}
 
-			if (isDragging)
-				screenVisualCursorPos = screenMousePos;
-
 			if (Globals.input.GetKeyDown(Keys.Q))
 				SelectionOverlapWindow();
 
@@ -59,8 +56,6 @@ namespace VeiniaFramework.Editor
 			if (Globals.input.GetMouseUp(0) && !isDragging && !editorControls.isDragging && !Globals.myraDesktop.IsMouseOverGUI && !skipSelectionFrame)
 			{
 				selectedObjects.Clear();
-
-				screenVisualCursorPos = screenMousePos;
 
 				var oneSelection = editorObjectManager.editorObjects.Find(x => x.EditorPlacedSprite.rect.OffsetByHalf().Contains(screenMousePos));
 				if (oneSelection != null)
@@ -116,10 +111,13 @@ namespace VeiniaFramework.Editor
 		Window selectionOverlapWindow;
 		public void SelectionOverlapWindow()
 		{
+			overlapsVisualPos = Globals.input.GetMouseScreenPosition();
+
 			var panel = new Panel();
-			var overlaps = editorObjectManager.OverlapsWithPoint(Transform.ScreenToWorldPos(screenVisualCursorPos)).ToList();
+			var overlaps = editorObjectManager.OverlapsWithPoint(Transform.ScreenToWorldPos(overlapsVisualPos)).ToList();
 
 			if (selectionOverlapWindow != null) selectionOverlapWindow.Close();
+
 			selectionOverlapWindow = new Window
 			{
 				Title = "Overlaps",
@@ -131,7 +129,11 @@ namespace VeiniaFramework.Editor
 			selectionOverlapWindow.DragDirection = DragDirection.None;
 			selectionOverlapWindow.Height = 35 + 70 * overlaps.Count;
 			selectionOverlapWindow.Width = 100;
-			selectionOverlapWindow.CloseButton.Click += (s, e) => { skipSelectionFrame = true; };
+			selectionOverlapWindow.CloseButton.Click += (s, e) =>
+			{
+				skipSelectionFrame = true;
+				selectionOverlapWindow = null;
+			};
 
 			int overlapButtonSize = 70;
 
@@ -148,7 +150,7 @@ namespace VeiniaFramework.Editor
 				};
 
 				overlapButton.MouseEntered += (s, e) => { selectedObjects.Clear(); selectedObjects.Add(overlap); };
-				overlapButton.Click += (s, a) => { selectionOverlapWindow.Close(); skipSelectionFrame = true; };
+				overlapButton.Click += (s, a) => { selectionOverlapWindow.Close(); selectionOverlapWindow = null; skipSelectionFrame = true; };
 				overlapButton.MouseLeft += (s, e) => { if (selectedObjects.Contains(overlap) && skipSelectionFrame) selectedObjects.Remove(overlap); };
 
 				panel.Widgets.Add(overlapButton);
@@ -181,7 +183,9 @@ namespace VeiniaFramework.Editor
 
 		public override void OnDraw(SpriteBatch sb)
 		{
-			sb.DrawCircle(new CircleF(screenVisualCursorPos.ToPoint(), 20), 5, Color.Red, 5, 1);
+
+			if (selectionOverlapWindow != null)
+				sb.DrawCircle(new CircleF(overlapsVisualPos.ToPoint(), 20), 5, Color.Red, 5, 1);
 
 			foreach (var selected in selectedObjects)
 				sb.DrawRectangle(selected.EditorPlacedSprite.rect.OffsetByHalf(), Color.Blue, 10, .99f);
