@@ -127,7 +127,8 @@ namespace VeiniaFramework.Editor
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center
 			};
-			//selectionOverlapWindow.DragDirection = DragDirection.None;
+
+			selectionOverlapWindow.DragDirection = DragDirection.None;
 			selectionOverlapWindow.Height = 35 + 70 * overlaps.Count;
 			selectionOverlapWindow.Width = 100;
 			selectionOverlapWindow.CloseButton.Click += (s, e) => { skipSelectionFrame = true; };
