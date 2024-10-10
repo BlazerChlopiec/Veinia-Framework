@@ -21,7 +21,7 @@ namespace VeiniaFramework.Editor
 			/* KEYBOARD BINDINGS
 			 * 
 			 * Toolbar Swap - 1-10
-			 * Drag - LAlt + LMB 
+			 * Drag - LMB 
 			 * Swipe Motion - LShift + LMB
 			 * Hide Grid - G
 			 * Save - LCtrl + S

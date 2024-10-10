@@ -105,6 +105,5 @@ namespace VeiniaFramework.Editor
 					item.gizmo?.DrawGizmos(sb, item);
 				}
 		}
-
 	}
 }

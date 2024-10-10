@@ -17,7 +17,7 @@ namespace VeiniaFramework.Editor
 		public List<EditorObject> selectedObjects = new List<EditorObject>();
 		public EditorObject[] clipboard;
 
-		bool isDragging;
+		bool selectDragging;
 		public static bool skipSelectionFrame;
 
 		Vector2 startSelectionPos;
@@ -45,7 +45,7 @@ namespace VeiniaFramework.Editor
 
 			if (Globals.input.GetMouseDown(0) && Globals.input.GetKey(Keys.LeftShift) && !Globals.myraDesktop.IsMouseOverGUI && !editorControls.isDragging)
 			{
-				isDragging = true;
+				selectDragging = true;
 				startSelectionPos = Globals.input.GetMouseScreenPosition();
 			}
 
@@ -53,7 +53,7 @@ namespace VeiniaFramework.Editor
 				SelectionOverlapWindow();
 
 			// selecting one thing by clicking
-			if (Globals.input.GetMouseUp(0) && !isDragging && !editorControls.isDragging && !Globals.myraDesktop.IsMouseOverGUI && !skipSelectionFrame)
+			if (Globals.input.GetMouseUp(0) && !selectDragging && !editorControls.isDragging && !Globals.myraDesktop.IsMouseOverGUI && !skipSelectionFrame)
 			{
 				selectedObjects.Clear();
 
@@ -62,9 +62,9 @@ namespace VeiniaFramework.Editor
 					selectedObjects.Add(oneSelection);
 			}
 			// mouse up when dragging
-			if (Globals.input.GetMouseUp(0) && isDragging)
+			if (Globals.input.GetMouseUp(0) && selectDragging)
 			{
-				isDragging = false;
+				selectDragging = false;
 
 				foreach (var item in editorObjectManager.GetInsideRectangle(selectionRectangle.AllowNegativeSize()))
 				{
@@ -190,7 +190,7 @@ namespace VeiniaFramework.Editor
 			foreach (var selected in selectedObjects)
 				sb.DrawRectangle(selected.EditorPlacedSprite.rect.OffsetByHalf(), Color.Blue, 10, .99f);
 
-			if (isDragging)
+			if (selectDragging)
 			{
 				var difference = startSelectionPos - screenMousePos;
 				selectionRectangle = new Rectangle((int)startSelectionPos.X, (int)startSelectionPos.Y, (int)-difference.X, (int)-difference.Y);

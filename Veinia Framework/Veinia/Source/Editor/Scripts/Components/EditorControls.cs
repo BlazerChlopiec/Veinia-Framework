@@ -7,10 +7,13 @@ namespace VeiniaFramework.Editor
 	public class EditorControls : Component
 	{
 		public bool isDragging { get; private set; }
+		private bool isHolding;
 
 		private Vector2 startMousePos;
 
 		private float zoomSensitivity = 1.2f;
+
+		private const float DRAG_THRESHOLD = .3f; // world space
 
 
 		public override void Update()
@@ -20,10 +23,10 @@ namespace VeiniaFramework.Editor
 
 			if (Globals.myraDesktop.IsMouseOverGUI && isDragging == false && Globals.input.GetMouseDown(0)) { return; }
 
-			if (Globals.input.GetMouseDown(0) && Globals.input.GetKey(Keys.LeftAlt))
+			if (Globals.input.GetMouseDown(0))
 			{
 				startMousePos = Globals.input.GetMouseWorldPosition();
-				isDragging = true;
+				if (!Globals.input.GetKey(Keys.LeftShift)) isHolding = true;
 			}
 
 			if (!Globals.myraDesktop.IsMouseOverGUI)
@@ -32,10 +35,21 @@ namespace VeiniaFramework.Editor
 				Globals.camera.Scale = Vector2.Clamp(Globals.camera.Scale, Vector2.One * .28f, Vector2.One * 1.7f);
 			}
 
+			if (isHolding)
+			{
+				if (Vector2.Distance(startMousePos, Globals.input.GetMouseWorldPosition()) > DRAG_THRESHOLD)
+				{
+					if (!isDragging) startMousePos = Globals.input.GetMouseWorldPosition(); // reassing startMousePos to prevent this weird jump when crossing over threshold
+					isDragging = true;
+				}
+			}
+
 			if (isDragging) { Globals.camera.SetPosition(startMousePos - (Globals.input.GetMouseWorldPosition() - Globals.camera.GetPosition())); }
 
 			if (Globals.input.GetMouseUp(0))
 			{
+				isHolding = false;
+
 				// we release drag in next frame to not accidentally paint an object on drag release
 				NextFrame.actions.Add(() => { isDragging = false; });
 			}
