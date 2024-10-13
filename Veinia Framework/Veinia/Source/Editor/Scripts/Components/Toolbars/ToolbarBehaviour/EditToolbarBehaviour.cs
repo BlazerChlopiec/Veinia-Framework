@@ -52,6 +52,9 @@ namespace VeiniaFramework.Editor
 			if (Globals.input.GetKeyDown(Keys.Q))
 				SelectionOverlapWindow();
 
+			if (Globals.input.GetKeyDown(Keys.R))
+				Rotate();
+
 			// selecting one thing by clicking
 			if (Globals.input.GetMouseUp(0) && !selectDragging && !editorControls.isDragging && !Globals.myraDesktop.IsMouseOverGUI && !skipSelectionFrame)
 			{
@@ -179,6 +182,12 @@ namespace VeiniaFramework.Editor
 				var spawnedClipboard = editorObjectManager.Spawn(item.PrefabName, item.Position + Vector2.One);
 				selectedObjects.Add(spawnedClipboard);
 			}
+		}
+
+		public void Rotate()
+		{
+			Say.Line(selectedObjects[0].EditorPlacedSprite.transform.rotation);
+			selectedObjects[0].EditorPlacedSprite.transform.rotation = 45;
 		}
 
 		public override void OnDraw(SpriteBatch sb)

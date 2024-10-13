@@ -26,6 +26,7 @@ namespace VeiniaFramework.Editor
 			 * Hide Grid - G
 			 * Save - LCtrl + S
 			 * Duplicate Selection - LCtrl + D
+			 * Rotate - R
 			 * Move Selection - WSAD
 			 * Move Selection Slower - WSAD + LShift
 			 * Remove Selection - RMB
@@ -49,7 +50,8 @@ namespace VeiniaFramework.Editor
 			}, isStatic: true);
 
 			var toolbarManager = new ToolbarManager();
-			if (prefabManager != null) toolbarManager.toolbars.Add(new PaintingToolbar("Painting", new PaintingToolbarBehaviour(prefabManager), prefabManager));
+			if (prefabManager != null)
+				toolbarManager.toolbars.Add(new PaintingToolbar("Painting", new PaintingToolbarBehaviour(prefabManager), prefabManager));
 			toolbarManager.toolbars.Add(new EditToolbar("Edit", new EditToolbarBehaviour()));
 
 			GameObject UI = Instantiate(Transform.Empty, new List<Component>

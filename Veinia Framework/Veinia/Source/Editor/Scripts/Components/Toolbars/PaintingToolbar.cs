@@ -36,7 +36,7 @@ namespace VeiniaFramework.Editor
 			for (int i = 0; i < paintingToolbarTabs.Count; i++)
 				tabControl.Items.Add(new TabItem { Content = paintingToolbarTabs[i].Scroll, Text = i.ToString() });
 
-			finalToolbarContent = tabControl;
+			displayedToolbarContent = tabControl;
 
 			ShowPrefabsInToolbars();
 		}
