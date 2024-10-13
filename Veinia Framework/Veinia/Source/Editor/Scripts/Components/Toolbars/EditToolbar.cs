@@ -43,11 +43,8 @@ namespace VeiniaFramework.Editor
 			};
 			panel.Widgets.Add(filterSelectionButton);
 
-			var rotateButton = new TextButton { Text = "Rotate [R]", Top = 100 };
-			rotateButton.Click += (o, e) =>
-			{
-				editToolbarBehaviour.Rotate();
-			};
+			var rotateButton = new TextButton { Text = "Rotate [R]", Top = 100, Toggleable = true };
+			editToolbarBehaviour.rotateButton = rotateButton;
 			panel.Widgets.Add(rotateButton);
 		}
 	}

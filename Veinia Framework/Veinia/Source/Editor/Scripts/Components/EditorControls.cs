@@ -15,6 +15,8 @@ namespace VeiniaFramework.Editor
 
 		private const float DRAG_THRESHOLD = .3f; // world space
 
+		public static bool disableDragMove;
+
 
 		public override void Update()
 		{
@@ -44,7 +46,7 @@ namespace VeiniaFramework.Editor
 				}
 			}
 
-			if (isDragging) { Globals.camera.SetPosition(startMousePos - (Globals.input.GetMouseWorldPosition() - Globals.camera.GetPosition())); }
+			if (isDragging && !disableDragMove) { Globals.camera.SetPosition(startMousePos - (Globals.input.GetMouseWorldPosition() - Globals.camera.GetPosition())); }
 
 			if (Globals.input.GetMouseUp(0))
 			{

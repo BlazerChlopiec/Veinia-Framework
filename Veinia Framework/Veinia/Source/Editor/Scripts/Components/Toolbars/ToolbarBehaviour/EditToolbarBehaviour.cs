@@ -19,6 +19,7 @@ namespace VeiniaFramework.Editor
 
 		bool selectDragging;
 		public static bool skipSelectionFrame;
+		public TextButton rotateButton; // determine if IsPressed
 
 		Vector2 startSelectionPos;
 		Vector2 screenMousePos;
@@ -53,7 +54,7 @@ namespace VeiniaFramework.Editor
 				SelectionOverlapWindow();
 
 			if (Globals.input.GetKeyDown(Keys.R))
-				Rotate();
+				rotateButton.IsPressed = !rotateButton.IsPressed;
 
 			// selecting one thing by clicking
 			if (Globals.input.GetMouseUp(0) && !selectDragging && !editorControls.isDragging && !Globals.myraDesktop.IsMouseOverGUI && !skipSelectionFrame)
@@ -105,6 +106,11 @@ namespace VeiniaFramework.Editor
 						item.Position += new Vector2(1, 0) * shiftMultiplier;
 			}
 
+			EditorControls.disableDragMove = rotateButton.IsPressed && selectedObjects.Count > 0;
+			if (rotateButton.IsPressed && editorControls.isDragging && Globals.input.GetMouse(0))
+			{
+				selectedObjects.ForEach(x => x.Rotation += Globals.input.mouseX);
+			}
 
 			EditorLabelManager.Add("SelectedObjectCount", new Label { Text = "Selected Objects - " + selectedObjects.Count });
 
@@ -184,11 +190,8 @@ namespace VeiniaFramework.Editor
 			}
 		}
 
-		public void Rotate() => selectedObjects.ForEach(x => x.Rotation = 45);
-
 		public override void OnDraw(SpriteBatch sb)
 		{
-
 			if (selectionOverlapWindow != null)
 				sb.DrawCircle(new CircleF(overlapsVisualPos.ToPoint(), 20), 5, Color.Red, 5, 1);
 
