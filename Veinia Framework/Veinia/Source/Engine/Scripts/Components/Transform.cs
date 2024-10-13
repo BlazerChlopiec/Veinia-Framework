@@ -48,6 +48,7 @@ namespace VeiniaFramework
 		{
 			this.position = position;
 		}
+		public Transform() { }
 
 		public static Vector2 WorldToScreenPos(Vector2 world)
 		{

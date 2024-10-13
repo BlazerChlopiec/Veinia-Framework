@@ -55,7 +55,7 @@ namespace VeiniaFramework.Editor
 		{
 			if (objectPreview != null) objectPreview.DestroyGameObject();
 
-			objectPreview = prefabManager.Find(currentPrefabName).ExtractComponentToNewGameObject<Sprite>(Vector2.Zero);
+			objectPreview = prefabManager.Find(currentPrefabName).ExtractComponentToNewGameObject<Sprite>(Transform.Empty);
 			var sprite = objectPreview.GetComponent<Sprite>();
 			sprite.color *= .5f;
 			sprite.layer = .9f;
@@ -103,12 +103,12 @@ namespace VeiniaFramework.Editor
 					if (!Globals.input.GetKey(Keys.LeftControl))
 					{
 						if (editorObjectManager.PrefabOverlapsWithPoint(mouseGridPos, currentPrefabName) == null)
-							editorObjectManager.Spawn(currentPrefabName, mouseGridPos);
+							editorObjectManager.Spawn(currentPrefabName, new Transform { position = mouseGridPos });
 					}
 					else
 					{
 						if (editorObjectManager.PrefabOverlapsWithPoint(mousePos, currentPrefabName) == null)
-							editorObjectManager.Spawn(currentPrefabName, mousePos);
+							editorObjectManager.Spawn(currentPrefabName, new Transform { position = mousePos });
 					}
 				}
 				//

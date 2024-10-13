@@ -179,16 +179,12 @@ namespace VeiniaFramework.Editor
 
 			foreach (var item in clipboard)
 			{
-				var spawnedClipboard = editorObjectManager.Spawn(item.PrefabName, item.Position + Vector2.One);
+				var spawnedClipboard = editorObjectManager.Spawn(item.PrefabName, new Transform { position = item.Position + Vector2.One });
 				selectedObjects.Add(spawnedClipboard);
 			}
 		}
 
-		public void Rotate()
-		{
-			Say.Line(selectedObjects[0].EditorPlacedSprite.transform.rotation);
-			selectedObjects[0].EditorPlacedSprite.transform.rotation = 45;
-		}
+		public void Rotate() => selectedObjects.ForEach(x => x.Rotation = 45);
 
 		public override void OnDraw(SpriteBatch sb)
 		{

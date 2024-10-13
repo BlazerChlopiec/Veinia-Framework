@@ -64,9 +64,9 @@ namespace VeiniaFramework
 			}
 			return rect;
 		}
-		public static GameObject ExtractComponentToNewGameObject<T1>(this GameObject gameObject, Vector2 newGameObjectPosition) where T1 : Component
+		public static GameObject ExtractComponentToNewGameObject<T1>(this GameObject gameObject, Transform transform) where T1 : Component
 		{
-			return new GameObject(new Transform(newGameObjectPosition), new List<Component>
+			return new GameObject(transform, new List<Component>
 			{
 				(T1)gameObject.GetComponent<T1>().Clone()
 			}, isStatic: true);
