@@ -21,6 +21,8 @@ namespace VeiniaFramework.Editor
 		public static bool skipSelectionFrame;
 		public TextButton rotateButton; // determine if IsPressed
 
+		private float rotationSensitivity = .5f;
+
 		Vector2 startSelectionPos;
 		Vector2 screenMousePos;
 		Vector2 overlapsVisualPos;
@@ -109,7 +111,7 @@ namespace VeiniaFramework.Editor
 			EditorControls.disableDragMove = rotateButton.IsPressed && selectedObjects.Count > 0;
 			if (rotateButton.IsPressed && editorControls.isDragging && Globals.input.GetMouse(0))
 			{
-				selectedObjects.ForEach(x => x.Rotation -= Globals.input.mouseX);
+				selectedObjects.ForEach(x => x.Rotation -= Globals.input.mouseX * rotationSensitivity);
 			}
 
 			EditorLabelManager.Add("SelectedObjectCount", new Label { Text = "Selected Objects - " + selectedObjects.Count });
