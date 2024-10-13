@@ -190,6 +190,8 @@ namespace VeiniaFramework.Editor
 			}
 		}
 
+		public void ResetRotation() => selectedObjects.ForEach(x => x.Rotation = 0);
+
 		public override void OnDraw(SpriteBatch sb)
 		{
 			if (selectionOverlapWindow != null)
