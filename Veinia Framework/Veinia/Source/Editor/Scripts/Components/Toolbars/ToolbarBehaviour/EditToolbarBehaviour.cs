@@ -187,7 +187,11 @@ namespace VeiniaFramework.Editor
 
 			foreach (var item in clipboard)
 			{
-				var spawnedClipboard = editorObjectManager.Spawn(item.PrefabName, new Transform { position = item.Position + Vector2.One });
+				var spawnedClipboard = editorObjectManager.Spawn(item.PrefabName, new Transform
+				{
+					position = item.Position + Vector2.One,
+					rotation = item.Rotation
+				});
 				selectedObjects.Add(spawnedClipboard);
 			}
 		}
