@@ -16,7 +16,14 @@ namespace VeiniaFramework
 		public Body body
 		{
 			get { return Body; }
-			set { Body = value; Body.OnCollision += OnCollision; Body.OnSeparation += OnSeparation; Body.Position = transform.Position; Body.Rotation = MathHelper.ToRadians(transform.Rotation); }
+			set
+			{
+				Body = value; Body.OnCollision += OnCollision;
+				Body.OnSeparation += OnSeparation;
+
+				Body.Position = transform.Position;
+				Body.Rotation = MathHelper.ToRadians(-transform.Rotation);
+			}
 		}
 
 		private Body Body;

@@ -111,7 +111,8 @@ namespace VeiniaFramework.Editor
 			EditorControls.disableDragMove = rotateButton.IsPressed && selectedObjects.Count > 0;
 			if (rotateButton.IsPressed && editorControls.isDragging && Globals.input.GetMouse(0))
 			{
-				selectedObjects.ForEach(x => x.Rotation -= Globals.input.mouseX * rotationSensitivity);
+				selectedObjects.ForEach(x => x.Rotation += Globals.input.mouseX * rotationSensitivity);
+				Say.Line(selectedObjects[0].Rotation);
 			}
 
 			EditorLabelManager.Add("SelectedObjectCount", new Label { Text = "Selected Objects - " + selectedObjects.Count });
