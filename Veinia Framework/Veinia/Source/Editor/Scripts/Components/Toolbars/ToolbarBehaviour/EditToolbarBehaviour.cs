@@ -112,7 +112,6 @@ namespace VeiniaFramework.Editor
 			if (rotateButton.IsPressed && editorControls.isDragging && Globals.input.GetMouse(0))
 			{
 				selectedObjects.ForEach(x => x.Rotation += Globals.input.mouseX * rotationSensitivity);
-				Say.Line(selectedObjects[0].Rotation);
 			}
 
 			EditorLabelManager.Add("SelectedObjectCount", new Label { Text = "Selected Objects - " + selectedObjects.Count });
