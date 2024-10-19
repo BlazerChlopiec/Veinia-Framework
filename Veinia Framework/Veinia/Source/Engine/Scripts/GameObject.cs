@@ -160,29 +160,5 @@ namespace VeiniaFramework
 				if (body != null && Globals.physicsWorld.BodyList.Contains(body)) Globals.physicsWorld.Remove(body);
 			}
 		}
-
-		public void ToggleOn()
-		{
-			foreach (var component in components)
-			{
-				if (component is IToggleable)
-				{
-					IToggleable toggleable = (IToggleable)component;
-					toggleable.ToggleOn();
-				}
-			}
-		}
-
-		public void ToggleOff()
-		{
-			foreach (var component in components)
-			{
-				if (component is IToggleable)
-				{
-					IToggleable toggleable = (IToggleable)component;
-					toggleable.ToggleOff();
-				}
-			}
-		}
 	}
 }
