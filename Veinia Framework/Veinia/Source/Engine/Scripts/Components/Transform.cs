@@ -25,7 +25,13 @@ namespace VeiniaFramework
 		}
 		public Vector2 Position { get; set; }
 
-		public Vector2 scale { get; set; } = Vector2.One;
+		public Vector2 scale
+		{
+			get { return Scale; }
+			set { Scale = value; }
+		}
+		public Vector2 Scale { get; set; } = Vector2.One;
+
 		public Vector2 screenPos => Transform.WorldToScreenPos(position);
 		public Vector2 up => new Vector2((float)MathF.Cos(MathHelper.ToRadians(rotation - 90)), -(float)MathF.Sin(MathHelper.ToRadians(rotation - 90)));
 		public Vector2 right => new Vector2((float)MathF.Cos(MathHelper.ToRadians(rotation)), -(float)MathF.Sin(MathHelper.ToRadians(rotation)));
