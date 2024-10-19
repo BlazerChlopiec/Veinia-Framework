@@ -22,7 +22,7 @@ namespace VeiniaFramework
 				Body.OnSeparation += OnSeparation;
 
 				Body.Position = transform.Position;
-				Body.Rotation = MathHelper.ToRadians(-transform.Rotation);
+				if (linkPhysicsRotationToTransform) Body.Rotation = MathHelper.ToRadians(-transform.Rotation);
 			}
 		}
 
@@ -31,6 +31,10 @@ namespace VeiniaFramework
 		public bool isStatic;
 		public bool dontDestroyOnLoad;
 		public bool isEnabled = true;
+
+		// makes body's shape rotate with transform.rotation
+		// default behaviour
+		public bool linkPhysicsRotationToTransform = true;
 
 		//if your object is dontDestroyOnLoad prevent initializing it on a new scene (initialize once only)
 		public bool dontDestroyOnLoadInitializedBefore;

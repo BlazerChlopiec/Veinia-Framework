@@ -13,8 +13,8 @@ namespace VeiniaFramework
 
 		public float rotation
 		{
-			get { if (transform != null && body != null) return MathHelper.ToDegrees(-body.Rotation); else return Rotation; }
-			set { Rotation = value; if (transform != null && body != null) body.Rotation = MathHelper.ToRadians(-value); }
+			get { if (transform != null && body != null && gameObject.linkPhysicsRotationToTransform) return MathHelper.ToDegrees(-body.Rotation); else return Rotation; }
+			set { Rotation = value; if (transform != null && body != null && gameObject.linkPhysicsRotationToTransform) body.Rotation = MathHelper.ToRadians(-value); }
 		}
 		public float Rotation { get; set; }
 
