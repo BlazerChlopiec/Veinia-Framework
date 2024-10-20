@@ -13,6 +13,7 @@ namespace VeiniaFramework.Samples.Platformer
 		Veinia veinia;
 
 		RenderTarget2D mainRT;
+		RenderTarget2D pixelRT;
 
 
 		public PlatformerGame()
@@ -43,9 +44,6 @@ namespace VeiniaFramework.Samples.Platformer
 
 			Time.StopForFrames(5);
 
-
-			mainRT = new RenderTarget2D(GraphicsDevice, Globals.camera.VirtualViewport.Width, Globals.camera.VirtualViewport.Height);
-
 			base.Initialize();
 		}
 
@@ -53,7 +51,10 @@ namespace VeiniaFramework.Samples.Platformer
 
 		protected override void Update(GameTime gameTime)
 		{
+			mainRT?.Dispose();
+			pixelRT?.Dispose();
 			mainRT = new RenderTarget2D(GraphicsDevice, Globals.camera.VirtualViewport.Width, Globals.camera.VirtualViewport.Height);
+			pixelRT = new RenderTarget2D(GraphicsDevice, 256, 144);
 
 			if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
 				Exit();
@@ -70,19 +71,29 @@ namespace VeiniaFramework.Samples.Platformer
 			GraphicsDevice.SetRenderTarget(mainRT);
 			GraphicsDevice.Clear(new Color(5, 36, 12)); // green background
 
-			veinia.Draw(spriteBatch, samplerState: SamplerState.PointClamp);
+			veinia.DrawWorld(spriteBatch, samplerState: SamplerState.PointClamp);
+
+			GraphicsDevice.SetRenderTarget(pixelRT);
+
+			spriteBatch.Begin(transformMatrix: Matrix.CreateScale((float)pixelRT.Width / mainRT.Width, (float)pixelRT.Height / mainRT.Height, 1));
+
+			spriteBatch.Draw(mainRT, new Rectangle(0, 0, mainRT.Width, mainRT.Height), Color.White);
+
+			spriteBatch.End();
 
 			GraphicsDevice.SetRenderTarget(null);
 			GraphicsDevice.Clear(Color.Black);
 
 			spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-
 			cam.SetViewport();
-			spriteBatch.Draw(mainRT, new Rectangle(cam.VirtualViewport.X, cam.VirtualViewport.Y, cam.VirtualViewport.Width, cam.VirtualViewport.Height), Color.White);
+			spriteBatch.Draw(pixelRT, new Rectangle(cam.VirtualViewport.X, cam.VirtualViewport.Y, cam.VirtualViewport.Width, cam.VirtualViewport.Height), Color.White);
 			cam.ResetViewport();
-
 			spriteBatch.End();
 
+			cam.SetViewport();
+			veinia.DrawMyra();
+			veinia.DrawDebugPhysics();
+			cam.ResetViewport();
 
 			base.Draw(gameTime);
 		}
