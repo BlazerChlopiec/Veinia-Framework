@@ -12,6 +12,8 @@ namespace VeiniaFramework.Samples.Platformer
 
 		Veinia veinia;
 
+		RenderTarget2D mainRT;
+
 
 		public PlatformerGame()
 		{
@@ -41,6 +43,9 @@ namespace VeiniaFramework.Samples.Platformer
 
 			Time.StopForFrames(5);
 
+
+			mainRT = new RenderTarget2D(GraphicsDevice, Globals.camera.VirtualViewport.Width, Globals.camera.VirtualViewport.Height);
+
 			base.Initialize();
 		}
 
@@ -48,6 +53,8 @@ namespace VeiniaFramework.Samples.Platformer
 
 		protected override void Update(GameTime gameTime)
 		{
+			mainRT = new RenderTarget2D(GraphicsDevice, Globals.camera.VirtualViewport.Width, Globals.camera.VirtualViewport.Height);
+
 			if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
 				Exit();
 
@@ -58,13 +65,24 @@ namespace VeiniaFramework.Samples.Platformer
 
 		protected override void Draw(GameTime gameTime)
 		{
-			Globals.graphicsDevice.Clear(Color.Black); // black bars for the BoundingViewport
-			Globals.camera.SetViewport();
+			var cam = Globals.camera;
 
-			GraphicsDevice.Clear(new Color(5, 36, 12));
+			GraphicsDevice.SetRenderTarget(mainRT);
+			GraphicsDevice.Clear(new Color(5, 36, 12)); // green background
 
 			veinia.Draw(spriteBatch, samplerState: SamplerState.PointClamp);
-			Globals.camera.ResetViewport();
+
+			GraphicsDevice.SetRenderTarget(null);
+			GraphicsDevice.Clear(Color.Black);
+
+			spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+
+			cam.SetViewport();
+			spriteBatch.Draw(mainRT, new Rectangle(cam.VirtualViewport.X, cam.VirtualViewport.Y, cam.VirtualViewport.Width, cam.VirtualViewport.Height), Color.White);
+			cam.ResetViewport();
+
+			spriteBatch.End();
+
 
 			base.Draw(gameTime);
 		}
