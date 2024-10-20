@@ -91,6 +91,7 @@ namespace VeiniaFramework.Samples.Platformer
 			spriteBatch.End();
 
 			cam.SetViewport();
+			veinia.DrawGeon(spriteBatch);
 			veinia.DrawMyra();
 			veinia.DrawDebugPhysics();
 			cam.ResetViewport();
