@@ -76,11 +76,6 @@ namespace VeiniaFramework
 				width = (int)(height * aspectRatio + .5f);
 			}
 
-			//Say.Line(width + "  " + height);
-			//Say.Line("Virtual " + _virtualWidth + "  " + _virtualHeight);
-			//Say.Line("Scale " + (_graphicsDevice.PresentationParameters.BackBufferWidth / _virtualWidth));
-			//Say.Line("     ");
-
 			_viewport.X = (_graphicsDevice.PresentationParameters.BackBufferWidth / 2) - (width / 2);
 			_viewport.Y = (_graphicsDevice.PresentationParameters.BackBufferHeight / 2) - (height / 2);
 			_viewport.Width = width;

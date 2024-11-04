@@ -44,18 +44,24 @@ namespace VeiniaFramework.Samples.Platformer
 
 			Time.StopForFrames(5);
 
+			GenerateRenderTargets();
+			Window.ClientSizeChanged += delegate { GenerateRenderTargets(); };
+
 			base.Initialize();
+		}
+
+		private void GenerateRenderTargets()
+		{
+			mainRT?.Dispose();
+			pixelRT?.Dispose();
+			mainRT = new RenderTarget2D(GraphicsDevice, Globals.camera.VirtualViewport.Width, Globals.camera.VirtualViewport.Height);
+			pixelRT = new RenderTarget2D(GraphicsDevice, 256, 144);
 		}
 
 		protected override void LoadContent() { }
 
 		protected override void Update(GameTime gameTime)
 		{
-			mainRT?.Dispose();
-			pixelRT?.Dispose();
-			mainRT = new RenderTarget2D(GraphicsDevice, Globals.camera.VirtualViewport.Width, Globals.camera.VirtualViewport.Height);
-			pixelRT = new RenderTarget2D(GraphicsDevice, 256, 144);
-
 			if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
 				Exit();
 
