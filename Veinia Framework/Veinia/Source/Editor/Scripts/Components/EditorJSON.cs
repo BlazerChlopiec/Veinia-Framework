@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using VeiniaFramework.Editor;
 
 namespace VeiniaFramework.Editor
 {
@@ -12,6 +13,8 @@ namespace VeiniaFramework.Editor
 
 		private string editedLevelName;
 
+		public SceneFile sceneFile;
+
 
 		public EditorJSON(string editedLevelName) => this.editedLevelName = editedLevelName;
 
@@ -19,12 +22,16 @@ namespace VeiniaFramework.Editor
 		{
 			editorObjectManager = FindComponentOfType<EditorObjectManager>();
 
+			sceneFile = new SceneFile();
+
 			Load();
 		}
 
 		public void Save()
 		{
-			string serializedText = JsonConvert.SerializeObject(editorObjectManager.editorObjects);
+			sceneFile.objects = editorObjectManager.editorObjects;
+
+			string serializedText = JsonConvert.SerializeObject(sceneFile);
 			serializedText = Encryption.Encrypt(serializedText);
 
 			if (editedLevelName == null || editedLevelName == string.Empty)
@@ -53,9 +60,9 @@ namespace VeiniaFramework.Editor
 			if (!File.Exists("LevelData/" + editedLevelName)) return;
 			var deserializedText = File.ReadAllText("LevelData/" + editedLevelName);
 			deserializedText = Encryption.Decrypt(deserializedText);
-			var objects = JsonConvert.DeserializeObject<List<EditorObject>>(deserializedText);
+			sceneFile = JsonConvert.DeserializeObject<SceneFile>(deserializedText);
 
-			foreach (var item in objects)
+			foreach (var item in sceneFile.objects)
 			{
 				editorObjectManager.Spawn(item.PrefabName, new Transform { position = item.Position, rotation = item.Rotation });
 			}
@@ -66,4 +73,10 @@ namespace VeiniaFramework.Editor
 			if (Globals.input.GetKey(Keys.LeftControl) && Globals.input.GetKeyDown(Keys.S)) Save();
 		}
 	}
+}
+
+
+public class SceneFile
+{
+	public List<EditorObject> objects;
 }

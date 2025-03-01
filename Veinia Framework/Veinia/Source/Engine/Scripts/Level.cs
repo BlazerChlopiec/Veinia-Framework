@@ -57,9 +57,9 @@ namespace VeiniaFramework
 #endif
 			var deserializedText = File.ReadAllText("LevelData/" + editorLevelName);
 			deserializedText = Encryption.Decrypt(deserializedText);
-			var objects = JsonConvert.DeserializeObject<List<EditorObject>>(deserializedText);
+			var sceneFile = JsonConvert.DeserializeObject<SceneFile>(deserializedText);
 
-			foreach (var item in objects)
+			foreach (var item in sceneFile.objects)
 			{
 				if (prefabManager?.Find(item.PrefabName) == null)
 				{
