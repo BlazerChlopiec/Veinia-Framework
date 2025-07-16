@@ -31,7 +31,7 @@ namespace VeiniaFramework
 		}
 
 		public void Initialize(GraphicsDevice graphicsDevice, ContentManager content, GameWindow window,
-							   Screen screen, int unitSize, Vector2 gravity, PrefabManager prefabManager = null)
+							   Screen screen, int unitSize, Vector2? gravity = null, PrefabManager prefabManager = null)
 		{
 			#region Veinia
 			Transform.unitSize = unitSize;
@@ -41,7 +41,7 @@ namespace VeiniaFramework
 			Globals.content = content;
 			Globals.screen = screen;
 			Globals.camera = new Camera(new DensityViewport(graphicsDevice, window, 1920, 1080));
-			Globals.physicsWorld = new World(gravity);
+			Globals.physicsWorld = new World(gravity ?? new Vector2(0, -9.81f));
 
 			window.ClientSizeChanged += (s, a) =>
 			{
