@@ -4,6 +4,8 @@ namespace VeiniaFramework
 {
 	public sealed class Time
 	{
+		public static float time;
+
 		public static float deltaTime;
 		public static float unscaledDeltaTime;
 
@@ -27,6 +29,7 @@ namespace VeiniaFramework
 			if (stopForFrames <= 0 && stopForTime <= 0 && frameStop) { frameStop = false; stop = false; stopForFrames--; }
 			if (stopForTime <= 0 && stopForFrames <= 0 && timeStop) { timeStop = false; stop = false; }
 
+			time += deltaTime;
 
 			Title.Add(deltaTime, " - Time.deltaTime", 3);
 			Title.Add(unscaledDeltaTime, " - Time.unscaledDeltaTime", 4);
