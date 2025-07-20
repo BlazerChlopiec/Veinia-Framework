@@ -25,9 +25,18 @@ namespace VeiniaFramework
 			}
 		}
 
-		public static void LerpTo(this Camera camera, Vector2 worldPos, float lerpT)
+		public static void LerpTo(this Camera camera, Vector2 worldPos, float lerpT = 10)
 		{
 			camera.SetPosition(Vector2.Lerp(camera.GetPosition(), worldPos, lerpT * Time.deltaTime));
+		}
+
+		private static Vector2 lookahead;
+		public static void LerpToLookahead(this Camera camera, Vector2 worldPos, Vector2 lookaheadVelcity, float lookaheadLimit = 5, float lookaheadSensitivity = .5f, float lerpT = 10, float lookaheadLerpT = 1)
+		{
+			lookahead = Vector2.Lerp(lookahead, (lookaheadVelcity * lookaheadSensitivity).ClampLength(lookaheadLimit), lookaheadLerpT * Time.deltaTime);
+
+			Vector2 targetPos = worldPos + lookahead;
+			camera.LerpTo(targetPos, lerpT);
 		}
 
 		public static void SetPosition(this Camera camera, Vector2 worldPos) => camera.XY = Transform.ToScreenUnits(worldPos);
@@ -80,6 +89,14 @@ namespace VeiniaFramework
 				value.Normalize();
 			}
 
+			return value;
+		}
+		public static Vector2 ClampLength(this Vector2 value, float maxMagnitude)
+		{
+			if (value.LengthSquared() > maxMagnitude * maxMagnitude)
+			{
+				return value.SafeNormalize() * maxMagnitude;
+			}
 			return value;
 		}
 		public static Texture2D ChangeColor(this Texture2D texture, Color newColor, bool ignoreWhite = true)
