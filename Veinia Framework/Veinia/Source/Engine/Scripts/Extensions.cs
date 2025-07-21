@@ -122,6 +122,10 @@ namespace VeiniaFramework
 
 			return temp;
 		}
+		public static float Clamp01(this float value)
+		{
+			return MathHelper.Clamp(value, 0f, 1f);
+		}
 		public static Color ToNegative(this Color color)
 		{
 			color = new Color(255 - color.R, 255 - color.G, 255 - color.B);
