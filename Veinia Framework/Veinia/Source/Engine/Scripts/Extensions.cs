@@ -131,6 +131,11 @@ namespace VeiniaFramework
 			color = new Color(255 - color.R, 255 - color.G, 255 - color.B);
 			return color;
 		}
+		public static Color Alpha01(this Color color, float alpha01)
+		{
+			byte alpha = (byte)(MathHelper.Clamp(alpha01, 0f, 1f) * 255f);
+			return new Color(color.R, color.G, color.B, alpha);
+		}
 		public static Vector2 Round(this Vector2 vector, int decimalDigits)
 		{
 			return new Vector2((float)Math.Round(vector.X, decimalDigits), (float)Math.Round(vector.Y, decimalDigits));
