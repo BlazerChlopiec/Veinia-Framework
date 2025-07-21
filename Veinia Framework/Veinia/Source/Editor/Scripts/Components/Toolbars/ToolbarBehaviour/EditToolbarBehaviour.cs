@@ -109,6 +109,8 @@ namespace VeiniaFramework.Editor
 						item.Position += new Vector2(1, 0) * shiftMultiplier;
 			}
 
+			if (Globals.input.GetKeyDown(Keys.E)) Edit();
+
 			EditorControls.disableDragMove = rotateButton.IsPressed && selectedObjects.Count > 0;
 			if (rotateButton.IsPressed && editorControls.isDragging && Globals.input.GetMouse(0))
 			{
@@ -191,8 +193,9 @@ namespace VeiniaFramework.Editor
 				var spawnedClipboard = editorObjectManager.Spawn(item.PrefabName, new Transform
 				{
 					position = item.Position + Vector2.One,
-					rotation = item.Rotation
-				});
+					rotation = item.Rotation,
+					scale = item.Scale,
+				}, item.customData);
 				selectedObjects.Add(spawnedClipboard);
 			}
 		}

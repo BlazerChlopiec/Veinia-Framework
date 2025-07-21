@@ -29,6 +29,7 @@ namespace VeiniaFramework.Editor
 			 * Rotate - R
 			 * Move Selection - WSAD
 			 * Move Selection Slower - WSAD + LShift
+			 * Edit Selected - E
 			 * Remove Selection - RMB
 			 * Deselect - LAlt + D
 			 * Selection Overlap Menu - Q
