@@ -12,7 +12,7 @@ namespace VeiniaFramework.Editor
 		{
 			var editToolbarBehaviour = (EditToolbarBehaviour)toolbarBehaviour;
 
-			var panel = new Panel { Height = 150 };
+			var panel = new Panel { Height = 175 };
 			displayedToolbarContent = panel;
 
 			var removeSelectedButton = new TextButton { Text = "Remove Selected [RMB]" };
@@ -47,12 +47,19 @@ namespace VeiniaFramework.Editor
 			editToolbarBehaviour.rotateButton = rotateButton;
 			panel.Widgets.Add(rotateButton);
 
-			var resetRotationButton = new TextButton { Text = "Reset Rotation", Top = 125 };
+			var resetRotationButton = new TextButton { Text = "Reset Rotation", Top = 100 };
 			resetRotationButton.Click += (o, e) =>
 			{
 				editToolbarBehaviour.ResetRotation();
 			};
 			panel.Widgets.Add(resetRotationButton);
+
+			var editButton = new TextButton { Text = "Edit", Top = 125 };
+			editButton.Click += (o, e) =>
+			{
+				editToolbarBehaviour.Edit();
+			};
+			panel.Widgets.Add(editButton);
 		}
 	}
 }

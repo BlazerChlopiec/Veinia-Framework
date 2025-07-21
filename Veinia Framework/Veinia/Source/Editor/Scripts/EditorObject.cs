@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
+using System.ComponentModel;
 
 namespace VeiniaFramework.Editor
 {
@@ -11,7 +12,7 @@ namespace VeiniaFramework.Editor
 		[JsonProperty("r", DefaultValueHandling = DefaultValueHandling.Ignore)] public float Rotation { get { return rotation; } set { rotation = value; if (EditorPlacedSprite != null) EditorPlacedSprite.transform.rotation = value; } }
 		float rotation;
 		[JsonProperty("d", DefaultValueHandling = DefaultValueHandling.Ignore)] public string customData;
-		[JsonIgnore] public Sprite EditorPlacedSprite { get; set; }
-		[JsonIgnore] public IDrawGizmos gizmo { get; set; }
+		[Browsable(false)][JsonIgnore] public Sprite EditorPlacedSprite { get; set; }
+		[Browsable(false)][JsonIgnore] public IDrawGizmos gizmo { get; set; }
 	}
 }

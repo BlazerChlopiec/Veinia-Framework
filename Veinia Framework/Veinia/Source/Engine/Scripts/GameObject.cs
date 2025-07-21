@@ -32,6 +32,9 @@ namespace VeiniaFramework
 		public bool dontDestroyOnLoad;
 		public bool isEnabled = true;
 
+		// customData from EditorObject
+		public string customData;
+
 		// makes body's shape rotate with transform.rotation
 		// default behaviour
 		public bool linkPhysicsRotationToTransform = true;

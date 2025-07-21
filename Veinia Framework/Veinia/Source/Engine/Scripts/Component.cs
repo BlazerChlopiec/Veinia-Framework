@@ -13,6 +13,7 @@ namespace VeiniaFramework
 		public Body body { get { return gameObject.body; } set { gameObject.body = value; } }
 		public bool isStatic { get { return gameObject.isStatic; } set { gameObject.isStatic = value; } }
 		public bool dontDestroyOnLoad { get { return gameObject.dontDestroyOnLoad; } set { gameObject.dontDestroyOnLoad = value; } }
+		public string customData { get { return gameObject.customData; } set { gameObject.customData = value; } }
 		public bool isEnabled = true;
 
 		public object Clone() => MemberwiseClone();

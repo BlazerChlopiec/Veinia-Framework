@@ -66,7 +66,7 @@ namespace VeiniaFramework
 				{
 					throw new System.Exception("Prefabs that got deleted and are still on " + editorLevelName);
 				}
-				Instantiate(new Transform { position = item.Position, rotation = item.Rotation }, prefabManager?.Find(item.PrefabName));
+				Instantiate(new Transform { position = item.Position, rotation = item.Rotation }, prefabManager?.Find(item.PrefabName)).customData = item.customData;
 			}
 		}
 
@@ -99,6 +99,7 @@ namespace VeiniaFramework
 			if (sampleBody != null) sampleBody.Enabled = true;
 			GameObject sample = new GameObject(transform, prefab.components.Clone(), sampleBody, prefab.isStatic, prefab.dontDestroyOnLoad);
 			sample.level = this;
+			sample.customData = prefab.customData;
 
 			if (firstFrameCreated && sample.dontDestroyOnLoad) sample.dontDestroyOnLoadInitializedBefore = true;
 

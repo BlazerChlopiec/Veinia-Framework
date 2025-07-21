@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using Myra.Graphics2D.TextureAtlases;
 using Myra.Graphics2D.UI;
+using Myra.Graphics2D.UI.Properties;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -197,6 +198,28 @@ namespace VeiniaFramework.Editor
 		}
 
 		public void ResetRotation() => selectedObjects.ForEach(x => x.Rotation = 0);
+
+		public void Edit()
+		{
+			if (selectedObjects.Count == 0) return;
+
+			var obj = selectedObjects[0];
+			if (obj == null) return;
+
+			PropertyGrid propertyGrid = new PropertyGrid
+			{
+				Object = obj,
+				Width = 350
+			};
+
+			Window window = new Window
+			{
+				Title = "Object Editor",
+				Content = propertyGrid
+			};
+
+			window.Show(Globals.myraDesktop);
+		}
 
 		public override void OnDraw(SpriteBatch sb)
 		{
