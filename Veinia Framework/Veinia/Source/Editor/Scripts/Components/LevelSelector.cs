@@ -21,8 +21,8 @@ namespace VeiniaFramework.Editor
 			var yMenu = new VerticalMenu { };
 			foreach (var level in Globals.loader.storedLevels)
 			{
-				var item = new MenuItem { Text = level.storedLevelPath };
-				item.Selected += (sender, e) => { Globals.loader.DynamicalyLoad(new EditorScene(level.storedLevelPath, level.storedLevelType)); };
+				var item = new MenuItem { Text = level.path };
+				item.Selected += (sender, e) => { Globals.loader.DynamicalyLoad(new EditorScene(level.path, level.type)); };
 				yMenu.Items.Add(item);
 			}
 			panel.Widgets.Add(yMenu);
