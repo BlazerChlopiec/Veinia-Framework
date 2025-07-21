@@ -55,11 +55,10 @@ namespace VeiniaFramework
 #if DEBUG
 			if (!File.Exists("LevelData/" + editorLevelName)) return;
 #endif
-			var deserializedText = File.ReadAllText("LevelData/" + editorLevelName);
+			string dataToLoad = EditorJSON.encryptScene ? Encryption.Decrypt(File.ReadAllBytes("LevelData/" + editorLevelName))
+								: File.ReadAllText("LevelData/" + editorLevelName);
 
-			if (EditorJSON.encryptScene) deserializedText = Encryption.Decrypt(deserializedText);
-
-			var sceneFile = JsonConvert.DeserializeObject<SceneFile>(deserializedText);
+			var sceneFile = JsonConvert.DeserializeObject<SceneFile>(dataToLoad);
 
 			foreach (var item in sceneFile.objects)
 			{

@@ -35,9 +35,9 @@ namespace VeiniaFramework.Editor
 		{
 			sceneFile.objects = editorObjectManager.editorObjects;
 
-			string serializedText = JsonConvert.SerializeObject(sceneFile);
+			object dataToSave;
 
-			if (encryptScene) serializedText = Encryption.Encrypt(serializedText);
+			dataToSave = encryptScene ? Encryption.Encrypt(JsonConvert.SerializeObject(sceneFile)) : JsonConvert.SerializeObject(sceneFile);
 
 			if (editedLevelName == null || editedLevelName == string.Empty)
 			{
@@ -47,14 +47,18 @@ namespace VeiniaFramework.Editor
 
 			//game directory
 			if (!Directory.Exists("LevelData")) Directory.CreateDirectory("LevelData");
-			File.WriteAllText("LevelData/" + editedLevelName, serializedText);
+
+			if (encryptScene) File.WriteAllBytes("LevelData/" + editedLevelName, (byte[])dataToSave);
+			else File.WriteAllText("LevelData/" + editedLevelName, (string)dataToSave);
 			//
 
 			//game project directory
 			var currentGameDirectory = Environment.CurrentDirectory;
 			var projectDirectory = Directory.GetParent(currentGameDirectory).Parent.Parent.FullName;
 			if (!Directory.Exists(projectDirectory + "/LevelData")) Directory.CreateDirectory(projectDirectory + "/LevelData");
-			File.WriteAllText(projectDirectory + "/LevelData/" + editedLevelName, serializedText);
+
+			if (encryptScene) File.WriteAllBytes(projectDirectory + "/LevelData/" + editedLevelName, (byte[])dataToSave);
+			else File.WriteAllText(projectDirectory + "/LevelData/" + editedLevelName, (string)dataToSave);
 			//
 		}
 
@@ -63,11 +67,10 @@ namespace VeiniaFramework.Editor
 			editorObjectManager.RemoveAll();
 
 			if (!File.Exists("LevelData/" + editedLevelName)) return;
-			var deserializedText = File.ReadAllText("LevelData/" + editedLevelName);
+			var dataToLoad = EditorJSON.encryptScene ? Encryption.Decrypt(File.ReadAllBytes("LevelData/" + editedLevelName))
+							: File.ReadAllText("LevelData/" + editedLevelName);
 
-			if (encryptScene) deserializedText = Encryption.Decrypt(deserializedText);
-
-			sceneFile = JsonConvert.DeserializeObject<SceneFile>(deserializedText);
+			sceneFile = JsonConvert.DeserializeObject<SceneFile>(dataToLoad);
 
 			foreach (var item in sceneFile.objects)
 			{
