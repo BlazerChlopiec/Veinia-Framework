@@ -19,9 +19,9 @@ namespace VeiniaFramework
 		public void StoredLevelLoad(int index)
 		{
 			var storedLevel = storedLevels[index];
-			dynamic storedLevelInstance = Activator.CreateInstance(storedLevel.storedLevelType);
-			storedLevelInstance.levelPath = storedLevel.storedLevelPath;
-			Convert.ChangeType(storedLevelInstance, storedLevel.storedLevelType);
+			dynamic storedLevelInstance = Activator.CreateInstance(storedLevel.type);
+			storedLevelInstance.levelPath = storedLevel.path;
+			Convert.ChangeType(storedLevelInstance, storedLevel.type);
 
 			storedLevelInstance.prefabManager = prefabManager;
 
@@ -63,10 +63,10 @@ namespace VeiniaFramework
 			if (current is EditorScene)
 			{
 				EditorScene editor = (EditorScene)current;
-				match = storedLevels.Find(x => x.storedLevelPath == current.levelPath && x.storedLevelType == editor.editedSceneType);
+				match = storedLevels.Find(x => x.path == current.levelPath && x.type == editor.editedSceneType);
 			}
 			else
-				match = storedLevels.Find(x => x.storedLevelPath == current.levelPath && x.storedLevelType == current.GetType());
+				match = storedLevels.Find(x => x.path == current.levelPath && x.type == current.GetType());
 
 			return match != null ? storedLevels.IndexOf(match) : default;
 		}
@@ -90,7 +90,13 @@ namespace VeiniaFramework
 
 	public class StoredLevel
 	{
-		public string storedLevelPath;
-		public Type storedLevelType;
+		public string path;
+		public Type type;
+
+		public StoredLevel(string path, Type type)
+		{
+			this.path = path;
+			this.type = type;
+		}
 	}
 }
