@@ -38,6 +38,7 @@ namespace VeiniaFramework.Editor
 				PrefabName = prefabName,
 				Position = transform.Position,
 				Rotation = transform.Rotation,
+				Scale = transform.Scale,
 				customData = customData,
 				EditorPlacedSprite = Instantiate(extractedSpriteGameObject).GetComponent<Sprite>(),
 				gizmo = gizmo,

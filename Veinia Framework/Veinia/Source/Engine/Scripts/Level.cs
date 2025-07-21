@@ -66,7 +66,7 @@ namespace VeiniaFramework
 				{
 					throw new System.Exception("Prefabs that got deleted and are still on " + editorLevelName);
 				}
-				Instantiate(new Transform { position = item.Position, rotation = item.Rotation }, prefabManager?.Find(item.PrefabName)).customData = item.customData;
+				Instantiate(new Transform { position = item.Position, rotation = item.Rotation, scale = item.Scale }, prefabManager?.Find(item.PrefabName)).customData = item.customData;
 			}
 		}
 
