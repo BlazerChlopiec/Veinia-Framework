@@ -36,7 +36,7 @@ namespace VeiniaFramework.Samples.Platformer
 
 			Globals.camera = new Camera(new BoundingViewport(GraphicsDevice, Window, 1920, 1080));
 
-			Globals.loader.storedLevels.Add(new StoredLevel { storedLevelType = typeof(Level), storedLevelPath = "Level1.veinia" });
+			Globals.loader.storedLevels.Add(new StoredLevel("Level1.veinia", typeof(Level)));
 			Globals.loader.StoredLevelLoad(index: 0);
 
 			Time.StopForFrames(5);
@@ -48,7 +48,7 @@ namespace VeiniaFramework.Samples.Platformer
 
 		protected override void Update(GameTime gameTime)
 		{
-			if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+			if (Globals.input.GetButtonDown(Buttons.Back) || Globals.input.GetKeyDown(Keys.Escape))
 				Exit();
 
 			veinia.Update(gameTime);

@@ -13,6 +13,8 @@ namespace VeiniaFramework.Editor
 
 		private string editedLevelName;
 
+		public static bool encryptScene = true;
+
 		public SceneFile sceneFile;
 
 
@@ -20,6 +22,8 @@ namespace VeiniaFramework.Editor
 
 		public override void Initialize()
 		{
+			EditorCheckboxes.Add("Encrypt Scene", encryptScene, (e, o) => { encryptScene = true; }, (e, o) => { encryptScene = false; });
+
 			editorObjectManager = FindComponentOfType<EditorObjectManager>();
 
 			sceneFile = new SceneFile();
@@ -32,7 +36,8 @@ namespace VeiniaFramework.Editor
 			sceneFile.objects = editorObjectManager.editorObjects;
 
 			string serializedText = JsonConvert.SerializeObject(sceneFile);
-			serializedText = Encryption.Encrypt(serializedText);
+
+			if (encryptScene) serializedText = Encryption.Encrypt(serializedText);
 
 			if (editedLevelName == null || editedLevelName == string.Empty)
 			{
@@ -59,7 +64,9 @@ namespace VeiniaFramework.Editor
 
 			if (!File.Exists("LevelData/" + editedLevelName)) return;
 			var deserializedText = File.ReadAllText("LevelData/" + editedLevelName);
-			deserializedText = Encryption.Decrypt(deserializedText);
+
+			if (encryptScene) deserializedText = Encryption.Decrypt(deserializedText);
+
 			sceneFile = JsonConvert.DeserializeObject<SceneFile>(deserializedText);
 
 			foreach (var item in sceneFile.objects)

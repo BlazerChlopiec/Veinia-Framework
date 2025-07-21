@@ -33,7 +33,7 @@ namespace VeiniaFramework.Samples.Physics
 			veinia.Initialize(GraphicsDevice, Content, Window, screen,
 					unitSize: 100, prefabManager: prefabs);
 
-			Globals.loader.storedLevels.Add(new StoredLevel { storedLevelType = typeof(LevelTemplate), storedLevelPath = "Level1.veinia" });
+			Globals.loader.storedLevels.Add(new StoredLevel("Level1.veinia", typeof(LevelTemplate)));
 			Globals.loader.StoredLevelLoad(index: 0);
 
 			base.Initialize();
@@ -43,7 +43,7 @@ namespace VeiniaFramework.Samples.Physics
 
 		protected override void Update(GameTime gameTime)
 		{
-			if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+			if (Globals.input.GetButtonDown(Buttons.Back) || Globals.input.GetKeyDown(Keys.Escape))
 				Exit();
 
 			veinia.Update(gameTime);

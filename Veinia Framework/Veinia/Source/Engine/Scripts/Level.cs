@@ -56,7 +56,9 @@ namespace VeiniaFramework
 			if (!File.Exists("LevelData/" + editorLevelName)) return;
 #endif
 			var deserializedText = File.ReadAllText("LevelData/" + editorLevelName);
-			deserializedText = Encryption.Decrypt(deserializedText);
+
+			if (EditorJSON.encryptScene) deserializedText = Encryption.Decrypt(deserializedText);
+
 			var sceneFile = JsonConvert.DeserializeObject<SceneFile>(deserializedText);
 
 			foreach (var item in sceneFile.objects)

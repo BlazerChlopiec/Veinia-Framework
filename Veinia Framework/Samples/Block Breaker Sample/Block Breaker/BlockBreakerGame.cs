@@ -36,7 +36,7 @@ namespace VeiniaFramework.Samples.BlockBreaker
 
 			Globals.camera = new Camera(new BoundingViewport(GraphicsDevice, Window, 1920, 1080));
 
-			Globals.loader.storedLevels.Add(new StoredLevel { storedLevelType = typeof(LevelTemplate), storedLevelPath = "Level1.veinia" });
+			Globals.loader.storedLevels.Add(new StoredLevel("Level1.veinia", typeof(LevelTemplate)));
 			Globals.loader.StoredLevelLoad(index: 0);
 
 			base.Initialize();
@@ -48,7 +48,7 @@ namespace VeiniaFramework.Samples.BlockBreaker
 		{
 			veinia.Update(gameTime);
 
-			if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+			if (Globals.input.GetButtonDown(Buttons.Back) || Globals.input.GetKeyDown(Keys.Escape))
 				Exit();
 
 			base.Update(gameTime);
