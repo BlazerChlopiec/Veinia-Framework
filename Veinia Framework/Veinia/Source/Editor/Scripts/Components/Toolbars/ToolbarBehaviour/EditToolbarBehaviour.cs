@@ -230,7 +230,7 @@ namespace VeiniaFramework.Editor
 				sb.DrawCircle(new CircleF(overlapsVisualPos.ToPoint(), 20), 5, Color.Red, 5, 1);
 
 			foreach (var selected in selectedObjects)
-				sb.DrawRectangle(selected.EditorPlacedSprite.rect.OffsetByHalf(), Color.Blue, 10, .99f);
+				sb.DrawRectangleRotation(selected.EditorPlacedSprite.rect.OffsetByHalf(), Color.Blue, 5, selected.Rotation, .99f);
 
 			if (selectDragging)
 			{
