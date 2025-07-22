@@ -99,10 +99,11 @@ namespace VeiniaFramework
 			}
 			return value;
 		}
-		private static Vector2 RotateAround(this Vector2 vector, Vector2 origin, float rotation)
+		public static Vector2 RotateAround(this Vector2 vector, Vector2 origin, float rotation)
 		{
-			float cos = MathF.Cos(rotation);
-			float sin = MathF.Sin(rotation);
+			var rot = MathHelper.ToRadians(-rotation);
+			float cos = MathF.Cos(rot);
+			float sin = MathF.Sin(rot);
 			Vector2 translated = vector - origin;
 
 			float rotatedX = translated.X * cos - translated.Y * sin;
@@ -174,17 +175,16 @@ namespace VeiniaFramework
 		public static void DrawRectangleRotation(this SpriteBatch spriteBatch, RectangleF rectangle, Color color, float thickness = 1f, float rotation = 0f, float layerDepth = 0f)
 		{
 			Vector2 center = new Vector2(rectangle.X + rectangle.Width / 2f, rectangle.Y + rectangle.Height / 2f);
-			float radians = MathHelper.ToRadians(rotation);
 
 			Vector2 topLeft = new Vector2(rectangle.Left, rectangle.Top);
 			Vector2 topRight = new Vector2(rectangle.Right, rectangle.Top);
 			Vector2 bottomRight = new Vector2(rectangle.Right, rectangle.Bottom);
 			Vector2 bottomLeft = new Vector2(rectangle.Left, rectangle.Bottom);
 
-			topLeft = topLeft.RotateAround(center, radians);
-			topRight = topRight.RotateAround(center, radians);
-			bottomRight = bottomRight.RotateAround(center, radians);
-			bottomLeft = bottomLeft.RotateAround(center, radians);
+			topLeft = topLeft.RotateAround(center, -rotation);
+			topRight = topRight.RotateAround(center, -rotation);
+			bottomRight = bottomRight.RotateAround(center, -rotation);
+			bottomLeft = bottomLeft.RotateAround(center, -rotation);
 
 			spriteBatch.DrawLine(topLeft.X, topLeft.Y, topRight.X, topRight.Y, color, thickness, layerDepth);
 			spriteBatch.DrawLine(topRight.X, topRight.Y, bottomRight.X, bottomRight.Y, color, thickness, layerDepth);

@@ -89,5 +89,11 @@ namespace VeiniaFramework
 			var result = -((float)Math.Atan2(distanceY, distanceX));
 			transform.rotation = MathHelper.ToDegrees(result) + 90;
 		}
+
+		public void RotateAround(Vector2 origin, float rotation)
+		{
+			transform.rotation += rotation;
+			transform.position = transform.position.RotateAround(origin, rotation);
+		}
 	}
 }
