@@ -146,17 +146,17 @@ namespace VeiniaFramework
 			#endregion
 		}
 
-		public void Draw(SpriteBatch spriteBatch, SamplerState samplerState = null)
+		public void Draw(SpriteBatch spriteBatch, SamplerState samplerState = null, BlendState blendState = null)
 		{
-			DrawWorld(spriteBatch, samplerState);
+			DrawWorld(spriteBatch, samplerState, blendState);
 			DrawMyra();
 			DrawGeon(spriteBatch);
 			DrawDebugPhysics();
 		}
 
-		public void DrawWorld(SpriteBatch spriteBatch, SamplerState samplerState = null)
+		public void DrawWorld(SpriteBatch spriteBatch, SamplerState samplerState = null, BlendState blendState = null)
 		{
-			spriteBatch.Begin(SpriteSortMode.FrontToBack, transformMatrix: Globals.camera.GetView(), samplerState: samplerState);
+			spriteBatch.Begin(SpriteSortMode.FrontToBack, transformMatrix: Globals.camera.GetView(), samplerState: samplerState, blendState: blendState);
 			Globals.loader.current?.Draw(spriteBatch);
 			Globals.particleWorld.Draw(spriteBatch);
 			spriteBatch.End();
