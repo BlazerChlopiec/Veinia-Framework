@@ -5,6 +5,7 @@ using MonoGame.Extended;
 using Myra.Graphics2D.TextureAtlases;
 using Myra.Graphics2D.UI;
 using Myra.Graphics2D.UI.Properties;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -21,8 +22,6 @@ namespace VeiniaFramework.Editor
 		bool selectDragging;
 		public static bool skipSelectionFrame;
 		public TextButton rotateButton; // determine if IsPressed
-
-		private float rotationSensitivity = .5f;
 
 		Vector2 startSelectionPos;
 		Vector2 screenMousePos;
@@ -114,7 +113,15 @@ namespace VeiniaFramework.Editor
 			EditorControls.disableDragMove = rotateButton.IsPressed && selectedObjects.Count > 0;
 			if (rotateButton.IsPressed && editorControls.isDragging && Globals.input.GetMouse(0))
 			{
-				RotateSelectedAround(Globals.input.mouseX);
+				if (Globals.input.GetKey(Keys.LeftControl) && MathF.Abs(Globals.input.mouseX) > .1f)
+				{
+					var amount = Globals.input.mouseX > 0 ? 22.5f : -22.5f;
+					RotateSelectedAround(amount);
+				}
+				else if (!Globals.input.GetKey(Keys.LeftControl))
+				{
+					RotateSelectedAround(Globals.input.mouseX);
+				}
 			}
 
 			EditorLabelManager.Add("SelectedObjectCount", new Label { Text = "Selected Objects - " + selectedObjects.Count });
