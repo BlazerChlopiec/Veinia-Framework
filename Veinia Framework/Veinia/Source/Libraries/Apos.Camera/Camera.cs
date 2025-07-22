@@ -13,7 +13,7 @@ namespace Apos.Camera
 			shake = new CameraShake();
 		}
 
-		CameraShake shake;
+		public CameraShake shake { get; private set; }
 
 		public float X
 		{

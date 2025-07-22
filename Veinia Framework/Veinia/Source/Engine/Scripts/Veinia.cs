@@ -173,7 +173,8 @@ namespace VeiniaFramework
 					Matrix.CreateRotationZ(-Globals.camera.Rotation) *
 					Matrix.CreateScale(Globals.camera.Scale.X, -Globals.camera.Scale.Y, 1f) *
 					Matrix.CreateScale(zScale, zScale, 1f) *
-					Matrix.CreateTranslation(new Vector3(Globals.camera.VirtualViewport.Origin, 0f)));
+					Matrix.CreateTranslation(new Vector3(Globals.camera.VirtualViewport.Origin, 0f)) *
+					Matrix.CreateTranslation(new Vector3(Globals.camera.shake.shakeOffset / Transform.unitSize, 0f)));
 
 				debugView.RenderDebugData(Globals.camera.GetProjection() * Matrix.CreateScale(Transform.unitSize, Transform.unitSize, Transform.unitSize), view);
 			}
