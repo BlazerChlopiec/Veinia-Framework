@@ -114,12 +114,24 @@ namespace VeiniaFramework.Editor
 			EditorControls.disableDragMove = rotateButton.IsPressed && selectedObjects.Count > 0;
 			if (rotateButton.IsPressed && editorControls.isDragging && Globals.input.GetMouse(0))
 			{
-				selectedObjects.ForEach(x => x.Rotation += Globals.input.mouseX * rotationSensitivity);
+				RotateSelectedAround(Globals.input.mouseX);
 			}
 
 			EditorLabelManager.Add("SelectedObjectCount", new Label { Text = "Selected Objects - " + selectedObjects.Count });
 
 			skipSelectionFrame = false;
+		}
+
+		private void RotateSelectedAround(float amount)
+		{
+			if (selectedObjects.Count == 0) return;
+
+			var origin = new Vector2(selectedObjects.Average(x => x.Position.X), selectedObjects.Average(x => x.Position.Y));
+			foreach (var item in selectedObjects)
+			{
+				item.Position = item.Position.RotateAround(origin, amount);
+				item.Rotation += amount;
+			}
 		}
 
 		Window selectionOverlapWindow;
