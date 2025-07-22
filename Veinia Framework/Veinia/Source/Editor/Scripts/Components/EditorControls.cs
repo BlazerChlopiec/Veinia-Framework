@@ -16,6 +16,7 @@ namespace VeiniaFramework.Editor
 		private const float DRAG_THRESHOLD = .3f; // world space
 
 		public static bool disableDragMove;
+		public static bool isMyraFocused => Globals.myraDesktop.FocusedKeyboardWidget != null;
 
 
 		public override void Update()

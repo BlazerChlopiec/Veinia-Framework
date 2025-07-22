@@ -53,10 +53,10 @@ namespace VeiniaFramework.Editor
 				startSelectionPos = Globals.input.GetMouseScreenPosition();
 			}
 
-			if (Globals.input.GetKeyDown(Keys.Q))
+			if (Globals.input.GetKeyDown(Keys.Q) && !EditorControls.isMyraFocused)
 				SelectionOverlapWindow();
 
-			if (Globals.input.GetKeyDown(Keys.R))
+			if (Globals.input.GetKeyDown(Keys.R) && !EditorControls.isMyraFocused)
 				rotateButton.IsPressed = !rotateButton.IsPressed;
 
 			// selecting one thing by clicking
@@ -80,15 +80,15 @@ namespace VeiniaFramework.Editor
 				}
 			}
 
-			if (Globals.input.GetKey(Keys.LeftControl) && Globals.input.GetKeyDown(Keys.D)) Duplicate();
-			if (Globals.input.GetKey(Keys.LeftAlt) && Globals.input.GetKeyDown(Keys.D)) selectedObjects.Clear();
-			if (Globals.input.GetKeyDown(Keys.Delete) || Globals.input.GetMouseDown(1))
+			if (Globals.input.GetKey(Keys.LeftControl) && Globals.input.GetKeyDown(Keys.D) && !EditorControls.isMyraFocused) Duplicate();
+			if (Globals.input.GetKey(Keys.LeftAlt) && Globals.input.GetKeyDown(Keys.D) && !EditorControls.isMyraFocused) selectedObjects.Clear();
+			if ((Globals.input.GetKeyDown(Keys.Delete) || Globals.input.GetMouseDown(1)) && !EditorControls.isMyraFocused)
 			{
 				RemoveSelection();
 				if (selectionOverlapWindow != null) selectionOverlapWindow.Close();
 			}
 
-			if (!Globals.input.GetKey(Keys.LeftControl))
+			if (!Globals.input.GetKey(Keys.LeftControl) && !EditorControls.isMyraFocused)
 			{
 				float shiftMultiplier = Globals.input.GetKey(Keys.LeftShift) ? .05f : 1f;
 
@@ -109,7 +109,7 @@ namespace VeiniaFramework.Editor
 						item.Position += new Vector2(1, 0) * shiftMultiplier;
 			}
 
-			if (Globals.input.GetKeyDown(Keys.E)) Edit();
+			if (Globals.input.GetKeyDown(Keys.E) && !EditorControls.isMyraFocused) Edit();
 
 			EditorControls.disableDragMove = rotateButton.IsPressed && selectedObjects.Count > 0;
 			if (rotateButton.IsPressed && editorControls.isDragging && Globals.input.GetMouse(0))
