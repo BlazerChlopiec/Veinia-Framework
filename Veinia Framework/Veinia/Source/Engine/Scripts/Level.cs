@@ -154,7 +154,10 @@ namespace VeiniaFramework
 			}
 
 			if (returnVal.Count == 0)
+			{
+				Say.Line("FindComponentOfType<T1> - Found no components matching requirements! " + typeof(T1));
 				return default;
+			}
 
 			if (returnVal.Count > 1)
 				Say.Line("FindComponentOfType<T1> - Found more than one component matching the requirements! " + typeof(T1));
@@ -177,6 +180,55 @@ namespace VeiniaFramework
 			}
 			if (returnVal.Count == 0)
 				Say.Line("FindComponentsOfType<T1> - Found no components matching requirements! " + typeof(T1));
+
+			return returnVal;
+		}
+
+		/// <summary>
+		/// Finds an object in the scene by customData.
+		/// </summary>
+		public GameObject FindObjectByData(object match)
+		{
+			List<GameObject> returnVal = new List<GameObject>();
+
+			foreach (var item in scene)
+			{
+				GameObject currentItem = null;
+				if (item.customData != null && item.customData.Equals(match))
+					currentItem = item;
+				if (currentItem == null) continue;
+				else returnVal.Add(currentItem);
+			}
+
+			if (returnVal.Count == 0)
+			{
+				Say.Line("FindObjectByData - Found no object matching requirements! Query: " + (string)match);
+				return default;
+			}
+
+			if (returnVal.Count > 1)
+				Say.Line("FindObjectByData - Found more than one object matching the requirements! Query:" + (string)match);
+
+			return returnVal[0];
+		}
+
+		/// <summary>
+		/// Finds objects in the scene by customData.
+		/// </summary>
+		public List<GameObject> FindObjectsByData(object match)
+		{
+			List<GameObject> returnVal = new List<GameObject>();
+
+			foreach (var item in scene)
+			{
+				GameObject currentItem = null;
+				if (item.customData != null && item.customData.Equals(match))
+					currentItem = item;
+				if (currentItem == null) continue;
+				else returnVal.Add(currentItem);
+			}
+			if (returnVal.Count == 0)
+				Say.Line("FindObjectsByData - Found no object matching requirements! Query: " + (string)match);
 
 			return returnVal;
 		}

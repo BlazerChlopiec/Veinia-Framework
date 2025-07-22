@@ -24,6 +24,8 @@ namespace VeiniaFramework
 		public virtual void OnSeparate(Fixture sender, Fixture other, Contact contact) { }
 		public T1 FindComponentOfType<T1>() where T1 : Component => level.FindComponentOfType<T1>();
 		public List<T1> FindComponentsOfType<T1>() where T1 : Component => level.FindComponentsOfType<T1>();
+		public GameObject FindObjectByData(object match) => level.FindObjectByData(match);
+		public List<GameObject> FindObjectsByData(object match) => level.FindObjectsByData(match);
 		public T1 GetComponent<T1>() where T1 : Component => gameObject.GetComponent<T1>();
 		public List<T1> GetAllComponents<T1>() where T1 : Component => gameObject.GetAllComponents<T1>();
 		public Component AddComponent(Component component) => gameObject.AddComponent(component);
