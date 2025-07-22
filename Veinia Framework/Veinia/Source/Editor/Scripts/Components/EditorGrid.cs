@@ -9,7 +9,7 @@ namespace VeiniaFramework.Editor
 	public class EditorGrid : Component, IDrawn
 	{
 		bool hideGrid;
-		float opacity = 0.05f;
+		public static float opacity = 0.05f;
 
 
 		public override void Initialize() => EditorCheckboxes.Add("Hide Grid [G]", defaultValue: false, (e, o) => { hideGrid = true; }, (e, o) => { hideGrid = false; }, Keys.G);
