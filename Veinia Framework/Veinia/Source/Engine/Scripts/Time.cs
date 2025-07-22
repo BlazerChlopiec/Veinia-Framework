@@ -24,7 +24,7 @@ namespace VeiniaFramework
 			unscaledDeltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
 			if (stopForFrames > 0) stopForFrames--;
-			if (stopForTime > 0) stopForTime -= deltaTime;
+			if (stopForTime > 0) stopForTime -= unscaledDeltaTime;
 
 			if (stopForFrames <= 0 && stopForTime <= 0 && frameStop) { frameStop = false; stop = false; stopForFrames--; }
 			if (stopForTime <= 0 && stopForFrames <= 0 && timeStop) { timeStop = false; stop = false; }
