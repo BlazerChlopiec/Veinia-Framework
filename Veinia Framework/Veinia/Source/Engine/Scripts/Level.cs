@@ -258,7 +258,7 @@ namespace VeiniaFramework
 		/// <summary>
 		/// Updates components in the current scene.
 		/// </summary>
-		public void Update()
+		public virtual void Update()
 		{
 			foreach (var gameObject in scene.ToArray())
 			{
@@ -275,7 +275,7 @@ namespace VeiniaFramework
 		/// <summary>
 		/// Updates components in the current scene after the normal update.
 		/// </summary>
-		public void LateUpdate()
+		public virtual void LateUpdate()
 		{
 			foreach (var gameObject in scene.ToArray())
 			{
