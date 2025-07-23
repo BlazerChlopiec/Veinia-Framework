@@ -140,6 +140,10 @@ namespace VeiniaFramework
 		{
 			return MathHelper.Clamp(value, 0f, 1f);
 		}
+		public static float NextFloat(this Random rng, float minValue, float maxValue)
+		{
+			return (float)(rng.NextDouble() * (maxValue - minValue) + minValue);
+		}
 		public static Color ToNegative(this Color color)
 		{
 			color = new Color(255 - color.R, 255 - color.G, 255 - color.B);

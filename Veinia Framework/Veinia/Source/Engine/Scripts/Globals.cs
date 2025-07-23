@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Tweening;
 using Myra.Graphics2D.UI;
+using System;
 using tainicom.Aether.Physics2D.Dynamics;
 
 namespace VeiniaFramework
@@ -16,6 +17,7 @@ namespace VeiniaFramework
 		public static Tweener tweener = new Tweener(); // stops with Time.stop
 		public static Tweener unscaledTweener = new Tweener();
 		public static ParticleWorld particleWorld = new ParticleWorld();
+		public static Random random = new Random();
 		public static Loader loader;
 		public static GraphicsDeviceManager graphicsManager;
 		public static GraphicsDevice graphicsDevice;

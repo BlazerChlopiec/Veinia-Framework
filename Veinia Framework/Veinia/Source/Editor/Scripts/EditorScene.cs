@@ -24,7 +24,7 @@ namespace VeiniaFramework.Editor
 			 * Toolbar Swap - 1-10
 			 * Drag - LMB 
 			 * Swipe Motion - LShift + LMB
-			 * Debug Draw - D
+			 * Debug Draw - F
 			 * Hide Grid - G
 			 * Save - LCtrl + S
 			 * Duplicate Selection - LCtrl + D
@@ -43,7 +43,7 @@ namespace VeiniaFramework.Editor
 			Globals.tweener.CancelAll();
 			Globals.unscaledTweener.CancelAll();
 
-			EditorCheckboxes.Add("Debug Draw [D]", defaultValue: Globals.debugDraw, (e, o) => { Globals.debugDraw = true; }, (e, o) => { Globals.debugDraw = false; }, Keys.D);
+			EditorCheckboxes.Add("Debug Draw [F]", defaultValue: Globals.debugDraw, (e, o) => { Globals.debugDraw = true; }, (e, o) => { Globals.debugDraw = false; }, Keys.F);
 
 			GameObject systems = Instantiate(Transform.Empty, new List<Component>
 			{
