@@ -1,5 +1,6 @@
 ﻿using GeonBit.UI;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using Myra.Graphics2D.UI;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ namespace VeiniaFramework.Editor
 			 * Toolbar Swap - 1-10
 			 * Drag - LMB 
 			 * Swipe Motion - LShift + LMB
+			 * Debug Draw - D
 			 * Hide Grid - G
 			 * Save - LCtrl + S
 			 * Duplicate Selection - LCtrl + D
@@ -41,7 +43,7 @@ namespace VeiniaFramework.Editor
 			Globals.tweener.CancelAll();
 			Globals.unscaledTweener.CancelAll();
 
-			EditorCheckboxes.Add("Debug Draw", defaultValue: Globals.debugDraw, (e, o) => { Globals.debugDraw = true; }, (e, o) => { Globals.debugDraw = false; });
+			EditorCheckboxes.Add("Debug Draw [D]", defaultValue: Globals.debugDraw, (e, o) => { Globals.debugDraw = true; }, (e, o) => { Globals.debugDraw = false; }, Keys.D);
 
 			GameObject systems = Instantiate(Transform.Empty, new List<Component>
 			{
