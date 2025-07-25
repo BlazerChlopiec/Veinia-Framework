@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using VeiniaFramework;
 
 namespace VeiniaFramework
 {
@@ -7,13 +8,14 @@ namespace VeiniaFramework
 		public List<Prefab> prefabs = new List<Prefab>();
 
 
-		protected void Add(string name, GameObject gameObject, int prefabTab = 0)
+		protected void Add(string name, GameObject gameObject, int prefabTab = 0, bool showLabel = false)
 		{
 			Prefab prefabData = new Prefab
 			{
 				PrefabName = name,
 				PrefabGameObject = gameObject,
-				PaintingToolbarTab = prefabTab
+				PaintingToolbarTab = prefabTab,
+				ShowLabel = showLabel
 			};
 
 			prefabs.Add(prefabData);
@@ -27,12 +29,13 @@ namespace VeiniaFramework
 		}
 
 		public virtual void LoadPrefabs() => prefabs.Clear();
-
-		public class Prefab
-		{
-			public string PrefabName { get; set; }
-			public GameObject PrefabGameObject { get; set; }
-			public int PaintingToolbarTab { get; set; }
-		}
 	}
+}
+
+public class Prefab
+{
+	public string PrefabName { get; set; }
+	public GameObject PrefabGameObject { get; set; }
+	public int PaintingToolbarTab { get; set; }
+	public bool ShowLabel { get; set; } // show prefab name in editor painting
 }

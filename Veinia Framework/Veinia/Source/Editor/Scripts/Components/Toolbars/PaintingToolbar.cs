@@ -41,7 +41,7 @@ namespace VeiniaFramework.Editor
 			ShowPrefabsInToolbars();
 		}
 
-		private void OnClickPrefab(PaintingToolbarPrefab prefab)
+		private void OnClickPrefab(Prefab prefab)
 		{
 			paintingToolbarBehaviour.ChangeCurrentPrefab(prefab.PrefabName);
 			paintingToolbarBehaviour.CreateNewPreview();
@@ -53,14 +53,7 @@ namespace VeiniaFramework.Editor
 			for (int i = 0; i < prefabManager.prefabs.Count; i++)
 			{
 				var prefab = prefabManager.prefabs[i];
-				var sprite = prefab.PrefabGameObject.GetComponent<Sprite>();
-
-				paintingToolbarTabs[prefab.PaintingToolbarTab].Prefabs.Add(new PaintingToolbarPrefab
-				{
-					PrefabName = prefab.PrefabName,
-					Texture = sprite.texture,
-					Color = sprite.color,
-				});
+				paintingToolbarTabs[prefab.PaintingToolbarTab].Prefabs.Add(prefab);
 			}
 		}
 
@@ -72,18 +65,39 @@ namespace VeiniaFramework.Editor
 			{
 				foreach (var prefab in tab.Prefabs)
 				{
+					var sprite = prefab.PrefabGameObject.GetComponent<Sprite>();
+
 					var prefabButton = new ImageButton
 					{
 						Height = prefabButtonSize,
 						Width = prefabButtonSize,
 						Top = prefabButtonSize * tab.Prefabs.IndexOf(prefab),
 						VerticalAlignment = VerticalAlignment.Top,
-						Background = new TextureRegion(prefab.Texture.ChangeColor(prefab.Color), new Rectangle(0, 0, prefab.Texture.Width, prefab.Texture.Height)),
+						Background = new TextureRegion(sprite.texture.ChangeColor(sprite.color), new Rectangle(0, 0, sprite.texture.Width, sprite.texture.Height)),
 					};
-
 					prefabButton.Click += (s, a) => OnClickPrefab(prefab);
-
 					tab.Panel.Widgets.Add(prefabButton);
+
+					if (prefab.ShowLabel)
+					{
+						var prefabTextOutline = new Label
+						{
+							Text = prefab.PrefabName,
+							Top = prefabButtonSize * tab.Prefabs.IndexOf(prefab),
+							TextColor = Color.Black,
+							MaxWidth = prefabButtonSize,
+						};
+						tab.Panel.Widgets.Add(prefabTextOutline);
+
+						var prefabText = new Label
+						{
+							Text = prefab.PrefabName,
+							Top = prefabButtonSize * tab.Prefabs.IndexOf(prefab) - 1,
+							Left = -1,
+							MaxWidth = prefabButtonSize,
+						};
+						tab.Panel.Widgets.Add(prefabText);
+					}
 				}
 				tab.Panel.Height = tab.Prefabs.Count * prefabButtonSize;
 			}
@@ -99,7 +113,7 @@ namespace VeiniaFramework.Editor
 
 	public class PaintingToolbarTab
 	{
-		public List<PaintingToolbarPrefab> Prefabs = new List<PaintingToolbarPrefab>();
+		public List<Prefab> Prefabs = new List<Prefab>();
 		public Panel Panel { get; set; } = new Panel();
 		public ScrollViewer Scroll { get; set; } = new ScrollViewer();
 	}
