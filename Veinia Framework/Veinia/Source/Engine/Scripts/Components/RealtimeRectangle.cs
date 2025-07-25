@@ -11,12 +11,13 @@ namespace VeiniaFramework
 		float friction;
 		float restitution;
 		bool isSensor;
+		object tag;
 		BodyType bodyType;
 
 		Vector2 oldScale;
 
 
-		public RealtimeRectangle(float width = 1, float height = 1, BodyType bodyType = BodyType.Static, float friction = .2f, float restitution = 0, bool isSensor = false)
+		public RealtimeRectangle(float width = 1, float height = 1, BodyType bodyType = BodyType.Static, float friction = .2f, float restitution = 0, bool isSensor = false, object tag = null)
 		{
 			this.width = width;
 			this.height = height;
@@ -24,6 +25,7 @@ namespace VeiniaFramework
 			this.friction = friction;
 			this.restitution = restitution;
 			this.isSensor = isSensor;
+			this.tag = tag;
 		}
 
 		public override void Initialize() => MakeRectangle();
@@ -44,6 +46,7 @@ namespace VeiniaFramework
 		private void MakeRectangle()
 		{
 			body = Globals.physicsWorld.CreateRectangle(width * transform.scale.X, height * transform.scale.Y, 1, bodyType: bodyType);
+			body.Tag = tag;
 			body.FixtureList[0].Friction = friction;
 			body.FixtureList[0].Restitution = restitution;
 			body.FixtureList[0].IsSensor = isSensor;
