@@ -86,6 +86,17 @@ namespace VeiniaFramework
 				current.InitializeComponentsFirstFrame();
 			}
 		}
+
+		public void LoadNextStored()
+		{
+			if (current == null && storedLevels.Count > 0) StoredLevelLoad(0);
+			else
+			{
+				var index = storedLevels.IndexOf(storedLevels.Find(x => x.path == current.levelPath));
+				index++;
+				StoredLevelLoad(index);
+			}
+		}
 	}
 
 	public class StoredLevel
