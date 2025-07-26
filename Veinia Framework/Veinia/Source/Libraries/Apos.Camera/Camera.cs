@@ -208,10 +208,7 @@ namespace Apos.Camera
 		public float GetScaleLookahead(Vector2 lookaheadVelcity, float lookaheadLimit = 5, float lookaheadSensitivity = .5f, float lookaheadLerpT = 1)
 		{
 			currentScaleLookahead = MathHelper.Lerp(currentScaleLookahead, (lookaheadVelcity * lookaheadSensitivity).ClampLength(lookaheadLimit).Length(), lookaheadLerpT * Time.deltaTime);
-
-			Say.Line(currentScaleLookahead / lookaheadLimit);
 			return currentScaleLookahead / lookaheadLimit;
-
 		}
 		public void ResetLookaheads()
 		{
