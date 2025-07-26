@@ -24,33 +24,6 @@ namespace VeiniaFramework
 				destination.Add(item);
 			}
 		}
-
-		public static void LerpTo(this Camera camera, Vector2 worldPos, float lerpT = 10)
-		{
-			camera.SetPosition(Vector2.Lerp(camera.GetPosition(), worldPos, lerpT * Time.deltaTime));
-		}
-
-		private static Vector2 lookahead;
-		public static void LerpToLookahead(this Camera camera, Vector2 worldPos, Vector2 lookaheadVelcity, float lookaheadLimit = 5, float lookaheadSensitivity = .5f, float lerpT = 10, float lookaheadLerpT = 1)
-		{
-			lookahead = Vector2.Lerp(lookahead, (lookaheadVelcity * lookaheadSensitivity).ClampLength(lookaheadLimit), lookaheadLerpT * Time.deltaTime);
-
-			Vector2 targetPos = worldPos + lookahead;
-			camera.LerpTo(targetPos, lerpT);
-		}
-
-		public static void SetPosition(this Camera camera, Vector2 worldPos) => camera.XY = Transform.ToScreenUnits(worldPos);
-		public static Vector2 GetPosition(this Camera camera) => Transform.ToWorldUnits(camera.XY);
-
-		public static void SetScale(this Camera camera, float scale) => camera.Scale = Vector2.One * scale;
-		public static float GetScale(this Camera camera) => camera.Scale.X;
-
-		public static Vector2 GetSize(this Camera camera)
-		{
-			var a = new Vector2(camera.ViewRect.Left, camera.ViewRect.Bottom);
-			var b = new Vector2(camera.ViewRect.Right, camera.ViewRect.Top);
-			return Transform.ScreenToWorldPos(b - a);
-		}
 		public static Rectangle OffsetByHalf(this Rectangle rect, float xOffset = 0, float yOffset = 0, float shrink = 0)
 		{
 			rect.Offset(-rect.Width / 2 + xOffset, -rect.Height / 2 - yOffset);

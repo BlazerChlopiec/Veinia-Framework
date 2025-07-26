@@ -193,6 +193,33 @@ namespace Apos.Camera
 			return new BoundingFrustum(view * projection);
 		}
 
+		public void LerpTo(Vector2 worldPos, float lerpT = 10)
+		{
+			this.SetPosition(Vector2.Lerp(this.GetPosition(), worldPos, lerpT * Time.deltaTime));
+		}
+
+		private Vector2 currentLookahead;
+		public void LerpToLookahead(Vector2 worldPos, Vector2 lookaheadVelcity, float lookaheadLimit = 5, float lookaheadSensitivity = .5f, float lerpT = 10, float lookaheadLerpT = 1)
+		{
+			currentLookahead = Vector2.Lerp(currentLookahead, (lookaheadVelcity * lookaheadSensitivity).ClampLength(lookaheadLimit), lookaheadLerpT * Time.deltaTime);
+
+			Vector2 targetPos = worldPos + currentLookahead;
+			LerpTo(targetPos, lerpT);
+		}
+		public void ResetLookaheads() => currentLookahead = Vector2.Zero;
+		public void SetPosition(Vector2 worldPos) => XY = Transform.ToScreenUnits(worldPos);
+		public Vector2 GetPosition() => Transform.ToWorldUnits(XY);
+
+		public void SetScale(float scale) => Scale = Vector2.One * scale;
+		public float GetScale() => Scale.X;
+
+		public Vector2 GetSize()
+		{
+			var a = new Vector2(ViewRect.Left, ViewRect.Bottom);
+			var b = new Vector2(ViewRect.Right, ViewRect.Top);
+			return Transform.ScreenToWorldPos(b - a);
+		}
+
 		private Vector2 _xy = Vector2.Zero;
 		private Vector3 _xyz = new Vector3(Vector2.Zero, 1f);
 		private float _focalLength = 1f;

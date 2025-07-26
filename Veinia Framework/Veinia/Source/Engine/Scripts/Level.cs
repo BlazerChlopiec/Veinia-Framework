@@ -34,6 +34,7 @@ namespace VeiniaFramework
 			Globals.camera.SetPosition(Vector2.Zero);
 			Globals.camera.Scale = Vector2.One;
 			Globals.camera.Rotation = 0;
+			Globals.camera.ResetLookaheads();
 
 			Globals.myraDesktop.Root = Myra;
 
