@@ -94,7 +94,10 @@ namespace VeiniaFramework
 			{
 				var index = storedLevels.IndexOf(storedLevels.Find(x => x.path == current.levelPath));
 				index++;
-				StoredLevelLoad(index);
+				if (storedLevels.Count > index)
+					StoredLevelLoad(index);
+				else
+					Say.Line("There is no more stored levels! index: " + index);
 			}
 		}
 	}
