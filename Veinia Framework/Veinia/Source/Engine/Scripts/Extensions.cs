@@ -41,6 +41,10 @@ namespace VeiniaFramework
 
 		public static void SetPosition(this Camera camera, Vector2 worldPos) => camera.XY = Transform.ToScreenUnits(worldPos);
 		public static Vector2 GetPosition(this Camera camera) => Transform.ToWorldUnits(camera.XY);
+
+		public static void SetScale(this Camera camera, float scale) => camera.Scale = Vector2.One * scale;
+		public static float GetScale(this Camera camera) => camera.Scale.X;
+
 		public static Vector2 GetSize(this Camera camera)
 		{
 			var a = new Vector2(camera.ViewRect.Left, camera.ViewRect.Bottom);

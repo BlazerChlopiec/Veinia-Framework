@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,8 @@ namespace VeiniaFramework.Editor
 		public void Save()
 		{
 			sceneFile.objects = editorObjectManager.editorObjects;
+			sceneFile.editorCamPosition = Globals.camera.GetPosition();
+			sceneFile.editorCamScale = Globals.camera.GetScale();
 
 			object dataToSave;
 
@@ -76,6 +79,9 @@ namespace VeiniaFramework.Editor
 			{
 				editorObjectManager.Spawn(item.PrefabName, new Transform { position = item.Position, rotation = item.Rotation, scale = item.Scale }, item.customData);
 			}
+
+			Globals.camera.SetPosition(sceneFile.editorCamPosition);
+			Globals.camera.SetScale(sceneFile.editorCamScale);
 		}
 
 		public override void Update()
@@ -89,4 +95,9 @@ namespace VeiniaFramework.Editor
 public class SceneFile
 {
 	public List<EditorObject> objects;
+
+	[JsonProperty("l", DefaultValueHandling = DefaultValueHandling.Ignore)] // as in location
+	public Vector2 editorCamPosition;
+	[JsonProperty("z", DefaultValueHandling = DefaultValueHandling.Ignore)] // as in zoom
+	public float editorCamScale;
 }
