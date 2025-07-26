@@ -25,8 +25,14 @@ Veinia framework is only possible to be installed manually because of libraries 
 
 You should now be able to compile and use Veinia-Framework in your projects.
 
-To avoid certain issues its best to copy .veinia editor files to output directory, for vs community its done in the following way:
-<img src="Images/CopyAlwaysTip.png">
+To avoid certain issues its recommended to copy level files to output directory in by adding the following to the .csproj file
+```xml
+<ItemGroup>
+  <None Update="LevelData\SampleLevel.veinia">
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+  </None>
+</ItemGroup>
+```
 
 ## Examples
 Veinia comes with three sample projects to help you get started.
