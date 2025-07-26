@@ -54,7 +54,7 @@ namespace VeiniaFramework.Editor
 		{
 			screenMousePos = Globals.input.GetMouseScreenPosition();
 
-			if (Globals.input.GetMouseDown(0) && Globals.input.GetKey(Keys.LeftShift) && !Globals.myraDesktop.IsMouseOverGUI && !editorControls.isDragging)
+			if (Globals.input.GetMouseDown(0) && Globals.input.GetKey(Keys.LeftShift) && !Globals.myraDesktop.IsMouseOverGUI && !editorControls.isDragging && !EditorControls.disableDragMove)
 			{
 				selectDragging = true;
 				startSelectionPos = Globals.input.GetMouseScreenPosition();
@@ -120,9 +120,9 @@ namespace VeiniaFramework.Editor
 			if (Globals.input.GetKeyDown(Keys.E) && !EditorControls.isTextBoxFocused) Edit();
 
 			EditorControls.disableDragMove = rotateButton.IsPressed && selectedObjects.Count > 0;
-			if (rotateButton.IsPressed && editorControls.isDragging && Globals.input.GetMouse(0))
+			if (rotateButton.IsPressed && editorControls.isDragging && Globals.input.GetMouse(0) && !Globals.input.GetKey(Keys.LeftControl))
 			{
-				if (Globals.input.GetKey(Keys.LeftControl) && MathF.Abs(Globals.input.mouseX) > .1f)
+				if (Globals.input.GetKey(Keys.LeftShift) && MathF.Abs(Globals.input.mouseX) > .1f)
 				{
 					var amount = Globals.input.mouseX > 0 ? 22.5f : -22.5f;
 					RotateSelectedAround(amount);
@@ -131,6 +131,10 @@ namespace VeiniaFramework.Editor
 				{
 					RotateSelectedAround(Globals.input.mouseX);
 				}
+			}
+			if (Globals.input.GetKey(Keys.LeftControl) && Globals.input.GetKey(Keys.R))
+			{
+				ResetRotation();
 			}
 
 			EditorLabelManager.Add("SelectedObjectCount", new Label { Text = "Selected Objects - " + selectedObjects.Count });

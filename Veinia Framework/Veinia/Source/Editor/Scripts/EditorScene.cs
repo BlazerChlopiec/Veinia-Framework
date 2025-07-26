@@ -29,7 +29,8 @@ namespace VeiniaFramework.Editor
 			 * Save - LCtrl + S
 			 * Duplicate Selection - LCtrl + D
 			 * Rotate - R
-			 * Incremented Rotation - LCtrl (While Rotating)
+			 * Incremented Rotation - LShift (While Rotating)
+			 * Reset Rotation - LCtrl + R
 			 * Move Selection - WSAD
 			 * Move Selection Slower - WSAD + LShift
 			 * Edit Selected - E

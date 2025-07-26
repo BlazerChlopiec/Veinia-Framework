@@ -47,7 +47,7 @@ namespace VeiniaFramework.Editor
 			editToolbarBehaviour.rotateButton = rotateButton;
 			panel.Widgets.Add(rotateButton);
 
-			var resetRotationButton = new TextButton { Text = "Reset Rotation", Top = 125 };
+			var resetRotationButton = new TextButton { Text = "Reset Rotation [Ctrl+R]", Top = 125 };
 			resetRotationButton.Click += (o, e) =>
 			{
 				editToolbarBehaviour.ResetRotation();
