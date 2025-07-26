@@ -67,7 +67,7 @@ namespace VeiniaFramework.Samples.Platformer
 				body.LinearVelocity *= new Vector2(1, jumpCutoff);
 			}
 
-			Globals.camera.LerpTo(transform.position, 10);
+			Globals.camera.LinearPosition(transform.position, 10);
 
 			float zoomAmount = 7;
 			float zoomSpeed = .8f;

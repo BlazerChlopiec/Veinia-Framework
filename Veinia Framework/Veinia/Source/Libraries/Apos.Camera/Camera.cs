@@ -193,20 +193,31 @@ namespace Apos.Camera
 			return new BoundingFrustum(view * projection);
 		}
 
-		public void LerpTo(Vector2 worldPos, float lerpT = 10)
+		public void LinearPosition(Vector2 worldPos, float lerpT = 10)
 		{
-			this.SetPosition(Vector2.Lerp(this.GetPosition(), worldPos, lerpT * Time.deltaTime));
+			SetPosition(Vector2.Lerp(GetPosition(), worldPos, lerpT * Time.deltaTime));
 		}
 
 		private Vector2 currentLookahead;
-		public void LerpToLookahead(Vector2 worldPos, Vector2 lookaheadVelcity, float lookaheadLimit = 5, float lookaheadSensitivity = .5f, float lerpT = 10, float lookaheadLerpT = 1)
+		public Vector2 GetLookahead(Vector2 worldPos, Vector2 lookaheadVelcity, float lookaheadLimit = 5, float lookaheadSensitivity = .5f, float lookaheadLerpT = 1)
 		{
 			currentLookahead = Vector2.Lerp(currentLookahead, (lookaheadVelcity * lookaheadSensitivity).ClampLength(lookaheadLimit), lookaheadLerpT * Time.deltaTime);
-
-			Vector2 targetPos = worldPos + currentLookahead;
-			LerpTo(targetPos, lerpT);
+			return worldPos + currentLookahead;
 		}
-		public void ResetLookaheads() => currentLookahead = Vector2.Zero;
+		private float currentScaleLookahead;
+		public float GetScaleLookahead(Vector2 lookaheadVelcity, float lookaheadLimit = 5, float lookaheadSensitivity = .5f, float lookaheadLerpT = 1)
+		{
+			currentScaleLookahead = MathHelper.Lerp(currentScaleLookahead, (lookaheadVelcity * lookaheadSensitivity).ClampLength(lookaheadLimit).Length(), lookaheadLerpT * Time.deltaTime);
+
+			Say.Line(currentScaleLookahead / lookaheadLimit);
+			return currentScaleLookahead / lookaheadLimit;
+
+		}
+		public void ResetLookaheads()
+		{
+			currentLookahead = Vector2.Zero;
+			currentScaleLookahead = 0;
+		}
 		public void SetPosition(Vector2 worldPos) => XY = Transform.ToScreenUnits(worldPos);
 		public Vector2 GetPosition() => Transform.ToWorldUnits(XY);
 
