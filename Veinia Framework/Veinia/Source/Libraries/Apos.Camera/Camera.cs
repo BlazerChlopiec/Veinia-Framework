@@ -213,7 +213,7 @@ namespace Apos.Camera
 		public void SetScale(float scale) => Scale = Vector2.One * scale;
 		public float GetScale() => Scale.X;
 
-		public Vector2 GetSize()
+		public Vector2 GetUnitsInView()
 		{
 			var a = new Vector2(ViewRect.Left, ViewRect.Bottom);
 			var b = new Vector2(ViewRect.Right, ViewRect.Top);

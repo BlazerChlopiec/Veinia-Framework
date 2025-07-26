@@ -20,7 +20,7 @@ namespace VeiniaFramework.Editor
 
 			var camera = Globals.camera;
 			var unit = Transform.unitSize;
-			var size = camera.GetSize();
+			var size = camera.GetUnitsInView();
 
 			var leftBottom = Transform.WorldToScreenPos(Vector2.Round(camera.GetPosition() - Vector2.UnitX * (size.X / 2) - Vector2.UnitY * (size.Y / 2)) - Vector2.UnitX / 2);
 			for (int i = 0; i < MathF.Round(size.Y) + 1; i++)

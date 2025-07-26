@@ -29,7 +29,6 @@ namespace VeiniaFramework.Editor
 
 			isMouseOverGUIPreviousFrame = isMouseOverGUIPreviousFrameOld;
 			isMouseOverGUIPreviousFrameOld = Globals.myraDesktop.IsMouseOverGUI;
-			Say.Line("..prev " + EditorControls.isMouseOverGUIPreviousFrame + "current " + Globals.myraDesktop.IsMouseOverGUI);
 
 			if (Globals.myraDesktop.IsMouseOverGUI && isDragging == false && Globals.input.GetMouseDown(0)) { return; }
 
