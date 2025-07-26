@@ -217,7 +217,7 @@ namespace VeiniaFramework.Editor
 			{
 				var spawnedClipboard = editorObjectManager.Spawn(item.PrefabName, new Transform
 				{
-					position = item.Position + Vector2.One,
+					position = item.Position,
 					rotation = item.Rotation,
 					scale = item.Scale,
 				}, item.customData);
