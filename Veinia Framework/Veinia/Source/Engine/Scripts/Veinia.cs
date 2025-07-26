@@ -20,6 +20,7 @@ namespace VeiniaFramework
 		DebugView debugView;
 
 		public static bool isEditor { get; private set; }
+		public bool pauseOnUnfocused;
 
 
 		public Veinia(Game game, GraphicsDeviceManager graphicsManager)
@@ -97,13 +98,14 @@ namespace VeiniaFramework
 
 			Timers.ProcessTimers();
 
-			Globals.input.Update();
-
 			Globals.unscaledTweener.Update(Time.unscaledDeltaTime);
 
-			if (!isEditor && !Time.stop
+			if (!isEditor && !pauseOnUnfocused && !Time.stop
+			 || !isEditor && pauseOnUnfocused && !Time.stop && game.IsActive
 			  || isEditor && !Time.stop && game.IsActive)
 			{
+				if (game.IsActive) Globals.input.Update();
+
 				Globals.particleWorld.Update();
 				Globals.tweener.Update(Time.deltaTime);
 
