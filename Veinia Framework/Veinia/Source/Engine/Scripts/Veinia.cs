@@ -20,6 +20,7 @@ namespace VeiniaFramework
 		DebugView debugView;
 
 		public static bool isEditor { get; private set; }
+		public static bool ShouldPauseWhenInactive { get; private set; }
 		public bool pauseOnUnfocused;
 
 
@@ -91,6 +92,9 @@ namespace VeiniaFramework
 		public void Update(GameTime gameTime)
 		{
 			#region Veinia
+
+			ShouldPauseWhenInactive = !pauseOnUnfocused || game.IsActive;
+
 			Globals.fps.CalculateFps(gameTime);
 
 			NextFrame.Update();
@@ -99,14 +103,11 @@ namespace VeiniaFramework
 
 			Globals.unscaledTweener.Update(Time.unscaledDeltaTime);
 
-			Time.UnscaledUpdate(gameTime);
+			Time.Update(gameTime);
 
-			if (!isEditor && !pauseOnUnfocused && !Time.stop
-			 || !isEditor && pauseOnUnfocused && !Time.stop && game.IsActive
+			if (!isEditor && ShouldPauseWhenInactive && !Time.stop
 			  || isEditor && !Time.stop && game.IsActive)
 			{
-				Time.SetDelta(gameTime);
-
 				if (game.IsActive) Globals.input.Update();
 
 				Globals.particleWorld.Update();

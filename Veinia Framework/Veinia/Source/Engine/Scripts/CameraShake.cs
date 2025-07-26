@@ -25,7 +25,7 @@ namespace VeiniaFramework
 
 		public void DrawUpdate()
 		{
-			if (durationRemaining > 0f)
+			if (durationRemaining > 0f && !Time.stop && Veinia.ShouldPauseWhenInactive)
 			{
 				durationRemaining -= Time.deltaTime;
 
