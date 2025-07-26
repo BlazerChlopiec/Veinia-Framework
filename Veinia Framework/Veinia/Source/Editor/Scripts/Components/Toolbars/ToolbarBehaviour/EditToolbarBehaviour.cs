@@ -216,7 +216,17 @@ namespace VeiniaFramework.Editor
 			}
 		}
 
-		public void ResetRotation() => selectedObjects.ForEach(x => x.Rotation = 0);
+		public void ResetRotation()
+		{
+			selectedObjects.ForEach(x => x.Rotation = 0);
+			rotateButton.IsPressed = false;
+		}
+
+		public void ResetCamera()
+		{
+			Globals.camera.SetPosition(Vector2.Zero);
+			Globals.camera.SetScale(1);
+		}
 
 		public void Edit()
 		{

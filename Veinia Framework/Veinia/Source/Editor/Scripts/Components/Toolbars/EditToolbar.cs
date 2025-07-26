@@ -12,7 +12,7 @@ namespace VeiniaFramework.Editor
 		{
 			var editToolbarBehaviour = (EditToolbarBehaviour)toolbarBehaviour;
 
-			var panel = new Panel { Height = 175 };
+			var panel = new Panel { Height = 205 };
 			displayedToolbarContent = panel;
 
 			var removeSelectedButton = new TextButton { Text = "Remove Selected [RMB]" };
@@ -51,7 +51,6 @@ namespace VeiniaFramework.Editor
 			resetRotationButton.Click += (o, e) =>
 			{
 				editToolbarBehaviour.ResetRotation();
-				rotateButton.IsPressed = false;
 			};
 			panel.Widgets.Add(resetRotationButton);
 
@@ -61,6 +60,17 @@ namespace VeiniaFramework.Editor
 				editToolbarBehaviour.Edit();
 			};
 			panel.Widgets.Add(editButton);
+
+			//
+			panel.Widgets.Add(new HorizontalSeparator { Top = 175, VerticalAlignment = VerticalAlignment.Top });
+			//
+
+			var resetCamera = new TextButton { Text = "Reset Camera", Top = 185 };
+			resetCamera.Click += (o, e) =>
+			{
+				editToolbarBehaviour.ResetCamera();
+			};
+			panel.Widgets.Add(resetCamera);
 		}
 	}
 }
