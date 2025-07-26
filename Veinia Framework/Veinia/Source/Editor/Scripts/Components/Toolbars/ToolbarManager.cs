@@ -59,7 +59,7 @@ namespace VeiniaFramework.Editor
 		{
 			foreach (var toolbar in toolbars)
 			{
-				if (Globals.input.GetKeyDown(toolbar.shortcut) && !EditorControls.isMyraFocused)
+				if (Globals.input.GetKeyDown(toolbar.shortcut) && !EditorControls.isTextBoxFocused)
 				{
 					tabControl.SelectedIndex = toolbars.IndexOf(toolbar);
 				}

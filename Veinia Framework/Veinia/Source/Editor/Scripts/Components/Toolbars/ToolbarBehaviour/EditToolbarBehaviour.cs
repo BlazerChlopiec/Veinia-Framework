@@ -51,11 +51,12 @@ namespace VeiniaFramework.Editor
 				startSelectionPos = Globals.input.GetMouseScreenPosition();
 			}
 
-			if (Globals.input.GetKeyDown(Keys.Q) && !EditorControls.isMyraFocused)
+			if (Globals.input.GetKeyDown(Keys.Q) && !EditorControls.isTextBoxFocused)
 				SelectionOverlapWindow();
 
-			if (Globals.input.GetKeyDown(Keys.R) && !EditorControls.isMyraFocused)
+			if (Globals.input.GetKeyDown(Keys.R) && !EditorControls.isTextBoxFocused)
 				rotateButton.IsPressed = !rotateButton.IsPressed;
+
 
 			// selecting one thing by clicking
 			if (Globals.input.GetMouseUp(0) && !selectDragging && !editorControls.isDragging && !Globals.myraDesktop.IsMouseOverGUI && !EditorControls.isMouseOverGUIPreviousFrame)
@@ -78,15 +79,15 @@ namespace VeiniaFramework.Editor
 				}
 			}
 
-			if (Globals.input.GetKey(Keys.LeftControl) && Globals.input.GetKeyDown(Keys.D) && !EditorControls.isMyraFocused) Duplicate();
-			if (Globals.input.GetKey(Keys.LeftAlt) && Globals.input.GetKeyDown(Keys.D) && !EditorControls.isMyraFocused) selectedObjects.Clear();
-			if ((Globals.input.GetKeyDown(Keys.Delete) || Globals.input.GetMouseDown(1)) && !EditorControls.isMyraFocused)
+			if (Globals.input.GetKey(Keys.LeftControl) && Globals.input.GetKeyDown(Keys.D) && !EditorControls.isTextBoxFocused) Duplicate();
+			if (Globals.input.GetKey(Keys.LeftAlt) && Globals.input.GetKeyDown(Keys.D) && !EditorControls.isTextBoxFocused) selectedObjects.Clear();
+			if ((Globals.input.GetKeyDown(Keys.Delete) || Globals.input.GetMouseDown(1)) && !EditorControls.isTextBoxFocused)
 			{
 				RemoveSelection();
 				if (selectionOverlapWindow != null) selectionOverlapWindow.Close();
 			}
 
-			if (!Globals.input.GetKey(Keys.LeftControl) && !EditorControls.isMyraFocused)
+			if (!Globals.input.GetKey(Keys.LeftControl) && !EditorControls.isTextBoxFocused)
 			{
 				float shiftMultiplier = Globals.input.GetKey(Keys.LeftShift) ? .05f : 1f;
 
@@ -107,7 +108,7 @@ namespace VeiniaFramework.Editor
 						item.Position += new Vector2(1, 0) * shiftMultiplier;
 			}
 
-			if (Globals.input.GetKeyDown(Keys.E) && !EditorControls.isMyraFocused) Edit();
+			if (Globals.input.GetKeyDown(Keys.E) && !EditorControls.isTextBoxFocused) Edit();
 
 			EditorControls.disableDragMove = rotateButton.IsPressed && selectedObjects.Count > 0;
 			if (rotateButton.IsPressed && editorControls.isDragging && Globals.input.GetMouse(0))
