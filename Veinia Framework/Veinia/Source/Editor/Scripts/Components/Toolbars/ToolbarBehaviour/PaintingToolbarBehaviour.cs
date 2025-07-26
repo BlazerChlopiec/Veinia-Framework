@@ -94,7 +94,7 @@ namespace VeiniaFramework.Editor
 
 			var swipe = Globals.input.GetKey(Keys.LeftShift);
 
-			if (!editorControls.isDragging && !Globals.myraDesktop.IsMouseOverGUI)
+			if (!editorControls.isDragging && !Globals.myraDesktop.IsMouseOverGUI && !EditorControls.isMouseOverGUIPreviousFrame)
 			{
 				//placing
 				if (Globals.input.GetMouseUp(0) || Globals.input.GetMouse(0) && swipe)

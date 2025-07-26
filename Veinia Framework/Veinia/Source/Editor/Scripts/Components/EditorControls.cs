@@ -18,11 +18,18 @@ namespace VeiniaFramework.Editor
 		public static bool disableDragMove;
 		public static bool isMyraFocused => Globals.myraDesktop.FocusedKeyboardWidget != null;
 
+		public static bool isMouseOverGUIPreviousFrame;
+		static bool isMouseOverGUIPreviousFrameOld;
+
 
 		public override void Update()
 		{
 			EditorLabelManager.Add("MousePosition", new Label { Text = "Mouse Position - " + Globals.input.GetMouseWorldPosition().Round(3), VerticalAlignment = VerticalAlignment.Bottom, HorizontalAlignment = HorizontalAlignment.Right });
 			EditorLabelManager.Add("CameraPosition", new Label { Text = "Camera Position - " + Globals.camera.GetPosition().Round(3), Top = -25, VerticalAlignment = VerticalAlignment.Bottom, HorizontalAlignment = HorizontalAlignment.Right }); ;
+
+			isMouseOverGUIPreviousFrame = isMouseOverGUIPreviousFrameOld;
+			isMouseOverGUIPreviousFrameOld = Globals.myraDesktop.IsMouseOverGUI;
+			Say.Line("..prev " + EditorControls.isMouseOverGUIPreviousFrame + "current " + Globals.myraDesktop.IsMouseOverGUI);
 
 			if (Globals.myraDesktop.IsMouseOverGUI && isDragging == false && Globals.input.GetMouseDown(0)) { return; }
 

@@ -20,7 +20,6 @@ namespace VeiniaFramework.Editor
 		public EditorObject[] clipboard;
 
 		bool selectDragging;
-		public static bool skipSelectionFrame;
 		public TextButton rotateButton; // determine if IsPressed
 
 		Vector2 startSelectionPos;
@@ -59,7 +58,7 @@ namespace VeiniaFramework.Editor
 				rotateButton.IsPressed = !rotateButton.IsPressed;
 
 			// selecting one thing by clicking
-			if (Globals.input.GetMouseUp(0) && !selectDragging && !editorControls.isDragging && !Globals.myraDesktop.IsMouseOverGUI && !skipSelectionFrame)
+			if (Globals.input.GetMouseUp(0) && !selectDragging && !editorControls.isDragging && !Globals.myraDesktop.IsMouseOverGUI && !EditorControls.isMouseOverGUIPreviousFrame)
 			{
 				selectedObjects.Clear();
 
@@ -125,8 +124,6 @@ namespace VeiniaFramework.Editor
 			}
 
 			EditorLabelManager.Add("SelectedObjectCount", new Label { Text = "Selected Objects - " + selectedObjects.Count });
-
-			skipSelectionFrame = false;
 		}
 
 		private void RotateSelectedAround(float amount)
@@ -164,7 +161,6 @@ namespace VeiniaFramework.Editor
 			selectionOverlapWindow.Width = 100;
 			selectionOverlapWindow.CloseButton.Click += (s, e) =>
 			{
-				skipSelectionFrame = true;
 				selectionOverlapWindow = null;
 			};
 
@@ -183,8 +179,8 @@ namespace VeiniaFramework.Editor
 				};
 
 				overlapButton.MouseEntered += (s, e) => { selectedObjects.Clear(); selectedObjects.Add(overlap); };
-				overlapButton.Click += (s, a) => { selectionOverlapWindow.Close(); selectionOverlapWindow = null; skipSelectionFrame = true; };
-				overlapButton.MouseLeft += (s, e) => { if (selectedObjects.Contains(overlap) && skipSelectionFrame) selectedObjects.Remove(overlap); };
+				overlapButton.Click += (s, a) => { selectionOverlapWindow.Close(); selectionOverlapWindow = null; };
+				overlapButton.MouseLeft += (s, e) => { if (selectedObjects.Contains(overlap)) selectedObjects.Remove(overlap); };
 
 				panel.Widgets.Add(overlapButton);
 			}
