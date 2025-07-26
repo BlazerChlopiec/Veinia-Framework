@@ -80,8 +80,8 @@ namespace VeiniaFramework.Editor
 				editorObjectManager.Spawn(item.PrefabName, new Transform { position = item.Position, rotation = item.Rotation, scale = item.Scale }, item.customData);
 			}
 
-			Globals.camera.SetPosition(sceneFile.editorCamPosition);
-			Globals.camera.SetScale(sceneFile.editorCamScale);
+			Globals.camera.SetPosition(sceneFile.editorCamPosition ?? Vector2.Zero);
+			Globals.camera.SetScale(sceneFile.editorCamScale ?? 1);
 		}
 
 		public override void Update()
@@ -97,7 +97,7 @@ public class SceneFile
 	public List<EditorObject> objects;
 
 	[JsonProperty("l", DefaultValueHandling = DefaultValueHandling.Ignore)] // as in location
-	public Vector2 editorCamPosition;
+	public Vector2? editorCamPosition;
 	[JsonProperty("z", DefaultValueHandling = DefaultValueHandling.Ignore)] // as in zoom
-	public float editorCamScale;
+	public float? editorCamScale;
 }
