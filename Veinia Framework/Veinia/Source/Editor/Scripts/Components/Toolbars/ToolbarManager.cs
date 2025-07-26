@@ -77,8 +77,8 @@ namespace VeiniaFramework.Editor
 			if (currentToolbar != null)
 			{
 				tabControl.SelectedItem.Content = currentToolbar.displayedToolbarContent;
+				if (previousToolbar != null) previousToolbar.toolbarBehaviour.OnExitTab(currentToolbar);
 				currentToolbar.toolbarBehaviour.OnEnterTab();
-				if (previousToolbar != null) previousToolbar.toolbarBehaviour.OnExitTab();
 			}
 		}
 

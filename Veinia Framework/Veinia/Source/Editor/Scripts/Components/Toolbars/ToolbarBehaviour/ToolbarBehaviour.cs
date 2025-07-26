@@ -8,7 +8,7 @@ namespace VeiniaFramework.Editor
 
 		public virtual void OnInitialize() { }
 		public virtual void OnEnterTab() { }
-		public virtual void OnExitTab() { }
+		public virtual void OnExitTab(Toolbar newToolbar) { }
 		public virtual void OnUpdate() { }
 		public virtual void OnDraw(SpriteBatch sb) { }
 	}

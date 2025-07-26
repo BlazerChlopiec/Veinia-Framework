@@ -39,7 +39,16 @@ namespace VeiniaFramework.Editor
 			editorObjectManager.OnRemoveAll += () => { selectedObjects.Clear(); };
 		}
 
-		public override void OnExitTab() => selectedObjects.Clear();
+		public override void OnExitTab(Toolbar newToolbar)
+		{
+			if (newToolbar is PaintingToolbar && selectedObjects.Count > 0)
+			{
+				var paintingToolbarBehaviour = (PaintingToolbarBehaviour)newToolbar.toolbarBehaviour;
+				paintingToolbarBehaviour.ChangeCurrentPrefab(selectedObjects[0].PrefabName);
+				selectedObjects.Clear();
+			}
+			else selectedObjects.Clear();
+		}
 
 		public override void OnUpdate()
 		{

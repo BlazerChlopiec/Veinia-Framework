@@ -82,7 +82,7 @@ namespace VeiniaFramework.Editor
 			currentObjectLayer = editorObjectManager.editorObjects.FindAll(x => x.PrefabName == currentPrefabName);
 		}
 
-		public override void OnExitTab() => objectPreview.DestroyGameObject();
+		public override void OnExitTab(Toolbar newToolbar) => objectPreview.DestroyGameObject();
 		public override void OnEnterTab() => CreateNewPreview();
 
 		public override void OnUpdate()
