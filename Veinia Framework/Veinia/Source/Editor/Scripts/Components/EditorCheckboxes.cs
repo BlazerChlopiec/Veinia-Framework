@@ -37,7 +37,7 @@ namespace VeiniaFramework.Editor
 
 			for (int i = 0; i < panel.Widgets.Count; i++)
 			{
-				if (Globals.input.GetKeyDown(shortcuts[i]))
+				if (Globals.input.GetKeyDown(shortcuts[i]) && !EditorControls.isTextBoxFocused)
 				{
 					var checkBox = (CheckBox)panel.Widgets[i];
 					checkBox.DoClick();
