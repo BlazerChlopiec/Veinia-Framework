@@ -101,12 +101,17 @@ namespace VeiniaFramework
 
 			Globals.unscaledTweener.Update(Time.unscaledDeltaTime);
 
-			Globals.particleWorld.Update();
-
-			if (!Time.stop)
+			if (!isEditor && !Time.stop
+			  || isEditor && !Time.stop && game.IsActive)
 			{
+				Globals.particleWorld.Update();
 				Globals.tweener.Update(Time.deltaTime);
+
 				Globals.physicsWorld.Step(Time.deltaTime);
+
+				Globals.myraDesktop.UpdateInput();
+				Globals.myraDesktop.UpdateLayout();
+
 				Globals.loader.current?.Update();
 				Globals.loader.current?.LateUpdate();
 			}
@@ -161,7 +166,7 @@ namespace VeiniaFramework
 			Globals.particleWorld.Draw(spriteBatch);
 			spriteBatch.End();
 		}
-		public void DrawMyra() => Globals.myraDesktop.Render();
+		public void DrawMyra() => Globals.myraDesktop.RenderVisual();
 		public void DrawGeon(SpriteBatch spriteBatch) => UserInterface.Active.Draw(spriteBatch);
 		public void DrawDebugPhysics()
 		{
