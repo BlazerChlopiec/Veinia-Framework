@@ -19,6 +19,8 @@ namespace VeiniaFramework.Editor
 		public List<EditorObject> selectedObjects = new List<EditorObject>();
 		public EditorObject[] clipboard;
 
+		Window editWindow;
+
 		bool selectDragging;
 		public TextButton rotateButton; // determine if IsPressed
 
@@ -58,6 +60,11 @@ namespace VeiniaFramework.Editor
 			{
 				selectDragging = true;
 				startSelectionPos = Globals.input.GetMouseScreenPosition();
+			}
+
+			if (Globals.input.GetKeyDown(Keys.Escape))
+			{
+				editWindow?.Close();
 			}
 
 			if (Globals.input.GetKeyDown(Keys.Q) && !EditorControls.isTextBoxFocused)
@@ -254,13 +261,13 @@ namespace VeiniaFramework.Editor
 				Width = 350
 			};
 
-			Window window = new Window
+			editWindow = new Window
 			{
 				Title = "Object Editor",
 				Content = propertyGrid
 			};
 
-			window.Show(Globals.myraDesktop);
+			editWindow.Show(Globals.myraDesktop);
 		}
 
 		public override void OnDraw(SpriteBatch sb)
