@@ -18,9 +18,16 @@ namespace VeiniaFramework
 		private static bool timeStop;
 
 
-		public static void Update(GameTime gameTime)
+		public static void SetDelta(GameTime gameTime)
 		{
-			if (stop) deltaTime = 0; else deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+			deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+			time += deltaTime;
+		}
+
+		// update that runs even when stop = true
+		public static void UnscaledUpdate(GameTime gameTime)
+		{
 			unscaledDeltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
 			if (stopForFrames > 0) stopForFrames--;
@@ -29,10 +36,11 @@ namespace VeiniaFramework
 			if (stopForFrames <= 0 && stopForTime <= 0 && frameStop) { frameStop = false; stop = false; stopForFrames--; }
 			if (stopForTime <= 0 && stopForFrames <= 0 && timeStop) { timeStop = false; stop = false; }
 
-			time += deltaTime;
-
 			Title.Add(deltaTime, " - Time.deltaTime", 3);
 			Title.Add(unscaledDeltaTime, " - Time.unscaledDeltaTime", 4);
+
+			// deltaTime is gonna be set when SetDelta() runs a few lines after this
+			deltaTime = 0;
 		}
 
 		public static void StopForFrames(int frames)

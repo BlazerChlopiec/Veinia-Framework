@@ -91,7 +91,6 @@ namespace VeiniaFramework
 		public void Update(GameTime gameTime)
 		{
 			#region Veinia
-			Time.Update(gameTime);
 			Globals.fps.CalculateFps(gameTime);
 
 			NextFrame.Update();
@@ -100,10 +99,14 @@ namespace VeiniaFramework
 
 			Globals.unscaledTweener.Update(Time.unscaledDeltaTime);
 
+			Time.UnscaledUpdate(gameTime);
+
 			if (!isEditor && !pauseOnUnfocused && !Time.stop
 			 || !isEditor && pauseOnUnfocused && !Time.stop && game.IsActive
 			  || isEditor && !Time.stop && game.IsActive)
 			{
+				Time.SetDelta(gameTime);
+
 				if (game.IsActive) Globals.input.Update();
 
 				Globals.particleWorld.Update();
