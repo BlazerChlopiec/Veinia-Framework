@@ -18,7 +18,7 @@ namespace VeiniaFramework.Editor
 
 		bool markLayer;
 
-		public string currentPrefabName { get; private set; }
+		public static string currentPrefabName { get; private set; }
 
 		GameObject objectPreview;
 
@@ -45,8 +45,8 @@ namespace VeiniaFramework.Editor
 			};
 			editorObjectManager.OnRemoveAll += () => { currentObjectLayer.Clear(); };
 
-			var firstPrefab = prefabManager.prefabs[0];
-			if (firstPrefab != null) ChangeCurrentPrefab(firstPrefab.PrefabName);
+			// currentPrefabName is static so it remembers between editor sessions
+			ChangeCurrentPrefab(currentPrefabName == null ? prefabManager.prefabs[0].PrefabName : currentPrefabName);
 
 			EditorCheckboxes.Add("Mark Layer", defaultValue: false, (e, o) => { markLayer = true; }, (e, o) => { markLayer = false; });
 		}
