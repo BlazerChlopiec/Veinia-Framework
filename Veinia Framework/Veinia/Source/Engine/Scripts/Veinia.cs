@@ -127,8 +127,6 @@ namespace VeiniaFramework
 				Globals.camera.shake.Update();
 			}
 
-			Title.Add(Globals.fps.currentFps, " FPS", 0);
-			Title.Add(Globals.fps.vSync, " - vSync", 1);
 			title.Update();
 			#endregion
 

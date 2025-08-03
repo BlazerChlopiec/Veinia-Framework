@@ -7,6 +7,12 @@ namespace VeiniaFramework
 	{
 		// current frames per second of a game
 		public float currentFps { get; private set; }
+
+
+		public float averageFps { get; private set; }
+		int frameCount;
+		float timeAccumulator;
+
 		private int targetFps = 60;
 
 		public bool vSync
@@ -37,7 +43,25 @@ namespace VeiniaFramework
 			currentFps = 1f / (float)gameTime.ElapsedGameTime.TotalSeconds; // TotalSeconds is a double by default
 
 			currentFps = MathF.Round(currentFps); // round fps as it may give results simillar to this - 144,00003
+
+
+			timeAccumulator += Time.deltaTime;
+			frameCount++;
+
+			if (timeAccumulator >= 1f)
+			{
+				averageFps = frameCount / timeAccumulator;
+
+				// Round result for display
+				averageFps = MathF.Round(averageFps);
+
+				// Reset for next interval
+				frameCount = 0;
+				timeAccumulator -= 1f;
+			}
+
+			Title.Add(averageFps, " - Avg. FPS", 0);
+			Title.Add(vSync, " - vSync", 1);
 		}
 	}
-
 }
