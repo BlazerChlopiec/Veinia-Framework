@@ -43,5 +43,7 @@ namespace VeiniaFramework
 				shakeOffset = new Vector2(0f, 0f);
 			}
 		}
+
+		public void Reset() => durationRemaining = 0;
 	}
 }
