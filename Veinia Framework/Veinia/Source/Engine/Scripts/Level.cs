@@ -265,6 +265,8 @@ namespace VeiniaFramework
 			{
 				if (!gameObject.isEnabled) continue;
 
+				if (gameObject.frustumCulled && gameObject.isStatic) continue;
+
 				foreach (var component in gameObject.components.ToArray())
 				{
 					if (!component.isEnabled) continue;
@@ -282,6 +284,8 @@ namespace VeiniaFramework
 			{
 				if (!gameObject.isEnabled) continue;
 
+				if (gameObject.frustumCulled && gameObject.isStatic) continue;
+
 				foreach (var component in gameObject.components.ToArray())
 				{
 					if (!component.isEnabled) continue;
@@ -298,6 +302,7 @@ namespace VeiniaFramework
 			foreach (var gameObject in scene)
 			{
 				if (!gameObject.isEnabled) continue;
+				if (gameObject.frustumCulled && gameObject.isStatic) continue;
 
 				foreach (var component in gameObject.components)
 				{

@@ -28,5 +28,6 @@ namespace VeiniaFramework
 		public static World physicsWorld;
 		public static GameWindow window;
 		public static Desktop myraDesktop;
+		public static FrustumCulling frustumCulling;
 	}
 }

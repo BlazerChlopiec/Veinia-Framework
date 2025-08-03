@@ -52,7 +52,7 @@ namespace VeiniaFramework.Editor
 				new EditorGrid(),
 				new EditorJSON(levelPath),
 				new EditorObjectManager(prefabManager),
-			}, isStatic: true);
+			});
 
 			var toolbarManager = new ToolbarManager();
 			if (prefabManager != null && prefabManager.prefabs.Count > 0)
@@ -64,7 +64,7 @@ namespace VeiniaFramework.Editor
 				new EditorLabelManager(),
 				new EditorCheckboxes(),
 				new FPSWindow(),
-			}, isStatic: true);
+			});
 			UI.AddComponent(toolbarManager);
 			if (prefabManager == null) ErrorWindow("Warning", "There are no prefabs! Make a class that inherits PrefabManager and add it to Veinia.Initialize()! Check Samples For Reference.");
 			if (levelPath != string.Empty) UI.AddComponent(new EditorManager());

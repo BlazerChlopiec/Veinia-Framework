@@ -92,16 +92,14 @@ namespace Apos.Camera
 		public Matrix View => GetView(0);
 		public Matrix ViewInvert => GetViewInvert(0);
 
-		public Matrix GetView(float z = 0)
+		public Matrix GetView(float z = 0, float scaleFactor = 1f)
 		{
-			shake.DrawUpdate();
 			float scaleZ = ZToScale(_xyz.Z, z);
 			return VirtualViewport.Transform(
-				// Matrix.CreateTranslation(new Vector3(-VirtualViewport.Origin, 0f)) * // This makes the camera position be at the top left
 				Matrix.CreateTranslation(new Vector3(-XY, 0f)) *
 				Matrix.CreateTranslation(new Vector3(shake.shakeOffset, 0f)) *
 				Matrix.CreateRotationZ(Rotation) *
-				Matrix.CreateScale(Scale.X, Scale.Y, 1f) *
+				Matrix.CreateScale(Scale.X / scaleFactor, Scale.Y / scaleFactor, 1f / scaleFactor) *
 				Matrix.CreateScale(scaleZ, scaleZ, 1f) *
 				Matrix.CreateTranslation(new Vector3(VirtualViewport.Origin, 0f)));
 		}
@@ -185,10 +183,10 @@ namespace Apos.Camera
 
 			return new RectangleF(left, top, width, height);
 		}
-		public BoundingFrustum GetBoundingFrustum(float z = 0)
+		public BoundingFrustum GetBoundingFrustum(float z = 0, float scaleFactor = 1f)
 		{
 			// TODO: Use 3D view and projection?
-			Matrix view = GetView(z);
+			Matrix view = GetView(z, scaleFactor);
 			Matrix projection = GetProjection();
 			return new BoundingFrustum(view * projection);
 		}

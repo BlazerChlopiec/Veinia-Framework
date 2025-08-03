@@ -31,7 +31,7 @@ namespace VeiniaFramework.Editor
 				if (component is IDrawGizmos) gizmo = (IDrawGizmos)component;
 			}
 
-			var extractedSpriteGameObject = prefabManager.Find(prefabName).ExtractComponentToNewGameObject<Sprite>(transform);
+			var extractedSpriteGameObject = prefabManager.Find(prefabName).ExtractComponentToNewGameObject<Sprite>(transform, isStatic: true);
 
 			var newEditorObject = new EditorObject
 			{

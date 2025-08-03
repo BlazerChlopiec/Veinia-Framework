@@ -49,12 +49,12 @@ namespace VeiniaFramework
 			}
 			return rect;
 		}
-		public static GameObject ExtractComponentToNewGameObject<T1>(this GameObject gameObject, Transform transform) where T1 : Component
+		public static GameObject ExtractComponentToNewGameObject<T1>(this GameObject gameObject, Transform transform, bool isStatic = false) where T1 : Component
 		{
 			return new GameObject(transform, new List<Component>
 			{
 				(T1)gameObject.GetComponent<T1>().Clone()
-			}, isStatic: true);
+			}, isStatic: isStatic);
 		}
 		public static Vector2 SafeNormalize(this Vector2 value)
 		{
@@ -91,6 +91,7 @@ namespace VeiniaFramework
 		public static Vector2 AddToY(this Vector2 a, float addY) => new Vector2(a.X, a.Y + addY);
 		public static Vector2 GetWithoutY(this Vector2 a) => new Vector2(a.X, 0);
 		public static Vector2 GetWithoutX(this Vector2 a) => new Vector2(0, a.Y);
+		public static Vector3 ToVector3(this Vector2 a) => new Vector3(a.X, a.Y, 0);
 		public static Texture2D ChangeColor(this Texture2D texture, Color newColor, bool ignoreWhite = true)
 		{
 			if (newColor == Color.White && ignoreWhite) return texture;

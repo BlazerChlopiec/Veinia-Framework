@@ -31,6 +31,7 @@ namespace VeiniaFramework
 		public bool isStatic;
 		public bool dontDestroyOnLoad;
 		public bool isEnabled = true;
+		public bool frustumCulled;
 
 		// customData from EditorObject
 		public string customData;

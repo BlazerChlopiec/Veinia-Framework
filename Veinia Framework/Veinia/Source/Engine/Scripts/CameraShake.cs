@@ -23,7 +23,7 @@ namespace VeiniaFramework
 			CameraShake.magnitude = magnitude;
 		}
 
-		public void DrawUpdate()
+		public void Update()
 		{
 			if (durationRemaining > 0f && !Time.stop && Veinia.ShouldPauseWhenInactive)
 			{
