@@ -62,11 +62,6 @@ namespace VeiniaFramework.Editor
 				startSelectionPos = Globals.input.GetMouseScreenPosition();
 			}
 
-			if (Globals.input.GetKeyDown(Keys.Escape))
-			{
-				editWindow?.Close();
-			}
-
 			if (Globals.input.GetKeyDown(Keys.Q) && !EditorControls.isTextBoxFocused)
 				SelectionOverlapWindow();
 
@@ -81,7 +76,10 @@ namespace VeiniaFramework.Editor
 
 				var oneSelection = editorObjectManager.editorObjects.Find(x => x.EditorPlacedSprite.rect.OffsetByHalf().Contains(screenMousePos));
 				if (oneSelection != null)
+				{
+					editWindow?.Close();
 					selectedObjects.Add(oneSelection);
+				}
 			}
 			// mouse up when dragging
 			if (Globals.input.GetMouseUp(0) && selectDragging)
@@ -91,7 +89,10 @@ namespace VeiniaFramework.Editor
 				foreach (var item in editorObjectManager.GetInsideRectangle(selectionRectangle.AllowNegativeSize()))
 				{
 					if (!selectedObjects.Contains(item))
+					{
+						editWindow?.Close();
 						selectedObjects.Add(item);
+					}
 				}
 			}
 
@@ -124,7 +125,10 @@ namespace VeiniaFramework.Editor
 						item.Position += new Vector2(1, 0) * shiftMultiplier;
 			}
 
-			if (Globals.input.GetKeyDown(Keys.E) && !EditorControls.isTextBoxFocused) Edit();
+			if (Globals.input.GetKeyDown(Keys.E) && editWindow == null && selectedObjects.Count == 1 && !EditorControls.isTextBoxFocused)
+			{
+				Edit();
+			}
 
 			EditorControls.disableDragMove = rotateButton.IsPressed && selectedObjects.Count > 0;
 			if (rotateButton.IsPressed && editorControls.isDragging && Globals.input.GetMouse(0) && !Globals.input.GetKey(Keys.LeftControl))
@@ -166,6 +170,8 @@ namespace VeiniaFramework.Editor
 
 			var panel = new Panel();
 			var overlaps = editorObjectManager.OverlapsWithPoint(Transform.ScreenToWorldPos(overlapsVisualPos)).ToList();
+
+			editWindow?.Close();
 
 			if (selectionOverlapWindow != null) selectionOverlapWindow.Close();
 
@@ -217,12 +223,14 @@ namespace VeiniaFramework.Editor
 				selectedObjects.Remove(item);
 				editorObjectManager.Remove(item);
 			}
+			editWindow?.Close();
 		}
 
 		public void Duplicate()
 		{
 			clipboard = selectedObjects.ToArray();
 			selectedObjects.Clear();
+			editWindow?.Close();
 
 			foreach (var item in clipboard)
 			{
@@ -250,8 +258,6 @@ namespace VeiniaFramework.Editor
 
 		public void Edit()
 		{
-			if (selectedObjects.Count == 0) return;
-
 			var obj = selectedObjects[0];
 			if (obj == null) return;
 
@@ -264,7 +270,13 @@ namespace VeiniaFramework.Editor
 			editWindow = new Window
 			{
 				Title = "Object Editor",
-				Content = propertyGrid
+				Content = propertyGrid,
+				CloseKey = Keys.Escape,
+			};
+
+			editWindow.Closed += delegate
+			{
+				editWindow = null;
 			};
 
 			editWindow.Show(Globals.myraDesktop);
