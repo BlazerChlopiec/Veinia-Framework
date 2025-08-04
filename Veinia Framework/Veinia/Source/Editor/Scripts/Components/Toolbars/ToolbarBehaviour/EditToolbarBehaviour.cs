@@ -63,8 +63,11 @@ namespace VeiniaFramework.Editor
 				startSelectionPos = Globals.input.GetMouseScreenPosition();
 			}
 
-			if (Globals.input.GetKeyDown(Keys.Q) && filterSelectionWindow == null && !EditorControls.isTextBoxFocused)
+			if (Globals.input.GetKeyDown(Keys.Q) && !EditorControls.isTextBoxFocused && !Globals.myraDesktop.IsMouseOverGUI)
+			{
+				filterSelectionPoint = Globals.input.GetMouseScreenPosition();
 				FilterSelection();
+			}
 
 			if (Globals.input.GetKeyDown(Keys.R) && !EditorControls.isTextBoxFocused)
 				rotateButton.IsPressed = !rotateButton.IsPressed;
@@ -131,7 +134,7 @@ namespace VeiniaFramework.Editor
 						item.Position += new Vector2(1, 0) * shiftMultiplier;
 			}
 
-			if (Globals.input.GetKeyDown(Keys.E) && editWindow == null && selectedObjects.Count == 1 && !EditorControls.isTextBoxFocused)
+			if (Globals.input.GetKeyDown(Keys.E) && !EditorControls.isTextBoxFocused)
 			{
 				Edit();
 			}
@@ -176,6 +179,8 @@ namespace VeiniaFramework.Editor
 			var overlaps = editorObjectManager.OverlapsWithPoint(Transform.ScreenToWorldPos(filterSelectionPoint)).ToList();
 
 			editWindow?.Close();
+
+			selectedObjects.Clear();
 
 			if (filterSelectionWindow != null) filterSelectionWindow.Close();
 
@@ -261,6 +266,8 @@ namespace VeiniaFramework.Editor
 
 		public void Edit()
 		{
+			if (editWindow != null || filterSelectionWindow != null || selectedObjects.Count != 1) return;
+
 			var obj = selectedObjects[0];
 			if (obj == null) return;
 
