@@ -63,7 +63,7 @@ namespace VeiniaFramework.Editor
 				startSelectionPos = Globals.input.GetMouseScreenPosition();
 			}
 
-			if (Globals.input.GetKeyDown(Keys.Q) && !EditorControls.isTextBoxFocused)
+			if (Globals.input.GetKeyDown(Keys.Q) && filterSelectionWindow == null && !EditorControls.isTextBoxFocused)
 				FilterSelection();
 
 			if (Globals.input.GetKeyDown(Keys.R) && !EditorControls.isTextBoxFocused)
@@ -75,13 +75,13 @@ namespace VeiniaFramework.Editor
 			{
 				selectedObjects.Clear();
 
+				filterSelectionWindow?.Close();
+				if (filterSelectionWindow == null) filterSelectionPoint = Globals.input.GetMouseScreenPosition();
+
 				var oneSelection = editorObjectManager.editorObjects.Find(x => x.EditorPlacedSprite.rect.OffsetByHalf().Contains(screenMousePos));
 				if (oneSelection != null)
 				{
 					editWindow?.Close();
-					filterSelectionWindow?.Close();
-
-					if (filterSelectionWindow == null) filterSelectionPoint = Globals.input.GetMouseScreenPosition();
 
 					selectedObjects.Add(oneSelection);
 				}
@@ -207,8 +207,7 @@ namespace VeiniaFramework.Editor
 				};
 
 				overlapButton.MouseEntered += (s, e) => { selectedObjects.Clear(); selectedObjects.Add(overlap); };
-				overlapButton.Click += (s, a) => { filterSelectionWindow.Close(); filterSelectionWindow = null; };
-				overlapButton.MouseLeft += (s, e) => { if (selectedObjects.Contains(overlap)) selectedObjects.Remove(overlap); };
+				overlapButton.Click += (s, a) => { filterSelectionWindow.Close(); };
 
 				panel.Widgets.Add(overlapButton);
 			}
