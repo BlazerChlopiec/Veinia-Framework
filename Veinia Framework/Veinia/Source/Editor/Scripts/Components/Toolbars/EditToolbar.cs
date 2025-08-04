@@ -39,7 +39,7 @@ namespace VeiniaFramework.Editor
 			var filterSelectionButton = new TextButton { Text = "Filter Selection [Q]", Top = 75 };
 			filterSelectionButton.Click += (o, e) =>
 			{
-				editToolbarBehaviour.SelectionOverlapWindow();
+				editToolbarBehaviour.FilterSelection();
 			};
 			panel.Widgets.Add(filterSelectionButton);
 
