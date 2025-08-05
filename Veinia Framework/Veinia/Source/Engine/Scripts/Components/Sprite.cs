@@ -30,7 +30,7 @@ namespace VeiniaFramework
 			this.destinationSize = new Vector2(texture.Width, texture.Height) / (pixelsPerUnit / Transform.unitSize);
 		}
 
-		public void Draw(SpriteBatch sb)
+		public virtual void Draw(SpriteBatch sb)
 		{
 			sb.Draw(texture, rect, null, color, MathHelper.ToRadians(transform.rotation),
 									 new Vector2(texture.Bounds.Width / 2, texture.Bounds.Height / 2),

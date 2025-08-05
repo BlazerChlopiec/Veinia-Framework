@@ -23,16 +23,13 @@ namespace VeiniaFramework
 				destination.Add(item);
 			}
 		}
-		public static Rectangle OffsetByHalf(this Rectangle rect, float xOffset = 0, float yOffset = 0, float shrink = 0)
+		public static Rectangle OffsetNew(this Rectangle rect, Vector2 offset)
 		{
-			rect.Offset(-rect.Width / 2 + xOffset, -rect.Height / 2 - yOffset);
-			rect.Inflate(-shrink, -shrink);
-			return rect;
+			return new Rectangle(rect.X + (int)offset.X, rect.Y + (int)offset.Y, rect.Width, rect.Height);
 		}
-		public static RectangleF OffsetByHalf(this RectangleF rect, float xOffset = 0, float yOffset = 0, float shrink = 0)
+		public static Rectangle OffsetByHalf(this Rectangle rect)
 		{
-			rect.Offset(-rect.Width / 2 + xOffset, -rect.Height / 2 - yOffset);
-			rect.Inflate(-shrink, -shrink);
+			rect.Offset(-rect.Width / 2, -rect.Height / 2);
 			return rect;
 		}
 		public static Rectangle AllowNegativeSize(this Rectangle rect)
