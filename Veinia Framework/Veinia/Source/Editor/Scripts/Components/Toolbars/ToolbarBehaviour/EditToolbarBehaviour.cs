@@ -63,6 +63,12 @@ namespace VeiniaFramework.Editor
 				startSelectionPos = Globals.input.GetMouseScreenPosition();
 			}
 
+			if (Globals.input.GetKeyDown(Keys.Escape))
+			{
+				editWindow?.Close();
+				filterSelectionWindow?.Close();
+			}
+
 			if (Globals.input.GetKeyDown(Keys.Q) && !EditorControls.isTextBoxFocused && !Globals.myraDesktop.IsMouseOverGUI)
 			{
 				filterSelectionPoint = Globals.input.GetMouseScreenPosition();
@@ -281,7 +287,6 @@ namespace VeiniaFramework.Editor
 			{
 				Title = "Object Editor",
 				Content = propertyGrid,
-				CloseKey = Keys.Escape,
 			};
 
 			editWindow.Closed += delegate
