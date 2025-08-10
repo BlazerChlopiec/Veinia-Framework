@@ -29,7 +29,12 @@ namespace VeiniaFramework.Editor
 			{
 				var yOffset = (-Vector2.UnitY * unit * i) + -Vector2.UnitY * unit / 2;
 				var xOffset = (Vector2.UnitX * unit * (size.X + 1));
-				sb.DrawLine(leftBottom + yOffset, leftBottom + xOffset + yOffset, color, thickness, layerDepth: .9f);
+				level.drawCommands.Add(new DrawCommand
+				{
+					command = delegate { sb.DrawLine(leftBottom + yOffset, leftBottom + xOffset + yOffset, color, thickness, layerDepth: 0); },
+					Z = float.MaxValue - 1
+				});
+
 			}
 
 			var rightTop = Transform.WorldToScreenPos(Vector2.Round(camera.GetPosition() + Vector2.UnitX * (size.X / 2) + Vector2.UnitY * (size.Y / 2)) + Vector2.UnitY / 2);
@@ -37,7 +42,12 @@ namespace VeiniaFramework.Editor
 			{
 				var xOffset = (-Vector2.UnitX * unit * i) + -Vector2.UnitX * unit / 2;
 				var yOffset = (Vector2.UnitY * unit * (size.Y + 1));
-				sb.DrawLine(rightTop + xOffset, rightTop + xOffset + yOffset, color, thickness, layerDepth: .9f);
+
+				level.drawCommands.Add(new DrawCommand
+				{
+					command = delegate { sb.DrawLine(rightTop + xOffset, rightTop + xOffset + yOffset, color, thickness, layerDepth: 0f); },
+					Z = float.MaxValue - 1
+				});
 			}
 		}
 	}
