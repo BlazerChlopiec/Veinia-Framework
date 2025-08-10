@@ -6,15 +6,13 @@ namespace VeiniaFramework
 	public class Sprite : Component, IDrawn
 	{
 		public Color color = Color.White;
-		public float layer;
 		public Vector2 destinationSize;
 		public Effect effect;
 		public Texture2D texture { get; private set; }
 
 
-		public Sprite(Texture2D texture, float layer, Color color, float pixelsPerUnit, Effect effect = null)
+		public Sprite(Texture2D texture, Color color, float pixelsPerUnit, Effect effect = null)
 		{
-			this.layer = layer;
 			this.color = color;
 
 			this.texture = texture;
@@ -23,9 +21,8 @@ namespace VeiniaFramework
 
 			this.destinationSize = new Vector2(texture.Width, texture.Height) / (pixelsPerUnit / Transform.unitSize);
 		}
-		public Sprite(string path, float layer, Color color, float pixelsPerUnit, Effect effect = null)
+		public Sprite(string path, Color color, float pixelsPerUnit, Effect effect = null)
 		{
-			this.layer = layer;
 			this.color = color;
 
 			texture = Globals.content.Load<Texture2D>(path);

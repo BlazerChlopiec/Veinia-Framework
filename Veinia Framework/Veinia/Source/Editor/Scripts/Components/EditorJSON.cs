@@ -70,14 +70,15 @@ namespace VeiniaFramework.Editor
 			editorObjectManager.RemoveAll();
 
 			if (!File.Exists("LevelData/" + editedLevelName)) return;
-			var dataToLoad = EditorJSON.encryptScene ? Encryption.Decrypt(File.ReadAllBytes("LevelData/" + editedLevelName))
+			var dataToLoad = encryptScene ? Encryption.Decrypt(File.ReadAllBytes("LevelData/" + editedLevelName))
 							: File.ReadAllText("LevelData/" + editedLevelName);
 
 			sceneFile = JsonConvert.DeserializeObject<SceneFile>(dataToLoad);
 
 			foreach (var item in sceneFile.objects)
 			{
-				editorObjectManager.Spawn(item.PrefabName, new Transform { position = item.Position, rotation = item.Rotation, scale = item.Scale }, item.customData);
+				Say.Line(item.Z);
+				editorObjectManager.Spawn(item.PrefabName, new Transform { position = item.Position, rotation = item.Rotation, scale = item.Scale, Z = item.Z }, item.customData);
 			}
 
 			Globals.camera.SetPosition(sceneFile.editorCamPosition ?? Vector2.Zero);

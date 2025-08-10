@@ -57,8 +57,8 @@ namespace VeiniaFramework.Editor
 
 			objectPreview = prefabManager.Find(currentPrefabName).ExtractComponentToNewGameObject<Sprite>(Transform.Empty);
 			var sprite = objectPreview.GetComponent<Sprite>();
+			sprite.transform.Z = float.MaxValue;
 			sprite.color *= .5f;
-			sprite.layer = .9f;
 
 			objectPreview = gameObject.level.Instantiate(objectPreview);
 

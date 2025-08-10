@@ -20,6 +20,18 @@ namespace VeiniaFramework.Editor
 		}
 		Vector2 position;
 
+		[JsonProperty("z", DefaultValueHandling = DefaultValueHandling.Ignore)]
+		public float Z
+		{
+			get { return z; }
+			set
+			{
+				z = value;
+				if (EditorPlacedSprite != null) EditorPlacedSprite.transform.Z = value;
+			}
+		}
+		float z;
+
 		[JsonProperty("r", DefaultValueHandling = DefaultValueHandling.Ignore)]
 		public float Rotation
 		{

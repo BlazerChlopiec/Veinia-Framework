@@ -6,8 +6,8 @@ using VeiniaFramework;
 
 public class Parallax : Sprite
 {
-	public Parallax(Texture2D texture, float layer, Color color, float pixelsPerUnit,
-	 float factorX = .5f, float factorY = .5f, int copiesX = 1, int copiesY = 1) : base(texture, layer, color, pixelsPerUnit)
+	public Parallax(Texture2D texture, Color color, float pixelsPerUnit,
+	 float factorX = .5f, float factorY = .5f, int copiesX = 1, int copiesY = 1) : base(texture, color, pixelsPerUnit)
 	{
 		this.factorX = factorX;
 		this.factorY = factorY;
@@ -15,8 +15,8 @@ public class Parallax : Sprite
 		this.copiesY = copiesY;
 	}
 
-	public Parallax(string path, float layer, Color color, float pixelsPerUnit,
-	 float factorX = .5f, float factorY = .5f, int copiesX = 1, int copiesY = 1) : base(path, layer, color, pixelsPerUnit)
+	public Parallax(string path, Color color, float pixelsPerUnit,
+	 float factorX = .5f, float factorY = .5f, int copiesX = 1, int copiesY = 1) : base(path, color, pixelsPerUnit)
 	{
 		this.factorX = factorX;
 		this.factorY = factorY;

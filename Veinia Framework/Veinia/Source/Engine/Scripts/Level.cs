@@ -64,11 +64,12 @@ namespace VeiniaFramework
 
 			foreach (var item in sceneFile.objects)
 			{
-				if (prefabManager?.Find(item.PrefabName) == null)
+				var prefab = prefabManager?.Find(item.PrefabName);
+				if (prefab == null)
 				{
 					throw new System.Exception("Prefabs that got deleted and are still on " + editorLevelName);
 				}
-				Instantiate(new Transform { position = item.Position, rotation = item.Rotation, scale = item.Scale }, prefabManager?.Find(item.PrefabName)).customData = item.customData;
+				Instantiate(new Transform { position = item.Position, rotation = item.Rotation, scale = item.Scale, Z = item.Z }, prefab).customData = item.customData;
 			}
 		}
 
