@@ -56,11 +56,11 @@ namespace VeiniaFramework.Editor
 			if (objectPreview != null) objectPreview.DestroyGameObject();
 
 			objectPreview = prefabManager.Find(currentPrefabName).ExtractComponentToNewGameObject<Sprite>(Transform.Empty);
+			objectPreview = gameObject.level.Instantiate(objectPreview);
+
 			var sprite = objectPreview.GetComponent<Sprite>();
 			sprite.transform.Z = float.MaxValue;
 			sprite.color *= .5f;
-
-			objectPreview = gameObject.level.Instantiate(objectPreview);
 
 			UpdatePreview();
 		}

@@ -77,7 +77,6 @@ namespace VeiniaFramework.Editor
 
 			foreach (var item in sceneFile.objects)
 			{
-				Say.Line(item.Z);
 				editorObjectManager.Spawn(item.PrefabName, new Transform { position = item.Position, rotation = item.Rotation, scale = item.Scale, Z = item.Z }, item.customData);
 			}
 
