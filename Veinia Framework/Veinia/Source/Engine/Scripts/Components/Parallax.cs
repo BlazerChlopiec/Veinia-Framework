@@ -74,15 +74,24 @@ public class Parallax : Sprite
 			for (int y = -copiesY; y <= copiesY; y++)
 			{
 				Vector2 offset = new Vector2(rect.Width * x, rect.Height * y);
-				DrawParallax(sb, offset);
+				DrawParallax(offset);
 			}
 		}
 	}
 
-	private void DrawParallax(SpriteBatch sb, Vector2 offset = default)
+	private void DrawParallax(Vector2 offset = default)
 	{
-		sb.Draw(texture, rect.OffsetNew(offset), null, color, MathHelper.ToRadians(transform.rotation),
-				 new Vector2(texture.Bounds.Width / 2, texture.Bounds.Height / 2),
-				 SpriteEffects.None, 0);
+		level.drawCommands.Add(new DrawCommand
+		{
+			Texture = texture,
+			Destination = rect.OffsetNew(offset),
+			Source = null,
+			Color = color,
+			Rotation = MathHelper.ToRadians(transform.rotation),
+			Origin = new Vector2(texture.Bounds.Width / 2, texture.Bounds.Height / 2),
+			Effects = SpriteEffects.None,
+			Z = transform.Z,
+			shader = effect
+		});
 	}
 }
