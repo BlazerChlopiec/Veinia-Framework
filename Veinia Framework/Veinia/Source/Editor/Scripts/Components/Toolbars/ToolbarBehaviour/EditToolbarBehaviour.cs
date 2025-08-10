@@ -300,17 +300,44 @@ namespace VeiniaFramework.Editor
 		public override void OnDraw(SpriteBatch sb)
 		{
 			if (filterSelectionWindow != null)
-				sb.DrawCircle(new CircleF(filterSelectionPoint.ToPoint(), 20 / Globals.camera.GetScale()), sides: 20, Color.Red, thickness: 10 / Globals.camera.GetScale(), layerDepth: 1);
+			{
+				gameObject.level.drawCommands.Add(new DrawCommand
+				{
+					command = delegate
+					{
+						sb.DrawCircle(new CircleF(filterSelectionPoint.ToPoint(), 20 / Globals.camera.GetScale()), sides: 20, Color.Red, thickness: 10 / Globals.camera.GetScale(), layerDepth: 0);
+					},
+					Z = float.MaxValue,
+				});
+			}
+
 
 			foreach (var selected in selectedObjects)
-				sb.DrawRectangleRotation(selected.EditorPlacedSprite.rect.OffsetByHalf(), Color.Blue, 5, selected.Rotation, .99f);
+			{
+				gameObject.level.drawCommands.Add(new DrawCommand
+				{
+					command = delegate
+					{
+						sb.DrawRectangleRotation(selected.EditorPlacedSprite.rect.OffsetByHalf(), Color.Blue, 5, selected.Rotation, .99f);
+					},
+					Z = float.MaxValue,
+				});
+			}
+
 
 			if (selectDragging)
 			{
 				var difference = startSelectionPos - screenMousePos;
 				selectionRectangle = new Rectangle((int)startSelectionPos.X, (int)startSelectionPos.Y, (int)-difference.X, (int)-difference.Y);
 
-				sb.DrawRectangle(selectionRectangle.AllowNegativeSize(), Color.Red, 10, 1);
+				gameObject.level.drawCommands.Add(new DrawCommand
+				{
+					command = delegate
+					{
+						sb.DrawRectangle(selectionRectangle.AllowNegativeSize(), Color.Red, 10, 1);
+					},
+					Z = float.MaxValue,
+				});
 			}
 		}
 	}
