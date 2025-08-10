@@ -36,13 +36,12 @@ namespace VeiniaFramework
 		{
 			level.drawCommands.Add(new DrawCommand
 			{
-				Texture = texture,
-				Destination = rect,
-				Source = null,
-				Color = color,
-				Rotation = MathHelper.ToRadians(transform.rotation),
-				Origin = new Vector2(texture.Bounds.Width / 2f, texture.Bounds.Height / 2f),
-				Effects = SpriteEffects.None,
+				command = delegate
+				{
+					sb.Draw(texture, rect, null, color, MathHelper.ToRadians(transform.rotation),
+						 new Vector2(texture.Bounds.Width / 2, texture.Bounds.Height / 2),
+						 SpriteEffects.None, layerDepth: 0);
+				},
 				Z = transform.Z,
 				shader = effect
 			});

@@ -331,16 +331,7 @@ namespace VeiniaFramework
 					sb.Begin(SpriteSortMode.Deferred, blendState, samplerState, effect: cmd.shader, transformMatrix: transformMatrix);
 					currentShader = cmd.shader;
 				}
-				sb.Draw(
-					cmd.Texture,
-					cmd.Destination,
-					cmd.Source,
-					cmd.Color,
-					cmd.Rotation,
-					cmd.Origin,
-					cmd.Effects,
-					0f
-				);
+				cmd.command.Invoke();
 			}
 
 			drawCommands.Clear();
