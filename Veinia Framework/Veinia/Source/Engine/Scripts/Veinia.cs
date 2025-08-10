@@ -162,16 +162,17 @@ namespace VeiniaFramework
 
 		public void Draw(SpriteBatch spriteBatch, SamplerState samplerState = null, BlendState blendState = null)
 		{
-			DrawWorld(spriteBatch, samplerState, blendState);
+			DrawWorld(spriteBatch, samplerState, blendState, transformMatrix: Globals.camera.GetView());
 			DrawMyra();
 			DrawGeon(spriteBatch);
 			DrawDebugPhysics();
 		}
 
-		public void DrawWorld(SpriteBatch spriteBatch, SamplerState samplerState = null, BlendState blendState = null)
+		public void DrawWorld(SpriteBatch spriteBatch, SamplerState samplerState = null, BlendState blendState = null, Matrix? transformMatrix = null)
 		{
-			spriteBatch.Begin(SpriteSortMode.FrontToBack, transformMatrix: Globals.camera.GetView(), samplerState: samplerState, blendState: blendState);
-			Globals.loader.current?.Draw(spriteBatch);
+			Globals.loader.current?.Draw(spriteBatch, samplerState, blendState, transformMatrix);
+
+			spriteBatch.Begin(SpriteSortMode.FrontToBack, blendState, samplerState, transformMatrix: transformMatrix);
 			Globals.particleWorld.Draw(spriteBatch);
 			spriteBatch.End();
 		}

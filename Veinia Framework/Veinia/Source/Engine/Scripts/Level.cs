@@ -298,8 +298,11 @@ namespace VeiniaFramework
 		/// <summary>
 		/// Draws the components in the current scene.
 		/// </summary>
-		public void Draw(SpriteBatch sb)
+		public List<DrawCommand> drawCommands = new List<DrawCommand>();
+		public void Draw(SpriteBatch sb, SamplerState samplerState = null, BlendState blendState = null, Matrix? transformMatrix = null)
 		{
+			sb.Begin(SpriteSortMode.Deferred, blendState, samplerState, transformMatrix: transformMatrix);
+
 			foreach (var gameObject in scene)
 			{
 				if (!gameObject.isEnabled) continue;
@@ -311,10 +314,37 @@ namespace VeiniaFramework
 					if (component is IDrawn)
 					{
 						IDrawn drawn = (IDrawn)component;
-						drawn.Draw(sb);
+						drawn.Draw(sb); // makes drawCommands
 					}
 				}
 			}
+
+			drawCommands.Sort((a, b) => a.Z.CompareTo(b.Z));
+
+			Effect currentShader = null;
+			foreach (var cmd in drawCommands)
+			{
+				if (currentShader != cmd.shader)
+				{
+					sb.End();
+					sb.Begin(SpriteSortMode.Deferred, blendState, samplerState, effect: cmd.shader, transformMatrix: transformMatrix);
+					currentShader = cmd.shader;
+				}
+				sb.Draw(
+					cmd.Texture,
+					cmd.Destination,
+					cmd.Source,
+					cmd.Color,
+					cmd.Rotation,
+					cmd.Origin,
+					cmd.Effects,
+					0f
+				);
+			}
+
+			drawCommands.Clear();
+
+			sb.End();
 		}
 
 		public virtual void Unload()

@@ -8,33 +8,47 @@ namespace VeiniaFramework
 		public Color color = Color.White;
 		public float layer;
 		public Vector2 destinationSize;
+		public Effect effect;
 		public Texture2D texture { get; private set; }
 
 
-		public Sprite(Texture2D texture, float layer, Color color, float pixelsPerUnit)
+		public Sprite(Texture2D texture, float layer, Color color, float pixelsPerUnit, Effect effect = null)
 		{
 			this.layer = layer;
 			this.color = color;
 
 			this.texture = texture;
 
+			this.effect = effect;
+
 			this.destinationSize = new Vector2(texture.Width, texture.Height) / (pixelsPerUnit / Transform.unitSize);
 		}
-		public Sprite(string path, float layer, Color color, float pixelsPerUnit)
+		public Sprite(string path, float layer, Color color, float pixelsPerUnit, Effect effect = null)
 		{
 			this.layer = layer;
 			this.color = color;
 
 			texture = Globals.content.Load<Texture2D>(path);
 
+			this.effect = effect;
+
 			this.destinationSize = new Vector2(texture.Width, texture.Height) / (pixelsPerUnit / Transform.unitSize);
 		}
 
 		public virtual void Draw(SpriteBatch sb)
 		{
-			sb.Draw(texture, rect, null, color, MathHelper.ToRadians(transform.rotation),
-									 new Vector2(texture.Bounds.Width / 2, texture.Bounds.Height / 2),
-									 SpriteEffects.None, layer);
+			level.drawCommands.Add(new DrawCommand
+			{
+				Texture = texture,
+				Destination = rect,
+				Source = null,
+				Color = color,
+				Rotation = MathHelper.ToRadians(transform.rotation),
+				Origin = new Vector2(texture.Bounds.Width / 2f, texture.Bounds.Height / 2f),
+				Effects = SpriteEffects.None,
+				Z = transform.Z,
+				shader = effect
+			});
 		}
 
 		public void ChangeTexture(string path) => texture = Globals.content.Load<Texture2D>(path);
