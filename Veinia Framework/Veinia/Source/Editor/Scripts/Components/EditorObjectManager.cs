@@ -23,7 +23,7 @@ namespace VeiniaFramework.Editor
 
 		public override void Initialize() => EditorCheckboxes.Add("Draw Gizmos", defaultValue: true, (e, o) => { drawGizmos = true; }, (e, o) => { drawGizmos = false; });
 
-		public EditorObject Spawn(string prefabName, Vector2? position = default, float? rotation = default, Vector2? scale = default, float? z = default, string customData = null)
+		public EditorObject Spawn(string prefabName, Vector2 position = default, float rotation = default, Vector2 scale = default, float z = default, string customData = null)
 		{
 			var prefab = prefabManager.Find(prefabName);
 
@@ -35,10 +35,10 @@ namespace VeiniaFramework.Editor
 
 			var newT = new Transform
 			{
-				Position = position ?? prefab.transform.position,
-				Rotation = rotation ?? prefab.transform.rotation,
-				Scale = scale ?? prefab.transform.scale,
-				Z = z ?? prefab.transform.Z,
+				Position = position == default ? prefab.transform.position : position,
+				Rotation = rotation == default ? prefab.transform.rotation : rotation,
+				Scale = scale == default ? prefab.transform.scale : scale,
+				Z = z == default ? prefab.transform.Z : z,
 			};
 			var extractedSpriteGameObject = prefab.ExtractComponentToNewGameObject<Sprite>(newT, isStatic: true);
 
