@@ -23,24 +23,36 @@ namespace VeiniaFramework.Editor
 
 		public override void Initialize() => EditorCheckboxes.Add("Draw Gizmos", defaultValue: true, (e, o) => { drawGizmos = true; }, (e, o) => { drawGizmos = false; });
 
-		public EditorObject Spawn(string prefabName, Transform transform, string customData = null)
+		public EditorObject Spawn(string prefabName, Vector2? position = default, float? rotation = default, Vector2? scale = default, float? z = default, string customData = null)
 		{
+			var prefab = prefabManager.Find(prefabName);
+
 			IDrawGizmos gizmo = null;
-			foreach (var component in prefabManager.Find(prefabName).components)
+			foreach (var component in prefab.components)
 			{
 				if (component is IDrawGizmos) gizmo = (IDrawGizmos)component;
 			}
 
-			var extractedSpriteGameObject = prefabManager.Find(prefabName).ExtractComponentToNewGameObject<Sprite>(transform, isStatic: true);
+			var newT = new Transform
+			{
+				Position = position ?? prefab.transform.position,
+				Rotation = rotation ?? prefab.transform.rotation,
+				Scale = scale ?? prefab.transform.scale,
+				Z = z ?? prefab.transform.Z,
+			};
+			var extractedSpriteGameObject = prefab.ExtractComponentToNewGameObject<Sprite>(newT, isStatic: true);
 
 			var newEditorObject = new EditorObject
 			{
 				PrefabName = prefabName,
-				Position = transform.Position,
-				Rotation = transform.Rotation,
-				Z = transform.Z,
-				Scale = transform.Scale,
-				customData = customData,
+
+				// if new transform is default fallback to what prefab had set
+				Position = newT.position,
+				Rotation = newT.rotation,
+				Scale = newT.scale,
+				Z = newT.Z,
+				customData = customData ?? prefab.customData,
+
 				EditorPlacedSprite = Instantiate(extractedSpriteGameObject).GetComponent<Sprite>(),
 				gizmo = gizmo,
 			};
@@ -53,6 +65,8 @@ namespace VeiniaFramework.Editor
 
 			return newEditorObject;
 		}
+
+		public EditorObject Spawn(EditorObject ob) => Spawn(ob.PrefabName, ob.Position, ob.Rotation, ob.Scale, ob.Z, ob.customData);
 
 		public void Remove(EditorObject editorObject)
 		{

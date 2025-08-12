@@ -103,12 +103,12 @@ namespace VeiniaFramework.Editor
 					if (!Globals.input.GetKey(Keys.LeftControl))
 					{
 						if (editorObjectManager.PrefabOverlapsWithPoint(mouseGridPos, currentPrefabName) == null)
-							editorObjectManager.Spawn(currentPrefabName, new Transform { position = mouseGridPos });
+							editorObjectManager.Spawn(currentPrefabName, position: mouseGridPos);
 					}
 					else
 					{
 						if (editorObjectManager.PrefabOverlapsWithPoint(mousePos, currentPrefabName) == null)
-							editorObjectManager.Spawn(currentPrefabName, new Transform { position = mousePos });
+							editorObjectManager.Spawn(currentPrefabName, position: mousePos);
 					}
 				}
 				//

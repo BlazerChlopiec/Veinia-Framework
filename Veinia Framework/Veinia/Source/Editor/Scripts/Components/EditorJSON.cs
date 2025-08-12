@@ -77,7 +77,7 @@ namespace VeiniaFramework.Editor
 
 			foreach (var item in sceneFile.objects)
 			{
-				editorObjectManager.Spawn(item.PrefabName, new Transform { position = item.Position, rotation = item.Rotation, scale = item.Scale, Z = item.Z }, item.customData);
+				editorObjectManager.Spawn(item);
 			}
 
 			Globals.camera.SetPosition(sceneFile.editorCamPosition ?? Vector2.Zero);
