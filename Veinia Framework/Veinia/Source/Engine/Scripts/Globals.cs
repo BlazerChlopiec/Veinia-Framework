@@ -29,5 +29,6 @@ namespace VeiniaFramework
 		public static GameWindow window;
 		public static Desktop myraDesktop;
 		public static FrustumCulling frustumCulling;
+		public static ShapeDrawing shapeDrawing;
 	}
 }

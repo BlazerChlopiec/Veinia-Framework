@@ -329,7 +329,7 @@ namespace VeiniaFramework
 			foreach (var cmd in drawCommands)
 			{
 				if (cmd.shader != prevCommand.shader && beginCalled // if new shader
-				 || cmd.drawWithoutSpriteBatch) // or using DrawUserPrimitives()
+				 || cmd.drawWithoutSpriteBatch && beginCalled) // or using DrawUserPrimitives()
 				{
 					sb.End();
 					beginCalled = false;
