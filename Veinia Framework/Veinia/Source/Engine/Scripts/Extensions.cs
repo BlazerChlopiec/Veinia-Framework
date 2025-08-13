@@ -154,24 +154,5 @@ namespace VeiniaFramework
 
 			return result;
 		}
-		public static void DrawRectangleRotation(this SpriteBatch spriteBatch, RectangleF rectangle, Color color, float thickness = 1f, float rotation = 0f, float layerDepth = 0f)
-		{
-			Vector2 center = new Vector2(rectangle.X + rectangle.Width / 2f, rectangle.Y + rectangle.Height / 2f);
-
-			Vector2 topLeft = new Vector2(rectangle.Left, rectangle.Top);
-			Vector2 topRight = new Vector2(rectangle.Right, rectangle.Top);
-			Vector2 bottomRight = new Vector2(rectangle.Right, rectangle.Bottom);
-			Vector2 bottomLeft = new Vector2(rectangle.Left, rectangle.Bottom);
-
-			topLeft = topLeft.RotateAround(center, -rotation);
-			topRight = topRight.RotateAround(center, -rotation);
-			bottomRight = bottomRight.RotateAround(center, -rotation);
-			bottomLeft = bottomLeft.RotateAround(center, -rotation);
-
-			spriteBatch.DrawLine(topLeft.X, topLeft.Y, topRight.X, topRight.Y, color, thickness, layerDepth);
-			spriteBatch.DrawLine(topRight.X, topRight.Y, bottomRight.X, bottomRight.Y, color, thickness, layerDepth);
-			spriteBatch.DrawLine(bottomRight.X, bottomRight.Y, bottomLeft.X, bottomLeft.Y, color, thickness, layerDepth);
-			spriteBatch.DrawLine(bottomLeft.X, bottomLeft.Y, topLeft.X, topLeft.Y, color, thickness, layerDepth);
-		}
 	}
 }

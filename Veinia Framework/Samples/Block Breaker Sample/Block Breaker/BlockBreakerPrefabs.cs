@@ -9,27 +9,27 @@ namespace VeiniaFramework.Samples.BlockBreaker
 		{
 			base.LoadPrefabs();
 
-			Add("Grass Tile", new GameObject(Transform.Empty, new List<Component>
+			Add("Grass Tile", new GameObject(new Transform { Z = .1f }, new List<Component>
 			{
-				new Sprite("Sprites/Grass Tile", .1f, Color.White, pixelsPerUnit: 200),
+				new Sprite("Sprites/Grass Tile", Color.White, pixelsPerUnit: 200),
 				new GrassTile(),
 			}, isStatic: true));
 
-			Add("Moving Tile", new GameObject(Transform.Empty, new List<Component>
+			Add("Moving Tile", new GameObject(new Transform { Z = .1f }, new List<Component>
 			{
-				new Sprite("Sprites/Moving Tile", .1f, Color.White, pixelsPerUnit: 200),
+				new Sprite("Sprites/Moving Tile", Color.White, pixelsPerUnit: 200),
 				new MovingBlock(),
 			}, isStatic: true));
 
-			Add("Metal Tile", new GameObject(Transform.Empty, new List<Component>
+			Add("Metal Tile", new GameObject(new Transform { Z = .1f }, new List<Component>
 			{
-				new Sprite("Sprites/Metal Tile", .1f, Color.White, pixelsPerUnit: 200),
+				new Sprite("Sprites/Metal Tile", Color.White, pixelsPerUnit: 200),
 				new MetalBlock(),
 			}, isStatic: true));
 
-			Add("Background", new GameObject(Transform.Empty, new List<Component>
+			Add("Background", new GameObject(new Transform { Z = 0 }, new List<Component>
 			{
-				new Sprite("Sprites/Background", 0, Color.White, pixelsPerUnit: 200),
+				new Sprite("Sprites/Background", Color.White, pixelsPerUnit: 200),
 			}, isStatic: true));
 		}
 	}

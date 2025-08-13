@@ -1,7 +1,6 @@
 ﻿using Apos.Camera;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
 namespace VeiniaFramework.Samples.BlockBreaker
 {
@@ -47,9 +46,6 @@ namespace VeiniaFramework.Samples.BlockBreaker
 		protected override void Update(GameTime gameTime)
 		{
 			veinia.Update(gameTime);
-
-			if (Globals.input.GetButtonDown(Buttons.Back) || Globals.input.GetKeyDown(Keys.Escape))
-				Exit();
 
 			base.Update(gameTime);
 		}

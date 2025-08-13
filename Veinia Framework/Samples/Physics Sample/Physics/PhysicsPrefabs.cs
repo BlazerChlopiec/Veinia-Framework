@@ -10,9 +10,9 @@ namespace VeiniaFramework.Samples.Physics
 		{
 			base.LoadPrefabs();
 
-			var prefab = new GameObject(new Transform(Vector2.Zero), new List<Component>
+			var prefab = new GameObject(new Transform { Z = 0 }, new List<Component>
 			{
-				new Sprite("Sprites/Square", 0, Color.White, pixelsPerUnit: 200),
+				new Sprite("Sprites/Square", Color.White, pixelsPerUnit: 200),
 				new RealtimeRectangle(friction: 2, bodyType: BodyType.Dynamic)
 			}, isStatic: false);
 

@@ -74,7 +74,6 @@ namespace VeiniaFramework.Samples.BlockBreaker
 			var UI = FindComponentOfType<UI>();
 			UI.progressBar.Value--;
 
-			GetComponent<Sprite>().layer = 1;
 			particles.Trigger(transform.screenPos, 1);
 
 			Globals.tweener.TweenTo(target: transform, expression: transform => transform.rotation, toValue: -10, duration: .2f)

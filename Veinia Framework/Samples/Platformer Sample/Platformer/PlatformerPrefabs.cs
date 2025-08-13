@@ -11,9 +11,9 @@ namespace VeiniaFramework.Samples.Platformer
 		{
 			base.LoadPrefabs();
 
-			Add("Player", new GameObject(Transform.Empty, new List<Component>
+			Add("Player", new GameObject(new Transform { Z = .5f }, new List<Component>
 			{
-				new Sprite("Sprites/Player", .5f, Color.GreenYellow, pixelsPerUnit: 16),
+				new Sprite("Sprites/Player", Color.GreenYellow, pixelsPerUnit: 16),
 				new Player(),
 			}, isStatic: false), prefabTab: 0);
 
@@ -21,9 +21,9 @@ namespace VeiniaFramework.Samples.Platformer
 			var collectibles = Globals.content.LoadAll<Texture2D>("Sprites/Collectibles");
 			foreach (var collectible in collectibles)
 			{
-				var prefab = new GameObject(Transform.Empty, new List<Component>
+				var prefab = new GameObject(new Transform { Z = .3f }, new List<Component>
 				{
-					new Sprite(collectible.Value, .3f, Color.White, pixelsPerUnit: 16),
+					new Sprite(collectible.Value, Color.White, pixelsPerUnit: 16),
 					new Collectible()
 				}, isStatic: false);
 
@@ -37,9 +37,9 @@ namespace VeiniaFramework.Samples.Platformer
 			var grassTiles = Globals.content.LoadAll<Texture2D>("Sprites/Grass");
 			foreach (var grassTile in grassTiles)
 			{
-				var prefab = new GameObject(Transform.Empty, new List<Component>
+				var prefab = new GameObject(new Transform { Z = .6f }, new List<Component>
 				{
-					new Sprite(grassTile.Value, .6f, Color.White, pixelsPerUnit: 16),
+					new Sprite(grassTile.Value, Color.White, pixelsPerUnit: 16),
 				}, isStatic: true);
 
 				prefab.body = Globals.physicsWorld.CreateRectangle(1, 1, 1, bodyType: BodyType.Static);
@@ -53,9 +53,9 @@ namespace VeiniaFramework.Samples.Platformer
 			var woodTiles = Globals.content.LoadAll<Texture2D>("Sprites/Wood");
 			foreach (var woodTile in woodTiles)
 			{
-				var prefab = new GameObject(Transform.Empty, new List<Component>
+				var prefab = new GameObject(new Transform { Z = .2f }, new List<Component>
 				{
-					new Sprite(woodTile.Value, .2f, Color.White, pixelsPerUnit: 16),
+					new Sprite(woodTile.Value, Color.White, pixelsPerUnit: 16),
 				}, isStatic: true);
 
 				prefab.body = Globals.physicsWorld.CreateRectangle(1, 1, 1, bodyType: BodyType.Static);
@@ -68,9 +68,9 @@ namespace VeiniaFramework.Samples.Platformer
 			var bricks = Globals.content.LoadAll<Texture2D>("Sprites/Bricks");
 			foreach (var brick in bricks)
 			{
-				var prefab = new GameObject(Transform.Empty, new List<Component>
+				var prefab = new GameObject(new Transform { Z = .1f }, new List<Component>
 				{
-					new Sprite(brick.Value, .1f, Color.White, pixelsPerUnit: 16),
+					new Sprite(brick.Value, Color.White, pixelsPerUnit: 16),
 				}, isStatic: true);
 
 				prefab.body = Globals.physicsWorld.CreateRectangle(1, 1, 1, bodyType: BodyType.Static);
@@ -83,9 +83,9 @@ namespace VeiniaFramework.Samples.Platformer
 			var decoration = Globals.content.LoadAll<Texture2D>("Sprites/Decoration");
 			foreach (var deco in decoration)
 			{
-				Add(deco.Key, new GameObject(Transform.Empty, new List<Component>
+				Add(deco.Key, new GameObject(new Transform { Z = .6f }, new List<Component>
 				{
-					new Sprite(deco.Value, .6f, Color.White, pixelsPerUnit: 16),
+					new Sprite(deco.Value, Color.White, pixelsPerUnit: 16),
 				}, isStatic: true), prefabTab: 4);
 			}
 		}

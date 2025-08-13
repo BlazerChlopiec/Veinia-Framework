@@ -120,7 +120,7 @@ namespace VeiniaFramework.Editor
 			if (drawGizmos)
 				foreach (var item in editorObjects)
 				{
-					item.gizmo?.DrawGizmos(sb, item);
+					item.gizmo?.DrawGizmos(sb, gameObject.level, item);
 				}
 		}
 	}

@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using MonoGame.Extended;
 using Myra.Graphics2D.TextureAtlases;
 using Myra.Graphics2D.UI;
 using Myra.Graphics2D.UI.Properties;
@@ -296,27 +295,13 @@ namespace VeiniaFramework.Editor
 		{
 			if (filterSelectionWindow != null)
 			{
-				gameObject.level.drawCommands.Add(new DrawCommand
-				{
-					command = delegate
-					{
-						sb.DrawCircle(new CircleF(filterSelectionPoint.ToPoint(), 20 / Globals.camera.GetScale()), sides: 20, Color.Red, thickness: 10 / Globals.camera.GetScale(), layerDepth: 0);
-					},
-					Z = float.MaxValue,
-				});
+				sb.VeiniaCircle(gameObject.level, filterSelectionPoint, Color.Red, radius: .2f / Globals.camera.GetScale(), sides: 20, thickness: 10 / Globals.camera.GetScale());
 			}
 
 
 			foreach (var selected in selectedObjects)
 			{
-				gameObject.level.drawCommands.Add(new DrawCommand
-				{
-					command = delegate
-					{
-						sb.DrawRectangleRotation(selected.EditorPlacedSprite.rect.OffsetByHalf(), Color.Blue, 5, selected.Rotation, .99f);
-					},
-					Z = float.MaxValue,
-				});
+				sb.VeiniaRectangleRotated(gameObject.level, selected.EditorPlacedSprite.rect.OffsetByHalf(), Color.Blue, thickness: 5, selected.Rotation);
 			}
 
 
@@ -325,14 +310,7 @@ namespace VeiniaFramework.Editor
 				var difference = startSelectionPos - screenMousePos;
 				selectionRectangle = new Rectangle((int)startSelectionPos.X, (int)startSelectionPos.Y, (int)-difference.X, (int)-difference.Y);
 
-				gameObject.level.drawCommands.Add(new DrawCommand
-				{
-					command = delegate
-					{
-						sb.DrawRectangle(selectionRectangle.AllowNegativeSize(), Color.Red, 10, 1);
-					},
-					Z = float.MaxValue,
-				});
+				sb.VeiniaRectangle(gameObject.level, selectionRectangle.AllowNegativeSize(), Color.Red, thickness: 10);
 			}
 		}
 	}

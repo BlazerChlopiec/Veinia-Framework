@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using MonoGame.Extended;
 using System;
 
 namespace VeiniaFramework.Editor
@@ -24,30 +23,23 @@ namespace VeiniaFramework.Editor
 			var color = Color.White * opacity;
 			var thickness = 2 / Globals.camera.GetScale();
 
-			var leftBottom = Transform.WorldToScreenPos(Vector2.Round(camera.GetPosition() - Vector2.UnitX * (size.X / 2) - Vector2.UnitY * (size.Y / 2)) - Vector2.UnitX / 2);
+			var leftBottom = Vector2.Round(camera.GetPosition() - Vector2.UnitX * (size.X / 2) - Vector2.UnitY * (size.Y / 2)) - Vector2.UnitX / 2;
 			for (int i = 0; i < MathF.Round(size.Y) + 1; i++)
 			{
 				var yOffset = (-Vector2.UnitY * unit * i) + -Vector2.UnitY * unit / 2;
 				var xOffset = (Vector2.UnitX * unit * (size.X + 1));
-				level.drawCommands.Add(new DrawCommand
-				{
-					command = delegate { sb.DrawLine(leftBottom + yOffset, leftBottom + xOffset + yOffset, color, thickness, layerDepth: 0); },
-					Z = float.MaxValue - 1
-				});
+
+				sb.VeiniaLine(level, leftBottom + yOffset, leftBottom + xOffset + yOffset, color, thickness);
 
 			}
 
-			var rightTop = Transform.WorldToScreenPos(Vector2.Round(camera.GetPosition() + Vector2.UnitX * (size.X / 2) + Vector2.UnitY * (size.Y / 2)) + Vector2.UnitY / 2);
+			var rightTop = Vector2.Round(camera.GetPosition() + Vector2.UnitX * (size.X / 2) + Vector2.UnitY * (size.Y / 2)) + Vector2.UnitY / 2;
 			for (int i = 0; i < MathF.Round(size.X) + 1; i++)
 			{
 				var xOffset = (-Vector2.UnitX * unit * i) + -Vector2.UnitX * unit / 2;
 				var yOffset = (Vector2.UnitY * unit * (size.Y + 1));
 
-				level.drawCommands.Add(new DrawCommand
-				{
-					command = delegate { sb.DrawLine(rightTop + xOffset, rightTop + xOffset + yOffset, color, thickness, layerDepth: 0f); },
-					Z = float.MaxValue - 1
-				});
+				sb.VeiniaLine(level, rightTop + xOffset, rightTop + xOffset + yOffset, color, thickness);
 			}
 		}
 	}

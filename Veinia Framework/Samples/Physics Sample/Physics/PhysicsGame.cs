@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
 namespace VeiniaFramework.Samples.Physics
 {
@@ -43,9 +42,6 @@ namespace VeiniaFramework.Samples.Physics
 
 		protected override void Update(GameTime gameTime)
 		{
-			if (Globals.input.GetButtonDown(Buttons.Back) || Globals.input.GetKeyDown(Keys.Escape))
-				Exit();
-
 			veinia.Update(gameTime);
 
 			base.Update(gameTime);

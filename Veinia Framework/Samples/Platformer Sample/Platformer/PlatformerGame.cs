@@ -1,7 +1,6 @@
 ﻿using Apos.Camera;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
 namespace VeiniaFramework.Samples.Platformer
 {
@@ -48,9 +47,6 @@ namespace VeiniaFramework.Samples.Platformer
 
 		protected override void Update(GameTime gameTime)
 		{
-			if (Globals.input.GetButtonDown(Buttons.Back) || Globals.input.GetKeyDown(Keys.Escape))
-				Exit();
-
 			veinia.Update(gameTime);
 
 			base.Update(gameTime);
