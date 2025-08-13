@@ -23,7 +23,7 @@ namespace VeiniaFramework.Editor
 			var color = Color.White * opacity;
 			var thickness = 2 / Globals.camera.GetScale();
 
-			var leftBottom = Vector2.Round(camera.GetPosition() - Vector2.UnitX * (size.X / 2) - Vector2.UnitY * (size.Y / 2)) - Vector2.UnitX / 2;
+			var leftBottom = Transform.WorldToScreenPos(Vector2.Round(camera.GetPosition() - Vector2.UnitX * (size.X / 2) - Vector2.UnitY * (size.Y / 2)) - Vector2.UnitX / 2);
 			for (int i = 0; i < MathF.Round(size.Y) + 1; i++)
 			{
 				var yOffset = (-Vector2.UnitY * unit * i) + -Vector2.UnitY * unit / 2;
@@ -33,7 +33,7 @@ namespace VeiniaFramework.Editor
 
 			}
 
-			var rightTop = Vector2.Round(camera.GetPosition() + Vector2.UnitX * (size.X / 2) + Vector2.UnitY * (size.Y / 2)) + Vector2.UnitY / 2;
+			var rightTop = Transform.WorldToScreenPos(Vector2.Round(camera.GetPosition() + Vector2.UnitX * (size.X / 2) + Vector2.UnitY * (size.Y / 2)) + Vector2.UnitY / 2);
 			for (int i = 0; i < MathF.Round(size.X) + 1; i++)
 			{
 				var xOffset = (-Vector2.UnitX * unit * i) + -Vector2.UnitX * unit / 2;

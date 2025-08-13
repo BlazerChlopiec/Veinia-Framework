@@ -6,7 +6,7 @@ namespace VeiniaFramework
 {
 	public static class DrawExtensions
 	{
-		public static void VeiniaPoint(this SpriteBatch sb, Level level, Vector2 position, Color color, float size = 10, float z = float.MaxValue)
+		public static void VeiniaPointWorld(this SpriteBatch sb, Level level, Vector2 position, Color color, float size = 10, float z = float.MaxValue)
 		{
 			level.drawCommands.Add(new DrawCommand
 			{
@@ -18,13 +18,24 @@ namespace VeiniaFramework
 			});
 		}
 
-		public static void VeiniaLine(this SpriteBatch sb, Level level, Vector2 point1, Vector2 point2, Color color, float thickness = 10, float z = float.MaxValue)
+		public static void VeiniaLineWorld(this SpriteBatch sb, Level level, Vector2 point1, Vector2 point2, Color color, float thickness = 10, float z = float.MaxValue)
 		{
 			level.drawCommands.Add(new DrawCommand
 			{
 				command = delegate
 				{
 					sb.DrawLine(Transform.WorldToScreenPos(point1), Transform.WorldToScreenPos(point2), color, thickness);
+				},
+				Z = z
+			});
+		}
+		public static void VeiniaLine(this SpriteBatch sb, Level level, Vector2 point1, Vector2 point2, Color color, float thickness = 10, float z = float.MaxValue)
+		{
+			level.drawCommands.Add(new DrawCommand
+			{
+				command = delegate
+				{
+					sb.DrawLine(point1, point2, color, thickness);
 				},
 				Z = z
 			});
