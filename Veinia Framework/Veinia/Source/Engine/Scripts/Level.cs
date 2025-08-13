@@ -302,8 +302,6 @@ namespace VeiniaFramework
 		public List<DrawCommand> drawCommands = new List<DrawCommand>();
 		public void Draw(SpriteBatch sb, SamplerState samplerState = null, BlendState blendState = null, Matrix? transformMatrix = null)
 		{
-			sb.Begin(SpriteSortMode.Deferred, blendState, samplerState, transformMatrix: transformMatrix);
-
 			foreach (var gameObject in scene)
 			{
 				if (!gameObject.isEnabled) continue;
@@ -322,21 +320,35 @@ namespace VeiniaFramework
 
 			drawCommands.Sort((a, b) => a.Z.CompareTo(b.Z));
 
-			Effect currentShader = null;
+
+			DrawCommand prevCommand = default;
+			bool beginCalled = false;
+
 			foreach (var cmd in drawCommands)
 			{
-				if (currentShader != cmd.shader)
+				if (prevCommand.shader != cmd.shader && beginCalled // if new shader
+				 || cmd.drawWithoutSpriteBatch) // or using DrawUserPrimitives()
 				{
 					sb.End();
-					sb.Begin(SpriteSortMode.Deferred, blendState, samplerState, effect: cmd.shader, transformMatrix: transformMatrix);
-					currentShader = cmd.shader;
+					beginCalled = false;
 				}
+				if (!beginCalled && !cmd.drawWithoutSpriteBatch)
+				{
+					sb.Begin(SpriteSortMode.Deferred, blendState, samplerState, effect: cmd.shader, transformMatrix: transformMatrix);
+					beginCalled = true;
+				}
+
+				prevCommand = cmd;
 				cmd.command.Invoke();
 			}
 
 			drawCommands.Clear();
 
-			sb.End();
+			if (beginCalled)
+			{
+				sb.End();
+				beginCalled = false;
+			}
 		}
 
 		public virtual void Unload()
