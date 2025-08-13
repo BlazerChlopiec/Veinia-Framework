@@ -317,6 +317,7 @@ namespace VeiniaFramework
 					}
 				}
 			}
+			Globals.particleWorld.Draw(sb, this); // makes drawCommands
 
 			drawCommands.Sort((a, b) => a.Z.CompareTo(b.Z));
 

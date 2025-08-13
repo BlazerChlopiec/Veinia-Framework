@@ -171,10 +171,6 @@ namespace VeiniaFramework
 		public void DrawWorld(SpriteBatch spriteBatch, SamplerState samplerState = null, BlendState blendState = null, Matrix? transformMatrix = null)
 		{
 			Globals.loader.current?.Draw(spriteBatch, samplerState, blendState, transformMatrix);
-
-			spriteBatch.Begin(SpriteSortMode.FrontToBack, blendState, samplerState, transformMatrix: transformMatrix);
-			Globals.particleWorld.Draw(spriteBatch);
-			spriteBatch.End();
 		}
 		public void DrawMyra() => Globals.myraDesktop.RenderVisual();
 		public void DrawGeon(SpriteBatch spriteBatch) => UserInterface.Active.Draw(spriteBatch);

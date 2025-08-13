@@ -27,6 +27,7 @@ namespace VeiniaFramework.Samples.Platformer
 
 		bool isTouchingGround => groundOverlaps >= 1;
 
+
 		public override void Initialize()
 		{
 			body = Globals.physicsWorld.CreateBody(bodyType: BodyType.Dynamic);
@@ -112,7 +113,7 @@ namespace VeiniaFramework.Samples.Platformer
 						}
 					}
 				},
-				});
+				}, Z: 1f);
 			}
 			jumpParticles.Trigger(transform.screenPos, layerDepth: .3f);
 		}

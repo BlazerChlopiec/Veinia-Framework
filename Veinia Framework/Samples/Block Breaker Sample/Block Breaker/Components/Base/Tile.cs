@@ -28,7 +28,7 @@ namespace VeiniaFramework.Samples.BlockBreaker
 			var texture = new Texture2D(Globals.graphicsDevice, 1, 1);
 			texture.SetData(new[] { Color.White });
 
-			particles = Globals.particleWorld.Add(new ParticleEffect()
+			particles = Globals.particleWorld.Add(new ParticleEffect
 			{
 				Position = transform.screenPos,
 				Emitters = new List<ParticleEmitter>
@@ -60,7 +60,7 @@ namespace VeiniaFramework.Samples.BlockBreaker
 						}
 					}
 				},
-			}); ;
+			}, Z: 1f); ;
 		}
 
 		public virtual void Hit()

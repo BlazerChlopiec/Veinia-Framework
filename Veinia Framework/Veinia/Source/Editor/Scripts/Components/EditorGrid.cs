@@ -30,7 +30,6 @@ namespace VeiniaFramework.Editor
 				var xOffset = (Vector2.UnitX * unit * (size.X + 1));
 
 				sb.VeiniaLine(level, leftBottom + yOffset, leftBottom + xOffset + yOffset, color, thickness);
-
 			}
 
 			var rightTop = Transform.WorldToScreenPos(Vector2.Round(camera.GetPosition() + Vector2.UnitX * (size.X / 2) + Vector2.UnitY * (size.Y / 2)) + Vector2.UnitY / 2);

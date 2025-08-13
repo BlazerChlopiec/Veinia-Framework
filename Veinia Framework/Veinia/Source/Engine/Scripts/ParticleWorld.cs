@@ -4,49 +4,67 @@ using System.Collections.Generic;
 
 namespace VeiniaFramework
 {
-	public class ParticleWorld : IDrawn
+	public class ParticleWorld
 	{
-		public Dictionary<ParticleEffect, bool> particles = new Dictionary<ParticleEffect, bool>();
+		public List<ParticleData> particles = new List<ParticleData>();
 
 		public int ParticlesCount => particles.Count;
 
-		public void QueueRemove(ParticleEffect particleEffect) => particles[particleEffect] = true;
+
+		public void QueueRemove(ParticleEffect particleEffect) => Find(particleEffect).queuedRemove = true;
 		public void Clear() => particles.Clear();
 
-		public ParticleEffect Add(ParticleEffect particleEffect)
+		public ParticleEffect Add(ParticleEffect particleEffect, float Z = 0)
 		{
-			particles.Add(particleEffect, false);
+			particles.Add(new ParticleData { effect = particleEffect, z = Z });
 			return particleEffect;
 		}
 
 		public void Remove(ParticleEffect particleEffect)
 		{
-			particles.Remove(particleEffect);
+			var effect = Find(particleEffect);
+			particles.Remove(effect);
 			particleEffect.Dispose();
 		}
 
 		public void Update()
 		{
-			foreach (var p in particles)
+			foreach (var p in particles.ToArray())
 			{
-				p.Key.Update(Time.deltaTime);
+				p.effect.Update(Time.deltaTime);
 
-				if (p.Value)
+				if (p.queuedRemove)
 				{
-					if (p.Key.ActiveParticles == 0)
+					if (p.effect.ActiveParticles == 0)
 					{
-						Remove(p.Key);
+						Remove(p.effect);
 					}
 				}
 			}
 		}
 
-		public void Draw(SpriteBatch sb)
+		public void Draw(SpriteBatch sb, Level level)
 		{
 			foreach (var p in particles)
 			{
-				sb.Draw(p.Key);
+				level.drawCommands.Add(new DrawCommand
+				{
+					command = delegate
+					{
+						sb.Draw(p.effect);
+					},
+					Z = p.z
+				});
 			}
 		}
+
+		private ParticleData Find(ParticleEffect particleEffect) => particles.Find(x => x.effect == particleEffect);
 	}
+}
+
+public class ParticleData
+{
+	public ParticleEffect effect;
+	public bool queuedRemove;
+	public float z;
 }

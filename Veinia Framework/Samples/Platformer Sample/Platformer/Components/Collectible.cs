@@ -67,7 +67,7 @@ namespace VeiniaFramework.Samples.Platformer
 						}
 					}
 				},
-				});
+				}, Z: 1f);
 			}
 			collectParticles.Trigger(transform.screenPos, layerDepth: .3f);
 		}
