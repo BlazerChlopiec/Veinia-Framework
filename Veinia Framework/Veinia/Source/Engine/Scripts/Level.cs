@@ -323,10 +323,11 @@ namespace VeiniaFramework
 
 			DrawCommand prevCommand = default;
 			bool beginCalled = false;
+			int begins = 0;
 
 			foreach (var cmd in drawCommands)
 			{
-				if (prevCommand.shader != cmd.shader && beginCalled // if new shader
+				if (cmd.shader != prevCommand.shader && beginCalled // if new shader
 				 || cmd.drawWithoutSpriteBatch) // or using DrawUserPrimitives()
 				{
 					sb.End();
@@ -334,6 +335,7 @@ namespace VeiniaFramework
 				}
 				if (!beginCalled && !cmd.drawWithoutSpriteBatch)
 				{
+					begins++;
 					sb.Begin(SpriteSortMode.Deferred, blendState, samplerState, effect: cmd.shader, transformMatrix: transformMatrix);
 					beginCalled = true;
 				}
@@ -349,6 +351,8 @@ namespace VeiniaFramework
 				sb.End();
 				beginCalled = false;
 			}
+
+			Title.Add(begins, " - SpriteBatch Begins", 5);
 		}
 
 		public virtual void Unload()
