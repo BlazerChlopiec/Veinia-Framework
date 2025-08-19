@@ -89,6 +89,8 @@ namespace VeiniaFramework
 		public static Vector2 GetWithoutY(this Vector2 a) => new Vector2(a.X, 0);
 		public static Vector2 GetWithoutX(this Vector2 a) => new Vector2(0, a.Y);
 		public static Vector3 ToVector3(this Vector2 a) => new Vector3(a.X, a.Y, 0);
+		public static Vector3 ToVector3(this Vector2 a, float z) => new Vector3(a.X, a.Y, z);
+		public static Vector2 ToVector2(this Vector3 a) => new Vector2(a.X, a.Y);
 		public static Texture2D ChangeColor(this Texture2D texture, Color newColor, bool ignoreWhite = true)
 		{
 			if (newColor == Color.White && ignoreWhite) return texture;

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace VeiniaFramework
 {
@@ -6,10 +7,16 @@ namespace VeiniaFramework
 	{
 		GraphicsDevice graphicsDevice;
 		BasicEffect basicEffect;
+		RasterizerState rasterizer;
 
 
-		public ShapeDrawing(GraphicsDevice device)
+		public ShapeDrawing(GraphicsDevice device, CullMode cullMode = CullMode.None)
 		{
+			rasterizer = new RasterizerState()
+			{
+				CullMode = cullMode
+			};
+
 			graphicsDevice = device;
 			basicEffect = new BasicEffect(device)
 			{
@@ -27,10 +34,17 @@ namespace VeiniaFramework
 		{
 			if (effect == null) effect = basicEffect;
 
+			for (int i = 0; i < vertices.Length; i++)
+			{
+				var pos = vertices[i].Position;
+				vertices[i].Position = Transform.WorldToScreenPos(pos.ToVector2()).ToVector3(z: pos.Z);
+			}
+
 			level.drawCommands.Add(new DrawCommand
 			{
 				command = delegate
 				{
+					graphicsDevice.RasterizerState = rasterizer;
 					foreach (var pass in effect.CurrentTechnique.Passes)
 					{
 						pass.Apply();
@@ -40,6 +54,25 @@ namespace VeiniaFramework
 				drawWithoutSpriteBatch = true,
 				Z = z
 			});
+		}
+
+		public void ShapeVec2(Level level, Vector2[] vertices, Color? color = null, Effect effect = null, float z = 0f)
+		{
+			if (vertices == null || vertices.Length == 0)
+				return;
+
+			Color finalColor = color ?? Color.White;
+
+			VertexPositionColor[] vertexData = new VertexPositionColor[vertices.Length];
+			for (int i = 0; i < vertices.Length; i++)
+			{
+				vertexData[i] = new VertexPositionColor(
+					vertices[i].ToVector3(),
+					finalColor
+				);
+			}
+
+			Shape(level, vertexData, effect, z);
 		}
 	}
 }
