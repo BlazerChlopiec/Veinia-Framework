@@ -30,7 +30,7 @@ namespace VeiniaFramework
 			basicEffect.View = Globals.camera.GetView();
 		}
 
-		public void Shape(Level level, VertexPositionColor[] vertices, Effect effect = null, float z = 0f)
+		public void Shape(Level level, VertexPositionColor[] vertices, Effect effect = null, float z = 0f, bool setWorldViewProjection = false)
 		{
 			if (effect == null) effect = basicEffect;
 
@@ -44,6 +44,8 @@ namespace VeiniaFramework
 			{
 				command = delegate
 				{
+					if (setWorldViewProjection) effect.Parameters["WorldViewProjection"].SetValue(Globals.camera.GetView() * Globals.camera.GetProjection());
+
 					graphicsDevice.RasterizerState = rasterizer;
 					foreach (var pass in effect.CurrentTechnique.Passes)
 					{
@@ -56,7 +58,7 @@ namespace VeiniaFramework
 			});
 		}
 
-		public void ShapeVec2(Level level, Vector2[] vertices, Color? color = null, Effect effect = null, float z = 0f)
+		public void ShapeVec2(Level level, Vector2[] vertices, Color? color = null, Effect effect = null, float z = 0f, bool setWorldViewProjection = false)
 		{
 			if (vertices == null || vertices.Length == 0)
 				return;
@@ -72,7 +74,7 @@ namespace VeiniaFramework
 				);
 			}
 
-			Shape(level, vertexData, effect, z);
+			Shape(level, vertexData, effect, z, setWorldViewProjection);
 		}
 	}
 }
