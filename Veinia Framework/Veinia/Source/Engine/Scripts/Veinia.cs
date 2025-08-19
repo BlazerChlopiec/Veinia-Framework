@@ -107,8 +107,6 @@ namespace VeiniaFramework
 
 			Globals.frustumCulling.Update();
 
-			Globals.shapeDrawing.UpdateBasicEffect();
-
 			Time.Update(gameTime);
 
 			if (!isEditor && ShouldPauseWhenInactive && !Time.stop
@@ -128,6 +126,7 @@ namespace VeiniaFramework
 				Globals.loader.current?.LateUpdate();
 
 				Globals.camera.shake.Update();
+				Globals.shapeDrawing.UpdateBasicEffect();
 			}
 
 			title.Update();
