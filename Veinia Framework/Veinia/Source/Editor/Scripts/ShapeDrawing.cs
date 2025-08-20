@@ -44,7 +44,7 @@ namespace VeiniaFramework
 			{
 				command = delegate
 				{
-					if (setWorldViewProjection) effect.Parameters["WorldViewProjection"].SetValue(Globals.camera.GetView() * Globals.camera.GetProjection());
+					if (setWorldViewProjection) effect.Parameters["WorldViewProjection"].SetValue(basicEffect.View * basicEffect.Projection);
 
 					graphicsDevice.RasterizerState = rasterizer;
 					foreach (var pass in effect.CurrentTechnique.Passes)

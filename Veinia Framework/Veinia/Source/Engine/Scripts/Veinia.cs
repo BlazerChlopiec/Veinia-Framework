@@ -47,19 +47,7 @@ namespace VeiniaFramework
 			Globals.frustumCulling = new FrustumCulling();
 			Globals.shapeDrawing = new ShapeDrawing(graphicsDevice);
 
-			window.ClientSizeChanged += (s, a) =>
-			{
-				screen.OnApplyChanges?.Invoke();
-
-				Globals.graphicsManager.PreferredBackBufferWidth = Globals.graphicsDevice.PresentationParameters.BackBufferWidth;
-				Globals.graphicsManager.PreferredBackBufferHeight = Globals.graphicsDevice.PresentationParameters.BackBufferHeight;
-			};
-
-			Globals.graphicsManager.DeviceReset += (s, a) =>
-			{
-				Globals.camera.ResetViewport();
-				Globals.camera.SetViewport();
-			};
+			window.ClientSizeChanged += (s, a) => screen.ClientSizeChanged();
 
 			title = new Title(window);
 			debugView = new DebugView(Globals.physicsWorld);

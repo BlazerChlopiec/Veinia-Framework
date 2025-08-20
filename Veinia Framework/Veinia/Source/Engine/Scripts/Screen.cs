@@ -8,7 +8,7 @@ namespace VeiniaFramework
 		public int height { get; private set; }
 		public bool fullscreen { get; private set; }
 
-		public Action OnApplyChanges;
+		public Action OnStateChanged; // resizing, fullscreen. etc
 
 
 		public Screen(int width, int height, bool fullscreen)
@@ -48,7 +48,18 @@ namespace VeiniaFramework
 			Globals.graphicsManager.ApplyChanges();
 
 			Globals.camera?.VirtualViewport.OnClientSizeChanged(this, EventArgs.Empty);
-			OnApplyChanges?.Invoke();
+			OnStateChanged?.Invoke();
 		}
+
+		// window resize
+		public void ClientSizeChanged()
+		{
+			width = Globals.graphicsDevice.PresentationParameters.BackBufferWidth;
+			height = Globals.graphicsDevice.PresentationParameters.BackBufferHeight;
+
+			OnStateChanged?.Invoke();
+		}
+
+		public override string ToString() => $"{width}x{height}, fullscreen: {fullscreen}";
 	}
 }
