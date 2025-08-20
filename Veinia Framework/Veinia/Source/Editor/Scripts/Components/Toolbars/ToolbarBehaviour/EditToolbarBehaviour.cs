@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Myra.Graphics2D.TextureAtlases;
 using Myra.Graphics2D.UI;
-using Myra.Graphics2D.UI.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -271,24 +270,12 @@ namespace VeiniaFramework.Editor
 			var obj = selectedObjects[0];
 			if (obj == null) return;
 
-			PropertyGrid propertyGrid = new PropertyGrid
-			{
-				Object = obj,
-				Width = 350
-			};
-
-			editWindow = new Window
-			{
-				Title = "Object Editor",
-				Content = propertyGrid,
-			};
+			editWindow = Globals.myraDesktop.MakeEditWindow(obj);
 
 			editWindow.Closed += delegate
 			{
 				editWindow = null;
 			};
-
-			editWindow.Show(Globals.myraDesktop);
 		}
 
 		public override void OnDraw(SpriteBatch sb)

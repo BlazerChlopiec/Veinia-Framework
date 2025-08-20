@@ -1,7 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
+using Myra.Graphics2D.UI;
+using Myra.Graphics2D.UI.Properties;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -155,6 +158,37 @@ namespace VeiniaFramework
 			}
 
 			return result;
+		}
+		public static Window MakeEditWindow(this Desktop myraDesktop, object Object, string title = "Object Editor", int width = 350)
+		{
+			PropertyGrid propertyGrid = new PropertyGrid
+			{
+				Object = Object,
+				Width = width
+			};
+
+			var editWindow = new Window
+			{
+				Title = title,
+				Content = propertyGrid,
+			};
+
+			editWindow.Closed += delegate
+			{
+				editWindow = null;
+			};
+
+			editWindow.Show(myraDesktop);
+			return editWindow;
+		}
+
+		public static Window MakeEditWindowOnKeyPress(this Desktop myraDesktop, object Object, Keys key, string title = "Object Editor", int width = 350)
+		{
+			if (Globals.input.GetKeyDown(key))
+			{
+				return MakeEditWindow(myraDesktop, Object, title, width);
+			}
+			return null;
 		}
 	}
 }
