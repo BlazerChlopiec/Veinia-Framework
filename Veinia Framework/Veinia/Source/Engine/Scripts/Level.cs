@@ -319,7 +319,23 @@ namespace VeiniaFramework
 			}
 			Globals.particleWorld.Draw(sb, this); // makes drawCommands
 
-			drawCommands.Sort((a, b) => a.Z.CompareTo(b.Z));
+			drawCommands.Sort((a, b) =>
+			{
+				// compare by z
+				int zCompare = a.Z.CompareTo(b.Z);
+				if (zCompare != 0)
+					return zCompare;
+
+				// if z the same - compare by shaders (grouping shaders together to avoid more Begin())
+				if (a.shader == b.shader)
+					return 0;
+				if (a.shader == null)
+					return -1;
+				if (b.shader == null)
+					return 1;
+
+				return a.shader.GetHashCode().CompareTo(b.shader.GetHashCode());
+			});
 
 
 			DrawCommand prevCommand = default;
