@@ -159,7 +159,7 @@ namespace VeiniaFramework
 
 			return result;
 		}
-		public static Window MakeEditWindow(this Desktop myraDesktop, object Object, string title = "Object Editor", int width = 350)
+		public static Window MakeEditWindow(this Desktop myraDesktop, object Object, string title = "Object Editor", int width = 350, bool pauseGame = false)
 		{
 			PropertyGrid propertyGrid = new PropertyGrid
 			{
@@ -176,17 +176,23 @@ namespace VeiniaFramework
 			editWindow.Closed += delegate
 			{
 				editWindow = null;
+				if (pauseGame) Time.stop = false;
+			};
+			editWindow.ArrangeUpdated += delegate
+			{
+				if (pauseGame) Time.stop = true;
 			};
 
 			editWindow.Show(myraDesktop);
+
 			return editWindow;
 		}
 
-		public static Window MakeEditWindowOnKeyPress(this Desktop myraDesktop, object Object, Keys key, string title = "Object Editor", int width = 350)
+		public static Window MakeEditWindowOnKeyPress(this Desktop myraDesktop, object Object, Keys key, string title = "Object Editor", int width = 350, bool pauseGame = false)
 		{
 			if (Globals.input.GetKeyDown(key))
 			{
-				return MakeEditWindow(myraDesktop, Object, title, width);
+				return MakeEditWindow(myraDesktop, Object, title, width, pauseGame);
 			}
 			return null;
 		}

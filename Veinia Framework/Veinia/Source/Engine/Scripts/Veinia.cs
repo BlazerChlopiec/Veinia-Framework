@@ -107,9 +107,6 @@ namespace VeiniaFramework
 
 				Globals.physicsWorld.Step(Time.deltaTime);
 
-				Globals.myraDesktop.UpdateInput();
-				Globals.myraDesktop.UpdateLayout();
-
 				Globals.loader.current?.Update();
 				Globals.loader.current?.LateUpdate();
 
@@ -122,6 +119,14 @@ namespace VeiniaFramework
 
 			#region GeonBit.UI
 			UserInterface.Active.Update(gameTime);
+			#endregion
+
+			#region Myra.UI
+			if (ShouldPauseWhenInactive)
+			{
+				Globals.myraDesktop.UpdateInput();
+				Globals.myraDesktop.UpdateLayout();
+			}
 			#endregion
 
 			#region Debug
