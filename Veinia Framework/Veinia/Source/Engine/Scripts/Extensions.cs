@@ -159,9 +159,14 @@ namespace VeiniaFramework
 
 			return result;
 		}
-		public static Window MakeEditWindow(this Desktop myraDesktop, object Object, string title = "Object Editor", int width = 350, bool pauseGame = false)
+		public static Window MakeEditWindow(this Desktop myraDesktop, object Object, string title = "Object Editor", int width = 350, bool pauseGame = false, bool allowInReleaseMode = false)
 		{
-			PropertyGrid propertyGrid = new PropertyGrid
+#if !DEBUG
+			if (!allowInReleaseMode)
+				return null;
+#endif
+
+			var propertyGrid = new PropertyGrid
 			{
 				Object = Object,
 				Width = width
@@ -173,12 +178,12 @@ namespace VeiniaFramework
 				Content = propertyGrid,
 			};
 
-			editWindow.Closed += delegate
+			editWindow.Closed += (s, e) =>
 			{
-				editWindow = null;
 				if (pauseGame) Time.stop = false;
 			};
-			editWindow.ArrangeUpdated += delegate
+
+			editWindow.ArrangeUpdated += (s, e) =>
 			{
 				if (pauseGame) Time.stop = true;
 			};
@@ -188,11 +193,11 @@ namespace VeiniaFramework
 			return editWindow;
 		}
 
-		public static Window MakeEditWindowOnKeyPress(this Desktop myraDesktop, object Object, Keys key, string title = "Object Editor", int width = 350, bool pauseGame = false)
+		public static Window MakeEditWindowOnKeyPress(this Desktop myraDesktop, object Object, Keys key, string title = "Object Editor", int width = 350, bool pauseGame = false, bool allowInReleaseMode = false)
 		{
 			if (Globals.input.GetKeyDown(key))
 			{
-				return MakeEditWindow(myraDesktop, Object, title, width, pauseGame);
+				return MakeEditWindow(myraDesktop, Object, title, width, pauseGame, allowInReleaseMode);
 			}
 			return null;
 		}
