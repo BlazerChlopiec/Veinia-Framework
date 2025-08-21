@@ -7,27 +7,31 @@ using VeiniaFramework;
 public class Parallax : Sprite
 {
 	public Parallax(Texture2D texture, Color color, float pixelsPerUnit,
-	 float factorX = .5f, float factorY = .5f, int copiesX = 1, int copiesY = 1) : base(texture, color, pixelsPerUnit)
+	 float factorX = .5f, float factorY = .5f, int copiesX = 1, int copiesY = 1, Vector2 scrollSpeed = default) : base(texture, color, pixelsPerUnit)
 	{
 		this.factorX = factorX;
 		this.factorY = factorY;
 		this.copiesX = copiesX;
 		this.copiesY = copiesY;
+		this.scrollSpeed = scrollSpeed;
 	}
 
 	public Parallax(string path, Color color, float pixelsPerUnit,
-	 float factorX = .5f, float factorY = .5f, int copiesX = 1, int copiesY = 1) : base(path, color, pixelsPerUnit)
+	 float factorX = .5f, float factorY = .5f, int copiesX = 1, int copiesY = 1, Vector2 scrollSpeed = default) : base(path, color, pixelsPerUnit)
 	{
 		this.factorX = factorX;
 		this.factorY = factorY;
 		this.copiesX = copiesX;
 		this.copiesY = copiesY;
+		this.scrollSpeed = scrollSpeed;
 	}
 
 	float factorX;
 	float factorY;
 	public int copiesX; // 1 - one sprite copy for left and right
 	public int copiesY; // 1 - one sprite copy for up and down
+
+	Vector2 scrollSpeed; // auto scrolling
 
 	Vector2 lastCameraPos;
 	Camera cam;
@@ -49,7 +53,7 @@ public class Parallax : Sprite
 		var camPos = cam.GetPosition();
 
 		var deltaMovement = camPos - lastCameraPos;
-		transform.position += new Vector2(deltaMovement.X * factorX, deltaMovement.Y * factorY);
+		transform.position += new Vector2(deltaMovement.X * factorX, deltaMovement.Y * factorY) + (scrollSpeed * Time.deltaTime);
 
 		lastCameraPos = camPos;
 
