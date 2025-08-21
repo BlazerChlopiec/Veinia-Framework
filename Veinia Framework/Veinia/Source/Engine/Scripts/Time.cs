@@ -21,7 +21,7 @@ namespace VeiniaFramework
 		// update that runs even when stop = true
 		public static void Update(GameTime gameTime)
 		{
-			if (!stop && Veinia.ShouldPauseWhenInactive)
+			if (!stop && !Veinia.PausedGameWhenInactiveWindow)
 			{
 				deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 				time += deltaTime;

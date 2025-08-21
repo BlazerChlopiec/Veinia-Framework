@@ -20,7 +20,7 @@ namespace VeiniaFramework
 		DebugView debugView;
 
 		public static bool isEditor { get; private set; }
-		public static bool ShouldPauseWhenInactive { get; private set; }
+		public static bool PausedGameWhenInactiveWindow { get; private set; }
 		public bool pauseOnUnfocused;
 
 
@@ -83,7 +83,7 @@ namespace VeiniaFramework
 		{
 			#region Veinia
 
-			ShouldPauseWhenInactive = !pauseOnUnfocused || game.IsActive;
+			PausedGameWhenInactiveWindow = pauseOnUnfocused && !game.IsActive;
 
 			Globals.fps.CalculateFps(gameTime);
 
@@ -97,7 +97,7 @@ namespace VeiniaFramework
 
 			Time.Update(gameTime);
 
-			if (!isEditor && ShouldPauseWhenInactive && !Time.stop
+			if (!isEditor && !PausedGameWhenInactiveWindow && !Time.stop
 			  || isEditor && !Time.stop && game.IsActive)
 			{
 				if (game.IsActive) Globals.input.Update();
@@ -122,7 +122,7 @@ namespace VeiniaFramework
 			#endregion
 
 			#region Myra.UI
-			if (ShouldPauseWhenInactive)
+			if (!PausedGameWhenInactiveWindow)
 			{
 				Globals.myraDesktop.UpdateInput();
 				Globals.myraDesktop.UpdateLayout();
