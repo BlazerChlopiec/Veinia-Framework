@@ -37,10 +37,14 @@ namespace VeiniaFramework.Editor
 			var openLevelSelectButton = new TextButton { Text = "Level Select", Left = 200 };
 			openLevelSelectButton.Click += (s, e) =>
 			{
-				if (Globals.loader.storedLevels.Count > 0)
+				if (Globals.loader.storedLevels.Count > 0 && GetComponent<LevelSelector>() == null)
+				{
 					AddComponent(new LevelSelector());
+				}
 
-				else EditorScene.ErrorWindow("Warning!", "There are no stored levels! Use Globals.loader.storedLevels.Add()! Check Samples For Reference.");
+				{
+					EditorScene.ErrorWindow("Warning!", "There are no stored levels! Use Globals.loader.storedLevels.Add()! Check Samples For Reference.");
+				}
 			};
 			panel.Widgets.Add(openLevelSelectButton);
 
