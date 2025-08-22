@@ -44,7 +44,7 @@ namespace VeiniaFramework.Editor
 
 			if (editedLevelName == null || editedLevelName == string.Empty)
 			{
-				EditorScene.ErrorWindow("Warning", "The edited level has no name therefore we dont know how to save it!");
+				EditorScene.ErrorWindow("Warning", "The edited level has no name therefore we dont know how to save it! Add a name in the level constructor!");
 				return;
 			}
 
