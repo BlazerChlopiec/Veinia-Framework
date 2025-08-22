@@ -25,7 +25,7 @@ namespace VeiniaFramework
 
 		public void Update()
 		{
-			if (durationRemaining > 0f && !Time.stop && !Veinia.PausedGameWhenInactiveWindow)
+			if (durationRemaining > 0f && Time.deltaTime > 0f && !Veinia.PausedGameWhenInactiveWindow)
 			{
 				durationRemaining -= Time.deltaTime;
 

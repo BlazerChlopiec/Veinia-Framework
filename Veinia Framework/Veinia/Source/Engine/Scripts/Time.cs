@@ -9,6 +9,8 @@ namespace VeiniaFramework
 		public static float deltaTime;
 		public static float unscaledDeltaTime;
 
+		public static float timeScale = 1f; // setting this to 0 won't half updates like Time.stop
+
 		public static bool stop;
 
 		private static int stopForFrames;
@@ -23,7 +25,7 @@ namespace VeiniaFramework
 		{
 			if (!stop && !Veinia.PausedGameWhenInactiveWindow)
 			{
-				deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+				deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds * timeScale;
 				time += deltaTime;
 			}
 			else deltaTime = 0;
