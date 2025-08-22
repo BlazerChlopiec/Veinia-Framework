@@ -57,7 +57,7 @@ Initialization Example:
 var veinia = new Veinia((Game)this, graphics);
 var screen = new Screen(1280, 720, fullscreen: false)
 
-veinia.Initialize(GraphicsDevice, Content, Window, screen, unitSize: 100, Vector2.UnitY * -20);
+veinia.Initialize(GraphicsDevice, Content, Window, screen, unitSize: 100);
 
 Globals.loader.DynamicalyLoad(new Level("Level1.veinia"));
 ```
