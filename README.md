@@ -4,15 +4,20 @@ C# Game Creation Tool
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 
 ## Features
-This tool simplifies the usage of the MonoGame Framework, it comes with a few things to give you a head start:
+An independent framework that extends MonoGame helping you jump straight into developing with ready-to-use features such as:
 * Level->GameObject->Component System
-* Prefab-Based Level Editor
-* Aether.Physics for 2D Realtime Simulations
-* Particle Effects
-* Screen System
 * Loading/Unloading Levels
-* An Input System
+* Powerful Prefab-Based Level Editor
+* Unity-like Input System
+* Binary Level Encryption
+* Aether.Physics For 2D Realtime Simulations
+* Particle Effects
+* 2D Camera (Shake, Lookahead)
+* Screen System With Viewport Scaling
+* Changing Shaders (Automatic Sprite Batching)
+* Mixing SpriteBatch With GraphicsDevice Drawing
 * World Tools (Instantiating, Finding By Components)
+* Built-in Components (Parallax, Sprite)
 * Useful Debug Tools
 * Two Handy UI Systems (GeonBit & Myra)
 
@@ -20,15 +25,23 @@ This tool simplifies the usage of the MonoGame Framework, it comes with a few th
 
 Veinia framework is only possible to be installed manually because of libraries such as GeonBit.UI which require referencing the Content folder
 
-1. **Import:** Add existing ```Veinia``` project (.csproj) to your solution
-2. **Reference:** Make sure that your project is referencing ```Veinia``` (Add -> Project Reference)
+Because certain libraries (such as GeonBit.UI) require referencing the Content folder, Veinia Framework must be installed manually as a project linked to your development environment. This approach also makes it easier to customize and adapt the source to your needs.
 
-You should now be able to compile and use Veinia-Framework in your projects.
+1. **Download Source**
+2. **Link To Project:** Make sure that your project references ```Veinia``` in the .csproj file (Use the correct path)
 
-To avoid certain issues its recommended to copy level files to output directory by adding the following to the .csproj file
 ```xml
 <ItemGroup>
-  <None Update="LevelData\SampleLevel.veinia">
+  <ProjectReference Include="..\Veinia Framework\VeiniaFramework.csproj" />
+</ItemGroup>
+```
+
+You should now be able to compile and use ```Veinia-Framework```  in your projects.
+
+For proper functionality, ensure that level files are copied to the output directory. This can be done by adding the following to your .csproj file: (Use the correct path)
+```xml
+<ItemGroup>
+  <None Update="SampleLevel.veinia">
     <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
   </None>
 </ItemGroup>
@@ -39,7 +52,7 @@ Veinia comes with three sample projects to help you get started.
 
 <img src="Images/PlatformerSampleEditor.png">
 
-Initialization:
+Initialization Example:
 ```csharp
 var veinia = new Veinia((Game)this, graphics);
 var screen = new Screen(1280, 720, fullscreen: false)
@@ -49,7 +62,7 @@ veinia.Initialize(GraphicsDevice, Content, Window, screen, unitSize: 100, Vector
 Globals.loader.DynamicalyLoad(new Level("Level1.veinia"));
 ```
 
-Custom Level (To Bring Up The Built-in Editor Press TAB While Playing a Level):
+Custom Level Example (To Bring Up The Built-in Editor Press TAB While Playing a Level):
 ```csharp
 public class ForestLevel : Level
 {
@@ -72,7 +85,7 @@ public class ForestLevel : Level
 }
 ```
 
-Custom Component:
+Custom Component Example:
 ```csharp
 public class Movement : Component
 {
@@ -89,7 +102,7 @@ public class Movement : Component
 ## Roadmap
 
 * Lights
-* 2D Optimizations
+* 2D Optimizations (Improve FrustumCulling)
 * Editor Undo & Redo
 * Editor Handles
 * Editor Automatic Tilemap Painting
