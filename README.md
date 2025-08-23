@@ -29,11 +29,20 @@ Because certain libraries (such as GeonBit.UI) require referencing the Content f
 
 1. **Download Source**
 2. **Link To Project:** Make sure that your project references ```Veinia``` in the .csproj file (Use the correct path)
-
 ```xml
 <ItemGroup>
   <ProjectReference Include="..\Veinia Framework\VeiniaFramework.csproj" />
 </ItemGroup>
+```
+or by using the terminal
+
+```xml
+dotnet add reference "..\Veinia Framework\VeiniaFramework.csproj"
+```
+
+3. **Optional - Add To Solution:** This makes things easier if Veinia files are in a completly different directory (Use the correct path)
+```xml
+dotnet sln add "..\Veinia Framework\Veinia\Veinia.csproj"
 ```
 
 You should now be able to compile and use ```Veinia-Framework```  in your projects.
@@ -57,7 +66,7 @@ Initialization Example:
 var veinia = new Veinia((Game)this, graphics);
 var screen = new Screen(1280, 720, fullscreen: false)
 
-veinia.Initialize(GraphicsDevice, Content, Window, screen, unitSize: 100);
+veinia.Initialize(GraphicsDevice, Content, Window, screen, unitSize: 100, Vector2.UnitY * -20);
 
 Globals.loader.DynamicalyLoad(new Level("Level1.veinia"));
 ```
