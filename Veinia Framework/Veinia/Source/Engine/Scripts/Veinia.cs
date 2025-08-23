@@ -102,13 +102,14 @@ namespace VeiniaFramework
 			{
 				if (game.IsActive) Globals.input.Update();
 
-				Globals.particleWorld.Update();
 				Globals.tweener.Update(Time.deltaTime);
 
 				Globals.physicsWorld.Step(Time.deltaTime);
 
 				Globals.loader.current?.Update();
 				Globals.loader.current?.LateUpdate();
+
+				Globals.particleWorld.Update();
 
 				Globals.camera.shake.Update();
 				Globals.shapeDrawing.UpdateBasicEffect();
