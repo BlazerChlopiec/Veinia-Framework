@@ -30,13 +30,23 @@ namespace VeiniaFramework
 			basicEffect.View = Globals.camera.GetView();
 		}
 
-		public void Shape(Level level, VertexPositionColor[] vertices, Effect effect = null, float z = 0f, bool setWorldViewProjection = false)
+		public void Shape(Level level, VertexPositionColor[] vertices, Transform transform = null, Effect effect = null, float z = 0f, bool setWorldViewProjection = false)
 		{
 			if (effect == null) effect = basicEffect;
 
 			for (int i = 0; i < vertices.Length; i++)
 			{
 				var pos = vertices[i].Position;
+
+				if (transform != null)
+				{
+					Vector2 scaled = new Vector2(pos.X * transform.scale.X,
+												 pos.Y * transform.scale.Y);
+
+					pos = (transform.position + scaled).ToVector3(z: pos.Z);
+				}
+
+				// convert to screen
 				vertices[i].Position = Transform.WorldToScreenPos(pos.ToVector2()).ToVector3(z: pos.Z);
 			}
 
@@ -58,7 +68,7 @@ namespace VeiniaFramework
 			});
 		}
 
-		public void ShapeVec2(Level level, Vector2[] vertices, Color? color = null, Effect effect = null, float z = 0f, bool setWorldViewProjection = false)
+		public void ShapeVec2(Level level, Vector2[] vertices, Transform transform = null, Color? color = null, Effect effect = null, float z = 0f, bool setWorldViewProjection = false)
 		{
 			if (vertices == null || vertices.Length == 0)
 				return;
@@ -74,7 +84,7 @@ namespace VeiniaFramework
 				);
 			}
 
-			Shape(level, vertexData, effect, z, setWorldViewProjection);
+			Shape(level, vertexData, transform, effect, z, setWorldViewProjection);
 		}
 	}
 }
