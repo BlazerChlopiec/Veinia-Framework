@@ -21,6 +21,8 @@ An independent framework that extends MonoGame helping you jump straight into de
 * Useful Debug Tools
 * Two Handy UI Systems (GeonBit & Myra)
 
+<img src="Images/ObjectEditorPreview.png">
+
 ## Installation
 
 Veinia framework is only possible to be installed manually because of libraries such as GeonBit.UI which require referencing the Content folder
