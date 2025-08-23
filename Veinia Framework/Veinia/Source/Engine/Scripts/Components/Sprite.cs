@@ -8,10 +8,11 @@ namespace VeiniaFramework
 		public Color color = Color.White;
 		public Vector2 destinationSize;
 		public Effect effect;
+		public BlendState blendState;
 		public Texture2D texture { get; private set; }
 
 
-		public Sprite(Texture2D texture, Color color, float pixelsPerUnit, Effect effect = null)
+		public Sprite(Texture2D texture, Color color, float pixelsPerUnit, Effect effect = null, BlendState blendState = null)
 		{
 			this.color = color;
 
@@ -19,15 +20,19 @@ namespace VeiniaFramework
 
 			this.effect = effect;
 
+			this.blendState = blendState;
+
 			this.destinationSize = new Vector2(texture.Width, texture.Height) / (pixelsPerUnit / Transform.unitSize);
 		}
-		public Sprite(string path, Color color, float pixelsPerUnit, Effect effect = null)
+		public Sprite(string path, Color color, float pixelsPerUnit, Effect effect = null, BlendState blendState = null)
 		{
 			this.color = color;
 
 			texture = Globals.content.Load<Texture2D>(path);
 
 			this.effect = effect;
+
+			this.blendState = blendState;
 
 			this.destinationSize = new Vector2(texture.Width, texture.Height) / (pixelsPerUnit / Transform.unitSize);
 		}
@@ -43,7 +48,8 @@ namespace VeiniaFramework
 						 SpriteEffects.None, layerDepth: 0);
 				},
 				Z = transform.Z,
-				shader = effect
+				shader = effect,
+				blendState = blendState,
 			});
 		}
 

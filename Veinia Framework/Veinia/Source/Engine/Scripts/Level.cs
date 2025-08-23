@@ -344,7 +344,10 @@ namespace VeiniaFramework
 
 			foreach (var cmd in drawCommands)
 			{
+				var targetBlendState = cmd.blendState == null ? blendState : cmd.blendState;
+
 				if (cmd.shader != prevCommand.shader && beginCalled // if new shader
+				 || cmd.blendState != prevCommand.blendState && beginCalled // or new BlendState
 				 || cmd.drawWithoutSpriteBatch && beginCalled) // or using DrawUserPrimitives()
 				{
 					sb.End();
@@ -353,8 +356,14 @@ namespace VeiniaFramework
 				if (!beginCalled && !cmd.drawWithoutSpriteBatch)
 				{
 					begins++;
-					sb.Begin(SpriteSortMode.Deferred, blendState, samplerState, effect: cmd.shader, transformMatrix: transformMatrix);
+					sb.Begin(SpriteSortMode.Deferred, targetBlendState, samplerState, effect: cmd.shader, transformMatrix: transformMatrix);
 					beginCalled = true;
+				}
+
+				if (cmd.drawWithoutSpriteBatch)
+				{
+					// blendState for drawing with DrawUserPrimitives
+					Globals.graphicsDevice.BlendState = targetBlendState;
 				}
 
 				prevCommand = cmd;
