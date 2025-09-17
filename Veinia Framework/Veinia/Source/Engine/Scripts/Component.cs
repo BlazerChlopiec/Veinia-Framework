@@ -17,6 +17,7 @@ namespace VeiniaFramework
 		public bool isEnabled = true;
 
 		public object Clone() => MemberwiseClone();
+		public virtual void EarlyInitialize() { }
 		public virtual void Initialize() { }
 		public virtual void Update() { }
 		public virtual void LateUpdate() { }

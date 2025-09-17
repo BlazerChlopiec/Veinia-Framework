@@ -38,7 +38,7 @@ public class Parallax : Sprite
 	float textureUnitSize;
 
 
-	public override void Initialize()
+	public override void EarlyInitialize()
 	{
 		cam = Globals.camera;
 		lastCameraPos = cam.GetPosition();
