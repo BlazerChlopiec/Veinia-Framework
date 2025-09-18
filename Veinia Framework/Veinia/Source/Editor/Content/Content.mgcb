@@ -14,6 +14,12 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin Trail.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Trail.fx
+
 #begin veinia_runtime_ui/themes/veinia_default/effects/disabled.fx
 /importer:EffectImporter
 /processor:EffectProcessor
