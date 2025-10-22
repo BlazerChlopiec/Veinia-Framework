@@ -6,6 +6,8 @@ namespace VeiniaFramework
 	{
 		public void Update()
 		{
+			if (Globals.loader.current == null) return;
+
 			var frustum = Globals.camera.GetBoundingFrustum(scaleFactor: 1.5f);
 			foreach (var gameObject in Globals.loader.current.scene)
 			{
