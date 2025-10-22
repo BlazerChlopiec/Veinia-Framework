@@ -46,7 +46,7 @@ namespace VeiniaFramework
 			Globals.particleWorld.Clear();
 
 			prefabManager?.LoadPrefabs();
-			if (loadObjectsFromPath && levelPath != string.Empty) LoadObjects(levelPath);
+			if (loadObjectsFromPath && levelPath != string.Empty && levelPath != null) LoadObjects(levelPath);
 		}
 
 		/// <summary>
