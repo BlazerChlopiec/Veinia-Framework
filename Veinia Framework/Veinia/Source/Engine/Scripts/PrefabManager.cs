@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using VeiniaFramework;
 
 namespace VeiniaFramework
@@ -6,14 +7,16 @@ namespace VeiniaFramework
 	public class PrefabManager
 	{
 		public List<Prefab> prefabs = new List<Prefab>();
+		public List<Prefab> editorPrefabs => prefabs.Where(p => p.SerializeInEditor).ToList();
 
 
-		protected void Add(string name, GameObject gameObject, int prefabTab = 0, bool showLabel = false)
+		protected void Add(string name, GameObject gameObject, bool serializeInEditor = true, int prefabTab = 0, bool showLabel = false)
 		{
 			Prefab prefabData = new Prefab
 			{
 				PrefabName = name,
 				PrefabGameObject = gameObject,
+				SerializeInEditor = serializeInEditor,
 				PaintingToolbarTab = prefabTab,
 				ShowLabel = showLabel
 			};
@@ -36,6 +39,7 @@ public class Prefab
 {
 	public string PrefabName { get; set; }
 	public GameObject PrefabGameObject { get; set; }
+	public bool SerializeInEditor { get; set; } = true; // editor prefab?
 	public int PaintingToolbarTab { get; set; }
 	public bool ShowLabel { get; set; } // show prefab name in editor painting
 }

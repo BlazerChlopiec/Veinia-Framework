@@ -22,7 +22,7 @@ namespace VeiniaFramework.Editor
 			paintingToolbarBehaviour = (PaintingToolbarBehaviour)toolbarBehaviour;
 
 			//create needed tabs
-			for (int i = 0; i < prefabManager.prefabs.Max(x => x.PaintingToolbarTab) + 1; i++)
+			for (int i = 0; i < prefabManager.editorPrefabs.Max(x => x.PaintingToolbarTab) + 1; i++)
 			{
 				var newTab = new PaintingToolbarTab();
 				newTab.Scroll.Content = newTab.Panel;
@@ -50,9 +50,9 @@ namespace VeiniaFramework.Editor
 
 		private void FeedToolbarWithPrefabs()
 		{
-			for (int i = 0; i < prefabManager.prefabs.Count; i++)
+			for (int i = 0; i < prefabManager.editorPrefabs.Count; i++)
 			{
-				var prefab = prefabManager.prefabs[i];
+				var prefab = prefabManager.editorPrefabs[i];
 				paintingToolbarTabs[prefab.PaintingToolbarTab].Prefabs.Add(prefab);
 			}
 		}

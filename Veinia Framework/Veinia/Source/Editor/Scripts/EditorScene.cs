@@ -55,7 +55,7 @@ namespace VeiniaFramework.Editor
 			});
 
 			var toolbarManager = new ToolbarManager();
-			if (prefabManager != null && prefabManager.prefabs.Count > 0)
+			if (prefabManager != null && prefabManager.editorPrefabs.Count > 0)
 				toolbarManager.toolbars.Add(new PaintingToolbar("Painting", new PaintingToolbarBehaviour(prefabManager), prefabManager));
 			toolbarManager.toolbars.Add(new EditToolbar("Edit", new EditToolbarBehaviour()));
 

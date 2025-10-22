@@ -46,7 +46,7 @@ namespace VeiniaFramework.Editor
 			editorObjectManager.OnRemoveAll += () => { currentObjectLayer.Clear(); };
 
 			// currentPrefabName is static so it remembers between editor sessions
-			ChangeCurrentPrefab(currentPrefabName == null ? prefabManager.prefabs[0].PrefabName : currentPrefabName);
+			ChangeCurrentPrefab(currentPrefabName == null ? prefabManager.editorPrefabs[0].PrefabName : currentPrefabName);
 
 			EditorCheckboxes.Add("Mark Layer", defaultValue: false, (e, o) => { markLayer = true; }, (e, o) => { markLayer = false; });
 		}
