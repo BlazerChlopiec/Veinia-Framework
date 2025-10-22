@@ -129,7 +129,7 @@ namespace VeiniaFramework
 		{
 			var sampleBody = prefab.body == null ? null : prefab.body.DeepClone();
 			if (sampleBody != null) sampleBody.Enabled = true;
-			GameObject sample = new GameObject(prefab.transform, prefab.components.Clone(), sampleBody, prefab.isStatic, prefab.dontDestroyOnLoad);
+			GameObject sample = new GameObject((Transform)prefab.transform.Clone(), prefab.components.Clone(), sampleBody, prefab.isStatic, prefab.dontDestroyOnLoad);
 			sample.level = this;
 
 			if (firstFrameCreated && sample.dontDestroyOnLoad) sample.dontDestroyOnLoadInitializedBefore = true;
