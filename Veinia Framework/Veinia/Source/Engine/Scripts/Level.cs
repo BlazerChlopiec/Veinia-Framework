@@ -373,7 +373,7 @@ namespace VeiniaFramework
 					beginCalled = true;
 				}
 
-				if (cmd.drawWithoutSpriteBatch)
+				if (cmd.drawWithoutSpriteBatch && targetBlendState != null)
 				{
 					// blendState for drawing with DrawUserPrimitives
 					Globals.graphicsDevice.BlendState = targetBlendState;
