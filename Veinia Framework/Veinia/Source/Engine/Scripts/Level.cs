@@ -5,6 +5,7 @@ using Myra.Graphics2D.UI;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using tainicom.Aether.Physics2D.Dynamics;
 using VeiniaFramework.Editor;
 
@@ -159,7 +160,7 @@ namespace VeiniaFramework
 		/// </summary>
 		public T1 FindComponentOfType<T1>() where T1 : Component
 		{
-			List<T1> returnVal = new List<T1>();
+			var returnVal = new List<T1>();
 
 			foreach (var item in scene)
 			{
@@ -185,7 +186,7 @@ namespace VeiniaFramework
 		/// </summary>
 		public List<T1> FindComponentsOfType<T1>() where T1 : Component
 		{
-			List<T1> returnVal = new List<T1>();
+			var returnVal = new List<T1>();
 
 			foreach (var item in scene)
 			{
@@ -204,7 +205,7 @@ namespace VeiniaFramework
 		/// </summary>
 		public GameObject FindObjectByData(object match)
 		{
-			List<GameObject> returnVal = new List<GameObject>();
+			var returnVal = new List<GameObject>();
 
 			foreach (var item in scene)
 			{
@@ -232,7 +233,7 @@ namespace VeiniaFramework
 		/// </summary>
 		public List<GameObject> FindObjectsByData(object match)
 		{
-			List<GameObject> returnVal = new List<GameObject>();
+			var returnVal = new List<GameObject>();
 
 			foreach (var item in scene)
 			{
@@ -244,6 +245,33 @@ namespace VeiniaFramework
 			}
 			if (returnVal.Count == 0)
 				Say.Line("FindObjectsByData - Found no object matching requirements! Query: " + (string)match);
+
+			return returnVal;
+		}
+
+
+		/// <summary>
+		/// Finds component in the scene by customData
+		/// </summary>
+		public T1 FindComponentByData<T1>(object match) where T1 : Component => FindObjectByData(match).GetComponent<T1>();
+
+		/// <summary>
+		/// Finds components in the scene by customData
+		/// </summary>
+		public List<T1> FindComponentsByData<T1>(object match) where T1 : Component
+		{
+			var objects = FindObjectsByData(match);
+
+			var returnVal = new List<T1>();
+
+			foreach (var item in objects)
+			{
+				var currentItem = item.GetComponent<T1>();
+				if (currentItem != null)
+				{
+					returnVal.Add(currentItem);
+				}
+			}
 
 			return returnVal;
 		}

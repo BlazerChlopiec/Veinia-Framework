@@ -26,6 +26,8 @@ namespace VeiniaFramework
 		public T1 FindComponentOfType<T1>() where T1 : Component => level.FindComponentOfType<T1>();
 		public List<T1> FindComponentsOfType<T1>() where T1 : Component => level.FindComponentsOfType<T1>();
 		public GameObject FindObjectByData(object match) => level.FindObjectByData(match);
+		public T1 FindComponentByData<T1>(object match) where T1 : Component => level.FindComponentByData<T1>(match);
+		public List<T1> FindComponentsByData<T1>(object match) where T1 : Component => level.FindComponentsByData<T1>(match);
 		public List<GameObject> FindObjectsByData(object match) => level.FindObjectsByData(match);
 		public T1 GetComponent<T1>() where T1 : Component => gameObject.GetComponent<T1>();
 		public List<T1> GetAllComponents<T1>() where T1 : Component => gameObject.GetAllComponents<T1>();
