@@ -12,7 +12,7 @@ namespace VeiniaFramework.Editor
 		{
 			var editToolbarBehaviour = (EditToolbarBehaviour)toolbarBehaviour;
 
-			var panel = new Panel { Height = 205 };
+			var panel = new Panel { Height = 230 };
 			displayedToolbarContent = panel;
 
 			var removeSelectedButton = new TextButton { Text = "Remove Selected [RMB]" };
@@ -43,18 +43,22 @@ namespace VeiniaFramework.Editor
 			};
 			panel.Widgets.Add(filterSelectionButton);
 
-			var rotateButton = new TextButton { Text = "Rotate [R]", Top = 100, Toggleable = true };
+			var freeMoveButton = new TextButton { Text = "Free Move [F]", Top = 100, Toggleable = true };
+			editToolbarBehaviour.freeMoveButton = freeMoveButton;
+			panel.Widgets.Add(freeMoveButton);
+
+			var rotateButton = new TextButton { Text = "Rotate [R]", Top = 125, Toggleable = true };
 			editToolbarBehaviour.rotateButton = rotateButton;
 			panel.Widgets.Add(rotateButton);
 
-			var resetRotationButton = new TextButton { Text = "Reset Rotation [Ctrl+R]", Top = 125 };
+			var resetRotationButton = new TextButton { Text = "Reset Rotation [Ctrl+R]", Top = 150 };
 			resetRotationButton.Click += (o, e) =>
 			{
 				editToolbarBehaviour.ResetRotation();
 			};
 			panel.Widgets.Add(resetRotationButton);
 
-			var editButton = new TextButton { Text = "Edit [E]", Top = 150 };
+			var editButton = new TextButton { Text = "Edit [E]", Top = 175 };
 			editButton.Click += (o, e) =>
 			{
 				editToolbarBehaviour.Edit();
@@ -62,10 +66,10 @@ namespace VeiniaFramework.Editor
 			panel.Widgets.Add(editButton);
 
 			//
-			panel.Widgets.Add(new HorizontalSeparator { Top = 175, VerticalAlignment = VerticalAlignment.Top });
+			panel.Widgets.Add(new HorizontalSeparator { Top = 200, VerticalAlignment = VerticalAlignment.Top });
 			//
 
-			var resetCamera = new TextButton { Text = "Reset Camera", Top = 185 };
+			var resetCamera = new TextButton { Text = "Reset Camera", Top = 210 };
 			resetCamera.Click += (o, e) =>
 			{
 				editToolbarBehaviour.ResetCamera();

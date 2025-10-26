@@ -21,6 +21,7 @@ namespace VeiniaFramework.Editor
 
 		bool selectDragging;
 		public TextButton rotateButton; // determine if IsPressed
+		public TextButton freeMoveButton; // determine if IsPressed
 
 		Vector2 startSelectionPos;
 		Vector2 screenMousePos;
@@ -75,6 +76,13 @@ namespace VeiniaFramework.Editor
 
 			if (Globals.input.GetKeyDown(Keys.R) && !EditorControls.isTextBoxFocused)
 				rotateButton.IsPressed = !rotateButton.IsPressed;
+
+			if (Globals.input.GetKeyDown(Keys.F) && !EditorControls.isTextBoxFocused) freeMoveButton.IsPressed = !freeMoveButton.IsPressed;
+			if (freeMoveButton.IsPressed)
+			{
+				FreeMove();
+				if (Globals.input.GetMouseUp(0)) freeMoveButton.IsPressed = false;
+			}
 
 
 			// selecting one thing by clicking
@@ -276,6 +284,15 @@ namespace VeiniaFramework.Editor
 			{
 				editWindow = null;
 			};
+		}
+
+		public void FreeMove()
+		{
+			// editorObjectManager.
+			if (selectedObjects.Count == 1)
+			{
+				selectedObjects[0].Position = Globals.input.GetMouseWorldPosition();
+			}
 		}
 
 		public override void OnDraw(SpriteBatch sb)

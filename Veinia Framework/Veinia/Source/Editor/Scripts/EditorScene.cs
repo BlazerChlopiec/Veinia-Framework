@@ -44,7 +44,7 @@ namespace VeiniaFramework.Editor
 			Globals.tweener.CancelAll();
 			Globals.unscaledTweener.CancelAll();
 
-			EditorCheckboxes.Add("Debug Draw [F]", defaultValue: Globals.debugDraw, (e, o) => { Globals.debugDraw = true; }, (e, o) => { Globals.debugDraw = false; }, Keys.F);
+			EditorCheckboxes.Add("Debug Draw [X]", defaultValue: Globals.debugDraw, (e, o) => { Globals.debugDraw = true; }, (e, o) => { Globals.debugDraw = false; }, Keys.X);
 
 			GameObject systems = Instantiate(Transform.Empty, new List<Component>
 			{
