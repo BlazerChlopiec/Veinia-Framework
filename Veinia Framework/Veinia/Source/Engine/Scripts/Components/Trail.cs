@@ -38,7 +38,7 @@ namespace VeiniaFramework
 
 		private bool _setWorldViewProjection;
 
-		public Trail(float segmentLength, int segments, float width, Effect effect = null, float z = 0, bool setWorldViewProjection = false)
+		public Trail(float segmentLength, int segments, float width, Color? color = null, Effect effect = null, float z = 0, bool setWorldViewProjection = false)
 		{
 			_segmentLength = segmentLength;
 			_segments = segments;
@@ -51,8 +51,7 @@ namespace VeiniaFramework
 			if (effect == null)
 			{
 				_effect = Globals.content.Load<Effect>("veinia_shaders/Trail");
-				_effect.Parameters["GlobalColor"].SetValue(new Vector4(1f, 1f, 1f, 1f)); // white
-				_effect.Parameters["texMapLine"].SetValue(Globals.content.Load<Texture2D>("veinia_shaders/texMapLine"));
+				_effect.Parameters["GlobalColor"].SetValue(color == null ? new Vector4(1, 1, 1, 1) : color.Value.ToVector4());
 
 				_setWorldViewProjection = true;
 			}
