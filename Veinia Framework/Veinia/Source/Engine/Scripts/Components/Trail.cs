@@ -29,27 +29,36 @@ namespace VeiniaFramework
 
 		private float _width = 1;
 
+		private float _z = 0;
+
 		private float _minLength = 0.01f;
 
-		BasicEffect _effect;
+		private Effect _effect;
+		private BasicEffect basicEffect;
 
+		private bool _setWorldViewProjection;
 
-		public Trail(float segmentLength, int segments, float width)
+		public Trail(float segmentLength, int segments, float width, Effect effect = null, float z = 0, bool setWorldViewProjection = false)
 		{
-			//_lastSegmentPosition = transform.position.ToVector3();
 			_segmentLength = segmentLength;
 			_segments = segments;
 			_width = width;
+			_setWorldViewProjection = setWorldViewProjection;
+			_z = z;
+
+			basicEffect = Globals.shapeDrawing.basicEffect;
+			if (effect == null) _effect = basicEffect;
+		}
+
+		public override void Initialize()
+		{
+			// _lastSegmentPosition = Globals.input.GetMouseScreenPosition().ToVector3();
 
 			_vBuffer = new DynamicVertexBuffer(Globals.graphicsDevice, TrailVertex.VertexDeclaration, _segments * 2, BufferUsage.None);
 			_iBuffer = new IndexBuffer(Globals.graphicsDevice, IndexElementSize.SixteenBits, (_segments - 1) * 6, BufferUsage.WriteOnly);
 
 			vertices = new TrailVertex[_segments * 2];
 
-			_effect = new BasicEffect(Globals.graphicsDevice)
-			{
-				VertexColorEnabled = true,
-			};
 
 			FillIndexBuffer();
 		}
@@ -78,10 +87,7 @@ namespace VeiniaFramework
 
 		public override void Update()
 		{
-			_effect.Projection = Globals.camera.GetProjection();
-			_effect.View = Globals.camera.GetView();
-
-			Vector3 newPosition = Globals.input.GetMouseScreenPosition().ToVector3();
+			Vector3 newPosition = transform.screenPos.ToVector3();
 			float visibility = 1;
 
 			//Initialize the first segment, we have no indication for the direction, so just displace the 2 vertices to the left/right
@@ -218,13 +224,20 @@ namespace VeiniaFramework
 			{
 				command = delegate
 				{
+					if (_setWorldViewProjection) _effect.Parameters["WorldViewProjection"].SetValue(basicEffect.View * basicEffect.Projection);
+
 					_vBuffer.SetData(vertices);
 					Globals.graphicsDevice.SetVertexBuffer(_vBuffer);
 					Globals.graphicsDevice.Indices = _iBuffer;
 
-					_effect.CurrentTechnique.Passes[0].Apply();
-					Globals.graphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, _segmentsUsed * 2);
+					foreach (var pass in _effect.CurrentTechnique.Passes)
+					{
+						pass.Apply();
+						Globals.graphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, _segmentsUsed * 2);
+					}
 				},
+				drawWithoutSpriteBatch = true,
+				Z = _z,
 			});
 		}
 	}

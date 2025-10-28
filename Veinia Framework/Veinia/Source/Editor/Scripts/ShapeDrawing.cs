@@ -8,8 +8,8 @@ namespace VeiniaFramework
 	public class ShapeDrawing
 	{
 		GraphicsDevice graphicsDevice;
-		BasicEffect basicEffect;
 		RasterizerState rasterizer;
+		public BasicEffect basicEffect;
 
 
 		public ShapeDrawing(GraphicsDevice device, CullMode cullMode = CullMode.None)
