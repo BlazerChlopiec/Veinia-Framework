@@ -47,7 +47,15 @@ namespace VeiniaFramework
 			_z = z;
 
 			basicEffect = Globals.shapeDrawing.basicEffect;
-			if (effect == null) _effect = basicEffect;
+
+			if (effect == null)
+			{
+				_effect = Globals.content.Load<Effect>("veinia_shaders/Trail");
+				_effect.Parameters["GlobalColor"].SetValue(new Vector4(1f, 1f, 1f, 1f)); // white
+				_effect.Parameters["texMapLine"].SetValue(Globals.content.Load<Texture2D>("veinia_shaders/texMapLine"));
+
+				_setWorldViewProjection = true;
+			}
 		}
 
 		public override void Initialize()
