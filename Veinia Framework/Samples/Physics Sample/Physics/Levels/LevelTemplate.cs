@@ -51,7 +51,7 @@ namespace VeiniaFramework.Samples.Physics
 			{
 				new Sprite("Sprites/Square", Color.Green, pixelsPerUnit: 200),
 				new PhysicsMovement(),
-				new Trail(segmentLength: 50, segments: 40, width: 20, z: 1, color: Color.Green)
+				new Trail(segmentLength: 20, segments: 10, width: 20, z: 1, color: Color.Green)
 			}, isStatic: false);
 		}
 	}
