@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GeonBit.UI;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 
@@ -13,6 +14,22 @@ namespace VeiniaFramework
 				command = delegate
 				{
 					sb.DrawPoint(Transform.WorldToScreenPos(position), color, size, 0);
+				},
+				Z = z
+			});
+		}
+
+		public static void VeiniaTextWorld(this SpriteBatch sb, Level level, Vector2 position, string text, Color color, float size = 1, float z = float.MaxValue)
+		{
+			level.drawCommands.Add(new DrawCommand
+			{
+				command = delegate
+				{
+					var spriteFont = Resources.Fonts[0];
+					var textSize = spriteFont.MeasureString(text);
+					var origin = new Vector2(textSize.X / 2f, textSize.Y / 2.5f);
+
+					sb.DrawString(spriteFont, text, Transform.WorldToScreenPos(position), color, 0f, origin, size, SpriteEffects.None, 0f);
 				},
 				Z = z
 			});
