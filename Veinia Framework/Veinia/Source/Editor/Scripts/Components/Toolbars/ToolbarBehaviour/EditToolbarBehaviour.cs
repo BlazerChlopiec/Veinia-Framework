@@ -1,8 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended;
 using Myra.Graphics2D.TextureAtlases;
 using Myra.Graphics2D.UI;
+using Myra.Graphics2D.UI.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -278,7 +280,15 @@ namespace VeiniaFramework.Editor
 
 		public void Edit()
 		{
-			if (editWindow != null || filterSelectionWindow != null || selectedObjects.Count != 1) return;
+			if (selectedObjects.Count == 1)
+				EditSingle();
+			else
+				EditMultiple();
+		}
+
+		public void EditSingle()
+		{
+			if (editWindow != null || filterSelectionWindow != null) return;
 
 			var obj = selectedObjects[0];
 			if (obj == null) return;
@@ -291,9 +301,71 @@ namespace VeiniaFramework.Editor
 			};
 		}
 
+		public void EditMultiple()
+		{
+			if (editWindow != null || filterSelectionWindow != null) return;
+
+			var data = new MultipleEditData();
+			var tolerance = 0.0001f;
+
+			var first = selectedObjects[0];
+
+			// prefabName simillarity
+			if (selectedObjects.All(o => o.PrefabName == first.PrefabName))
+				data.PrefabName = first.PrefabName;
+
+			// position simillarity
+			if (selectedObjects.All(o => Math.Abs(o.Position.X - first.Position.X) < tolerance))
+				data.Position.X = first.Position.X;
+			if (selectedObjects.All(o => Math.Abs(o.Position.Y - first.Position.Y) < tolerance))
+				data.Position.Y = first.Position.Y;
+
+			// z simillarity
+			if (selectedObjects.All(o => Math.Abs(o.Z - first.Z) < tolerance))
+				data.Z = first.Z;
+
+			// rotation simillarity
+			if (selectedObjects.All(o => Math.Abs(o.Rotation - first.Rotation) < tolerance))
+				data.Rotation = first.Rotation;
+
+			// scale simillarity
+			if (selectedObjects.All(o => Math.Abs(o.Scale.X - first.Scale.X) < tolerance))
+				data.Scale.X = first.Scale.X;
+			if (selectedObjects.All(o => Math.Abs(o.Scale.Y - first.Scale.Y) < tolerance))
+				data.Scale.Y = first.Scale.Y;
+
+			// customData simillarity
+			if (selectedObjects.All(o => o.customData == first.customData))
+				data.customData = first.customData;
+
+
+			editWindow = Globals.myraDesktop.MakeEditWindow(data, "Multiple Object Editor");
+
+			editWindow.Closed += delegate
+			{
+				editWindow = null;
+
+				foreach (var obj in selectedObjects)
+				{
+					obj.PrefabName = data.PrefabName == "null" ? obj.PrefabName : data.PrefabName;
+
+					obj.Position = new Vector2(float.IsNaN(data.Position.X) ? obj.Position.X : data.Position.X,
+											   float.IsNaN(data.Position.Y) ? obj.Position.Y : data.Position.Y);
+
+					obj.Z = float.IsNaN(data.Z) ? obj.Z : data.Z;
+
+					obj.Rotation = float.IsNaN(data.Rotation) ? obj.Rotation : data.Rotation;
+
+					obj.Scale = new Vector2(float.IsNaN(data.Scale.X) ? obj.Scale.X : data.Scale.X,
+											float.IsNaN(data.Scale.Y) ? obj.Scale.Y : data.Scale.Y);
+
+					obj.customData = data.customData == "null" ? obj.customData : data.customData;
+				}
+			};
+		}
+
 		public void FreeMove()
 		{
-			// editorObjectManager.
 			if (selectedObjects.Count == 1)
 			{
 				selectedObjects[0].Position = Globals.input.GetMouseWorldPosition();
@@ -323,4 +395,14 @@ namespace VeiniaFramework.Editor
 			}
 		}
 	}
+}
+
+public class MultipleEditData
+{
+	public Vector2 Position = new Vector2(float.NaN, float.NaN);
+	public Vector2 Scale = new Vector2(float.NaN, float.NaN);
+	public float Rotation = float.NaN;
+	public string customData = "null";
+	public string PrefabName = "null";
+	public float Z = float.NaN;
 }
