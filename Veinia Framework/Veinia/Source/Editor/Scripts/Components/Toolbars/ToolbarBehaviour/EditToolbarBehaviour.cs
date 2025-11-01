@@ -225,6 +225,7 @@ namespace VeiniaFramework.Editor
 				{
 					Height = overlapButtonSize,
 					Width = overlapButtonSize,
+					Rotation = overlap.Rotation,
 					Top = overlapButtonSize * overlaps.IndexOf(overlap),
 					VerticalAlignment = VerticalAlignment.Top,
 					Background = new TextureRegion(tex.ChangeColor(overlap.EditorPlacedSprite.color), new Rectangle(0, 0, tex.Width, tex.Height)),
