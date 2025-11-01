@@ -310,7 +310,7 @@ namespace VeiniaFramework.Editor
 
 			foreach (var selected in selectedObjects)
 			{
-				sb.VeiniaRectangleRotated(gameObject.level, selected.EditorPlacedSprite.rect.OffsetByHalf(), Color.Blue, thickness: 5, selected.Rotation);
+				sb.VeiniaRectangleRotated(gameObject.level, selected.EditorPlacedSprite.rect.OffsetByHalf(), Color.Blue, thickness: 4 / Globals.camera.GetScale(), selected.Rotation);
 			}
 
 
