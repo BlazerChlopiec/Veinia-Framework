@@ -23,6 +23,10 @@ namespace VeiniaFramework.Editor
 			var color = Color.White * opacity;
 			var thickness = 2 / Globals.camera.GetScale();
 
+			// origin point
+			sb.VeiniaTextWorld(level, Vector2.Zero, "(0,0)", color);
+
+
 			var leftBottom = Transform.WorldToScreenPos(Vector2.Round(camera.GetPosition() - Vector2.UnitX * (size.X / 2) - Vector2.UnitY * (size.Y / 2)) - Vector2.UnitX / 2);
 			for (int i = 0; i < MathF.Round(size.Y) + 1; i++)
 			{
