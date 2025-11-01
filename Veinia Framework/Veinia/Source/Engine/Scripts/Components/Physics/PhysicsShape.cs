@@ -16,7 +16,7 @@ namespace VeiniaFramework
 			this.ignoreGravity = ignoreGravity;
 		}
 
-		public override void Initialize()
+		public override void EarlyInitialize()
 		{
 			body = Globals.physicsWorld.CreateBody(bodyType: bodyType);
 			body.Tag = tag;

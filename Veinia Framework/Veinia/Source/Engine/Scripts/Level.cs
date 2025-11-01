@@ -91,12 +91,14 @@ namespace VeiniaFramework
 				item.gameObject = sample;
 				item.transform = sample.transform;
 				item.level = sample.level;
+
 				if (firstFrameCreated)
-				{
 					item.EarlyInitialize();
-					item.Initialize();
-				}
 			}
+
+			foreach (var item in sample.components)
+				if (firstFrameCreated)
+					item.Initialize();
 
 			scene.Add(sample);
 			return sample;
@@ -116,12 +118,14 @@ namespace VeiniaFramework
 				item.gameObject = sample;
 				item.transform = sample.transform;
 				item.level = sample.level;
+
 				if (firstFrameCreated)
-				{
 					item.EarlyInitialize();
-					item.Initialize();
-				}
 			}
+
+			foreach (var item in sample.components)
+				if (firstFrameCreated)
+					item.Initialize();
 
 			scene.Add(sample);
 			return sample;
@@ -140,12 +144,15 @@ namespace VeiniaFramework
 				item.gameObject = sample;
 				item.transform = sample.transform;
 				item.level = sample.level;
+
 				if (firstFrameCreated)
-				{
 					item.EarlyInitialize();
-					item.Initialize();
-				}
 			}
+
+			foreach (var item in sample.components)
+				if (firstFrameCreated)
+					item.Initialize();
+
 			scene.Add(sample);
 			return sample;
 		}
