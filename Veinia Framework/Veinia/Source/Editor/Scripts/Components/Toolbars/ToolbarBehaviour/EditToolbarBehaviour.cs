@@ -283,7 +283,7 @@ namespace VeiniaFramework.Editor
 		{
 			if (selectedObjects.Count == 1)
 				EditSingle();
-			else
+			else if (selectedObjects.Count > 1)
 				EditMultiple();
 		}
 
