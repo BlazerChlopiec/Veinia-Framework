@@ -24,6 +24,7 @@ namespace VeiniaFramework
 		public static void VeiniaTextWorld(this SpriteBatch sb, Level level, Vector2 position, string text, Color? color = null, float size = 1, float z = float.MaxValue)
 		{
 			color = color ?? Color.White;
+			if (text == null || text == string.Empty) return;
 
 			level.drawCommands.Add(new DrawCommand
 			{
