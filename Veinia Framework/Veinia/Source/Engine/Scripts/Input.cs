@@ -182,6 +182,8 @@ namespace VeiniaFramework
 				return mouse.LeftButton == ButtonState.Pressed;
 			if (buttonIndex == 1)
 				return mouse.RightButton == ButtonState.Pressed;
+			if (buttonIndex == 2)
+				return mouse.MiddleButton == ButtonState.Pressed;
 			else { return false; }
 		}
 		public bool GetMouseDown(int buttonIndex)
@@ -192,6 +194,8 @@ namespace VeiniaFramework
 				return mouse.LeftButton == ButtonState.Pressed && oldMouse.LeftButton != ButtonState.Pressed;
 			if (buttonIndex == 1)
 				return mouse.RightButton == ButtonState.Pressed && oldMouse.RightButton != ButtonState.Pressed;
+			if (buttonIndex == 2)
+				return mouse.MiddleButton == ButtonState.Pressed && oldMouse.MiddleButton != ButtonState.Pressed;
 			else { return false; }
 		}
 		public bool GetMouseUp(int buttonIndex)
@@ -202,6 +206,8 @@ namespace VeiniaFramework
 				return mouse.LeftButton == ButtonState.Released && oldMouse.LeftButton != ButtonState.Released;
 			if (buttonIndex == 1)
 				return mouse.RightButton == ButtonState.Released && oldMouse.RightButton != ButtonState.Released;
+			if (buttonIndex == 2)
+				return mouse.MiddleButton == ButtonState.Released && oldMouse.MiddleButton != ButtonState.Released;
 			else { return false; }
 		}
 		//

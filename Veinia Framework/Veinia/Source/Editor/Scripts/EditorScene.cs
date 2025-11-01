@@ -30,13 +30,14 @@ namespace VeiniaFramework.Editor
 			 * Duplicate Selection - LCtrl + D
 			 * Rotate - R
 			 * Incremented Rotation - LShift (While Rotating)
+			 * Rotate By 45 - Q
 			 * Reset Rotation - LCtrl + R
 			 * Move Selection - WSAD
 			 * Move Selection Slower - WSAD + LShift
 			 * Edit Selected - E
 			 * Remove Selection - RMB
 			 * Deselect - LAlt + D
-			 * Selection Overlap Menu - Q
+			 * Selection Overlap Menu - Middle Mouse Button
 			 */
 
 			UserInterface.Active.ShowCursor = false;

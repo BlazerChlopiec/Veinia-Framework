@@ -68,7 +68,7 @@ namespace VeiniaFramework.Editor
 				filterSelectionWindow?.Close();
 			}
 
-			if (Globals.input.GetKeyDown(Keys.Q) && !EditorControls.isTextBoxFocused && !Globals.myraDesktop.IsMouseOverGUI)
+			if (Globals.input.GetMouseDown(2) && !EditorControls.isTextBoxFocused && !Globals.myraDesktop.IsMouseOverGUI)
 			{
 				filterSelectionPoint = Globals.input.GetMouseScreenPosition();
 				FilterSelection();
@@ -167,6 +167,11 @@ namespace VeiniaFramework.Editor
 			if (Globals.input.GetKey(Keys.LeftControl) && Globals.input.GetKey(Keys.R))
 			{
 				ResetRotation();
+			}
+
+			if (Globals.input.GetKeyDown(Keys.Q) && selectedObjects.Count > 0)
+			{
+				RotateSelectedAround(-45);
 			}
 
 			EditorLabelManager.Add("SelectedObjectCount", new Label { Text = "Selected Objects - " + selectedObjects.Count });
