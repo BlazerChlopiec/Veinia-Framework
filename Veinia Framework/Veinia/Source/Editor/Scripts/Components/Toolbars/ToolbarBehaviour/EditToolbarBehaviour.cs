@@ -348,7 +348,7 @@ namespace VeiniaFramework.Editor
 			{
 				foreach (var obj in selectedObjects)
 				{
-					obj.PrefabName = data.PrefabName == "null" ? obj.PrefabName : data.PrefabName;
+					obj.PrefabName = data.PrefabName == "<mixed>" ? obj.PrefabName : data.PrefabName;
 
 					obj.Position = new Vector2(float.IsNaN(data.Position.X) ? obj.Position.X : data.Position.X,
 											   float.IsNaN(data.Position.Y) ? obj.Position.Y : data.Position.Y);
@@ -360,7 +360,7 @@ namespace VeiniaFramework.Editor
 					obj.Scale = new Vector2(float.IsNaN(data.Scale.X) ? obj.Scale.X : data.Scale.X,
 											float.IsNaN(data.Scale.Y) ? obj.Scale.Y : data.Scale.Y);
 
-					obj.customData = data.customData == "null" ? obj.customData : data.customData;
+					obj.customData = data.customData == "<mixed>" ? obj.customData : data.customData;
 				}
 			};
 
@@ -408,7 +408,7 @@ public class MultipleEditData
 	public Vector2 Position = new Vector2(float.NaN, float.NaN);
 	public Vector2 Scale = new Vector2(float.NaN, float.NaN);
 	public float Rotation = float.NaN;
-	public string customData = "null";
-	public string PrefabName = "null";
+	public string customData = "<mixed>";
+	public string PrefabName = "<mixed>";
 	public float Z = float.NaN;
 }
