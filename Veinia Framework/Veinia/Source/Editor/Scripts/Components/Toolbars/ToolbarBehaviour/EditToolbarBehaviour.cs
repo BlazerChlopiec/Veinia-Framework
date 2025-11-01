@@ -342,10 +342,10 @@ namespace VeiniaFramework.Editor
 
 			editWindow = Globals.myraDesktop.MakeEditWindow(data, "Multiple Object Editor");
 
-			editWindow.Closed += delegate
-			{
-				editWindow = null;
+			PropertyGrid grid = (PropertyGrid)editWindow.Content;
 
+			grid.PropertyChanged += delegate
+			{
 				foreach (var obj in selectedObjects)
 				{
 					obj.PrefabName = data.PrefabName == "null" ? obj.PrefabName : data.PrefabName;
@@ -362,6 +362,11 @@ namespace VeiniaFramework.Editor
 
 					obj.customData = data.customData == "null" ? obj.customData : data.customData;
 				}
+			};
+
+			editWindow.Closed += delegate
+			{
+				editWindow = null;
 			};
 		}
 
