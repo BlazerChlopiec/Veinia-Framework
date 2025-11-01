@@ -26,9 +26,8 @@ namespace VeiniaFramework
 
 		public GameObject Find(string name)
 		{
-			var prefab = prefabs.Find(x => x.PrefabName == name).PrefabGameObject;
-			if (prefab == null) throw new System.Exception("The Prefab you're looking for doesn't exist: " + name);
-			return prefab;
+			var prefab = prefabs.Find(x => x.PrefabName == name)?.PrefabGameObject;
+			return prefab ?? throw new System.Exception("The Prefab you're looking for doesn't exist: " + name);
 		}
 
 		public virtual void LoadPrefabs() => prefabs.Clear();
