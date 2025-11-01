@@ -282,6 +282,8 @@ namespace VeiniaFramework
 		/// </summary>
 		public void InitializeComponentsFirstFrame()
 		{
+			firstFrameCreated = true;
+
 			foreach (var gameObject in scene.ToArray())
 			{
 				if (!gameObject.isEnabled || gameObject.dontDestroyOnLoadInitializedBefore) continue;
@@ -295,8 +297,6 @@ namespace VeiniaFramework
 
 				if (gameObject.dontDestroyOnLoad) gameObject.dontDestroyOnLoadInitializedBefore = true;
 			}
-
-			firstFrameCreated = true;
 		}
 
 		/// <summary>

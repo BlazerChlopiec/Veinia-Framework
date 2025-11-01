@@ -18,40 +18,40 @@ namespace VeiniaFramework.Samples.Physics
 		{
 			base.CreateScene();
 
-			GameObject leftBorder = Instantiate(
+			var leftBorder = Instantiate(
 				new Transform { position = -Vector2.UnitX * 9.7f },
 				new List<Component>
 				{
+					new PhysicsRectangle(.3f, 10f, bodyType: BodyType.Static)
 				}, isStatic: true);
-			leftBorder.body = Globals.physicsWorld.CreateRectangle(.3f, 10, 1f, bodyType: BodyType.Static);
 
-			GameObject rightBorder = Instantiate(
+			var rightBorder = Instantiate(
 				new Transform { position = Vector2.UnitX * 9.7f },
 				new List<Component>
 				{
+					new PhysicsRectangle(.3f, 10, bodyType: BodyType.Static)
 				}, isStatic: true);
-			rightBorder.body = Globals.physicsWorld.CreateRectangle(.3f, 10, 1f, bodyType: BodyType.Static);
 
-			GameObject topBorder = Instantiate(
+			var topBorder = Instantiate(
 				new Transform { position = Vector2.UnitY * 5.5f },
 				new List<Component>
 				{
+					new PhysicsRectangle(19f, .3f, bodyType: BodyType.Static)
 				}, isStatic: true);
-			topBorder.body = Globals.physicsWorld.CreateRectangle(19f, .3f, 1f, bodyType: BodyType.Static);
 
-			GameObject bottomBorder = Instantiate(
+			var bottomBorder = Instantiate(
 				new Transform { position = Vector2.UnitY * -5.5f },
 				new List<Component>
 				{
+					new PhysicsRectangle(19f, .3f, bodyType: BodyType.Static)
 				}, isStatic: true);
-			bottomBorder.body = Globals.physicsWorld.CreateRectangle(19f, .3f, 1f, bodyType: BodyType.Static);
-
 
 			Instantiate(new Transform { Z = 0 }, new List<Component>
-			{
-				new Sprite("Sprites/Square", Color.Green, pixelsPerUnit: 200),
-				new PhysicsMovement(),
-			}, isStatic: false);
+				{
+					new Sprite("Sprites/Square", Color.Green, pixelsPerUnit: 200),
+					new MovingSquare(),
+					new PhysicsRectangle(bodyType: BodyType.Dynamic)
+				}, isStatic: false);
 		}
 	}
 }

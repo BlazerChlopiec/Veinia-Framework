@@ -24,12 +24,9 @@ namespace VeiniaFramework.Samples.Platformer
 				var prefab = new GameObject(new Transform { Z = .3f }, new List<Component>
 				{
 					new Sprite(collectible.Value, Color.White, pixelsPerUnit: 16),
-					new Collectible()
+					new Collectible(),
+					new PhysicsRectangle(.5f, .5f, bodyType: BodyType.Static, isSensor: true)
 				}, isStatic: false);
-
-				prefab.body = Globals.physicsWorld.CreateRectangle(.5f, .5f, 1, bodyType: BodyType.Static);
-				prefab.body.SetIsSensor(true);
-				prefab.body.Enabled = false;
 
 				Add(collectible.Key, prefab, prefabTab: 1);
 			}
@@ -40,13 +37,8 @@ namespace VeiniaFramework.Samples.Platformer
 				var prefab = new GameObject(new Transform { Z = .6f }, new List<Component>
 				{
 					new Sprite(grassTile.Value, Color.White, pixelsPerUnit: 16),
+					new PhysicsRectangle(1, 1, bodyType: BodyType.Static, category: Category.Cat2)
 				}, isStatic: true);
-
-				prefab.body = Globals.physicsWorld.CreateRectangle(1, 1, 1, bodyType: BodyType.Static);
-				prefab.body.SetCollisionCategories(Category.Cat2);
-
-				prefab.body.Enabled = false;
-
 				Add(grassTile.Key, prefab, prefabTab: 2);
 			}
 
@@ -56,11 +48,8 @@ namespace VeiniaFramework.Samples.Platformer
 				var prefab = new GameObject(new Transform { Z = .2f }, new List<Component>
 				{
 					new Sprite(woodTile.Value, Color.White, pixelsPerUnit: 16),
+					new PhysicsRectangle(1, 1, bodyType: BodyType.Static, category: Category.Cat2)
 				}, isStatic: true);
-
-				prefab.body = Globals.physicsWorld.CreateRectangle(1, 1, 1, bodyType: BodyType.Static);
-				prefab.body.SetCollisionCategories(Category.Cat2);
-				prefab.body.Enabled = false;
 
 				Add(woodTile.Key, prefab, prefabTab: 2);
 			}
@@ -71,11 +60,8 @@ namespace VeiniaFramework.Samples.Platformer
 				var prefab = new GameObject(new Transform { Z = .1f }, new List<Component>
 				{
 					new Sprite(brick.Value, Color.White, pixelsPerUnit: 16),
+					new PhysicsRectangle(1, 1, bodyType: BodyType.Static, category: Category.Cat2)
 				}, isStatic: true);
-
-				prefab.body = Globals.physicsWorld.CreateRectangle(1, 1, 1, bodyType: BodyType.Static);
-				prefab.body.SetCollisionCategories(Category.Cat2);
-				prefab.body.Enabled = false;
 
 				Add(brick.Key, prefab, prefabTab: 3);
 			}
