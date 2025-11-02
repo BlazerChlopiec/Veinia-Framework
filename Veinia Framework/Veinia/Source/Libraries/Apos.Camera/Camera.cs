@@ -52,7 +52,7 @@ namespace Apos.Camera
 		}
 
 		public float Rotation { get; set; } = 0f;
-		public Vector2 Scale { get; set; } = Vector2.One;
+		public float Scale { get; set; } = 1f; // 2 = twice the size, .5f = half the size
 
 		public Vector2 XY
 		{
@@ -99,7 +99,7 @@ namespace Apos.Camera
 				Matrix.CreateTranslation(new Vector3(-XY, 0f)) *
 				Matrix.CreateTranslation(new Vector3(shake.shakeOffset, 0f)) *
 				Matrix.CreateRotationZ(Rotation) *
-				Matrix.CreateScale(Scale.X / scaleFactor, Scale.Y / scaleFactor, 1f / scaleFactor) *
+				Matrix.CreateScale(1f / Scale / scaleFactor, 1f / Scale / scaleFactor, 1f / scaleFactor) *
 				Matrix.CreateScale(scaleZ, scaleZ, 1f) *
 				Matrix.CreateTranslation(new Vector3(VirtualViewport.Origin, 0f)));
 		}
@@ -107,7 +107,7 @@ namespace Apos.Camera
 		{
 			return
 				Matrix.CreateLookAt(XYZ, new Vector3(XY, Z - 1), new Vector3((float)Math.Sin(Rotation), (float)Math.Cos(Rotation), 0)) *
-				Matrix.CreateScale(Scale.X, -Scale.Y, 1f);
+				Matrix.CreateScale(Scale, -Scale, 1f);
 		}
 		public Matrix GetViewInvert(float z = 0) => Matrix.Invert(GetView(z));
 
@@ -215,9 +215,6 @@ namespace Apos.Camera
 		}
 		public void SetPosition(Vector2 worldPos) => XY = Transform.ToScreenUnits(worldPos);
 		public Vector2 GetPosition() => Transform.ToWorldUnits(XY);
-
-		public void SetScale(float scale) => Scale = Vector2.One * scale;
-		public float GetScale() => Scale.X;
 
 		public Vector2 GetUnitsInView()
 		{

@@ -48,11 +48,9 @@ namespace VeiniaFramework.Samples.Platformer
 			groundCheck.IsSensor = true;
 			groundCheck.CollidesWith = Category.Cat2;
 
-			Globals.camera.XY = transform.position;
+			Globals.camera.SetPosition(transform.position);
 		}
 
-		float smoothZoom;
-		float smoothHorizontal;
 		public override void LateUpdate()
 		{
 			body.LinearVelocity = Vector2.Lerp(body.LinearVelocity, Vector2.UnitX * Globals.input.horizontal * speed, accelerationSpeed * Time.deltaTime).SetY(body.LinearVelocity.Y);
@@ -69,11 +67,6 @@ namespace VeiniaFramework.Samples.Platformer
 			}
 
 			Globals.camera.LinearPosition(transform.position, 10);
-
-			float zoomAmount = 7;
-			float zoomSpeed = .8f;
-			smoothZoom = MathHelper.Lerp(smoothZoom, (MathF.Abs(smoothHorizontal) / zoomAmount), zoomSpeed * Time.deltaTime);
-			Globals.camera.Scale = Vector2.One * (1f - smoothZoom);
 		}
 
 		private void JumpParticles()

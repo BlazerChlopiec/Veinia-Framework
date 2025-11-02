@@ -24,8 +24,8 @@ namespace VeiniaFramework.Editor
 
 		public override void Update()
 		{
-			EditorLabelManager.Add("MousePosition", new Label { Text = "Mouse Position - " + Globals.input.GetMouseWorldPosition().Round(3), VerticalAlignment = VerticalAlignment.Bottom, HorizontalAlignment = HorizontalAlignment.Right });
-			EditorLabelManager.Add("CameraPosition", new Label { Text = "Camera Position - " + Globals.camera.GetPosition().Round(3), Top = -25, VerticalAlignment = VerticalAlignment.Bottom, HorizontalAlignment = HorizontalAlignment.Right }); ;
+			EditorLabelManager.Add("CameraPosition", new Label { Text = "Camera Position - " + Globals.camera.GetPosition().Round(3), Top = -25, VerticalAlignment = VerticalAlignment.Bottom, HorizontalAlignment = HorizontalAlignment.Right });
+			EditorLabelManager.Add("CameraScale", new Label { Text = "Camera Scale - " + Globals.camera.Scale, VerticalAlignment = VerticalAlignment.Bottom, HorizontalAlignment = HorizontalAlignment.Right });
 
 			isMouseOverGUIPreviousFrame = isMouseOverGUIPreviousFrameOld;
 			isMouseOverGUIPreviousFrameOld = Globals.myraDesktop.IsMouseOverGUI;
@@ -40,8 +40,8 @@ namespace VeiniaFramework.Editor
 
 			if (!Globals.myraDesktop.IsMouseOverGUI)
 			{
-				Globals.camera.Scale += Vector2.One * (Globals.input.deltaScroll * zoomSensitivity);
-				Globals.camera.Scale = Vector2.Clamp(Globals.camera.Scale, Vector2.One * .28f, Vector2.One * 1.7f);
+				Globals.camera.Scale -= Globals.input.deltaScroll * zoomSensitivity;
+				Globals.camera.Scale = MathHelper.Clamp(Globals.camera.Scale, .5f, 2.5f);
 			}
 
 			if (isHolding)

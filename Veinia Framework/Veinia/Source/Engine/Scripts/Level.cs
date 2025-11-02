@@ -33,7 +33,7 @@ namespace VeiniaFramework
 		public virtual void CreateScene(bool loadObjectsFromPath = true)
 		{
 			Globals.camera.SetPosition(Vector2.Zero);
-			Globals.camera.Scale = Vector2.One;
+			Globals.camera.Scale = 1f;
 			Globals.camera.Rotation = 0;
 			Globals.camera.ResetLookaheads();
 			Globals.camera.shake.Reset();

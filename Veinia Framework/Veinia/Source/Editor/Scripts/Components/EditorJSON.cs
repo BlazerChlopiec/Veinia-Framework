@@ -36,7 +36,7 @@ namespace VeiniaFramework.Editor
 		{
 			sceneFile.objects = editorObjectManager.editorObjects;
 			sceneFile.editorCamPosition = Globals.camera.GetPosition();
-			sceneFile.editorCamScale = Globals.camera.GetScale();
+			sceneFile.editorCamScale = Globals.camera.Scale;
 
 			object dataToSave;
 
@@ -81,7 +81,7 @@ namespace VeiniaFramework.Editor
 			}
 
 			Globals.camera.SetPosition(sceneFile.editorCamPosition ?? Vector2.Zero);
-			Globals.camera.SetScale(sceneFile.editorCamScale ?? 1);
+			Globals.camera.Scale = sceneFile.editorCamScale ?? 1;
 		}
 
 		public override void Update()

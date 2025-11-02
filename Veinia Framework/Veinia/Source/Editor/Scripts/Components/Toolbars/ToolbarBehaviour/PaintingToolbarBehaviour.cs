@@ -130,7 +130,7 @@ namespace VeiniaFramework.Editor
 			if (markLayer)
 				foreach (var item in currentObjectLayer)
 				{
-					sb.VeiniaRectangle(gameObject.level, item.EditorPlacedSprite.rect.OffsetByHalf(), Color.Green, thickness: 4);
+					sb.VeiniaRectangle(gameObject.level, item.EditorPlacedSprite.rect.OffsetByHalf(), Color.Green, thickness: 4 * Globals.camera.Scale);
 				}
 		}
 	}

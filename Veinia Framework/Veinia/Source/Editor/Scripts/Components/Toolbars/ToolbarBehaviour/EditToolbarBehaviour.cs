@@ -276,7 +276,7 @@ namespace VeiniaFramework.Editor
 		public void ResetCamera()
 		{
 			Globals.camera.SetPosition(Vector2.Zero);
-			Globals.camera.SetScale(1);
+			Globals.camera.Scale = 1;
 		}
 
 		public void Edit()
@@ -382,13 +382,13 @@ namespace VeiniaFramework.Editor
 		{
 			if (filterSelectionWindow != null)
 			{
-				sb.VeiniaCircle(gameObject.level, filterSelectionPoint, Color.Red, radius: .2f / Globals.camera.GetScale(), sides: 20, thickness: 10 / Globals.camera.GetScale());
+				sb.VeiniaCircle(gameObject.level, filterSelectionPoint, Color.Red, radius: .2f * Globals.camera.Scale, sides: 20, thickness: 10 * Globals.camera.Scale);
 			}
 
 
 			foreach (var selected in selectedObjects)
 			{
-				sb.VeiniaRectangleRotated(gameObject.level, selected.EditorPlacedSprite.rect.OffsetByHalf(), Color.Blue, thickness: 4 / Globals.camera.GetScale(), selected.Rotation);
+				sb.VeiniaRectangleRotated(gameObject.level, selected.EditorPlacedSprite.rect.OffsetByHalf(), Color.Blue, thickness: 4 * Globals.camera.Scale, selected.Rotation);
 			}
 
 

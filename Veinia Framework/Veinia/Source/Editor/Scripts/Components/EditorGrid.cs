@@ -21,7 +21,7 @@ namespace VeiniaFramework.Editor
 			var unit = Transform.unitSize;
 			var size = camera.GetUnitsInView();
 			var color = Color.White * opacity;
-			var thickness = 2 / Globals.camera.GetScale();
+			var thickness = 2 * Globals.camera.Scale;
 
 			// origin point
 			sb.VeiniaTextWorld(level, Vector2.Zero, "(0,0)", color);
