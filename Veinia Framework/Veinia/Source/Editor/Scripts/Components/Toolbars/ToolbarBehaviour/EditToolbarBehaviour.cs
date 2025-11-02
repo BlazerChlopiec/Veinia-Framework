@@ -70,7 +70,7 @@ namespace VeiniaFramework.Editor
 				filterSelectionWindow?.Close();
 			}
 
-			if (Globals.input.GetMouseDown(2) && !EditorControls.isTextBoxFocused && !Globals.myraDesktop.IsMouseOverGUI)
+			if ((Globals.input.GetMouseDown(2) || Globals.input.GetKeyDown(Keys.C)) && !EditorControls.isTextBoxFocused && !Globals.myraDesktop.IsMouseOverGUI)
 			{
 				filterSelectionPoint = Globals.input.GetMouseScreenPosition();
 				FilterSelection();

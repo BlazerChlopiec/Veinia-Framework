@@ -36,7 +36,7 @@ namespace VeiniaFramework.Editor
 			};
 			panel.Widgets.Add(duplicateButton);
 
-			var filterSelectionButton = new TextButton { Text = "Filter Selection [Q]", Top = 75 };
+			var filterSelectionButton = new TextButton { Text = "Filter Selection [C]", Top = 75 };
 			filterSelectionButton.Click += (o, e) =>
 			{
 				editToolbarBehaviour.FilterSelection();

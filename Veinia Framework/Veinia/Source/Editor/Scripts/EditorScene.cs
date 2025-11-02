@@ -37,7 +37,7 @@ namespace VeiniaFramework.Editor
 			 * Edit Selected - E
 			 * Remove Selection - RMB
 			 * Deselect - LAlt + D
-			 * Selection Overlap Menu - Middle Mouse Button
+			 * Selection Overlap Menu - Middle Mouse Button / C
 			 */
 
 			UserInterface.Active.ShowCursor = false;
