@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using tainicom.Aether.Physics2D.Dynamics;
 using tainicom.Aether.Physics2D.Dynamics.Contacts;
@@ -10,9 +11,10 @@ namespace VeiniaFramework
 	public class GameObject
 	{
 		public List<Component> components;
-		public Level level;
-		public Transform transform;
+		[Browsable(false)] public Level level;
+		[Browsable(false)] public Transform transform;
 
+		[Browsable(false)]
 		public Body body
 		{
 			get { return Body; }

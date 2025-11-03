@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using tainicom.Aether.Physics2D.Dynamics;
 using tainicom.Aether.Physics2D.Dynamics.Contacts;
 
@@ -7,14 +8,14 @@ namespace VeiniaFramework
 {
 	public class Component : ICloneable
 	{
-		public GameObject gameObject;
-		public Transform transform;
-		public Level level;
-		public Body body { get { return gameObject.body; } set { gameObject.body = value; } }
-		public bool isStatic { get { return gameObject.isStatic; } set { gameObject.isStatic = value; } }
-		public bool dontDestroyOnLoad { get { return gameObject.dontDestroyOnLoad; } set { gameObject.dontDestroyOnLoad = value; } }
-		public string customData { get { return gameObject.customData; } set { gameObject.customData = value; } }
-		public bool isEnabled = true;
+		[Browsable(false)] public GameObject gameObject;
+		[Browsable(false)] public Transform transform;
+		[Browsable(false)] public Level level;
+		[Browsable(false)] public Body body { get { return gameObject.body; } set { gameObject.body = value; } }
+		[Browsable(false)] public bool isStatic { get { return gameObject.isStatic; } set { gameObject.isStatic = value; } }
+		[Browsable(false)] public bool dontDestroyOnLoad { get { return gameObject.dontDestroyOnLoad; } set { gameObject.dontDestroyOnLoad = value; } }
+		[Browsable(false)] public string customData { get { return gameObject.customData; } set { gameObject.customData = value; } }
+		[Browsable(false)] public bool isEnabled = true;
 
 		public object Clone() => MemberwiseClone();
 		public virtual void EarlyInitialize() { }
