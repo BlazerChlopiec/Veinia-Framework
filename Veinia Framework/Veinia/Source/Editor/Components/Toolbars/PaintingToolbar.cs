@@ -66,6 +66,7 @@ namespace VeiniaFramework.Editor
 				foreach (var prefab in tab.Prefabs)
 				{
 					var sprite = prefab.PrefabGameObject.GetComponent<Sprite>();
+					if (sprite == null) throw new System.Exception("Prefab has no sprite!");
 
 					var prefabButton = new ImageButton
 					{

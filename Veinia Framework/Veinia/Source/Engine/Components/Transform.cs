@@ -88,7 +88,7 @@ namespace VeiniaFramework
 			var distanceX = worldPos.X - transform.position.X;
 			var distanceY = worldPos.Y - transform.position.Y;
 
-			var result = -((float)Math.Atan2(distanceY, distanceX));
+			var result = -(float)Math.Atan2(distanceY, distanceX);
 			transform.rotation = MathHelper.ToDegrees(result) + 90;
 		}
 
