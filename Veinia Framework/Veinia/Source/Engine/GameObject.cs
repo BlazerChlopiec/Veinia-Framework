@@ -20,11 +20,13 @@ namespace VeiniaFramework
 			get { return Body; }
 			set
 			{
-				Body = value; Body.OnCollision += OnCollision;
-				Body.OnSeparation += OnSeparation;
+				value.OnCollision += OnCollision;
+				value.OnSeparation += OnSeparation;
 
-				Body.Position = transform.Position;
-				if (linkPhysicsRotationToTransform) Body.Rotation = MathHelper.ToRadians(-transform.Rotation);
+				value.Position = transform.position;
+				if (linkPhysicsRotationToTransform) value.Rotation = MathHelper.ToRadians(-transform.rotation);
+
+				Body = value;
 			}
 		}
 

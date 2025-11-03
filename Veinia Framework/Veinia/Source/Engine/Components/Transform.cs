@@ -16,21 +16,21 @@ namespace VeiniaFramework
 			get { if (transform != null && body != null && gameObject.linkPhysicsRotationToTransform) return MathHelper.ToDegrees(-body.Rotation); else return Rotation; }
 			set { Rotation = value; if (transform != null && body != null && gameObject.linkPhysicsRotationToTransform) body.Rotation = MathHelper.ToRadians(-value); }
 		}
-		public float Rotation { get; set; }
+		float Rotation { get; set; }
 
 		public Vector2 position
 		{
 			get { if (transform != null && body != null) return body.Position; else return Position; }
 			set { Position = value; if (transform != null && body != null) body.Position = value; }
 		}
-		public Vector2 Position { get; set; }
+		Vector2 Position { get; set; }
 
 		public Vector2 scale
 		{
 			get { return Scale; }
 			set { Scale = value; }
 		}
-		public Vector2 Scale { get; set; } = Vector2.One;
+		Vector2 Scale { get; set; } = Vector2.One;
 
 		public float Z { get; set; }
 

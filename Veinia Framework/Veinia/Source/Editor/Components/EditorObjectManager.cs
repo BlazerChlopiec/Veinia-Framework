@@ -35,9 +35,9 @@ namespace VeiniaFramework.Editor
 
 			var newT = new Transform
 			{
-				Position = position == default ? prefab.transform.position : position,
-				Rotation = rotation == default ? prefab.transform.rotation : rotation,
-				Scale = scale == default ? prefab.transform.scale : scale,
+				position = position == default ? prefab.transform.position : position,
+				rotation = rotation == default ? prefab.transform.rotation : rotation,
+				scale = scale == default ? prefab.transform.scale : scale,
 				Z = z == default ? prefab.transform.Z : z,
 			};
 			var extractedSpriteGameObject = prefab.ExtractComponentToNewGameObject<Sprite>(newT, isStatic: true);
