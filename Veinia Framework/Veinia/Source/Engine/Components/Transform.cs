@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using MonoGame.Extended;
 using System;
+using System.ComponentModel;
 
 namespace VeiniaFramework
 {
@@ -11,6 +12,8 @@ namespace VeiniaFramework
 
 		public static Transform Empty => new Transform(0, 0);
 
+		[Browsable(false)] public Transform parent;
+
 		public float rotation
 		{
 			get { if (transform != null && body != null && gameObject.linkPhysicsRotationToTransform) return MathHelper.ToDegrees(-body.Rotation); else return Rotation; }
@@ -20,10 +23,22 @@ namespace VeiniaFramework
 
 		public Vector2 position
 		{
-			get { if (transform != null && body != null) return body.Position; else return Position; }
-			set { Position = value; if (transform != null && body != null) body.Position = value; }
+			get
+			{
+				var parentPos = parent == null ? Vector2.Zero : parent.position;
+
+				if (transform != null && body != null) return body.Position + parentPos;
+				else return localPosition + parentPos;
+			}
+			set
+			{
+				var parentPos = parent == null ? Vector2.Zero : parent.position;
+
+				if (transform != null && body != null) body.Position = value;
+				localPosition = value - parentPos;
+			}
 		}
-		Vector2 Position { get; set; }
+		[ReadOnly(true)] public Vector2 localPosition { get; set; }
 
 		public Vector2 scale
 		{
