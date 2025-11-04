@@ -14,31 +14,83 @@ namespace VeiniaFramework
 
 		[Browsable(false)] public Transform parent;
 
-		public float rotation
-		{
-			get { if (transform != null && body != null && gameObject.linkPhysicsRotationToTransform) return MathHelper.ToDegrees(-body.Rotation); else return Rotation; }
-			set { Rotation = value; if (transform != null && body != null && gameObject.linkPhysicsRotationToTransform) body.Rotation = MathHelper.ToRadians(-value); }
-		}
-		float Rotation { get; set; }
-
 		public Vector2 position
 		{
 			get
 			{
-				var parentPos = parent == null ? Vector2.Zero : parent.position;
+				if (parent == null)
+				{
+					if (transform != null && body != null)
+						return body.Position;
+					return localPosition;
+				}
 
-				if (transform != null && body != null) return body.Position + parentPos;
-				else return localPosition + parentPos;
+				Vector2 rotatedLocal = localPosition.RotateAround(Vector2.Zero, parent.rotation);
+				Vector2 worldPos = parent.position + rotatedLocal;
+
+				if (transform != null && body != null)
+					return body.Position + parent.position;
+
+				return worldPos;
 			}
 			set
 			{
-				var parentPos = parent == null ? Vector2.Zero : parent.position;
+				if (parent == null)
+				{
+					localPosition = value;
+					if (transform != null && body != null)
+						body.Position = value;
+					return;
+				}
 
-				if (transform != null && body != null) body.Position = value;
-				localPosition = value - parentPos;
+				Vector2 offset = value - parent.position;
+				Vector2 unrotated = offset.RotateAround(Vector2.Zero, -parent.rotation);
+				localPosition = unrotated;
+
+				if (transform != null && body != null)
+					body.Position = value;
 			}
 		}
-		[ReadOnly(true)] public Vector2 localPosition { get; set; }
+		Vector2 localPosition { get; set; }
+
+
+		public float rotation
+		{
+			get
+			{
+				if (parent == null)
+				{
+					if (transform != null && body != null && gameObject.linkPhysicsRotationToTransform)
+						return MathHelper.ToDegrees(-body.Rotation);
+					return localRotation;
+				}
+
+				// Inherit parent’s rotation
+				float parentRot = parent.rotation;
+
+				if (transform != null && body != null && gameObject.linkPhysicsRotationToTransform)
+					return MathHelper.ToDegrees(-body.Rotation) + parentRot;
+
+				return localRotation + parentRot;
+			}
+			set
+			{
+				if (parent == null)
+				{
+					localRotation = value;
+					if (transform != null && body != null && gameObject.linkPhysicsRotationToTransform)
+						body.Rotation = MathHelper.ToRadians(-value);
+					return;
+				}
+
+				float parentRot = parent.rotation;
+				localRotation = value - parentRot;
+
+				if (transform != null && body != null && gameObject.linkPhysicsRotationToTransform)
+					body.Rotation = MathHelper.ToRadians(-value);
+			}
+		}
+		float localRotation { get; set; }
 
 		public Vector2 scale
 		{
