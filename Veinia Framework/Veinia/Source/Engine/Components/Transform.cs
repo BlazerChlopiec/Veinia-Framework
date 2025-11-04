@@ -92,12 +92,22 @@ namespace VeiniaFramework
 		}
 		float localRotation { get; set; }
 
+
 		public Vector2 scale
 		{
-			get { return Scale; }
-			set { Scale = value; }
+			get
+			{
+				if (parent == null) return localScale;
+				return parent.scale * localScale;
+			}
+			set
+			{
+				if (parent == null) localScale = value;
+				else localScale = value / parent.scale;
+			}
 		}
-		Vector2 Scale { get; set; } = Vector2.One;
+
+		Vector2 localScale { get; set; } = Vector2.One;
 
 		public float Z { get; set; }
 
