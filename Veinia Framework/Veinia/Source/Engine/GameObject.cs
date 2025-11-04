@@ -50,11 +50,12 @@ namespace VeiniaFramework
 		private bool isDestroyed;
 
 
-		public GameObject(Transform transform, List<Component> components, Body body = default, bool isStatic = false, bool dontDestoryOnLoad = false)
+		public GameObject(Transform transform, List<Component> components, Body body = default, string customData = null, bool isStatic = false, bool dontDestoryOnLoad = false)
 		{
 			this.transform = transform;
 			this.components = components;
 			if (body != null) this.body = body;
+			if (customData != null) this.customData = customData;
 			this.isStatic = isStatic;
 			this.dontDestroyOnLoad = dontDestoryOnLoad;
 

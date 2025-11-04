@@ -11,30 +11,29 @@ namespace VeiniaFramework
 		public BlendState blendState;
 		public Texture2D texture { get; private set; }
 
+		private float pixelsPerUnit;
 
-		public Sprite(Texture2D texture, Color color, float pixelsPerUnit, Effect effect = null, BlendState blendState = null)
+
+		public Sprite(Texture2D texture, Color? color = null, float? pixelsPerUnit = null, Effect effect = null, BlendState blendState = null)
 		{
-			this.color = color;
-
+			this.color = color ?? Color.White;
 			this.texture = texture;
-
 			this.effect = effect;
-
 			this.blendState = blendState;
+			this.pixelsPerUnit = pixelsPerUnit ?? Transform.unitSize;
 
-			this.destinationSize = new Vector2(texture.Width, texture.Height) / (pixelsPerUnit / Transform.unitSize);
+			destinationSize = new Vector2(texture.Width, texture.Height) / (this.pixelsPerUnit / Transform.unitSize);
 		}
-		public Sprite(string path, Color color, float pixelsPerUnit, Effect effect = null, BlendState blendState = null)
+		public Sprite(string path, Color? color = null, float? pixelsPerUnit = null, Effect effect = null, BlendState blendState = null)
 		{
-			this.color = color;
+			this.color = color ?? Color.White;
+			this.effect = effect;
+			this.blendState = blendState;
+			this.pixelsPerUnit = pixelsPerUnit ?? Transform.unitSize;
 
 			texture = Globals.content.Load<Texture2D>(path);
 
-			this.effect = effect;
-
-			this.blendState = blendState;
-
-			this.destinationSize = new Vector2(texture.Width, texture.Height) / (pixelsPerUnit / Transform.unitSize);
+			destinationSize = new Vector2(texture.Width, texture.Height) / (this.pixelsPerUnit / Transform.unitSize);
 		}
 
 		public virtual void Draw(SpriteBatch sb)

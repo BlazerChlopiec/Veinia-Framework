@@ -77,11 +77,11 @@ namespace VeiniaFramework
 		/// <summary>
 		/// Creates an object and spawns it
 		/// </summary>
-		public GameObject Instantiate(Transform transform, List<Component> components, Body body = default, bool isStatic = false, bool dontDestroyOnLoad = false)
+		public GameObject Instantiate(Transform transform, List<Component> components, Body body = default, string customData = null, bool isStatic = false, bool dontDestroyOnLoad = false)
 		{
 			var sampleBody = body == null ? null : body.DeepClone();
 			if (sampleBody != null) sampleBody.Enabled = true;
-			GameObject sample = new GameObject(transform, components, sampleBody, isStatic, dontDestroyOnLoad);
+			GameObject sample = new GameObject(transform, components, sampleBody, customData, isStatic, dontDestroyOnLoad);
 			sample.level = this;
 
 			if (firstFrameCreated && sample.dontDestroyOnLoad) sample.dontDestroyOnLoadInitializedBefore = true;
@@ -107,7 +107,7 @@ namespace VeiniaFramework
 		{
 			var sampleBody = prefab.body == null ? null : prefab.body.DeepClone();
 			if (sampleBody != null) sampleBody.Enabled = true;
-			GameObject sample = new GameObject(transform, prefab.components.Clone(), sampleBody, prefab.isStatic, prefab.dontDestroyOnLoad);
+			GameObject sample = new GameObject(transform, prefab.components.Clone(), sampleBody, prefab.customData, prefab.isStatic, prefab.dontDestroyOnLoad);
 			sample.level = this;
 			sample.customData = prefab.customData;
 
@@ -134,7 +134,7 @@ namespace VeiniaFramework
 		{
 			var sampleBody = prefab.body == null ? null : prefab.body.DeepClone();
 			if (sampleBody != null) sampleBody.Enabled = true;
-			GameObject sample = new GameObject((Transform)prefab.transform.Clone(), prefab.components.Clone(), sampleBody, prefab.isStatic, prefab.dontDestroyOnLoad);
+			GameObject sample = new GameObject((Transform)prefab.transform.Clone(), prefab.components.Clone(), sampleBody, prefab.customData, prefab.isStatic, prefab.dontDestroyOnLoad);
 			sample.level = this;
 
 			if (firstFrameCreated && sample.dontDestroyOnLoad) sample.dontDestroyOnLoadInitializedBefore = true;
