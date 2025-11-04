@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using MonoGame.Extended;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace VeiniaFramework
@@ -12,7 +13,8 @@ namespace VeiniaFramework
 
 		public static Transform Empty => new Transform(0, 0);
 
-		[Browsable(false)] public Transform parent;
+		[Browsable(false)] public Transform parent { get; private set; }
+		public List<Transform> children { get; private set; } = new List<Transform>();
 
 		public Vector2 position
 		{
@@ -173,6 +175,24 @@ namespace VeiniaFramework
 		{
 			transform.rotation += rotation;
 			transform.position = transform.position.RotateAround(origin, rotation);
+		}
+
+		public void SetParent(Transform parent)
+		{
+			if (this.parent != null) RemoveParent();
+
+			this.parent = parent;
+			parent.children.Add(this);
+		}
+
+		public void RemoveParent()
+		{
+			if (parent == null) throw new Exception("RemoveParent() - No Parent Found!");
+
+			parent.children.Remove(parent);
+
+			localPosition = position;
+			parent = null;
 		}
 	}
 }
