@@ -21,8 +21,8 @@ namespace VeiniaFramework
 
 		private Fixture fixture;
 
-		public PhysicsRectangle(float width = 1, float height = 1, float friction = .2f, float restitution = 0, bool isSensor = false, Category category = Category.None, BodyType bodyType = BodyType.Static, object tag = null, bool ignoreGravity = false)
-			: base(bodyType, tag, ignoreGravity)
+		public PhysicsRectangle(float width = 1, float height = 1, float friction = .2f, float restitution = 0, bool isSensor = false, Category category = Category.None, BodyType bodyType = BodyType.Static, object tag = null, bool ignoreGravity = false, bool sleepingAllowed = true)
+			: base(bodyType, tag, ignoreGravity, sleepingAllowed)
 		{
 			this.width = width;
 			this.height = height;

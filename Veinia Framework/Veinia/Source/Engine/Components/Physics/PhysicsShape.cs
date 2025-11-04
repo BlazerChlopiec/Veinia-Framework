@@ -7,13 +7,15 @@ namespace VeiniaFramework
 		object tag;
 		BodyType bodyType;
 		bool ignoreGravity;
+		bool sleepingAllowed;
 
 
-		public PhysicsShape(BodyType bodyType = BodyType.Static, object tag = null, bool ignoreGravity = false)
+		public PhysicsShape(BodyType bodyType = BodyType.Static, object tag = null, bool ignoreGravity = false, bool sleepingAllowed = true)
 		{
 			this.bodyType = bodyType;
 			this.tag = tag;
 			this.ignoreGravity = ignoreGravity;
+			this.sleepingAllowed = sleepingAllowed;
 		}
 
 		public override void EarlyInitialize()
@@ -21,6 +23,7 @@ namespace VeiniaFramework
 			body = Globals.physicsWorld.CreateBody(bodyType: bodyType);
 			body.Tag = tag;
 			body.IgnoreGravity = ignoreGravity;
+			body.SleepingAllowed = sleepingAllowed;
 
 			MakeShape();
 		}
