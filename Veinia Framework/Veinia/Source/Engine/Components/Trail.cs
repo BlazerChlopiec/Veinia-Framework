@@ -38,7 +38,7 @@ namespace VeiniaFramework
 
 		private bool _setWorldViewProjection;
 
-		public Trail(float segmentLength, int segments, float width, Color? color = null, Effect effect = null, float z = 0, bool setWorldViewProjection = false)
+		public Trail(float segmentLength = .2f, int segments = 20, float width = .4f, Color? color = null, Effect effect = null, float z = 0, bool setWorldViewProjection = false)
 		{
 			_segmentLength = segmentLength * Transform.unitSize;
 			_segments = segments;
