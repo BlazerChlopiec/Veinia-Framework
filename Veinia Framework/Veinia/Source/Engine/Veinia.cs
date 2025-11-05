@@ -133,27 +133,35 @@ namespace VeiniaFramework
 			#region Debug
 #if DEBUG
 			if (Globals.input.GetKeyDown(Keys.Tab))
-			{
-				if (Globals.loader.current is EditorScene)
-				{
-					isEditor = false;
-					var editorScene = (EditorScene)Globals.loader.current;
-					dynamic editedLevelInstance = Activator.CreateInstance(editorScene.editedSceneType);
-					editedLevelInstance.levelPath = editorScene.levelPath;
-					Convert.ChangeType(editedLevelInstance, editorScene.editedSceneType);
-					Globals.loader.DynamicalyLoad(editedLevelInstance);
-				}
-				else if (Globals.loader.current == null) EditorScene.ErrorWindow("Warning", "Aborting Editor! No level! Use Globals.loader.DynamicalyLoad() after Veinia.Initialize()!");
-				else
-				{
-					isEditor = true;
-					if (!game.IsMouseVisible) game.IsMouseVisible = true;
-
-					Globals.loader.DynamicalyLoad(new EditorScene(Globals.loader.current.levelPath, Globals.loader.current.GetType()));
-				}
-			}
+				ToggleEditor(Globals.loader.current);
 #endif
 			#endregion
+		}
+
+		public void ToggleEditor(Level level)
+		{
+			if (level == null)
+			{
+				EditorScene.ErrorWindow("Warning", "Aborting Editor! No level! Use Globals.loader.DynamicalyLoad() after Veinia.Initialize()!");
+				return;
+			}
+
+			if (level is EditorScene)
+			{
+				isEditor = false;
+				var editorScene = (EditorScene)Globals.loader.current;
+				dynamic editedLevelInstance = Activator.CreateInstance(editorScene.editedSceneType);
+				editedLevelInstance.levelPath = editorScene.levelPath;
+				Convert.ChangeType(editedLevelInstance, editorScene.editedSceneType);
+				Globals.loader.DynamicalyLoad(editedLevelInstance);
+			}
+			else
+			{
+				isEditor = true;
+				if (!game.IsMouseVisible) game.IsMouseVisible = true;
+
+				Globals.loader.DynamicalyLoad(new EditorScene(level.levelPath, level.GetType()));
+			}
 		}
 
 		public void Draw(SpriteBatch spriteBatch, SamplerState samplerState = null, BlendState blendState = null)

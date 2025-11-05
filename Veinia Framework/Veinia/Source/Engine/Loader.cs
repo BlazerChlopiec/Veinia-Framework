@@ -100,6 +100,14 @@ namespace VeiniaFramework
 					Say.Line("There is no more stored levels! index: " + index);
 			}
 		}
+
+		public void AddStoredLevel(Level level)
+		{
+			storedLevels.Add(new StoredLevel(
+				level.levelPath,
+				level.GetType()
+			));
+		}
 	}
 
 	public class StoredLevel
