@@ -13,7 +13,7 @@ namespace VeiniaFramework.Editor
 			var panel = new Panel();
 			var window = new Window
 			{
-				Title = "Editor Manager",
+				Title = level.levelPath,
 				Content = panel,
 				VerticalAlignment = VerticalAlignment.Bottom,
 				HorizontalAlignment = HorizontalAlignment.Center,
