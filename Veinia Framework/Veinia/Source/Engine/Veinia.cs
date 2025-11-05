@@ -138,21 +138,23 @@ namespace VeiniaFramework
 			#endregion
 		}
 
-		public void ToggleEditor(Level level)
+		public void ToggleEditor(Level level = null)
 		{
-			if (level == null)
-			{
-				EditorScene.ErrorWindow("Warning", "Aborting Editor! No level! Use Globals.loader.DynamicalyLoad() after Veinia.Initialize()!");
-				return;
-			}
-
 			if (level is EditorScene)
 			{
 				isEditor = false;
+
 				var editorScene = (EditorScene)Globals.loader.current;
-				dynamic editedLevelInstance = Activator.CreateInstance(editorScene.editedSceneType);
+
+				if (editorScene.editedSceneType == null)
+				{
+					EditorScene.ErrorWindow("Warning", "Cant play! No level loaded! Use Globals.loader.DynamicalyLoad() after Veinia.Initialize() or Globals.loader.AddStoredLevels()");
+					return;
+				}
+
+				var editedLevelInstance = (Level)Activator.CreateInstance(editorScene.editedSceneType);
 				editedLevelInstance.levelPath = editorScene.levelPath;
-				Convert.ChangeType(editedLevelInstance, editorScene.editedSceneType);
+
 				Globals.loader.DynamicalyLoad(editedLevelInstance);
 			}
 			else
@@ -160,7 +162,8 @@ namespace VeiniaFramework
 				isEditor = true;
 				if (!game.IsMouseVisible) game.IsMouseVisible = true;
 
-				Globals.loader.DynamicalyLoad(new EditorScene(level.levelPath, level.GetType()));
+				var editorScene = new EditorScene(level != null ? level.levelPath : null, level?.GetType());
+				Globals.loader.DynamicalyLoad(editorScene);
 			}
 		}
 
