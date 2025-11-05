@@ -53,7 +53,7 @@ namespace VeiniaFramework
 					body.Position = value;
 			}
 		}
-		Vector2 localPosition { get; set; }
+		[Browsable(false)] public Vector2 localPosition { get; private set; }
 
 
 		public float rotation
@@ -92,7 +92,7 @@ namespace VeiniaFramework
 					body.Rotation = MathHelper.ToRadians(-value);
 			}
 		}
-		float localRotation { get; set; }
+		[Browsable(false)] public float localRotation { get; private set; }
 
 
 		public Vector2 scale
@@ -109,7 +109,7 @@ namespace VeiniaFramework
 			}
 		}
 
-		Vector2 localScale { get; set; } = Vector2.One;
+		[Browsable(false)] public Vector2 localScale { get; private set; } = Vector2.One;
 
 		public float Z { get; set; }
 
@@ -181,6 +181,10 @@ namespace VeiniaFramework
 		{
 			if (this.parent != null) RemoveParent();
 
+			localRotation = rotation - parent.rotation;
+			localPosition = (position - parent.position).RotateAround(Vector2.Zero, -parent.rotation);
+			localScale = scale / parent.scale;
+
 			this.parent = parent;
 			parent.children.Add(this);
 		}
@@ -189,9 +193,12 @@ namespace VeiniaFramework
 		{
 			if (parent == null) throw new Exception("RemoveParent() - No Parent Found!");
 
-			parent.children.Remove(parent);
+			parent.children.Remove(this);
 
+			localRotation = rotation;
 			localPosition = position;
+			localScale = scale;
+
 			parent = null;
 		}
 	}
