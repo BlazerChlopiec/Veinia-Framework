@@ -66,7 +66,7 @@ namespace VeiniaFramework
 
 			vertices = new TrailVertex[_segments * 2];
 
-
+			Update(); // make sure to update before draw
 			FillIndexBuffer();
 		}
 
