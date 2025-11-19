@@ -148,7 +148,7 @@ namespace VeiniaFramework
 
 				if (editorScene.editedSceneType == null)
 				{
-					EditorScene.ErrorWindow("Warning", "Cant play! No level loaded! Use Globals.loader.DynamicalyLoad() after Veinia.Initialize() or Globals.loader.AddStoredLevels()");
+					EditorScene.ErrorWindow("Warning", "Cant play! No level type loaded! Use Globals.loader.DynamicalyLoad() after Veinia.Initialize() or Globals.loader.AddStoredLevels()");
 					return;
 				}
 
