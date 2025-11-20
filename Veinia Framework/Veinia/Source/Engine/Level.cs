@@ -5,7 +5,6 @@ using Myra.Graphics2D.UI;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using tainicom.Aether.Physics2D.Dynamics;
 using VeiniaFramework.Editor;
 
@@ -299,6 +298,10 @@ namespace VeiniaFramework
 				{
 					if (!component.isEnabled) continue;
 					component.EarlyInitialize();
+				}
+				foreach (var component in gameObject.components.ToArray())
+				{
+					if (!component.isEnabled) continue;
 					component.Initialize();
 				}
 
