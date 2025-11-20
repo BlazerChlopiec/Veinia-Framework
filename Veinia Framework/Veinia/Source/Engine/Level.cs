@@ -85,7 +85,7 @@ namespace VeiniaFramework
 
 			if (firstFrameCreated && sample.dontDestroyOnLoad) sample.dontDestroyOnLoadInitializedBefore = true;
 
-			foreach (var item in sample.components)
+			foreach (var item in sample.components.ToArray())
 			{
 				item.gameObject = sample;
 				item.transform = sample.transform;
@@ -95,8 +95,8 @@ namespace VeiniaFramework
 					item.EarlyInitialize();
 			}
 
-			foreach (var item in sample.components)
-				if (firstFrameCreated)
+			if (firstFrameCreated)
+				foreach (var item in sample.components.ToArray())
 					item.Initialize();
 
 			scene.Add(sample);
@@ -112,7 +112,7 @@ namespace VeiniaFramework
 
 			if (firstFrameCreated && sample.dontDestroyOnLoad) sample.dontDestroyOnLoadInitializedBefore = true;
 
-			foreach (var item in sample.components)
+			foreach (var item in sample.components.ToArray())
 			{
 				item.gameObject = sample;
 				item.transform = sample.transform;
@@ -122,8 +122,8 @@ namespace VeiniaFramework
 					item.EarlyInitialize();
 			}
 
-			foreach (var item in sample.components)
-				if (firstFrameCreated)
+			if (firstFrameCreated)
+				foreach (var item in sample.components.ToArray())
 					item.Initialize();
 
 			scene.Add(sample);
@@ -138,7 +138,7 @@ namespace VeiniaFramework
 
 			if (firstFrameCreated && sample.dontDestroyOnLoad) sample.dontDestroyOnLoadInitializedBefore = true;
 
-			foreach (var item in sample.components)
+			foreach (var item in sample.components.ToArray())
 			{
 				item.gameObject = sample;
 				item.transform = sample.transform;
@@ -148,8 +148,8 @@ namespace VeiniaFramework
 					item.EarlyInitialize();
 			}
 
-			foreach (var item in sample.components)
-				if (firstFrameCreated)
+			if (firstFrameCreated)
+				foreach (var item in sample.components.ToArray())
 					item.Initialize();
 
 			scene.Add(sample);

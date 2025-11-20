@@ -110,7 +110,11 @@ namespace VeiniaFramework
 			compo.gameObject = this;
 			compo.transform = transform;
 			compo.level = level;
-			if (level.firstFrameCreated) compo.Initialize();
+			if (level.firstFrameCreated)
+			{
+				compo.EarlyInitialize();
+				compo.Initialize();
+			}
 
 			return compo;
 		}
