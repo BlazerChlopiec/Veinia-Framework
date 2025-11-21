@@ -52,7 +52,7 @@ You should now be able to compile and use ```Veinia-Framework```  in your projec
 For proper functionality, ensure that level files are copied to the output directory. This can be done by adding the following to your .csproj file: (Use the correct path)
 ```xml
 <ItemGroup>
-  <None Update="SampleLevel.veinia">
+  <None Update="LevelData\**\*">
     <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
   </None>
 </ItemGroup>
@@ -68,44 +68,48 @@ Initialization Example:
 var veinia = new Veinia((Game)this, graphics);
 var screen = new Screen(1280, 720, fullscreen: false)
 
-veinia.Initialize(GraphicsDevice, Content, Window, screen, unitSize: 100, Vector2.UnitY * -20);
+veinia.Initialize(GraphicsDevice, Content, Window, screen, unitSize: 100);
 
-Globals.loader.DynamicalyLoad(new Level("Level1.veinia"));
+Globals.loader.DynamicalyLoad(new ForestLevel("forest.veinia"));
 ```
 
-Custom Level Example (To Bring Up The Built-in Editor Press TAB While Playing a Level):
+Custom Level Example (To Bring Up The Built-in Editor Press TAB):
 ```csharp
 public class ForestLevel : Level
 {
-	public ForestLevel(string levelPath) : base(levelPath)
-	{
-	}
+	public ForestLevel() { }
+	public ForestLevel(string levelPath) : base(levelPath) { }
 
 	public override void CreateScene(bool loadObjectsFromPath = true)
 	{
 		base.CreateScene(loadObjectsFromPath);
 
-		var player = Instantiate(new Transform(Vector2.Zero), new List<Component>
+		var player = Instantiate(new Transform { Z = 1 }, new List<Component>
 		{
-			new Sprite("Sprites/Player", layer: 0, Color.Green, pixelsPerUnit: 200),
-			new Movement()
+			new Sprite("Shape/Square", Color.Green),
+			new PhysicsRectangle(bodyType: BodyType.Dynamic),
+			new Movement(),
 		}, isStatic: false);
-
-		player.body = Globals.physicsWorld.CreateRectangle(width: 300, height: 100, density: 1, bodyType: BodyType.Dynamic);
 	}
 }
 ```
 
 Custom Component Example:
 ```csharp
-public class Movement : Component
+public class Movement : Component, IDrawn
 {
 	private float speed = 10;
 
 	public override void Update()
 	{
-		var movement = new Vector2(Globals.input.horizontal, Globals.input.vertical) * speed;
-		body.LinearVelocity += movement;
+		Vector2 direction = new Vector2(Globals.input.horizontal, Globals.input.vertical);
+		body.LinearVelocity += direction * speed * Time.deltaTime;
+	}
+
+	public void Draw(SpriteBatch sb)
+	{
+		// debug draw current velocity
+		sb.VeiniaTextWorld(level, transform.position, body.LinearVelocity.ToString());
 	}
 }
 ```
