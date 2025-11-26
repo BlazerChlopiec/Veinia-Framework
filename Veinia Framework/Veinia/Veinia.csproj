@@ -19,7 +19,7 @@
 		<EmbeddedResource Include="Icon.bmp" />
 	</ItemGroup>
 	<ItemGroup>
-		<MonoGameContentReference Include="Source\Editor\Content\Content.mgcb" />
+		<MonoGameContentReference Include="Source\Content\Content.mgcb" />
 	</ItemGroup>
 	<ItemGroup>
 		<TrimmerRootAssembly Include="Microsoft.Xna.Framework.Content.ContentTypeReader" Visible="false" />
