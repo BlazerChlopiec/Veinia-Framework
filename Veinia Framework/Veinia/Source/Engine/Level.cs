@@ -21,7 +21,7 @@ namespace VeiniaFramework
 		/// scene list made for iterating and calling methods (Update, Draw, etc.)
 		/// </summary>
 		public List<GameObject> activeScene = new List<GameObject>();
-		public float frustumCullTime = .5f;
+		public float frustumCullTime = .25f;
 		public float frustumBoundsScale = 2.5f;
 
 		public bool firstFrameCreated { get; private set; }
@@ -88,80 +88,37 @@ namespace VeiniaFramework
 		{
 			var sampleBody = body == null ? null : body.DeepClone();
 			if (sampleBody != null) sampleBody.Enabled = true;
+
 			GameObject sample = new GameObject(transform, components, sampleBody, customData, isStatic, dontDestroyOnLoad);
 			sample.level = this;
 
-			if (firstFrameCreated && sample.dontDestroyOnLoad) sample.dontDestroyOnLoadInitializedBefore = true;
-
-			foreach (var item in sample.components.ToArray())
+			for (int i = 0; i < sample.components.Count; i++)
 			{
-				item.gameObject = sample;
-				item.transform = sample.transform;
-				item.level = sample.level;
+				var comp = sample.components[i];
 
-				if (firstFrameCreated)
-					item.EarlyInitialize();
+				comp.gameObject = sample;
+				comp.transform = sample.transform;
+				comp.level = sample.level;
 			}
 
 			if (firstFrameCreated)
-				foreach (var item in sample.components.ToArray())
-					item.Initialize();
+			{
+				sample.EarlyInitialize();
+				sample.Initialize();
+
+				if (sample.dontDestroyOnLoad) sample.dontDestroyOnLoadInitializedBefore = true;
+			}
 
 			scene.Add(sample);
 			return sample;
 		}
 		public GameObject Instantiate(Transform transform, GameObject prefab)
 		{
-			var sampleBody = prefab.body == null ? null : prefab.body.DeepClone();
-			if (sampleBody != null) sampleBody.Enabled = true;
-			GameObject sample = new GameObject(transform, prefab.components.Clone(), sampleBody, prefab.customData, prefab.isStatic, prefab.dontDestroyOnLoad);
-			sample.level = this;
-			sample.customData = prefab.customData;
-
-			if (firstFrameCreated && sample.dontDestroyOnLoad) sample.dontDestroyOnLoadInitializedBefore = true;
-
-			foreach (var item in sample.components.ToArray())
-			{
-				item.gameObject = sample;
-				item.transform = sample.transform;
-				item.level = sample.level;
-
-				if (firstFrameCreated)
-					item.EarlyInitialize();
-			}
-
-			if (firstFrameCreated)
-				foreach (var item in sample.components.ToArray())
-					item.Initialize();
-
-			scene.Add(sample);
-			return sample;
+			return Instantiate(transform, prefab.components.Clone(), prefab.body == null ? null : prefab.body.DeepClone(), prefab.customData, prefab.isStatic, prefab.dontDestroyOnLoad);
 		}
 		public GameObject Instantiate(GameObject prefab)
 		{
-			var sampleBody = prefab.body == null ? null : prefab.body.DeepClone();
-			if (sampleBody != null) sampleBody.Enabled = true;
-			GameObject sample = new GameObject((Transform)prefab.transform.Clone(), prefab.components.Clone(), sampleBody, prefab.customData, prefab.isStatic, prefab.dontDestroyOnLoad);
-			sample.level = this;
-
-			if (firstFrameCreated && sample.dontDestroyOnLoad) sample.dontDestroyOnLoadInitializedBefore = true;
-
-			foreach (var item in sample.components.ToArray())
-			{
-				item.gameObject = sample;
-				item.transform = sample.transform;
-				item.level = sample.level;
-
-				if (firstFrameCreated)
-					item.EarlyInitialize();
-			}
-
-			if (firstFrameCreated)
-				foreach (var item in sample.components.ToArray())
-					item.Initialize();
-
-			scene.Add(sample);
-			return sample;
+			return Instantiate((Transform)prefab.transform.Clone(), prefab.components, prefab.body == null ? null : prefab.body.DeepClone(), prefab.customData, prefab.isStatic, prefab.dontDestroyOnLoad);
 		}
 
 		/// <summary>
