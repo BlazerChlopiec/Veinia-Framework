@@ -283,6 +283,21 @@ namespace VeiniaFramework
 		}
 
 		/// <summary>
+		/// Unloads current level
+		/// </summary>
+		public virtual void Unload()
+		{
+			firstFrameCreated = false;
+
+			foreach (var obj in scene.ToArray())
+			{
+				if (!obj.dontDestroyOnLoad)
+					obj.DestroyGameObject();
+			}
+			Globals.physicsWorld.Clear();
+		}
+
+		/// <summary>
 		/// Finds a component in the scene.
 		/// </summary>
 		public T1 FindComponentOfType<T1>() where T1 : Component
@@ -400,18 +415,6 @@ namespace VeiniaFramework
 			}
 
 			return returnVal;
-		}
-
-		public virtual void Unload()
-		{
-			firstFrameCreated = false;
-
-			for (int i = 0; i < scene.Count; i++)
-			{
-				if (!scene[i].dontDestroyOnLoad)
-					scene[i].DestroyGameObject();
-			}
-			Globals.physicsWorld.Clear();
 		}
 	}
 }
