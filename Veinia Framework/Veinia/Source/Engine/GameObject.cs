@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -61,6 +62,55 @@ namespace VeiniaFramework
 
 			components.Remove(components.Find(x => x is Transform)); // remove transform to make sure there aren't two transforms (prefab case)
 			components.Add(transform); // the transform is added afterwards to components to ensure the gameobject having a transform
+		}
+
+		public void EarlyInitialize()
+		{
+			for (int i = 0; i < components.Count; i++)
+			{
+				if (!components[i].isEnabled) continue;
+				components[i].EarlyInitialize();
+			}
+		}
+
+		public void Initialize()
+		{
+			for (int i = 0; i < components.Count; i++)
+			{
+				if (!components[i].isEnabled) continue;
+				components[i].Initialize();
+			}
+		}
+
+		public void Update()
+		{
+			for (int i = 0; i < components.Count; i++)
+			{
+				if (!components[i].isEnabled) continue;
+				components[i].Update();
+			}
+		}
+
+		public void LateUpdate()
+		{
+			for (int i = 0; i < components.Count; i++)
+			{
+				if (!components[i].isEnabled) continue;
+				components[i].LateUpdate();
+			}
+		}
+
+		public void Draw(SpriteBatch sb)
+		{
+			for (int i = 0; i < components.Count; i++)
+			{
+				if (!components[i].isEnabled) continue;
+				if (components[i] is IDrawn)
+				{
+					IDrawn drawn = (IDrawn)components[i];
+					drawn.Draw(sb); // makes drawCommands
+				}
+			}
 		}
 
 		public List<T1> GetAllComponents<T1>() where T1 : Component

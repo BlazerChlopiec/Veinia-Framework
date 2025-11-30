@@ -106,8 +106,13 @@ namespace VeiniaFramework
 
 				Globals.physicsWorld.Step(Time.deltaTime);
 
-				Globals.loader.current?.Update();
-				Globals.loader.current?.LateUpdate();
+				var level = Globals.loader.current;
+				if (level != null)
+				{
+					level.AssignActiveScene();
+					level.Update();
+					level.LateUpdate();
+				}
 
 				Globals.particleWorld.Update();
 

@@ -13,9 +13,17 @@ namespace VeiniaFramework
 	public class Level
 	{
 		/// <summary>
-		/// scene list made for iterating and calling methods (Update, Draw, etc.)
+		/// scene list made for all gameObjects
 		/// </summary>
 		public List<GameObject> scene = new List<GameObject>();
+
+		/// <summary>
+		/// scene list made for iterating and calling methods (Update, Draw, etc.)
+		/// </summary>
+		public List<GameObject> activeScene = new List<GameObject>();
+		public float frustumCullTime = .5f;
+		public float frustumBoundsScale = 2.5f;
+
 		public bool firstFrameCreated { get; private set; }
 
 
@@ -161,6 +169,162 @@ namespace VeiniaFramework
 		/// </summary>
 		public void Remove(GameObject target) => scene.Remove(target);
 
+
+		/// <summary>
+		/// Initializes components in the first frame (this is used to make sure all objects are created before Initialize() as it may contain FindObjectsOfType<>)
+		/// </summary>
+		public void InitializeComponentsFirstFrame()
+		{
+			firstFrameCreated = true;
+
+			for (int i = 0; i < scene.Count; i++)
+			{
+				var obj = scene[i];
+
+				if (!obj.isEnabled || obj.dontDestroyOnLoadInitializedBefore) continue;
+
+				obj.EarlyInitialize();
+				obj.Initialize();
+
+				if (obj.dontDestroyOnLoad) obj.dontDestroyOnLoadInitializedBefore = true;
+			}
+		}
+
+		/// <summary>
+		/// Assigns which objects should be queued for method calls in a frame
+		/// </summary>
+		public void AssignActiveScene()
+		{
+			activeScene.Clear();
+
+			for (int i = 0; i < scene.Count; i++)
+			{
+				var obj = scene[i];
+
+				if (!obj.isEnabled) continue;
+				if (obj.frustumCulled && obj.isStatic) continue;
+
+				activeScene.Add(obj);
+			}
+		}
+
+		/// <summary>
+		/// Culls objects based on the frustum bounds for performance
+		/// </summary>
+		public void FrustumCulling()
+		{
+			var frustum = Globals.camera.GetBoundingFrustum(frustumBoundsScale);
+
+			for (int i = 0; i < scene.Count; i++)
+			{
+				var cull = frustum.Contains(scene[i].transform.screenPos.ToVector3()) == ContainmentType.Disjoint;
+				scene[i].frustumCulled = cull;
+			}
+		}
+
+		/// <summary>
+		/// Updates components in the current scene.
+		/// </summary>
+		public virtual void Update()
+		{
+			if (Timers.IsUp("frustumCull"))
+			{
+				FrustumCulling();
+				Timers.New("frustumCull", frustumCullTime);
+			}
+
+			for (int i = 0; i < activeScene.Count; i++)
+			{
+				activeScene[i].Update();
+			}
+		}
+
+		/// <summary>
+		/// Updates components in the current scene after the normal update.
+		/// </summary>
+		public virtual void LateUpdate()
+		{
+			for (int i = 0; i < activeScene.Count; i++)
+			{
+				activeScene[i].LateUpdate();
+			}
+		}
+
+		/// <summary>
+		/// Draws the components in the current scene.
+		/// </summary>
+		public List<DrawCommand> drawCommands = new List<DrawCommand>();
+		public void Draw(SpriteBatch sb, SamplerState samplerState = null, BlendState blendState = null, Matrix? transformMatrix = null)
+		{
+			for (int i = 0; i < activeScene.Count; i++)
+			{
+				activeScene[i].Draw(sb);
+			}
+
+			Globals.particleWorld.Draw(sb, this); // makes drawCommands
+
+			drawCommands.Sort((a, b) =>
+			{
+				// compare by z
+				int zCompare = a.Z.CompareTo(b.Z);
+				if (zCompare != 0)
+					return zCompare;
+
+				// if z the same - compare by shaders (grouping shaders together to avoid more Begin())
+				if (a.shader == b.shader)
+					return 0;
+				if (a.shader == null)
+					return -1;
+				if (b.shader == null)
+					return 1;
+
+				return a.shader.GetHashCode().CompareTo(b.shader.GetHashCode());
+			});
+
+
+			DrawCommand prevCommand = default;
+			bool beginCalled = false;
+			int begins = 0;
+
+			foreach (var cmd in drawCommands)
+			{
+				var targetBlendState = cmd.blendState == null ? blendState : cmd.blendState;
+
+				if (cmd.shader != prevCommand.shader && beginCalled // if new shader
+				 || cmd.blendState != prevCommand.blendState && beginCalled // or new BlendState
+				 || cmd.drawWithoutSpriteBatch && beginCalled) // or using DrawUserPrimitives()
+				{
+					sb.End();
+					beginCalled = false;
+				}
+				if (!beginCalled && !cmd.drawWithoutSpriteBatch)
+				{
+					begins++;
+					sb.Begin(SpriteSortMode.Deferred, targetBlendState, samplerState, effect: cmd.shader, transformMatrix: transformMatrix);
+					beginCalled = true;
+				}
+
+				if (cmd.drawWithoutSpriteBatch && targetBlendState != null)
+				{
+					// blendState for drawing with DrawUserPrimitives
+					Globals.graphicsDevice.BlendState = targetBlendState;
+				}
+
+				prevCommand = cmd;
+				cmd.command.Invoke();
+			}
+
+			drawCommands.Clear();
+
+			if (beginCalled)
+			{
+				sb.End();
+				beginCalled = false;
+			}
+
+			Title.Add(begins, " - SpriteBatch Begins", 5);
+		}
+
 		/// <summary>
 		/// Finds a component in the scene.
 		/// </summary>
@@ -255,7 +419,6 @@ namespace VeiniaFramework
 			return returnVal;
 		}
 
-
 		/// <summary>
 		/// Finds component in the scene by customData
 		/// </summary>
@@ -282,164 +445,14 @@ namespace VeiniaFramework
 			return returnVal;
 		}
 
-
-		/// <summary>
-		/// Initializes components in the first frame (this is used to make sure all objects are created before Initialize() as it may contain FindObjectsOfType<>)
-		/// </summary>
-		public void InitializeComponentsFirstFrame()
-		{
-			firstFrameCreated = true;
-
-			foreach (var gameObject in scene.ToArray())
-			{
-				if (!gameObject.isEnabled || gameObject.dontDestroyOnLoadInitializedBefore) continue;
-
-				foreach (var component in gameObject.components.ToArray())
-				{
-					if (!component.isEnabled) continue;
-					component.EarlyInitialize();
-				}
-				foreach (var component in gameObject.components.ToArray())
-				{
-					if (!component.isEnabled) continue;
-					component.Initialize();
-				}
-
-				if (gameObject.dontDestroyOnLoad) gameObject.dontDestroyOnLoadInitializedBefore = true;
-			}
-		}
-
-		/// <summary>
-		/// Updates components in the current scene.
-		/// </summary>
-		public virtual void Update()
-		{
-			foreach (var gameObject in scene.ToArray())
-			{
-				if (!gameObject.isEnabled) continue;
-
-				if (gameObject.frustumCulled && gameObject.isStatic) continue;
-
-				foreach (var component in gameObject.components.ToArray())
-				{
-					if (!component.isEnabled) continue;
-					component.Update();
-				}
-			}
-		}
-
-		/// <summary>
-		/// Updates components in the current scene after the normal update.
-		/// </summary>
-		public virtual void LateUpdate()
-		{
-			foreach (var gameObject in scene.ToArray())
-			{
-				if (!gameObject.isEnabled) continue;
-
-				if (gameObject.frustumCulled && gameObject.isStatic) continue;
-
-				foreach (var component in gameObject.components.ToArray())
-				{
-					if (!component.isEnabled) continue;
-					component.LateUpdate();
-				}
-			}
-		}
-
-		/// <summary>
-		/// Draws the components in the current scene.
-		/// </summary>
-		public List<DrawCommand> drawCommands = new List<DrawCommand>();
-		public void Draw(SpriteBatch sb, SamplerState samplerState = null, BlendState blendState = null, Matrix? transformMatrix = null)
-		{
-			foreach (var gameObject in scene)
-			{
-				if (!gameObject.isEnabled) continue;
-				if (gameObject.frustumCulled && gameObject.isStatic) continue;
-
-				foreach (var component in gameObject.components)
-				{
-					if (!component.isEnabled) continue;
-					if (component is IDrawn)
-					{
-						IDrawn drawn = (IDrawn)component;
-						drawn.Draw(sb); // makes drawCommands
-					}
-				}
-			}
-			Globals.particleWorld.Draw(sb, this); // makes drawCommands
-
-			drawCommands.Sort((a, b) =>
-			{
-				// compare by z
-				int zCompare = a.Z.CompareTo(b.Z);
-				if (zCompare != 0)
-					return zCompare;
-
-				// if z the same - compare by shaders (grouping shaders together to avoid more Begin())
-				if (a.shader == b.shader)
-					return 0;
-				if (a.shader == null)
-					return -1;
-				if (b.shader == null)
-					return 1;
-
-				return a.shader.GetHashCode().CompareTo(b.shader.GetHashCode());
-			});
-
-
-			DrawCommand prevCommand = default;
-			bool beginCalled = false;
-			int begins = 0;
-
-			foreach (var cmd in drawCommands)
-			{
-				var targetBlendState = cmd.blendState == null ? blendState : cmd.blendState;
-
-				if (cmd.shader != prevCommand.shader && beginCalled // if new shader
-				 || cmd.blendState != prevCommand.blendState && beginCalled // or new BlendState
-				 || cmd.drawWithoutSpriteBatch && beginCalled) // or using DrawUserPrimitives()
-				{
-					sb.End();
-					beginCalled = false;
-				}
-				if (!beginCalled && !cmd.drawWithoutSpriteBatch)
-				{
-					begins++;
-					sb.Begin(SpriteSortMode.Deferred, targetBlendState, samplerState, effect: cmd.shader, transformMatrix: transformMatrix);
-					beginCalled = true;
-				}
-
-				if (cmd.drawWithoutSpriteBatch && targetBlendState != null)
-				{
-					// blendState for drawing with DrawUserPrimitives
-					Globals.graphicsDevice.BlendState = targetBlendState;
-				}
-
-				prevCommand = cmd;
-				cmd.command.Invoke();
-			}
-
-			drawCommands.Clear();
-
-			if (beginCalled)
-			{
-				sb.End();
-				beginCalled = false;
-			}
-
-			Title.Add(begins, " - SpriteBatch Begins", 5);
-		}
-
 		public virtual void Unload()
 		{
 			firstFrameCreated = false;
 
-			foreach (var item in scene.ToArray())
+			for (int i = 0; i < scene.Count; i++)
 			{
-				if (!item.dontDestroyOnLoad)
-					item.DestroyGameObject();
+				if (!scene[i].dontDestroyOnLoad)
+					scene[i].DestroyGameObject();
 			}
 			Globals.physicsWorld.Clear();
 		}
