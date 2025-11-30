@@ -18,9 +18,11 @@ namespace VeiniaFramework
 		{
 			if (sound == null) return;
 
-			sound.soundEffect.Play(sound.volume * MasterVolume,
-								   sound.uniqueModifier ? sound.pitch + Globals.random.NextFloat(-.15f, .15f) : sound.pitch,
-								   pan: 0);
+			var pitch = sound.uniqueModifier ?
+						MathHelper.Clamp(sound.pitch + Globals.random.NextFloat(-.15f, .15f), -1, 1) :
+						MathHelper.Clamp(sound.pitch, -1, 1);
+
+			sound.soundEffect.Play(sound.volume * MasterVolume, pitch, pan: 0);
 		}
 
 		public static void Play(Music music)
@@ -31,30 +33,46 @@ namespace VeiniaFramework
 			MediaPlayer.IsRepeating = music.loop;
 			MediaPlayer.Play(music.song);
 		}
+
+		public static void StopMusic() => MediaPlayer.Stop();
 	}
 
 	public class Sound
 	{
-		public string path;
-
-		public SoundEffect soundEffect => Globals.content.Load<SoundEffect>(path);
+		public SoundEffect soundEffect;
 
 		public float volume = 1f;
 		public float pitch;
 
 		// adds a unique pitch offset to each sound - Random(-.15f, .15f)
 		public bool uniqueModifier;
+
+		public Sound(string path, float volume = 1f, float pitch = 0f, bool uniqueModifier = false)
+		{
+			this.volume = volume;
+			this.pitch = pitch;
+			this.uniqueModifier = uniqueModifier;
+
+			if (path != null && path != string.Empty)
+				soundEffect = Globals.content.Load<SoundEffect>(path);
+		}
 	}
 
 
 	public class Music
 	{
-		public string path;
-
-		public Song song => Globals.content.Load<Song>(path);
-
-		public bool loop = true;
+		public Song song;
 
 		public float volume = 1f;
+		public bool loop;
+
+		public Music(string path, float volume = 1f, bool loop = true)
+		{
+			this.volume = volume;
+			this.loop = loop;
+
+			if (path != null && path != string.Empty)
+				song = Globals.content.Load<Song>(path);
+		}
 	}
 }

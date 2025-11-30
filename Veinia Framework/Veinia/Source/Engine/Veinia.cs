@@ -194,7 +194,7 @@ namespace VeiniaFramework
 				var view = Globals.camera.VirtualViewport.Transform(
 					Matrix.CreateTranslation(-Globals.camera.X / Transform.unitSize, Globals.camera.Y / Transform.unitSize, 0f) *
 					Matrix.CreateRotationZ(-Globals.camera.Rotation) *
-					Matrix.CreateScale(Globals.camera.Scale, -Globals.camera.Scale, 1f) *
+					Matrix.CreateScale(1f / Globals.camera.Scale, 1f / -Globals.camera.Scale, 1f) *
 					Matrix.CreateScale(zScale, zScale, 1f) *
 					Matrix.CreateTranslation(new Vector3(Globals.camera.VirtualViewport.Origin, 0f)) *
 					Matrix.CreateTranslation(new Vector3(Globals.camera.shake.shakeOffset / Transform.unitSize, 0f)));

@@ -19,7 +19,7 @@
 		<EmbeddedResource Include="Icon.bmp" />
 	</ItemGroup>
 	<ItemGroup>
-		<MonoGameContentReference Include="Source\Editor\Content\Content.mgcb" />
+		<MonoGameContentReference Include="Source\Content\Content.mgcb" />
 	</ItemGroup>
 	<ItemGroup>
 		<TrimmerRootAssembly Include="Microsoft.Xna.Framework.Content.ContentTypeReader" Visible="false" />
@@ -39,20 +39,6 @@
 		<Reference Include="GeonBit.UI.DataTypes">
 			<HintPath>Source\Content\GeonBit.UI.DataTypes.dll</HintPath>
 		</Reference>
-	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Source\Libraries\MonoGame.Extended\BitmapFonts\" />
-	  <Folder Include="Source\Libraries\MonoGame.Extended\Collections\" />
-	  <Folder Include="Source\Libraries\MonoGame.Extended\Content\" />
-	  <Folder Include="Source\Libraries\MonoGame.Extended\Math\Triangulation\" />
-	  <Folder Include="Source\Libraries\MonoGame.Extended\Screens\Transitions\" />
-	  <Folder Include="Source\Libraries\MonoGame.Extended\Serialization\" />
-	  <Folder Include="Source\Libraries\MonoGame.Extended\Shapes\" />
-	  <Folder Include="Source\Libraries\MonoGame.Extended\Sprites\" />
-	  <Folder Include="Source\Libraries\MonoGame.Extended\TextureAtlases\" />
-	  <Folder Include="Source\Libraries\MonoGame.Extended\Timers\" />
-	  <Folder Include="Source\Libraries\MonoGame.Extended\VectorDraw\" />
-	  <Folder Include="Source\Libraries\MonoGame.Extended\ViewportAdapters\" />
 	</ItemGroup>
 	<Target Name="RestoreDotnetTools" BeforeTargets="Restore">
 		<Message Text="Restoring dotnet tools" Importance="High" />

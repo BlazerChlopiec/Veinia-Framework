@@ -108,10 +108,23 @@ namespace VeiniaFramework
 				else localScale = value / parent.scale;
 			}
 		}
-
 		[Browsable(false)] public Vector2 localScale { get; private set; } = Vector2.One;
 
-		public float Z { get; set; }
+		public float Z
+		{
+			get
+			{
+				if (parent == null) return localZ;
+				return localZ + parent.Z;
+			}
+
+			set
+			{
+				if (parent == null) localZ = value;
+				else localZ = value + parent.Z;
+			}
+		}
+		[Browsable(false)] public float localZ { get; private set; }
 
 		public Vector2 screenPos => Transform.WorldToScreenPos(position);
 		public Vector2 up => new Vector2((float)MathF.Cos(MathHelper.ToRadians(rotation - 90)), -(float)MathF.Sin(MathHelper.ToRadians(rotation - 90)));
@@ -177,13 +190,17 @@ namespace VeiniaFramework
 			transform.position = transform.position.RotateAround(origin, rotation);
 		}
 
-		public void SetParent(Transform parent)
+		public void SetParent(Transform parent, bool worldPositionStays = true)
 		{
 			if (this.parent != null) RemoveParent();
 
-			localRotation = rotation - parent.rotation;
-			localPosition = (position - parent.position).RotateAround(Vector2.Zero, -parent.rotation) / parent.scale;
-			localScale = scale / parent.scale;
+			if (worldPositionStays)
+			{
+				localRotation = rotation - parent.rotation;
+				localPosition = (position - parent.position).RotateAround(Vector2.Zero, -parent.rotation) / parent.scale;
+				localScale = scale / parent.scale;
+				localZ = Z - parent.Z;
+			}
 
 			this.parent = parent;
 			parent.children.Add(this);
@@ -198,6 +215,7 @@ namespace VeiniaFramework
 			localRotation = rotation;
 			localPosition = position;
 			localScale = scale;
+			localZ = Z;
 
 			parent = null;
 		}
