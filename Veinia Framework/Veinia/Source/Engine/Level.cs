@@ -21,8 +21,6 @@ namespace VeiniaFramework
 		/// scene list made for iterating and calling methods (Update, Draw, etc.)
 		/// </summary>
 		public List<GameObject> activeScene = new List<GameObject>();
-		public float frustumCullTime = .25f;
-		public float frustumBoundsScale = 2.5f;
 
 		public bool firstFrameCreated { get; private set; }
 
@@ -166,30 +164,10 @@ namespace VeiniaFramework
 		}
 
 		/// <summary>
-		/// Culls objects based on the frustum bounds for performance
-		/// </summary>
-		public void FrustumCulling()
-		{
-			var frustum = Globals.camera.GetBoundingFrustum(frustumBoundsScale);
-
-			for (int i = 0; i < scene.Count; i++)
-			{
-				var cull = frustum.Contains(scene[i].transform.screenPos.ToVector3()) == ContainmentType.Disjoint;
-				scene[i].frustumCulled = cull;
-			}
-		}
-
-		/// <summary>
 		/// Updates objects in the current scene.
 		/// </summary>
 		public virtual void Update()
 		{
-			if (Timers.IsUp("frustumCull"))
-			{
-				FrustumCulling();
-				Timers.New("frustumCull", frustumCullTime);
-			}
-
 			for (int i = 0; i < activeScene.Count; i++)
 			{
 				activeScene[i].Update();
