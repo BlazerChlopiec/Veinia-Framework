@@ -25,9 +25,7 @@ namespace VeiniaFramework
 
 			storedLevelInstance.prefabManager = prefabManager;
 
-			NextFrame.actions.Add(LoadScene);
-
-			void LoadScene()
+			NextFrame.actions.Add(delegate
 			{
 				current?.Unload();
 				previous = current;
@@ -36,16 +34,14 @@ namespace VeiniaFramework
 				current = storedLevelInstance;
 				current.CreateScene();
 				current.InitializeComponentsFirstFrame();
-			}
+			});
 		}
 
 		public void DynamicalyLoad(Level level)
 		{
 			level.prefabManager = prefabManager;
 
-			NextFrame.actions.Add(LoadScene);
-
-			void LoadScene()
+			NextFrame.actions.Add(delegate
 			{
 				current?.Unload();
 				previous = current;
@@ -54,7 +50,7 @@ namespace VeiniaFramework
 				current = level;
 				current.CreateScene();
 				current.InitializeComponentsFirstFrame();
-			}
+			});
 		}
 
 		public int GetCurrentLevelIndex()
@@ -73,9 +69,7 @@ namespace VeiniaFramework
 
 		public void Reload()
 		{
-			NextFrame.actions.Add(ReloadScene);
-
-			void ReloadScene()
+			NextFrame.actions.Add(delegate
 			{
 				current.Unload();
 				previous = current;
@@ -84,7 +78,7 @@ namespace VeiniaFramework
 				current = previous;
 				current.CreateScene();
 				current.InitializeComponentsFirstFrame();
-			}
+			});
 		}
 
 		public void LoadNextStored()

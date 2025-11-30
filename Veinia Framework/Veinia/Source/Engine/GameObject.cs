@@ -46,7 +46,7 @@ namespace VeiniaFramework
 		public bool linkPhysicsRotationToTransform = true;
 
 		//if your object is dontDestroyOnLoad prevent initializing it on a new scene (initialize once only)
-		public bool dontDestroyOnLoadInitializedBefore;
+		public bool isInitialized;
 
 		private bool isDestroyed;
 

@@ -106,7 +106,7 @@ namespace VeiniaFramework
 				sample.EarlyInitialize();
 				sample.Initialize();
 
-				if (sample.dontDestroyOnLoad) sample.dontDestroyOnLoadInitializedBefore = true;
+				sample.isInitialized = true;
 			}
 
 			scene.Add(sample);
@@ -138,12 +138,12 @@ namespace VeiniaFramework
 			{
 				var obj = scene[i];
 
-				if (!obj.isEnabled || obj.dontDestroyOnLoadInitializedBefore) continue;
+				if (!obj.isEnabled || obj.isInitialized && obj.dontDestroyOnLoad) continue;
 
 				obj.EarlyInitialize();
 				obj.Initialize();
 
-				if (obj.dontDestroyOnLoad) obj.dontDestroyOnLoadInitializedBefore = true;
+				obj.isInitialized = true;
 			}
 		}
 
@@ -180,7 +180,7 @@ namespace VeiniaFramework
 		}
 
 		/// <summary>
-		/// Updates components in the current scene.
+		/// Updates objects in the current scene.
 		/// </summary>
 		public virtual void Update()
 		{
@@ -197,7 +197,7 @@ namespace VeiniaFramework
 		}
 
 		/// <summary>
-		/// Updates components in the current scene after the normal update.
+		/// Updates objects in the current scene after the normal update.
 		/// </summary>
 		public virtual void LateUpdate()
 		{
@@ -208,7 +208,7 @@ namespace VeiniaFramework
 		}
 
 		/// <summary>
-		/// Draws the components in the current scene.
+		/// Draws objects in the current scene.
 		/// </summary>
 		public List<DrawCommand> drawCommands = new List<DrawCommand>();
 		public void Draw(SpriteBatch sb, SamplerState samplerState = null, BlendState blendState = null, Matrix? transformMatrix = null)
