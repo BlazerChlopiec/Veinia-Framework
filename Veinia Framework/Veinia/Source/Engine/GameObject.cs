@@ -200,13 +200,21 @@ namespace VeiniaFramework
 			}
 		}
 
-		public void DestroyGameObject()
+		public void DestroyGameObject(bool destroyChildObjects = false)
 		{
 			if (isDestroyed) return;
 
-			NextFrame.actions.Add(Destroy);
-
 			level.Remove(this);
+
+			NextFrame.actions.Add(delegate
+			{
+				level = null;
+
+				components.Clear();
+				isDestroyed = true;
+				isStatic = false;
+				if (body != null && Globals.physicsWorld.BodyList.Contains(body)) Globals.physicsWorld.Remove(body);
+			});
 
 			foreach (var component in components)
 			{
@@ -217,14 +225,12 @@ namespace VeiniaFramework
 				}
 			}
 
-			void Destroy()
+			if (destroyChildObjects)
 			{
-				level = null; // remove local world
-
-				components.Clear();
-				isDestroyed = true;
-				isStatic = false;
-				if (body != null && Globals.physicsWorld.BodyList.Contains(body)) Globals.physicsWorld.Remove(body);
+				for (int i = 0; i < transform.children.Count; i++)
+				{
+					transform.children[i].DestroyGameObject(destroyChildObjects: true);
+				}
 			}
 		}
 	}
