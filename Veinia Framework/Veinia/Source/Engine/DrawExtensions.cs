@@ -21,7 +21,7 @@ namespace VeiniaFramework
 			});
 		}
 
-		public static void VeiniaTextWorld(this SpriteBatch sb, Level level, Vector2 position, string text, Color? color = null, float size = 1, float z = float.MaxValue)
+		public static void VeiniaTextWorld(this SpriteBatch sb, Level level, Vector2 position, string text, Color? color = null, float size = .5f, float z = float.MaxValue)
 		{
 			color = color ?? Color.White;
 			if (text == null || text == string.Empty) return;
