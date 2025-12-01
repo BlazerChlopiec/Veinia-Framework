@@ -118,10 +118,8 @@ namespace VeiniaFramework.Editor
 		public void Draw(SpriteBatch sb)
 		{
 			if (drawGizmos)
-				foreach (var item in editorObjects)
-				{
-					item.gizmo?.DrawGizmos(sb, gameObject.level, item);
-				}
+				for (int i = 0; i < editorObjects.Count; i++)
+					editorObjects[i].gizmo?.DrawGizmos(sb, gameObject.level, editorObjects[i]);
 		}
 	}
 }

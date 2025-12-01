@@ -104,11 +104,12 @@ namespace VeiniaFramework
 
 				Globals.tweener.Update(Time.deltaTime);
 
-				Globals.physicsWorld.Step(Time.deltaTime);
 
 				var level = Globals.loader.current;
 				if (level != null)
 				{
+					Globals.physicsWorld.Step(Time.deltaTime);
+
 					level.AssignActiveScene();
 					level.Update();
 					level.LateUpdate();

@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using MonoGame.Extended;
 using Myra.Graphics2D.TextureAtlases;
 using Myra.Graphics2D.UI;
 using Myra.Graphics2D.UI.Properties;
@@ -386,9 +385,9 @@ namespace VeiniaFramework.Editor
 			}
 
 
-			foreach (var selected in selectedObjects)
+			for (int i = 0; i < selectedObjects.Count; i++)
 			{
-				sb.VeiniaRectangleRotated(gameObject.level, selected.EditorPlacedSprite.rect.OffsetByHalf(), Color.Blue, thickness: 4 * Globals.camera.Scale, selected.Rotation);
+				sb.VeiniaRectangleRotated(gameObject.level, selectedObjects[i].EditorPlacedSprite.rect.OffsetByHalf(), Color.Blue, thickness: 4 * Globals.camera.Scale, selectedObjects[i].Rotation);
 			}
 
 
