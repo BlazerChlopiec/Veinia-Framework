@@ -19,24 +19,11 @@ namespace VeiniaFramework
 		public void StoredLevelLoad(int index)
 		{
 			var storedLevel = storedLevels[index];
-			dynamic storedLevelInstance = Activator.CreateInstance(storedLevel.type);
+
+			var storedLevelInstance = (Level)Activator.CreateInstance(storedLevel.type);
 			storedLevelInstance.levelPath = storedLevel.path;
-			Convert.ChangeType(storedLevelInstance, storedLevel.type);
 
-			storedLevelInstance.prefabManager = prefabManager;
-
-			NextFrame.actions.Add(delegate
-			{
-				current?.Unload();
-				previous = current;
-				current = null;
-
-				current = storedLevelInstance;
-				current.CreateScene();
-				current.InitializeComponentsFirstFrame();
-
-				if (FrustumCulling.autoCulling) FrustumCulling.Cull(current);
-			});
+			DynamicalyLoad(storedLevelInstance);
 		}
 
 		public void DynamicalyLoad(Level level)
