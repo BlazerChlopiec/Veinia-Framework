@@ -11,7 +11,7 @@ namespace VeiniaFramework
 
 		public void Update()
 		{
-			if (Timers.IsUp("frustumCull") && Globals.loader.current != null)
+			if (autoCulling && Timers.IsUp("frustumCull") && Globals.loader.current != null)
 			{
 				Cull(Globals.loader.current);
 				Timers.New("frustumCull", frustumCullTime);

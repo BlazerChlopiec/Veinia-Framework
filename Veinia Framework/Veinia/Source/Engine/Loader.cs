@@ -34,6 +34,8 @@ namespace VeiniaFramework
 				current = storedLevelInstance;
 				current.CreateScene();
 				current.InitializeComponentsFirstFrame();
+
+				if (FrustumCulling.autoCulling) FrustumCulling.Cull(current);
 			});
 		}
 
@@ -50,6 +52,8 @@ namespace VeiniaFramework
 				current = level;
 				current.CreateScene();
 				current.InitializeComponentsFirstFrame();
+
+				if (FrustumCulling.autoCulling) FrustumCulling.Cull(current);
 			});
 		}
 
