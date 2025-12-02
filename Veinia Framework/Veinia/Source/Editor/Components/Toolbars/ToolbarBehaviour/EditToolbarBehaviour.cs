@@ -338,6 +338,10 @@ namespace VeiniaFramework.Editor
 			if (selectedObjects.All(o => o.customData == first.customData))
 				data.customData = first.customData;
 
+			// color simillarity
+			if (selectedObjects.All(o => o.Color == first.Color))
+				data.Color = first.Color;
+
 
 			editWindow = Globals.myraDesktop.MakeEditWindow(data, "Multiple Object Editor");
 
@@ -360,6 +364,8 @@ namespace VeiniaFramework.Editor
 											float.IsNaN(data.Scale.Y) ? obj.Scale.Y : data.Scale.Y);
 
 					obj.customData = data.customData == "<mixed>" ? obj.customData : data.customData;
+
+					obj.Color = data.Color != Color.Transparent ? data.Color : obj.Color;
 				}
 			};
 
@@ -410,4 +416,5 @@ public class MultipleEditData
 	public string customData = "<mixed>";
 	public string PrefabName = "<mixed>";
 	public float Z = float.NaN;
+	public Color Color;
 }
