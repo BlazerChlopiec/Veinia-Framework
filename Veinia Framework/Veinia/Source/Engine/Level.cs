@@ -75,7 +75,10 @@ namespace VeiniaFramework
 				{
 					throw new System.Exception("Prefabs that got deleted and are still on " + editorLevelName);
 				}
-				Instantiate(new Transform { position = item.Position, rotation = item.Rotation, scale = item.Scale, Z = item.Z }, prefab).customData = item.customData;
+				var sample = Instantiate(new Transform { position = item.Position, rotation = item.Rotation, scale = item.Scale, Z = item.Z }, prefab);
+				sample.customData = item.customData;
+
+				if (item.ShouldSerializeColor()) sample.GetComponent<Sprite>().color = item.Color;
 			}
 		}
 

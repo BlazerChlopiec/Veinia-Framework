@@ -59,6 +59,19 @@ namespace VeiniaFramework.Editor
 
 		[JsonProperty("d", DefaultValueHandling = DefaultValueHandling.Ignore)] public string customData;
 
+		[JsonProperty("c", DefaultValueHandling = DefaultValueHandling.Ignore)]
+		public Color Color
+		{
+			get { return color; }
+			set
+			{
+				color = value;
+				if (ShouldSerializeColor() && EditorPlacedSprite != null) EditorPlacedSprite.color = value;
+			}
+		}
+		Color color;
+		public bool ShouldSerializeColor() => Color != Color.Transparent;
+
 		[Browsable(false)][JsonIgnore] public Sprite EditorPlacedSprite { get; set; }
 
 		[Browsable(false)][JsonIgnore] public IDrawGizmos gizmo { get; set; }

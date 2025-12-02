@@ -23,7 +23,7 @@ namespace VeiniaFramework.Editor
 
 		public override void Initialize() => EditorCheckboxes.Add("Draw Gizmos", defaultValue: true, (e, o) => { drawGizmos = true; }, (e, o) => { drawGizmos = false; });
 
-		public EditorObject Spawn(string prefabName, Vector2 position = default, float rotation = default, Vector2 scale = default, float z = default, string customData = null)
+		public EditorObject Spawn(string prefabName, Vector2 position = default, float rotation = default, Vector2 scale = default, float z = default, string customData = null, Color color = default)
 		{
 			var prefab = prefabManager.Find(prefabName);
 
@@ -45,6 +45,7 @@ namespace VeiniaFramework.Editor
 			var newEditorObject = new EditorObject
 			{
 				PrefabName = prefabName,
+				EditorPlacedSprite = Instantiate(extractedSpriteGameObject).GetComponent<Sprite>(),
 
 				// if new transform is default fallback to what prefab had set
 				Position = newT.position,
@@ -52,8 +53,8 @@ namespace VeiniaFramework.Editor
 				Scale = newT.scale,
 				Z = newT.Z,
 				customData = customData ?? prefab.customData,
+				Color = color,
 
-				EditorPlacedSprite = Instantiate(extractedSpriteGameObject).GetComponent<Sprite>(),
 				gizmo = gizmo,
 			};
 
@@ -65,8 +66,7 @@ namespace VeiniaFramework.Editor
 
 			return newEditorObject;
 		}
-
-		public EditorObject Spawn(EditorObject ob) => Spawn(ob.PrefabName, ob.Position, ob.Rotation, ob.Scale, ob.Z, ob.customData);
+		public EditorObject Spawn(EditorObject ob) => Spawn(ob.PrefabName, ob.Position, ob.Rotation, ob.Scale, ob.Z, ob.customData, ob.Color);
 
 		public void Remove(EditorObject editorObject)
 		{
