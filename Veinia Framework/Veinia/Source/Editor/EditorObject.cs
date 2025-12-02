@@ -59,6 +59,7 @@ namespace VeiniaFramework.Editor
 
 		[JsonProperty("d", DefaultValueHandling = DefaultValueHandling.Ignore)] public string customData;
 
+		[JsonConverter(typeof(ColorToHexJsonConverter))]
 		[JsonProperty("c", DefaultValueHandling = DefaultValueHandling.Ignore)]
 		public Color Color
 		{
