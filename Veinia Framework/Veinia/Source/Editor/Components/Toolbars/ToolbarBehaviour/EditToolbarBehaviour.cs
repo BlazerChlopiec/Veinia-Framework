@@ -71,7 +71,7 @@ namespace VeiniaFramework.Editor
 
 			if ((Globals.input.GetMouseDown(2) || Globals.input.GetKeyDown(Keys.C)) && !EditorControls.isTextBoxFocused && !Globals.myraDesktop.IsMouseOverGUI)
 			{
-				filterSelectionPoint = Globals.input.GetMouseScreenPosition();
+				if (filterSelectionWindow != null || filterSelectionPoint == default) filterSelectionPoint = Globals.input.GetMouseScreenPosition();
 				FilterSelection();
 			}
 
@@ -90,15 +90,14 @@ namespace VeiniaFramework.Editor
 			if (Globals.input.GetMouseUp(0) && !selectDragging && !editorControls.isDragging && !Globals.myraDesktop.IsMouseOverGUI && !EditorControls.isMouseOverGUIPreviousFrame)
 			{
 				selectedObjects.Clear();
+				editWindow?.Close();
 
 				filterSelectionWindow?.Close();
-				if (filterSelectionWindow == null) filterSelectionPoint = Globals.input.GetMouseScreenPosition();
+				filterSelectionPoint = Globals.input.GetMouseScreenPosition();
 
 				var oneSelection = editorObjectManager.editorObjects.Find(x => x.EditorPlacedSprite.rect.OffsetByHalf().Contains(screenMousePos));
 				if (oneSelection != null)
 				{
-					editWindow?.Close();
-
 					selectedObjects.Add(oneSelection);
 				}
 			}
