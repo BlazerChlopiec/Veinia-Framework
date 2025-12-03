@@ -285,14 +285,15 @@ namespace VeiniaFramework.Editor
 			else if (selectedObjects.Count > 1)
 				EditMultiple();
 
-			editWindow.Closed += delegate
-			{
-				// destroy color picker if got invoked by editWindow
-				var w = Globals.myraDesktop.GetWidgetBy(x => x is ColorPickerDialog);
-				w.RemoveFromDesktop();
+			if (editWindow != null)
+				editWindow.Closed += delegate
+				{
+					// destroy color picker if got invoked by editWindow
+					var w = Globals.myraDesktop.GetWidgetBy(x => x is ColorPickerDialog);
+					w?.RemoveFromDesktop();
 
-				editWindow = null;
-			};
+					editWindow = null;
+				};
 		}
 
 		public void EditSingle()
