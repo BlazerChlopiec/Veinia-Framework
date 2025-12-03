@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Myra.Graphics2D.TextureAtlases;
 using Myra.Graphics2D.UI;
+using Myra.Graphics2D.UI.ColorPicker;
 using Myra.Graphics2D.UI.Properties;
 using System;
 using System.Collections.Generic;
@@ -283,6 +284,15 @@ namespace VeiniaFramework.Editor
 				EditSingle();
 			else if (selectedObjects.Count > 1)
 				EditMultiple();
+
+			editWindow.Closed += delegate
+			{
+				// destroy color picker if got invoked by editWindow
+				var w = Globals.myraDesktop.GetWidgetBy(x => x is ColorPickerDialog);
+				w.RemoveFromDesktop();
+
+				editWindow = null;
+			};
 		}
 
 		public void EditSingle()
@@ -293,11 +303,6 @@ namespace VeiniaFramework.Editor
 			if (obj == null) return;
 
 			editWindow = Globals.myraDesktop.MakeEditWindow(obj);
-
-			editWindow.Closed += delegate
-			{
-				editWindow = null;
-			};
 		}
 
 		public void EditMultiple()
@@ -366,11 +371,6 @@ namespace VeiniaFramework.Editor
 
 					obj.Color = data.Color != Color.Transparent ? data.Color : obj.Color;
 				}
-			};
-
-			editWindow.Closed += delegate
-			{
-				editWindow = null;
 			};
 		}
 
