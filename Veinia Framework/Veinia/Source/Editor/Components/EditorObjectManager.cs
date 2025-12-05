@@ -41,11 +41,13 @@ namespace VeiniaFramework.Editor
 				Z = z == default ? prefab.transform.Z : z,
 			};
 			var extractedSpriteGameObject = prefab.ExtractComponentToNewGameObject<Sprite>(newT, isStatic: true);
+			var editorPlacedSprite = Instantiate(extractedSpriteGameObject).GetComponent<Sprite>();
+			editorPlacedSprite.depthStencilState = null; // ignore stencil for editor as we want to see the sprites always
 
 			var newEditorObject = new EditorObject
 			{
 				PrefabName = prefabName,
-				EditorPlacedSprite = Instantiate(extractedSpriteGameObject).GetComponent<Sprite>(),
+				EditorPlacedSprite = editorPlacedSprite,
 
 				// if new transform is default fallback to what prefab had set
 				Position = newT.position,
