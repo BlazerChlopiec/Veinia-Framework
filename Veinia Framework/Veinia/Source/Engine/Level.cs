@@ -246,16 +246,16 @@ namespace VeiniaFramework
 					beginCalled = true;
 				}
 
-				if (cmd.drawWithoutSpriteBatch && targetBlendState != null)
+				if (cmd.drawWithoutSpriteBatch)
 				{
 					// blendState for drawing with DrawUserPrimitives
-					Globals.graphicsDevice.BlendState = targetBlendState;
+					if (targetBlendState != null) Globals.graphicsDevice.BlendState = targetBlendState;
 
 					// depthStencilState for drawing with DrawUserPrimitives
-					Globals.graphicsDevice.DepthStencilState = depthStencilState;
+					if (depthStencilState != null) Globals.graphicsDevice.DepthStencilState = depthStencilState;
 
-					// depthStencilState for drawing with DrawUserPrimitives
-					Globals.graphicsDevice.RasterizerState = rasterizerState;
+					// rasterizerState for drawing with DrawUserPrimitives
+					if (rasterizerState != null) Globals.graphicsDevice.RasterizerState = rasterizerState;
 				}
 
 				prevCommand = cmd;

@@ -15,7 +15,7 @@ namespace VeiniaFramework
 		private float pixelsPerUnit;
 
 
-		public Sprite(Texture2D texture, Color? color = null, float? pixelsPerUnit = null, Effect effect = null, BlendState blendState = null, DepthStencilState depthStencilState = null)
+		public Sprite(Texture2D texture, Color? color = null, float? pixelsPerUnit = null, BlendState blendState = null, DepthStencilState depthStencilState = null, Effect effect = null)
 		{
 			this.color = color ?? Color.White;
 			this.texture = texture;
@@ -26,7 +26,7 @@ namespace VeiniaFramework
 
 			destinationSize = new Vector2(texture.Width, texture.Height) / (this.pixelsPerUnit / Transform.unitSize);
 		}
-		public Sprite(string path, Color? color = null, float? pixelsPerUnit = null, Effect effect = null, BlendState blendState = null, DepthStencilState depthStencilState = null)
+		public Sprite(string path, Color? color = null, float? pixelsPerUnit = null, BlendState blendState = null, DepthStencilState depthStencilState = null, Effect effect = null)
 		{
 			this.color = color ?? Color.White;
 			this.effect = effect;
