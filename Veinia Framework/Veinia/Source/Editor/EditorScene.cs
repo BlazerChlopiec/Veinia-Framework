@@ -26,6 +26,7 @@ namespace VeiniaFramework.Editor
 			 * Swipe Motion - LShift + LMB
 			 * Debug Draw - F
 			 * Hide Grid - G
+			 * Mark Layer - Z 
 			 * Save - LCtrl + S
 			 * Duplicate Selection - LCtrl + D
 			 * Rotate - R

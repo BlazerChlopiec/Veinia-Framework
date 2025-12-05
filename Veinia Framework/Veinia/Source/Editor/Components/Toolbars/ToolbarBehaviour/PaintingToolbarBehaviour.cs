@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Myra.Graphics2D.UI;
 using System;
 using System.Collections.Generic;
 
@@ -47,7 +48,7 @@ namespace VeiniaFramework.Editor
 			// currentPrefabName is static so it remembers between editor sessions
 			ChangeCurrentPrefab(currentPrefabName == null ? prefabManager.editorPrefabs[0].PrefabName : currentPrefabName);
 
-			EditorCheckboxes.Add("Mark Layer", defaultValue: false, (e, o) => { markLayer = true; }, (e, o) => { markLayer = false; });
+			EditorCheckboxes.Add("Mark Layer [Z]", defaultValue: false, (e, o) => { markLayer = true; }, (e, o) => { markLayer = false; }, Keys.Z);
 		}
 
 		public void CreateNewPreview()
@@ -86,6 +87,8 @@ namespace VeiniaFramework.Editor
 
 		public override void OnUpdate()
 		{
+			EditorLabelManager.Add("currentPrefabName", new Label { Text = "Prefab - " + currentPrefabName, VerticalAlignment = VerticalAlignment.Top, HorizontalAlignment = HorizontalAlignment.Center, Top = 50 });
+
 			mousePos = Globals.input.GetMouseWorldPosition();
 			mouseGridPos = new Vector2(MathF.Round(mousePos.X), MathF.Round(mousePos.Y));
 
