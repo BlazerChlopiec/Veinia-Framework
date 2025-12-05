@@ -15,12 +15,12 @@ namespace VeiniaFramework.Editor
 			var panel = new Panel { Height = 230 };
 			displayedToolbarContent = panel;
 
-			var removeSelectedButton = new TextButton { Text = "Remove Selected [RMB]" };
-			removeSelectedButton.Click += (o, e) =>
+			var destroySelectedButton = new TextButton { Text = "Destroy Selected [RMB]" };
+			destroySelectedButton.Click += (o, e) =>
 			{
-				editToolbarBehaviour.RemoveSelection();
+				editToolbarBehaviour.DestroySelection();
 			};
-			panel.Widgets.Add(removeSelectedButton);
+			panel.Widgets.Add(destroySelectedButton);
 
 			var deselectButton = new TextButton { Text = "Deselect [LAlt+D]", Top = 25 };
 			deselectButton.Click += (o, e) =>
