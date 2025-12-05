@@ -173,17 +173,17 @@ namespace VeiniaFramework
 			}
 		}
 
-		public void Draw(SpriteBatch spriteBatch, SamplerState samplerState = null, BlendState blendState = null, DepthStencilState depthStencilState = null)
+		public void Draw(SpriteBatch spriteBatch, BlendState blendState = null, SamplerState samplerState = null, DepthStencilState depthStencilState = null, RasterizerState rasterizerState = null)
 		{
-			DrawWorld(spriteBatch, samplerState, blendState, depthStencilState, transformMatrix: Globals.camera.GetView());
+			DrawWorld(spriteBatch, blendState, samplerState, depthStencilState, rasterizerState, Globals.camera.GetView());
 			DrawMyra();
 			DrawGeon(spriteBatch);
 			DrawDebugPhysics();
 		}
 
-		public void DrawWorld(SpriteBatch spriteBatch, SamplerState samplerState = null, BlendState blendState = null, DepthStencilState depthStencilState = null, Matrix? transformMatrix = null)
+		public void DrawWorld(SpriteBatch spriteBatch, BlendState blendState = null, SamplerState samplerState = null, DepthStencilState depthStencilState = null, RasterizerState rasterizerState = null, Matrix? transformMatrix = null)
 		{
-			Globals.loader.current?.Draw(spriteBatch, samplerState, blendState, depthStencilState, transformMatrix);
+			Globals.loader.current?.Draw(spriteBatch, blendState, samplerState, depthStencilState, rasterizerState, transformMatrix);
 		}
 		public void DrawMyra() => Globals.myraDesktop.RenderVisual();
 		public void DrawGeon(SpriteBatch spriteBatch) => UserInterface.Active.Draw(spriteBatch);

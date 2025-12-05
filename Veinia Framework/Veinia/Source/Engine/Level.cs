@@ -192,7 +192,7 @@ namespace VeiniaFramework
 		/// Draws objects in the current scene.
 		/// </summary>
 		public List<DrawCommand> drawCommands = new List<DrawCommand>();
-		public void Draw(SpriteBatch sb, SamplerState samplerState = null, BlendState blendState = null, DepthStencilState depthStencilState = null, Matrix? transformMatrix = null)
+		public void Draw(SpriteBatch sb, BlendState blendState = null, SamplerState samplerState = null, DepthStencilState depthStencilState = null, RasterizerState rasterizerState = null, Matrix? transformMatrix = null)
 		{
 			for (int i = 0; i < activeScene.Count; i++)
 			{
@@ -228,10 +228,12 @@ namespace VeiniaFramework
 			{
 				var targetBlendState = cmd.blendState ?? blendState;
 				var targetDepthStencilState = cmd.depthStencilState ?? depthStencilState;
+				var targetRasterizerState = cmd.rasterizerState ?? rasterizerState;
 
 				if (cmd.shader != prevCommand.shader && beginCalled // if new shader
 				 || cmd.blendState != prevCommand.blendState && beginCalled // or new BlendState
-				 || cmd.depthStencilState != prevCommand.depthStencilState && beginCalled // or new BlendState
+				 || cmd.depthStencilState != prevCommand.depthStencilState && beginCalled // or new DepthStencilState
+				 || cmd.rasterizerState != prevCommand.rasterizerState && beginCalled // or new RasterizerState
 				 || cmd.drawWithoutSpriteBatch && beginCalled) // or using DrawUserPrimitives()
 				{
 					sb.End();
@@ -240,7 +242,7 @@ namespace VeiniaFramework
 				if (!beginCalled && !cmd.drawWithoutSpriteBatch)
 				{
 					begins++;
-					sb.Begin(SpriteSortMode.Deferred, targetBlendState, samplerState, effect: cmd.shader, transformMatrix: transformMatrix, depthStencilState: depthStencilState);
+					sb.Begin(SpriteSortMode.Deferred, targetBlendState, samplerState, targetDepthStencilState, targetRasterizerState, cmd.shader, transformMatrix);
 					beginCalled = true;
 				}
 
@@ -251,6 +253,9 @@ namespace VeiniaFramework
 
 					// depthStencilState for drawing with DrawUserPrimitives
 					Globals.graphicsDevice.DepthStencilState = depthStencilState;
+
+					// depthStencilState for drawing with DrawUserPrimitives
+					Globals.graphicsDevice.RasterizerState = rasterizerState;
 				}
 
 				prevCommand = cmd;
