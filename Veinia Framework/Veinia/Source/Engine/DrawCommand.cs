@@ -10,5 +10,6 @@ namespace VeiniaFramework
 		public Effect shader;
 		public bool drawWithoutSpriteBatch; // used for drawing with DrawUserPrimitives(), this Ends a spritebatch if it has begun
 		public BlendState blendState;
+		public DepthStencilState depthStencilState;
 	}
 }
