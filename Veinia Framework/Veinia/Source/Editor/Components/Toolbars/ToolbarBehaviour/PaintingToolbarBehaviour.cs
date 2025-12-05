@@ -48,6 +48,7 @@ namespace VeiniaFramework.Editor
 			// currentPrefabName is static so it remembers between editor sessions
 			ChangeCurrentPrefab(currentPrefabName == null ? prefabManager.editorPrefabs[0].PrefabName : currentPrefabName);
 
+			markLayer = false; // because its static we need to make sure its false by default
 			EditorCheckboxes.Add("Mark Layer [Z]", defaultValue: false, (e, o) => { markLayer = true; }, (e, o) => { markLayer = false; }, Keys.Z);
 		}
 
