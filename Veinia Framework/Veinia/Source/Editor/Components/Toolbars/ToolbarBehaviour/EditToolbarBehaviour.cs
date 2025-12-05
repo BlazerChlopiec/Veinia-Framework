@@ -99,7 +99,10 @@ namespace VeiniaFramework.Editor
 				var oneSelection = editorObjectManager.editorObjects.Find(x => x.EditorPlacedSprite.rect.OffsetByHalf().Contains(screenMousePos));
 				if (oneSelection != null)
 				{
-					selectedObjects.Add(oneSelection);
+					if ((PaintingToolbarBehaviour.markLayer && oneSelection.PrefabName == PaintingToolbarBehaviour.currentPrefabName))
+						selectedObjects.Add(oneSelection);
+
+					else if (!PaintingToolbarBehaviour.markLayer) selectedObjects.Add(oneSelection);
 				}
 			}
 			// mouse up when dragging
@@ -111,9 +114,13 @@ namespace VeiniaFramework.Editor
 				{
 					if (!selectedObjects.Contains(item))
 					{
+						if ((PaintingToolbarBehaviour.markLayer && item.PrefabName == PaintingToolbarBehaviour.currentPrefabName))
+							selectedObjects.Add(item);
+
+						else if (!PaintingToolbarBehaviour.markLayer) selectedObjects.Add(item);
+
 						editWindow?.Close();
 						filterSelectionWindow?.Close();
-						selectedObjects.Add(item);
 					}
 				}
 			}
@@ -122,7 +129,7 @@ namespace VeiniaFramework.Editor
 			if (Globals.input.GetKey(Keys.LeftAlt) && Globals.input.GetKeyDown(Keys.D) && !EditorControls.isTextBoxFocused) selectedObjects.Clear();
 			if ((Globals.input.GetKeyDown(Keys.Delete) || Globals.input.GetMouseDown(1)) && !EditorControls.isTextBoxFocused && !Globals.myraDesktop.IsMouseOverGUI)
 			{
-				RemoveSelection();
+				DestroySelection();
 				if (filterSelectionWindow != null) filterSelectionWindow.Close();
 			}
 
@@ -240,7 +247,7 @@ namespace VeiniaFramework.Editor
 			filterSelectionWindow.Show(Globals.myraDesktop);
 		}
 
-		public void RemoveSelection()
+		public void DestroySelection()
 		{
 			foreach (var item in selectedObjects.ToArray())
 			{

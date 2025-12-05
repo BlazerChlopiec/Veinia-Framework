@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using MonoGame.Extended;
 using System;
 using System.Collections.Generic;
 
@@ -16,7 +15,7 @@ namespace VeiniaFramework.Editor
 		EditorControls editorControls;
 		EditorObjectManager editorObjectManager;
 
-		bool markLayer;
+		public static bool markLayer;
 
 		public static string currentPrefabName { get; private set; }
 
