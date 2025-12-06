@@ -42,7 +42,7 @@ namespace VeiniaFramework.Editor
 			};
 			var extractedSpriteGameObject = prefab.ExtractComponentToNewGameObject<Sprite>(newT, isStatic: true);
 			var editorPlacedSprite = Instantiate(extractedSpriteGameObject).GetComponent<Sprite>();
-			editorPlacedSprite.options.depthStencilState = null; // ignore stencil for editor as we want to see the sprites always
+			editorPlacedSprite.drawOptions.depthStencilState = null; // ignore stencil for editor as we want to see the sprites always
 
 			var newEditorObject = new EditorObject
 			{

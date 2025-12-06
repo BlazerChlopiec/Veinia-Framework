@@ -85,7 +85,6 @@ public class Parallax : Sprite
 
 	private void DrawParallax(SpriteBatch sb, Vector2 offset = default)
 	{
-
 		level.drawCommands.Add(new DrawCommand
 		{
 			command = delegate
@@ -95,7 +94,7 @@ public class Parallax : Sprite
 					 SpriteEffects.None, layerDepth: 0);
 			},
 			Z = transform.Z,
-			shader = effect
+			drawOptions = drawOptions
 		});
 	}
 }

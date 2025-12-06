@@ -8,27 +8,25 @@ namespace VeiniaFramework
 		public Color color = Color.White;
 		public Vector2 destinationSize;
 		public Effect effect;
-		public DrawOptions options;
+		public DrawOptions drawOptions;
 		public Texture2D texture { get; private set; }
 
 		private float pixelsPerUnit;
 
 
-		public Sprite(Texture2D texture, Color? color = null, float? pixelsPerUnit = null, DrawOptions options = default, Effect effect = null)
+		public Sprite(Texture2D texture, Color? color = null, float? pixelsPerUnit = null, DrawOptions options = default)
 		{
 			this.color = color ?? Color.White;
 			this.texture = texture;
-			this.effect = effect;
-			this.options = options;
+			this.drawOptions = options;
 			this.pixelsPerUnit = pixelsPerUnit ?? Transform.unitSize;
 
 			destinationSize = new Vector2(texture.Width, texture.Height) / (this.pixelsPerUnit / Transform.unitSize);
 		}
-		public Sprite(string path, Color? color = null, float? pixelsPerUnit = null, DrawOptions options = default, Effect effect = null)
+		public Sprite(string path, Color? color = null, float? pixelsPerUnit = null, DrawOptions options = default)
 		{
 			this.color = color ?? Color.White;
-			this.effect = effect;
-			this.options = options;
+			this.drawOptions = options;
 			this.pixelsPerUnit = pixelsPerUnit ?? Transform.unitSize;
 
 			texture = Globals.content.Load<Texture2D>(path);
@@ -47,8 +45,7 @@ namespace VeiniaFramework
 						 SpriteEffects.None, layerDepth: 0);
 				},
 				Z = transform.Z,
-				shader = effect,
-				options = options
+				drawOptions = drawOptions
 			});
 		}
 

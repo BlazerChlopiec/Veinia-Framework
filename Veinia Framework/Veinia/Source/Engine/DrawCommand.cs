@@ -8,9 +8,8 @@ namespace VeiniaFramework
 		public Action command;
 		public float Z; // drawing order that works with multiple Begins()
 		public bool drawWithoutSpriteBatch; // used for drawing with DrawUserPrimitives(), this Ends a spritebatch if it has begun
-		public Effect shader;
 
-		public DrawOptions options;
+		public DrawOptions drawOptions;
 	}
 
 
@@ -20,5 +19,7 @@ namespace VeiniaFramework
 		public DepthStencilState depthStencilState;
 		public RasterizerState rasterizerState;
 		public SamplerState samplerState;
+
+		public Effect shader;
 	}
 }

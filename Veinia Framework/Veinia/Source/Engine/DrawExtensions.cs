@@ -21,7 +21,7 @@ namespace VeiniaFramework
 			});
 		}
 
-		public static void VeiniaTextWorld(this SpriteBatch sb, Level level, Vector2 position, string text, Color? color = null, float size = .5f, SpriteFont font = null, Effect effect = null, float z = float.MaxValue)
+		public static void VeiniaTextWorld(this SpriteBatch sb, Level level, Vector2 position, string text, Color? color = null, float size = .5f, SpriteFont font = null, float z = float.MaxValue)
 		{
 			color = color ?? Color.White;
 			if (text == null || text == string.Empty) return;
@@ -37,7 +37,6 @@ namespace VeiniaFramework
 					sb.DrawString(spriteFont, text, Transform.WorldToScreenPos(position), color.Value, 0f, origin, size, SpriteEffects.None, 0f);
 				},
 				Z = z,
-				shader = effect
 			});
 		}
 
