@@ -12,7 +12,6 @@ namespace VeiniaFramework
 		public DrawOptions drawOptions;
 	}
 
-
 	public struct DrawOptions
 	{
 		public BlendState blendState;
