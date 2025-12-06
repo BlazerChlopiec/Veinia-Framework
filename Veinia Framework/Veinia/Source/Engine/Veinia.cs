@@ -173,7 +173,7 @@ namespace VeiniaFramework
 			}
 		}
 
-		public void Draw(SpriteBatch spriteBatch, DrawOptions drawOptions)
+		public void Draw(SpriteBatch spriteBatch, DrawOptions drawOptions = default)
 		{
 			DrawWorld(spriteBatch, drawOptions, Globals.camera.GetView());
 			DrawMyra();
@@ -181,7 +181,7 @@ namespace VeiniaFramework
 			DrawDebugPhysics();
 		}
 
-		public void DrawWorld(SpriteBatch spriteBatch, DrawOptions drawOptions, Matrix? transformMatrix = null)
+		public void DrawWorld(SpriteBatch spriteBatch, DrawOptions drawOptions = default, Matrix? transformMatrix = null)
 		{
 			Globals.loader.current?.Draw(spriteBatch, drawOptions, transformMatrix);
 		}

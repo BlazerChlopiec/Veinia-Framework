@@ -192,7 +192,7 @@ namespace VeiniaFramework
 		/// Draws objects in the current scene.
 		/// </summary>
 		public List<DrawCommand> drawCommands = new List<DrawCommand>();
-		public void Draw(SpriteBatch sb, DrawOptions drawOptions, Matrix? transformMatrix = null)
+		public void Draw(SpriteBatch sb, DrawOptions drawOptions = default, Matrix? transformMatrix = null)
 		{
 			for (int i = 0; i < activeScene.Count; i++) // makes drawCommands
 			{

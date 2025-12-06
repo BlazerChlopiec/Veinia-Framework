@@ -7,7 +7,7 @@ namespace VeiniaFramework
 {
 	public static class DrawExtensions
 	{
-		public static void VeiniaPointWorld(this SpriteBatch sb, Level level, Vector2 position, Color? color = null, float size = 10, float z = float.MaxValue)
+		public static void VeiniaPointWorld(this SpriteBatch sb, Level level, Vector2 position, Color? color = null, float size = 10, DrawOptions drawOptions = default, float z = float.MaxValue)
 		{
 			color = color ?? Color.White;
 
@@ -17,11 +17,12 @@ namespace VeiniaFramework
 				{
 					sb.DrawPoint(Transform.WorldToScreenPos(position), color.Value, size, 0);
 				},
-				Z = z
+				Z = z,
+				drawOptions = drawOptions,
 			});
 		}
 
-		public static void VeiniaTextWorld(this SpriteBatch sb, Level level, Vector2 position, string text, Color? color = null, float size = .5f, SpriteFont font = null, float z = float.MaxValue)
+		public static void VeiniaTextWorld(this SpriteBatch sb, Level level, Vector2 position, string text, Color? color = null, float size = .5f, SpriteFont font = null, DrawOptions drawOptions = default, float z = float.MaxValue)
 		{
 			color = color ?? Color.White;
 			if (text == null || text == string.Empty) return;
@@ -37,10 +38,11 @@ namespace VeiniaFramework
 					sb.DrawString(spriteFont, text, Transform.WorldToScreenPos(position), color.Value, 0f, origin, size, SpriteEffects.None, 0f);
 				},
 				Z = z,
+				drawOptions = drawOptions,
 			});
 		}
 
-		public static void VeiniaLineWorld(this SpriteBatch sb, Level level, Vector2 point1, Vector2 point2, Color? color = null, float thickness = 10, float z = float.MaxValue)
+		public static void VeiniaLineWorld(this SpriteBatch sb, Level level, Vector2 point1, Vector2 point2, Color? color = null, float thickness = 10, DrawOptions drawOptions = default, float z = float.MaxValue)
 		{
 			color = color ?? Color.White;
 
@@ -50,10 +52,11 @@ namespace VeiniaFramework
 				{
 					sb.DrawLine(Transform.WorldToScreenPos(point1), Transform.WorldToScreenPos(point2), color.Value, thickness);
 				},
-				Z = z
+				Z = z,
+				drawOptions = drawOptions,
 			});
 		}
-		public static void VeiniaLine(this SpriteBatch sb, Level level, Vector2 point1, Vector2 point2, Color? color = null, float thickness = 10, float z = float.MaxValue)
+		public static void VeiniaLine(this SpriteBatch sb, Level level, Vector2 point1, Vector2 point2, Color? color = null, float thickness = 10, DrawOptions drawOptions = default, float z = float.MaxValue)
 		{
 			color = color ?? Color.White;
 
@@ -63,11 +66,12 @@ namespace VeiniaFramework
 				{
 					sb.DrawLine(point1, point2, color.Value, thickness);
 				},
-				Z = z
+				Z = z,
+				drawOptions = drawOptions,
 			});
 		}
 
-		public static void VeiniaCircle(this SpriteBatch sb, Level level, Vector2 position, Color? color = null, float radius = 1, int sides = 10, float thickness = 1, float z = float.MaxValue)
+		public static void VeiniaCircle(this SpriteBatch sb, Level level, Vector2 position, Color? color = null, float radius = 1, int sides = 10, float thickness = 1, DrawOptions drawOptions = default, float z = float.MaxValue)
 		{
 			color = color ?? Color.White;
 
@@ -77,11 +81,12 @@ namespace VeiniaFramework
 				{
 					sb.DrawCircle(new CircleF(position.ToPoint(), (radius * Transform.unitSize) / 2), sides, color.Value, thickness);
 				},
-				Z = z
+				Z = z,
+				drawOptions = drawOptions,
 			});
 		}
 
-		public static void VeiniaRectangle(this SpriteBatch sb, Level level, RectangleF rectangle, Color? color = null, float thickness = 1, float z = float.MaxValue)
+		public static void VeiniaRectangle(this SpriteBatch sb, Level level, RectangleF rectangle, Color? color = null, float thickness = 1, DrawOptions drawOptions = default, float z = float.MaxValue)
 		{
 			color = color ?? Color.White;
 
@@ -91,11 +96,12 @@ namespace VeiniaFramework
 				{
 					sb.DrawRectangle(rectangle, color.Value, thickness);
 				},
-				Z = z
+				Z = z,
+				drawOptions = drawOptions,
 			});
 		}
 
-		public static void VeiniaRectangleRotated(this SpriteBatch sb, Level level, RectangleF rectangle, Color? color = null, float thickness = 1, float rotation = 0, float z = float.MaxValue)
+		public static void VeiniaRectangleRotated(this SpriteBatch sb, Level level, RectangleF rectangle, Color? color = null, float thickness = 1, float rotation = 0, DrawOptions drawOptions = default, float z = float.MaxValue)
 		{
 			color = color ?? Color.White;
 

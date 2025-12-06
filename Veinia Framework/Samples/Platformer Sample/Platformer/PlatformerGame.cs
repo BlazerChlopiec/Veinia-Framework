@@ -59,7 +59,7 @@ namespace VeiniaFramework.Samples.Platformer
 
 			GraphicsDevice.Clear(new Color(5, 36, 12));
 
-			veinia.Draw(spriteBatch, samplerState: SamplerState.PointClamp);
+			veinia.Draw(spriteBatch, new DrawOptions { samplerState = SamplerState.PointClamp });
 			Globals.camera.ResetViewport();
 
 			base.Draw(gameTime);
