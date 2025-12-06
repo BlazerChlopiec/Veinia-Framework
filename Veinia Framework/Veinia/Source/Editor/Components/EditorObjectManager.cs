@@ -108,11 +108,18 @@ namespace VeiniaFramework.Editor
 			return overlap;
 		}
 
-		public EditorObject[] OverlapsWithPoint(Vector2 overlapPoint)
+		public EditorObject[] AllOverlapsWithPoint(Vector2 overlapPoint)
 		{
 			return editorObjects.FindAll(x => x.EditorPlacedSprite.rect
 												   .OffsetByHalf()
 												   .Contains(Transform.WorldToScreenPos(overlapPoint))).ToArray();
+		}
+
+		public EditorObject OverlapsWithPoint(Vector2 overlapPoint)
+		{
+			return editorObjects.Find(x => x.EditorPlacedSprite.rect
+												   .OffsetByHalf()
+												   .Contains(Transform.WorldToScreenPos(overlapPoint)));
 		}
 
 		public List<EditorObject> GetInsideRectangle(Rectangle rect) => editorObjects.FindAll(x => rect.Intersects(x.EditorPlacedSprite.rect.OffsetByHalf()));

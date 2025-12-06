@@ -27,6 +27,7 @@ namespace VeiniaFramework.Editor
 
 		Vector2 startSelectionPos;
 		Vector2 screenMousePos;
+		Vector2 worldMousePos;
 		Vector2 filterSelectionPoint;
 
 		Rectangle selectionRectangle;
@@ -56,12 +57,13 @@ namespace VeiniaFramework.Editor
 		public override void OnUpdate()
 		{
 			screenMousePos = Globals.input.GetMouseScreenPosition();
+			worldMousePos = Globals.input.GetMouseWorldPosition();
 
 
 			if (Globals.input.GetMouseDown(0) && Globals.input.GetKey(Keys.LeftShift) && !Globals.myraDesktop.IsMouseOverGUI && !editorControls.isDragging && !EditorControls.disableDragMove)
 			{
 				selectDragging = true;
-				startSelectionPos = Globals.input.GetMouseScreenPosition();
+				startSelectionPos = screenMousePos;
 			}
 
 			if (Globals.input.GetKeyDown(Keys.Escape))
@@ -72,7 +74,7 @@ namespace VeiniaFramework.Editor
 
 			if ((Globals.input.GetMouseDown(2) || Globals.input.GetKeyDown(Keys.C)) && !EditorControls.isTextBoxFocused && !Globals.myraDesktop.IsMouseOverGUI)
 			{
-				if (filterSelectionWindow != null || filterSelectionPoint == default) filterSelectionPoint = Globals.input.GetMouseScreenPosition();
+				if (filterSelectionWindow != null || filterSelectionPoint == default) filterSelectionPoint = screenMousePos;
 				FilterSelection();
 			}
 
@@ -94,15 +96,15 @@ namespace VeiniaFramework.Editor
 				editWindow?.Close();
 
 				filterSelectionWindow?.Close();
-				filterSelectionPoint = Globals.input.GetMouseScreenPosition();
+				filterSelectionPoint = screenMousePos;
 
-				var oneSelection = editorObjectManager.editorObjects.Find(x => x.EditorPlacedSprite.rect.OffsetByHalf().Contains(screenMousePos));
-				if (oneSelection != null)
+				EditorObject oneSelected;
+				if (PaintingToolbarBehaviour.markLayer) oneSelected = editorObjectManager.PrefabOverlapsWithPoint(worldMousePos, PaintingToolbarBehaviour.currentPrefabName);
+				else oneSelected = editorObjectManager.OverlapsWithPoint(worldMousePos);
+
+				if (oneSelected != null)
 				{
-					if ((PaintingToolbarBehaviour.markLayer && oneSelection.PrefabName == PaintingToolbarBehaviour.currentPrefabName))
-						selectedObjects.Add(oneSelection);
-
-					else if (!PaintingToolbarBehaviour.markLayer) selectedObjects.Add(oneSelection);
+					selectedObjects.Add(oneSelected);
 				}
 			}
 			// mouse up when dragging
@@ -201,7 +203,7 @@ namespace VeiniaFramework.Editor
 		public void FilterSelection()
 		{
 			var panel = new Panel();
-			var overlaps = editorObjectManager.OverlapsWithPoint(Transform.ScreenToWorldPos(filterSelectionPoint)).ToList();
+			var overlaps = editorObjectManager.AllOverlapsWithPoint(Transform.ScreenToWorldPos(filterSelectionPoint)).ToList();
 
 			editWindow?.Close();
 
@@ -386,7 +388,7 @@ namespace VeiniaFramework.Editor
 		{
 			if (selectedObjects.Count == 1)
 			{
-				selectedObjects[0].Position = Globals.input.GetMouseWorldPosition();
+				selectedObjects[0].Position = worldMousePos;
 			}
 		}
 
