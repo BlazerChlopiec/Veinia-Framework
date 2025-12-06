@@ -212,6 +212,7 @@ namespace VeiniaFramework
 				drawCommands[i] = c;
 			}
 
+			// sorting to batch together simillar commands to reduce Begins
 			drawCommands.Sort((a, b) =>
 			{
 				// compare by z
@@ -219,15 +220,44 @@ namespace VeiniaFramework
 				if (zCompare != 0)
 					return zCompare;
 
-				// if z the same - compare by shaders (grouping shaders together to avoid more Begin())
-				if (a.drawOptions.shader == b.drawOptions.shader)
-					return 0;
-				if (a.drawOptions.shader == null)
-					return -1;
-				if (b.drawOptions.shader == null)
-					return 1;
+				// compare shader
+				if (a.drawOptions.shader != b.drawOptions.shader)
+				{
+					if (a.drawOptions.shader == null) return -1;
+					if (b.drawOptions.shader == null) return 1;
+					int shaderCompare = a.drawOptions.shader.GetHashCode().CompareTo(b.drawOptions.shader.GetHashCode());
+					if (shaderCompare != 0) return shaderCompare;
+				}
 
-				return a.drawOptions.shader.GetHashCode().CompareTo(b.drawOptions.shader.GetHashCode());
+				// compare samplerState
+				if (a.drawOptions.samplerState != b.drawOptions.samplerState)
+				{
+					if (a.drawOptions.samplerState == null) return -1;
+					if (b.drawOptions.samplerState == null) return 1;
+					int samplerCompare = a.drawOptions.samplerState.GetHashCode().CompareTo(b.drawOptions.samplerState.GetHashCode());
+					if (samplerCompare != 0) return samplerCompare;
+				}
+
+				// compare depthStencilState
+				if (a.drawOptions.depthStencilState != b.drawOptions.depthStencilState)
+				{
+					if (a.drawOptions.depthStencilState == null) return -1;
+					if (b.drawOptions.depthStencilState == null) return 1;
+					int depthCompare = a.drawOptions.depthStencilState.GetHashCode().CompareTo(b.drawOptions.depthStencilState.GetHashCode());
+					if (depthCompare != 0) return depthCompare;
+				}
+
+				// compare blendState
+				if (a.drawOptions.blendState != b.drawOptions.blendState)
+				{
+					if (a.drawOptions.blendState == null) return -1;
+					if (b.drawOptions.blendState == null) return 1;
+					int blendCompare = a.drawOptions.blendState.GetHashCode().CompareTo(b.drawOptions.blendState.GetHashCode());
+					if (blendCompare != 0) return blendCompare;
+				}
+
+				// All equal
+				return 0;
 			});
 
 
