@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Particles;
 using System.Collections.Generic;
+using VeiniaFramework;
 
 namespace VeiniaFramework
 {
@@ -14,9 +15,9 @@ namespace VeiniaFramework
 		public void QueueRemove(ParticleEffect particleEffect) => Find(particleEffect).queuedRemove = true;
 		public void Clear() => particles.Clear();
 
-		public ParticleEffect Add(ParticleEffect particleEffect, float Z = 0)
+		public ParticleEffect Add(ParticleEffect particleEffect, DrawOptions drawOptions = default, float Z = 0)
 		{
-			particles.Add(new ParticleData { effect = particleEffect, z = Z });
+			particles.Add(new ParticleData { effect = particleEffect, drawOptions = drawOptions, z = Z });
 			return particleEffect;
 		}
 
@@ -53,7 +54,8 @@ namespace VeiniaFramework
 					{
 						sb.Draw(p.effect);
 					},
-					Z = p.z
+					Z = p.z,
+					drawOptions = p.drawOptions
 				});
 			}
 		}
@@ -66,5 +68,6 @@ public class ParticleData
 {
 	public ParticleEffect effect;
 	public bool queuedRemove;
+	public DrawOptions drawOptions;
 	public float z;
 }
