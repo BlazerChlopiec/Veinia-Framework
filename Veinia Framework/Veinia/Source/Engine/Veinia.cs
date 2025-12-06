@@ -173,17 +173,17 @@ namespace VeiniaFramework
 			}
 		}
 
-		public void Draw(SpriteBatch spriteBatch, BlendState blendState = null, SamplerState samplerState = null, DepthStencilState depthStencilState = null, RasterizerState rasterizerState = null)
+		public void Draw(SpriteBatch spriteBatch, DrawOptions options)
 		{
-			DrawWorld(spriteBatch, blendState, samplerState, depthStencilState, rasterizerState, Globals.camera.GetView());
+			DrawWorld(spriteBatch, options, Globals.camera.GetView());
 			DrawMyra();
 			DrawGeon(spriteBatch);
 			DrawDebugPhysics();
 		}
 
-		public void DrawWorld(SpriteBatch spriteBatch, BlendState blendState = null, SamplerState samplerState = null, DepthStencilState depthStencilState = null, RasterizerState rasterizerState = null, Matrix? transformMatrix = null)
+		public void DrawWorld(SpriteBatch spriteBatch, DrawOptions options, Matrix? transformMatrix = null)
 		{
-			Globals.loader.current?.Draw(spriteBatch, blendState, samplerState, depthStencilState, rasterizerState, transformMatrix);
+			Globals.loader.current?.Draw(spriteBatch, options, transformMatrix);
 		}
 		public void DrawMyra() => Globals.myraDesktop.RenderVisual();
 		public void DrawGeon(SpriteBatch spriteBatch) => UserInterface.Active.Draw(spriteBatch);

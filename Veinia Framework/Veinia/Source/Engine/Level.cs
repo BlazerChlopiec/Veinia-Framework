@@ -192,9 +192,9 @@ namespace VeiniaFramework
 		/// Draws objects in the current scene.
 		/// </summary>
 		public List<DrawCommand> drawCommands = new List<DrawCommand>();
-		public void Draw(SpriteBatch sb, BlendState blendState = null, SamplerState samplerState = null, DepthStencilState depthStencilState = null, RasterizerState rasterizerState = null, Matrix? transformMatrix = null)
+		public void Draw(SpriteBatch sb, DrawOptions options, Matrix? transformMatrix = null)
 		{
-			for (int i = 0; i < activeScene.Count; i++)
+			for (int i = 0; i < activeScene.Count; i++) // makes drawCommands
 			{
 				activeScene[i].Draw(sb);
 			}
@@ -226,14 +226,16 @@ namespace VeiniaFramework
 
 			foreach (var cmd in drawCommands)
 			{
-				var targetBlendState = cmd.blendState ?? blendState;
-				var targetDepthStencilState = cmd.depthStencilState ?? depthStencilState;
-				var targetRasterizerState = cmd.rasterizerState ?? rasterizerState;
+				var targetBlendState = cmd.options.blendState ?? options.blendState;
+				var targetDepthStencilState = cmd.options.depthStencilState ?? options.depthStencilState;
+				var targetRasterizerState = cmd.options.rasterizerState ?? options.rasterizerState;
+				var targetSamplerState = cmd.options.samplerState ?? options.samplerState;
 
 				if (cmd.shader != prevCommand.shader && beginCalled // if new shader
-				 || cmd.blendState != prevCommand.blendState && beginCalled // or new BlendState
-				 || cmd.depthStencilState != prevCommand.depthStencilState && beginCalled // or new DepthStencilState
-				 || cmd.rasterizerState != prevCommand.rasterizerState && beginCalled // or new RasterizerState
+				 || cmd.options.blendState != prevCommand.options.blendState && beginCalled // or new BlendState
+				 || cmd.options.depthStencilState != prevCommand.options.depthStencilState && beginCalled // or new DepthStencilState
+				 || cmd.options.rasterizerState != prevCommand.options.rasterizerState && beginCalled // or new RasterizerState
+				 || cmd.options.samplerState != prevCommand.options.samplerState && beginCalled // or new SamplerState
 				 || cmd.drawWithoutSpriteBatch && beginCalled) // or using DrawUserPrimitives()
 				{
 					sb.End();
@@ -242,7 +244,7 @@ namespace VeiniaFramework
 				if (!beginCalled && !cmd.drawWithoutSpriteBatch)
 				{
 					begins++;
-					sb.Begin(SpriteSortMode.Deferred, targetBlendState, samplerState, targetDepthStencilState, targetRasterizerState, cmd.shader, transformMatrix);
+					sb.Begin(SpriteSortMode.Deferred, targetBlendState, targetSamplerState, targetDepthStencilState, targetRasterizerState, cmd.shader, transformMatrix);
 					beginCalled = true;
 				}
 
@@ -252,10 +254,13 @@ namespace VeiniaFramework
 					if (targetBlendState != null) Globals.graphicsDevice.BlendState = targetBlendState;
 
 					// depthStencilState for drawing with DrawUserPrimitives
-					if (depthStencilState != null) Globals.graphicsDevice.DepthStencilState = depthStencilState;
+					if (options.depthStencilState != null) Globals.graphicsDevice.DepthStencilState = options.depthStencilState;
 
 					// rasterizerState for drawing with DrawUserPrimitives
-					if (rasterizerState != null) Globals.graphicsDevice.RasterizerState = rasterizerState;
+					if (options.rasterizerState != null) Globals.graphicsDevice.RasterizerState = options.rasterizerState;
+
+					// samplerState for drawing with DrawUserPrimitives
+					if (options.samplerState != null) Globals.graphicsDevice.SamplerStates[0] = options.samplerState;
 				}
 
 				prevCommand = cmd;

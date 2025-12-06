@@ -8,30 +8,27 @@ namespace VeiniaFramework
 		public Color color = Color.White;
 		public Vector2 destinationSize;
 		public Effect effect;
-		public BlendState blendState;
-		public DepthStencilState depthStencilState;
+		public DrawOptions options;
 		public Texture2D texture { get; private set; }
 
 		private float pixelsPerUnit;
 
 
-		public Sprite(Texture2D texture, Color? color = null, float? pixelsPerUnit = null, BlendState blendState = null, DepthStencilState depthStencilState = null, Effect effect = null)
+		public Sprite(Texture2D texture, Color? color = null, float? pixelsPerUnit = null, DrawOptions options = default, Effect effect = null)
 		{
 			this.color = color ?? Color.White;
 			this.texture = texture;
 			this.effect = effect;
-			this.blendState = blendState;
-			this.depthStencilState = depthStencilState;
+			this.options = options;
 			this.pixelsPerUnit = pixelsPerUnit ?? Transform.unitSize;
 
 			destinationSize = new Vector2(texture.Width, texture.Height) / (this.pixelsPerUnit / Transform.unitSize);
 		}
-		public Sprite(string path, Color? color = null, float? pixelsPerUnit = null, BlendState blendState = null, DepthStencilState depthStencilState = null, Effect effect = null)
+		public Sprite(string path, Color? color = null, float? pixelsPerUnit = null, DrawOptions options = default, Effect effect = null)
 		{
 			this.color = color ?? Color.White;
 			this.effect = effect;
-			this.blendState = blendState;
-			this.depthStencilState = depthStencilState;
+			this.options = options;
 			this.pixelsPerUnit = pixelsPerUnit ?? Transform.unitSize;
 
 			texture = Globals.content.Load<Texture2D>(path);
@@ -51,8 +48,7 @@ namespace VeiniaFramework
 				},
 				Z = transform.Z,
 				shader = effect,
-				blendState = blendState,
-				depthStencilState = depthStencilState
+				options = options
 			});
 		}
 
