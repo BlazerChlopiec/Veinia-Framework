@@ -201,6 +201,17 @@ namespace VeiniaFramework
 
 			Globals.particleWorld.Draw(sb, this); // makes drawCommands
 
+			for (int i = 0; i < drawCommands.Count; i++) // set default values
+			{
+				var c = drawCommands[i];
+				c.drawOptions.blendState = c.drawOptions.blendState ?? drawOptions.blendState;
+				c.drawOptions.depthStencilState = c.drawOptions.depthStencilState ?? drawOptions.depthStencilState;
+				c.drawOptions.rasterizerState = c.drawOptions.rasterizerState ?? drawOptions.rasterizerState;
+				c.drawOptions.samplerState = c.drawOptions.samplerState ?? drawOptions.samplerState;
+				c.drawOptions.shader = c.drawOptions.shader ?? drawOptions.shader;
+				drawCommands[i] = c;
+			}
+
 			drawCommands.Sort((a, b) =>
 			{
 				// compare by z
@@ -226,11 +237,6 @@ namespace VeiniaFramework
 
 			foreach (var cmd in drawCommands)
 			{
-				var targetBlendState = cmd.drawOptions.blendState ?? drawOptions.blendState;
-				var targetDepthStencilState = cmd.drawOptions.depthStencilState ?? drawOptions.depthStencilState;
-				var targetRasterizerState = cmd.drawOptions.rasterizerState ?? drawOptions.rasterizerState;
-				var targetSamplerState = cmd.drawOptions.samplerState ?? drawOptions.samplerState;
-
 				if (cmd.drawOptions.shader != prevCommand.drawOptions.shader && beginCalled // if new shader
 				 || cmd.drawOptions.blendState != prevCommand.drawOptions.blendState && beginCalled // or new BlendState
 				 || cmd.drawOptions.depthStencilState != prevCommand.drawOptions.depthStencilState && beginCalled // or new DepthStencilState
@@ -244,23 +250,26 @@ namespace VeiniaFramework
 				if (!beginCalled && !cmd.drawWithoutSpriteBatch)
 				{
 					begins++;
-					sb.Begin(SpriteSortMode.Deferred, targetBlendState, targetSamplerState, targetDepthStencilState, targetRasterizerState, cmd.drawOptions.shader, transformMatrix);
+					sb.Begin(SpriteSortMode.Deferred, cmd.drawOptions.blendState, cmd.drawOptions.samplerState, cmd.drawOptions.depthStencilState, cmd.drawOptions.rasterizerState, cmd.drawOptions.shader, transformMatrix);
 					beginCalled = true;
 				}
 
 				if (cmd.drawWithoutSpriteBatch)
 				{
+					// shaders for drawing with DrawUserPrimitives
+					if (cmd.drawOptions.shader != null) cmd.drawOptions.shader.CurrentTechnique.Passes[0].Apply();
+
 					// blendState for drawing with DrawUserPrimitives
-					if (targetBlendState != null) Globals.graphicsDevice.BlendState = targetBlendState;
+					if (cmd.drawOptions.blendState != null) Globals.graphicsDevice.BlendState = cmd.drawOptions.blendState;
 
 					// depthStencilState for drawing with DrawUserPrimitives
-					if (drawOptions.depthStencilState != null) Globals.graphicsDevice.DepthStencilState = drawOptions.depthStencilState;
+					if (cmd.drawOptions.depthStencilState != null) Globals.graphicsDevice.DepthStencilState = cmd.drawOptions.depthStencilState;
 
 					// rasterizerState for drawing with DrawUserPrimitives
-					if (drawOptions.rasterizerState != null) Globals.graphicsDevice.RasterizerState = drawOptions.rasterizerState;
+					if (cmd.drawOptions.rasterizerState != null) Globals.graphicsDevice.RasterizerState = cmd.drawOptions.rasterizerState;
 
 					// samplerState for drawing with DrawUserPrimitives
-					if (drawOptions.samplerState != null) Globals.graphicsDevice.SamplerStates[0] = drawOptions.samplerState;
+					if (cmd.drawOptions.samplerState != null) Globals.graphicsDevice.SamplerStates[0] = cmd.drawOptions.samplerState;
 				}
 
 				prevCommand = cmd;
