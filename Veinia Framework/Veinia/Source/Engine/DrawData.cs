@@ -21,6 +21,7 @@ namespace VeiniaFramework
 
 		public Effect shader;
 
-		public RenderTarget2D renderTarget; // RenderTargetUsage.PreserveContents recommended
+		// i wish it were c++ for this
+		public Func<RenderTarget2D> renderTarget; // RenderTargetUsage.PreserveContents recommended
 	}
 }

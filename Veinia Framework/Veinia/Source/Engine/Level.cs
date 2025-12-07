@@ -294,7 +294,7 @@ namespace VeiniaFramework
 				if (!beginCalled && !cmd.drawWithoutSpriteBatch)
 				{
 					begins++;
-					Globals.graphicsDevice.SetRenderTarget(cmd.drawOptions.renderTarget);
+					Globals.graphicsDevice.SetRenderTarget(cmd.drawOptions.renderTarget?.Invoke());
 					sb.Begin(SpriteSortMode.Deferred, cmd.drawOptions.blendState, cmd.drawOptions.samplerState, cmd.drawOptions.depthStencilState, cmd.drawOptions.rasterizerState, cmd.drawOptions.shader, transformMatrix);
 					beginCalled = true;
 				}
@@ -328,7 +328,7 @@ namespace VeiniaFramework
 				sb.End();
 				beginCalled = false;
 			}
-			Globals.graphicsDevice.SetRenderTarget(drawOptions.renderTarget);
+			Globals.graphicsDevice.SetRenderTarget(drawOptions.renderTarget?.Invoke());
 
 			Title.Add(begins, " - SpriteBatch Begins", 5);
 		}
