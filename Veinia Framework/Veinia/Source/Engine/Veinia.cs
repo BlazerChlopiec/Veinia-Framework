@@ -49,6 +49,9 @@ namespace VeiniaFramework
 
 			window.ClientSizeChanged += (s, a) => screen.ClientSizeChanged();
 
+			// dont clear null renderTarget when switching
+			graphicsDevice.PresentationParameters.RenderTargetUsage = RenderTargetUsage.PreserveContents;
+
 			title = new Title(window);
 			debugView = new DebugView(Globals.physicsWorld);
 			debugView.LoadContent(graphicsDevice, content);

@@ -209,6 +209,7 @@ namespace VeiniaFramework
 				c.drawOptions.rasterizerState = c.drawOptions.rasterizerState ?? drawOptions.rasterizerState;
 				c.drawOptions.samplerState = c.drawOptions.samplerState ?? drawOptions.samplerState;
 				c.drawOptions.shader = c.drawOptions.shader ?? drawOptions.shader;
+				c.drawOptions.renderTarget = c.drawOptions.renderTarget ?? drawOptions.renderTarget;
 				drawCommands[i] = c;
 			}
 
@@ -256,10 +257,18 @@ namespace VeiniaFramework
 					if (blendCompare != 0) return blendCompare;
 				}
 
+				// compare renderTarget
+				if (a.drawOptions.renderTarget != b.drawOptions.renderTarget)
+				{
+					if (a.drawOptions.renderTarget == null) return -1;
+					if (b.drawOptions.renderTarget == null) return 1;
+					int targetCompare = a.drawOptions.renderTarget.GetHashCode().CompareTo(b.drawOptions.renderTarget.GetHashCode());
+					if (targetCompare != 0) return targetCompare;
+				}
+
 				// All equal
 				return 0;
 			});
-
 
 			DrawCommand prevCommand = default;
 			bool beginCalled = false;
@@ -267,11 +276,12 @@ namespace VeiniaFramework
 
 			foreach (var cmd in drawCommands)
 			{
-				if (cmd.drawOptions.shader != prevCommand.drawOptions.shader && beginCalled // if new shader
+				if (cmd.drawOptions.shader != prevCommand.drawOptions.shader && beginCalled // if new Shader
 				 || cmd.drawOptions.blendState != prevCommand.drawOptions.blendState && beginCalled // or new BlendState
 				 || cmd.drawOptions.depthStencilState != prevCommand.drawOptions.depthStencilState && beginCalled // or new DepthStencilState
 				 || cmd.drawOptions.rasterizerState != prevCommand.drawOptions.rasterizerState && beginCalled // or new RasterizerState
 				 || cmd.drawOptions.samplerState != prevCommand.drawOptions.samplerState && beginCalled // or new SamplerState
+				 || cmd.drawOptions.renderTarget != prevCommand.drawOptions.renderTarget && beginCalled // or new RenderTarget
 				 || cmd.drawWithoutSpriteBatch && beginCalled) // or using DrawUserPrimitives()
 				{
 					sb.End();
@@ -280,6 +290,7 @@ namespace VeiniaFramework
 				if (!beginCalled && !cmd.drawWithoutSpriteBatch)
 				{
 					begins++;
+					Globals.graphicsDevice.SetRenderTarget(cmd.drawOptions.renderTarget);
 					sb.Begin(SpriteSortMode.Deferred, cmd.drawOptions.blendState, cmd.drawOptions.samplerState, cmd.drawOptions.depthStencilState, cmd.drawOptions.rasterizerState, cmd.drawOptions.shader, transformMatrix);
 					beginCalled = true;
 				}
@@ -313,6 +324,7 @@ namespace VeiniaFramework
 				sb.End();
 				beginCalled = false;
 			}
+			Globals.graphicsDevice.SetRenderTarget(drawOptions.renderTarget);
 
 			Title.Add(begins, " - SpriteBatch Begins", 5);
 		}

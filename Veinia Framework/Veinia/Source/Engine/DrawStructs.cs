@@ -20,5 +20,7 @@ namespace VeiniaFramework
 		public SamplerState samplerState;
 
 		public Effect shader;
+
+		public RenderTarget2D renderTarget; // RenderTargetUsage.PreserveContents recommended
 	}
 }
