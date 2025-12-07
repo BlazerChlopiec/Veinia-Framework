@@ -15,10 +15,11 @@ namespace VeiniaFramework
 		public void QueueRemove(ParticleEffect particleEffect) => Find(particleEffect).queuedRemove = true;
 		public void Clear() => particles.Clear();
 
-		public ParticleEffect Add(ParticleEffect particleEffect, DrawOptions drawOptions = default, float Z = 0)
+		public ParticleData Add(ParticleEffect particleEffect, DrawOptions drawOptions = default, float Z = 0)
 		{
-			particles.Add(new ParticleData { effect = particleEffect, drawOptions = drawOptions, z = Z });
-			return particleEffect;
+			var data = new ParticleData { effect = particleEffect, drawOptions = drawOptions, z = Z };
+			particles.Add(data);
+			return data;
 		}
 
 		public void Remove(ParticleEffect particleEffect)
