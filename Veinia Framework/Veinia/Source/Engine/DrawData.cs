@@ -3,7 +3,7 @@ using System;
 
 namespace VeiniaFramework
 {
-	public struct DrawCommand
+	public class DrawCommand
 	{
 		public Action command;
 		public float Z; // drawing order that works with multiple Begins()
@@ -12,7 +12,7 @@ namespace VeiniaFramework
 		public DrawOptions drawOptions;
 	}
 
-	public struct DrawOptions
+	public class DrawOptions
 	{
 		public BlendState blendState;
 		public DepthStencilState depthStencilState;
