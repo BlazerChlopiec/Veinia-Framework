@@ -15,62 +15,43 @@ public class Timers
 			if (item.time <= 0 && !item.stop)
 			{
 				item.onComplete?.Invoke();
-				item.onComplete = null;
+
+				if (item.repeat) New(item.name, item.startTime, item.onComplete, item.useUnscaled, item.repeat);
+				else item.onComplete = null;
 			}
 		}
 	}
 
-	public static void New(string name, float time, Action onComplete, bool useUnscaled = false)
+	public static void New(string name, float time, Action onComplete = null, bool useUnscaled = false, bool repeat = false)
 	{
-		if (!AlreadyExists(name))
+		var exists = AlreadyExists(name);
+
+		if (!exists)
 		{
-			Counter counter = new Counter
+			var counter = new Counter
 			{
 				name = name,
 				time = time,
 				startTime = time,
 				onComplete = onComplete,
-				useUnscaled = useUnscaled
+				useUnscaled = useUnscaled,
+				repeat = repeat
 			};
 
 			timeCounters.Add(counter);
 		}
 
-		if (AlreadyExists(name))
+		if (exists)
 		{
-			//overriding the counter
-			Counter target = timeCounters[timeCounters.IndexOf(timeCounters.Find(x => x.name == name))];
+			var target = timeCounters.Find(x => x.name == name);
+
 			target.stop = false;
 			target.time = time;
 			target.startTime = time;
 			target.onComplete = onComplete;
+			target.repeat = repeat;
 		}
 	}
-
-	public static void New(string name, float time, bool useUnscaled = false)
-	{
-		if (!AlreadyExists(name))
-		{
-			Counter counter = new Counter
-			{
-				name = name,
-				time = time,
-				startTime = time,
-				useUnscaled = useUnscaled
-			};
-
-			timeCounters.Add(counter);
-		}
-
-		if (AlreadyExists(name, out Counter target))
-		{
-			//overriding the counter
-			target.stop = false;
-			target.time = time;
-			target.startTime = time;
-		}
-	}
-
 	public static void Clear(string name)
 	{
 		AlreadyExists(name, out Counter target);
@@ -102,21 +83,11 @@ public class Timers
 		else return 0f;
 	}
 
-	public static bool AlreadyExists(string name)
-	{
-		List<Counter> temp = new List<Counter>();
-		temp = timeCounters.FindAll(x => x.name == name);
-
-		return temp.Count != 0;
-	}
+	public static bool AlreadyExists(string name) => timeCounters.Exists(x => x.name == name);
 	public static bool AlreadyExists(string name, out Counter counter)
 	{
-		List<Counter> temp = new List<Counter>();
-		temp = timeCounters.FindAll(x => x.name == name);
-
-		var exisits = temp.Count != 0;
-		counter = exisits ? temp[0] : default;
-		return exisits;
+		counter = timeCounters.Find(x => x.name == name);
+		return counter != null;
 	}
 }
 
@@ -127,5 +98,6 @@ public class Counter
 	public float startTime; // this is used for Get01FromStartValue()
 	public bool stop;
 	public bool useUnscaled;
+	public bool repeat;
 	public Action onComplete;
 }
