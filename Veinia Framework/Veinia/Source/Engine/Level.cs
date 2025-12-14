@@ -195,6 +195,7 @@ namespace VeiniaFramework
 		public void Draw(SpriteBatch sb, DrawOptions drawOptions, Matrix? transformMatrix = null)
 		{
 			if (drawOptions == null) drawOptions = new DrawOptions();
+			if (transformMatrix == null) transformMatrix = Globals.camera.GetView();
 
 			for (int i = 0; i < activeScene.Count; i++) // makes drawCommands
 			{
