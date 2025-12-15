@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 
 namespace VeiniaFramework
@@ -23,5 +24,6 @@ namespace VeiniaFramework
 
 		// i wish it were c++ for this
 		public Func<RenderTarget2D> renderTarget; // RenderTargetUsage.PreserveContents recommended
+		public Matrix? transformMatrix; // if null set to Globals.camera.GetView()
 	}
 }

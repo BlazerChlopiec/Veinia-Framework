@@ -192,10 +192,10 @@ namespace VeiniaFramework
 		/// Draws objects in the current scene.
 		/// </summary>
 		public List<DrawCommand> drawCommands = new List<DrawCommand>();
-		public void Draw(SpriteBatch sb, DrawOptions drawOptions, Matrix? transformMatrix = null)
+		public void Draw(SpriteBatch sb, DrawOptions drawOptions)
 		{
 			if (drawOptions == null) drawOptions = new DrawOptions();
-			if (transformMatrix == null) transformMatrix = Globals.camera.GetView();
+			if (drawOptions.transformMatrix == null) drawOptions.transformMatrix = Globals.camera.GetView();
 
 			for (int i = 0; i < activeScene.Count; i++) // makes drawCommands
 			{
@@ -214,6 +214,7 @@ namespace VeiniaFramework
 				c.drawOptions.samplerState = c.drawOptions.samplerState ?? drawOptions.samplerState;
 				c.drawOptions.shader = c.drawOptions.shader ?? drawOptions.shader;
 				c.drawOptions.renderTarget = c.drawOptions.renderTarget ?? drawOptions.renderTarget;
+				c.drawOptions.transformMatrix = c.drawOptions.transformMatrix ?? drawOptions.transformMatrix;
 				drawCommands[i] = c;
 			}
 
@@ -270,6 +271,15 @@ namespace VeiniaFramework
 					if (targetCompare != 0) return targetCompare;
 				}
 
+				// compare transformMatrix
+				if (a.drawOptions.transformMatrix != b.drawOptions.transformMatrix)
+				{
+					if (a.drawOptions.transformMatrix == null) return -1;
+					if (b.drawOptions.transformMatrix == null) return 1;
+					int targetCompare = a.drawOptions.transformMatrix.GetHashCode().CompareTo(b.drawOptions.transformMatrix.GetHashCode());
+					if (targetCompare != 0) return targetCompare;
+				}
+
 				// All equal
 				return 0;
 			});
@@ -287,6 +297,7 @@ namespace VeiniaFramework
 					 || cmd.drawOptions.rasterizerState != prevCommand.drawOptions.rasterizerState && beginCalled // or new RasterizerState
 					 || cmd.drawOptions.samplerState != prevCommand.drawOptions.samplerState && beginCalled // or new SamplerState
 					 || cmd.drawOptions.renderTarget != prevCommand.drawOptions.renderTarget && beginCalled // or new RenderTarget
+					 || cmd.drawOptions.transformMatrix != prevCommand.drawOptions.transformMatrix && beginCalled // or new TransformMatrix
 					 || cmd.drawWithoutSpriteBatch && beginCalled) // or using DrawUserPrimitives()
 					{
 						sb.End();
@@ -296,7 +307,7 @@ namespace VeiniaFramework
 				{
 					begins++;
 					Globals.graphicsDevice.SetRenderTarget(cmd.drawOptions.renderTarget?.Invoke());
-					sb.Begin(SpriteSortMode.Deferred, cmd.drawOptions.blendState, cmd.drawOptions.samplerState, cmd.drawOptions.depthStencilState, cmd.drawOptions.rasterizerState, cmd.drawOptions.shader, transformMatrix);
+					sb.Begin(SpriteSortMode.Deferred, cmd.drawOptions.blendState, cmd.drawOptions.samplerState, cmd.drawOptions.depthStencilState, cmd.drawOptions.rasterizerState, cmd.drawOptions.shader, cmd.drawOptions.transformMatrix);
 					beginCalled = true;
 				}
 
