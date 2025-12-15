@@ -74,7 +74,7 @@ namespace VeiniaFramework.Editor
 						Width = prefabButtonSize,
 						Top = prefabButtonSize * tab.Prefabs.IndexOf(prefab),
 						VerticalAlignment = VerticalAlignment.Top,
-						Background = new TextureRegion(sprite.texture.ChangeColor(sprite.color), new Rectangle(0, 0, sprite.texture.Width, sprite.texture.Height)),
+						Background = new TextureRegion(sprite.texture.ChangeColor(sprite.color), sprite.sourceRectangle.Value),
 					};
 					prefabButton.Click += (s, a) => OnClickPrefab(prefab);
 					tab.Panel.Widgets.Add(prefabButton);

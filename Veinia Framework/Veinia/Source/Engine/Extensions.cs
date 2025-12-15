@@ -163,6 +163,20 @@ namespace VeiniaFramework
 
 			return result;
 		}
+		public static void LoadFromTextureAtlas(this ContentManager content, string atlas, int tileX = 16, int tileY = 16, Action<string, Texture2D, Rectangle> init = null)
+		{
+			var tex = Globals.content.Load<Texture2D>(atlas);
+			int count = 0;
+
+			for (int y = 0; y < tex.Height / tileY; y++)
+			{
+				for (int x = 0; x < tex.Width / tileX; x++)
+				{
+					count++;
+					init?.Invoke($"{atlas}:{count}", tex, new Rectangle(tileX * x, tileY * y, tileX, tileY));
+				}
+			}
+		}
 		public static Window MakeEditWindow(this Desktop myraDesktop, object Object, string title = "Object Editor", int width = 350, bool pauseGame = false, bool allowInReleaseMode = false)
 		{
 #if !DEBUG

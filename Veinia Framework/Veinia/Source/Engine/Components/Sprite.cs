@@ -7,6 +7,7 @@ namespace VeiniaFramework
 	{
 		public Color color = Color.White;
 		public Vector2 destinationSize;
+		public Rectangle? sourceRectangle;
 		public Effect effect;
 		public DrawOptions drawOptions;
 		public Texture2D texture { get; private set; }
@@ -14,24 +15,19 @@ namespace VeiniaFramework
 		private float pixelsPerUnit;
 
 
-		public Sprite(Texture2D texture, Color? color = null, float? pixelsPerUnit = null, DrawOptions options = default)
+		public Sprite(Texture2D texture, Color? color = null, float? pixelsPerUnit = null, Rectangle? sourceRectangle = null, DrawOptions options = default)
 		{
 			this.color = color ?? Color.White;
 			this.texture = texture;
-			this.drawOptions = options;
 			this.pixelsPerUnit = pixelsPerUnit ?? Transform.unitSize;
+			this.sourceRectangle = sourceRectangle ?? texture.Bounds;
+			this.drawOptions = options;
 
-			destinationSize = new Vector2(texture.Width, texture.Height) / (this.pixelsPerUnit / Transform.unitSize);
+			destinationSize = new Vector2(this.sourceRectangle.Value.Width, this.sourceRectangle.Value.Height) / (this.pixelsPerUnit / Transform.unitSize);
 		}
-		public Sprite(string path, Color? color = null, float? pixelsPerUnit = null, DrawOptions options = default)
+		public Sprite(string path, Color? color = null, float? pixelsPerUnit = null, Rectangle? sourceRectangle = null, DrawOptions options = default)
+			: this(Globals.content.Load<Texture2D>(path), color, pixelsPerUnit, sourceRectangle, options)
 		{
-			this.color = color ?? Color.White;
-			this.drawOptions = options;
-			this.pixelsPerUnit = pixelsPerUnit ?? Transform.unitSize;
-
-			texture = Globals.content.Load<Texture2D>(path);
-
-			destinationSize = new Vector2(texture.Width, texture.Height) / (this.pixelsPerUnit / Transform.unitSize);
 		}
 
 		public virtual void Draw(SpriteBatch sb)
@@ -40,8 +36,8 @@ namespace VeiniaFramework
 			{
 				command = delegate
 				{
-					sb.Draw(texture, rect, null, color, MathHelper.ToRadians(transform.rotation),
-						 new Vector2(texture.Bounds.Width / 2, texture.Bounds.Height / 2),
+					sb.Draw(texture, rect, sourceRectangle, color, MathHelper.ToRadians(transform.rotation),
+						 new Vector2(sourceRectangle.Value.Width / 2, sourceRectangle.Value.Height / 2),
 						 SpriteEffects.None, layerDepth: 0);
 				},
 				Z = transform.Z,
