@@ -81,6 +81,8 @@ namespace VeiniaFramework.Editor
 			currentPrefabName = newPrefabName;
 
 			currentObjectLayer = editorObjectManager.editorObjects.FindAll(x => x.PrefabName == currentPrefabName);
+
+			EditorLabelManager.Add("currentPrefabName", new Label { Text = "Prefab - " + currentPrefabName, VerticalAlignment = VerticalAlignment.Top, HorizontalAlignment = HorizontalAlignment.Center, Top = 50 });
 		}
 
 		public override void OnExitTab(Toolbar newToolbar) => objectPreview.DestroyGameObject();
@@ -88,8 +90,6 @@ namespace VeiniaFramework.Editor
 
 		public override void OnUpdate()
 		{
-			EditorLabelManager.Add("currentPrefabName", new Label { Text = "Prefab - " + currentPrefabName, VerticalAlignment = VerticalAlignment.Top, HorizontalAlignment = HorizontalAlignment.Center, Top = 50 });
-
 			mousePos = Globals.input.GetMouseWorldPosition();
 			mouseGridPos = new Vector2(MathF.Round(mousePos.X), MathF.Round(mousePos.Y));
 

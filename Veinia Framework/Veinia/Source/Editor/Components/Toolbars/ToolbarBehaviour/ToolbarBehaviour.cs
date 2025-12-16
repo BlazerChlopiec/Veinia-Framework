@@ -5,6 +5,7 @@ namespace VeiniaFramework.Editor
 	public class ToolbarBehaviour
 	{
 		public GameObject gameObject;
+		public Toolbar toolbar;
 
 		public virtual void OnInitialize() { }
 		public virtual void OnEnterTab() { }

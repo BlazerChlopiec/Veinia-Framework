@@ -16,6 +16,8 @@ namespace VeiniaFramework.Editor
 		EditorObjectManager editorObjectManager;
 		EditorControls editorControls;
 
+		PaintingToolbar paintingToolbar;
+
 		public List<EditorObject> selectedObjects = new List<EditorObject>();
 		public EditorObject[] clipboard;
 
@@ -38,6 +40,8 @@ namespace VeiniaFramework.Editor
 			editorObjectManager = gameObject.level.FindComponentOfType<EditorObjectManager>();
 			editorControls = gameObject.level.FindComponentOfType<EditorControls>();
 
+			paintingToolbar = toolbar.toolbarManager.GetToolbar<PaintingToolbar>();
+
 			EditorLabelManager.Add("SelectedObjectCount", new Label { Text = "Selected Objects - " + selectedObjects.Count, VerticalAlignment = VerticalAlignment.Top, HorizontalAlignment = HorizontalAlignment.Center, Top = 25 });
 
 			editorObjectManager.OnRemoveAll += () => { selectedObjects.Clear(); };
@@ -45,13 +49,18 @@ namespace VeiniaFramework.Editor
 
 		public override void OnExitTab(Toolbar newToolbar)
 		{
-			if (newToolbar is PaintingToolbar && selectedObjects.Count > 0)
+			if (paintingToolbar != null) AssignMarkLayerPrefab();
+			selectedObjects.Clear();
+		}
+
+		private void AssignMarkLayerPrefab()
+		{
+			Say.Line(selectedObjects.Count);
+			if (selectedObjects.Count > 0)
 			{
-				var paintingToolbarBehaviour = (PaintingToolbarBehaviour)newToolbar.toolbarBehaviour;
+				var paintingToolbarBehaviour = (PaintingToolbarBehaviour)paintingToolbar.toolbarBehaviour;
 				paintingToolbarBehaviour.ChangeCurrentPrefab(selectedObjects[0].PrefabName);
-				selectedObjects.Clear();
 			}
-			else selectedObjects.Clear();
 		}
 
 		public override void OnUpdate()
@@ -106,6 +115,8 @@ namespace VeiniaFramework.Editor
 				{
 					selectedObjects.Add(oneSelected);
 				}
+
+				AssignMarkLayerPrefab();
 			}
 			// mouse up when dragging
 			if (Globals.input.GetMouseUp(0) && selectDragging)

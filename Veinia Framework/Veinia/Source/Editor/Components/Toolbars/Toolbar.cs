@@ -8,6 +8,7 @@ namespace VeiniaFramework.Editor
 	{
 		public string toolbarName;
 		public ToolbarBehaviour toolbarBehaviour;
+		public ToolbarManager toolbarManager;
 
 		public Keys shortcut;
 		public Widget displayedToolbarContent;
@@ -17,6 +18,8 @@ namespace VeiniaFramework.Editor
 		{
 			this.toolbarName = toolbarName;
 			this.toolbarBehaviour = toolbarBehaviour;
+
+			this.toolbarBehaviour.toolbar = this;
 		}
 
 		public virtual void OnInitialize(GameObject gameObject) { }

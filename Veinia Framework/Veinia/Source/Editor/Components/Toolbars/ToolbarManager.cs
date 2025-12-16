@@ -30,6 +30,7 @@ namespace VeiniaFramework.Editor
 
 				//can't be more than 10 toolbars because this wouldn't make sense lmao
 				toolbar.shortcut = Keys.D1 + toolbars.IndexOf(toolbar);
+				toolbar.toolbarManager = this;
 
 				toolbar.OnInitialize(gameObject);
 
@@ -87,5 +88,7 @@ namespace VeiniaFramework.Editor
 			currentToolbar?.OnDraw(sb);
 			currentToolbar?.toolbarBehaviour.OnDraw(sb);
 		}
+
+		public T1 GetToolbar<T1>() where T1 : Toolbar => (T1)toolbars.Find(x => x is T1);
 	}
 }
