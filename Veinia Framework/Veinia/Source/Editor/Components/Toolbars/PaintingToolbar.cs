@@ -96,6 +96,7 @@ namespace VeiniaFramework.Editor
 							Left = left,
 							TextColor = Color.Black,
 							MaxWidth = prefabButtonSize,
+							Wrap = true
 						};
 						prefabTextOutline.TouchDown += (s, a) => OnClickPrefab(prefab);
 						tab.Panel.Widgets.Add(prefabTextOutline);
@@ -106,6 +107,7 @@ namespace VeiniaFramework.Editor
 							Top = top - 1,
 							Left = left - 1,
 							MaxWidth = prefabButtonSize,
+							Wrap = true
 						};
 						prefabText.TouchDown += (s, a) => OnClickPrefab(prefab);
 						tab.Panel.Widgets.Add(prefabText);
