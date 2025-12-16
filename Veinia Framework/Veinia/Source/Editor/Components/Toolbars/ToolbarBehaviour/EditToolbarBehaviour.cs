@@ -55,7 +55,6 @@ namespace VeiniaFramework.Editor
 
 		private void AssignMarkLayerPrefab()
 		{
-			Say.Line(selectedObjects.Count);
 			if (selectedObjects.Count > 0)
 			{
 				var paintingToolbarBehaviour = (PaintingToolbarBehaviour)paintingToolbar.toolbarBehaviour;
