@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Myra.Graphics2D.TextureAtlases;
 using Myra.Graphics2D.UI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,6 +10,8 @@ namespace VeiniaFramework.Editor
 {
 	public class PaintingToolbar : Toolbar
 	{
+		public static int columns = 1;
+
 		PrefabManager prefabManager;
 		PaintingToolbarBehaviour paintingToolbarBehaviour;
 
@@ -68,11 +71,16 @@ namespace VeiniaFramework.Editor
 					var sprite = prefab.PrefabGameObject.GetComponent<Sprite>();
 					if (sprite == null) throw new System.Exception("Prefab has no sprite! - " + prefab.PrefabName);
 
+					var index = tab.Prefabs.IndexOf(prefab);
+					var top = prefabButtonSize * (index / columns);
+					var left = prefabButtonSize * (index % columns);
+
 					var prefabButton = new ImageButton
 					{
 						Height = prefabButtonSize,
 						Width = prefabButtonSize,
-						Top = prefabButtonSize * tab.Prefabs.IndexOf(prefab),
+						Top = top,
+						Left = left,
 						VerticalAlignment = VerticalAlignment.Top,
 						Background = new TextureRegion(sprite.texture.ChangeColor(sprite.color), sprite.sourceRectangle.Value),
 					};
@@ -84,7 +92,8 @@ namespace VeiniaFramework.Editor
 						var prefabTextOutline = new Label
 						{
 							Text = prefab.PrefabName,
-							Top = prefabButtonSize * tab.Prefabs.IndexOf(prefab),
+							Top = top,
+							Left = left,
 							TextColor = Color.Black,
 							MaxWidth = prefabButtonSize,
 						};
@@ -94,15 +103,16 @@ namespace VeiniaFramework.Editor
 						var prefabText = new Label
 						{
 							Text = prefab.PrefabName,
-							Top = prefabButtonSize * tab.Prefabs.IndexOf(prefab) - 1,
-							Left = -1,
+							Top = top - 1,
+							Left = left - 1,
 							MaxWidth = prefabButtonSize,
 						};
 						prefabText.TouchDown += (s, a) => OnClickPrefab(prefab);
 						tab.Panel.Widgets.Add(prefabText);
 					}
 				}
-				tab.Panel.Height = tab.Prefabs.Count * prefabButtonSize;
+				tab.Panel.Height = prefabButtonSize * ((tab.Prefabs.Count + columns - 1) / columns);
+				tab.Panel.Width = prefabButtonSize * Math.Min(tab.Prefabs.Count, columns);
 			}
 		}
 	}
