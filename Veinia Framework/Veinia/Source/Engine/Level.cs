@@ -194,7 +194,6 @@ namespace VeiniaFramework
 		public List<DrawCommand> drawCommands = new List<DrawCommand>();
 		public void Draw(SpriteBatch sb, DrawOptions drawOptions)
 		{
-			if (drawOptions == null) drawOptions = new DrawOptions();
 			if (drawOptions.transformMatrix == null) drawOptions.transformMatrix = Globals.camera.GetView();
 
 			for (int i = 0; i < activeScene.Count; i++) // makes drawCommands
@@ -207,7 +206,6 @@ namespace VeiniaFramework
 			for (int i = 0; i < drawCommands.Count; i++) // set default values
 			{
 				var c = drawCommands[i];
-				if (c.drawOptions == null) c.drawOptions = new DrawOptions();
 				c.drawOptions.blendState = c.drawOptions.blendState ?? drawOptions.blendState;
 				c.drawOptions.depthStencilState = c.drawOptions.depthStencilState ?? drawOptions.depthStencilState;
 				c.drawOptions.rasterizerState = c.drawOptions.rasterizerState ?? drawOptions.rasterizerState;
