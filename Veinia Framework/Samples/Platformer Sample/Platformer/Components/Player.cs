@@ -23,7 +23,7 @@ namespace VeiniaFramework.Samples.Platformer
 		Fixture groundCheck;
 		int groundOverlaps;
 
-		ParticleEffect jumpParticles;
+		ParticleData jumpParticles;
 
 		bool isTouchingGround => groundOverlaps >= 1;
 
@@ -108,7 +108,7 @@ namespace VeiniaFramework.Samples.Platformer
 				},
 				}, Z: 1f);
 			}
-			jumpParticles.Trigger(transform.screenPos, layerDepth: .3f);
+			jumpParticles.effect.Trigger(transform.screenPos, layerDepth: .3f);
 		}
 
 		public override bool OnCollide(Fixture sender, Fixture other, Contact contact)

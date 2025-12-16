@@ -15,7 +15,7 @@ namespace VeiniaFramework.Samples.Platformer
 {
 	public class Collectible : Component
 	{
-		ParticleEffect collectParticles;
+		ParticleData collectParticles;
 
 		public override bool OnCollide(Fixture sender, Fixture other, Contact contact)
 		{
@@ -69,7 +69,7 @@ namespace VeiniaFramework.Samples.Platformer
 				},
 				}, Z: 1f);
 			}
-			collectParticles.Trigger(transform.screenPos, layerDepth: .3f);
+			collectParticles.effect.Trigger(transform.screenPos, layerDepth: .3f);
 		}
 	}
 }

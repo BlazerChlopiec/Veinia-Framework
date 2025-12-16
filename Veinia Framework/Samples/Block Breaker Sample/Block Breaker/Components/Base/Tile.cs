@@ -17,7 +17,7 @@ namespace VeiniaFramework.Samples.BlockBreaker
 	{
 		protected bool hasBeenDestroyed;
 
-		ParticleEffect particles;
+		ParticleData particles;
 
 
 		public override void Initialize()
@@ -74,7 +74,7 @@ namespace VeiniaFramework.Samples.BlockBreaker
 			var UI = FindComponentOfType<UI>();
 			UI.progressBar.Value--;
 
-			particles.Trigger(transform.screenPos, 1);
+			particles.effect.Trigger(transform.screenPos, 1);
 
 			Globals.tweener.TweenTo(target: transform, expression: transform => transform.rotation, toValue: -10, duration: .2f)
 				.Easing(EasingFunctions.BackIn);
@@ -84,7 +84,7 @@ namespace VeiniaFramework.Samples.BlockBreaker
 				.OnEnd((x) =>
 				{
 					DestroyGameObject();
-					Globals.particleWorld.QueueRemove(particles);
+					Globals.particleWorld.QueueRemove(particles.effect);
 
 					if (FindComponentsOfType<Tile>().Count == 0)
 					{
