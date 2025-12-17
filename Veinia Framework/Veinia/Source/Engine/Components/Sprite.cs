@@ -6,8 +6,8 @@ namespace VeiniaFramework
 	public class Sprite : Component, IDrawn
 	{
 		public Color color = Color.White;
-		public Vector2 destinationSize;
-		public Rectangle? sourceRectangle;
+		public Vector2 destinationSize { get; private set; }
+		public Rectangle? sourceRectangle { get; private set; }
 		public Effect effect;
 		public DrawOptions drawOptions;
 		public Texture2D texture { get; private set; }
@@ -18,12 +18,10 @@ namespace VeiniaFramework
 		public Sprite(Texture2D texture, Color? color = null, float? pixelsPerUnit = null, Rectangle? sourceRectangle = null, DrawOptions options = default)
 		{
 			this.color = color ?? Color.White;
-			this.texture = texture;
 			this.pixelsPerUnit = pixelsPerUnit ?? Transform.unitSize;
-			this.sourceRectangle = sourceRectangle ?? texture.Bounds;
-			this.drawOptions = options;
+			drawOptions = options;
 
-			destinationSize = new Vector2(this.sourceRectangle.Value.Width, this.sourceRectangle.Value.Height) / (this.pixelsPerUnit / Transform.unitSize);
+			ChangeTexture(texture, sourceRectangle);
 		}
 		public Sprite(string path, Color? color = null, float? pixelsPerUnit = null, Rectangle? sourceRectangle = null, DrawOptions options = default)
 			: this(Globals.content.Load<Texture2D>(path), color, pixelsPerUnit, sourceRectangle, options)
@@ -45,8 +43,13 @@ namespace VeiniaFramework
 			});
 		}
 
-		public void ChangeTexture(string path) => texture = Globals.content.Load<Texture2D>(path);
-		public void ChangeTexture(Texture2D texture) => this.texture = texture;
+		public void ChangeTexture(string path, Rectangle? sourceRectangle = null) => ChangeTexture(Globals.content.Load<Texture2D>(path), sourceRectangle);
+		public void ChangeTexture(Texture2D texture, Rectangle? sourceRectangle = null)
+		{
+			this.texture = texture;
+			this.sourceRectangle = sourceRectangle ?? texture.Bounds;
+			destinationSize = new Vector2(this.sourceRectangle.Value.Width, this.sourceRectangle.Value.Height) / (this.pixelsPerUnit / Transform.unitSize);
+		}
 
 
 		public Rectangle rect => new Rectangle((int)transform.screenPos.X, (int)transform.screenPos.Y,
