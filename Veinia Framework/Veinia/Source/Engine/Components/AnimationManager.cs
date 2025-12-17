@@ -8,7 +8,7 @@ namespace VeiniaFramework
 		List<AnimData> animDatas;
 		Sprite sprite;
 
-		AnimData currentAnim;
+		AnimData anim; // currentAnim
 		float time;
 
 		string startAnim;
@@ -50,32 +50,38 @@ namespace VeiniaFramework
 
 		public void Play(string name)
 		{
-			if (currentAnim != null) // reset currentAnim Data
+			if (anim != null) // reset currentAnim Data
 			{
-				if (currentAnim.name == name)
+				if (anim.name == name)
 				{
-					currentAnim.stop = false;
+					if (anim.stop) // skip a frame if animation was stopped previously
+					{
+						anim.frame++;
+						if (anim.frame == anim.sourceRectangles.Count) anim.frame = 0;
+						sprite.ChangeTexture(sprite.texture, anim.sourceRectangles[anim.frame]);
+					}
+					anim.stop = false;
 					return;
 				}
 
-				currentAnim.frame = 0;
-				currentAnim.stop = false;
+				anim.frame = 0;
+				anim.stop = false;
 			}
 
-			currentAnim = GetAnim(name);
-			sprite.ChangeTexture(sprite.texture, currentAnim.sourceRectangles[0]);
+			anim = GetAnim(name);
+			sprite.ChangeTexture(sprite.texture, anim.sourceRectangles[0]);
 			time = 0;
 		}
 
 		public void Stop(int? frame = null)
 		{
-			if (currentAnim != null)
+			if (anim != null)
 			{
-				currentAnim.stop = true;
-				if (frame.HasValue) currentAnim.frame = frame.Value;
+				anim.stop = true;
+				if (frame.HasValue) anim.frame = frame.Value;
 			}
 
-			sprite.ChangeTexture(sprite.texture, currentAnim.sourceRectangles[currentAnim.frame]);
+			sprite.ChangeTexture(sprite.texture, anim.sourceRectangles[anim.frame]);
 			time = 0;
 		}
 
@@ -83,17 +89,17 @@ namespace VeiniaFramework
 		{
 			time += Time.deltaTime;
 
-			var timeBetweenFrames = currentAnim.timeBetweenFrames ?? defaultTimeBetweenFrames;
+			var timeBetweenFrames = anim.timeBetweenFrames ?? defaultTimeBetweenFrames;
 			timeBetweenFrames *= timeBetweenFramesMultiplier;
 
-			if (time > timeBetweenFrames && !currentAnim.stop)
+			if (time > timeBetweenFrames && !anim.stop)
 			{
 				time = 0;
 
-				if (currentAnim.sourceRectangles.Count == currentAnim.frame + 1) currentAnim.frame = 0;
-				else currentAnim.frame++;
+				if (anim.sourceRectangles.Count == anim.frame + 1) anim.frame = 0;
+				else anim.frame++;
 
-				sprite.ChangeTexture(sprite.texture, currentAnim.sourceRectangles[currentAnim.frame]);
+				sprite.ChangeTexture(sprite.texture, anim.sourceRectangles[anim.frame]);
 			}
 		}
 
