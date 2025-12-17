@@ -22,6 +22,8 @@ namespace VeiniaFramework.Editor
 
 		GameObject objectPreview;
 
+		EditorObject lastPlacedObject;
+
 		Vector2 mousePos;
 		Vector2 mouseGridPos;
 
@@ -85,7 +87,17 @@ namespace VeiniaFramework.Editor
 			EditorLabelManager.Add("currentPrefabName", new Label { Text = "Prefab - " + currentPrefabName, VerticalAlignment = VerticalAlignment.Top, HorizontalAlignment = HorizontalAlignment.Center, Top = 50 });
 		}
 
-		public override void OnExitTab(Toolbar newToolbar) => objectPreview.DestroyGameObject();
+		public override void OnExitTab(Toolbar newToolbar)
+		{
+			objectPreview.DestroyGameObject();
+
+			if (lastPlacedObject != null)
+			{
+				var editToolbarBehaviour = (EditToolbarBehaviour)newToolbar.toolbarBehaviour;
+				editToolbarBehaviour.selectedObjects.Add(lastPlacedObject);
+				lastPlacedObject = null;
+			}
+		}
 		public override void OnEnterTab() => CreateNewPreview();
 
 		public override void OnUpdate()
@@ -102,16 +114,11 @@ namespace VeiniaFramework.Editor
 				//placing
 				if (Globals.input.GetMouseUp(0) || Globals.input.GetMouse(0) && swipe)
 				{
+					var pos = Globals.input.GetKey(Keys.LeftControl) ? mousePos : mouseGridPos;
 
-					if (!Globals.input.GetKey(Keys.LeftControl))
+					if (editorObjectManager.PrefabOverlapsWithPoint(pos, currentPrefabName) == null)
 					{
-						if (editorObjectManager.PrefabOverlapsWithPoint(mouseGridPos, currentPrefabName) == null)
-							editorObjectManager.Spawn(currentPrefabName, position: mouseGridPos);
-					}
-					else
-					{
-						if (editorObjectManager.PrefabOverlapsWithPoint(mousePos, currentPrefabName) == null)
-							editorObjectManager.Spawn(currentPrefabName, position: mousePos);
+						lastPlacedObject = editorObjectManager.Spawn(currentPrefabName, position: pos);
 					}
 				}
 				//
