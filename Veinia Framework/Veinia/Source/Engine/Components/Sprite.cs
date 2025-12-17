@@ -11,6 +11,7 @@ namespace VeiniaFramework
 		public Effect effect;
 		public DrawOptions drawOptions;
 		public Texture2D texture { get; private set; }
+		public SpriteEffects spriteEffects = SpriteEffects.None;
 
 		private float pixelsPerUnit;
 
@@ -36,7 +37,7 @@ namespace VeiniaFramework
 				{
 					sb.Draw(texture, rect, sourceRectangle, color, MathHelper.ToRadians(transform.rotation),
 						 new Vector2(sourceRectangle.Value.Width / 2, sourceRectangle.Value.Height / 2),
-						 SpriteEffects.None, layerDepth: 0);
+						 spriteEffects, layerDepth: 0);
 				},
 				Z = transform.Z,
 				drawOptions = drawOptions
