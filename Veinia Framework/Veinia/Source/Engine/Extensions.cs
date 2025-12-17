@@ -163,20 +163,53 @@ namespace VeiniaFramework
 
 			return result;
 		}
-		public static void LoadFromTextureAtlas(this ContentManager content, string atlas, int tileX = 16, int tileY = 16, Action<string, Texture2D, Rectangle> init = null)
+		public static void LoadFromTextureAtlas(this ContentManager content, string atlas, int tileX = 16, int tileY = 16, Action<string, Texture2D, Rectangle> init = null, bool ignoreTransparent = true)
 		{
-			var tex = Globals.content.Load<Texture2D>(atlas);
+			var tex = content.Load<Texture2D>(atlas);
 			int count = 0;
+
+			var pixels = new Color[tex.Width * tex.Height];
+			tex.GetData(pixels);
 
 			for (int y = 0; y < tex.Height / tileY; y++)
 			{
 				for (int x = 0; x < tex.Width / tileX; x++)
 				{
+					var srcRect = new Rectangle(tileX * x, tileY * y, tileX, tileY);
+
+					if (tex.IsTransparent(pixels, srcRect) && ignoreTransparent) continue;
+
 					count++;
-					init?.Invoke($"{atlas}:{count}", tex, new Rectangle(tileX * x, tileY * y, tileX, tileY));
+					init?.Invoke($"{atlas}:{count}", tex, srcRect);
 				}
 			}
 		}
+		public static bool IsTransparent(this Texture2D tex, Color[] pixels = null, Rectangle? sourceRectangle = null)
+		{
+			Color[] pixelData = pixels;
+
+			bool isTransparent = true;
+
+			if (pixelData == null)
+			{
+				pixelData = new Color[tex.Width * tex.Height];
+				tex.GetData(pixelData);
+			}
+
+			var bounds = sourceRectangle ?? tex.Bounds;
+			for (int y = 0; y < sourceRectangle.Value.Y + bounds.Height; y++)
+			{
+				for (int x = 0; x < sourceRectangle.Value.X + bounds.Width; x++)
+				{
+					var p = pixelData[y * tex.Width + x];
+
+					isTransparent = p.A == 0;
+				}
+			}
+
+			return isTransparent;
+		}
+
 		public static Window MakeEditWindow(this Desktop myraDesktop, object Object, string title = "Object Editor", int width = 350, bool pauseGame = false, bool allowInReleaseMode = false)
 		{
 #if !DEBUG
