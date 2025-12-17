@@ -197,16 +197,17 @@ namespace VeiniaFramework
 			}
 
 			var bounds = sourceRectangle ?? tex.Bounds;
-			for (int y = 0; y < sourceRectangle.Value.Y + bounds.Height; y++)
+
+			for (int y = bounds.Y; y < bounds.Y + bounds.Height; y++)
 			{
-				for (int x = 0; x < sourceRectangle.Value.X + bounds.Width; x++)
+				for (int x = bounds.X; x < bounds.X + bounds.Width; x++)
 				{
 					var p = pixelData[y * tex.Width + x];
 
-					isTransparent = p.A == 0;
+					if (p.A != 0)
+						isTransparent = false;
 				}
 			}
-
 			return isTransparent;
 		}
 
