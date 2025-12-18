@@ -139,7 +139,7 @@ namespace VeiniaFramework
 			{
 				var obj = scene[i];
 
-				if (!obj.isEnabled || obj.isInitialized && obj.dontDestroyOnLoad) continue;
+				if (!obj.isEnabled || obj.isInitialized) continue;
 
 				obj.EarlyInitialize();
 				obj.Initialize();
