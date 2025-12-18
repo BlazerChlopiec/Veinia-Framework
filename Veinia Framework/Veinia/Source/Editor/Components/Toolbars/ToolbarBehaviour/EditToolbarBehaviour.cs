@@ -212,27 +212,35 @@ namespace VeiniaFramework.Editor
 		Window filterSelectionWindow;
 		public void FilterSelection()
 		{
-			var panel = new Panel();
 			var overlaps = editorObjectManager.AllOverlapsWithPoint(Transform.ScreenToWorldPos(filterSelectionPoint)).ToList();
 
 			editWindow?.Close();
-
 			selectedObjects.Clear();
 
-			if (filterSelectionWindow != null) filterSelectionWindow.Close();
-
-			filterSelectionWindow = new Window
+			if (filterSelectionWindow == null) // init window
 			{
-				Title = "Overlaps",
-				Content = panel,
-			};
+				filterSelectionWindow = new Window
+				{
+					Title = "Overlaps",
+					Content = new Panel(),
+				};
+				filterSelectionWindow.Closed += delegate
+				{
+					filterSelectionWindow = null;
+				};
+
+				filterSelectionWindow.Show(Globals.myraDesktop);
+			}
+			else // if already created just update the content
+			{
+				filterSelectionWindow.RemoveChild(filterSelectionWindow.Content);
+				filterSelectionWindow.Content = new Panel();
+			}
 
 			filterSelectionWindow.Height = 35 + 70 * overlaps.Count;
 			filterSelectionWindow.Width = 100;
-			filterSelectionWindow.Closed += delegate
-			{
-				filterSelectionWindow = null;
-			};
+
+			var panel = (Panel)filterSelectionWindow.Content;
 
 			int overlapButtonSize = 70;
 
@@ -255,8 +263,6 @@ namespace VeiniaFramework.Editor
 				panel.Widgets.Add(overlapButton);
 			}
 			panel.Height = overlaps.Count * overlapButtonSize;
-
-			filterSelectionWindow.Show(Globals.myraDesktop);
 		}
 
 		public void DestroySelection()
