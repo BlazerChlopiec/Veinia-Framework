@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Myra.Graphics2D;
 using Myra.Graphics2D.TextureAtlases;
 using Myra.Graphics2D.UI;
 using System;
@@ -11,6 +12,7 @@ namespace VeiniaFramework.Editor
 	public class PaintingToolbar : Toolbar
 	{
 		public static int columns = 1;
+		public static int padding = 0;
 
 		PrefabManager prefabManager;
 		PaintingToolbarBehaviour paintingToolbarBehaviour;
@@ -81,6 +83,7 @@ namespace VeiniaFramework.Editor
 						Width = prefabButtonSize,
 						Top = top,
 						Left = left,
+						Padding = new Thickness(-padding),
 						VerticalAlignment = VerticalAlignment.Top,
 						Background = new TextureRegion(sprite.texture.ChangeColor(sprite.color), sprite.sourceRectangle.Value),
 					};
