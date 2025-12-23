@@ -22,7 +22,7 @@ namespace VeiniaFramework
 		{
 			float scale = frustumRatioToCameraOverride == null ? frustumRatioToCamera : frustumRatioToCameraOverride.Value;
 
-			var frustum = Globals.camera.GetBoundingFrustum(scale);
+			var frustum = Globals.camera.GetBoundingFrustum(scaleFactor: Vector2.One * scale);
 
 			for (int i = 0; i < level.scene.Count; i++)
 			{

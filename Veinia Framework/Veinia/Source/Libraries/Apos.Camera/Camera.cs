@@ -92,16 +92,19 @@ namespace Apos.Camera
 		public Matrix View => GetView(0);
 		public Matrix ViewInvert => GetViewInvert(0);
 
-		public Matrix GetView(float z = 0, float scaleFactor = 1f)
+		public Matrix GetView(float z = 0, Vector2? scaleFactor = null, float originScale = 1)
 		{
 			float scaleZ = ZToScale(_xyz.Z, z);
+
+			var currentScale = scaleFactor ?? Vector2.One;
+
 			return VirtualViewport.Transform(
 				Matrix.CreateTranslation(new Vector3(-XY, 0f)) *
 				Matrix.CreateTranslation(new Vector3(shake.shakeOffset, 0f)) *
 				Matrix.CreateRotationZ(Rotation) *
-				Matrix.CreateScale(1f / Scale / scaleFactor, 1f / Scale / scaleFactor, 1f / scaleFactor) *
+				Matrix.CreateScale(1f / Scale / currentScale.X, 1f / Scale / currentScale.Y, 1f / currentScale.X) *
 				Matrix.CreateScale(scaleZ, scaleZ, 1f) *
-				Matrix.CreateTranslation(new Vector3(VirtualViewport.Origin, 0f)));
+				Matrix.CreateTranslation(new Vector3(VirtualViewport.Origin * originScale, 0f)));
 		}
 		public Matrix GetView3D()
 		{
@@ -183,10 +186,11 @@ namespace Apos.Camera
 
 			return new RectangleF(left, top, width, height);
 		}
-		public BoundingFrustum GetBoundingFrustum(float z = 0, float scaleFactor = 1f)
+		public BoundingFrustum GetBoundingFrustum(float z = 0, Vector2? scaleFactor = null)
 		{
-			// TODO: Use 3D view and projection?
-			Matrix view = GetView(z, scaleFactor);
+			var scale = scaleFactor ?? Vector2.One;
+			Matrix view = GetView(z, new Vector2(scale.X, scale.Y));
+
 			Matrix projection = GetProjection();
 			return new BoundingFrustum(view * projection);
 		}
