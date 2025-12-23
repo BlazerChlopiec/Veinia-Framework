@@ -222,6 +222,14 @@ namespace Apos.Camera
 		public void SetPosition(Vector2 worldPos) => XY = Transform.ToScreenUnits(worldPos);
 		public Vector2 GetPosition() => Transform.ToWorldUnits(XY);
 
+		public void SnapToIncrements(float increments)
+		{
+			var pos = GetPosition();
+			var targetPos = new Vector2(MathF.Round(pos.X / increments) * increments, MathF.Round(pos.Y / increments) * increments);
+			SetPosition(targetPos);
+		}
+		public void SnapToPixel(int pixelsPerUnit) => SnapToIncrements(1 / (float)pixelsPerUnit);
+
 		public Vector2 GetUnitsInView()
 		{
 			var a = new Vector2(ViewRect.Left, ViewRect.Bottom);
