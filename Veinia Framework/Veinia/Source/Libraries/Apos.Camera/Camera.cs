@@ -92,19 +92,21 @@ namespace Apos.Camera
 		public Matrix View => GetView(0);
 		public Matrix ViewInvert => GetViewInvert(0);
 
-		public Matrix GetView(float z = 0, Vector2? scaleFactor = null, float originScale = 1)
+		public Matrix GetView(float z = 0, Vector2? scaleFactor = null, Vector2? origin = null, float? originScale = null)
 		{
 			float scaleZ = ZToScale(_xyz.Z, z);
 
-			var currentScale = scaleFactor ?? Vector2.One;
+			var currentScale = scaleFactor ?? Vector2.Zero;
+			var curentOrigin = origin ?? VirtualViewport.Origin;
+			var currentOriginScale = originScale ?? 1;
 
 			return VirtualViewport.Transform(
 				Matrix.CreateTranslation(new Vector3(-XY, 0f)) *
 				Matrix.CreateTranslation(new Vector3(shake.shakeOffset, 0f)) *
 				Matrix.CreateRotationZ(Rotation) *
-				Matrix.CreateScale(1f / Scale / currentScale.X, 1f / Scale / currentScale.Y, 1f / currentScale.X) *
+				Matrix.CreateScale(1f / Scale + currentScale.X, 1f / Scale + currentScale.Y, 1f) *
 				Matrix.CreateScale(scaleZ, scaleZ, 1f) *
-				Matrix.CreateTranslation(new Vector3(VirtualViewport.Origin * originScale, 0f)));
+				Matrix.CreateTranslation(new Vector3(curentOrigin * currentOriginScale, 0f)));
 		}
 		public Matrix GetView3D()
 		{
