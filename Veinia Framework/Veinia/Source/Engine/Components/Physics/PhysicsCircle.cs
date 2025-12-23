@@ -1,4 +1,5 @@
-﻿using tainicom.Aether.Physics2D.Collision.Shapes;
+﻿using Microsoft.Xna.Framework;
+using tainicom.Aether.Physics2D.Collision.Shapes;
 using tainicom.Aether.Physics2D.Dynamics;
 
 namespace VeiniaFramework
@@ -15,8 +16,8 @@ namespace VeiniaFramework
 
 		private Fixture fixture;
 
-		public PhysicsCircle(float radius = 1, float friction = .2f, float restitution = 0, bool isSensor = false, Category category = Category.None, BodyType bodyType = BodyType.Static, object tag = null, bool ignoreGravity = false, bool sleepingAllowed = true)
-			: base(bodyType, tag, ignoreGravity, sleepingAllowed)
+		public PhysicsCircle(float radius = 1, float friction = .2f, float restitution = 0, bool isSensor = false, Category category = Category.None, BodyType bodyType = BodyType.Static, Vector2 offset = default, object tag = null, bool ignoreGravity = false, bool sleepingAllowed = true)
+			: base(bodyType, offset, tag, ignoreGravity, sleepingAllowed)
 		{
 			this.radius = radius;
 			this.friction = friction;
@@ -27,7 +28,9 @@ namespace VeiniaFramework
 
 		protected override void MakeShape()
 		{
-			shape = new CircleShape(radius, 1f);
+			var circleShape = new CircleShape(radius, 1f);
+			circleShape.Position = offset;
+			shape = circleShape;
 
 			fixture = body.CreateFixture(shape);
 

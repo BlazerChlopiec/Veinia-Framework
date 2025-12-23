@@ -32,8 +32,8 @@ namespace VeiniaFramework
 
 		private Fixture fixture;
 
-		public PhysicsChain(Vector2[] vertices, float restitution = 0, bool isSensor = false, Category category = Category.None, BodyType bodyType = BodyType.Static, object tag = null, bool ignoreGravity = false, bool sleepingAllowed = true)
-			: base(bodyType, tag, ignoreGravity, sleepingAllowed)
+		public PhysicsChain(Vector2[] vertices, float restitution = 0, bool isSensor = false, Category category = Category.None, BodyType bodyType = BodyType.Static, Vector2 offset = default, object tag = null, bool ignoreGravity = false, bool sleepingAllowed = true)
+			: base(bodyType, offset, tag, ignoreGravity, sleepingAllowed)
 		{
 			this.verts = vertices;
 			this.restitution = restitution;
@@ -44,6 +44,8 @@ namespace VeiniaFramework
 		protected override void MakeShape()
 		{
 			var v = new Vertices(vertices);
+			v.Translate(ref offset);
+
 			shape = new ChainShape(v, createLoop: true);
 			fixture = body.CreateFixture(shape);
 

@@ -21,8 +21,8 @@ namespace VeiniaFramework
 
 		private Fixture fixture;
 
-		public PhysicsRectangle(float width = 1, float height = 1, float friction = .2f, float restitution = 0, bool isSensor = false, Category category = Category.None, BodyType bodyType = BodyType.Static, object tag = null, bool ignoreGravity = false, bool sleepingAllowed = true)
-			: base(bodyType, tag, ignoreGravity, sleepingAllowed)
+		public PhysicsRectangle(float width = 1, float height = 1, float friction = .2f, float restitution = 0, bool isSensor = false, Category category = Category.None, BodyType bodyType = BodyType.Static, Vector2 offset = default, object tag = null, bool ignoreGravity = false, bool sleepingAllowed = true)
+			: base(bodyType, offset, tag, ignoreGravity, sleepingAllowed)
 		{
 			this.width = width;
 			this.height = height;
@@ -47,7 +47,9 @@ namespace VeiniaFramework
 
 		protected override void MakeShape()
 		{
-			shape = new PolygonShape(PolygonTools.CreateRectangle(width * transform.scale.X / 2f, height * transform.scale.Y / 2f), 1f);
+			var v = PolygonTools.CreateRectangle(width * transform.scale.X / 2f, height * transform.scale.Y / 2f);
+			v.Translate(ref offset);
+			shape = new PolygonShape(v, 1f);
 
 			fixture = body.CreateFixture(shape);
 
