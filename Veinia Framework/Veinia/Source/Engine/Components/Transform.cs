@@ -13,31 +13,31 @@ namespace VeiniaFramework
 
 		public static Transform Empty => new Transform(0, 0);
 
-		[Browsable(false)] public Transform parent { get; private set; }
-		public List<Transform> children { get; private set; } = new List<Transform>();
+		[Browsable(false)] public Transform Parent { get; private set; }
+		public List<Transform> Children { get; private set; } = new List<Transform>();
 
 		public Vector2 position
 		{
 			get
 			{
-				if (parent == null)
+				if (Parent == null)
 				{
 					if (transform != null && body != null)
 						return body.Position;
 					return localPosition;
 				}
 
-				Vector2 rotatedLocal = localPosition.RotateAround(Vector2.Zero, parent.rotation);
-				Vector2 worldPos = parent.position + rotatedLocal * parent.scale;
+				Vector2 rotatedLocal = localPosition.RotateAround(Vector2.Zero, Parent.rotation);
+				Vector2 worldPos = Parent.position + rotatedLocal * Parent.scale;
 
 				if (transform != null && body != null)
-					return body.Position + parent.position;
+					return body.Position + Parent.position;
 
 				return worldPos;
 			}
 			set
 			{
-				if (parent == null)
+				if (Parent == null)
 				{
 					localPosition = value;
 					if (transform != null && body != null)
@@ -45,8 +45,8 @@ namespace VeiniaFramework
 					return;
 				}
 
-				Vector2 offset = value - parent.position / parent.scale;
-				Vector2 unrotated = offset.RotateAround(Vector2.Zero, -parent.rotation);
+				Vector2 offset = value - Parent.position / Parent.scale;
+				Vector2 unrotated = offset.RotateAround(Vector2.Zero, -Parent.rotation);
 				localPosition = unrotated;
 
 				if (transform != null && body != null)
@@ -60,7 +60,7 @@ namespace VeiniaFramework
 		{
 			get
 			{
-				if (parent == null)
+				if (Parent == null)
 				{
 					if (transform != null && body != null && gameObject.linkPhysicsRotationToTransform)
 						return MathHelper.ToDegrees(-body.Rotation);
@@ -68,7 +68,7 @@ namespace VeiniaFramework
 				}
 
 				// Inherit parent’s rotation
-				float parentRot = parent.rotation;
+				float parentRot = Parent.rotation;
 
 				if (transform != null && body != null && gameObject.linkPhysicsRotationToTransform)
 					return MathHelper.ToDegrees(-body.Rotation) + parentRot;
@@ -77,7 +77,7 @@ namespace VeiniaFramework
 			}
 			set
 			{
-				if (parent == null)
+				if (Parent == null)
 				{
 					localRotation = value;
 					if (transform != null && body != null && gameObject.linkPhysicsRotationToTransform)
@@ -85,7 +85,7 @@ namespace VeiniaFramework
 					return;
 				}
 
-				float parentRot = parent.rotation;
+				float parentRot = Parent.rotation;
 				localRotation = value - parentRot;
 
 				if (transform != null && body != null && gameObject.linkPhysicsRotationToTransform)
@@ -99,13 +99,13 @@ namespace VeiniaFramework
 		{
 			get
 			{
-				if (parent == null) return localScale;
-				return parent.scale * localScale;
+				if (Parent == null) return localScale;
+				return Parent.scale * localScale;
 			}
 			set
 			{
-				if (parent == null) localScale = value;
-				else localScale = value / parent.scale;
+				if (Parent == null) localScale = value;
+				else localScale = value / Parent.scale;
 			}
 		}
 		[Browsable(false)] public Vector2 localScale { get; private set; } = Vector2.One;
@@ -114,14 +114,14 @@ namespace VeiniaFramework
 		{
 			get
 			{
-				if (parent == null) return localZ;
-				return localZ + parent.Z;
+				if (Parent == null) return localZ;
+				return localZ + Parent.Z;
 			}
 
 			set
 			{
-				if (parent == null) localZ = value;
-				else localZ = value + parent.Z;
+				if (Parent == null) localZ = value;
+				else localZ = value + Parent.Z;
 			}
 		}
 		[Browsable(false)] public float localZ { get; private set; }
@@ -192,7 +192,7 @@ namespace VeiniaFramework
 
 		public void SetParent(Transform parent, bool worldPositionStays = true)
 		{
-			if (this.parent != null) RemoveParent();
+			if (this.Parent != null) RemoveParent();
 
 			if (worldPositionStays)
 			{
@@ -202,22 +202,22 @@ namespace VeiniaFramework
 				localZ = Z - parent.Z;
 			}
 
-			this.parent = parent;
-			parent.children.Add(this);
+			this.Parent = parent;
+			parent.Children.Add(this);
 		}
 
 		public void RemoveParent()
 		{
-			if (parent == null) throw new Exception("RemoveParent() - No Parent Found!");
+			if (Parent == null) throw new Exception("RemoveParent() - No Parent Found!");
 
-			parent.children.Remove(this);
+			Parent.Children.Remove(this);
 
 			localRotation = rotation;
 			localPosition = position;
 			localScale = scale;
 			localZ = Z;
 
-			parent = null;
+			Parent = null;
 		}
 	}
 }

@@ -1,50 +1,52 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 
 namespace VeiniaFramework
 {
 	public class Screen
 	{
-		public int width { get; private set; }
-		public int height { get; private set; }
-		public bool fullscreen { get; private set; }
+		public int Width { get; private set; }
+		public int Height { get; private set; }
+		public bool Fullscreen { get; private set; }
+		public Vector2 Dimensions => new Vector2(Width, Height);
 
 		public Action OnStateChanged; // resizing, fullscreen. etc
 
 
 		public Screen(int width, int height, bool fullscreen)
 		{
-			this.width = width;
-			this.height = height;
-			this.fullscreen = fullscreen;
+			this.Width = width;
+			this.Height = height;
+			this.Fullscreen = fullscreen;
 
 			UpdateChanges();
 		}
 
 		public void SetResolution(int X, int Y)
 		{
-			width = X;
-			height = Y;
+			Width = X;
+			Height = Y;
 
 			UpdateChanges();
 		}
 
 		public void SetFullscreen(bool fullscreen)
 		{
-			this.fullscreen = fullscreen;
+			this.Fullscreen = fullscreen;
 			UpdateChanges();
 		}
 
 		public void ToggleFullscreen()
 		{
-			fullscreen = !fullscreen;
+			Fullscreen = !Fullscreen;
 			UpdateChanges();
 		}
 
 		private void UpdateChanges()
 		{
-			Globals.graphicsManager.PreferredBackBufferWidth = width;
-			Globals.graphicsManager.PreferredBackBufferHeight = height;
-			Globals.graphicsManager.IsFullScreen = fullscreen;
+			Globals.graphicsManager.PreferredBackBufferWidth = Width;
+			Globals.graphicsManager.PreferredBackBufferHeight = Height;
+			Globals.graphicsManager.IsFullScreen = Fullscreen;
 			Globals.graphicsManager.ApplyChanges();
 
 			Globals.camera?.VirtualViewport.OnClientSizeChanged(this, EventArgs.Empty);
@@ -54,12 +56,12 @@ namespace VeiniaFramework
 		// window resize
 		public void ClientSizeChanged()
 		{
-			width = Globals.graphicsDevice.PresentationParameters.BackBufferWidth;
-			height = Globals.graphicsDevice.PresentationParameters.BackBufferHeight;
+			Width = Globals.graphicsDevice.PresentationParameters.BackBufferWidth;
+			Height = Globals.graphicsDevice.PresentationParameters.BackBufferHeight;
 
 			OnStateChanged?.Invoke();
 		}
 
-		public override string ToString() => $"{width}x{height}, fullscreen: {fullscreen}";
+		public override string ToString() => $"{Width}x{Height}, fullscreen: {Fullscreen}";
 	}
 }

@@ -210,6 +210,18 @@ namespace VeiniaFramework
 			}
 			return isTransparent;
 		}
+		public static Vector2 GetCenter(this Texture2D texture)
+		{
+			return new Vector2(texture.Width / 2f, texture.Height / 2f);
+		}
+		public static Vector2 GetCenter(this Rectangle rect)
+		{
+			return new Vector2(rect.Width / 2f, rect.Height / 2f);
+		}
+		public static Vector2 GetCenter(this Rectangle? rect)
+		{
+			return new Vector2(rect.Value.Width / 2f, rect.Value.Height / 2f);
+		}
 
 		public static Window MakeEditWindow(this Desktop myraDesktop, object Object, string title = "Object Editor", int width = 350, bool pauseGame = false, bool allowInReleaseMode = false)
 		{

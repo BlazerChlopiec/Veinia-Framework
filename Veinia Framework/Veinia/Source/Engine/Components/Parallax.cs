@@ -90,8 +90,8 @@ namespace VeiniaFramework
 			{
 				command = delegate
 				{
-					sb.Draw(texture, rect.OffsetNew(offset), null, color, MathHelper.ToRadians(transform.rotation),
-						 new Vector2(texture.Bounds.Width / 2, texture.Bounds.Height / 2),
+					sb.Draw(Texture, rect.OffsetNew(offset), null, color, MathHelper.ToRadians(transform.rotation),
+						 new Vector2(Texture.Bounds.Width / 2, Texture.Bounds.Height / 2),
 						 SpriteEffects.None, layerDepth: 0);
 				},
 				Z = transform.Z,

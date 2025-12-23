@@ -6,11 +6,11 @@ namespace VeiniaFramework
 	public class Sprite : Component, IDrawn
 	{
 		public Color color = Color.White;
-		public Vector2 destinationSize { get; private set; }
-		public Rectangle? sourceRectangle { get; private set; }
+		public Vector2 DestinationSize { get; private set; }
+		public Rectangle? SourceRectangle { get; private set; }
 		public Effect effect;
 		public DrawOptions drawOptions;
-		public Texture2D texture { get; private set; }
+		public Texture2D Texture { get; private set; }
 		public SpriteEffects spriteEffects = SpriteEffects.None;
 
 		private float pixelsPerUnit;
@@ -35,9 +35,9 @@ namespace VeiniaFramework
 			{
 				command = delegate
 				{
-					sb.Draw(texture, rect, sourceRectangle, color, MathHelper.ToRadians(transform.rotation),
-						 new Vector2(sourceRectangle.Value.Width / 2, sourceRectangle.Value.Height / 2),
-						 spriteEffects, layerDepth: 0);
+					sb.Draw(Texture, rect, SourceRectangle, color,
+						MathHelper.ToRadians(transform.rotation), origin: SourceRectangle.GetCenter(),
+						spriteEffects, layerDepth: 0);
 				},
 				Z = transform.Z,
 				drawOptions = drawOptions
@@ -47,14 +47,14 @@ namespace VeiniaFramework
 		public void ChangeTexture(string path, Rectangle? sourceRectangle = null) => ChangeTexture(Globals.content.Load<Texture2D>(path), sourceRectangle);
 		public void ChangeTexture(Texture2D texture, Rectangle? sourceRectangle = null)
 		{
-			this.texture = texture;
-			this.sourceRectangle = sourceRectangle ?? texture.Bounds;
-			destinationSize = new Vector2(this.sourceRectangle.Value.Width, this.sourceRectangle.Value.Height) / (this.pixelsPerUnit / Transform.unitSize);
+			this.Texture = texture;
+			this.SourceRectangle = sourceRectangle ?? texture.Bounds;
+			DestinationSize = new Vector2(this.SourceRectangle.Value.Width, this.SourceRectangle.Value.Height) / (this.pixelsPerUnit / Transform.unitSize);
 		}
 
 
 		public Rectangle rect => new Rectangle((int)transform.screenPos.X, (int)transform.screenPos.Y,
-											   (int)(destinationSize.X * transform.scale.X),
-											   (int)(destinationSize.Y * transform.scale.Y));
+											   (int)(DestinationSize.X * transform.scale.X),
+											   (int)(DestinationSize.Y * transform.scale.Y));
 	}
 }

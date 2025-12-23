@@ -85,7 +85,7 @@ namespace VeiniaFramework.Editor
 						Left = left,
 						Padding = new Thickness(-padding),
 						VerticalAlignment = VerticalAlignment.Top,
-						Background = new TextureRegion(sprite.texture.ChangeColor(sprite.color), sprite.sourceRectangle.Value),
+						Background = new TextureRegion(sprite.Texture.ChangeColor(sprite.color), sprite.SourceRectangle.Value),
 					};
 					prefabButton.Click += (s, a) => OnClickPrefab(prefab);
 					tab.Panel.Widgets.Add(prefabButton);

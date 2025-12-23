@@ -246,7 +246,7 @@ namespace VeiniaFramework.Editor
 
 			foreach (var overlap in overlaps)
 			{
-				var tex = overlap.EditorPlacedSprite.texture;
+				var tex = overlap.EditorPlacedSprite.Texture;
 				var overlapButton = new ImageButton
 				{
 					Height = overlapButtonSize,
@@ -254,7 +254,7 @@ namespace VeiniaFramework.Editor
 					Rotation = overlap.Rotation,
 					Top = overlapButtonSize * overlaps.IndexOf(overlap),
 					VerticalAlignment = VerticalAlignment.Top,
-					Background = new TextureRegion(tex.ChangeColor(overlap.EditorPlacedSprite.color), overlap.EditorPlacedSprite.sourceRectangle.Value),
+					Background = new TextureRegion(tex.ChangeColor(overlap.EditorPlacedSprite.color), overlap.EditorPlacedSprite.SourceRectangle.Value),
 				};
 
 				overlapButton.MouseEntered += (s, e) => { selectedObjects.Clear(); selectedObjects.Add(overlap); };

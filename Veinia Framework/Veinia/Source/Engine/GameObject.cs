@@ -227,9 +227,9 @@ namespace VeiniaFramework
 
 			if (destroyChildObjects)
 			{
-				for (int i = 0; i < transform.children.Count; i++)
+				for (int i = 0; i < transform.Children.Count; i++)
 				{
-					transform.children[i].DestroyGameObject(destroyChildObjects: true);
+					transform.Children[i].DestroyGameObject(destroyChildObjects: true);
 				}
 			}
 		}

@@ -33,12 +33,12 @@ namespace VeiniaFramework
 			sprite = GetComponent<Sprite>();
 			if (sprite == null) Say.Line("Animation doesn't have Sprite Component!");
 
-			for (int row = 0; row < sprite.texture.Height / tileY; row++)
+			for (int row = 0; row < sprite.Texture.Height / tileY; row++)
 			{
 				var anim = animDatas.Find(x => x.atlasRow == row);
 				if (anim == null) continue;
 
-				for (int column = 0; column < sprite.texture.Width / tileX; column++)
+				for (int column = 0; column < sprite.Texture.Width / tileX; column++)
 				{
 					var srcRect = new Rectangle(tileX * column, tileY * row, tileX, tileY);
 					anim.sourceRectangles.Add(srcRect);
@@ -58,7 +58,7 @@ namespace VeiniaFramework
 					{
 						anim.frame++;
 						if (anim.frame == anim.sourceRectangles.Count) anim.frame = 0;
-						sprite.ChangeTexture(sprite.texture, anim.sourceRectangles[anim.frame]);
+						sprite.ChangeTexture(sprite.Texture, anim.sourceRectangles[anim.frame]);
 					}
 					anim.stop = false;
 					return;
@@ -69,7 +69,7 @@ namespace VeiniaFramework
 			}
 
 			anim = GetAnim(name);
-			sprite.ChangeTexture(sprite.texture, anim.sourceRectangles[0]);
+			sprite.ChangeTexture(sprite.Texture, anim.sourceRectangles[0]);
 			time = 0;
 		}
 
@@ -81,7 +81,7 @@ namespace VeiniaFramework
 				if (frame.HasValue) anim.frame = frame.Value;
 			}
 
-			sprite.ChangeTexture(sprite.texture, anim.sourceRectangles[anim.frame]);
+			sprite.ChangeTexture(sprite.Texture, anim.sourceRectangles[anim.frame]);
 			time = 0;
 		}
 
@@ -99,7 +99,7 @@ namespace VeiniaFramework
 				if (anim.sourceRectangles.Count == anim.frame + 1) anim.frame = 0;
 				else anim.frame++;
 
-				sprite.ChangeTexture(sprite.texture, anim.sourceRectangles[anim.frame]);
+				sprite.ChangeTexture(sprite.Texture, anim.sourceRectangles[anim.frame]);
 			}
 		}
 
