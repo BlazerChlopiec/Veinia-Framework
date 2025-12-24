@@ -104,7 +104,7 @@ namespace Apos.Camera
 				Matrix.CreateTranslation(new Vector3(-XY, 0f)) *
 				Matrix.CreateTranslation(new Vector3(shake.shakeOffset, 0f)) *
 				Matrix.CreateRotationZ(Rotation) *
-				Matrix.CreateScale(1f / Scale + currentScale.X, 1f / Scale + currentScale.Y, 1f) *
+				Matrix.CreateScale(1f / (Scale + currentScale.X), 1f / (Scale + currentScale.Y), 1f) *
 				Matrix.CreateScale(scaleZ, scaleZ, 1f) *
 				Matrix.CreateTranslation(new Vector3(curentOrigin * currentOriginScale, 0f)));
 		}
@@ -190,7 +190,7 @@ namespace Apos.Camera
 		}
 		public BoundingFrustum GetBoundingFrustum(float z = 0, Vector2? scaleFactor = null)
 		{
-			var scale = scaleFactor ?? Vector2.One;
+			var scale = scaleFactor ?? Vector2.Zero;
 			Matrix view = GetView(z, new Vector2(scale.X, scale.Y));
 
 			Matrix projection = GetProjection();
