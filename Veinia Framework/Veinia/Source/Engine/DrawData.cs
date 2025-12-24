@@ -22,8 +22,12 @@ namespace VeiniaFramework
 
 		public Effect shader;
 
-		// i wish it were c++ for this
+		public VirtualCamera virtualCamera;
+	}
+
+	public class VirtualCamera // if wish it was cpp for this
+	{
 		public Func<RenderTarget2D> renderTarget; // RenderTargetUsage.PreserveContents recommended
-		public Matrix? transformMatrix; // if null set to Globals.camera.GetView()
+		public Func<Matrix?> transformMatrix; // if null set to Globals.camera.GetView()
 	}
 }

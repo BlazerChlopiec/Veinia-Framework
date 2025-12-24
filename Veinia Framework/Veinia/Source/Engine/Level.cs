@@ -194,7 +194,20 @@ namespace VeiniaFramework
 		public List<DrawCommand> drawCommands = new List<DrawCommand>();
 		public void Draw(SpriteBatch sb, DrawOptions drawOptions)
 		{
-			if (drawOptions.transformMatrix == null) drawOptions.transformMatrix = Globals.camera.GetView();
+			// set default transformMatrix
+			if (drawOptions.virtualCamera == null)
+			{
+				drawOptions.virtualCamera = new VirtualCamera
+				{
+					transformMatrix = () => Globals.camera.GetView(),
+				};
+			}
+			else if (drawOptions.virtualCamera.transformMatrix == null)
+			{
+				drawOptions.virtualCamera.transformMatrix = () => Globals.camera.GetView();
+			}
+			//
+
 
 			for (int i = 0; i < activeScene.Count; i++) // makes drawCommands
 			{
@@ -211,76 +224,66 @@ namespace VeiniaFramework
 				c.drawOptions.rasterizerState = c.drawOptions.rasterizerState ?? drawOptions.rasterizerState;
 				c.drawOptions.samplerState = c.drawOptions.samplerState ?? drawOptions.samplerState;
 				c.drawOptions.shader = c.drawOptions.shader ?? drawOptions.shader;
-				c.drawOptions.renderTarget = c.drawOptions.renderTarget ?? drawOptions.renderTarget;
-				c.drawOptions.transformMatrix = c.drawOptions.transformMatrix ?? drawOptions.transformMatrix;
+				c.drawOptions.virtualCamera = c.drawOptions.virtualCamera ?? drawOptions.virtualCamera;
 				drawCommands[i] = c;
 			}
 
 			// sorting to batch together simillar commands to reduce Begins
 			drawCommands.Sort((a, b) =>
-			{
-				// compare by z
-				int zCompare = a.Z.CompareTo(b.Z);
-				if (zCompare != 0)
-					return zCompare;
+					{
+						// compare by z
+						int zCompare = a.Z.CompareTo(b.Z);
+						if (zCompare != 0)
+							return zCompare;
 
-				// compare shader
-				if (a.drawOptions.shader != b.drawOptions.shader)
-				{
-					if (a.drawOptions.shader == null) return -1;
-					if (b.drawOptions.shader == null) return 1;
-					int shaderCompare = a.drawOptions.shader.GetHashCode().CompareTo(b.drawOptions.shader.GetHashCode());
-					if (shaderCompare != 0) return shaderCompare;
-				}
+						// compare shader
+						if (a.drawOptions.shader != b.drawOptions.shader)
+						{
+							if (a.drawOptions.shader == null) return -1;
+							if (b.drawOptions.shader == null) return 1;
+							int shaderCompare = a.drawOptions.shader.GetHashCode().CompareTo(b.drawOptions.shader.GetHashCode());
+							if (shaderCompare != 0) return shaderCompare;
+						}
 
-				// compare samplerState
-				if (a.drawOptions.samplerState != b.drawOptions.samplerState)
-				{
-					if (a.drawOptions.samplerState == null) return -1;
-					if (b.drawOptions.samplerState == null) return 1;
-					int samplerCompare = a.drawOptions.samplerState.GetHashCode().CompareTo(b.drawOptions.samplerState.GetHashCode());
-					if (samplerCompare != 0) return samplerCompare;
-				}
+						// compare samplerState
+						if (a.drawOptions.samplerState != b.drawOptions.samplerState)
+						{
+							if (a.drawOptions.samplerState == null) return -1;
+							if (b.drawOptions.samplerState == null) return 1;
+							int samplerCompare = a.drawOptions.samplerState.GetHashCode().CompareTo(b.drawOptions.samplerState.GetHashCode());
+							if (samplerCompare != 0) return samplerCompare;
+						}
 
-				// compare depthStencilState
-				if (a.drawOptions.depthStencilState != b.drawOptions.depthStencilState)
-				{
-					if (a.drawOptions.depthStencilState == null) return -1;
-					if (b.drawOptions.depthStencilState == null) return 1;
-					int depthCompare = a.drawOptions.depthStencilState.GetHashCode().CompareTo(b.drawOptions.depthStencilState.GetHashCode());
-					if (depthCompare != 0) return depthCompare;
-				}
+						// compare depthStencilState
+						if (a.drawOptions.depthStencilState != b.drawOptions.depthStencilState)
+						{
+							if (a.drawOptions.depthStencilState == null) return -1;
+							if (b.drawOptions.depthStencilState == null) return 1;
+							int depthCompare = a.drawOptions.depthStencilState.GetHashCode().CompareTo(b.drawOptions.depthStencilState.GetHashCode());
+							if (depthCompare != 0) return depthCompare;
+						}
 
-				// compare blendState
-				if (a.drawOptions.blendState != b.drawOptions.blendState)
-				{
-					if (a.drawOptions.blendState == null) return -1;
-					if (b.drawOptions.blendState == null) return 1;
-					int blendCompare = a.drawOptions.blendState.GetHashCode().CompareTo(b.drawOptions.blendState.GetHashCode());
-					if (blendCompare != 0) return blendCompare;
-				}
+						// compare blendState
+						if (a.drawOptions.blendState != b.drawOptions.blendState)
+						{
+							if (a.drawOptions.blendState == null) return -1;
+							if (b.drawOptions.blendState == null) return 1;
+							int blendCompare = a.drawOptions.blendState.GetHashCode().CompareTo(b.drawOptions.blendState.GetHashCode());
+							if (blendCompare != 0) return blendCompare;
+						}
 
-				// compare renderTarget
-				if (a.drawOptions.renderTarget != b.drawOptions.renderTarget)
-				{
-					if (a.drawOptions.renderTarget == null) return -1;
-					if (b.drawOptions.renderTarget == null) return 1;
-					int targetCompare = a.drawOptions.renderTarget.GetHashCode().CompareTo(b.drawOptions.renderTarget.GetHashCode());
-					if (targetCompare != 0) return targetCompare;
-				}
+						// compare virtualCamera
+						if (a.drawOptions.virtualCamera != b.drawOptions.virtualCamera)
+						{
+							if (a.drawOptions.virtualCamera == null) return -1;
+							if (b.drawOptions.virtualCamera == null) return 1;
+							int targetCompare = a.drawOptions.virtualCamera.GetHashCode().CompareTo(b.drawOptions.virtualCamera.GetHashCode());
+							if (targetCompare != 0) return targetCompare;
+						}
 
-				// compare transformMatrix
-				if (a.drawOptions.transformMatrix != b.drawOptions.transformMatrix)
-				{
-					if (a.drawOptions.transformMatrix == null) return -1;
-					if (b.drawOptions.transformMatrix == null) return 1;
-					int targetCompare = a.drawOptions.transformMatrix.GetHashCode().CompareTo(b.drawOptions.transformMatrix.GetHashCode());
-					if (targetCompare != 0) return targetCompare;
-				}
-
-				// All equal
-				return 0;
-			});
+						// All equal
+						return 0;
+					});
 
 			DrawCommand prevCommand = null;
 			bool beginCalled = false;
@@ -294,8 +297,7 @@ namespace VeiniaFramework
 					 || cmd.drawOptions.depthStencilState != prevCommand.drawOptions.depthStencilState && beginCalled // or new DepthStencilState
 					 || cmd.drawOptions.rasterizerState != prevCommand.drawOptions.rasterizerState && beginCalled // or new RasterizerState
 					 || cmd.drawOptions.samplerState != prevCommand.drawOptions.samplerState && beginCalled // or new SamplerState
-					 || cmd.drawOptions.renderTarget != prevCommand.drawOptions.renderTarget && beginCalled // or new RenderTarget
-					 || cmd.drawOptions.transformMatrix != prevCommand.drawOptions.transformMatrix && beginCalled // or new TransformMatrix
+					 || cmd.drawOptions.virtualCamera != prevCommand.drawOptions.virtualCamera && beginCalled // or new VirtualCamera
 					 || cmd.drawWithoutSpriteBatch && beginCalled) // or using DrawUserPrimitives()
 					{
 						sb.End();
@@ -304,8 +306,8 @@ namespace VeiniaFramework
 				if (!beginCalled && !cmd.drawWithoutSpriteBatch)
 				{
 					begins++;
-					Globals.graphicsDevice.SetRenderTarget(cmd.drawOptions.renderTarget?.Invoke());
-					sb.Begin(SpriteSortMode.Deferred, cmd.drawOptions.blendState, cmd.drawOptions.samplerState, cmd.drawOptions.depthStencilState, cmd.drawOptions.rasterizerState, cmd.drawOptions.shader, cmd.drawOptions.transformMatrix);
+					Globals.graphicsDevice.SetRenderTarget(cmd.drawOptions.virtualCamera.renderTarget?.Invoke());
+					sb.Begin(SpriteSortMode.Deferred, cmd.drawOptions.blendState, cmd.drawOptions.samplerState, cmd.drawOptions.depthStencilState, cmd.drawOptions.rasterizerState, cmd.drawOptions.shader, cmd.drawOptions.virtualCamera.transformMatrix?.Invoke());
 					beginCalled = true;
 				}
 
@@ -338,7 +340,7 @@ namespace VeiniaFramework
 				sb.End();
 				beginCalled = false;
 			}
-			Globals.graphicsDevice.SetRenderTarget(drawOptions.renderTarget?.Invoke());
+			Globals.graphicsDevice.SetRenderTarget(drawOptions.virtualCamera.renderTarget?.Invoke());
 
 			Title.Add(begins, " - SpriteBatch Begins", 5);
 		}
