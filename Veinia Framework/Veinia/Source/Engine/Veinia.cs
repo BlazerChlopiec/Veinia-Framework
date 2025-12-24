@@ -187,20 +187,23 @@ namespace VeiniaFramework
 		public void DrawWorld(SpriteBatch spriteBatch, DrawOptions drawOptions = default) => Globals.loader.current?.Draw(spriteBatch, drawOptions);
 		public void DrawMyra() => Globals.myraDesktop.RenderVisual();
 		public void DrawGeon(SpriteBatch spriteBatch) => UserInterface.Active.Draw(spriteBatch);
-		public void DrawDebugPhysics()
+		public void DrawDebugPhysics(Vector2? scaleFactor = null)
 		{
 			if (Globals.debugDraw)
 			{
-				float zScale = Globals.camera.ZToScale(Globals.camera.Z, 0);
-				var view = Globals.camera.VirtualViewport.Transform(
-					Matrix.CreateTranslation(-Globals.camera.X / Transform.unitSize, Globals.camera.Y / Transform.unitSize, 0f) *
-					Matrix.CreateRotationZ(-Globals.camera.Rotation) *
-					Matrix.CreateScale(1f / Globals.camera.Scale, 1f / -Globals.camera.Scale, 1f) *
-					Matrix.CreateScale(zScale, zScale, 1f) *
-					Matrix.CreateTranslation(new Vector3(Globals.camera.VirtualViewport.Origin, 0f)) *
-					Matrix.CreateTranslation(new Vector3(Globals.camera.shake.shakeOffset / Transform.unitSize, 0f)));
+				var cam = Globals.camera;
+				float zScale = cam.ZToScale(cam.Z, 0);
 
-				debugView.RenderDebugData(Globals.camera.GetProjection() * Matrix.CreateScale(Transform.unitSize, Transform.unitSize, Transform.unitSize), view);
+				var currentScale = scaleFactor ?? Vector2.Zero;
+				var view = cam.VirtualViewport.Transform(
+					Matrix.CreateTranslation(-cam.X / Transform.unitSize, cam.Y / Transform.unitSize, 0f) *
+					Matrix.CreateRotationZ(-cam.Rotation) *
+					Matrix.CreateScale(1f / (cam.Scale + currentScale.X), 1f / (-cam.Scale - currentScale.Y), 1f) *
+					Matrix.CreateScale(zScale, zScale, 1f) *
+					Matrix.CreateTranslation(new Vector3(cam.VirtualViewport.Origin, 0f)) *
+					Matrix.CreateTranslation(new Vector3(cam.shake.shakeOffset / Transform.unitSize, 0f)));
+
+				debugView.RenderDebugData(cam.GetProjection() * Matrix.CreateScale(Transform.unitSize), view);
 			}
 		}
 	}

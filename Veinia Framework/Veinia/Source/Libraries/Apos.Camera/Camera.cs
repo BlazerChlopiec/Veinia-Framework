@@ -92,11 +92,11 @@ namespace Apos.Camera
 		public Matrix View => GetView(0);
 		public Matrix ViewInvert => GetViewInvert(0);
 
-		public Matrix GetView(float z = 0, Vector2? scaleFactor = null, Vector2? origin = null, float? originScale = null)
+		public Matrix GetView(float z = 0, float? scaleFactor = null, float? originScale = null, Vector2? origin = null)
 		{
 			float scaleZ = ZToScale(_xyz.Z, z);
 
-			var currentScale = scaleFactor ?? Vector2.Zero;
+			var currentScale = scaleFactor ?? 0f;
 			var curentOrigin = origin ?? VirtualViewport.Origin;
 			var currentOriginScale = originScale ?? 1;
 
@@ -104,7 +104,7 @@ namespace Apos.Camera
 				Matrix.CreateTranslation(new Vector3(-XY, 0f)) *
 				Matrix.CreateTranslation(new Vector3(shake.shakeOffset, 0f)) *
 				Matrix.CreateRotationZ(Rotation) *
-				Matrix.CreateScale(1f / (Scale + currentScale.X), 1f / (Scale + currentScale.Y), 1f) *
+				Matrix.CreateScale(1f / (Scale + currentScale), 1f / (Scale + currentScale), 1f) *
 				Matrix.CreateScale(scaleZ, scaleZ, 1f) *
 				Matrix.CreateTranslation(new Vector3(curentOrigin * currentOriginScale, 0f)));
 		}
@@ -188,10 +188,10 @@ namespace Apos.Camera
 
 			return new RectangleF(left, top, width, height);
 		}
-		public BoundingFrustum GetBoundingFrustum(float z = 0, Vector2? scaleFactor = null)
+		public BoundingFrustum GetBoundingFrustum(float z = 0, float? scaleFactor = null)
 		{
-			var scale = scaleFactor ?? Vector2.Zero;
-			Matrix view = GetView(z, new Vector2(scale.X, scale.Y));
+			var scale = scaleFactor ?? 0f;
+			Matrix view = GetView(z, scale);
 
 			Matrix projection = GetProjection();
 			return new BoundingFrustum(view * projection);
