@@ -71,6 +71,16 @@ namespace VeiniaFramework
 
 			return value;
 		}
+		public static Vector2 SnapToIncrements(this Vector2 value, float increments)
+		{
+			if (increments <= 0f)
+				return value;
+
+			return new Vector2(
+				MathF.Round(value.X / increments) * increments,
+				MathF.Round(value.Y / increments) * increments
+			);
+		}
 		public static Vector2 ClampLength(this Vector2 value, float maxMagnitude)
 		{
 			if (value.LengthSquared() > maxMagnitude * maxMagnitude)
