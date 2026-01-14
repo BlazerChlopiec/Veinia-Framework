@@ -224,7 +224,10 @@ namespace VeiniaFramework
 				c.drawOptions.rasterizerState = c.drawOptions.rasterizerState ?? drawOptions.rasterizerState;
 				c.drawOptions.samplerState = c.drawOptions.samplerState ?? drawOptions.samplerState;
 				c.drawOptions.shader = c.drawOptions.shader ?? drawOptions.shader;
+
 				c.drawOptions.virtualCamera = c.drawOptions.virtualCamera ?? drawOptions.virtualCamera;
+				if (c.drawOptions.virtualCamera.transformMatrix == null) c.drawOptions.virtualCamera.transformMatrix = () => Globals.camera.GetView();
+
 				drawCommands[i] = c;
 			}
 
