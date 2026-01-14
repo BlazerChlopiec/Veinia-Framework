@@ -71,7 +71,11 @@ namespace VeiniaFramework.Editor
 				foreach (var prefab in tab.Prefabs)
 				{
 					var sprite = prefab.PrefabGameObject.GetComponent<Sprite>();
-					if (sprite == null) throw new System.Exception("Prefab has no sprite! - " + prefab.PrefabName);
+					if (sprite == null)
+					{
+						var texture = Globals.content.Load<Texture2D>("veinia_defaults/prefab_default");
+						sprite = new Sprite(texture);
+					}
 
 					var index = tab.Prefabs.IndexOf(prefab);
 					var top = prefabButtonSize * (index / columns);

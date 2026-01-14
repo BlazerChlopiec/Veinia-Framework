@@ -14,6 +14,24 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin veinia_defaults/prefab_default.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:veinia_defaults/prefab_default.png
+
+#begin veinia_defaults/trail_default.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:veinia_defaults/trail_default.fx
+
 #begin veinia_runtime_ui/themes/veinia_default/effects/disabled.fx
 /importer:EffectImporter
 /processor:EffectProcessor
@@ -1598,10 +1616,4 @@
 /importer:XmlImporter
 /processor:PassThroughProcessor
 /build:veinia_runtime_ui/themes/veinia_default/ThemeData.xml
-
-#begin veinia_shaders/Trail.fx
-/importer:EffectImporter
-/processor:EffectProcessor
-/processorParam:DebugMode=Auto
-/build:veinia_shaders/Trail.fx
 

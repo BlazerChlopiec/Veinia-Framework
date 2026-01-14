@@ -40,9 +40,20 @@ namespace VeiniaFramework.Editor
 				scale = scale == default ? prefab.transform.scale : scale,
 				Z = z == default ? prefab.transform.Z : z,
 			};
-			var extractedSpriteGameObject = prefab.ExtractComponentToNewGameObject<Sprite>(newT, isStatic: true);
-			var editorPlacedSprite = Instantiate(extractedSpriteGameObject).GetComponent<Sprite>();
-			editorPlacedSprite.drawOptions.depthStencilState = null; // ignore stencil for editor as we want to see the sprites always
+
+
+			Sprite editorPlacedSprite;
+			if (prefab.GetComponent<Sprite>() != null)
+			{
+				var extractedSpriteGameObject = prefab.ExtractComponentToNewGameObject<Sprite>(newT, isStatic: true);
+				editorPlacedSprite = Instantiate(extractedSpriteGameObject).GetComponent<Sprite>();
+				editorPlacedSprite.drawOptions.depthStencilState = null; // ignore stencil for editor as we want to see the sprites always
+			}
+			else // add default prefab sprite
+			{
+				var extracted = prefab.ExtractComponentToNewGameObject<Transform>(Transform.Empty);
+				editorPlacedSprite = (Sprite)Instantiate(extracted).AddComponent(new Sprite("veinia_defaults/prefab_default"));
+			}
 
 			var newEditorObject = new EditorObject
 			{
@@ -64,7 +75,6 @@ namespace VeiniaFramework.Editor
 			OnSpawn?.Invoke(newEditorObject);
 
 			UpdateObjectCountLabel();
-
 
 			return newEditorObject;
 		}

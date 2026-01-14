@@ -78,7 +78,12 @@ namespace VeiniaFramework
 				var sample = Instantiate(new Transform { position = item.Position, rotation = item.Rotation, scale = item.Scale, Z = item.Z }, prefab);
 				sample.customData = item.customData;
 
-				if (item.ShouldSerializeColor()) sample.GetComponent<Sprite>().color = item.Color;
+				if (item.ShouldSerializeColor())
+				{
+					var sprite = sample.GetComponent<Sprite>();
+					if (sprite != null)
+						sample.GetComponent<Sprite>().color = item.Color;
+				}
 			}
 		}
 

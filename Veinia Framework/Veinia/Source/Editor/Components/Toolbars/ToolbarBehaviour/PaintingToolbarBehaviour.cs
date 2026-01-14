@@ -58,7 +58,15 @@ namespace VeiniaFramework.Editor
 		{
 			if (objectPreview != null) objectPreview.DestroyGameObject();
 
-			objectPreview = prefabManager.Find(currentPrefabName).ExtractComponentToNewGameObject<Sprite>(Transform.Empty);
+			var prefab = prefabManager.Find(currentPrefabName);
+
+			if (prefab.GetComponent<Sprite>() != null) objectPreview = prefab.ExtractComponentToNewGameObject<Sprite>(Transform.Empty);
+			else // default prefab sprite
+			{
+				objectPreview = prefab.ExtractComponentToNewGameObject<Transform>(Transform.Empty);
+				objectPreview.AddComponent(new Sprite("veinia_defaults/prefab_default"));
+			}
+
 			objectPreview = gameObject.level.Instantiate(objectPreview);
 
 			var sprite = objectPreview.GetComponent<Sprite>();
