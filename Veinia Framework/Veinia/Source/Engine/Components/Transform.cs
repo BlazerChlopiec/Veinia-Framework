@@ -31,7 +31,10 @@ namespace VeiniaFramework
 				Vector2 worldPos = Parent.position + rotatedLocal * Parent.scale;
 
 				if (transform != null && body != null)
-					return body.Position + Parent.position;
+				{
+					body.Position = worldPos;
+					return body.Position;
+				}
 
 				return worldPos;
 			}
@@ -60,36 +63,24 @@ namespace VeiniaFramework
 		{
 			get
 			{
-				if (Parent == null)
+				if (transform != null && body != null)
 				{
-					if (transform != null && body != null && gameObject.linkPhysicsRotationToTransform)
-						return MathHelper.ToDegrees(-body.Rotation);
-					return localRotation;
+					return MathHelper.ToDegrees(-body.Rotation);
 				}
 
-				// Inherit parent’s rotation
-				float parentRot = Parent.rotation;
-
-				if (transform != null && body != null && gameObject.linkPhysicsRotationToTransform)
-					return MathHelper.ToDegrees(-body.Rotation) + parentRot;
-
+				float parentRot = (Parent != null) ? Parent.rotation : 0f;
 				return localRotation + parentRot;
 			}
 			set
 			{
-				if (Parent == null)
-				{
-					localRotation = value;
-					if (transform != null && body != null && gameObject.linkPhysicsRotationToTransform)
-						body.Rotation = MathHelper.ToRadians(-value);
-					return;
-				}
+				float parentRot = (Parent != null) ? Parent.rotation : 0f;
 
-				float parentRot = Parent.rotation;
 				localRotation = value - parentRot;
 
-				if (transform != null && body != null && gameObject.linkPhysicsRotationToTransform)
+				if (transform != null && body != null)
+				{
 					body.Rotation = MathHelper.ToRadians(-value);
+				}
 			}
 		}
 		[Browsable(false)] public float localRotation { get; private set; }

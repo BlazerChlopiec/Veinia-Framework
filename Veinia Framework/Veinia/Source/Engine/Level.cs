@@ -116,13 +116,14 @@ namespace VeiniaFramework
 			}
 
 			transform.Children.Clear();
-
 			if (children != null)
+			{
 				for (int i = 0; i < children.Count; i++)
 				{
 					var child = children[i];
 					Instantiate(child, child.gameObject).transform.SetParent(transform, worldPositionStays: false);
 				}
+			}
 
 			scene.Add(sample);
 			return sample;
