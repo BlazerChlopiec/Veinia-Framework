@@ -90,7 +90,7 @@ namespace VeiniaFramework
 		/// <summary>
 		/// Creates an object and spawns it
 		/// </summary>
-		public GameObject Instantiate(Transform transform, List<Component> components, Body body = default, string customData = null, bool isStatic = false, bool dontDestroyOnLoad = false)
+		public GameObject Instantiate(Transform transform, List<Component> components, Body body = default, string customData = null, bool isStatic = false, bool dontDestroyOnLoad = false, List<Transform> children = null)
 		{
 			var sampleBody = body == null ? null : body.DeepClone();
 			if (sampleBody != null) sampleBody.Enabled = true;
@@ -115,16 +115,25 @@ namespace VeiniaFramework
 				sample.isInitialized = true;
 			}
 
+			transform.Children.Clear();
+
+			if (children != null)
+				for (int i = 0; i < children.Count; i++)
+				{
+					var child = children[i];
+					Instantiate(child, child.gameObject).transform.SetParent(transform, worldPositionStays: false);
+				}
+
 			scene.Add(sample);
 			return sample;
 		}
 		public GameObject Instantiate(Transform transform, GameObject prefab)
 		{
-			return Instantiate(transform, prefab.components.Clone(), prefab.body == null ? null : prefab.body.DeepClone(), prefab.customData, prefab.isStatic, prefab.dontDestroyOnLoad);
+			return Instantiate(transform, prefab.components.Clone(), prefab.body == null ? null : prefab.body.DeepClone(), prefab.customData, prefab.isStatic, prefab.dontDestroyOnLoad, prefab.transform.Children.Clone());
 		}
 		public GameObject Instantiate(GameObject prefab)
 		{
-			return Instantiate((Transform)prefab.transform.Clone(), prefab.components, prefab.body == null ? null : prefab.body.DeepClone(), prefab.customData, prefab.isStatic, prefab.dontDestroyOnLoad);
+			return Instantiate((Transform)prefab.transform.Clone(), prefab.components, prefab.body == null ? null : prefab.body.DeepClone(), prefab.customData, prefab.isStatic, prefab.dontDestroyOnLoad, prefab.transform.Children.Clone());
 		}
 
 		/// <summary>

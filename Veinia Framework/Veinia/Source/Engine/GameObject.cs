@@ -53,7 +53,9 @@ namespace VeiniaFramework
 
 		public GameObject(Transform transform, List<Component> components, Body body = default, string customData = null, bool isStatic = false, bool dontDestoryOnLoad = false)
 		{
+			transform.gameObject = this;
 			this.transform = transform;
+
 			this.components = components;
 			if (body != null) this.body = body;
 			if (customData != null) this.customData = customData;
