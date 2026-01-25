@@ -45,7 +45,7 @@ namespace VeiniaFramework
 				localPosition = unrotated;
 			}
 		}
-		[Browsable(false)] public Vector2 localPosition { get; set; }
+		[Browsable(false)] public Vector2 localPosition { get; private set; }
 
 
 		bool rotDirty;
