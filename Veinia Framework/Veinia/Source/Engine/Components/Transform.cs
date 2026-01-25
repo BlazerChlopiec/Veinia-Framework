@@ -16,71 +16,51 @@ namespace VeiniaFramework
 		[Browsable(false)] public Transform Parent { get; private set; }
 		public List<Transform> Children { get; private set; } = new List<Transform>();
 
+		bool posDirty;
 		public Vector2 position
 		{
 			get
 			{
 				if (Parent == null)
 				{
-					if (transform != null && body != null)
-						return body.Position;
 					return localPosition;
 				}
 
 				Vector2 rotatedLocal = localPosition.RotateAround(Vector2.Zero, Parent.rotation);
 				Vector2 worldPos = Parent.position + rotatedLocal * Parent.scale;
 
-				if (transform != null && body != null)
-				{
-					body.Position = worldPos;
-					return body.Position;
-				}
-
 				return worldPos;
 			}
 			set
 			{
+				posDirty = true;
 				if (Parent == null)
 				{
 					localPosition = value;
-					if (transform != null && body != null)
-						body.Position = value;
 					return;
 				}
 
 				Vector2 offset = value - Parent.position / Parent.scale;
 				Vector2 unrotated = offset.RotateAround(Vector2.Zero, -Parent.rotation);
 				localPosition = unrotated;
-
-				if (transform != null && body != null)
-					body.Position = value;
 			}
 		}
-		[Browsable(false)] public Vector2 localPosition { get; private set; }
+		[Browsable(false)] public Vector2 localPosition { get; set; }
 
 
+		bool rotDirty;
 		public float rotation
 		{
 			get
 			{
-				if (transform != null && body != null)
-				{
-					return MathHelper.ToDegrees(-body.Rotation);
-				}
-
 				float parentRot = (Parent != null) ? Parent.rotation : 0f;
 				return localRotation + parentRot;
 			}
 			set
 			{
+				rotDirty = true;
 				float parentRot = (Parent != null) ? Parent.rotation : 0f;
-
 				localRotation = value - parentRot;
-
-				if (transform != null && body != null)
-				{
-					body.Rotation = MathHelper.ToRadians(-value);
-				}
 			}
 		}
 		[Browsable(false)] public float localRotation { get; private set; }
@@ -116,6 +96,25 @@ namespace VeiniaFramework
 			}
 		}
 		[Browsable(false)] public float localZ { get; private set; }
+
+		public override void LateUpdate() // synchronise bodies 
+		{
+			if (body != null && Parent != null)
+			{
+				body.Position = position;
+				body.Rotation = -MathHelper.ToRadians(rotation);
+			}
+			else if (body != null && Parent == null)
+			{
+				position = posDirty ? transform.position : body.Position;
+				rotation = rotDirty ? transform.rotation : MathHelper.ToDegrees(-body.Rotation);
+				body.Rotation = -MathHelper.ToRadians(rotation);
+				body.Position = transform.position;
+
+				posDirty = false;
+				rotDirty = false;
+			}
+		}
 
 		public Vector2 screenPos => Transform.WorldToScreenPos(position);
 		public Vector2 up => new Vector2((float)MathF.Cos(MathHelper.ToRadians(rotation - 90)), -(float)MathF.Sin(MathHelper.ToRadians(rotation - 90)));
