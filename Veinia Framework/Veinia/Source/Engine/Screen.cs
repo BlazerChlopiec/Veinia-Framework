@@ -59,6 +59,9 @@ namespace VeiniaFramework
 			Width = Globals.graphicsDevice.PresentationParameters.BackBufferWidth;
 			Height = Globals.graphicsDevice.PresentationParameters.BackBufferHeight;
 
+			Globals.graphicsManager.PreferredBackBufferHeight = Height;
+			Globals.graphicsManager.PreferredBackBufferWidth = Width;
+
 			OnStateChanged?.Invoke();
 		}
 
