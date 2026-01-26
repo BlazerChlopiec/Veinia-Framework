@@ -134,7 +134,14 @@ namespace VeiniaFramework
 		}
 		public GameObject Instantiate(GameObject prefab)
 		{
-			return Instantiate((Transform)prefab.transform.Clone(), prefab.components, prefab.body == null ? null : prefab.body.DeepClone(), prefab.customData, prefab.isStatic, prefab.dontDestroyOnLoad, prefab.transform.Children.Clone());
+			Transform newT = new Transform
+			{
+				position = prefab.transform.position,
+				rotation = prefab.transform.rotation,
+				scale = prefab.transform.scale,
+				Z = prefab.transform.Z,
+			};
+			return Instantiate(newT, prefab.components.Clone(), prefab.body == null ? null : prefab.body.DeepClone(), prefab.customData, prefab.isStatic, prefab.dontDestroyOnLoad, prefab.transform.Children.Clone());
 		}
 
 		/// <summary>
