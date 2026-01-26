@@ -12,17 +12,19 @@ public class Timers
 		{
 			item.time = item.useUnscaled ? item.time - Time.unscaledDeltaTime : item.time - Time.deltaTime;
 
+			if (!item.stop) item.onUpdate?.Invoke(GetTimeRatio(item));
+
 			if (item.time <= 0 && !item.stop)
 			{
 				item.onComplete?.Invoke();
 
-				if (item.repeat) New(item.name, item.startTime, item.onComplete, item.useUnscaled, item.repeat);
+				if (item.repeat) New(item.name, item.startTime, item.onComplete, item.onUpdate, item.useUnscaled, item.repeat);
 				else item.onComplete = null;
 			}
 		}
 	}
 
-	public static void New(string name, float time, Action onComplete = null, bool useUnscaled = false, bool repeat = false)
+	public static void New(string name, float time, Action onComplete = null, Action<float> onUpdate = null, bool useUnscaled = false, bool repeat = false)
 	{
 		var exists = AlreadyExists(name);
 
@@ -34,6 +36,7 @@ public class Timers
 				time = time,
 				startTime = time,
 				onComplete = onComplete,
+				onUpdate = onUpdate,
 				useUnscaled = useUnscaled,
 				repeat = repeat
 			};
@@ -49,6 +52,7 @@ public class Timers
 			target.time = time;
 			target.startTime = time;
 			target.onComplete = onComplete;
+			target.onUpdate = onUpdate;
 			target.repeat = repeat;
 		}
 	}
@@ -79,9 +83,10 @@ public class Timers
 	public static float GetTimeRatio(string name)
 	{
 		var result = timeCounters.Find(x => x.name == name);
-		if (result != null) return Math.Clamp(result.time, 0, float.MaxValue) / result.startTime;
+		if (result != null) return GetTimeRatio(result);
 		else return 0f;
 	}
+	public static float GetTimeRatio(Counter counter) => Math.Clamp(counter.time, 0, float.MaxValue) / counter.startTime;
 
 	public static bool AlreadyExists(string name) => timeCounters.Exists(x => x.name == name);
 	public static bool AlreadyExists(string name, out Counter counter)
@@ -100,4 +105,5 @@ public class Counter
 	public bool useUnscaled;
 	public bool repeat;
 	public Action onComplete;
+	public Action<float> onUpdate; // GetTimeRatio as float
 }
