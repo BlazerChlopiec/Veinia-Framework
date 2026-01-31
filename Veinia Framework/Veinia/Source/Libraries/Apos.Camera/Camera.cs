@@ -231,6 +231,11 @@ namespace Apos.Camera
 			return Transform.ScreenToWorldPos(b - a);
 		}
 
+		public Vector2 GetTopLeftCorner() => XY - new Vector2(VirtualViewport.TargetWidth / 2, VirtualViewport.TargetHeight / 2) * Scale;
+		public Vector2 GetBottomLeftCorner() => XY - new Vector2(VirtualViewport.TargetWidth / 2, -VirtualViewport.TargetHeight / 2) * Scale;
+		public Vector2 GetTopRightCorner() => XY - new Vector2(-VirtualViewport.TargetWidth / 2, VirtualViewport.TargetHeight / 2) * Scale;
+		public Vector2 GetBottomRightCorner() => XY - new Vector2(-VirtualViewport.TargetWidth / 2, -VirtualViewport.TargetHeight / 2) * Scale;
+
 		private Vector2 _xy = Vector2.Zero;
 		private Vector3 _xyz = new Vector3(Vector2.Zero, 1f);
 		private float _focalLength = 1f;

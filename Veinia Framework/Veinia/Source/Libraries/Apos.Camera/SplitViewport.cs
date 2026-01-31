@@ -37,6 +37,9 @@ namespace Apos.Camera
 		public float VirtualWidth => Width;
 		public float VirtualHeight => Height;
 
+		public float TargetWidth { get; }
+		public float TargetHeight { get; }
+
 		public void Set()
 		{
 			_oldViewport = _graphicsDevice.Viewport;

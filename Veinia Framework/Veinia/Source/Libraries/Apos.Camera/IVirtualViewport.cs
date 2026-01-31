@@ -17,6 +17,9 @@ namespace Apos.Camera
 		float VirtualWidth { get; }
 		float VirtualHeight { get; }
 
+		float TargetWidth { get; }
+		float TargetHeight { get; }
+
 		Matrix Transform(Matrix view);
 		void Set();
 		void Reset();
