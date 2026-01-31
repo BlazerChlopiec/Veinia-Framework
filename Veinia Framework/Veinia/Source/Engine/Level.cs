@@ -214,7 +214,7 @@ namespace VeiniaFramework
 		/// Draws objects in the current scene.
 		/// </summary>
 		public List<DrawCommand> drawCommands = new List<DrawCommand>();
-		public void Draw(SpriteBatch sb, DrawOptions drawOptions)
+		public virtual void Draw(SpriteBatch sb, DrawOptions drawOptions)
 		{
 			// set default transformMatrix
 			if (drawOptions.virtualCamera == null)
