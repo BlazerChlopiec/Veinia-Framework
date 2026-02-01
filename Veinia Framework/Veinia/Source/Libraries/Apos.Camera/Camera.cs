@@ -231,7 +231,7 @@ namespace Apos.Camera
 			return Transform.ScreenToWorldPos(b - a);
 		}
 
-		public Vector2 GetCornerWorld(CornerLocation cornerLocation, float xPadding = 0, float yPadding = 0)
+		public Vector2 GetCornerWorld(CornerLocation cornerLocation, float xPadding = 0, float yPadding = 0, bool affectedByShake = false)
 		{
 			Vector2 cornerOffset = Vector2.Zero;
 
@@ -253,6 +253,8 @@ namespace Apos.Camera
 					cornerOffset = new Vector2(-VirtualViewport.TargetWidth / 2 + xPadding, -VirtualViewport.TargetHeight / 2 + yPadding);
 					break;
 			}
+
+			if (!affectedByShake) cornerOffset += shake.shakeOffset / Scale;
 			return Transform.ScreenToWorldPos(XY - cornerOffset * Scale);
 		}
 
