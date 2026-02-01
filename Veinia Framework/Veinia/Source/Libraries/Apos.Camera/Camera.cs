@@ -92,7 +92,7 @@ namespace Apos.Camera
 		public Matrix View => GetView(0);
 		public Matrix ViewInvert => GetViewInvert(0);
 
-		public Matrix GetView(float z = 0, float? scaleFactor = null, float? originScale = null, Vector2? origin = null)
+		public Matrix GetView(float z = 0, float? scaleFactor = null, float? originScale = null, Vector2? origin = null, bool useCameraScale = true, bool useCameraShake = true)
 		{
 			float scaleZ = ZToScale(_xyz.Z, z);
 
@@ -100,12 +100,13 @@ namespace Apos.Camera
 			var curentOrigin = origin ?? VirtualViewport.Origin;
 			var currentOriginScale = originScale ?? 1;
 
+			Matrix scale = useCameraScale ? Matrix.CreateScale(1f / (Scale + currentScale), 1f / (Scale + currentScale), 1f) : Matrix.Identity;
+			Matrix shakes = useCameraShake ? Matrix.CreateTranslation(new Vector3(shake.shakeOffset, 0f)) : Matrix.Identity;
+
 			return VirtualViewport.Transform(
-				Matrix.CreateTranslation(new Vector3(-XY, 0f)) *
-				Matrix.CreateTranslation(new Vector3(shake.shakeOffset, 0f)) *
+				Matrix.CreateTranslation(new Vector3(-XY, 0f)) * shakes *
 				Matrix.CreateRotationZ(Rotation) *
-				Matrix.CreateScale(1f / (Scale + currentScale), 1f / (Scale + currentScale), 1f) *
-				Matrix.CreateScale(scaleZ, scaleZ, 1f) *
+				Matrix.CreateScale(scaleZ, scaleZ, 1f) * scale *
 				Matrix.CreateTranslation(new Vector3(curentOrigin * currentOriginScale, 0f)));
 		}
 		public Matrix GetView3D()
@@ -231,7 +232,7 @@ namespace Apos.Camera
 			return Transform.ScreenToWorldPos(b - a);
 		}
 
-		public Vector2 GetCornerWorld(CornerLocation cornerLocation, float xPadding = 0, float yPadding = 0, bool affectedByShake = false)
+		public Vector2 GetCornerWorld(CornerLocation cornerLocation, float xPadding = 0, float yPadding = 0, bool useCameraScale = true, bool useCameraShake = true)
 		{
 			Vector2 cornerOffset = Vector2.Zero;
 
@@ -254,8 +255,9 @@ namespace Apos.Camera
 					break;
 			}
 
-			if (!affectedByShake) cornerOffset += shake.shakeOffset / Scale;
-			return Transform.ScreenToWorldPos(XY - cornerOffset * Scale);
+			var scale = useCameraScale ? Scale : 1;
+			if (useCameraShake) cornerOffset += shake.shakeOffset / scale;
+			return Transform.ScreenToWorldPos(XY - cornerOffset * scale);
 		}
 
 		private Vector2 _xy = Vector2.Zero;
