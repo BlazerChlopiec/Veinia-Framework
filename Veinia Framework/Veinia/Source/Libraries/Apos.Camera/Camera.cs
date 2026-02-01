@@ -231,13 +231,41 @@ namespace Apos.Camera
 			return Transform.ScreenToWorldPos(b - a);
 		}
 
-		public Vector2 GetTopLeftCorner() => XY - new Vector2(VirtualViewport.TargetWidth / 2, VirtualViewport.TargetHeight / 2) * Scale;
-		public Vector2 GetBottomLeftCorner() => XY - new Vector2(VirtualViewport.TargetWidth / 2, -VirtualViewport.TargetHeight / 2) * Scale;
-		public Vector2 GetTopRightCorner() => XY - new Vector2(-VirtualViewport.TargetWidth / 2, VirtualViewport.TargetHeight / 2) * Scale;
-		public Vector2 GetBottomRightCorner() => XY - new Vector2(-VirtualViewport.TargetWidth / 2, -VirtualViewport.TargetHeight / 2) * Scale;
+		public Vector2 GetCornerWorld(CornerLocation cornerLocation, float xPadding = 0, float yPadding = 0)
+		{
+			Vector2 cornerOffset = Vector2.Zero;
+
+			xPadding *= Transform.unitSize;
+			yPadding *= Transform.unitSize;
+
+			switch (cornerLocation)
+			{
+				case CornerLocation.TopLeft:
+					cornerOffset = new Vector2(VirtualViewport.TargetWidth / 2 - xPadding, VirtualViewport.TargetHeight / 2 - yPadding);
+					break;
+				case CornerLocation.BottomLeft:
+					cornerOffset = new Vector2(VirtualViewport.TargetWidth / 2 - xPadding, -VirtualViewport.TargetHeight / 2 + yPadding);
+					break;
+				case CornerLocation.TopRight:
+					cornerOffset = new Vector2(-VirtualViewport.TargetWidth / 2 + xPadding, VirtualViewport.TargetHeight / 2 - yPadding);
+					break;
+				case CornerLocation.BottomRight:
+					cornerOffset = new Vector2(-VirtualViewport.TargetWidth / 2 + xPadding, -VirtualViewport.TargetHeight / 2 + yPadding);
+					break;
+			}
+			return Transform.ScreenToWorldPos(XY - cornerOffset * Scale);
+		}
 
 		private Vector2 _xy = Vector2.Zero;
 		private Vector3 _xyz = new Vector3(Vector2.Zero, 1f);
 		private float _focalLength = 1f;
 	}
+}
+
+public enum CornerLocation
+{
+	TopLeft,
+	TopRight,
+	BottomLeft,
+	BottomRight,
 }
