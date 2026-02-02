@@ -235,7 +235,7 @@ namespace Apos.Camera
 			return Transform.ScreenToWorldPos(b - a);
 		}
 
-		public Vector2 GetCornerWorld(CornerLocation cornerLocation, float xPadding = 0, float yPadding = 0, bool useCameraScale = true, bool useCameraShake = true)
+		public Vector2 GetCornerWorld(CornerLocation cornerLocation, float xPadding = 0, float yPadding = 0, bool useCameraScale = true, bool useCameraShake = true, bool useCameraPos = true)
 		{
 			Vector2 cornerOffset = Vector2.Zero;
 
@@ -260,7 +260,8 @@ namespace Apos.Camera
 
 			var scale = useCameraScale ? Scale : 1;
 			if (useCameraShake) cornerOffset += shake.shakeOffset / scale;
-			return Transform.ScreenToWorldPos(XY - cornerOffset * scale);
+			var camPos = useCameraPos ? XY : Vector2.Zero;
+			return Transform.ScreenToWorldPos(camPos - cornerOffset * scale);
 		}
 
 		private Vector2 _xy = Vector2.Zero;
