@@ -92,7 +92,7 @@ namespace Apos.Camera
 		public Matrix View => GetView(0);
 		public Matrix ViewInvert => Matrix.Invert(GetView(0));
 
-		public Matrix GetView(float z = 0, float? scaleFactor = null, float? originScale = null, Vector2? origin = null, bool useCameraScale = true, bool useCameraShake = true)
+		public Matrix GetView(float z = 0, float? scaleFactor = null, float? originScale = null, Vector2? origin = null, bool useCameraScale = true, bool useCameraShake = true, bool useCameraPos = true)
 		{
 			float scaleZ = ZToScale(_xyz.Z, z);
 
@@ -100,11 +100,12 @@ namespace Apos.Camera
 			var curentOrigin = origin ?? VirtualViewport.Origin;
 			var currentOriginScale = originScale ?? 1;
 
+			Matrix pos = useCameraPos ? Matrix.CreateTranslation(new Vector3(-XY, 0f)) : Matrix.Identity;
 			Matrix scale = useCameraScale ? Matrix.CreateScale(1f / (Scale + currentScale), 1f / (Scale + currentScale), 1f) : Matrix.Identity;
 			Matrix shakes = useCameraShake ? Matrix.CreateTranslation(new Vector3(shake.shakeOffset, 0f)) : Matrix.Identity;
 
 			return VirtualViewport.Transform(
-				Matrix.CreateTranslation(new Vector3(-XY, 0f)) * shakes *
+				pos * shakes *
 				Matrix.CreateRotationZ(Rotation) *
 				Matrix.CreateScale(scaleZ, scaleZ, 1f) * scale *
 				Matrix.CreateTranslation(new Vector3(curentOrigin * currentOriginScale, 0f)));
