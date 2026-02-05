@@ -6,21 +6,20 @@ public class Timers
 {
 	private static List<Counter> timeCounters = new List<Counter>();
 
-	public static void ProcessTimers()
+	public static void Update()
 	{
 		foreach (var item in timeCounters.ToArray())
 		{
+			if (item.stop) continue;
+
 			item.time = item.useUnscaled ? item.time - Time.unscaledDeltaTime : item.time - Time.deltaTime;
+			item.onUpdate?.Invoke(GetTimeRatio(item));
 
-			if (!item.stop) item.onUpdate?.Invoke(GetTimeRatio(item));
-
-			if (item.time <= 0 && !item.stop)
+			if (item.time <= 0)
 			{
-				if (!item.onCompleteInvoked)
-				{
-					item.onCompleteInvoked = true;
-					item.onComplete?.Invoke();
-				}
+				timeCounters.Remove(item);
+
+				item.onComplete?.Invoke();
 
 				if (item.repeat) New(item.name, item.startTime, item.onComplete, item.onUpdate, item.useUnscaled, item.repeat);
 			}
@@ -52,7 +51,6 @@ public class Timers
 			var target = timeCounters.Find(x => x.name == name);
 
 			target.stop = false;
-			target.onCompleteInvoked = false;
 
 			target.time = time;
 			target.startTime = time;
@@ -60,13 +58,6 @@ public class Timers
 			target.onUpdate = onUpdate;
 			target.repeat = repeat;
 		}
-	}
-	public static void Clear(string name)
-	{
-		AlreadyExists(name, out Counter target);
-		if (target == null) return;
-		target.time = -10f;
-		target.stop = true;
 	}
 
 	public static bool IsUp(string name)
@@ -99,6 +90,12 @@ public class Timers
 		counter = timeCounters.Find(x => x.name == name);
 		return counter != null;
 	}
+
+	public static List<Counter> GetAll()
+	{
+		timeCounters.Sort((x, y) => string.Compare(x.name, y.name));
+		return timeCounters;
+	}
 }
 
 public class Counter
@@ -111,8 +108,9 @@ public class Counter
 	public bool stop;
 	public bool useUnscaled;
 	public bool repeat;
-	public bool onCompleteInvoked;
 
 	public Action onComplete;
 	public Action<float> onUpdate; // GetTimeRatio as float
+
+	public override string ToString() => $"{name}: {time:F2}";
 }

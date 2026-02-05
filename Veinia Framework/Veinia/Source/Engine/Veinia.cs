@@ -92,7 +92,7 @@ namespace VeiniaFramework
 
 			NextFrame.Update();
 
-			Timers.ProcessTimers();
+			Timers.Update();
 
 			Globals.unscaledTweener.Update(Time.unscaledDeltaTime);
 
