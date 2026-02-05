@@ -16,10 +16,13 @@ public class Timers
 
 			if (item.time <= 0 && !item.stop)
 			{
-				item.onComplete?.Invoke();
+				if (!item.onCompleteInvoked)
+				{
+					item.onCompleteInvoked = true;
+					item.onComplete?.Invoke();
+				}
 
 				if (item.repeat) New(item.name, item.startTime, item.onComplete, item.onUpdate, item.useUnscaled, item.repeat);
-				else item.onComplete = null;
 			}
 		}
 	}
@@ -49,6 +52,8 @@ public class Timers
 			var target = timeCounters.Find(x => x.name == name);
 
 			target.stop = false;
+			target.onCompleteInvoked = false;
+
 			target.time = time;
 			target.startTime = time;
 			target.onComplete = onComplete;
@@ -99,11 +104,15 @@ public class Timers
 public class Counter
 {
 	public string name;
+
 	public float time;
 	public float startTime; // this is used for Get01FromStartValue()
+
 	public bool stop;
 	public bool useUnscaled;
 	public bool repeat;
+	public bool onCompleteInvoked;
+
 	public Action onComplete;
 	public Action<float> onUpdate; // GetTimeRatio as float
 }
