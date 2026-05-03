@@ -335,7 +335,7 @@ namespace GeonBit.UI
 		/// </summary>
 		/// <param name="contentManager">Content manager.</param>
 		/// <param name="theme">Which UI theme to use (see options in Content/GeonBit.UI/themes/). This affect the appearance of all textures and effects.</param>
-		static public void Initialize(ContentManager contentManager, string theme = "hd")
+		static public void Initialize(ContentManager contentManager, string theme = "veinia_default")
 		{
 			// store the content manager
 			_content = contentManager;
