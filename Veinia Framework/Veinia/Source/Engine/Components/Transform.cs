@@ -26,7 +26,7 @@ namespace VeiniaFramework
 					return localPosition;
 				}
 
-				Vector2 rotatedLocal = localPosition.RotateAround(Vector2.Zero, Parent.rotation);
+				Vector2 rotatedLocal = localPosition.RotateAroundOrigin(Vector2.Zero, Parent.rotation);
 				Vector2 worldPos = Parent.position + rotatedLocal * Parent.scale;
 
 				return worldPos;
@@ -41,7 +41,7 @@ namespace VeiniaFramework
 				}
 
 				Vector2 offset = value - Parent.position / Parent.scale;
-				Vector2 unrotated = offset.RotateAround(Vector2.Zero, -Parent.rotation);
+				Vector2 unrotated = offset.RotateAroundOrigin(Vector2.Zero, -Parent.rotation);
 				localPosition = unrotated;
 			}
 		}
@@ -177,7 +177,7 @@ namespace VeiniaFramework
 		public void RotateAround(Vector2 origin, float rotation)
 		{
 			transform.rotation += rotation;
-			transform.position = transform.position.RotateAround(origin, rotation);
+			transform.position = transform.position.RotateAroundOrigin(origin, rotation);
 		}
 
 		public void SetParent(Transform parent, bool worldPositionStays = true)
@@ -187,7 +187,7 @@ namespace VeiniaFramework
 			if (worldPositionStays)
 			{
 				localRotation = rotation - parent.rotation;
-				localPosition = (position - parent.position).RotateAround(Vector2.Zero, -parent.rotation) / parent.scale;
+				localPosition = (position - parent.position).RotateAroundOrigin(Vector2.Zero, -parent.rotation) / parent.scale;
 				localScale = scale / parent.scale;
 				localZ = Z - parent.Z;
 			}

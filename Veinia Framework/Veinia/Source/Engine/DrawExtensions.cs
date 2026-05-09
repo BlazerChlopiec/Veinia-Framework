@@ -112,10 +112,10 @@ namespace VeiniaFramework
 			Vector2 bottomRight = new Vector2(rectangle.Right, rectangle.Bottom);
 			Vector2 bottomLeft = new Vector2(rectangle.Left, rectangle.Bottom);
 
-			topLeft = topLeft.RotateAround(center, -rotation);
-			topRight = topRight.RotateAround(center, -rotation);
-			bottomRight = bottomRight.RotateAround(center, -rotation);
-			bottomLeft = bottomLeft.RotateAround(center, -rotation);
+			topLeft = topLeft.RotateAroundOrigin(center, -rotation);
+			topRight = topRight.RotateAroundOrigin(center, -rotation);
+			bottomRight = bottomRight.RotateAroundOrigin(center, -rotation);
+			bottomLeft = bottomLeft.RotateAroundOrigin(center, -rotation);
 
 			level.drawCommands.Add(new DrawCommand
 			{

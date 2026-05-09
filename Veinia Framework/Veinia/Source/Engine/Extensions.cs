@@ -89,7 +89,7 @@ namespace VeiniaFramework
 			}
 			return value;
 		}
-		public static Vector2 RotateAround(this Vector2 vector, Vector2 origin, float rotation)
+		public static Vector2 RotateAroundOrigin(this Vector2 vector, Vector2 origin, float rotation)
 		{
 			var rot = MathHelper.ToRadians(-rotation);
 			float cos = MathF.Cos(rot);
