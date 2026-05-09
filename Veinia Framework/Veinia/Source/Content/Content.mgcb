@@ -14,6 +14,9 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin DiagnosticsFont.xnb
+/copy:DiagnosticsFont.xnb
+
 #begin veinia_defaults/prefab_default.png
 /importer:TextureImporter
 /processor:TextureProcessor
