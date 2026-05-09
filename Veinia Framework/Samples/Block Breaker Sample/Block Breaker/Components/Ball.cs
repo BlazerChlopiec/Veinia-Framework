@@ -1,8 +1,8 @@
 ﻿using GeonBit.UI;
 using Microsoft.Xna.Framework;
 using MonoGame.Extended.Tweening;
-using tainicom.Aether.Physics2D.Dynamics;
-using tainicom.Aether.Physics2D.Dynamics.Contacts;
+using nkast.Aether.Physics2D.Dynamics;
+using nkast.Aether.Physics2D.Dynamics.Contacts;
 
 namespace VeiniaFramework.Samples.BlockBreaker
 {
@@ -17,8 +17,12 @@ namespace VeiniaFramework.Samples.BlockBreaker
 			body = Globals.physicsWorld.CreateCircle(.4f, 0f, bodyType: BodyType.Dynamic);
 			body.IgnoreGravity = true;
 			body.Tag = this;
-			body.SetRestitution(1);
-			body.SetFriction(0);
+
+			foreach (var fixture in body.FixtureList)
+			{
+				fixture.Restitution = 1;
+				fixture.Friction = 0;
+			}
 		}
 
 		public override void Update()

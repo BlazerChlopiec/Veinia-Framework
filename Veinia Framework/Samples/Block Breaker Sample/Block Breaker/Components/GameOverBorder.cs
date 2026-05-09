@@ -1,5 +1,5 @@
-﻿using tainicom.Aether.Physics2D.Dynamics;
-using tainicom.Aether.Physics2D.Dynamics.Contacts;
+﻿using nkast.Aether.Physics2D.Dynamics;
+using nkast.Aether.Physics2D.Dynamics.Contacts;
 
 namespace VeiniaFramework.Samples.BlockBreaker
 {
