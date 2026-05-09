@@ -7,10 +7,10 @@ using MonoGame.Extended.Particles.Modifiers;
 using MonoGame.Extended.Particles.Modifiers.Interpolators;
 using MonoGame.Extended.Particles.Profiles;
 using MonoGame.Extended.TextureAtlases;
+using nkast.Aether.Physics2D.Dynamics;
+using nkast.Aether.Physics2D.Dynamics.Contacts;
 using System;
 using System.Collections.Generic;
-using tainicom.Aether.Physics2D.Dynamics;
-using tainicom.Aether.Physics2D.Dynamics.Contacts;
 
 namespace VeiniaFramework.Samples.Platformer
 {
@@ -42,7 +42,10 @@ namespace VeiniaFramework.Samples.Platformer
 
 			body.Tag = this;
 			body.FixedRotation = true;
-			body.SetFriction(0);
+			foreach (var fixture in body.FixtureList)
+			{
+				fixture.Friction = 0;
+			}
 
 			groundCheck = body.CreateRectangle(.9f, .1f, 1f, Vector2.UnitY * -.5f);
 			groundCheck.IsSensor = true;

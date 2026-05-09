@@ -25,8 +25,8 @@
 		<TrimmerRootAssembly Include="Microsoft.Xna.Framework.Content.ContentTypeReader" Visible="false" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Aether.Physics2D.Diagnostics.MG" Version="1.7.0" />
-		<PackageReference Include="Aether.Physics2D.MG" Version="1.7.0" />
+		<PackageReference Include="Aether.Physics2D.Diagnostics.MG" Version="2.2.0" />
+		<PackageReference Include="Aether.Physics2D.MG" Version="2.2.0" />
 		<PackageReference Include="LibTessDotNet" Version="1.1.15" />
 		<PackageReference Include="MonoGame.Extended.Particles" Version="3.8.0" />
 		<PackageReference Include="MonoGame.Extended.Tweening" Version="3.8.0" />
@@ -39,6 +39,11 @@
 		<Reference Include="GeonBit.UI.DataTypes">
 			<HintPath>Source\Content\GeonBit.UI.DataTypes.dll</HintPath>
 		</Reference>
+	</ItemGroup>
+	<ItemGroup>
+	  <Content Update="C:\Users\blaze\.nuget\packages\aether.physics2d.diagnostics.mg\2.2.0\contentFiles\any\netstandard2.0\Content\DiagnosticsFont.xnb">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
 	</ItemGroup>
 	<Target Name="RestoreDotnetTools" BeforeTargets="Restore">
 		<Message Text="Restoring dotnet tools" Importance="High" />
