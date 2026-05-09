@@ -11,9 +11,6 @@
 		<StartupObject />
 	</PropertyGroup>
 	<ItemGroup>
-	  <Content Remove="C:\Users\blaze\.nuget\packages\aether.physics2d.diagnostics.mg\2.2.0\contentFiles\any\netstandard2.0\Content\DiagnosticsFont.xnb" />
-	</ItemGroup>
-	<ItemGroup>
 		<None Remove="Icon.ico" />
 		<None Remove="Icon.bmp" />
 	</ItemGroup>
