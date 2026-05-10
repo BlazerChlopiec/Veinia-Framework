@@ -20,7 +20,7 @@ namespace VeiniaFramework.Editor
 			};
 			window.CloseButton.RemoveFromParent();
 			window.DragDirection = DragDirection.None;
-			window.Width = 300;
+			window.Width = 310;
 
 			var saveButton = new TextButton { Text = "Save" };
 			saveButton.Click += (s, e) => editorLoader.Save();
