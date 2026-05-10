@@ -232,10 +232,7 @@ namespace VeiniaFramework.Editor
 				filterSelectionWindow.Show(Globals.myraDesktop);
 			}
 			else // if already created just update the content
-			{
-				filterSelectionWindow.RemoveChild(filterSelectionWindow.Content);
 				filterSelectionWindow.Content = new Panel();
-			}
 
 			filterSelectionWindow.Height = 35 + 70 * overlaps.Count;
 			filterSelectionWindow.Width = 100;

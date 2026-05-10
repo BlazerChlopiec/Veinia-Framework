@@ -64,16 +64,8 @@ namespace VeiniaFramework
 				Opacity = .95f,
 				HasExternalTextInput = true,
 			};
-			Globals.myraDesktop.MouseInfoGetter = () =>
-			{
-				MouseInfo info = Globals.myraDesktop.DefaultMouseInfoGetter();
-				var mouse = Mouse.GetState().Position.ToVector2() - Globals.camera.VirtualViewport.XY;
-				info.Position = mouse.ToPoint();
-				return info;
-			};
 
 			window.TextInput += (s, a) => Globals.myraDesktop.OnChar(a.Character);
-			Globals.myraDesktop.Render();
 			#endregion
 
 			#region GeonBit.UI
@@ -132,11 +124,7 @@ namespace VeiniaFramework
 			#endregion
 
 			#region Myra.UI
-			if (!PausedGameWhenInactiveWindow)
-			{
-				Globals.myraDesktop.UpdateInput();
-				Globals.myraDesktop.UpdateLayout();
-			}
+			MyraEnvironment.MouseInfoGetter = () => { return PausedGameWhenInactiveWindow ? default : MyraEnvironment.DefaultMouseInfoGetter(); };
 			#endregion
 
 			#region Debug
@@ -185,7 +173,7 @@ namespace VeiniaFramework
 		}
 
 		public void DrawWorld(SpriteBatch spriteBatch, DrawOptions drawOptions = default) => Globals.loader.current?.Draw(spriteBatch, drawOptions);
-		public void DrawMyra() => Globals.myraDesktop.RenderVisual();
+		public void DrawMyra() => Globals.myraDesktop.Render();
 		public void DrawGeon(SpriteBatch spriteBatch) => UserInterface.Active.Draw(spriteBatch);
 		public void DrawDebugPhysics(Vector2? scaleFactor = null)
 		{
