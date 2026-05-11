@@ -1,6 +1,6 @@
-﻿using GeonBit.UI;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Input.Touch;
 
 namespace VeiniaFramework
 {
@@ -15,18 +15,18 @@ namespace VeiniaFramework
 		MouseState mouse;
 		MouseState oldMouse;
 
+		TouchCollection touches;
+
 		GamePadThumbSticks sticks;
 
 		public enum Device
 		{
-			noDevice, // used for not making x360 the default | its only assigned in the start 
-			x360,
-			keyboard,
+			no_device,
+			gamepad,
+			phone,
+			keyboard_mouse,
 		}
-		public Device currentDevice = Device.noDevice;
-
-		public bool normalizeControllerAxis = false;
-		public bool normalizeKeyboardAxis = false;
+		public Device currentDevice = Device.no_device;
 
 		float deadzone = 0.2f;
 
@@ -49,10 +49,12 @@ namespace VeiniaFramework
 			keyboard = Keyboard.GetState();
 
 			oldGamepad = gamepad;
-			gamepad = GamePad.GetState(0); //first player
+			gamepad = GamePad.GetState(0);
 
 			oldMouse = mouse;
 			mouse = Mouse.GetState();
+
+			touches = TouchPanel.GetState();
 
 			sticks = gamepad.ThumbSticks;
 			//
@@ -62,9 +64,13 @@ namespace VeiniaFramework
 			currentScroll += deltaScroll;
 			deltaScroll /= 2000;
 
-			//detect which device are you using
-			if (GetPressedButton(gamepad) != 0 && keyboard.GetPressedKeys().Length < 1) { currentDevice = Device.x360; }
-			if (keyboard.GetPressedKeys().Length >= 1 && GetPressedButton(gamepad) == 0) { currentDevice = Device.keyboard; }
+			// detect device
+			if (GetPressedButton(gamepad) != 0 && keyboard.GetPressedKeys().Length == 0) currentDevice = Device.gamepad;
+
+			if (touches.Count > 0) currentDevice = Device.phone;
+
+			if (keyboard.GetPressedKeys().Length > 0 && GetPressedButton(gamepad) == 0 ||
+				oldMouse.Position != mouse.Position || GetMouse(0) || GetMouse(1)) currentDevice = Device.keyboard_mouse;
 
 			mouseX = (mouse.X - oldMouse.X);
 			mouseY = -(mouse.Y - oldMouse.Y);
@@ -75,40 +81,35 @@ namespace VeiniaFramework
 		private void MakeAxis()
 		{
 			//keyboard
-			if (currentDevice == Device.keyboard)
+			if (currentDevice == Device.keyboard_mouse)
 			{
-				horizontal = 0; // reset to zero each frame 
+				// reset to zero each frame 
+				horizontal = 0;
+				vertical = 0;
+
 				if (GetKey(Keys.A) || GetKey(Keys.Left)) { horizontal -= 1; }
 				if (GetKey(Keys.D) || GetKey(Keys.Right)) { horizontal += 1; }
 
-				vertical = 0; // reset to zero each frame 
 				if (GetKey(Keys.W) || GetKey(Keys.Up)) { vertical += 1; }
 				if (GetKey(Keys.S) || GetKey(Keys.Down)) { vertical -= 1; }
 			}
 			//
 
 			//controller
-			if (currentDevice == Device.x360)
+			if (currentDevice == Device.gamepad)
 			{
-				if (sticks.Left.Length() > deadzone) // if the magnitude is more than deadzone assign horizontal & vertical
+				if (sticks.Left.Length() > deadzone)
 				{
 					horizontal = sticks.Left.X;
 					vertical = sticks.Left.Y;
 				}
-				else { horizontal = 0; vertical = 0; }
+				else
+				{
+					horizontal = 0;
+					vertical = 0;
+				}
 			}
 			//
-
-			Vector2 axisVector = new Vector2(horizontal, vertical);
-
-			if (currentDevice == Device.keyboard && normalizeKeyboardAxis || normalizeControllerAxis) // always normalize the input when its a keyboard
-			{                                                                                         // or when 'normalizeControllerAxis' is true
-				axisVector.SafeNormalize();
-			}
-
-
-			horizontal = axisVector.X;
-			vertical = axisVector.Y;
 		}
 
 		public void SetDeadzone(float value) => deadzone = value;
@@ -138,8 +139,7 @@ namespace VeiniaFramework
 			if (gamepad.IsButtonDown(Buttons.LeftTrigger)) { return Buttons.LeftTrigger; }
 			if (gamepad.IsButtonDown(Buttons.RightTrigger)) { return Buttons.RightTrigger; }
 
-			//return new Buttons(); // return 0 when nothing is pressed
-			return default; // return 0 when nothing is pressed
+			return default;
 		}
 
 
@@ -175,6 +175,27 @@ namespace VeiniaFramework
 		}
 		//
 
+		//touch
+		public bool GetTouch()
+		{
+			if (touches.Count > 0)
+				return true;
+			return false;
+		}
+		public bool GetTouchDown()
+		{
+			if (touches.Count > 0)
+				return touches[0].State == TouchLocationState.Pressed;
+			return false;
+		}
+		public bool GetTouchUp()
+		{
+			if (touches.Count > 0)
+				return touches[0].State == TouchLocationState.Released;
+			return false;
+		}
+		//
+
 		//mouse
 		public bool GetMouse(int buttonIndex)
 		{
@@ -188,8 +209,6 @@ namespace VeiniaFramework
 		}
 		public bool GetMouseDown(int buttonIndex)
 		{
-			if (UserInterface.Active.IsMouseInteracting) return false;
-
 			if (buttonIndex == 0)
 				return mouse.LeftButton == ButtonState.Pressed && oldMouse.LeftButton != ButtonState.Pressed;
 			if (buttonIndex == 1)
@@ -200,8 +219,6 @@ namespace VeiniaFramework
 		}
 		public bool GetMouseUp(int buttonIndex)
 		{
-			if (UserInterface.Active.IsMouseInteracting) return false;
-
 			if (buttonIndex == 0)
 				return mouse.LeftButton == ButtonState.Released && oldMouse.LeftButton != ButtonState.Released;
 			if (buttonIndex == 1)
@@ -215,5 +232,8 @@ namespace VeiniaFramework
 
 		public Vector2 GetMouseScreenPosition(Matrix? customCameraTransform = null) => Globals.camera.ScreenToWorld(mouse.Position.ToVector2(), 0, customCameraTransform);
 		public Vector2 GetMouseWorldPosition(Matrix? customCameraTransform = null) => Transform.ScreenToWorldPos(GetMouseScreenPosition(customCameraTransform));
+
+		public Vector2 GetTouchScreenPosition(Matrix? customCameraTransform = null) => (touches.Count > 0) ? Globals.camera.ScreenToWorld(touches[0].Position, 0, customCameraTransform) : Vector2.Zero;
+		public Vector2 GetTouchWorldPosition(Matrix? customCameraTransform = null) => Transform.ScreenToWorldPos(GetTouchScreenPosition(customCameraTransform));
 	}
 }
