@@ -44,9 +44,13 @@ public class Vector2JSONConverter : JsonConverter
 		// STRING FORMAT
 		if (reader.TokenType == JsonToken.String)
 		{
-			string s = ((string)reader.Value).Trim();
+			string s = ((string)reader.Value)
+				.Replace(",", " ")
+				.Trim();
 
-			string[] parts = s.Split(' ');
+			string[] parts = s.Split(
+				' ',
+				StringSplitOptions.RemoveEmptyEntries);
 
 			if (parts.Length == 2)
 			{
