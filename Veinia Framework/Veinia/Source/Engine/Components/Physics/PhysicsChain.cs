@@ -32,11 +32,12 @@ namespace VeiniaFramework
 
 		private Fixture fixture;
 
-		public PhysicsChain(Vector2[] vertices, float restitution = 0, bool isSensor = false, Category category = Category.None, BodyType bodyType = BodyType.Static, Vector2 offset = default, object tag = null, bool ignoreGravity = false, bool sleepingAllowed = true)
+		public PhysicsChain(Vector2[] vertices, float restitution = 0, float friction = .2f, bool isSensor = false, Category category = Category.None, BodyType bodyType = BodyType.Static, Vector2 offset = default, object tag = null, bool ignoreGravity = false, bool sleepingAllowed = true)
 			: base(bodyType, offset, tag, ignoreGravity, sleepingAllowed)
 		{
 			this.verts = vertices;
 			this.restitution = restitution;
+			this.friction = friction;
 			this.isSensor = isSensor;
 			this.category = category;
 		}
