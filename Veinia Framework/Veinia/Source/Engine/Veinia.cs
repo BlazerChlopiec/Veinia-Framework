@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Myra;
 using Myra.Graphics2D.UI;
+using Newtonsoft.Json;
 using nkast.Aether.Physics2D.Diagnostics;
 using nkast.Aether.Physics2D.Dynamics;
 using System;
@@ -30,6 +31,14 @@ namespace VeiniaFramework
 			this.game = game;
 			Globals.graphicsManager = graphicsManager;
 			Globals.fps = new FPS(game);
+
+			JsonConvert.DefaultSettings = () => new JsonSerializerSettings
+			{
+				Converters =
+				{
+					new Vector2JSONConverter()
+				}
+			};
 		}
 
 		public void Initialize(GraphicsDevice graphicsDevice, ContentManager content, GameWindow window,
@@ -58,6 +67,7 @@ namespace VeiniaFramework
 			#endregion
 
 			#region Myra.UI	
+
 			MyraEnvironment.Game = game;
 			Globals.myraDesktop = new Desktop
 			{
