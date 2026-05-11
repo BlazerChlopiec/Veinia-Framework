@@ -17,12 +17,13 @@ namespace VeiniaFramework
 
 		private Fixture fixture;
 
-		public PhysicsEdge(Vector2 point1, Vector2 point2, float restitution = 0, bool isSensor = false, Category category = Category.None, BodyType bodyType = BodyType.Static, Vector2 offset = default, object tag = null, bool ignoreGravity = false, bool sleepingAllowed = true)
+		public PhysicsEdge(Vector2 point1, Vector2 point2, float restitution = 0, float friction = .2f, bool isSensor = false, Category category = Category.None, BodyType bodyType = BodyType.Static, Vector2 offset = default, object tag = null, bool ignoreGravity = false, bool sleepingAllowed = true)
 			: base(bodyType, offset, tag, ignoreGravity, sleepingAllowed)
 		{
 			this.point1 = point1;
 			this.point2 = point2;
 			this.restitution = restitution;
+			this.friction = friction;
 			this.isSensor = isSensor;
 			this.category = category;
 		}
