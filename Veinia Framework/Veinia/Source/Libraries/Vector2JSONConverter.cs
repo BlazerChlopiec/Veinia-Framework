@@ -6,11 +6,23 @@ using System.Globalization;
 
 public class Vector2JSONConverter : JsonConverter
 {
+	public override bool CanConvert(Type objectType)
+	{
+		return objectType == typeof(Vector2)
+			|| objectType == typeof(Vector2?);
+	}
+
 	public override void WriteJson(
 		JsonWriter writer,
 		object value,
 		JsonSerializer serializer)
 	{
+		if (value == null)
+		{
+			writer.WriteNull();
+			return;
+		}
+
 		Vector2 vector = (Vector2)value;
 
 		writer.WriteStartObject();
@@ -30,6 +42,10 @@ public class Vector2JSONConverter : JsonConverter
 		object existingValue,
 		JsonSerializer serializer)
 	{
+		// NULL SUPPORT
+		if (reader.TokenType == JsonToken.Null)
+			return null;
+
 		// OBJECT FORMAT
 		if (reader.TokenType == JsonToken.StartObject)
 		{
@@ -41,7 +57,7 @@ public class Vector2JSONConverter : JsonConverter
 			);
 		}
 
-		// STRING FORMAT
+		// STRING FORMAT (optional legacy support)
 		if (reader.TokenType == JsonToken.String)
 		{
 			string s = ((string)reader.Value)
@@ -63,16 +79,10 @@ public class Vector2JSONConverter : JsonConverter
 			if (parts.Length == 1)
 			{
 				float v = float.Parse(parts[0], CultureInfo.InvariantCulture);
-
 				return new Vector2(v);
 			}
 		}
 
 		throw new InvalidOperationException("Invalid Vector2");
-	}
-
-	public override bool CanConvert(Type objectType)
-	{
-		return objectType == typeof(Vector2);
 	}
 }
