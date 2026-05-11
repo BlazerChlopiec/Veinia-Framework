@@ -47,15 +47,24 @@ namespace VeiniaFramework.Editor
 
 		public static void Add(string text, bool defaultValue, EventHandler onEnable, EventHandler onDisable, Keys shortcut = 0)
 		{
-			var checkBox = new CheckBox { Text = text, IsChecked = defaultValue, Top = 30 * shortcuts.Count };
+			var checkBox = new CheckBox
+			{
+				Text = text,
+				IsChecked = defaultValue,
+				Top = 30 * shortcuts.Count,
+			};
 
 			shortcuts.Add(shortcut);
 
-			checkBox.TouchDown += (o, e) =>
+			if (!defaultValue) onDisable?.Invoke(null, null);
+			else onEnable?.Invoke(null, null);
+
+			checkBox.PressedChanged += (o, e) =>
 			{
-				if (!checkBox.IsChecked) onEnable?.Invoke(o, e);
-				if (checkBox.IsChecked) onDisable?.Invoke(o, e);
+				if (!checkBox.IsChecked) onDisable?.Invoke(o, e);
+				if (checkBox.IsChecked) onEnable?.Invoke(o, e);
 			};
+
 			panel.Widgets.Add(checkBox);
 		}
 
