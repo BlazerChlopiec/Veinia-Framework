@@ -2,9 +2,7 @@
 using Microsoft.Xna.Framework.Input;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using VeiniaFramework.Editor;
 
 namespace VeiniaFramework.Editor
 {
@@ -89,15 +87,4 @@ namespace VeiniaFramework.Editor
 			if (Globals.input.GetKey(Keys.LeftControl) && Globals.input.GetKeyDown(Keys.S)) Save();
 		}
 	}
-}
-
-
-public class SceneFile
-{
-	public List<EditorObject> objects;
-
-	[JsonProperty("l", DefaultValueHandling = DefaultValueHandling.Ignore)] // as in location
-	public Vector2? editorCamPosition;
-	[JsonProperty("z", DefaultValueHandling = DefaultValueHandling.Ignore)] // as in zoom
-	public float? editorCamScale;
 }
