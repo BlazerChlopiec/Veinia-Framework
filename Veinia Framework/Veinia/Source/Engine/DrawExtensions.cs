@@ -78,7 +78,7 @@ namespace VeiniaFramework
 			{
 				command = delegate
 				{
-					sb.DrawCircle(new CircleF(position.ToPoint(), (radius * Transform.unitSize) / 2), sides, color.Value, thickness);
+					sb.DrawCircle(new CircleF(position, (radius * Transform.unitSize) / 2), sides, color.Value, thickness);
 				},
 				Z = z,
 				drawOptions = drawOptions,
