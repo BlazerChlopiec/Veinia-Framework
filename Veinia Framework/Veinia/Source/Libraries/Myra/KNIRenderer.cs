@@ -11,11 +11,18 @@ public class KNIRenderer : IMyraRenderer
 	GraphicsDevice graphics;
 	KNITextureManager textureManager;
 
+	RasterizerState UIRasterizerState;
+
 	public KNIRenderer(ITexture2DManager textureManager, SpriteBatch spriteBatch, GraphicsDevice graphics)
 	{
 		this.spriteBatch = spriteBatch;
 		this.graphics = graphics;
 		this.textureManager = (KNITextureManager)textureManager;
+
+		UIRasterizerState = new RasterizerState
+		{
+			ScissorTestEnable = true
+		};
 	}
 
 	public ITexture2DManager TextureManager => textureManager;
@@ -31,7 +38,7 @@ public class KNIRenderer : IMyraRenderer
 	public void Begin(TextureFiltering textureFiltering)
 	{
 		SamplerState samplerState = textureFiltering == TextureFiltering.Nearest ? SamplerState.PointClamp : SamplerState.LinearClamp;
-		spriteBatch.Begin(samplerState: samplerState);
+		spriteBatch.Begin(blendState: BlendState.AlphaBlend, samplerState: samplerState, rasterizerState: UIRasterizerState);
 	}
 
 	public void DrawQuad(object texture, ref FontStashSharp.Interfaces.VertexPositionColorTexture topLeft,
@@ -46,6 +53,8 @@ public class KNIRenderer : IMyraRenderer
 	{
 		var xnaTexture = (Texture2D)texture;
 
+
+
 		Rectangle? sourceRectangle = null;
 		if (src.HasValue)
 		{
@@ -54,7 +63,8 @@ public class KNIRenderer : IMyraRenderer
 
 		Color col = new Color(color.R, color.G, color.B, color.A);
 
-		spriteBatch.Draw(xnaTexture, new Vector2(pos.X, pos.Y), sourceRectangle, col, rotation, Vector2.Zero, new Vector2(scale.X, scale.Y), SpriteEffects.None, depth);
+		var position = new Vector2(pos.X, pos.Y);
+		spriteBatch.Draw(xnaTexture, position, sourceRectangle, col, rotation, Vector2.Zero, new Vector2(scale.X, scale.Y), SpriteEffects.None, depth);
 	}
 
 	public void End() => spriteBatch.End();

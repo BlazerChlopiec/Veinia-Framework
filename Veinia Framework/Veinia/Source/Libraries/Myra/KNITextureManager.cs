@@ -1,7 +1,6 @@
 ﻿using FontStashSharp.Interfaces;
 using Microsoft.Xna.Framework.Graphics;
 using System.Drawing;
-using VeiniaFramework;
 
 public class KNITextureManager : ITexture2DManager
 {
@@ -29,8 +28,6 @@ public class KNITextureManager : ITexture2DManager
 
 		var newBounds = new Microsoft.Xna.Framework.Rectangle(bounds.X, bounds.Y, bounds.Width, bounds.Height);
 
-		tex.ChangeColor(Microsoft.Xna.Framework.Color.Black);
-
-		tex.SetData(0, newBounds, data, 0, data.Length);
+		tex.SetData(0, newBounds, data, 0, bounds.Width * bounds.Height * 4);
 	}
 }

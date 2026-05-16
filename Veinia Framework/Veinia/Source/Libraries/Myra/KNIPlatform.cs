@@ -17,8 +17,8 @@ public class KNIPlatform : IMyraPlatform
 	}
 
 	public System.Drawing.Point ViewSize => new System.Drawing.Point(
-		game.GraphicsDevice.PresentationParameters.BackBufferWidth,
-		game.GraphicsDevice.PresentationParameters.BackBufferHeight
+		game.GraphicsDevice.Viewport.Width,
+		game.GraphicsDevice.Viewport.Height
 	);
 
 	public IMyraRenderer Renderer => renderer;
@@ -57,10 +57,8 @@ public class KNIPlatform : IMyraPlatform
 
 	public void SetKeysDown(bool[] keys)
 	{
-		if (keys == null) return;
-
 		var state = Keyboard.GetState();
-		for (int i = 0; i < keys.Length; i++)
+		for (var i = 0; i < keys.Length; ++i)
 		{
 			keys[i] = state.IsKeyDown((Microsoft.Xna.Framework.Input.Keys)i);
 		}
