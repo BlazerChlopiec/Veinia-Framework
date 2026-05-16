@@ -10,7 +10,6 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PlatformerSample</RootNamespace>
     <AssemblyName>PlatformerSample</AssemblyName>
-    <OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
     <DefineConstants>$(DefineConstants);DESKTOPGL</DefineConstants>
     <KniPlatform>DesktopGL</KniPlatform>
   </PropertyGroup>
