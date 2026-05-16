@@ -25,26 +25,24 @@ An independent framework that extends MonoGame helping you jump straight into de
 
 ## Installation
 
-Veinia framework is only possible to be installed manually because of libraries such as GeonBit.UI which require referencing the Content folder
-
 Because certain libraries (such as GeonBit.UI) require referencing the Content folder, Veinia Framework must be installed manually as a project linked to your development environment. This approach also makes it easier to customize and adapt the source to your needs.
 
 1. **Download Source**
-2. **Link To Project:** Make sure that your project references ```Veinia``` in the .csproj file (Use the correct path)
+2. **Link To Project:** Make sure that your project references ```Veinia``` in the .csproj file
 ```xml
 <ItemGroup>
-  <ProjectReference Include="..\Veinia Framework\VeiniaFramework.csproj" />
+  <ProjectReference Include="(PATH)\Veinia Framework\Veinia.csproj" />
 </ItemGroup>
 ```
 or by using the terminal
 
 ```xml
-dotnet add reference "..\Veinia Framework\VeiniaFramework.csproj"
+dotnet add reference "(PATH)\Veinia Framework\Veinia.csproj"
 ```
 
-3. **Optional - Add To Solution:** This makes things easier if Veinia files are in a completly different directory (Use the correct path)
+3. **(Visual Studio) - Add To Solution:** Ensures Veinia is built when the solution is compiled, generating its output files correctly.
 ```xml
-dotnet sln add "..\Veinia Framework\Veinia\Veinia.csproj"
+dotnet sln add "(PATH)\Veinia Framework\Veinia.csproj"
 ```
 
 You should now be able to compile and use ```Veinia-Framework```  in your projects.
@@ -70,7 +68,8 @@ var screen = new Screen(1280, 720, fullscreen: false)
 
 veinia.Initialize(GraphicsDevice, Content, Window, screen, unitSize: 100);
 
-Globals.loader.DynamicalyLoad(new ForestLevel("forest.veinia"));
+var level = new ForestLevel("forest.veinia"); // loads level data from .veinia
+Globals.loader.DynamicalyLoad(level);
 ```
 
 Custom Level Example (To Bring Up The Built-in Editor Press TAB):
@@ -109,7 +108,7 @@ public class Movement : Component, IDrawn
 	public void Draw(SpriteBatch sb)
 	{
 		// debug draw current velocity
-		sb.VeiniaTextWorld(level, transform.position, body.LinearVelocity.ToString());
+		sb.VeiniaTextWorld(this.level, transform.position, body.LinearVelocity.ToString());
 	}
 }
 ```
@@ -117,7 +116,6 @@ public class Movement : Component, IDrawn
 ## Roadmap
 
 * Lights
-* 2D Optimizations (Improve FrustumCulling)
 * Editor Undo & Redo
 * Editor Handles
 * Editor Automatic Tilemap Painting
