@@ -1,35 +1,61 @@
 ﻿using FontStashSharp;
 using FontStashSharp.Interfaces;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Myra.Graphics2D;
 using Myra.Platform;
-using System.Drawing;
-using System.Numerics;
 
 public class KNIRenderer : IMyraRenderer
 {
-	public ITexture2DManager TextureManager => throw new System.NotImplementedException();
+	SpriteBatch spriteBatch;
+	GraphicsDevice graphics;
+	KNITextureManager textureManager;
 
-	public RendererType RendererType => throw new System.NotImplementedException();
+	public KNIRenderer(ITexture2DManager textureManager, SpriteBatch spriteBatch, GraphicsDevice graphics)
+	{
+		this.spriteBatch = spriteBatch;
+		this.graphics = graphics;
+		this.textureManager = (KNITextureManager)textureManager;
+	}
 
-	public Rectangle Scissor { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+	public ITexture2DManager TextureManager => textureManager;
+
+	public RendererType RendererType => RendererType.Sprite;
+
+	public System.Drawing.Rectangle Scissor
+	{
+		get => new System.Drawing.Rectangle(graphics.ScissorRectangle.X, graphics.ScissorRectangle.Y, graphics.ScissorRectangle.Width, graphics.ScissorRectangle.Height);
+		set => graphics.ScissorRectangle = new Microsoft.Xna.Framework.Rectangle(value.X, value.Y, value.Width, value.Height);
+	}
 
 	public void Begin(TextureFiltering textureFiltering)
 	{
-		throw new System.NotImplementedException();
+		SamplerState samplerState = textureFiltering == TextureFiltering.Nearest ? SamplerState.PointClamp : SamplerState.LinearClamp;
+		spriteBatch.Begin(samplerState: samplerState);
 	}
 
-	public void DrawQuad(object texture, ref VertexPositionColorTexture topLeft, ref VertexPositionColorTexture topRight, ref VertexPositionColorTexture bottomLeft, ref VertexPositionColorTexture bottomRight)
+	public void DrawQuad(object texture, ref FontStashSharp.Interfaces.VertexPositionColorTexture topLeft,
+		ref FontStashSharp.Interfaces.VertexPositionColorTexture topRight,
+		ref FontStashSharp.Interfaces.VertexPositionColorTexture bottomLeft,
+		ref FontStashSharp.Interfaces.VertexPositionColorTexture bottomRight)
 	{
-		throw new System.NotImplementedException();
+		// not using quad rendering
 	}
 
-	public void DrawSprite(object texture, Vector2 pos, Rectangle? src, FSColor color, float rotation, Vector2 scale, float depth)
+	public void DrawSprite(object texture, System.Numerics.Vector2 pos, System.Drawing.Rectangle? src, FSColor color, float rotation, System.Numerics.Vector2 scale, float depth)
 	{
-		throw new System.NotImplementedException();
+		var xnaTexture = (Texture2D)texture;
+
+		Rectangle? sourceRectangle = null;
+		if (src.HasValue)
+		{
+			sourceRectangle = new Rectangle(src.Value.X, src.Value.Y, src.Value.Width, src.Value.Height);
+		}
+
+		Color col = new Color(color.R, color.G, color.B, color.A);
+
+		spriteBatch.Draw(xnaTexture, new Vector2(pos.X, pos.Y), sourceRectangle, col, rotation, Vector2.Zero, new Vector2(scale.X, scale.Y), SpriteEffects.None, depth);
 	}
 
-	public void End()
-	{
-		throw new System.NotImplementedException();
-	}
+	public void End() => spriteBatch.End();
 }

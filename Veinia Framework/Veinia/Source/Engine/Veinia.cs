@@ -40,7 +40,7 @@ namespace VeiniaFramework
 			};
 		}
 
-		public void Initialize(GraphicsDevice graphicsDevice, ContentManager content, GameWindow window,
+		public void Initialize(GraphicsDevice graphicsDevice, ContentManager content, SpriteBatch spriteBatch, GameWindow window,
 							   Screen screen, int unitSize, Vector2? gravity = null, PrefabManager prefabManager = null)
 		{
 			#region Veinia
@@ -67,7 +67,7 @@ namespace VeiniaFramework
 
 			#region Myra.UI	
 
-			MyraEnvironment.Platform = new KNIPlatform(game, new KNIRenderer());
+			MyraEnvironment.Platform = new KNIPlatform(game, new KNIRenderer(new KNITextureManager(), spriteBatch, graphicsDevice));
 			Globals.myraDesktop = new Desktop
 			{
 				Opacity = .95f,
