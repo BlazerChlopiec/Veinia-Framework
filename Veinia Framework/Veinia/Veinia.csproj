@@ -28,6 +28,13 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+	<PackageReference Include="Aether.Physics2D.Diagnostics.KNI" Version="2.2.0" />
+	<PackageReference Include="Aether.Physics2D.KNI" Version="2.2.0" />
+	<PackageReference Include="KNI.Extended" Version="6.0.0" />
+	<PackageReference Include="LibTessDotNet" Version="1.1.15" />
+	<PackageReference Include="Myra" Version="1.5.11" />
+	<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	  
     <PackageReference Include="nkast.Xna.Framework" Version="4.2.9001" />
     <PackageReference Include="nkast.Xna.Framework.Content" Version="4.2.9001" />
     <PackageReference Include="nkast.Xna.Framework.Graphics" Version="4.2.9001" />
@@ -47,10 +54,6 @@
   </ItemGroup>
   <ItemGroup>
     <KniContentReference Include="Source\Content\VeiniaContent.mgcb" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Content\" />
-    <Folder Include="Source\Content\obj\BlazorGL\" />
   </ItemGroup>
 
 </Project>
