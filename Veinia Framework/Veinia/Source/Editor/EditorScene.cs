@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+﻿using FontStashSharp;
 using Microsoft.Xna.Framework.Input;
 using Myra.Graphics2D.UI;
 using System;
@@ -88,12 +88,12 @@ namespace VeiniaFramework.Editor
 			window.CloseButton.Click += (s, e) => { errorWindowAppeared = false; };
 			window.Width = 400;
 
-			var textBox = new TextBox { Text = content, TextColor = Color.Red, Wrap = true };
+			var textBox = new TextBox { Text = content, TextColor = FSColor.Red, Wrap = true };
 			textBox.AcceptsKeyboardFocus = false;
 
 			panel.Widgets.Add(textBox);
 
-			window.Show(Globals.myraDesktop, Point.Zero);
+			window.Show(Globals.myraDesktop);
 		}
 	}
 }

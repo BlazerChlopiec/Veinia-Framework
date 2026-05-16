@@ -67,7 +67,7 @@ namespace VeiniaFramework
 
 			#region Myra.UI	
 
-			MyraEnvironment.Game = game;
+			//MyraEnvironment.Platform = 
 			Globals.myraDesktop = new Desktop
 			{
 				Opacity = .95f,

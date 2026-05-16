@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Myra.Graphics2D.UI;
+﻿using Myra.Graphics2D.UI;
 
 namespace VeiniaFramework.Editor
 {
@@ -49,7 +48,7 @@ namespace VeiniaFramework.Editor
 			};
 			panel.Widgets.Add(openLevelSelectButton);
 
-			window.Show(Globals.myraDesktop, Point.Zero);
+			window.Show(Globals.myraDesktop);
 		}
 	}
 }

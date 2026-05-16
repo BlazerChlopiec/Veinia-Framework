@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Myra.Graphics2D.UI;
+﻿using Myra.Graphics2D.UI;
 
 namespace VeiniaFramework.Editor
 {
@@ -74,7 +73,7 @@ namespace VeiniaFramework.Editor
 			panel.Widgets.Add(vSyncCheckbox);
 			panel.Widgets.Add(fixedCheckbox);
 
-			window.Show(Globals.myraDesktop, Point.Zero);
+			window.Show(Globals.myraDesktop);
 		}
 
 		public override void Update() => window.Title = $"FPS - {Globals.fps.currentFps}";

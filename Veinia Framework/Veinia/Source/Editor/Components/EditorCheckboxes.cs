@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework.Input;
 using Myra.Graphics2D.UI;
 using System;
 using System.Collections.Generic;
@@ -28,7 +27,7 @@ namespace VeiniaFramework.Editor
 			window.Height = 70;
 			window.Width = 200;
 
-			window.Show(Globals.myraDesktop, Point.Zero);
+			window.Show(Globals.myraDesktop);
 		}
 
 		public override void Update()

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using FontStashSharp;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Myra.Graphics2D;
 using Myra.Graphics2D.TextureAtlases;
@@ -81,6 +82,7 @@ namespace VeiniaFramework.Editor
 					var top = prefabButtonSize * (index / columns);
 					var left = prefabButtonSize * (index % columns);
 
+					var rect = sprite.SourceRectangle.Value;
 					var prefabButton = new ImageButton
 					{
 						Height = prefabButtonSize,
@@ -89,7 +91,7 @@ namespace VeiniaFramework.Editor
 						Left = left,
 						Padding = new Thickness(-padding),
 						VerticalAlignment = VerticalAlignment.Top,
-						Background = new TextureRegion(sprite.Texture.ChangeColor(sprite.color), sprite.SourceRectangle.Value),
+						Background = new TextureRegion(sprite.Texture.ChangeColor(sprite.color), new System.Drawing.Rectangle(rect.X, rect.Y, rect.Width, rect.Height))
 					};
 					prefabButton.Click += (s, a) => OnClickPrefab(prefab);
 					tab.Panel.Widgets.Add(prefabButton);
@@ -101,7 +103,7 @@ namespace VeiniaFramework.Editor
 							Text = prefab.PrefabName,
 							Top = top,
 							Left = left,
-							TextColor = Color.Black,
+							TextColor = FSColor.Red,
 							MaxWidth = prefabButtonSize,
 							Wrap = true
 						};
