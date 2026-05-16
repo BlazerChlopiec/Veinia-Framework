@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using MonoGame.Extended;
 using Myra.Graphics2D.UI;
 using Myra.Graphics2D.UI.Properties;
 using System;
@@ -117,13 +116,11 @@ namespace VeiniaFramework
 
 			for (int i = 0; i < colorData.Length; i++)
 			{
-				var newColorHsl = newColor.ToHsl();
-				var oldColorHsl = colorData[i].ToHsl();
-
-				if (oldColorHsl.L < newColorHsl.L)
-					colorData[i] = new HslColor(newColorHsl.H, newColorHsl.S, oldColorHsl.L).ToRgb();
-				else
-					colorData[i] = new HslColor(newColorHsl.H, newColorHsl.S, newColorHsl.L).ToRgb();
+				colorData[i] = new Color(
+						(byte)((colorData[i].R * newColor.R) / 255),
+						(byte)((colorData[i].G * newColor.G) / 255),
+						(byte)((colorData[i].B * newColor.B) / 255),
+						colorData[i].A);
 			}
 
 			var temp = new Texture2D(texture.GraphicsDevice, texture.Width, texture.Height);
