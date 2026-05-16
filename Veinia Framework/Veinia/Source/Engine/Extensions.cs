@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using FontStashSharp;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -148,6 +149,14 @@ namespace VeiniaFramework
 		{
 			byte alpha = (byte)(MathHelper.Clamp(alpha01, 0f, 1f) * 255f);
 			return new Color(color.R, color.G, color.B, alpha);
+		}
+		public static Color ToColor(this FSColor fs)
+		{
+			return new Color(fs.PackedValue);
+		}
+		public static FSColor ToColor(this Color fs)
+		{
+			return new FSColor(fs.PackedValue);
 		}
 		public static Vector2 Round(this Vector2 vector, int decimalDigits)
 		{
