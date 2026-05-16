@@ -1,0 +1,116 @@
+using System;
+using System.Collections.Generic;
+using VeiniaFramework;
+
+public class Timers
+{
+	private static List<Counter> timeCounters = new List<Counter>();
+
+	public static void Update()
+	{
+		foreach (var item in timeCounters.ToArray())
+		{
+			if (item.stop) continue;
+
+			item.time = item.useUnscaled ? item.time - Time.unscaledDeltaTime : item.time - Time.deltaTime;
+			item.onUpdate?.Invoke(GetTimeRatio(item));
+
+			if (item.time <= 0)
+			{
+				timeCounters.Remove(item);
+
+				item.onComplete?.Invoke();
+
+				if (item.repeat) New(item.name, item.startTime, item.onComplete, item.onUpdate, item.useUnscaled, item.repeat);
+			}
+		}
+	}
+
+	public static void New(string name, float time, Action onComplete = null, Action<float> onUpdate = null, bool useUnscaled = false, bool repeat = false)
+	{
+		var exists = AlreadyExists(name);
+
+		if (!exists)
+		{
+			var counter = new Counter
+			{
+				name = name,
+				time = time,
+				startTime = time,
+				onComplete = onComplete,
+				onUpdate = onUpdate,
+				useUnscaled = useUnscaled,
+				repeat = repeat
+			};
+
+			timeCounters.Add(counter);
+		}
+
+		if (exists)
+		{
+			var target = timeCounters.Find(x => x.name == name);
+
+			target.stop = false;
+
+			target.time = time;
+			target.startTime = time;
+			target.onComplete = onComplete;
+			target.onUpdate = onUpdate;
+			target.repeat = repeat;
+		}
+	}
+
+	public static bool IsUp(string name)
+	{
+		var result = timeCounters.Find(x => x.name == name);
+		if (result == null) return true; // very convinient THO i would've lost an interview
+		return result.time <= 0;
+	}
+
+	public static float GetTime(string name)
+	{
+		var result = timeCounters.Find(x => x.name == name);
+		if (result != null) return result.time;
+		else return 0f;
+	}
+	/// <summary>
+	/// returns ratio of time / startTime
+	/// </summary>
+	public static float GetTimeRatio(string name)
+	{
+		var result = timeCounters.Find(x => x.name == name);
+		if (result != null) return GetTimeRatio(result);
+		else return 0f;
+	}
+	public static float GetTimeRatio(Counter counter) => Math.Clamp(counter.time, 0, float.MaxValue) / counter.startTime;
+
+	public static bool AlreadyExists(string name) => timeCounters.Exists(x => x.name == name);
+	public static bool AlreadyExists(string name, out Counter counter)
+	{
+		counter = timeCounters.Find(x => x.name == name);
+		return counter != null;
+	}
+
+	public static List<Counter> GetAll()
+	{
+		timeCounters.Sort((x, y) => string.Compare(x.name, y.name));
+		return timeCounters;
+	}
+}
+
+public class Counter
+{
+	public string name;
+
+	public float time;
+	public float startTime; // this is used for Get01FromStartValue()
+
+	public bool stop;
+	public bool useUnscaled;
+	public bool repeat;
+
+	public Action onComplete;
+	public Action<float> onUpdate; // GetTimeRatio as float
+
+	public override string ToString() => $"{name}: {time:F2}";
+}
