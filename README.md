@@ -31,21 +31,21 @@ Because certain libraries (such as GeonBit.UI) require referencing the Content f
 2. **Link To Project:** Make sure that your project references ```Veinia``` in the .csproj file
 ```xml
 <ItemGroup>
-  <ProjectReference Include="(PATH)\Veinia Framework\Veinia.csproj" />
+  <ProjectReference Include="(PATH)\Veinia\Veinia.csproj" />
 </ItemGroup>
 ```
 or by using the terminal
 
 ```xml
-dotnet add reference "(PATH)\Veinia Framework\Veinia.csproj"
+dotnet add reference "(PATH)\Veinia\Veinia.csproj"
 ```
 
 3. **(Visual Studio) - Add To Solution:** Ensures Veinia is built when the solution is compiled, generating its output files correctly.
 ```xml
-dotnet sln add "(PATH)\Veinia Framework\Veinia.csproj"
+dotnet sln add "(PATH)\Veinia\Veinia.csproj"
 ```
 
-You should now be able to compile and use ```Veinia-Framework```  in your projects.
+You should now be able to compile and use ```Veinia```  in your projects.
 
 For proper functionality, ensure that level files are copied to the output directory. This can be done by adding the following to your .csproj file: (Use the correct path)
 ```xml
