@@ -27,7 +27,7 @@ namespace VeiniaFramework.Editor
 			window.Height = 70;
 			window.Width = 200;
 
-			window.Show(Globals.myraDesktop);
+			window.Show(Globals.myraDesktop, new System.Drawing.Point(0, 0));
 		}
 
 		public override void Update()

@@ -26,7 +26,7 @@ namespace VeiniaFramework.Editor
 			}
 			panel.Widgets.Add(yMenu);
 
-			window.Show(Globals.myraDesktop);
+			window.Show(Globals.myraDesktop, new System.Drawing.Point(0, 0));
 		}
 	}
 }

@@ -52,7 +52,7 @@ namespace VeiniaFramework.Editor
 			};
 			window.CloseButton.RemoveFromParent();
 
-			window.Show(Globals.myraDesktop);
+			window.Show(Globals.myraDesktop, new System.Drawing.Point(0, 0));
 		}
 
 		public override void Update()

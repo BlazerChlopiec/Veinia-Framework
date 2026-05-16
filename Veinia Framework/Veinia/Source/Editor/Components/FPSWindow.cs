@@ -73,7 +73,7 @@ namespace VeiniaFramework.Editor
 			panel.Widgets.Add(vSyncCheckbox);
 			panel.Widgets.Add(fixedCheckbox);
 
-			window.Show(Globals.myraDesktop);
+			window.Show(Globals.myraDesktop, new System.Drawing.Point(0, 0));
 		}
 
 		public override void Update() => window.Title = $"FPS - {Globals.fps.currentFps}";
