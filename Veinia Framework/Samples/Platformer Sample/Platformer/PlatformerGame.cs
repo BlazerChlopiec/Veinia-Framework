@@ -30,7 +30,7 @@ namespace VeiniaFramework.Samples.Platformer
 			var prefabs = new PlatformerPrefabs();
 			var screen = new Screen(1280, 720, false);
 
-			veinia.Initialize(GraphicsDevice, Content, Window, screen,
+			veinia.Initialize(GraphicsDevice, Content, spriteBatch, Window, screen,
 					unitSize: 100, Vector2.UnitY * -20, prefabs);
 
 			Globals.camera = new Camera(new BoundingViewport(GraphicsDevice, Window, 1920, 1080));

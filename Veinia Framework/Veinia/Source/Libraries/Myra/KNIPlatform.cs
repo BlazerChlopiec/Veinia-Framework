@@ -17,8 +17,8 @@ public class KNIPlatform : IMyraPlatform
 	}
 
 	public System.Drawing.Point ViewSize => new System.Drawing.Point(
-		game.GraphicsDevice.Viewport.Width,
-		game.GraphicsDevice.Viewport.Height
+		game.GraphicsDevice.PresentationParameters.BackBufferWidth,
+		game.GraphicsDevice.PresentationParameters.BackBufferHeight
 	);
 
 	public IMyraRenderer Renderer => renderer;

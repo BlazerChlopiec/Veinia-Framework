@@ -67,7 +67,7 @@ namespace VeiniaFramework
 
 			#region Myra.UI	
 
-			MyraEnvironment.Platform = new KNIPlatform(game, new KNIRenderer(new KNITextureManager(), spriteBatch, graphicsDevice));
+			MyraEnvironment.Platform = new KNIPlatform(game, new KNIRenderer(new KNITextureManager(graphicsDevice), spriteBatch, graphicsDevice));
 			Globals.myraDesktop = new Desktop
 			{
 				Opacity = .95f,
