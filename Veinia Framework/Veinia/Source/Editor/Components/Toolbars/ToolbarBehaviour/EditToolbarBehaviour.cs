@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using FontStashSharp;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Myra.Graphics2D.TextureAtlases;
@@ -326,7 +327,30 @@ namespace VeiniaFramework.Editor
 			var obj = selectedObjects[0];
 			if (obj == null) return;
 
-			editWindow = Globals.myraDesktop.MakeEditWindow(obj);
+			var data = new SingleEditData
+			{
+				Position = obj.Position,
+				Scale = obj.Scale,
+				Rotation = obj.Rotation,
+				customData = obj.customData,
+				PrefabName = obj.PrefabName,
+				Z = obj.Z,
+				Color = obj.Color.ToFSColor(),
+			};
+
+			editWindow = Globals.myraDesktop.MakeEditWindow(data, "Single Object Editor");
+
+			PropertyGrid grid = (PropertyGrid)editWindow.Content;
+
+			grid.PropertyChanged += delegate
+			{
+				obj.Position = data.Position;
+				obj.Scale = data.Scale;
+				obj.Rotation = data.Rotation;
+				obj.PrefabName = data.PrefabName;
+				obj.Z = data.Z;
+				obj.Color = data.Color.ToXnaColor();
+			};
 		}
 
 		public void EditMultiple()
@@ -368,7 +392,7 @@ namespace VeiniaFramework.Editor
 
 			// color simillarity
 			if (selectedObjects.All(o => o.Color == first.Color))
-				data.Color = first.Color;
+				data.Color = first.Color.ToFSColor();
 
 
 			editWindow = Globals.myraDesktop.MakeEditWindow(data, "Multiple Object Editor");
@@ -393,7 +417,7 @@ namespace VeiniaFramework.Editor
 
 					obj.customData = data.customData == "<mixed>" ? obj.customData : data.customData;
 
-					obj.Color = data.Color != Color.Transparent ? data.Color : obj.Color;
+					obj.Color = data.Color != FSColor.Transparent ? data.Color.ToXnaColor() : obj.Color;
 				}
 			};
 		}
@@ -439,5 +463,16 @@ public class MultipleEditData
 	public string customData = "<mixed>";
 	public string PrefabName = "<mixed>";
 	public float Z = float.NaN;
-	public Color Color;
+	public FSColor Color;
+}
+
+public class SingleEditData
+{
+	public Vector2 Position = new Vector2(float.NaN, float.NaN);
+	public Vector2 Scale = new Vector2(float.NaN, float.NaN);
+	public float Rotation = float.NaN;
+	public string customData = "";
+	public string PrefabName = "";
+	public float Z = float.NaN;
+	public FSColor Color;
 }
