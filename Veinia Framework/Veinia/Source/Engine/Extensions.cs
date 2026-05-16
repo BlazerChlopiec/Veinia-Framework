@@ -150,11 +150,11 @@ namespace VeiniaFramework
 			byte alpha = (byte)(MathHelper.Clamp(alpha01, 0f, 1f) * 255f);
 			return new Color(color.R, color.G, color.B, alpha);
 		}
-		public static Color ToColor(this FSColor fs)
+		public static Color ToXnaColor(this FSColor fs)
 		{
 			return new Color(fs.PackedValue);
 		}
-		public static FSColor ToColor(this Color fs)
+		public static FSColor ToFSColor(this Color fs)
 		{
 			return new FSColor(fs.PackedValue);
 		}
