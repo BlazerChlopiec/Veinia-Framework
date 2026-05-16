@@ -1,5 +1,4 @@
 ﻿using Apos.Camera;
-using GeonBit.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -77,11 +76,6 @@ namespace VeiniaFramework
 
 			window.TextInput += (s, a) => Globals.myraDesktop.OnChar(a.Character);
 			#endregion
-
-			#region GeonBit.UI
-			UserInterface.Initialize(content, BuiltinThemes.veinia_default);
-			UserInterface.Active.ShowCursor = false;
-			#endregion
 		}
 
 		public void Update(GameTime gameTime)
@@ -129,10 +123,6 @@ namespace VeiniaFramework
 			title.Update();
 			#endregion
 
-			#region GeonBit.UI
-			UserInterface.Active.Update(gameTime);
-			#endregion
-
 			#region Myra.UI
 			MyraEnvironment.MouseInfoGetter = () => { return PausedGameWhenInactiveWindow ? default : MyraEnvironment.DefaultMouseInfoGetter(); };
 			#endregion
@@ -178,13 +168,11 @@ namespace VeiniaFramework
 		{
 			DrawWorld(spriteBatch, drawOptions);
 			DrawMyra();
-			DrawGeon(spriteBatch);
 			DrawDebugPhysics();
 		}
 
 		public void DrawWorld(SpriteBatch spriteBatch, DrawOptions drawOptions = default) => Globals.loader.current?.Draw(spriteBatch, drawOptions);
 		public void DrawMyra() => Globals.myraDesktop.Render();
-		public void DrawGeon(SpriteBatch spriteBatch) => UserInterface.Active.Draw(spriteBatch);
 		public void DrawDebugPhysics(Vector2? scaleFactor = null)
 		{
 			if (Globals.debugDraw)
