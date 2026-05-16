@@ -1,0 +1,290 @@
+
+#----------------------------- Global Properties ----------------------------#
+
+/outputDir:bin/$(Platform)
+/intermediateDir:obj/$(Platform)
+/platform:DesktopGL
+/config:
+/profile:Reach
+/compress:False
+
+#-------------------------------- References --------------------------------#
+
+
+#---------------------------------- Content ---------------------------------#
+
+#begin Sprites/Bricks/Bricks (1).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Bricks/Bricks (1).png
+
+#begin Sprites/Bricks/Bricks (10).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Bricks/Bricks (10).png
+
+#begin Sprites/Bricks/Bricks (11).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Bricks/Bricks (11).png
+
+#begin Sprites/Bricks/Bricks (12).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Bricks/Bricks (12).png
+
+#begin Sprites/Bricks/Bricks (13).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Bricks/Bricks (13).png
+
+#begin Sprites/Bricks/Bricks (14).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Bricks/Bricks (14).png
+
+#begin Sprites/Bricks/Bricks (15).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Bricks/Bricks (15).png
+
+#begin Sprites/Bricks/Bricks (16).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Bricks/Bricks (16).png
+
+#begin Sprites/Bricks/Bricks (17).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Bricks/Bricks (17).png
+
+#begin Sprites/Bricks/Bricks (18).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Bricks/Bricks (18).png
+
+#begin Sprites/Bricks/Bricks (2).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Bricks/Bricks (2).png
+
+#begin Sprites/Bricks/Bricks (3).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Bricks/Bricks (3).png
+
+#begin Sprites/Bricks/Bricks (4).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Bricks/Bricks (4).png
+
+#begin Sprites/Bricks/Bricks (5).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Bricks/Bricks (5).png
+
+#begin Sprites/Bricks/Bricks (6).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Bricks/Bricks (6).png
+
+#begin Sprites/Bricks/Bricks (7).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Bricks/Bricks (7).png
+
+#begin Sprites/Bricks/Bricks (8).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Bricks/Bricks (8).png
+
+#begin Sprites/Bricks/Bricks (9).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Bricks/Bricks (9).png
+
+#begin Sprites/Collectibles/Flasks (1).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Collectibles/Flasks (1).png
+
+#begin Sprites/Collectibles/Flasks (2).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Collectibles/Flasks (2).png
+
+#begin Sprites/Collectibles/Flasks (3).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Collectibles/Flasks (3).png
+
+#begin Sprites/Collectibles/Flasks (4).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Collectibles/Flasks (4).png
+
+#begin Sprites/Collectibles/Gems (1).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Collectibles/Gems (1).png
+
+#begin Sprites/Collectibles/Gems (2).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Collectibles/Gems (2).png
+
+#begin Sprites/Collectibles/Gems (3).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Collectibles/Gems (3).png
+
+#begin Sprites/Collectibles/Gems (4).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Collectibles/Gems (4).png
+
+#begin Sprites/Decoration/Ladder (1).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Decoration/Ladder (1).png
+
+#begin Sprites/Decoration/Ladder (2).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Decoration/Ladder (2).png
+
+#begin Sprites/Decoration/Ladder (3).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Decoration/Ladder (3).png
+
+#begin Sprites/Decoration/Nature (1).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Decoration/Nature (1).png
+
+#begin Sprites/Decoration/Nature (2).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Decoration/Nature (2).png
+
+#begin Sprites/Decoration/Nature (3).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Decoration/Nature (3).png
+
+#begin Sprites/Decoration/Nature (4).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Decoration/Nature (4).png
+
+#begin Sprites/Decoration/Tree (1).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Decoration/Tree (1).png
+
+#begin Sprites/Decoration/Tree (2).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Decoration/Tree (2).png
+
+#begin Sprites/Decoration/Tree (3).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Decoration/Tree (3).png
+
+#begin Sprites/Decoration/Vines (1).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Decoration/Vines (1).png
+
+#begin Sprites/Decoration/Vines (2).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Decoration/Vines (2).png
+
+#begin Sprites/Decoration/Vines (3).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Decoration/Vines (3).png
+
+#begin Sprites/Grass/Grass (1).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Grass/Grass (1).png
+
+#begin Sprites/Grass/Grass (10).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Grass/Grass (10).png
+
+#begin Sprites/Grass/Grass (11).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Grass/Grass (11).png
+
+#begin Sprites/Grass/Grass (12).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Grass/Grass (12).png
+
+#begin Sprites/Grass/Grass (13).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Grass/Grass (13).png
+
+#begin Sprites/Grass/Grass (2).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Grass/Grass (2).png
+
+#begin Sprites/Grass/Grass (3).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Grass/Grass (3).png
+
+#begin Sprites/Grass/Grass (4).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Grass/Grass (4).png
+
+#begin Sprites/Grass/Grass (5).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Grass/Grass (5).png
+
+#begin Sprites/Grass/Grass (6).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Grass/Grass (6).png
+
+#begin Sprites/Grass/Grass (7).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Grass/Grass (7).png
+
+#begin Sprites/Grass/Grass (8).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Grass/Grass (8).png
+
+#begin Sprites/Grass/Grass (9).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Grass/Grass (9).png
+
+#begin Sprites/Wood/Wood (1).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Wood/Wood (1).png
+
+#begin Sprites/Wood/Wood (2).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Wood/Wood (2).png
+
+#begin Sprites/Player.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Player.png
+
