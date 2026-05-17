@@ -140,6 +140,9 @@ namespace VeiniaFramework
 #if DEBUG
 			if (Globals.input.GetKeyDown(EditorScene.TriggerKey))
 				ToggleEditor(Globals.loader.current);
+#else
+			if (Globals.input.GetKeyDown(EditorScene.TriggerKey) && EditorScene.AllowEditorInRelease)
+				ToggleEditor(Globals.loader.current);
 #endif
 			#endregion
 		}
