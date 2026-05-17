@@ -37,13 +37,12 @@ namespace VeiniaFramework.Editor
 
 			editorObjectManager.OnSpawn += (e) =>
 			{
-				var editorObject = e;
-				if (editorObject.PrefabName == currentPrefabName) currentObjectLayer.Add(editorObject);
+				if (e.PrefabName == currentPrefabName) currentObjectLayer.Add(e);
 			};
 			editorObjectManager.OnRemove += (e) =>
 			{
-				var editorObject = e;
-				if (editorObject.PrefabName == currentPrefabName) currentObjectLayer.Remove(editorObject);
+				if (e.PrefabName == currentPrefabName) currentObjectLayer.Remove(e);
+				if (lastPlacedObject == e) lastPlacedObject = null;
 			};
 			editorObjectManager.OnRemoveAll += () => { currentObjectLayer.Clear(); };
 

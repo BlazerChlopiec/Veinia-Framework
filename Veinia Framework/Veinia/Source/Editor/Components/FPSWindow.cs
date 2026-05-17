@@ -43,27 +43,25 @@ namespace VeiniaFramework.Editor
 			};
 
 			var vSyncCheckbox = new CheckBox { Top = 75, Text = " vSync", IsChecked = Globals.fps.vSync, Enabled = !Globals.fps.fixedTimestep, Opacity = UpdateVSyncOpacity() };
-			vSyncCheckbox.TouchDown += (o, e) =>
+			vSyncCheckbox.PressedChanged += (o, e) =>
 			{
-				Globals.fps.vSync = !vSyncCheckbox.IsChecked;
+				Globals.fps.vSync = vSyncCheckbox.IsChecked;
 			};
 
 			var fixedCheckbox = new CheckBox { Top = 55, Text = " Fixed", IsChecked = Globals.fps.fixedTimestep };
-			fixedCheckbox.TouchDown += (o, e) =>
+			fixedCheckbox.PressedChanged += (o, e) =>
 			{
-				// test if fixedTimestep is getting checked right now
-				var getsChecked = !fixedCheckbox.IsChecked;
+				var isChecked = fixedCheckbox.IsChecked;
 
-				Globals.fps.fixedTimestep = getsChecked;
-				applyButton.Enabled = getsChecked;
-				fpsInputBox.Enabled = getsChecked;
-				set60Button.Enabled = getsChecked;
+				Globals.fps.fixedTimestep = isChecked;
+				applyButton.Enabled = isChecked;
+				fpsInputBox.Enabled = isChecked;
+				set60Button.Enabled = isChecked;
 
-				// fixedTimestep disables vSync
-				if (getsChecked) Globals.fps.vSync = false;
-				else Globals.fps.vSync = vSyncCheckbox.IsChecked;
+				//if (isChecked) Globals.fps.vSync = false;
+				//else Globals.fps.vSync = vSyncCheckbox.IsChecked;
 
-				vSyncCheckbox.Enabled = fixedCheckbox.IsChecked;
+				vSyncCheckbox.Enabled = !isChecked;
 				vSyncCheckbox.Opacity = UpdateVSyncOpacity();
 			};
 
@@ -76,7 +74,7 @@ namespace VeiniaFramework.Editor
 			window.Show(Globals.myraDesktop, new System.Drawing.Point(0, 0));
 		}
 
-		public override void Update() => window.Title = $"FPS - {Globals.fps.currentFps}";
+		public override void Update() => window.Title = $"FPS - {Globals.fps.currentFps}, fixed {Globals.fps.fixedTimestep}, vsync {Globals.fps.vSync}";
 
 		private float UpdateVSyncOpacity() => Globals.fps.fixedTimestep ? .3f : 1f;
 	}
