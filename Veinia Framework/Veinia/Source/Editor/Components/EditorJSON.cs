@@ -102,7 +102,6 @@ namespace VeiniaFramework.Editor
 					}
 					using (var reader = new StreamReader(stream))
 					{
-						Console.WriteLine(stream.Length);
 						dataToLoad = reader.ReadToEnd();
 					}
 				}

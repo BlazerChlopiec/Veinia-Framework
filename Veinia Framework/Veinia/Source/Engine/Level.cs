@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Myra.Graphics2D.UI;
 using Newtonsoft.Json;
 using nkast.Aether.Physics2D.Dynamics;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using VeiniaFramework.Editor;
@@ -72,7 +71,6 @@ namespace VeiniaFramework
 					}
 					using (var reader = new StreamReader(stream))
 					{
-						Console.WriteLine(stream.Length);
 						dataToLoad = reader.ReadToEnd();
 					}
 				}
