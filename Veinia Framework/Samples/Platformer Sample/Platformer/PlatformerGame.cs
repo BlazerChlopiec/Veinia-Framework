@@ -1,7 +1,6 @@
 ﻿using Apos.Camera;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using VeiniaFramework.Editor;
 
 namespace VeiniaFramework.Samples.Platformer
 {
@@ -22,8 +21,6 @@ namespace VeiniaFramework.Samples.Platformer
 
 			veinia = new Veinia(this, graphics);
 			IsFixedTimeStep = false;
-
-			EditorScene.TriggerKey = Microsoft.Xna.Framework.Input.Keys.OemTilde;
 		}
 
 		protected override void Initialize()
