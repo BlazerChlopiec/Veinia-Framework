@@ -13,13 +13,13 @@ namespace VeiniaFramework
 		const int titleItemLimit = 10;
 		//
 
-		GameWindow gameWindow;// reference to the game window to later change its title
+		GameWindow window;// reference to the game window to later change its title
 
 
-		public Title(GameWindow gameWindow)
+		public Title(GameWindow window)
 		{
-			this.gameWindow = gameWindow;
-			firstFrameName = gameWindow.Title;
+			this.window = window;
+			firstFrameName = window.Title;
 			debugMessages = new string[titleItemLimit]; // create the array to store debug messages of the max size 'titleItemLimit'
 		}
 
@@ -40,10 +40,8 @@ namespace VeiniaFramework
 				}
 			}
 
-			gameWindow.Title = finalText.ToString();
+			window.Title = finalText.ToString();
 #endif
 		}
 	}
-
-
 }

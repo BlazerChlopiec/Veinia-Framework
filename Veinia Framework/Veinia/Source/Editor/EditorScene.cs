@@ -12,6 +12,7 @@ namespace VeiniaFramework.Editor
 		private static bool errorWindowAppeared;
 
 		public static Keys TriggerKey = Keys.Tab;
+		public static bool AllowEditorInRelease = false;
 
 		public EditorScene(string levelPath, Type editedSceneType) : base(levelPath) => this.editedSceneType = editedSceneType;
 
