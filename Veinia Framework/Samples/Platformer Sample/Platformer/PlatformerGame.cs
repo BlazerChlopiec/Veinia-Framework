@@ -1,7 +1,6 @@
 ﻿using Apos.Camera;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using VeiniaFramework.Editor;
 
 namespace VeiniaFramework.Samples.Platformer
 {
@@ -36,7 +35,6 @@ namespace VeiniaFramework.Samples.Platformer
 
 			Globals.camera = new Camera(new BoundingViewport(GraphicsDevice, Window, 1920, 1080));
 
-			EditorJSON.LevelsFolder = "Levels";
 			Globals.loader.storedLevels.Add(new StoredLevel("Level1.veinia", typeof(Level)));
 			Globals.loader.StoredLevelLoad(index: 0);
 
