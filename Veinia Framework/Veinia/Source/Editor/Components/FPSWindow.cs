@@ -75,7 +75,7 @@ namespace VeiniaFramework.Editor
 			window.Show(Globals.myraDesktop, Point.Zero);
 		}
 
-		public override void Update() => window.Title = $"FPS - {Globals.fps.currentFps}, fixed {Globals.fps.fixedTimestep}, vsync {Globals.fps.vSync}";
+		public override void Update() => window.Title = $"FPS - {Globals.fps.currentFps}";
 
 		private float UpdateVSyncOpacity() => Globals.fps.fixedTimestep ? .3f : 1f;
 	}
