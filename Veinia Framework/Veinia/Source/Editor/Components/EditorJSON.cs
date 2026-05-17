@@ -45,9 +45,18 @@ namespace VeiniaFramework.Editor
 			sceneFile.editorCamPosition = Globals.camera.GetPosition();
 			sceneFile.editorCamScale = Globals.camera.Scale;
 
-			object dataToSave;
+			object dataToSave = JsonConvert.SerializeObject(sceneFile);
 
-			dataToSave = UseEncryption ? Encryption.Encrypt(JsonConvert.SerializeObject(sceneFile)) : JsonConvert.SerializeObject(sceneFile);
+			if (RunningOnWeb)
+			{
+				EditorScene.ErrorWindow("Run Console", "Level Printed In Console: " + editedLevelName);
+				Say.Line(dataToSave);
+				return;
+			}
+			else
+			{
+				if (UseEncryption) dataToSave = Encryption.Encrypt((string)dataToSave);
+			}
 
 			// game directory
 			if (!Directory.Exists(LevelsFolder)) Directory.CreateDirectory(LevelsFolder);
