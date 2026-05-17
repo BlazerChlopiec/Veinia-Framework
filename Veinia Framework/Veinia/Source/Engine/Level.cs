@@ -27,15 +27,15 @@ namespace VeiniaFramework
 
 		public Panel Myra = new Panel();
 		public PrefabManager prefabManager { get; set; }
-		public string levelPath;
+		public string levelName;
 
-		public Level(string levelPath) => this.levelPath = levelPath;
+		public Level(string levelName) => this.levelName = levelName;
 		public Level() { }
 
 		/// <summary>
 		/// Loads default level contents (GameObjects, Properties, etc.)
 		/// </summary>
-		public virtual void CreateScene(bool loadObjectsFromPath = true)
+		public virtual void CreateScene(bool loadObjectsFromFile = true)
 		{
 			Globals.camera.SetPosition(Vector2.Zero);
 			Globals.camera.Scale = 1f;
@@ -52,7 +52,7 @@ namespace VeiniaFramework
 			Globals.particleWorld.Clear();
 
 			prefabManager?.LoadPrefabs();
-			if (loadObjectsFromPath && levelPath != string.Empty && levelPath != null) LoadObjects(levelPath);
+			if (loadObjectsFromFile && levelName != string.Empty && levelName != null) LoadObjects(levelName);
 		}
 
 		/// <summary>
@@ -60,11 +60,12 @@ namespace VeiniaFramework
 		/// </summary>
 		private void LoadObjects(string editorLevelName)
 		{
+			var levelPath = Path.Combine(EditorJSON.LevelsFolder, editorLevelName);
 #if DEBUG
-			if (!File.Exists("LevelData/" + editorLevelName)) return;
+			if (!File.Exists(levelPath)) return;
 #endif
-			string dataToLoad = EditorJSON.encryptScene ? Encryption.Decrypt(File.ReadAllBytes("LevelData/" + editorLevelName))
-								: File.ReadAllText("LevelData/" + editorLevelName);
+			string dataToLoad = EditorJSON.encryptScene ? Encryption.Decrypt(File.ReadAllBytes(levelPath))
+								: File.ReadAllText(levelPath);
 
 			var sceneFile = JsonConvert.DeserializeObject<SceneFile>(dataToLoad);
 

@@ -160,7 +160,7 @@ namespace VeiniaFramework
 				}
 
 				var editedLevelInstance = (Level)Activator.CreateInstance(editorScene.editedSceneType);
-				editedLevelInstance.levelPath = editorScene.levelPath;
+				editedLevelInstance.levelName = editorScene.levelName;
 
 				Globals.loader.DynamicalyLoad(editedLevelInstance);
 			}
@@ -169,7 +169,7 @@ namespace VeiniaFramework
 				isEditor = true;
 				if (!game.IsMouseVisible) game.IsMouseVisible = true;
 
-				var editorScene = new EditorScene(level != null ? level.levelPath : null, level?.GetType());
+				var editorScene = new EditorScene(level != null ? level.levelName : null, level?.GetType());
 				Globals.loader.DynamicalyLoad(editorScene);
 			}
 		}
