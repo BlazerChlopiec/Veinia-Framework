@@ -21,7 +21,7 @@ namespace VeiniaFramework
 			var storedLevel = storedLevels[index];
 
 			var storedLevelInstance = (Level)Activator.CreateInstance(storedLevel.type);
-			storedLevelInstance.levelPath = storedLevel.path;
+			storedLevelInstance.levelName = storedLevel.path;
 
 			DynamicalyLoad(storedLevelInstance);
 		}
@@ -50,10 +50,10 @@ namespace VeiniaFramework
 			if (current is EditorScene)
 			{
 				EditorScene editor = (EditorScene)current;
-				match = storedLevels.Find(x => x.path == current.levelPath && x.type == editor.editedSceneType);
+				match = storedLevels.Find(x => x.path == current.levelName && x.type == editor.editedSceneType);
 			}
 			else
-				match = storedLevels.Find(x => x.path == current.levelPath && x.type == current.GetType());
+				match = storedLevels.Find(x => x.path == current.levelName && x.type == current.GetType());
 
 			return match != null ? storedLevels.IndexOf(match) : default;
 		}
@@ -77,7 +77,7 @@ namespace VeiniaFramework
 			if (current == null && storedLevels.Count > 0) StoredLevelLoad(0);
 			else
 			{
-				var index = storedLevels.IndexOf(storedLevels.Find(x => x.path == current.levelPath));
+				var index = storedLevels.IndexOf(storedLevels.Find(x => x.path == current.levelName));
 				index++;
 				if (storedLevels.Count > index)
 					StoredLevelLoad(index);
@@ -89,7 +89,7 @@ namespace VeiniaFramework
 		public void AddStoredLevel(Level level)
 		{
 			storedLevels.Add(new StoredLevel(
-				level.levelPath,
+				level.levelName,
 				level.GetType()
 			));
 		}

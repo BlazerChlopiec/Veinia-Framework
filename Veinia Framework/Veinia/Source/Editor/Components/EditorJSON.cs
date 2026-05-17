@@ -14,6 +14,8 @@ namespace VeiniaFramework.Editor
 
 		public static bool encryptScene = true;
 
+		public static string LevelsFolder = "LevelData";
+
 		public SceneFile sceneFile;
 
 
@@ -46,20 +48,24 @@ namespace VeiniaFramework.Editor
 				return;
 			}
 
-			//game directory
-			if (!Directory.Exists("LevelData")) Directory.CreateDirectory("LevelData");
+			// game directory
+			if (!Directory.Exists(LevelsFolder)) Directory.CreateDirectory(LevelsFolder);
 
-			if (encryptScene) File.WriteAllBytes("LevelData/" + editedLevelName, (byte[])dataToSave);
-			else File.WriteAllText("LevelData/" + editedLevelName, (string)dataToSave);
+			var gameWritePath = Path.Combine(LevelsFolder, editedLevelName);
+
+			if (encryptScene) File.WriteAllBytes(gameWritePath, (byte[])dataToSave);
+			else File.WriteAllText(gameWritePath, (string)dataToSave);
 			//
 
-			//game project directory
-			var currentGameDirectory = Environment.CurrentDirectory;
-			var projectDirectory = Directory.GetParent(currentGameDirectory).Parent.Parent.FullName;
-			if (!Directory.Exists(projectDirectory + "/LevelData")) Directory.CreateDirectory(projectDirectory + "/LevelData");
+			// project directory
+			var projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
+			var projectLevelFolder = Path.Combine(projectDirectory, LevelsFolder);
+			if (!Directory.Exists(projectLevelFolder)) Directory.CreateDirectory(projectLevelFolder);
 
-			if (encryptScene) File.WriteAllBytes(projectDirectory + "/LevelData/" + editedLevelName, (byte[])dataToSave);
-			else File.WriteAllText(projectDirectory + "/LevelData/" + editedLevelName, (string)dataToSave);
+			var projectWritePath = Path.Combine(projectLevelFolder, editedLevelName);
+
+			if (encryptScene) File.WriteAllBytes(projectWritePath, (byte[])dataToSave);
+			else File.WriteAllText(projectWritePath, (string)dataToSave);
 			//
 		}
 
@@ -67,9 +73,14 @@ namespace VeiniaFramework.Editor
 		{
 			editorObjectManager.RemoveAll();
 
-			if (!File.Exists("LevelData/" + editedLevelName)) return;
-			var dataToLoad = encryptScene ? Encryption.Decrypt(File.ReadAllBytes("LevelData/" + editedLevelName))
-							: File.ReadAllText("LevelData/" + editedLevelName);
+			var loadDir = Path.Combine(LevelsFolder, editedLevelName);
+			if (!File.Exists(loadDir))
+			{
+				Say.Line("No Level File Found! " + loadDir);
+				return;
+			}
+			var dataToLoad = encryptScene ? Encryption.Decrypt(File.ReadAllBytes(loadDir))
+							: File.ReadAllText(loadDir);
 
 			sceneFile = JsonConvert.DeserializeObject<SceneFile>(dataToLoad);
 
