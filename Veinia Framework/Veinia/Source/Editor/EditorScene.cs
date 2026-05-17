@@ -17,7 +17,7 @@ namespace VeiniaFramework.Editor
 		public override void CreateScene(bool loadObjectsFromPath)
 		{
 			// the gameObjects shouldn't be loaded as usual because later we only load their sprites
-			base.CreateScene(loadObjectsFromPath: false);
+			base.CreateScene(loadObjectsFromFile: false);
 
 			/* KEYBOARD BINDINGS
 			 * 
@@ -52,7 +52,7 @@ namespace VeiniaFramework.Editor
 			{
 				new EditorControls(),
 				new EditorGrid(),
-				new EditorJSON(levelPath),
+				new EditorJSON(levelName),
 				new EditorObjectManager(prefabManager),
 			});
 
