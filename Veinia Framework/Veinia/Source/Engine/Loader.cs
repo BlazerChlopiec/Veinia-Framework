@@ -23,26 +23,29 @@ namespace VeiniaFramework
 			var storedLevelInstance = (Level)Activator.CreateInstance(storedLevel.type);
 			storedLevelInstance.levelName = storedLevel.path;
 
-			DynamicalyLoad(storedLevelInstance);
+			Load(storedLevelInstance);
 		}
 
-		public void DynamicalyLoad(Level level)
+		public void Load(Level level)
 		{
 			level.prefabManager = prefabManager;
 
-			NextFrame.actions.Add(delegate
+			Action loadAction = () =>
 			{
 				current?.Unload();
 				previous = current;
-				current = null;
 
 				current = level;
 				current.CreateScene();
 				current.InitializeComponentsFirstFrame();
 
 				if (FrustumCulling.autoCulling) FrustumCulling.Cull(current);
-			});
+			};
+
+			if (Globals.physicsWorld.IsLocked) NextFrame.actions.Add(loadAction);
+			else loadAction();
 		}
+
 
 		public int GetCurrentLevelIndex()
 		{
@@ -58,19 +61,7 @@ namespace VeiniaFramework
 			return match != null ? storedLevels.IndexOf(match) : default;
 		}
 
-		public void Reload()
-		{
-			NextFrame.actions.Add(delegate
-			{
-				current.Unload();
-				previous = current;
-				current = null;
-
-				current = previous;
-				current.CreateScene();
-				current.InitializeComponentsFirstFrame();
-			});
-		}
+		public void Reload() => Load(current);
 
 		public void LoadNextStored()
 		{

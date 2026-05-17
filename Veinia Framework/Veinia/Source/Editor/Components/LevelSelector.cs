@@ -22,7 +22,7 @@ namespace VeiniaFramework.Editor
 			foreach (var level in Globals.loader.storedLevels)
 			{
 				var item = new MenuItem { Text = level.path };
-				item.Selected += (sender, e) => { Globals.loader.DynamicalyLoad(new EditorScene(level.path, level.type)); };
+				item.Selected += (sender, e) => { Globals.loader.Load(new EditorScene(level.path, level.type)); };
 				yMenu.Items.Add(item);
 			}
 			panel.Widgets.Add(yMenu);

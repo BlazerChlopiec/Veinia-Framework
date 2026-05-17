@@ -21,7 +21,11 @@ namespace VeiniaFramework.Editor
 
 		public EditorObjectManager(PrefabManager prefabManager) => this.prefabManager = prefabManager;
 
-		public override void Initialize() => EditorCheckboxes.Add("Draw Gizmos", defaultValue: true, (e, o) => { drawGizmos = true; }, (e, o) => { drawGizmos = false; });
+		public override void Initialize()
+		{
+			EditorCheckboxes.Add("Draw Gizmos", defaultValue: true, (e, o) => { drawGizmos = true; }, (e, o) => { drawGizmos = false; });
+			UpdateObjectCountLabel();
+		}
 
 		public EditorObject Spawn(string prefabName, Vector2 position = default, float rotation = default, Vector2 scale = default, float z = default, string customData = null, Color color = default)
 		{
