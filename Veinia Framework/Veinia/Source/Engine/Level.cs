@@ -63,7 +63,7 @@ namespace VeiniaFramework
 
 			if (EditorJSON.RunningOnWeb)
 			{
-				using (var stream = TitleContainer.OpenStream(editorLevelName))
+				using (var stream = TitleContainer.OpenStream(levelPath))
 				{
 					if (stream == null)
 					{
