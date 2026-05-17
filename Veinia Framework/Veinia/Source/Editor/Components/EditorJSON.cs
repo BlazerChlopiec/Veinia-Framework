@@ -12,7 +12,8 @@ namespace VeiniaFramework.Editor
 
 		private string editedLevelName;
 
-		public static bool encryptScene = true;
+		public static bool UseEncryption = true;
+		public static bool RunningOnWeb;
 
 		public static string LevelsFolder = "LevelData";
 
@@ -23,7 +24,7 @@ namespace VeiniaFramework.Editor
 
 		public override void Initialize()
 		{
-			EditorCheckboxes.Add("Encrypt Scene", encryptScene, (e, o) => { encryptScene = true; }, (e, o) => { encryptScene = false; });
+			EditorCheckboxes.Add("Encrypt Scene", UseEncryption, (e, o) => { UseEncryption = true; }, (e, o) => { UseEncryption = false; });
 
 			editorObjectManager = FindComponentOfType<EditorObjectManager>();
 
@@ -46,14 +47,14 @@ namespace VeiniaFramework.Editor
 
 			object dataToSave;
 
-			dataToSave = encryptScene ? Encryption.Encrypt(JsonConvert.SerializeObject(sceneFile)) : JsonConvert.SerializeObject(sceneFile);
+			dataToSave = UseEncryption ? Encryption.Encrypt(JsonConvert.SerializeObject(sceneFile)) : JsonConvert.SerializeObject(sceneFile);
 
 			// game directory
 			if (!Directory.Exists(LevelsFolder)) Directory.CreateDirectory(LevelsFolder);
 
 			var gameWritePath = Path.Combine(LevelsFolder, editedLevelName);
 
-			if (encryptScene) File.WriteAllBytes(gameWritePath, (byte[])dataToSave);
+			if (UseEncryption) File.WriteAllBytes(gameWritePath, (byte[])dataToSave);
 			else File.WriteAllText(gameWritePath, (string)dataToSave);
 			//
 
@@ -64,7 +65,7 @@ namespace VeiniaFramework.Editor
 
 			var projectWritePath = Path.Combine(projectLevelFolder, editedLevelName);
 
-			if (encryptScene) File.WriteAllBytes(projectWritePath, (byte[])dataToSave);
+			if (UseEncryption) File.WriteAllBytes(projectWritePath, (byte[])dataToSave);
 			else File.WriteAllText(projectWritePath, (string)dataToSave);
 			//
 		}
@@ -85,7 +86,7 @@ namespace VeiniaFramework.Editor
 				Say.Line("No Level File Found! " + loadDir);
 				return;
 			}
-			var dataToLoad = encryptScene ? Encryption.Decrypt(File.ReadAllBytes(loadDir))
+			var dataToLoad = UseEncryption ? Encryption.Decrypt(File.ReadAllBytes(loadDir))
 							: File.ReadAllText(loadDir);
 
 			sceneFile = JsonConvert.DeserializeObject<SceneFile>(dataToLoad);
