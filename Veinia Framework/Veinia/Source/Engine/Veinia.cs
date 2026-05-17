@@ -3,7 +3,6 @@ using GeonBit.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using Myra;
 using Myra.Graphics2D.UI;
 using Newtonsoft.Json;
@@ -139,7 +138,7 @@ namespace VeiniaFramework
 
 			#region Debug
 #if DEBUG
-			if (Globals.input.GetKeyDown(Keys.Tab))
+			if (Globals.input.GetKeyDown(EditorScene.TriggerKey))
 				ToggleEditor(Globals.loader.current);
 #endif
 			#endregion
