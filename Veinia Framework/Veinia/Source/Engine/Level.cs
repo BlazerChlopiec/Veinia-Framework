@@ -52,7 +52,8 @@ namespace VeiniaFramework
 			Globals.particleWorld.Clear();
 
 			prefabManager?.LoadPrefabs();
-			if (loadObjectsFromFile && levelName != string.Empty && levelName != null) LoadObjects(levelName);
+			if (loadObjectsFromFile && levelName != string.Empty && levelName != null)
+				LoadObjects(levelName);
 		}
 
 		/// <summary>
@@ -61,9 +62,13 @@ namespace VeiniaFramework
 		private void LoadObjects(string editorLevelName)
 		{
 			var levelPath = Path.Combine(EditorJSON.LevelsFolder, editorLevelName);
-#if DEBUG
-			if (!File.Exists(levelPath)) return;
-#endif
+
+			if (!File.Exists(levelPath))
+			{
+				Say.Line("No Level File Found! " + levelPath);
+				return;
+			}
+
 			string dataToLoad = EditorJSON.encryptScene ? Encryption.Decrypt(File.ReadAllBytes(levelPath))
 								: File.ReadAllText(levelPath);
 

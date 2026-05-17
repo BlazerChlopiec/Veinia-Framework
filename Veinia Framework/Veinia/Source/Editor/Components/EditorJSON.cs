@@ -74,8 +74,11 @@ namespace VeiniaFramework.Editor
 			editorObjectManager.RemoveAll();
 
 			var loadDir = Path.Combine(LevelsFolder, editedLevelName);
-
-			if (!File.Exists(loadDir)) return;
+			if (!File.Exists(loadDir))
+			{
+				Say.Line("No Level File Found! " + loadDir);
+				return;
+			}
 			var dataToLoad = encryptScene ? Encryption.Decrypt(File.ReadAllBytes(loadDir))
 							: File.ReadAllText(loadDir);
 
