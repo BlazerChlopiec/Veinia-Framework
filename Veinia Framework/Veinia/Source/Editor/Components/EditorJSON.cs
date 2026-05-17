@@ -90,15 +90,36 @@ namespace VeiniaFramework.Editor
 			editorObjectManager.RemoveAll(); // when changing levels in editor
 
 			var loadDir = Path.Combine(LevelsFolder, editedLevelName);
-			if (!File.Exists(loadDir))
+			object dataToLoad;
+			if (RunningOnWeb)
 			{
-				Say.Line("No Level File Found! " + loadDir);
-				return;
+				using (var stream = TitleContainer.OpenStream(loadDir))
+				{
+					if (stream == null)
+					{
+						Say.Line("No Level File Found! " + loadDir);
+						return;
+					}
+					using (var reader = new StreamReader(stream))
+					{
+						Console.WriteLine(stream.Length);
+						dataToLoad = reader.ReadToEnd();
+					}
+				}
 			}
-			var dataToLoad = UseEncryption ? Encryption.Decrypt(File.ReadAllBytes(loadDir))
-							: File.ReadAllText(loadDir);
+			else
+			{
+				dataToLoad = UseEncryption ? Encryption.Decrypt(File.ReadAllBytes(loadDir))
+								: File.ReadAllText(loadDir);
 
-			sceneFile = JsonConvert.DeserializeObject<SceneFile>(dataToLoad);
+				if (!File.Exists(loadDir))
+				{
+					Say.Line("No Level File Found! " + loadDir);
+					return;
+				}
+			}
+
+			sceneFile = JsonConvert.DeserializeObject<SceneFile>((string)dataToLoad);
 
 			foreach (var item in sceneFile.objects)
 			{
