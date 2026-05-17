@@ -149,7 +149,9 @@ namespace VeiniaFramework
 
 		public void ToggleEditor(Level level = null)
 		{
-			if (level is EditorScene)
+			var targetLevel = level ?? Globals.loader.current;
+
+			if (targetLevel is EditorScene)
 			{
 				isEditor = false;
 
@@ -171,7 +173,7 @@ namespace VeiniaFramework
 				isEditor = true;
 				if (!game.IsMouseVisible) game.IsMouseVisible = true;
 
-				var editorScene = new EditorScene(level != null ? level.levelName : null, level?.GetType());
+				var editorScene = new EditorScene(targetLevel?.levelName, targetLevel?.GetType());
 				Globals.loader.DynamicalyLoad(editorScene);
 			}
 		}
