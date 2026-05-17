@@ -63,14 +63,33 @@ namespace VeiniaFramework
 		{
 			var levelPath = Path.Combine(EditorJSON.LevelsFolder, editorLevelName);
 
-			if (!File.Exists(levelPath))
+			string dataToLoad = string.Empty;
+
+			if (EditorJSON.RunningOnWeb)
 			{
-				Say.Line("No Level File Found! " + levelPath);
-				return;
+				using (var stream = TitleContainer.OpenStream(levelPath))
+				{
+					if (stream == null)
+					{
+						Say.Line("No Level File Found! " + levelPath);
+						return;
+					}
+					using (var reader = new StreamReader(stream))
+					{
+						dataToLoad = reader.ReadToEnd();
+					}
+				}
+			}
+			else
+			{
+				if (!File.Exists(levelPath))
+				{
+					Say.Line("No Level File Found! " + levelPath);
+					return;
+				}
+				dataToLoad = EditorJSON.UseEncryption ? Encryption.Decrypt(File.ReadAllBytes(levelPath)) : File.ReadAllText(levelPath);
 			}
 
-			string dataToLoad = EditorJSON.encryptScene ? Encryption.Decrypt(File.ReadAllBytes(levelPath))
-								: File.ReadAllText(levelPath);
 
 			var sceneFile = JsonConvert.DeserializeObject<SceneFile>(dataToLoad);
 
