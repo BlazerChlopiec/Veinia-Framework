@@ -34,6 +34,12 @@ namespace VeiniaFramework.Editor
 
 		public void Save()
 		{
+			if (editedLevelName == null || editedLevelName == string.Empty)
+			{
+				EditorScene.ErrorWindow("Warning", "The edited level has no name therefore we dont know how to save it! Add a name in the level constructor!");
+				return;
+			}
+
 			sceneFile.objects = editorObjectManager.editorObjects;
 			sceneFile.editorCamPosition = Globals.camera.GetPosition();
 			sceneFile.editorCamScale = Globals.camera.Scale;
@@ -41,12 +47,6 @@ namespace VeiniaFramework.Editor
 			object dataToSave;
 
 			dataToSave = encryptScene ? Encryption.Encrypt(JsonConvert.SerializeObject(sceneFile)) : JsonConvert.SerializeObject(sceneFile);
-
-			if (editedLevelName == null || editedLevelName == string.Empty)
-			{
-				EditorScene.ErrorWindow("Warning", "The edited level has no name therefore we dont know how to save it! Add a name in the level constructor!");
-				return;
-			}
 
 			// game directory
 			if (!Directory.Exists(LevelsFolder)) Directory.CreateDirectory(LevelsFolder);
@@ -71,7 +71,13 @@ namespace VeiniaFramework.Editor
 
 		public void Load()
 		{
-			editorObjectManager.RemoveAll();
+			if (editedLevelName == null || editedLevelName == string.Empty)
+			{
+				EditorScene.ErrorWindow("Warning", "The edited level has no name therefore we dont know how to load it! Add a name in the level constructor!");
+				return;
+			}
+
+			editorObjectManager.RemoveAll(); // when changing levels in editor
 
 			var loadDir = Path.Combine(LevelsFolder, editedLevelName);
 			if (!File.Exists(loadDir))
