@@ -126,19 +126,16 @@ namespace VeiniaFramework
 			MyraEnvironment.MouseInfoGetter = () => { return PausedGameWhenInactiveWindow ? default : MyraEnvironment.DefaultMouseInfoGetter(); };
 			#endregion
 
-			#region Debug
-#if DEBUG
 			if (Globals.input.GetKeyDown(EditorScene.TriggerKey))
 				ToggleEditor(Globals.loader.current);
-#else
-			if (Globals.input.GetKeyDown(EditorScene.TriggerKey) && EditorScene.AllowEditorInRelease)
-				ToggleEditor(Globals.loader.current);
-#endif
-			#endregion
 		}
 
 		public void ToggleEditor(Level level = null)
 		{
+#if RELEASE
+			if (!EditorScene.AllowEditorInRelease) return;
+#endif
+
 			var targetLevel = level ?? Globals.loader.current;
 
 			if (targetLevel is EditorScene)
