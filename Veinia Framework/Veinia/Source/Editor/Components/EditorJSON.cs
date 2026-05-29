@@ -13,7 +13,6 @@ namespace VeiniaFramework.Editor
 		private string editedLevelName;
 
 		public static bool UseEncryption = true;
-		public static bool RunningOnWeb;
 
 		public static string LevelsFolder = "LevelData";
 
@@ -47,7 +46,7 @@ namespace VeiniaFramework.Editor
 
 			object dataToSave = JsonConvert.SerializeObject(sceneFile);
 
-			if (RunningOnWeb)
+			if (OperatingSystem.IsBrowser())
 			{
 				EditorScene.ErrorWindow("Run Console", "Level Printed In Console: " + editedLevelName);
 				Say.Line(dataToSave);
@@ -91,7 +90,7 @@ namespace VeiniaFramework.Editor
 
 			var loadDir = Path.Combine(LevelsFolder, editedLevelName);
 			object dataToLoad;
-			if (RunningOnWeb)
+			if (OperatingSystem.IsBrowser())
 			{
 				using (var stream = TitleContainer.OpenStream(loadDir))
 				{

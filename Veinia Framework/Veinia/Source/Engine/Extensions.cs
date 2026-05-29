@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Versioning;
 
 namespace VeiniaFramework
 {
@@ -157,18 +158,37 @@ namespace VeiniaFramework
 		{
 			return new Vector2(vector.X, -vector.Y);
 		}
+
+		/// <summary>
+		/// Loads all assets from a content folder (WASM not supported)
+		/// </summary>
+		[UnsupportedOSPlatform("browser")]
 		public static Dictionary<string, T1> LoadAll<T1>(this ContentManager content, string contentFolder)
 		{
 			DirectoryInfo dir = new DirectoryInfo(content.RootDirectory + "/" + contentFolder);
 			if (!dir.Exists)
 				throw new DirectoryNotFoundException();
-			Dictionary<string, T1> result = new Dictionary<string, T1>();
+			Dictionary<string, T1> result = new();
 
 			FileInfo[] files = dir.GetFiles("*.*");
 			foreach (FileInfo file in files)
 			{
 				string key = Path.GetFileNameWithoutExtension(file.Name);
 				result[key] = content.Load<T1>(contentFolder + "/" + key);
+			}
+
+			return result;
+		}
+		/// <summary>
+		/// Loads specified assets from a content folder (WASM supported)
+		/// </summary>
+		public static Dictionary<string, T> LoadAssets<T>(this ContentManager content, string contentFolder, string[] assets)
+		{
+			Dictionary<string, T> result = new();
+
+			foreach (string name in assets)
+			{
+				result[name] = content.Load<T>($"{contentFolder}/{name}");
 			}
 
 			return result;
