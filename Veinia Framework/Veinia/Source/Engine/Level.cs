@@ -256,13 +256,12 @@ namespace VeiniaFramework
 			}
 			//
 
-
 			for (int i = 0; i < activeScene.Count; i++) // makes drawCommands
 			{
 				activeScene[i].Draw(sb);
 			}
 
-			Globals.particleWorld.Draw(sb, this); // makes drawCommands
+			Globals.particleWorld.Draw(sb, this); // makes particle drawCommands
 
 			for (int i = 0; i < drawCommands.Count; i++) // set default values
 			{
@@ -342,18 +341,20 @@ namespace VeiniaFramework
 
 			foreach (var cmd in drawCommands)
 			{
-				if (prevCommand != null)
-					if (cmd.drawOptions.shader != prevCommand.drawOptions.shader && beginCalled // if new Shader
-					 || cmd.drawOptions.blendState != prevCommand.drawOptions.blendState && beginCalled // or new BlendState
-					 || cmd.drawOptions.depthStencilState != prevCommand.drawOptions.depthStencilState && beginCalled // or new DepthStencilState
-					 || cmd.drawOptions.rasterizerState != prevCommand.drawOptions.rasterizerState && beginCalled // or new RasterizerState
-					 || cmd.drawOptions.samplerState != prevCommand.drawOptions.samplerState && beginCalled // or new SamplerState
-					 || cmd.drawOptions.virtualCamera != prevCommand.drawOptions.virtualCamera && beginCalled // or new VirtualCamera
-					 || cmd.drawWithoutSpriteBatch && beginCalled) // or using DrawUserPrimitives()
+				if (prevCommand != null && beginCalled)
+				{
+					if (cmd.drawOptions.shader != prevCommand.drawOptions.shader // if new Shader
+					 || cmd.drawOptions.blendState != prevCommand.drawOptions.blendState // or new BlendState
+					 || cmd.drawOptions.depthStencilState != prevCommand.drawOptions.depthStencilState // or new DepthStencilState
+					 || cmd.drawOptions.rasterizerState != prevCommand.drawOptions.rasterizerState // or new RasterizerState
+					 || cmd.drawOptions.samplerState != prevCommand.drawOptions.samplerState // or new SamplerState
+					 || cmd.drawOptions.virtualCamera != prevCommand.drawOptions.virtualCamera // or new VirtualCamera
+					 || cmd.drawWithoutSpriteBatch) // or using DrawUserPrimitives()
 					{
 						sb.End();
 						beginCalled = false;
 					}
+				}
 				if (!beginCalled && !cmd.drawWithoutSpriteBatch)
 				{
 					begins++;
@@ -364,19 +365,11 @@ namespace VeiniaFramework
 
 				if (cmd.drawWithoutSpriteBatch)
 				{
-					// shaders for drawing with DrawUserPrimitives
+					// for DrawUserPrimitives
 					if (cmd.drawOptions.shader != null) cmd.drawOptions.shader.CurrentTechnique.Passes[0].Apply();
-
-					// blendState for drawing with DrawUserPrimitives
 					if (cmd.drawOptions.blendState != null) Globals.graphicsDevice.BlendState = cmd.drawOptions.blendState;
-
-					// depthStencilState for drawing with DrawUserPrimitives
 					if (cmd.drawOptions.depthStencilState != null) Globals.graphicsDevice.DepthStencilState = cmd.drawOptions.depthStencilState;
-
-					// rasterizerState for drawing with DrawUserPrimitives
 					if (cmd.drawOptions.rasterizerState != null) Globals.graphicsDevice.RasterizerState = cmd.drawOptions.rasterizerState;
-
-					// samplerState for drawing with DrawUserPrimitives
 					if (cmd.drawOptions.samplerState != null) Globals.graphicsDevice.SamplerStates[0] = cmd.drawOptions.samplerState;
 				}
 
