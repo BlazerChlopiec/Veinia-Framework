@@ -126,7 +126,8 @@ namespace VeiniaFramework
 					sb.DrawLine(bottomRight.X, bottomRight.Y, bottomLeft.X, bottomLeft.Y, color.Value, thickness);
 					sb.DrawLine(bottomLeft.X, bottomLeft.Y, topLeft.X, topLeft.Y, color.Value, thickness);
 				},
-				Z = z
+				Z = z,
+				drawOptions = drawOptions
 			});
 		}
 	}

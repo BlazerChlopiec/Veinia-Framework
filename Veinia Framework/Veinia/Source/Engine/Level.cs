@@ -349,7 +349,7 @@ namespace VeiniaFramework
 					 || cmd.drawOptions.rasterizerState != prevCommand.drawOptions.rasterizerState // or new RasterizerState
 					 || cmd.drawOptions.samplerState != prevCommand.drawOptions.samplerState // or new SamplerState
 					 || cmd.drawOptions.virtualCamera != prevCommand.drawOptions.virtualCamera // or new VirtualCamera
-					 || cmd.drawWithoutSpriteBatch) // or using DrawUserPrimitives()
+					 || cmd.drawWithoutSpriteBatch) // or using DrawUserPrimitives
 					{
 						sb.End();
 						beginCalled = false;

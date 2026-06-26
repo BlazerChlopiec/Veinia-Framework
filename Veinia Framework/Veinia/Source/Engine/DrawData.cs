@@ -25,9 +25,14 @@ namespace VeiniaFramework
 		public VirtualCamera virtualCamera;
 	}
 
-	public class VirtualCamera // if wish it was cpp for this
+	public class VirtualCamera
 	{
-		public Func<RenderTarget2D> renderTarget; // RenderTargetUsage.PreserveContents recommended
+		// both these values are Funcs because
+		// A: renderTarget is dynamic and can change on resolution change so we need the current var at all times
+		// B: transformMatrix gets recalculated each time by default
+
+		// RenderTargetUsage.PreserveContents recommended
+		public Func<RenderTarget2D> renderTarget;
 		public Func<Matrix?> transformMatrix; // if null set to Globals.camera.GetView()
 	}
 }
