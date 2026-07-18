@@ -370,7 +370,7 @@ namespace VeiniaFramework.Editor
 				data.Color = first.Color;
 
 
-			editWindow = Globals.myraDesktop.MakeEditWindow(data, "Multiple Object Editor");
+			editWindow = Globals.myraDesktop.MakeEditWindow(data, "Multiple Object Editor", allowInReleaseMode: true);
 
 			PropertyGrid grid = (PropertyGrid)editWindow.Content;
 
