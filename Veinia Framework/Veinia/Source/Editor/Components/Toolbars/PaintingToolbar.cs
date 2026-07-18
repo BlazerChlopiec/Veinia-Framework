@@ -103,7 +103,7 @@ namespace VeiniaFramework.Editor
 							Text = prefab.PrefabName,
 							Top = top,
 							Left = left,
-							TextColor = FSColor.Red,
+							TextColor = FSColor.Black,
 							MaxWidth = prefabButtonSize,
 							Wrap = true
 						};
