@@ -325,7 +325,7 @@ namespace VeiniaFramework.Editor
 			var obj = selectedObjects[0];
 			if (obj == null) return;
 
-			editWindow = Globals.myraDesktop.MakeEditWindow(obj);
+			editWindow = Globals.myraDesktop.MakeEditWindow(obj, allowInReleaseMode: true);
 		}
 
 		public void EditMultiple()
