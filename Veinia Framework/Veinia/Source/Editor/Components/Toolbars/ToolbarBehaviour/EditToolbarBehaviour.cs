@@ -338,7 +338,7 @@ namespace VeiniaFramework.Editor
 				Color = obj.Color.ToFSColor(),
 			};
 
-			editWindow = Globals.myraDesktop.MakeEditWindow(data, "Single Object Editor");
+			editWindow = Globals.myraDesktop.MakeEditWindow(data, "Single Object Editor", allowInReleaseMode: true);
 
 			PropertyGrid grid = (PropertyGrid)editWindow.Content;
 
