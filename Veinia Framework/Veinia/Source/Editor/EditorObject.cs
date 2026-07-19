@@ -61,17 +61,19 @@ namespace VeiniaFramework.Editor
 
 		[JsonConverter(typeof(ColorToHexJsonConverter))]
 		[JsonProperty("c", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public Color Color
+		public Color? Color
 		{
-			get { return color; }
+			get => color;
 			set
 			{
 				color = value;
-				if (ShouldSerializeColor() && EditorPlacedSprite != null) EditorPlacedSprite.color = value;
+
+				if (EditorPlacedSprite != null) EditorPlacedSprite.color = value.Value;
 			}
 		}
-		Color color;
-		public bool ShouldSerializeColor() => Color != Color.Transparent;
+		private Color? color;
+
+		public bool ShouldSerializeColor() => color.HasValue && color.Value != Microsoft.Xna.Framework.Color.White;
 
 		[Browsable(false)][JsonIgnore] public Sprite EditorPlacedSprite { get; set; }
 

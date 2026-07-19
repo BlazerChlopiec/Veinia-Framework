@@ -27,7 +27,7 @@ namespace VeiniaFramework.Editor
 			UpdateObjectCountLabel();
 		}
 
-		public EditorObject Spawn(string prefabName, Vector2 position = default, float rotation = default, Vector2 scale = default, float z = default, string customData = null, Color color = default)
+		public EditorObject Spawn(string prefabName, Vector2 position = default, float rotation = default, Vector2 scale = default, float z = default, string customData = null, Color? color = null)
 		{
 			var prefab = prefabManager.Find(prefabName);
 
@@ -70,8 +70,7 @@ namespace VeiniaFramework.Editor
 				Scale = newT.scale,
 				Z = newT.Z,
 				customData = customData ?? prefab.customData,
-				Color = color,
-
+				Color = editorPlacedSprite.color != Color.White && color == null ? editorPlacedSprite.color : color, // grab color from sprite if not overriden
 				gizmo = gizmo,
 			};
 
