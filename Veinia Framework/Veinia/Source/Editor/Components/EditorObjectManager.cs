@@ -59,6 +59,11 @@ namespace VeiniaFramework.Editor
 				editorPlacedSprite = (Sprite)Instantiate(extracted).AddComponent(new Sprite("veinia_defaults/prefab_default"));
 			}
 
+			// grab color from sprite if not overriden
+			var newCol = color ?? Color.White;
+			newCol = editorPlacedSprite.color != Color.White && color == null ? editorPlacedSprite.color : newCol;
+
+
 			var newEditorObject = new EditorObject
 			{
 				PrefabName = prefabName,
@@ -70,7 +75,7 @@ namespace VeiniaFramework.Editor
 				Scale = newT.scale,
 				Z = newT.Z,
 				customData = customData ?? prefab.customData,
-				Color = editorPlacedSprite.color != Color.White && color == null ? editorPlacedSprite.color : color, // grab color from sprite if not overriden
+				Color = newCol,
 				gizmo = gizmo,
 			};
 
