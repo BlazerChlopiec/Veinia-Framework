@@ -68,7 +68,7 @@ namespace VeiniaFramework.Editor
 			{
 				color = value;
 
-				if (ShouldSerializeColor() && EditorPlacedSprite != null) EditorPlacedSprite.color = value.Value;
+				if (EditorPlacedSprite != null) EditorPlacedSprite.color = value.Value;
 			}
 		}
 		private Color? color;
