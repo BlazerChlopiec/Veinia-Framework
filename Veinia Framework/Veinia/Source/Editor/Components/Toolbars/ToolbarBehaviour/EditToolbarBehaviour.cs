@@ -367,7 +367,7 @@ namespace VeiniaFramework.Editor
 
 			// color simillarity
 			if (selectedObjects.All(o => o.Color == first.Color))
-				data.Color = first.Color;
+				data.Color = first.Color.Value;
 
 
 			editWindow = Globals.myraDesktop.MakeEditWindow(data, "Multiple Object Editor", allowInReleaseMode: true);
@@ -392,7 +392,7 @@ namespace VeiniaFramework.Editor
 
 					obj.customData = data.customData == "<mixed>" ? obj.customData : data.customData;
 
-					obj.Color = data.Color != Color.Transparent ? data.Color : obj.Color;
+					obj.Color = data.Color != Color.White ? data.Color : obj.Color;
 				}
 			};
 		}

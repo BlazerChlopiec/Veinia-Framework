@@ -108,7 +108,7 @@ namespace VeiniaFramework
 				{
 					var sprite = sample.GetComponent<Sprite>();
 					if (sprite != null)
-						sample.GetComponent<Sprite>().color = item.Color;
+						sample.GetComponent<Sprite>().color = item.Color.Value;
 				}
 			}
 		}
