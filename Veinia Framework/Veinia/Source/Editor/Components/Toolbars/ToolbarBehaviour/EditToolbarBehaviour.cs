@@ -335,7 +335,7 @@ namespace VeiniaFramework.Editor
 				customData = obj.customData,
 				PrefabName = obj.PrefabName,
 				Z = obj.Z,
-				Color = obj.Color.ToFSColor(),
+				Color = obj.Color.Value.ToFSColor(),
 			};
 
 			editWindow = Globals.myraDesktop.MakeEditWindow(data, "Single Object Editor", allowInReleaseMode: true);
