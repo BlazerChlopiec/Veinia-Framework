@@ -22,6 +22,7 @@ namespace VeiniaFramework
 		public static GraphicsDeviceManager graphicsManager;
 		public static GraphicsDevice graphicsDevice;
 		public static ContentManager content;
+		public static VeiniaContent veiniaContent;
 		public static Screen screen;
 		public static FPS fps;
 		public static Camera camera;

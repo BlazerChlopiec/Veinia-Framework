@@ -50,7 +50,7 @@ namespace VeiniaFramework
 
 			if (effect == null)
 			{
-				_effect = Globals.content.Load<Effect>("veinia_defaults/trail_default");
+				_effect = Globals.veiniaContent.Load<Effect>("veinia_defaults/trail_default");
 				_effect.Parameters["GlobalColor"].SetValue(color == null ? new Vector4(1, 1, 1, 1) : color.Value.ToVector4());
 
 				_setWorldViewProjection = true;
