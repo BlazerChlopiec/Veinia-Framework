@@ -80,7 +80,7 @@ namespace VeiniaFramework
 			#endregion
 
 			#region GeonBit.UI
-			UserInterface.Initialize(content, BuiltinThemes.veinia_default);
+			UserInterface.Initialize(veiniaContent, BuiltinThemes.veinia_default);
 			UserInterface.Active.ShowCursor = false;
 			#endregion
 		}

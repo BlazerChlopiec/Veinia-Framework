@@ -8,7 +8,6 @@ namespace VeiniaFramework
 	public sealed class VeiniaContent : ContentManager
 	{
 		private readonly Assembly assembly;
-		private readonly string _resourcePrefix;
 
 		public VeiniaContent(IServiceProvider services)
 			: this(services, typeof(VeiniaContent).Assembly)
@@ -19,7 +18,9 @@ namespace VeiniaFramework
 
 		protected override Stream OpenStream(string assetName)
 		{
-			string resourceName = _resourcePrefix + assetName + ".xnb";
+			string normalizedAssetName = assetName.Replace('/', '\\');
+
+			string resourceName = normalizedAssetName + ".xnb";
 
 			Stream stream = assembly.GetManifestResourceStream(resourceName);
 
