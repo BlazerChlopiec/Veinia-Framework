@@ -60,9 +60,11 @@ namespace VeiniaFramework
 			// dont clear null renderTarget when switching
 			graphicsDevice.PresentationParameters.RenderTargetUsage = RenderTargetUsage.PreserveContents;
 
+			VeiniaContent veiniaContent = new VeiniaContent(game.Services, typeof(Veinia).Assembly);
+
 			title = new Title(window);
 			debugView = new DebugView(Globals.physicsWorld);
-			debugView.LoadContent(graphicsDevice, content);
+			debugView.LoadContent(graphicsDevice, veiniaContent);
 			#endregion
 
 			#region Myra.UI	
