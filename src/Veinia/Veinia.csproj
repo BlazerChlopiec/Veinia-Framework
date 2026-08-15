@@ -42,7 +42,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <KniContentReference Include="Source\Content\VeiniaContent.mgcb" />
+    <KniContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
 
   <ItemGroup>
