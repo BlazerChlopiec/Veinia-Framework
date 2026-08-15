@@ -8,8 +8,8 @@
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
-    <RootNamespace>VeiniaFramework.Samples.BlockBreaker</RootNamespace>
-    <AssemblyName>Block Breaker Sample</AssemblyName>
+    <RootNamespace>VeiniaFramework.Samples.Platformer</RootNamespace>
+    <AssemblyName>Platformer Sample</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Icon.ico" />
@@ -20,9 +20,6 @@
     <EmbeddedResource Include="Icon.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <MonoGameContentReference Include="Block Breaker\Content\Content.mgcb" />
-  </ItemGroup>
-  <ItemGroup>
     <TrimmerRootAssembly Include="Microsoft.Xna.Framework.Content.ContentTypeReader" Visible="false" />
   </ItemGroup>
   <ItemGroup>
@@ -30,15 +27,15 @@
 	<PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.5-preview.4" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Veinia\Veinia.csproj" />
+    <ProjectReference Include="..\Veinia\Veinia.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="LevelData\Level1.veinia">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <Target Name="RestoreDotnetTools" BeforeTargets="Restore">
-	  <Message Text="Restoring dotnet tools" Importance="High" />
-	  <Exec Command="dotnet tool restore" />
-  </Target>
+	<Target Name="RestoreDotnetTools" BeforeTargets="Restore">
+		<Message Text="Restoring dotnet tools" Importance="High" />
+		<Exec Command="dotnet tool restore" />
+	</Target>
 </Project>
