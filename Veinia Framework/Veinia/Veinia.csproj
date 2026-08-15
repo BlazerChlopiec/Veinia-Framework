@@ -4,6 +4,9 @@
 		<TargetFramework>net8.0</TargetFramework>
 		<PublishReadyToRun>false</PublishReadyToRun>
 		<TieredCompilation>false</TieredCompilation>
+		<IncludeContentInPack>false</IncludeContentInPack>
+		<PackageId>Veinia</PackageId>
+    	<Version>1.0.2</Version>
 	</PropertyGroup>
 	<PropertyGroup>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
@@ -25,7 +28,7 @@
 		<TrimmerRootAssembly Include="Microsoft.Xna.Framework.Content.ContentTypeReader" Visible="false" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Aether.Physics2D.Diagnostics.MG" Version="2.2.0" ExcludeAssets="contentFiles" PrivateAssets="all" />
+		<PackageReference Include="Aether.Physics2D.Diagnostics.MG" Version="2.2.0" ExcludeAssets="contentFiles" />
 		<PackageReference Include="Aether.Physics2D.MG" Version="2.2.0" />
 		<PackageReference Include="LibTessDotNet" Version="1.1.15" />
 		<PackageReference Include="MonoGame.Extended.Particles" Version="3.8.0" />
