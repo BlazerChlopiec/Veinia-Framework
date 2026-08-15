@@ -1,5 +1,4 @@
-﻿using GeonBit.UI;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Myra.Graphics2D.UI;
 using System;
@@ -43,8 +42,6 @@ namespace VeiniaFramework.Editor
 			 * Deselect - LAlt + D
 			 * Selection Overlap Menu - Middle Mouse Button / C
 			 */
-
-			UserInterface.Active.ShowCursor = false;
 
 			Globals.tweener.CancelAll();
 			Globals.unscaledTweener.CancelAll();

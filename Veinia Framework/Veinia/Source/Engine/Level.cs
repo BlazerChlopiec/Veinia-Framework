@@ -1,5 +1,4 @@
-﻿using GeonBit.UI;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Myra.Graphics2D.UI;
 using Newtonsoft.Json;
@@ -45,10 +44,6 @@ namespace VeiniaFramework
 			Globals.camera.shake.Reset();
 
 			Globals.myraDesktop.Root = Myra;
-
-			UserInterface.Active.ShowCursor = false;
-			if (this is EditorScene) UserInterface.Active.ShowCursor = true;
-			UserInterface.Active.RemoveAllEntities();
 
 			Globals.particleWorld.Clear();
 
