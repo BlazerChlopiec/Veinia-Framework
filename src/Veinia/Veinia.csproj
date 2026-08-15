@@ -1,0 +1,77 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <RollForward>Major</RollForward>
+    <ProjectGuid>0610bd53-32cc-4945-a46c-c5a70828d65e</ProjectGuid>
+    <PublishReadyToRun>false</PublishReadyToRun>
+    <TieredCompilation>false</TieredCompilation>
+    <IncludeContentInPack>false</IncludeContentInPack>
+    <PackageId>Veinia</PackageId>
+    <Version>1.0.0</Version>
+    <PublishTrimmed>True</PublishTrimmed>
+    <PublishAot>True</PublishAot>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Veinia</RootNamespace>
+    <AssemblyName>Veinia</AssemblyName>
+    <OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>$(DefineConstants);DESKTOPGL</DefineConstants>
+    <KniPlatform>DesktopGL</KniPlatform>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <StartupObject />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Icon.ico" />
+    <None Remove="Icon.bmp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Icon.ico" />
+    <EmbeddedResource Include="Icon.bmp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <KniContentReference Include="Source\Content\VeiniaContent.mgcb" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aether.Physics2D.Diagnostics.KNI" Version="2.2.0" />
+    <PackageReference Include="Aether.Physics2D.KNI" Version="2.2.0" />
+    <PackageReference Include="KNI.Extended" Version="6.0.0" />
+    <PackageReference Include="LibTessDotNet" Version="1.1.15" />
+    <PackageReference Include="Myra.PlatformAgnostic" Version="1.5.11" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+
+    <PackageReference Include="nkast.Xna.Framework" Version="4.2.9001" />
+    <PackageReference Include="nkast.Xna.Framework.Content" Version="4.2.9001" />
+    <PackageReference Include="nkast.Xna.Framework.Graphics" Version="4.2.9001" />
+    <PackageReference Include="nkast.Xna.Framework.Audio" Version="4.2.9001" />
+    <PackageReference Include="nkast.Xna.Framework.Media" Version="4.2.9001" />
+    <PackageReference Include="nkast.Xna.Framework.Input" Version="4.2.9001" />
+    <PackageReference Include="nkast.Xna.Framework.Game" Version="4.2.9001" />
+    <PackageReference Include="nkast.Xna.Framework.Devices" Version="4.2.9001" />
+    <PackageReference Include="nkast.Xna.Framework.Storage" Version="4.2.9001" />
+    <PackageReference Include="nkast.Xna.Framework.XR" Version="4.2.9001" />
+    <PackageReference Include="nkast.Kni.Platform.SDL2.GL" Version="4.2.9001" />
+    <PackageReference Include="nkast.Xna.Framework.Content.Pipeline.Builder" Version="4.2.9001" />
+  </ItemGroup>
+
+  <Target Name="EmbedContent" AfterTargets="RunContentBuilder" BeforeTargets="CoreCompile">
+    <ItemGroup>
+      <EmbeddedResource Include="@(ExtraContent)">
+        <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+      </EmbeddedResource>
+    </ItemGroup>
+  </Target>
+</Project>
