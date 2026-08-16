@@ -13,15 +13,30 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin veinia_defaults/circle.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:veinia_defaults/circle.png
+
 #begin veinia_defaults/prefab_default.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /build:veinia_defaults/prefab_default.png
 
+#begin veinia_defaults/square.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:veinia_defaults/square.png
+
 #begin veinia_defaults/trail_default.fx
 /importer:EffectImporter
 /processor:EffectProcessor
 /build:veinia_defaults/trail_default.fx
+
+#begin veinia_defaults/triangle.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:veinia_defaults/triangle.png
 
 #begin DiagnosticsFont.xnb
 /copy:DiagnosticsFont.xnb
