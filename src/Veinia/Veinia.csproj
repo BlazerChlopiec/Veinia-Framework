@@ -66,12 +66,4 @@
     <PackageReference Include="nkast.Kni.Platform.SDL2.GL" Version="4.2.9001" />
     <PackageReference Include="nkast.Xna.Framework.Content.Pipeline.Builder" Version="4.2.9001" />
   </ItemGroup>
-
-  <Target Name="EmbedContent" AfterTargets="RunContentBuilder" BeforeTargets="CoreCompile">
-    <ItemGroup>
-      <EmbeddedResource Include="@(ExtraContent)">
-        <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
-      </EmbeddedResource>
-    </ItemGroup>
-  </Target>
 </Project>

@@ -8,7 +8,7 @@ namespace VeiniaFramework.Samples.BlockBreaker
 		public override bool OnCollide(Fixture sender, Fixture other, Contact contact)
 		{
 			var tag = (Ball)other.Body.Tag;
-			if (tag != null) FindComponentOfType<UI>().ShowLoseScreen();
+			if (tag != null) FindComponentOfType<UI>().ResetGameWithTransition();
 
 			return true;
 		}
