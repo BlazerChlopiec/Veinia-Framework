@@ -14,13 +14,28 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin veinia_defaults/circle.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:veinia_defaults/circle.png
+
+#begin veinia_defaults/square.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:veinia_defaults/square.png
+
+#begin veinia_defaults/triangle.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:veinia_defaults/triangle.png
+
 #begin DiagnosticsFont.xnb
 /copy:DiagnosticsFont.xnb
 
 #begin veinia_defaults/prefab_default.png
 /importer:TextureImporter
 /processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyColor=255, 0, 255, 255
 /processorParam:ColorKeyEnabled=True
 /processorParam:GenerateMipmaps=False
 /processorParam:PremultiplyAlpha=True
