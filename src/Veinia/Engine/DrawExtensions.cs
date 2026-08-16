@@ -30,7 +30,7 @@ namespace VeiniaFramework
 			{
 				command = delegate
 				{
-					var spriteFont = font ?? Globals.assemblyContent.Load<SpriteFont>("DiagnosticsFont");
+					var spriteFont = font ?? Globals.content.Load<SpriteFont>("DiagnosticsFont");
 					var textSize = spriteFont.MeasureString(text);
 					var origin = new Vector2(textSize.X / 2f, textSize.Y / 2.5f);
 

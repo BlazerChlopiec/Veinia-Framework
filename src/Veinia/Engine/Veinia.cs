@@ -53,19 +53,16 @@ namespace VeiniaFramework
 			Globals.physicsWorld = new World(gravity ?? new Vector2(0, -9.81f));
 			Globals.frustumCulling = new FrustumCulling();
 			Globals.shapeDrawing = new ShapeDrawing(graphicsDevice);
-			Globals.assemblyContent = new AssemblyContent(game.Services, typeof(Veinia).Assembly);
 
 			window.ClientSizeChanged += (s, a) => screen.ClientSizeChanged();
 
 			// dont clear null renderTarget when switching
 			graphicsDevice.PresentationParameters.RenderTargetUsage = RenderTargetUsage.PreserveContents;
 
-			AssemblyContent assemblyContent = new AssemblyContent(game.Services, typeof(Veinia).Assembly);
-
 			title = new Title(window);
 			debugView = new DebugView(Globals.physicsWorld);
 
-			debugView.LoadContent(graphicsDevice, Globals.assemblyContent);
+			debugView.LoadContent(graphicsDevice, content);
 
 			#endregion
 

@@ -42,12 +42,4 @@
 		<Message Text="Restoring dotnet tools" Importance="High" />
 		<Exec Command="dotnet tool restore" />
 	</Target>
-	
-	<Target Name="EmbedContent" AfterTargets="RunContentBuilder" BeforeTargets="CoreCompile">
-		<ItemGroup>
-			<EmbeddedResource Include="@(ExtraContent)">
-				<LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
-			</EmbeddedResource>
-		</ItemGroup>
-	</Target>
 </Project>
