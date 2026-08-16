@@ -30,8 +30,7 @@ namespace VeiniaFramework.Samples.BlockBreaker
 			var prefabs = new BlockBreakerPrefabs();
 			var screen = new Screen(1280, 720, false);
 
-			veinia.Initialize(GraphicsDevice, Content, Window, screen,
-					unitSize: 100, Vector2.Zero, prefabs);
+			veinia.Initialize(GraphicsDevice, Content, spriteBatch, Window, screen, unitSize: 100, Vector2.Zero, prefabs);
 
 			Globals.camera = new Camera(new BoundingViewport(GraphicsDevice, Window, 1920, 1080));
 

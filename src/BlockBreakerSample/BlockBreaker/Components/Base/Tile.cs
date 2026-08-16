@@ -1,14 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
+using MonoGame.Extended.Graphics;
 using MonoGame.Extended.Particles;
+using MonoGame.Extended.Particles.Data;
 using MonoGame.Extended.Particles.Modifiers;
 using MonoGame.Extended.Particles.Modifiers.Interpolators;
 using MonoGame.Extended.Particles.Profiles;
-using MonoGame.Extended.TextureAtlases;
 using MonoGame.Extended.Tweening;
 using nkast.Aether.Physics2D.Dynamics;
-using System;
 using System.Collections.Generic;
 
 namespace VeiniaFramework.Samples.BlockBreaker
@@ -28,20 +28,22 @@ namespace VeiniaFramework.Samples.BlockBreaker
 			var texture = new Texture2D(Globals.graphicsDevice, 1, 1);
 			texture.SetData(new[] { Color.White });
 
-			particles = Globals.particleWorld.Add(new ParticleEffect
+			particles = Globals.particleWorld.Add(new ParticleEffect("hit")
 			{
+				AutoTrigger = false,
 				Position = transform.screenPos,
 				Emitters = new List<ParticleEmitter>
 				{
-					new ParticleEmitter(new TextureRegion2D(texture), 500, TimeSpan.FromSeconds(.6f),
-						Profile.BoxFill(100, 100))
+					new ParticleEmitter
 					{
-						AutoTrigger=false,
+						TextureRegion = new Texture2DRegion(texture),
+						LifeSpan = .6f,
+						Profile = Profile.BoxFill(100, 100),
 						Parameters = new ParticleReleaseParameters
 						{
-							Speed = new Range<float>(150, 300),
-							Rotation = new Range<float>(-1f, 1f),
-							Quantity = 20,
+							Speed = new ParticleFloatParameter(150, 300),
+							Rotation = new ParticleFloatParameter(-1f, 1f),
+							Quantity = new ParticleInt32Parameter(20, 21),
 						},
 						Modifiers =
 						{
@@ -60,7 +62,7 @@ namespace VeiniaFramework.Samples.BlockBreaker
 						}
 					}
 				},
-			}, Z: 1f); ;
+			}, Z: 1f);
 		}
 
 		public virtual void Hit()

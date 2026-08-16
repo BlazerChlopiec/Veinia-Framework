@@ -29,8 +29,7 @@ namespace VeiniaFramework.Samples.Physics
 			var prefabs = new PhysicsPrefabs();
 			var screen = new Screen(1280, 720, false);
 
-			veinia.Initialize(GraphicsDevice, Content, Window, screen,
-					unitSize: 100, prefabManager: prefabs);
+			veinia.Initialize(GraphicsDevice, Content, spriteBatch, Window, screen, unitSize: 100, prefabManager: prefabs);
 
 			Globals.loader.storedLevels.Add(new StoredLevel("Level1.veinia", typeof(LevelTemplate)));
 			Globals.loader.StoredLevelLoad(index: 0);
