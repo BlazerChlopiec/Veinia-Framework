@@ -71,9 +71,6 @@ namespace VeiniaFramework.Samples.BlockBreaker
 			if (hasBeenDestroyed) return;
 			hasBeenDestroyed = true;
 
-			var UI = FindComponentOfType<UI>();
-			UI.progressBar.Value--;
-
 			particles.effect.Trigger(transform.screenPos, 1);
 
 			Globals.tweener.TweenTo(target: transform, expression: transform => transform.rotation, toValue: -10, duration: .2f)
@@ -87,9 +84,7 @@ namespace VeiniaFramework.Samples.BlockBreaker
 					Globals.particleWorld.QueueRemove(particles.effect);
 
 					if (FindComponentsOfType<Tile>().Count == 0)
-					{
-						UI.ShowWinScreen();
-					}
+						FindComponentOfType<UI>().ResetGameWithTransition();
 				});
 		}
 	}

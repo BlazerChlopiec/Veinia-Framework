@@ -1,5 +1,5 @@
-﻿using GeonBit.UI;
-using GeonBit.UI.Entities;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Tweening;
@@ -8,33 +8,36 @@ namespace VeiniaFramework.Samples.BlockBreaker
 {
 	public class Transition : Component
 	{
-		Tween tween;
+		private Tween tween;
+		Action action;
 		Texture2D texture;
 
-		public Transition(string path) => this.texture = Globals.content.Load<Texture2D>(path);
+		public Transition(Action onTransition, string path = null)
+		{
+			this.action = onTransition;
+			this.texture = Globals.content.Load<Texture2D>(path ?? "veinia_defaults/circle");
+		}
 
 		public override void Initialize()
 		{
-			Image transition = new Image();
-			transition.Texture = texture;
-			transition.Anchor = Anchor.Center;
-			transition.Scale = 0;
-			transition.FillColor = Color.Black;
-			transition.DontDestroyOnLoad = true;
-			UserInterface.Active.AddEntity(transition);
+			var anim = level.Instantiate(new GameObject(new Transform { Z = 1000 }, new List<Component>
+			{
+				new Sprite(texture, Color.Black, 100)
+			}));
 
-			tween = Globals.unscaledTweener.TweenTo(target: transition, expression: image => image.Scale,
-											toValue: 1, .5f)
+
+			anim.transform.scale = Vector2.Zero;
+			anim.dontDestroyOnLoad = true;
+
+			tween = Globals.unscaledTweener.TweenTo(target: anim.transform, expression: transform => transform.scale, toValue: Vector2.One * 12, duration: .5f)
 			.Easing(EasingFunctions.CircleOut)
 			.OnEnd((x) =>
 			{
-				Globals.loader.Reload();
-				NextFrame.actions.Add(() => { transition.BringToFront(); }); // when the UI gets reset our transition isn't on top
+				action?.Invoke();
 
-				tween = Globals.unscaledTweener.TweenTo(target: transition, expression: image => image.Scale,
-								toValue: 0, .5f, delay: .1f)
+				tween = Globals.unscaledTweener.TweenTo(target: anim.transform, expression: transform => transform.scale, toValue: Vector2.Zero, duration: .5f, delay: .1f)
 				.Easing(EasingFunctions.SineIn)
-				.OnEnd((x) => { UserInterface.Active.RemoveEntity(transition); });
+				.OnEnd((x) => { anim.DestroyGameObject(); });
 			});
 		}
 	}

@@ -1,5 +1,4 @@
-﻿using GeonBit.UI;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using MonoGame.Extended.Tweening;
 using nkast.Aether.Physics2D.Dynamics;
 using nkast.Aether.Physics2D.Dynamics.Contacts;
@@ -32,7 +31,6 @@ namespace VeiniaFramework.Samples.BlockBreaker
 			if (Globals.input.GetMouseDown(0) && !launched)
 			{
 				launched = true;
-				UserInterface.Active.RemoveEntity(FindComponentOfType<UI>().configButton);
 				body.LinearVelocity = Vector2.One.SafeNormalize();
 			}
 

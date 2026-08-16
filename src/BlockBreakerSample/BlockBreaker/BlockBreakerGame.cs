@@ -16,7 +16,7 @@ namespace VeiniaFramework.Samples.BlockBreaker
 		{
 			graphics = new GraphicsDeviceManager(this);
 			Content.RootDirectory = "Content";
-			IsMouseVisible = false;
+			IsMouseVisible = true;
 			Window.AllowUserResizing = true;
 
 			veinia = new Veinia(this, graphics);
