@@ -10,7 +10,7 @@ namespace VeiniaFramework
 
 		private static void Write(string text)
 		{
-			if (OperatingSystem.IsBrowser()) Console.WriteLine(text);
+			if (OperatingSystem.IsBrowser() || !Debugger.IsAttached) Console.WriteLine(text);
 			else Debug.WriteLine(text);
 		}
 	}
