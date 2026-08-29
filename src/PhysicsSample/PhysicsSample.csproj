@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
 		<RollForward>Major</RollForward>
 		<ProjectGuid>6c88f129-ecd3-42f5-a1fc-2346031e9c2b</ProjectGuid>
-		<OutputType>WinExe</OutputType>
+		<OutputType Condition="'$(Configuration)' == 'Debug'">Exe</OutputType>
+		<OutputType Condition="'$(Configuration)' != 'Debug'">WinExe</OutputType>
 		<PublishTrimmed>True</PublishTrimmed>
 		<PublishAot>True</PublishAot>
 		<AppDesignerFolder>Properties</AppDesignerFolder>
@@ -48,7 +48,7 @@
 		<None Include="app.manifest" />
 	</ItemGroup>
 	<ItemGroup>
-		<KniContentReference Include="Physics\Content\Content.mgcb" />
+		<KniContentReference Include="Content\Content.mgcb" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Veinia\Veinia.csproj" />
