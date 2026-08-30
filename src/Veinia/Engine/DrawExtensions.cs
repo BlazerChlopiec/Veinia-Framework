@@ -70,14 +70,14 @@ namespace VeiniaFramework
 			{
 				command = delegate
 				{
-					sb.DrawCircle(new CircleF(position.ToPoint(), (radius * Transform.unitSize) / 2), sides, color.Value, thickness);
+					sb.DrawCircle(new CircleF(position.ToPoint(), radius / 2), sides, color.Value, thickness);
 				},
 				Z = z,
 				drawOptions = drawOptions,
 			});
 		}
 		public static void VeiniaCircleWorld(this SpriteBatch sb, Level level, Vector2 position, Color? color = null, float radius = 1, int sides = 10, float thickness = 1, DrawOptions drawOptions = default, float z = float.MaxValue)
-			=> VeiniaCircle(sb, level, Transform.WorldToScreenPos(position), color, radius, sides, thickness, drawOptions, z);
+			=> VeiniaCircle(sb, level, Transform.WorldToScreenPos(position), color, Transform.ToScreenUnits(radius), sides, thickness, drawOptions, z);
 
 		public static void VeiniaRectangle(this SpriteBatch sb, Level level, RectangleF rectangle, Color? color = null, float thickness = 1, DrawOptions drawOptions = default, float z = float.MaxValue)
 		{
