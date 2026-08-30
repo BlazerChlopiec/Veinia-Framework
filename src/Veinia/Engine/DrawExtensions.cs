@@ -6,7 +6,7 @@ namespace VeiniaFramework
 {
 	public static class DrawExtensions
 	{
-		public static void VeiniaPointWorld(this SpriteBatch sb, Level level, Vector2 position, Color? color = null, float size = 10, DrawOptions drawOptions = default, float z = float.MaxValue)
+		public static void VeiniaPoint(this SpriteBatch sb, Level level, Vector2 position, Color? color = null, float size = 10, DrawOptions drawOptions = default, float z = float.MaxValue)
 		{
 			color = color ?? Color.White;
 
@@ -14,14 +14,16 @@ namespace VeiniaFramework
 			{
 				command = delegate
 				{
-					sb.DrawPoint(Transform.WorldToScreenPos(position), color.Value, size, 0);
+					sb.DrawPoint(position, color.Value, size, 0);
 				},
 				Z = z,
 				drawOptions = drawOptions,
 			});
 		}
+		public static void VeiniaPointWorld(this SpriteBatch sb, Level level, Vector2 position, Color? color = null, float size = 10, DrawOptions drawOptions = default, float z = float.MaxValue)
+			=> VeiniaPoint(sb, level, Transform.WorldToScreenPos(position), color, size, drawOptions, z);
 
-		public static void VeiniaTextWorld(this SpriteBatch sb, Level level, Vector2 position, string text, Color? color = null, float size = .5f, SpriteFont font = null, DrawOptions drawOptions = default, float z = float.MaxValue)
+		public static void VeiniaText(this SpriteBatch sb, Level level, Vector2 position, string text, Color? color = null, float size = .5f, SpriteFont font = null, DrawOptions drawOptions = default, float z = float.MaxValue)
 		{
 			color = color ?? Color.White;
 			if (text == null || text == string.Empty) return;
@@ -34,27 +36,15 @@ namespace VeiniaFramework
 					var textSize = spriteFont.MeasureString(text);
 					var origin = new Vector2(textSize.X / 2f, textSize.Y / 2.5f);
 
-					sb.DrawString(spriteFont, text, Transform.WorldToScreenPos(position), color.Value, 0f, origin, size, SpriteEffects.None, 0f);
+					sb.DrawString(spriteFont, text, position, color.Value, 0f, origin, size, SpriteEffects.None, 0f);
 				},
 				Z = z,
 				drawOptions = drawOptions,
 			});
 		}
+		public static void VeiniaTextWorld(this SpriteBatch sb, Level level, Vector2 position, string text, Color? color = null, float size = .5f, SpriteFont font = null, DrawOptions drawOptions = default, float z = float.MaxValue)
+			=> VeiniaText(sb, level, Transform.WorldToScreenPos(position), text, color, size, font, drawOptions, z);
 
-		public static void VeiniaLineWorld(this SpriteBatch sb, Level level, Vector2 point1, Vector2 point2, Color? color = null, float thickness = 10, DrawOptions drawOptions = default, float z = float.MaxValue)
-		{
-			color = color ?? Color.White;
-
-			level.drawCommands.Add(new DrawCommand
-			{
-				command = delegate
-				{
-					sb.DrawLine(Transform.WorldToScreenPos(point1), Transform.WorldToScreenPos(point2), color.Value, thickness);
-				},
-				Z = z,
-				drawOptions = drawOptions,
-			});
-		}
 		public static void VeiniaLine(this SpriteBatch sb, Level level, Vector2 point1, Vector2 point2, Color? color = null, float thickness = 10, DrawOptions drawOptions = default, float z = float.MaxValue)
 		{
 			color = color ?? Color.White;
@@ -69,6 +59,8 @@ namespace VeiniaFramework
 				drawOptions = drawOptions,
 			});
 		}
+		public static void VeiniaLineWorld(this SpriteBatch sb, Level level, Vector2 point1, Vector2 point2, Color? color = null, float thickness = 10, DrawOptions drawOptions = default, float z = float.MaxValue)
+			=> VeiniaLine(sb, level, Transform.WorldToScreenPos(point1), Transform.WorldToScreenPos(point2), color, thickness, drawOptions, z);
 
 		public static void VeiniaCircle(this SpriteBatch sb, Level level, Vector2 position, Color? color = null, float radius = 1, int sides = 10, float thickness = 1, DrawOptions drawOptions = default, float z = float.MaxValue)
 		{
@@ -84,6 +76,8 @@ namespace VeiniaFramework
 				drawOptions = drawOptions,
 			});
 		}
+		public static void VeiniaCircleWorld(this SpriteBatch sb, Level level, Vector2 position, Color? color = null, float radius = 1, int sides = 10, float thickness = 1, DrawOptions drawOptions = default, float z = float.MaxValue)
+			=> VeiniaCircle(sb, level, Transform.WorldToScreenPos(position), color, radius, sides, thickness, drawOptions, z);
 
 		public static void VeiniaRectangle(this SpriteBatch sb, Level level, RectangleF rectangle, Color? color = null, float thickness = 1, DrawOptions drawOptions = default, float z = float.MaxValue)
 		{
