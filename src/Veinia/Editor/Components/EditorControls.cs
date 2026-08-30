@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Myra.Graphics2D.UI;
 
@@ -11,9 +12,11 @@ namespace VeiniaFramework.Editor
 
 		private Vector2 startMousePos;
 
-		private float zoomSensitivity = 1.2f;
+		private float zoomSensitivity = 1.5f;
 
 		private const float DRAG_THRESHOLD = .3f; // world space
+		private const float ZOOM_UP_LIMIT = 3f;
+		private const float ZOOM_DOWN_LIMIT = .5f;
 
 		public static bool disableDragMove;
 		public static bool isTextBoxFocused => Globals.myraDesktop.FocusedKeyboardWidget is TextBox or SpinButton;
@@ -40,8 +43,8 @@ namespace VeiniaFramework.Editor
 
 			if (!Globals.myraDesktop.IsMouseOverGUI)
 			{
-				Globals.camera.Scale -= Globals.input.deltaScroll * zoomSensitivity;
-				Globals.camera.Scale = MathHelper.Clamp(Globals.camera.Scale, .5f, 2.5f);
+				Globals.camera.Scale -= Globals.input.deltaScroll * Globals.camera.Scale * zoomSensitivity;
+				Globals.camera.Scale = MathHelper.Clamp(Globals.camera.Scale, ZOOM_DOWN_LIMIT, ZOOM_UP_LIMIT);
 			}
 
 			if (isHolding)
