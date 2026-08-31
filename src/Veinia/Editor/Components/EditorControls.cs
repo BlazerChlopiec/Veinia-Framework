@@ -15,7 +15,7 @@ namespace VeiniaFramework.Editor
 		private float zoomSensitivity = 1.5f;
 
 		private const float DRAG_THRESHOLD = .3f; // world space
-		private const float ZOOM_UP_LIMIT = 3f;
+		private const float ZOOM_UP_LIMIT = 8f;
 		private const float ZOOM_DOWN_LIMIT = .5f;
 
 		public static bool disableDragMove;
