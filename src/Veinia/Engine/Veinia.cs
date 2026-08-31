@@ -170,8 +170,8 @@ namespace VeiniaFramework
 		public void Draw(SpriteBatch spriteBatch, DrawOptions drawOptions = default)
 		{
 			DrawWorld(spriteBatch, drawOptions);
-			DrawMyra();
 			DrawDebugPhysics();
+			DrawMyra();
 		}
 
 		public void DrawWorld(SpriteBatch spriteBatch, DrawOptions drawOptions = default) => Globals.loader.current?.Draw(spriteBatch, drawOptions);
