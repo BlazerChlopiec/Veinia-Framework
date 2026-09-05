@@ -208,7 +208,7 @@ namespace VeiniaFramework
 		public void RemoveComponent<T1>()
 		{
 			var c = components.FindAll(x => x is T1);
-			if (c.Count > 0) c.ForEach(x => RemoveComponent(x));
+			if (c.Count > 0) c.ForEach(RemoveComponent);
 		}
 
 		public void DestroyGameObject(bool destroyChildObjects = false)
