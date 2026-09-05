@@ -51,7 +51,7 @@ namespace VeiniaFramework
 		private bool isDestroyed;
 
 
-		public GameObject(Transform transform, List<Component> components, Body body = default, string customData = null, bool isStatic = false, bool dontDestoryOnLoad = false)
+		public GameObject(Transform transform, List<Component> components, Body body = default, string customData = null, bool isStatic = false, bool dontDestroyOnLoad = false)
 		{
 			transform.gameObject = this;
 			this.transform = transform;
@@ -60,9 +60,10 @@ namespace VeiniaFramework
 			if (body != null) this.body = body;
 			if (customData != null) this.customData = customData;
 			this.isStatic = isStatic;
-			this.dontDestroyOnLoad = dontDestoryOnLoad;
+			this.dontDestroyOnLoad = dontDestroyOnLoad;
 
-			components.Remove(components.Find(x => x is Transform)); // remove transform to make sure there aren't two transforms (prefab case)
+			RemoveComponent<Transform>(); // remove transform to make sure there aren't two transforms (prefab case)
+
 			components.Add(transform); // the transform is added afterwards to components to ensure the gameobject having a transform
 		}
 
@@ -132,7 +133,7 @@ namespace VeiniaFramework
 
 		public T1 GetComponent<T1>() where T1 : Component
 		{
-			if (isDestroyed) throw new System.Exception("GetComponent<T1> - The object is already destroyed!");
+			if (isDestroyed) throw new Exception("GetComponent<T1> - The object is already destroyed!");
 
 			List<T1> returnVal = new List<T1>();
 
@@ -148,13 +149,13 @@ namespace VeiniaFramework
 				return default;
 
 			if (returnVal.Count > 1)
-				throw new System.Exception("GetComponent<T1> - More than one matching components! " + typeof(T1));
+				throw new Exception("GetComponent<T1> - More than one matching components! " + typeof(T1));
 
 			else
 				return returnVal[0];
 		}
 
-		public Component AddComponent(Component component)
+		public Component AddComponent(Component component, bool callInitialize = true)
 		{
 			var compo = (Component)component.Clone();
 			components.Add(compo);
@@ -162,10 +163,13 @@ namespace VeiniaFramework
 			compo.gameObject = this;
 			compo.transform = transform;
 			compo.level = level;
-			if (level != null && level.firstFrameCreated)
+
+			if (level != null && level.firstFrameCreated && callInitialize)
 			{
 				compo.EarlyInitialize();
 				compo.Initialize();
+
+				isInitialized = true;
 			}
 
 			return compo;
@@ -200,6 +204,11 @@ namespace VeiniaFramework
 
 				components.Remove(components.Find(x => x == component));
 			}
+		}
+		public void RemoveComponent<T1>()
+		{
+			var c = components.FindAll(x => x is T1);
+			if (c.Count > 0) c.ForEach(x => RemoveComponent(x));
 		}
 
 		public void DestroyGameObject(bool destroyChildObjects = false)
